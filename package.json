@@ -1,10 +1,10 @@
 {
 	"name": "com.openngs.game",
 	"version": "0.1.0",
-	"description": "a test npm package",
+	"description": "OpenNgs game package",
 	"main": "index.js",
 	"scripts": {
-		"test" : "test22222"
+		"test" : "script-content"
 	},
 	"author": "kane",
 	"license": "MIT",
