@@ -1,0 +1,19 @@
+{
+    "name": "OpenNGS.Build.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:239d7ca4ed52e97489e6a2151c6fe8ff",
+        "GUID:4b63a8bfa1c0be143841c224d2254a70"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

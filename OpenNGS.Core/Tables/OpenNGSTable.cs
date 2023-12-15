@@ -1,0 +1,277 @@
+using System;
+using OpenNGS.IO;
+using OpenNGS.Serialization;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace OpenNGS.Tables
+{
+
+    public interface IOpenNGSTable
+    {
+        string Name { get; }
+        void Load(string filename);
+        void Unload();
+    }
+
+    public abstract class OpenNGSTableBase<T, ITEM> : OpenNGS.Singleton<T>, IOpenNGSTable where T : Singleton<T>, new()
+    {
+        public List<ITEM> Items { get; private set; }
+
+        private bool loaded = false;
+
+        public string Name
+        {
+            get { return typeof(ITEM).Name; }
+        }
+
+        public void Load(string filename)
+        {
+            if (this.loaded) return;
+
+            // TODO bin 文件大小写错位问题临时解决方案
+#if DEBUG_LOG && PROFILER
+            OpenNGS.Profiling.ProfilerLog.Start("Tables.Load", filename);
+#endif
+            byte[] data = File.ReadAllBytes(filename);
+ 
+            if (data == null) {
+                var filenameList = filename.Split("/");
+                filenameList[^1] = filenameList[^1].ToLower();
+                var filenameNew = String.Join("/", filenameList);
+                data = File.ReadAllBytes(filenameNew);
+
+                if (data == null) {
+                    Debug.LogError("[NGSTable:Load]can't find " + filename + " and " + filenameNew);
+#if DEBUG_LOG && PROFILER
+                    OpenNGS.Profiling.ProfilerLog.End("Tables.Load", filename);
+#endif
+                    return;
+                }
+
+            }
+            
+            this.Items = OpenNGSTable.Serializer.Deserialize<List<ITEM>>(data);
+            this.Prepare();
+            this.loaded = true;
+#if DEBUG_LOG &&PROFILER
+            OpenNGS.Profiling.ProfilerLog.End("Tables.Load", filename);
+#endif
+        }
+
+        protected virtual void Prepare() { }
+
+        public ITEM GetItem(int index)
+        {
+            ITEM item = this.Items[index];
+            return item;
+        }
+
+        public void Unload()
+        {
+
+        }
+    }
+
+    public class OpenNGSTable
+    {
+        public static ISerializer Serializer { get; set; }
+
+    }
+
+    public class OpenNGSTable<ITEM, KEY> : OpenNGSTableBase<OpenNGSTable<ITEM, KEY>, ITEM>, IOpenNGSTable
+    {
+        public static Dictionary<KEY, ITEM> map = new Dictionary<KEY, ITEM>();
+
+        public delegate KEY KeyGetter(ITEM item);
+
+        KeyGetter keyGetter;
+
+        public OpenNGSTable()
+        {
+
+        }
+        public OpenNGSTable(KeyGetter keyGetter)
+        {
+            this.keyGetter = keyGetter;
+        }
+
+        protected virtual KEY GetKey(ITEM item) {
+            if (this.keyGetter != null)
+                return this.keyGetter(item);
+            return default(KEY);
+        }
+
+
+        protected override void Prepare()
+        {
+            foreach(var item in this.Items)
+            {
+                try
+                {
+                    map.Add(GetKey(item), item);
+                }
+                catch(System.Exception ex)
+                {
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_IOS || UNITY_ANDROID
+                    UnityEngine.Debug.LogErrorFormat("{0}:{1}", this.Name, ex.Message);
+#else
+                    throw ex;
+#endif
+                }
+            }
+        }
+
+        public ITEM GetItem(KEY key)
+        {
+            ITEM item = default(ITEM);
+            map.TryGetValue(key, out item);
+            return item;
+        }
+    }
+
+    public class NGSTable<ITEM, PK, SK>  : OpenNGSTableBase<NGSTable<ITEM, PK, SK>, ITEM>, IOpenNGSTable
+    {
+        public Dictionary<PK, Dictionary<SK, ITEM>> Map = new Dictionary<PK, Dictionary<SK, ITEM>>();
+
+        public delegate PK PKeyGetter(ITEM item);
+        public delegate SK SKeyGetter(ITEM item);
+
+        PKeyGetter pkGetter;
+        SKeyGetter skGetter;
+
+        public NGSTable<ITEM, PK, SK> SetKeyGetter(PKeyGetter pkgetter , SKeyGetter skgetter)
+        {
+            pkGetter = pkgetter;
+            skGetter = skgetter;
+            return this;
+        }
+
+        protected override void Prepare()
+        {
+            foreach (var item in this.Items)
+            {
+                try
+                {
+                    this.AddItem(item);
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        private void AddItem(ITEM item)
+        {
+            Dictionary<SK, ITEM> submap = null;
+            PK key1 = GetPKey(item);
+            if (!this.Map.TryGetValue(key1, out submap))
+            {
+                submap = new Dictionary<SK, ITEM>();
+                this.Map[key1] = submap;
+            }
+            submap.Add(GetSKey(item), item);
+        }
+
+        private PK GetPKey(ITEM item)
+        {
+            if (this.pkGetter != null)
+                return this.pkGetter(item);
+            return default(PK);
+        }
+
+        private SK GetSKey(ITEM item)
+        {
+            if (this.skGetter != null)
+                return this.skGetter(item);
+            return default(SK);
+        }
+
+        public ITEM GetItem(PK pk, SK sk)
+        {
+            ITEM item = default(ITEM);
+            Dictionary<SK, ITEM> submap = GetItems(pk);
+            if(submap!=null)
+            { 
+                submap.TryGetValue(sk, out item);
+            }
+            return item;
+        }
+
+        public Dictionary<SK, ITEM> GetItems(PK pk)
+        {
+            Dictionary<SK, ITEM> items = null;
+            this.Map.TryGetValue(pk, out items);
+            return items;
+        }
+    }
+
+
+    public class NGSListTable<ITEM, KEY> : OpenNGSTableBase<OpenNGSTable<ITEM, KEY>, ITEM>, IOpenNGSTable
+    {
+        public Dictionary<KEY, List<ITEM>> Map = new Dictionary<KEY, List<ITEM>>();
+
+        public delegate KEY KeyGetter(ITEM item);
+
+        KeyGetter keyGetter;
+
+        public NGSListTable(KeyGetter getter)
+        {
+            this.keyGetter = getter;
+        }
+
+        protected override void Prepare()
+        {
+            foreach (var item in this.Items)
+            {
+                try
+                {
+                    this.AddItem(item);
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        private void AddItem(ITEM item)
+        {
+            List<ITEM> list = null;
+            KEY key1 = GetPKey(item);
+            if (!this.Map.TryGetValue(key1, out list))
+            {
+                list = new List<ITEM>();
+                this.Map[key1] = list;
+            }
+            list.Add(item);
+        }
+
+        private KEY GetPKey(ITEM item)
+        {
+            if (this.keyGetter != null)
+                return this.keyGetter(item);
+            return default(KEY);
+        }
+
+        public ITEM GetItem(KEY pk,int index)
+        {
+            ITEM item = default(ITEM);
+            List<ITEM> list = GetItems(pk);
+            if (list != null)
+            {
+                item = list[index];
+            }
+            return item;
+        }
+
+        public List<ITEM> GetItems(KEY pk)
+        {
+            List<ITEM> items = null;
+            this.Map.TryGetValue(pk, out items);
+            return items;
+        }
+    }
+}
