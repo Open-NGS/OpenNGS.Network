@@ -1,0 +1,15 @@
+{
+	"name": "com.openngs.irpc",
+	"version": "0.1.0",
+	"description": "OpenNGS irpc package",
+	"main": "index.js",
+	"scripts": {
+		"test" : "script-content"
+	},
+	"author": "kane",
+	"license": "AGPL",
+	"keywords": [
+		"unity3d",
+		"unity3d-npm"
+	]
+}
