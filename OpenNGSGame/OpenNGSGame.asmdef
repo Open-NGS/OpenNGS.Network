@@ -1,0 +1,21 @@
+{
+    "name": "OpenNGSGame",
+    "rootNamespace": "",
+    "references": [
+        "GUID:26ec928a3b13f964eb3ad549a6aeb935",
+        "GUID:4b63a8bfa1c0be143841c224d2254a70",
+        "GUID:b5751fc1402039847b665d37e3529358",
+        "GUID:941ade04f84c571499860aae5581de25",
+        "GUID:4e33fed6573df504292193820605b256",
+        "GUID:8c3ccbf1514f8b142b91ab417e3fd45c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
