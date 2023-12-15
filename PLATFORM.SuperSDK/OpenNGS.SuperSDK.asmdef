@@ -1,0 +1,16 @@
+{
+    "name": "OpenNGS.SuperSDK",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4e33fed6573df504292193820605b256"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
