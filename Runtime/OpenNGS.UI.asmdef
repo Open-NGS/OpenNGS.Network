@@ -1,0 +1,17 @@
+{
+    "name": "OpenNGS.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4b63a8bfa1c0be143841c224d2254a70",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
