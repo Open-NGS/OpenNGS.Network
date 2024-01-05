@@ -32,9 +32,10 @@ namespace OpenNGS.UI
     [global::ProtoBuf.ProtoContract()]
     public enum UI_SYSTEM
     {
-        UI_SYSTEM_UGUI = 0,
-        UI_SYSTEM_FAIRY_GUI = 1,
-        UI_SYSTEM_UI_TOOLKIT = 2,
+        UI_SYSTEM_NONE = 0,
+        UI_SYSTEM_UGUI = 1,
+        UI_SYSTEM_FAIRY_GUI = 2,
+        UI_SYSTEM_UI_TOOLKIT = 3,
     }
 
     [global::ProtoBuf.ProtoContract()]
