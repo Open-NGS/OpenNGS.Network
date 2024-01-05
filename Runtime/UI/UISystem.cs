@@ -8,8 +8,8 @@ namespace OpenNGS.UI
 {
     public class UISystem
     {
-        static Dictionary<UISystemType, IUISystem> Systems = new Dictionary<UISystemType, IUISystem>();
-        public static IUISystem Get(UISystemType type)
+        static Dictionary<OpenNGS.UI.UI_SYSTEM, IUISystem> Systems = new Dictionary<OpenNGS.UI.UI_SYSTEM, IUISystem>();
+        public static IUISystem Get(OpenNGS.UI.UI_SYSTEM type)
         {
             IUISystem system = null;
             if(!Systems.TryGetValue(type, out system))
@@ -19,7 +19,7 @@ namespace OpenNGS.UI
             return system;
         }
 
-        public static void Register(UISystemType type, IUISystem system)
+        public static void Register(OpenNGS.UI.UI_SYSTEM type, IUISystem system)
         {
             Systems[type] = system;
         }

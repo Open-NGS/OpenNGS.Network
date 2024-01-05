@@ -14,24 +14,6 @@ namespace OpenNGS.UI
 
 
     }
-    public enum UISystemType
-    {
-        /// <summary>
-        /// UGUI
-        /// Default UI System
-        /// </summary>
-        UGUI = 0,
-
-        /// <summary>
-        /// FairyGUI System
-        /// </summary>
-        FairyGUI = 1,
-
-        /// <summary>
-        /// UIWidgets
-        /// </summary>
-        UIWidgets = 2,
-    }
 
 
     public enum DialogResult
