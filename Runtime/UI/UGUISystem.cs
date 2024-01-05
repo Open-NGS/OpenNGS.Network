@@ -7,7 +7,7 @@ using UnityEngine.U2D;
 
 namespace OpenNGS.UI
 {
-    public class UGUISystem : IUISystem
+    public class UGUISystem : Singleton<UGUISystem>, IUISystem
     {
         public void InitSystem()
         {
