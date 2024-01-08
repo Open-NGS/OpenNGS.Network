@@ -8,7 +8,7 @@
 #pragma warning disable 0612, 0618, 1591, 3021
 namespace OpenNGS.UI
 {
-//
+
     [global::ProtoBuf.ProtoContract()]
     public enum UIID
     {
