@@ -10,99 +10,12 @@ namespace OpenNGS.UI
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public enum UIID
-    {
-        UI_NONE = 0,
-        UI_LOGIN = 1,
-        UI_NPC_INTERACTION = 2,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public enum UI_LAYER
-    {
-        UI_LAYER_NONE = 0,
-        UI_LAYER_WORLD = 1,
-        UI_LAYER_HUD = 2,
-        UI_LAYER_BASE = 4,
-        UI_LAYER_MESSAGE = 8,
-        UI_LAYER_TIPS = 16,
-        UI_LAYER_DEBUG = 32,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public enum UI_SYSTEM
     {
         UI_SYSTEM_NONE = 0,
         UI_SYSTEM_UGUI = 1,
         UI_SYSTEM_FAIRY_GUI = 2,
         UI_SYSTEM_UI_TOOLKIT = 3,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class UIConfig : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public UIConfig()
-        {
-            Component = "";
-            Package = "";
-            Dependences = new global::System.Collections.Generic.List<string>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint Id { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public UI_SYSTEM Type { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Component { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Package { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public global::System.Collections.Generic.List<string> Dependences { get; private set; }
-
-        [global::ProtoBuf.ProtoMember(6)]
-        public UI_LAYER Layer { get; set; }
-
-        [global::ProtoBuf.ProtoMember(7)]
-        public bool Stack { get; set; }
-
-        [global::ProtoBuf.ProtoMember(8)]
-        public bool Cache { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class UIConfigArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public UIConfigArray()
-        {
-            items = new global::System.Collections.Generic.List<UIConfig>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<UIConfig> items { get; private set; }
-
     }
 
 }
