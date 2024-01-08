@@ -18,14 +18,14 @@ namespace OpenNGS.UI.UGUI
             
             if (prefab == null)
             {
-                Debug.LogError($"UGUI resources not found: {package}/{component}");
+                OpenNGSDebug.LogError($"UGUI resources not found: {package}/{component}");
                 return null;
             }
             
             var root = GameObject.FindWithTag("UGUIRoot");
             if (root == null)
             {
-                Debug.LogError("UGUI Root not found!");
+                OpenNGSDebug.LogError("UGUI Root not found!");
                 return null;
             }
             
