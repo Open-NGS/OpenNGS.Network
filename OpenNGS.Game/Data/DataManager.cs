@@ -100,7 +100,7 @@ public class DataManager : OpenNGS.Singleton<DataManager>
         seasonTables.Clear();
     }
 
-    public static Table<Common.Shop, uint> Shops = new Table<Common.Shop, uint>((item) => { return item.ID; }, false);
-    public static Table<Common.Good, uint> Goods = new Table<Common.Good, uint>((item) => { return item.ID; }, false);
-    public static Table<Common.Shelf, uint> Shelfs = new Table<Common.Shelf, uint>((item) => { return item.ID; }, false);
+    public static Table<OpenNGS.Map.WorldMap, uint> worldMap = new Table<OpenNGS.Map.WorldMap, uint>((item) => { return item.ID; }, false);
+    public static Table<OpenNGS.Dialog.DialogTalk, uint> dialogTalk = new Table<OpenNGS.Dialog.DialogTalk, uint>((item) => { return item.DialogID; }, false);
+    //public static Table<Common.Shelf, uint> Shelfs = new Table<Common.Shelf, uint>((item) => { return item.ID; }, false);
 }
