@@ -27,10 +27,15 @@ namespace OpenNGS.Assets
 
 #if UNITY_EDITOR
             if (RawMode)
+            {
                 result = LoadFromRaw<T>(path);
+                OpenNGSDebug.Log("OpenNgsRes::Load RawMode");
+            }
             else
-#endif
+#else
                 result = LoadFromBundle<T>(path);
+            OpenNGSDebug.Log("OpenNgsRes::Load No RawMode");
+#endif
 
 #if DEBUG_LOG
             OpenNGS.Profiling.ProfilerLog.End("OpenNGSResources.Load", path);
