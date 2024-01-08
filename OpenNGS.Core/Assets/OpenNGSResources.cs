@@ -29,12 +29,12 @@ namespace OpenNGS.Assets
             if (RawMode)
             {
                 result = LoadFromRaw<T>(path);
-                OpenNGSDebug.Log("OpenNgsRes::Load RawMode");
+                OpenNGSDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]",path));
             }
             else
 #else
                 result = LoadFromBundle<T>(path);
-            OpenNGSDebug.Log("OpenNgsRes::Load No RawMode");
+            OpenNGSDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]",path));
 #endif
 
 #if DEBUG_LOG
