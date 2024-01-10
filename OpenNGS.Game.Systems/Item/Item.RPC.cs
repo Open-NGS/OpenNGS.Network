@@ -237,14 +237,14 @@ namespace Item.RPC
 
     }
 
-    //[Ni.IRPC.Configuration.Service(@"Item.RPC.ItemService")]
+    //[Ni.ERPC.Configuration.Service(@"Item.RPC.ItemService")]
     public partial interface IItemService
     {
-        //global::System.Threading.Tasks.Task<Item.RPC.GetItemsRsp> GetItems(Item.RPC.GetItemsReq value, Ni.IRPC.ClientContext context = default(Ni.IRPC.ClientContext));
-        //global::System.Threading.Tasks.Task<Item.RPC.UseItemRsp> UseItem(Item.RPC.UseItemReq value, Ni.IRPC.ClientContext context = default(Ni.IRPC.ClientContext));
-        //global::System.Threading.Tasks.Task<Item.RPC.PlaceItemRsp> PlaceItem(Item.RPC.PlaceItemReq value, Ni.IRPC.ClientContext context = default(Ni.IRPC.ClientContext));
-        //global::System.Threading.Tasks.Task<Item.RPC.ReplaceItemRsp> ReplaceItem(Item.RPC.ReplaceItemReq value, Ni.IRPC.ClientContext context = default(Ni.IRPC.ClientContext));
-        //global::System.Threading.Tasks.Task<Item.RPC.ReplaceItemsRsp> ReplaceItems(Item.RPC.ReplaceItemsReq value, Ni.IRPC.ClientContext context = default(Ni.IRPC.ClientContext));
+        //global::System.Threading.Tasks.Task<Item.RPC.GetItemsRsp> GetItems(Item.RPC.GetItemsReq value, Ni.ERPC.ClientContext context = default(Ni.ERPC.ClientContext));
+        //global::System.Threading.Tasks.Task<Item.RPC.UseItemRsp> UseItem(Item.RPC.UseItemReq value, Ni.ERPC.ClientContext context = default(Ni.ERPC.ClientContext));
+        //global::System.Threading.Tasks.Task<Item.RPC.PlaceItemRsp> PlaceItem(Item.RPC.PlaceItemReq value, Ni.ERPC.ClientContext context = default(Ni.ERPC.ClientContext));
+        //global::System.Threading.Tasks.Task<Item.RPC.ReplaceItemRsp> ReplaceItem(Item.RPC.ReplaceItemReq value, Ni.ERPC.ClientContext context = default(Ni.ERPC.ClientContext));
+        //global::System.Threading.Tasks.Task<Item.RPC.ReplaceItemsRsp> ReplaceItems(Item.RPC.ReplaceItemsReq value, Ni.ERPC.ClientContext context = default(Ni.ERPC.ClientContext));
     }
 
 }
