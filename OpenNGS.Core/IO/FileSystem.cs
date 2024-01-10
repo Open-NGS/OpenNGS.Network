@@ -33,7 +33,9 @@ namespace OpenNGS.IO
         {
             if (fs == null)
             {
-#if UNITY_ANDROID
+#if UNITY_SWITCH
+                fileSystem = new Switch.NXFileSystem();
+#elif UNITY_ANDROID
                 fileSystem = new AndroidPosixFileSystem();
 #else
                 fileSystem = new Posix.PosixFileSystem();
@@ -50,6 +52,8 @@ namespace OpenNGS.IO
                 pathProvider = path;
         }
 
+       
+		
         public static bool FileExists(string filename)
         {
             return fileSystem.FileExists(filename);

@@ -82,4 +82,9 @@ public class UnityFileSystem : IFileSystem
     {
         throw new System.NotImplementedException();
     }
+
+    public void Mount(string mountName, bool @readonly)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -15,13 +15,21 @@ namespace OpenNGS.IO.Posix
 
         public string MountName { get; private set; }
 
+        public void Mount(string mountName, bool @readonly)
+        {
+            this.MountName = mountName;
+        }
+
+
         public bool MountCacheData(string mountName, bool readOnly)
         {
+            this.MountName = mountName;
             return true;
         }
 
         public bool MountRom(string mountName)
         {
+            this.MountName = mountName;
             return true;
         }
 

@@ -8,6 +8,8 @@ namespace OpenNGS.IO
 {
     public interface IFileSystem
     {
+        void Mount(string mountName, bool @readonly);
+
         bool MountRom(string mountName);
         bool MountSaveData(string mountName, bool readOnly);
         bool MountCacheData(string mountName, bool readOnly);
