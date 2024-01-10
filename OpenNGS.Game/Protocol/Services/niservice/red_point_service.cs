@@ -76,10 +76,10 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.RedPointService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.RedPointService")]
     public partial interface IRedPointService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetRedPointsRsp> GetRedPoints(Rpc.Game.GetRedPointsReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetRedPointsRsp> GetRedPoints(Rpc.Game.GetRedPointsReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

@@ -99,11 +99,11 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.CardService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.CardService")]
     public partial interface ICardService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.CardDrawRsp> CardDraw(Rpc.Game.CardDrawReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> CardTransform(Rpc.Game.CardTransformReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.CardDrawRsp> CardDraw(Rpc.Game.CardDrawReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> CardTransform(Rpc.Game.CardTransformReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

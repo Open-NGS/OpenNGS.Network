@@ -275,15 +275,15 @@ namespace CharacterSocial.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"CharacterSocial.RPC.CharacterSocialService")]
+    [OpenNGS.ERPC.Configuration.Service(@"CharacterSocial.RPC.CharacterSocialService")]
     public partial interface ICharacterSocialService
     {
-        global::System.Threading.Tasks.Task<CharacterSocial.RPC.PushOnlineToFriendsRsp> PushOnlineToFriends(CharacterSocial.RPC.PushOnlineToFriendsReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterSocial.RPC.GetSocialEnterRoomRsp> GetSocialEnterRoom(CharacterSocial.RPC.GetSocialEnterRoomReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterSocial.RPC.InviteOtherEnterRoomRsp> InviteOtherEnterRoom(CharacterSocial.RPC.InviteOtherEnterRoomReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterSocial.RPC.ReplyInviteEnterRoomRsp> ReplyInviteEnterRoom(CharacterSocial.RPC.ReplyInviteEnterRoomReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterSocial.RPC.RequestEnterOtherRoomRsp> RequestEnterOtherRoom(CharacterSocial.RPC.RequestEnterOtherRoomReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterSocial.RPC.ReplyRequestEnterRoomRsp> ReplyRequestEnterRoom(CharacterSocial.RPC.ReplyRequestEnterRoomReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterSocial.RPC.PushOnlineToFriendsRsp> PushOnlineToFriends(CharacterSocial.RPC.PushOnlineToFriendsReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterSocial.RPC.GetSocialEnterRoomRsp> GetSocialEnterRoom(CharacterSocial.RPC.GetSocialEnterRoomReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterSocial.RPC.InviteOtherEnterRoomRsp> InviteOtherEnterRoom(CharacterSocial.RPC.InviteOtherEnterRoomReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterSocial.RPC.ReplyInviteEnterRoomRsp> ReplyInviteEnterRoom(CharacterSocial.RPC.ReplyInviteEnterRoomReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterSocial.RPC.RequestEnterOtherRoomRsp> RequestEnterOtherRoom(CharacterSocial.RPC.RequestEnterOtherRoomReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterSocial.RPC.ReplyRequestEnterRoomRsp> ReplyRequestEnterRoom(CharacterSocial.RPC.ReplyRequestEnterRoomReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

@@ -6,7 +6,7 @@ using Systems;
 
 namespace Rpc
 {
-    public class ClientContextBase : OpenNGS.IRPC.ClientContext
+    public class ClientContextBase : OpenNGS.ERPC.ClientContext
     {
         public static ulong UIN;
 

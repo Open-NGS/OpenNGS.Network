@@ -616,7 +616,7 @@ public sealed class NetworkModule
         return connector.GetNetworkCarrier();
     }
 
-    public OpenNGS.IRPC.RPCClient GetRPCClient()
+    public OpenNGS.ERPC.RPCClient GetRPCClient()
     {
         return connector.GetRpcClient();
     }

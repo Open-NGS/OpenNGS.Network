@@ -286,14 +286,14 @@ namespace MiniGame.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"MiniGame.RPC.MiniGameService")]
+    [OpenNGS.ERPC.Configuration.Service(@"MiniGame.RPC.MiniGameService")]
     public partial interface IMiniGameService
     {
-        global::System.Threading.Tasks.Task<MiniGame.RPC.EnterGameRsp> EnterGame(MiniGame.RPC.EnterGameReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.RPC.FinishGameRsp> FinishGame(MiniGame.RPC.FinishGameReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.RPC.SyncGameEventRsp> SyncGameEvent(MiniGame.RPC.SyncGameEventReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.RPC.ArchiveGameLevelDataRsp> ArchiveGameLevelData(MiniGame.RPC.ArchiveGameLevelDataReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.RPC.ArchiveGameModeDataRsp> ArchiveGameModeData(MiniGame.RPC.ArchiveGameModeDataReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.RPC.EnterGameRsp> EnterGame(MiniGame.RPC.EnterGameReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.RPC.FinishGameRsp> FinishGame(MiniGame.RPC.FinishGameReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.RPC.SyncGameEventRsp> SyncGameEvent(MiniGame.RPC.SyncGameEventReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.RPC.ArchiveGameLevelDataRsp> ArchiveGameLevelData(MiniGame.RPC.ArchiveGameLevelDataReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.RPC.ArchiveGameModeDataRsp> ArchiveGameModeData(MiniGame.RPC.ArchiveGameModeDataReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

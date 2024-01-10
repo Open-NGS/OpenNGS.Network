@@ -2,9 +2,9 @@ using OpenNGS.Numerical;
 using System;
 using System.Text;
 
-namespace OpenNGS
+namespace OpenNGS.Core
 {
-    public partial class NGSAttributes : global::ProtoBuf.IExtensible, INumerable 
+    public partial class NGSAttributes : global::ProtoBuf.IExtensible, INumerable
     {
         protected int Divisor = 10000;
 
@@ -65,6 +65,6 @@ namespace OpenNGS
             return this.Attributes.Get(Convert.ToInt32(type));
         }
 
-       
+
     }
 }

@@ -99,11 +99,11 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.ChatService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.ChatService")]
     public partial interface IChatService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetChatRsp> GetChat(Rpc.Game.GetChatReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.SendChatRsp> SendChat(Rpc.Game.SendChatReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetChatRsp> GetChat(Rpc.Game.GetChatReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.SendChatRsp> SendChat(Rpc.Game.SendChatReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

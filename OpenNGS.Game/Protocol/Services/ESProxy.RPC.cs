@@ -284,14 +284,14 @@ namespace ESProxy.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"ESProxy.RPC.ESProxyService")]
+    [OpenNGS.ERPC.Configuration.Service(@"ESProxy.RPC.ESProxyService")]
     public partial interface IESProxyService
     {
-        global::System.Threading.Tasks.Task<ESProxy.RPC.ESCreateRsp> ESCreate(ESProxy.RPC.ESCreateReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<ESProxy.RPC.ESIndexRsp> ESIndex(ESProxy.RPC.ESIndexReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<ESProxy.RPC.ESUpdateRsp> ESUpdate(ESProxy.RPC.ESUpdateReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<ESProxy.RPC.ESSearchRsp> ESSearch(ESProxy.RPC.ESSearchReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<ESProxy.RPC.ESDeleteRsp> ESDelete(ESProxy.RPC.ESDeleteReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<ESProxy.RPC.ESCreateRsp> ESCreate(ESProxy.RPC.ESCreateReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<ESProxy.RPC.ESIndexRsp> ESIndex(ESProxy.RPC.ESIndexReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<ESProxy.RPC.ESUpdateRsp> ESUpdate(ESProxy.RPC.ESUpdateReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<ESProxy.RPC.ESSearchRsp> ESSearch(ESProxy.RPC.ESSearchReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<ESProxy.RPC.ESDeleteRsp> ESDelete(ESProxy.RPC.ESDeleteReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

@@ -240,5 +240,5 @@ public abstract class INetworkConnector
     /// <param name="bSwitch"></param>
     public abstract void SwitchUser(bool bSwitch);
 
-    public abstract OpenNGS.IRPC.RPCClient GetRpcClient();
+    public abstract OpenNGS.ERPC.RPCClient GetRpcClient();
 }

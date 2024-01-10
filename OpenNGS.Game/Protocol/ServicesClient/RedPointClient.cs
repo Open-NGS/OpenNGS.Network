@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
-using OpenNGS.IRPC;
-using OpenNGS.IRPC.Configuration;
+using OpenNGS.ERPC;
+using OpenNGS.ERPC.Configuration;
 using Rpc.Game;
 
 namespace Rpc

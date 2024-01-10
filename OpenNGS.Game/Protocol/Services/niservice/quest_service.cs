@@ -137,12 +137,12 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.QuestSerivce")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.QuestSerivce")]
     public partial interface IQuestSerivce
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetQuestsRsp> GetQuests(OpenNGSCommon.GetRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.GetQuestRewardRsp> GetQuestReward(Rpc.Game.GetQuestRewardReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.GetQuestGroupRewardRsp> GetQuestGroupReward(Rpc.Game.GetQuestGroupRewardReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetQuestsRsp> GetQuests(OpenNGSCommon.GetRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetQuestRewardRsp> GetQuestReward(Rpc.Game.GetQuestRewardReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetQuestGroupRewardRsp> GetQuestGroupReward(Rpc.Game.GetQuestGroupRewardReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

@@ -61,13 +61,13 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.TechService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.TechService")]
     public partial interface ITechService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> GetTechTree(Rpc.Game.TechTreeReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> UpgradeTechTree(Rpc.Game.TechTreeReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> CancelUpgrade(Rpc.Game.TechTreeReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> SpeedUpUpgrade(Rpc.Game.TechTreeReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> GetTechTree(Rpc.Game.TechTreeReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> UpgradeTechTree(Rpc.Game.TechTreeReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> CancelUpgrade(Rpc.Game.TechTreeReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.TechTreeRsp> SpeedUpUpgrade(Rpc.Game.TechTreeReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

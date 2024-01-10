@@ -558,22 +558,22 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.GuildService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.GuildService")]
     public partial interface IGuildService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetGuildRsp> GetGuild(Rpc.Game.GetGuildReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.FindGuildRsp> FindGuild(Rpc.Game.FindGuildReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.GetRecommendGuildsRsp> GetRecommendGuilds(OpenNGSCommon.GetRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.GetMembersRsp> GetMembers(OpenNGSCommon.GetRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.GetGuildAppliesRsp> GetApplies(OpenNGSCommon.GetRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.GetInvitesRsp> GetInvites(OpenNGSCommon.GetRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.CreateGuildRsp> CreateGuild(Rpc.Game.CreateGuildReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> LeaveGuild(Rpc.Game.LeaveGuildReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> KickMember(protocol.PlayerIdentifier value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> ApplyGuild(Rpc.Game.ApplyGuildReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.ReplyGuildApplyRsp> ReplyGuildApply(Rpc.Game.ReplyGuildApplyReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> JoinInvite(protocol.PlayerIdentifier value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> ReplyJoinInvite(Rpc.Game.ReplyJoinInviteReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetGuildRsp> GetGuild(Rpc.Game.GetGuildReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.FindGuildRsp> FindGuild(Rpc.Game.FindGuildReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetRecommendGuildsRsp> GetRecommendGuilds(OpenNGSCommon.GetRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetMembersRsp> GetMembers(OpenNGSCommon.GetRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetGuildAppliesRsp> GetApplies(OpenNGSCommon.GetRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetInvitesRsp> GetInvites(OpenNGSCommon.GetRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.CreateGuildRsp> CreateGuild(Rpc.Game.CreateGuildReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> LeaveGuild(Rpc.Game.LeaveGuildReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> KickMember(protocol.PlayerIdentifier value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> ApplyGuild(Rpc.Game.ApplyGuildReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.ReplyGuildApplyRsp> ReplyGuildApply(Rpc.Game.ReplyGuildApplyReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> JoinInvite(protocol.PlayerIdentifier value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<OpenNGS.NGSVoid> ReplyJoinInvite(Rpc.Game.ReplyJoinInviteReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

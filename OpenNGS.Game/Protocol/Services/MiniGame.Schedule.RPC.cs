@@ -248,13 +248,13 @@ namespace MiniGame.Schedule.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"MiniGame.Schedule.RPC.MiniGameScheduleService")]
+    [OpenNGS.ERPC.Configuration.Service(@"MiniGame.Schedule.RPC.MiniGameScheduleService")]
     public partial interface IMiniGameScheduleService
     {
-        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.StartGameRsp> StartGame(MiniGame.Schedule.RPC.StartGameReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.SearchGameRsp> SearchGame(MiniGame.Schedule.RPC.SearchGameReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.GetPlayerGameOverviewRsp> GetPlayerGameOverview(MiniGame.Schedule.RPC.GetPlayerGameOverviewReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.GetPlayerGameLevelDataRsp> GetPlayerGameLevelData(MiniGame.Schedule.RPC.GetPlayerGameLevelDataReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.StartGameRsp> StartGame(MiniGame.Schedule.RPC.StartGameReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.SearchGameRsp> SearchGame(MiniGame.Schedule.RPC.SearchGameReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.GetPlayerGameOverviewRsp> GetPlayerGameOverview(MiniGame.Schedule.RPC.GetPlayerGameOverviewReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<MiniGame.Schedule.RPC.GetPlayerGameLevelDataRsp> GetPlayerGameLevelData(MiniGame.Schedule.RPC.GetPlayerGameLevelDataReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

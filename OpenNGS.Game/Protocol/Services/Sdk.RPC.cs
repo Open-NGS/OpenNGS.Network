@@ -55,10 +55,10 @@ namespace Sdk.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Sdk.RPC.SdkService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Sdk.RPC.SdkService")]
     public partial interface ISdkService
     {
-        global::System.Threading.Tasks.Task<Sdk.RPC.RealTimeVoiceAuthRsp> RealTimeVoiceAuth(Sdk.RPC.RealTimeVoiceAuthReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Sdk.RPC.RealTimeVoiceAuthRsp> RealTimeVoiceAuth(Sdk.RPC.RealTimeVoiceAuthReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

@@ -151,12 +151,12 @@ namespace CharacterStatus.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"CharacterStatus.RPC.CharacterStatusService")]
+    [OpenNGS.ERPC.Configuration.Service(@"CharacterStatus.RPC.CharacterStatusService")]
     public partial interface ICharacterStatusService
     {
-        global::System.Threading.Tasks.Task<CharacterStatus.RPC.HeartbeatRsp> Heartbeat(CharacterStatus.RPC.HeartbeatReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterStatus.RPC.PushCharacterStatusRsp> PushCharacterStatus(CharacterStatus.RPC.PushCharacterStatusReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<CharacterStatus.RPC.GetOthersCharacterStatusRsp> GetOthersCharacterStatus(CharacterStatus.RPC.GetOthersCharacterStatusReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterStatus.RPC.HeartbeatRsp> Heartbeat(CharacterStatus.RPC.HeartbeatReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterStatus.RPC.PushCharacterStatusRsp> PushCharacterStatus(CharacterStatus.RPC.PushCharacterStatusReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<CharacterStatus.RPC.GetOthersCharacterStatusRsp> GetOthersCharacterStatus(CharacterStatus.RPC.GetOthersCharacterStatusReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

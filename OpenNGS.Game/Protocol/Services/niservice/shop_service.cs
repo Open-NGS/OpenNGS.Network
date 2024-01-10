@@ -201,12 +201,12 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.ShopService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.ShopService")]
     public partial interface IShopService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetShopRsp> GetShop(Rpc.Game.GetShopReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.BuyRsp> Buy(Rpc.Game.BuyReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.RefreshShelfRsp> RefreshShelf(Rpc.Game.RefreshShelfReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetShopRsp> GetShop(Rpc.Game.GetShopReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.BuyRsp> Buy(Rpc.Game.BuyReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.RefreshShelfRsp> RefreshShelf(Rpc.Game.RefreshShelfReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

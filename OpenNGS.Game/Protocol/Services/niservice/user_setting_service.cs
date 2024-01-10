@@ -106,11 +106,11 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.UserSettingService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.UserSettingService")]
     public partial interface IUserSettingService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetUserSettingRsp> GetUserSetting(Rpc.Game.GetUserSettingReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.UpdateUserSettingRsp> UpdateUserSetting(Rpc.Game.UpdateUserSettingReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetUserSettingRsp> GetUserSetting(Rpc.Game.GetUserSettingReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.UpdateUserSettingRsp> UpdateUserSetting(Rpc.Game.UpdateUserSettingReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

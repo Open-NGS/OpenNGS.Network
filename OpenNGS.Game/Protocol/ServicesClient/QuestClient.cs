@@ -1,6 +1,6 @@
 using Common;
-using OpenNGS.IRPC;
-using OpenNGS.IRPC.Configuration;
+using OpenNGS.ERPC;
+using OpenNGS.ERPC.Configuration;
 using System.Reflection;
 using System.Threading.Tasks;
 using protocol;

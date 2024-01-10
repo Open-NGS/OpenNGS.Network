@@ -56,10 +56,10 @@ namespace Gm.RPC
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Gm.RPC.GmService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Gm.RPC.GmService")]
     public partial interface IGmService
     {
-        global::System.Threading.Tasks.Task<Gm.RPC.GmActionRsp> DoGmAction(Gm.RPC.GmActionReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Gm.RPC.GmActionRsp> DoGmAction(Gm.RPC.GmActionReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

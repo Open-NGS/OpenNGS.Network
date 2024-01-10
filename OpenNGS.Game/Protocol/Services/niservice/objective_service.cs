@@ -93,11 +93,11 @@ namespace Rpc.Game
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"Rpc.Game.ObjectiveService")]
+    [OpenNGS.ERPC.Configuration.Service(@"Rpc.Game.ObjectiveService")]
     public partial interface IObjectiveService
     {
-        global::System.Threading.Tasks.Task<Rpc.Game.GetObjectivesRsp> GetObjectives(OpenNGSCommon.GetRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
-        global::System.Threading.Tasks.Task<Rpc.Game.ObjectiveRewardRsp> ObjectiveReward(Rpc.Game.ObjectiveRewardReq value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.GetObjectivesRsp> GetObjectives(OpenNGSCommon.GetRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<Rpc.Game.ObjectiveRewardRsp> ObjectiveReward(Rpc.Game.ObjectiveRewardReq value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }
