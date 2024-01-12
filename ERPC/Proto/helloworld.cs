@@ -53,11 +53,11 @@ namespace helloworld
 
     }
 
-    [OpenNGS.IRPC.Configuration.Service(@"helloworld.Greeter")]
+    [OpenNGS.ERPC.Configuration.Service(@"helloworld.Greeter")]
     public partial interface IGreeter
     {
-        [OpenNGS.IRPC.Configuration.Method(@"SayHello")]
-        global::System.Threading.Tasks.Task<HelloReply> SayHello(HelloRequest value, OpenNGS.IRPC.ClientContext context = default(OpenNGS.IRPC.ClientContext));
+        [OpenNGS.ERPC.Configuration.Method(@"SayHello")]
+        global::System.Threading.Tasks.Task<HelloReply> SayHello(HelloRequest value, OpenNGS.ERPC.ClientContext context = default(OpenNGS.ERPC.ClientContext));
     }
 
 }

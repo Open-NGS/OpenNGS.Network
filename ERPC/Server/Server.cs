@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using OpenNGS.Net;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
     public abstract class IMethod
     {
@@ -45,7 +45,7 @@ namespace OpenNGS.IRPC
                 {
                     try
                     {
-                        IResponseProtocol rspProto = new IRPCResponseProtocol();
+                        IResponseProtocol rspProto = new ERPCResponseProtocol();
                         if (rspTask.Status == TaskStatus.RanToCompletion)
                         {
                             RspMsg rspMsg = rspTask.Result;
@@ -56,7 +56,7 @@ namespace OpenNGS.IRPC
                         else if (rspTask.Status == TaskStatus.Faulted)
                         {
                             var baseEx = rspTask.Exception.GetBaseException();
-                            var irpcEx = baseEx as IRPCException;
+                            var irpcEx = baseEx as ERPCException;
                             if (irpcEx == null)
                             {
                                 context.Status = new Status(ERRNO.INVALID_PARAM, baseEx.Message);

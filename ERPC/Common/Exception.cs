@@ -1,12 +1,12 @@
 using System;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
-    public class IRPCException : System.Exception
+    public class ERPCException : System.Exception
     {
         private int m_errno;
 
-        public IRPCException(int errno, string msg) : base(msg)
+        public ERPCException(int errno, string msg) : base(msg)
         {
             m_errno = errno;
         }

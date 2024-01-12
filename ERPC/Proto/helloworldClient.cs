@@ -1,6 +1,6 @@
 using helloworld;
-using OpenNGS.IRPC;
-using OpenNGS.IRPC.Configuration;
+using OpenNGS.ERPC;
+using OpenNGS.ERPC.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;

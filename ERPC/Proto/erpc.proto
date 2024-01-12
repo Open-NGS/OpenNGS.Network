@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package GCloud.G6.IRPC;
+package OpenNGS.ERPC;
 
 // 请求协议头
 message RequestProtocol {
@@ -29,7 +29,7 @@ message RequestProtocol {
   string    caller                      = 6;
 
   // 被调服务的路由名称
-  // 规范格式，irpc.应用名.服务名.pb的service名[.接口名]
+  // 规范格式，erpc.应用名.服务名.pb的service名[.接口名]
   // 接口可选
   string    callee                      = 7;
 
@@ -38,7 +38,7 @@ message RequestProtocol {
   string    func                        = 8;
 
   // 框架透传的信息key-value对，目前分两部分
-  // 1是框架层要透传的信息，key的名字要以irpc_开头
+  // 1是框架层要透传的信息，key的名字要以erpc_开头
   // 2是业务层要透传的信息，业务可以自行设置
   map<string, bytes> meta               = 9;
 }
@@ -72,7 +72,7 @@ message ResponseProtocol {
 
   // 框架透传回来的信息key-value对，
   // 目前分两部分
-  // 1是框架层透传回来的信息，key的名字要以irpc_开头
+  // 1是框架层透传回来的信息，key的名字要以erpc_开头
   // 2是业务层透传回来的信息，业务可以自行设置
   map<string, bytes> meta               = 7;
 }

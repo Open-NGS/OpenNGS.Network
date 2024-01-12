@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
     public struct ServerTransportReq
     {
@@ -61,13 +61,13 @@ namespace OpenNGS.IRPC
             msg.endpoint = transRsp.endpoint;
             if (m_sender(msg) == false)
             {
-                throw new IRPCException(ERRNO.SERVER_NETWORK_ERR, "Write message fail");
+                throw new ERPCException(ERRNO.SERVER_NETWORK_ERR, "Write message fail");
             }
         }
 
         public override void OnMessage(IRPCMessage msg)
         {
-            var reqProto = new IRPCRequestProtocol();
+            var reqProto = new ERPCRequestProtocol();
             reqProto.Decode(msg.msg, 0, msg.len);
             MessageHandler handler = GetHandler(reqProto.FuncName);
             if (handler == null)

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenNGS.IRPC.Configuration
+namespace OpenNGS.ERPC.Configuration
 {
     /// <summary>
-    /// Explicitly indicates that an interface represents a IRPC service
+    /// Explicitly indicates that an interface represents a ERPC service
     /// </summary>
     [AttributeUsage(AttributeTargets.Interface, AllowMultiple = false, Inherited = false)]
     [ImmutableObject(true)]

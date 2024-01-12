@@ -1,5 +1,5 @@
 {
-    "name": "OpenNGS.IRPC",
+    "name": "OpenNGS.ERPC",
     "rootNamespace": "",
     "references": [
         "GUID:595ac3c55b914c44e99d12605608dc93",

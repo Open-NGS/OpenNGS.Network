@@ -1,6 +1,6 @@
 using System;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
 
     public struct IRPCMessage

@@ -1,4 +1,4 @@
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
     public delegate void Logger(string message);
 

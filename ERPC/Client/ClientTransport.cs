@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
     public struct ClientTransportReq
     {
@@ -59,7 +59,7 @@ namespace OpenNGS.IRPC
             msg.endpoint = transReq.endpoint;
             if (m_sender(msg) == false)
             {
-                throw new IRPCException(ERRNO.CLINET_NETWORK_ERR, "Write message fail");
+                throw new ERPCException(ERRNO.CLINET_NETWORK_ERR, "Write message fail");
             }
 
             AsyncSession asyncSess = new AsyncSession()
@@ -83,7 +83,7 @@ namespace OpenNGS.IRPC
             msg.endpoint = transReq.endpoint;
             if (m_sender(msg) == false)
             {
-                throw new IRPCException(ERRNO.CLINET_NETWORK_ERR, "Write message fail");
+                throw new ERPCException(ERRNO.CLINET_NETWORK_ERR, "Write message fail");
             }
         }
 
@@ -96,7 +96,7 @@ namespace OpenNGS.IRPC
                 m_asyncSesses.TryGetValue(reqID, out asyncSess);
                 if (asyncSess != null)
                 {
-                    asyncSess.complete.SetException(new IRPCException(ERRNO.CLIENT_INVOKE_TIMEOUT_ERR, "wait response timeout"));
+                    asyncSess.complete.SetException(new ERPCException(ERRNO.CLIENT_INVOKE_TIMEOUT_ERR, "wait response timeout"));
                     m_asyncSesses.Remove(reqID);
                 }
             }
@@ -104,7 +104,7 @@ namespace OpenNGS.IRPC
 
         public override void OnMessage(IRPCMessage msg)
         {
-            var rspProto = new IRPCResponseProtocol();
+            var rspProto = new ERPCResponseProtocol();
             rspProto.Decode(msg.msg, 0, msg.len);
             UInt64 reqID = rspProto.ReqID;
 

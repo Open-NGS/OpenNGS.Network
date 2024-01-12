@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using OpenNGS.Net;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
     public class RPCClient
     {
@@ -18,7 +18,7 @@ namespace OpenNGS.IRPC
             where ReqMsg : global::ProtoBuf.IExtensible
             where RspMsg : global::ProtoBuf.IExtensible, new()
         {
-            IRequestProtocol reqProto = new IRPCRequestProtocol();
+            IRequestProtocol reqProto = new ERPCRequestProtocol();
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             ProtoSerializer.Serialize(ms, reqMsg);
             reqProto.Body = ms.ToArray();
@@ -33,7 +33,7 @@ namespace OpenNGS.IRPC
                     // not complete
                     if (invokeTask.Status != TaskStatus.RanToCompletion)
                     {
-                        throw new IRPCException(ERRNO.CLIENT_SYSTEM_ERR, "unknown error");
+                        throw new ERPCException(ERRNO.CLIENT_SYSTEM_ERR, "unknown error");
                     }
                     IResponseProtocol invokeRsp = invokeTask.Result;
                     var rspMsg = new RspMsg();
@@ -51,13 +51,13 @@ namespace OpenNGS.IRPC
         {
             if (m_clientTrans == null)
             {
-                throw new IRPCException(ERRNO.CLIENT_SYSTEM_ERR, "rpc client not init");
+                throw new ERPCException(ERRNO.CLIENT_SYSTEM_ERR, "rpc client not init");
             }
             if (context.CallType != CALLTYPE.ONEWAY)
             {
-                throw new IRPCException(ERRNO.INVALID_PARAM, "context is not oneway");
+                throw new ERPCException(ERRNO.INVALID_PARAM, "context is not oneway");
             }
-            IRequestProtocol reqProto = new IRPCRequestProtocol();
+            IRequestProtocol reqProto = new ERPCRequestProtocol();
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             ProtoSerializer.Serialize(ms, reqMsg);
             reqProto.Body = ms.ToArray();
@@ -99,7 +99,7 @@ namespace OpenNGS.IRPC
                     // not complete
                     if (transTask.Status != TaskStatus.RanToCompletion)
                     {
-                        throw new IRPCException(ERRNO.CLIENT_INVOKE_ASYNC_NET_FAIL, "Request is not complete");
+                        throw new ERPCException(ERRNO.CLIENT_INVOKE_ASYNC_NET_FAIL, "Request is not complete");
                     }
                     // fetch result
                     ClientTransportRsp transRsp = transTask.Result;

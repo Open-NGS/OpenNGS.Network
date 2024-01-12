@@ -9,13 +9,13 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace OpenNGS.IRPC {
+namespace OpenNGS.ERPC {
 
-  /// <summary>Holder for reflection information generated from irpc.proto</summary>
+  /// <summary>Holder for reflection information generated from erpc.proto</summary>
   public static partial class IrpcReflection {
 
     #region Descriptor
-    /// <summary>File descriptor for irpc.proto</summary>
+    /// <summary>File descriptor for erpc.proto</summary>
     public static pbr::FileDescriptor Descriptor {
       get { return descriptor; }
     }
@@ -40,8 +40,8 @@ namespace OpenNGS.IRPC {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::OpenNGS.IRPC.RequestProtocol), global::OpenNGS.IRPC.RequestProtocol.Parser, new[]{ "CallType", "Timeout", "RequestId", "MessageType", "ContentType", "Caller", "Callee", "Func", "Meta" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OpenNGS.IRPC.ResponseProtocol), global::OpenNGS.IRPC.ResponseProtocol.Parser, new[]{ "Ret", "FuncRet", "ErrorMsg", "RequestId", "MessageType", "ContentType", "Meta" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::OpenNGS.ERPC.RequestProtocol), global::OpenNGS.ERPC.RequestProtocol.Parser, new[]{ "CallType", "Timeout", "RequestId", "MessageType", "ContentType", "Caller", "Callee", "Func", "Meta" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OpenNGS.ERPC.ResponseProtocol), global::OpenNGS.ERPC.ResponseProtocol.Parser, new[]{ "Ret", "FuncRet", "ErrorMsg", "RequestId", "MessageType", "ContentType", "Meta" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
     #endregion
@@ -59,7 +59,7 @@ namespace OpenNGS.IRPC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OpenNGS.IRPC.IrpcReflection.Descriptor.MessageTypes[0]; }
+      get { return global::OpenNGS.ERPC.IrpcReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -445,7 +445,7 @@ namespace OpenNGS.IRPC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OpenNGS.IRPC.IrpcReflection.Descriptor.MessageTypes[1]; }
+      get { return global::OpenNGS.ERPC.IrpcReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

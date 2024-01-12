@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using Google.Protobuf;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
 
     public abstract class IRequestProtocol
@@ -32,11 +32,11 @@ namespace OpenNGS.IRPC
         public abstract byte[] Body { get; set; }
     }
 
-    internal struct IRPCProtocolHeader
+    internal struct ERPCProtocolHeader
     {
-        public const UInt16 IRPC_MAGIC_REQ = 0x953;
-        public const UInt16 IRPC_MAGIC_RSP = 0x954;
-        public const int IRPC_FIXED_SIZE = 16;
+        public const UInt16 ERPC_MAGIC_REQ = 0x14A0;
+        public const UInt16 ERPC_MAGIC_RSP = 0x14A1;
+        public const int ERPC_FIXED_SIZE = 16;
 
         public UInt16 magic;
         public UInt16 headSize;
@@ -65,17 +65,17 @@ namespace OpenNGS.IRPC
         }
     }
 
-    internal class IRPCRequestProtocol : IRequestProtocol
+    internal class ERPCRequestProtocol : IRequestProtocol
     {
-        private IRPCProtocolHeader m_fixHeader;
+        private ERPCProtocolHeader m_fixHeader;
         private RequestProtocol m_pbHead = null;
         private byte[] m_body = null;
 
-        public IRPCRequestProtocol()
+        public ERPCRequestProtocol()
         {
-            m_fixHeader = new IRPCProtocolHeader
+            m_fixHeader = new ERPCProtocolHeader
             {
-                magic = IRPCProtocolHeader.IRPC_MAGIC_REQ,
+                magic = ERPCProtocolHeader.ERPC_MAGIC_REQ,
                 headSize = 0,
                 pkgSize = 0,
                 streamID = 0,
@@ -86,9 +86,9 @@ namespace OpenNGS.IRPC
         {
             if (m_pbHead == null || m_body == null)
             {
-                throw new IRPCException(ERRNO.CLIENT_ENCODE_ERR, "context or body not set");
+                throw new ERPCException(ERRNO.CLIENT_ENCODE_ERR, "context or body not set");
             }
-            var totalSize = m_body.Length + m_pbHead.CalculateSize() + IRPCProtocolHeader.IRPC_FIXED_SIZE;
+            var totalSize = m_body.Length + m_pbHead.CalculateSize() + ERPCProtocolHeader.ERPC_FIXED_SIZE;
             var buff = new MemoryStream(totalSize);
             // fix header
             m_fixHeader.headSize = (UInt16)m_pbHead.CalculateSize();
@@ -108,21 +108,21 @@ namespace OpenNGS.IRPC
             var memStream = new MemoryStream(buff, offset, len);
             // fix header
             m_fixHeader.Decode(memStream);
-            if (m_fixHeader.magic != IRPCProtocolHeader.IRPC_MAGIC_REQ || m_fixHeader.pkgSize != len)
+            if (m_fixHeader.magic != ERPCProtocolHeader.ERPC_MAGIC_REQ || m_fixHeader.pkgSize != len)
             {
-                throw new IRPCException(ERRNO.SERVER_DECODE_ERR, "message mask invalid");
+                throw new ERPCException(ERRNO.SERVER_DECODE_ERR, "message mask invalid");
             }
-            if (m_fixHeader.pkgSize < m_fixHeader.headSize + IRPCProtocolHeader.IRPC_FIXED_SIZE)
+            if (m_fixHeader.pkgSize < m_fixHeader.headSize + ERPCProtocolHeader.ERPC_FIXED_SIZE)
             {
-                throw new IRPCException(ERRNO.SERVER_DECODE_ERR, "invalid pkg size");
+                throw new ERPCException(ERRNO.SERVER_DECODE_ERR, "invalid pkg size");
             }
-            offset += IRPCProtocolHeader.IRPC_FIXED_SIZE;
+            offset += ERPCProtocolHeader.ERPC_FIXED_SIZE;
             // pb header
             m_pbHead = new RequestProtocol();
             m_pbHead.MergeFrom(new CodedInputStream(buff, offset, m_fixHeader.headSize));
             offset += m_fixHeader.headSize;
             // body
-            var bodySize = m_fixHeader.pkgSize - m_fixHeader.headSize - IRPCProtocolHeader.IRPC_FIXED_SIZE;
+            var bodySize = m_fixHeader.pkgSize - m_fixHeader.headSize - ERPCProtocolHeader.ERPC_FIXED_SIZE;
             m_body = new byte[bodySize];
             Buffer.BlockCopy(buff, offset, m_body, 0, (int)bodySize);
         }
@@ -174,17 +174,17 @@ namespace OpenNGS.IRPC
         public override byte[] Body { get { return m_body; } set { m_body = value; } }
     }
 
-    internal class IRPCResponseProtocol : IResponseProtocol
+    internal class ERPCResponseProtocol : IResponseProtocol
     {
-        private IRPCProtocolHeader m_fixHeader;
+        private ERPCProtocolHeader m_fixHeader;
         private ResponseProtocol m_pbHead = null;
         private byte[] m_body = null;
 
-        public IRPCResponseProtocol()
+        public ERPCResponseProtocol()
         {
-            m_fixHeader = new IRPCProtocolHeader
+            m_fixHeader = new ERPCProtocolHeader
             {
-                magic = IRPCProtocolHeader.IRPC_MAGIC_RSP,
+                magic = ERPCProtocolHeader.ERPC_MAGIC_RSP,
                 headSize = 0,
                 pkgSize = 0,
                 streamID = 0,
@@ -195,9 +195,9 @@ namespace OpenNGS.IRPC
         {
             if (m_pbHead == null || m_body == null)
             {
-                throw new IRPCException(ERRNO.SERVER_ENCODE_ERR, "context or body not set");
+                throw new ERPCException(ERRNO.SERVER_ENCODE_ERR, "context or body not set");
             }
-            var totalSize = m_body.Length + m_pbHead.CalculateSize() + IRPCProtocolHeader.IRPC_FIXED_SIZE;
+            var totalSize = m_body.Length + m_pbHead.CalculateSize() + ERPCProtocolHeader.ERPC_FIXED_SIZE;
             var buff = new MemoryStream(totalSize);
             // fix header
             m_fixHeader.headSize = (UInt16)m_pbHead.CalculateSize();
@@ -216,21 +216,21 @@ namespace OpenNGS.IRPC
             var memStream = new MemoryStream(buff, offset, len);
             // fix header
             m_fixHeader.Decode(memStream);
-            if (m_fixHeader.magic != IRPCProtocolHeader.IRPC_MAGIC_RSP || m_fixHeader.pkgSize != len)
+            if (m_fixHeader.magic != ERPCProtocolHeader.ERPC_MAGIC_RSP || m_fixHeader.pkgSize != len)
             {
-                throw new IRPCException(ERRNO.CLIENT_DECODE_ERR, "message mask invalid");
+                throw new ERPCException(ERRNO.CLIENT_DECODE_ERR, "message mask invalid");
             }
-            if (m_fixHeader.pkgSize < m_fixHeader.headSize + IRPCProtocolHeader.IRPC_FIXED_SIZE)
+            if (m_fixHeader.pkgSize < m_fixHeader.headSize + ERPCProtocolHeader.ERPC_FIXED_SIZE)
             {
-                throw new IRPCException(ERRNO.CLIENT_DECODE_ERR, "invalid pkg size");
+                throw new ERPCException(ERRNO.CLIENT_DECODE_ERR, "invalid pkg size");
             }
-            offset += IRPCProtocolHeader.IRPC_FIXED_SIZE;
+            offset += ERPCProtocolHeader.ERPC_FIXED_SIZE;
             // pb header
             m_pbHead = new ResponseProtocol();
             m_pbHead.MergeFrom(new CodedInputStream(buff, offset, m_fixHeader.headSize));
             offset += m_fixHeader.headSize;
             // body
-            var bodySize = m_fixHeader.pkgSize - m_fixHeader.headSize - IRPCProtocolHeader.IRPC_FIXED_SIZE;
+            var bodySize = m_fixHeader.pkgSize - m_fixHeader.headSize - ERPCProtocolHeader.ERPC_FIXED_SIZE;
             m_body = new byte[bodySize];
             Buffer.BlockCopy(buff, offset, m_body, 0, (int)bodySize);
         }

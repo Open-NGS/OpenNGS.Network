@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OpenNGS.IRPC
+namespace OpenNGS.ERPC
 {
     public class ClientContext
     {
