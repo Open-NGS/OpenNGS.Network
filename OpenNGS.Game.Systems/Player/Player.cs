@@ -17,7 +17,7 @@ namespace OpenNGS.Systems
 
     public class Inventory
     {
-        public List<ItemData>  Items;
+        public List<OpenNGS.Item.Common.ItemData>  Items;
     }
 
     public class Character

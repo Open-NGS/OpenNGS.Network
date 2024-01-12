@@ -31,14 +31,6 @@ namespace OpenNGS.Shop.Common
         SHELF_CONDITION_TYPE_CONDITION = 2,
     }
 
-    [global::ProtoBuf.ProtoContract()]
-    public enum ITEM_EXPIRY_TYPE
-    {
-        ITEM_EXPIRY_TYPE_NONE = 0,
-        ITEM_EXPIRY_TYPE_VALID_TIME = 1,
-        ITEM_EXPIRY_TYPE_EXPIRY_TIME = 2,
-    }
-
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021

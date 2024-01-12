@@ -77,7 +77,7 @@ namespace Item.RPC
         public ulong uin { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Item.Data.ItemData itemData { get; set; }
+        public global::OpenNGS.Item.Common.ItemData itemData { get; set; }
 
     }
 
@@ -91,7 +91,7 @@ namespace Item.RPC
         }
         public UseItemRsp()
         {
-            itemList = new global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemList>();
+            itemList = new global::System.Collections.Generic.List<global::OpenNGS.Item.Common.ItemList>();
             OnConstructor();
         }
 
@@ -101,7 +101,7 @@ namespace Item.RPC
         public int result { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemList> itemList { get; private set; }
+        public global::System.Collections.Generic.List<OpenNGS.Item.Common.ItemList> itemList { get; private set; }
 
     }
 
@@ -124,7 +124,7 @@ namespace Item.RPC
         public ulong uin { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Item.Data.ItemData itemData { get; set; }
+        public global::OpenNGS.Item.Common.ItemData itemData { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public global::OpenNGS.Item.Common.ITEM_PLACE_EXPIRATION itemPlaceExpType { get; set; }
@@ -170,7 +170,7 @@ namespace Item.RPC
         public ulong uin { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Item.Data.ItemData itemData { get; set; }
+        public global::OpenNGS.Item.Common.ItemData itemData { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public global::OpenNGS.Item.Common.ITEM_PLACE_EXPIRATION itemPlaceExpType { get; set; }

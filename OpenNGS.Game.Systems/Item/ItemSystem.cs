@@ -10,7 +10,7 @@ namespace OpenNGS.Systems
 {
     public class ItemSystem : EntitySystem
     {
-        public List<ItemData> ItemList = new();
+        public List<OpenNGS.Item.Common.ItemData> ItemList = new();
         public Action OnNotifyItemListChange;
         public Action OnPlacementChange;
 
@@ -38,12 +38,12 @@ namespace OpenNGS.Systems
             GetItems();
         }
 
-        public ItemData GetItemData(ulong uid)
+        public OpenNGS.Item.Common.ItemData GetItemData(ulong uid)
         {
             return ItemList.Find(x => x.Guid == uid);
         }
 
-        public ItemData GetItemDataByItemId(uint itemId)
+        public OpenNGS.Item.Common.ItemData GetItemDataByItemId(uint itemId)
         {
             return ItemList.Find(x => x.ItemID == itemId);
         }

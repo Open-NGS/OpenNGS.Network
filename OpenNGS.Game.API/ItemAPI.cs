@@ -15,11 +15,11 @@ namespace OpenNGS.API
     
     internal class ItemAPI
     {
-        public async Task<List<ItemData>> GetItemss()
+        public async Task<List<OpenNGS.Item.Common.ItemData>> GetItemss()
         {
-            List<ItemData> data = new List<ItemData>();
+            List<OpenNGS.Item.Common.ItemData> data = new List<OpenNGS.Item.Common.ItemData>();
 
-            return await Task<List<ItemData>>.FromResult(data);
+            return await Task<List<OpenNGS.Item.Common.ItemData>>.FromResult(data);
         }
     }
 }
