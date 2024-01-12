@@ -2,7 +2,6 @@
     "name": "OpenNGS.ERPC",
     "rootNamespace": "",
     "references": [
-        "GUID:595ac3c55b914c44e99d12605608dc93",
         "GUID:26ec928a3b13f964eb3ad549a6aeb935",
         "GUID:6a16ad35578c2844fb031c42edd5b2c0",
         "GUID:4b63a8bfa1c0be143841c224d2254a70"
