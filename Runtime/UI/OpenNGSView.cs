@@ -12,8 +12,8 @@ namespace OpenNGS.UI
     
     public interface IView
     {
-        public Action<int> Closed { get; set; }
-        public int ID { get; set; }
+        public Action<string> Closed { get; set; }
+        public string ID { get; set; }
         public int Layer { get; set; }
         public bool Cache { get; set; }
         public bool Visible { get; }

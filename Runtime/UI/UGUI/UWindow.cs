@@ -6,8 +6,8 @@ namespace OpenNGS.UI.UGUI
 {
     public class UWindow : IUView
     { 
-        public Action<int> Closed { get; set; }
-        public int ID { get; set; }
+        public Action<string> Closed { get; set; }
+        public string ID { get; set; }
         public int Layer { get; set; }
         public bool Cache { get; set; }
         public bool Visible { get; private set; }
@@ -21,7 +21,7 @@ namespace OpenNGS.UI.UGUI
             throw new NotImplementedException();
         }
 
-        public void Init(int id, int layer, bool cache)
+        public void Init(string id, int layer, bool cache)
         {
             throw new NotImplementedException();
         }

@@ -9,13 +9,13 @@ namespace OpenNGS.UI
 {
     public interface IUView : IView
     {
-        public void Init(int id, int layer, bool cache);
+        public void Init(string id, int layer, bool cache);
     }
 
     public abstract class UView : MonoBehaviour, IUView
     {
-        public Action<int> Closed { get; set; }
-        public int ID { get; set; }
+        public Action<string> Closed { get; set; }
+        public string ID { get; set; }
         public int Layer { get; set; }
         public bool Cache { get; set; }
         public bool Visible { get; private set; }
@@ -31,7 +31,7 @@ namespace OpenNGS.UI
             Visible = true;
         }
 
-        public virtual void Init(int id, int layer, bool cache)
+        public virtual void Init(string id, int layer, bool cache)
         {
             ID = id;
             Layer = layer;
@@ -98,7 +98,7 @@ namespace OpenNGS.UI
     {
         protected TModel m_ViewModel;
 
-        public override void Init(int id, int layer, bool cache)
+        public override void Init(string id, int layer, bool cache)
         {
             base.Init(id, layer, cache);
         }

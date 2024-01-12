@@ -157,6 +157,6 @@ namespace OpenNGS.UI
     public interface IUISystem
     {
         void InitSystem();
-        IView CreateView(int id, string package, string component, int layer, bool cache);
+        IView CreateView(string id, string package, string component, int layer, bool cache);
     }
 }

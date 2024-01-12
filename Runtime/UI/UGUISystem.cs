@@ -18,7 +18,7 @@ namespace OpenNGS.UI
             SpriteAtlasManager.atlasRequested += RequestAtlas;
         }
 
-        public IView CreateView(int id, string package, string component, int layer, bool cache)
+        public IView CreateView(string id, string package, string component, int layer, bool cache)
         {
             var view = UIFactory.CreateView(package, component);
             OpenNGSDebug.Log($"UGUISystem CreateView {id}  {view}");
