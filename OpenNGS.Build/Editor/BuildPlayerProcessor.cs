@@ -12,8 +12,8 @@ namespace OpenNGS.Build
     {
         public override void PrepareForBuild(BuildPlayerContext buildPlayerContext)
         {
-            Debug.LogFormat("BuildPlayerProcessor.AddAdditionalPathToStreamingAssets:{0}", OpenNGSBuildPipline.AssetBundlePath);
-            buildPlayerContext.AddAdditionalPathToStreamingAssets(OpenNGSBuildPipline.AssetBundlePath);
+            //Debug.LogFormat("BuildPlayerProcessor.AddAdditionalPathToStreamingAssets:{0}", OpenNGSBuildPipline.AssetBundlePath);
+            //buildPlayerContext.AddAdditionalPathToStreamingAssets(OpenNGSBuildPipline.AssetBundlePath);
         }
     }
 }
