@@ -10,6 +10,7 @@ namespace OpenNGS.Systems
     public class RankSystem : EntitySystem
     {
         public UnityAction<GetRankRsq> OnGetRank;
+        public UnityAction<List<RankInfo>> OnGetRankList;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -32,9 +33,13 @@ namespace OpenNGS.Systems
         #endregion
 
         #region S2C
-        private void OnRankRsp(GetRankRsq rsp)
+        // 之后这个函数要更改为private
+        public void OnRankRsp(GetRankRsq rsp)
         {
             OnGetRank?.Invoke(rsp);
+            //模拟服务器数据，并调用UI函数
+            List<RankInfo> lst = new List<RankInfo>();
+            OnGetRankList?.Invoke(lst);
         }
         #endregion
     }
