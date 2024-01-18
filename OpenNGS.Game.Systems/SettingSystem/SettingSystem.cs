@@ -3,23 +3,55 @@ using OpenNGS.Setting.Data;
 using OpenNGS.Systems;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SettingSystem : EntitySystem
 {
     public UnityAction<GetSettingRsq> OnGetSetting;
+
     public UnityAction<List<GameSettingInfo>> OnGetSettingList;
 
-    protected override void OnCreate()
+    public Dictionary<uint,GameSettingLabel> OnGameSettingLabels;
+    public Dictionary<uint,GameSettingInfo> OnGameSettingInfos;
+
+    public UnityAction OnSave;
+
+    public void Init()
     {
-        base.OnCreate();
+        GetSettingLabel();
+        GetSettingInfo();
     }
 
-    public override string GetSystemName()
+    public Dictionary<uint, GameSettingLabel> GetSettingLabel()
     {
-        return "com.openngs.system.GameSetting";
+        if (OnGameSettingLabels == null)
+        {
+            OnGameSettingLabels = Table<GameSettingLabel, uint>.map;
+            return OnGameSettingLabels;
+        }
+        return OnGameSettingLabels;
     }
+
+    public Dictionary<uint, GameSettingInfo> GetSettingInfo()
+    {
+        if (OnGameSettingInfos == null)
+        {
+            OnGameSettingInfos = Table<GameSettingInfo, uint>.map;
+            return OnGameSettingInfos;
+        }
+        return OnGameSettingInfos;
+    }
+
+    public void Save(uint characterID, Dictionary<uint, GameSettingInfo> settingInfo)
+    {
+        if (settingInfo != OnGameSettingInfos)
+        {
+            SendGameSetting(characterID, settingInfo);
+        }
+    }
+   
     #region C2S
     // ∑¢ÀÕ«Î«Û
     public void RequestGameSetting(uint CharacterID)
@@ -39,8 +71,18 @@ public class SettingSystem : EntitySystem
     #endregion
 
     // ∑¢ÀÕ
-    public void SendGameSetting(uint CharacterID, OpenNGS.Setting.Data.GameSettingInfo settingInfo)
+    public void SendGameSetting(uint CharacterID, Dictionary<uint, GameSettingInfo> settingInfo)
     {
 
+    }
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+
+    }
+
+    public override string GetSystemName()
+    {
+        return "com.openngs.system.GameSetting";
     }
 }
