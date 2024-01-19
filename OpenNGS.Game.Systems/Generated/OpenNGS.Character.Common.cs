@@ -66,6 +66,9 @@ namespace OpenNGS.Character.Common
         [global::ProtoBuf.ProtoMember(9)]
         public AccountIdentity identity { get; set; }
 
+        [global::ProtoBuf.ProtoMember(10)]
+        public global::OpenNGS.Core.NGSAttributes attributes { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -113,6 +116,29 @@ namespace OpenNGS.Character.Common
         [global::ProtoBuf.ProtoMember(2)]
         [global::System.ComponentModel.DefaultValue("")]
         public string identity { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GetCharacterRsp : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public GetCharacterRsp()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public CharacterInfo info { get; set; }
 
     }
 

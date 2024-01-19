@@ -19,6 +19,7 @@ namespace OpenNGS.Setting.Data
         }
         public GameSettingLabel()
         {
+            Name = "";
             OnConstructor();
         }
 
@@ -28,7 +29,8 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Setting.Common.SETTINGLABEL_TYPE Name { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Name { get; set; }
 
     }
 
@@ -160,9 +162,6 @@ namespace OpenNGS.Setting.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public uint CharacterID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public GameSettingInfo GameSetting { get; set; }
 
     }
 

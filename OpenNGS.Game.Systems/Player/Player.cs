@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CharacterInfo = OpenNGS.Character.Common.CharacterInfo;
 namespace OpenNGS.Systems
 {
 
@@ -23,6 +24,25 @@ namespace OpenNGS.Systems
     public class Character
     {
         public List<Inventory> Inventorys;
+        public CharacterInfo Info;
+        public GameAttributeSet Attribute;
+
+        public Character(CharacterInfo info)
+        {
+            Info = info;
+            ResetAttribute();
+        }
+
+        public void RefreshCharacter(CharacterInfo info)
+        {
+            Info = info;
+            ResetAttribute();
+        }
+
+        private void ResetAttribute()
+        {
+            Attribute = new GameAttributeSet(Info.attributes);
+        }
     }
 
     public class Player

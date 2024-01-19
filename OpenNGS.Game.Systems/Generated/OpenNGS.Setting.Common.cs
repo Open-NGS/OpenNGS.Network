@@ -10,16 +10,6 @@ namespace OpenNGS.Setting.Common
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public enum SETTINGLABEL_TYPE
-    {
-        SETTINGLABEL_TYPE_ACCOUNTMANAGEMENT = 0,
-        SETTINGLABEL_TYPE_QUALITYSETING = 1,
-        SETTINGLABEL_TYPE_AUDIOSETTING = 2,
-        SETTINGLABEL_TYPE_CONTROL = 3,
-        SETTINGLABEL_TYPE_LANGUAGE = 4,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public enum RESOLUTIONRATION_TYPE
     {
         RESOLUTIONRATION_TYPE_PROGRESSIVE = 0,
