@@ -28,6 +28,14 @@ namespace OpenNGS.Systems
         //public async void RequestRank(uint nLevelID, OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE _typ)
         public void RequestBuyItem(BuyItemInfo item)
         {
+            /*
+             *var Item = ItemSystem.Instance.GetItem(item.id);
+             *var Gold = BagSystem.Instance.GetItem(Item.Gold)
+             *if(Gold.Count > Item.Gold * item.Count){
+             *  SendMessage(item);
+             *}
+            */
+
             //之后会用异步方法获取数据
             //var rsp = await RankService.Instance.RankRequest(rankId);
             //OnRankRsp(rsp);
@@ -35,6 +43,14 @@ namespace OpenNGS.Systems
 
         public void RequestSellItem(SellItemInfo item)
         {
+            /*
+             *var Item = ItemSystem.Instance.GetItem(item.id);
+             *var ItemCount = BagSystem.Instance.GetItem(item.id)
+             *if(item.Count < ItemCount){
+             *  SendMessage(item);
+             *}
+            */
+
             //之后会用异步方法获取数据
             //var rsp = await RankService.Instance.RankRequest(rankId);
             //OnRankRsp(rsp);
@@ -42,6 +58,12 @@ namespace OpenNGS.Systems
 
         public void RequestGetShopInfo(int ShopId)
         {
+            /*
+            Shop.Data.GetShopInfoReq req = new GetShopInfoReq();
+            req.ShopId = (uint)ShopId;
+            SendMessage(req);
+            */
+
             //之后会用异步方法获取数据
             //var rsp = await RankService.Instance.RankRequest(rankId);
             //OnRankRsp(rsp);
