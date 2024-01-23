@@ -10,10 +10,16 @@ namespace OpenNGS.Systems
 {
     public class ExchangeSystem : EntitySystem
     {
+        private IItemSystem m_itemSys = null;
         protected override void OnCreate()
         {
             base.OnCreate();
         }
+        public void RegisteItemSystem(IItemSystem _itemSys)
+        {
+            m_itemSys = _itemSys;
+        }
+
 
         public override string GetSystemName()
         {
