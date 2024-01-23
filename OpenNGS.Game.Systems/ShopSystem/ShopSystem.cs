@@ -46,7 +46,7 @@ namespace OpenNGS.Systems
             uint id = m_itemSys.GetGuidByItemID(good.ItemId);
             List<SourceItem> sourceItems = new List<SourceItem>();
             List<TargetItem> targetItems = new List<TargetItem>();
-            m_exchangeSys.ExchangeItem();
+            m_exchangeSys.ExchangeItem(sourceItems, targetItems);
         }
 
         public void SellItem(SellItemInfo item)
