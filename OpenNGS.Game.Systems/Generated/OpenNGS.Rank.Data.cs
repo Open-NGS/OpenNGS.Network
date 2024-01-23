@@ -166,7 +166,7 @@ namespace OpenNGS.Rank.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Rank.Common.RESULT_TYPE Result { get; set; }
+        public global::OpenNGS.Setting.Common.RESULT_TYPE Result { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint ID { get; set; }

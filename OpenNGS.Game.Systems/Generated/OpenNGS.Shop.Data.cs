@@ -391,7 +391,7 @@ namespace OpenNGS.Shop.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Rank.Common.RESULT_TYPE result { get; set; }
+        public global::OpenNGS.Setting.Common.RESULT_TYPE result { get; set; }
 
     }
 
@@ -473,7 +473,7 @@ namespace OpenNGS.Shop.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Rank.Common.RESULT_TYPE result { get; set; }
+        public global::OpenNGS.Setting.Common.RESULT_TYPE result { get; set; }
 
     }
 
@@ -558,7 +558,7 @@ namespace OpenNGS.Shop.Data
         public uint ShopId { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Rank.Common.RESULT_TYPE result { get; set; }
+        public global::OpenNGS.Setting.Common.RESULT_TYPE result { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint ShelfId { get; set; }

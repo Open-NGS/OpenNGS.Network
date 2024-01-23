@@ -16,21 +16,12 @@ namespace OpenNGS.Setting.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public enum KEYBOARDMOUSE_CONTROL_TYPE
+    public enum KEYVALUE_CONTROL_TYPE
     {
-        KEYBOARDMOUSE_CONTROL_TYPE_UP = 0,
-        KEYBOARDMOUSE_CONTROL_TYPE_DOWN = 1,
-        KEYBOARDMOUSE_CONTROL_TYPE_LEFT = 2,
-        KEYBOARDMOUSE_CONTROL_TYPE_RIGHT = 3,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public enum STICKCONTROL_TYPE
-    {
-        STICKCONTROL_TYPE_UP = 0,
-        STICKCONTROL_TYPE_DOWN = 1,
-        STICKCONTROL_TYPE_LEFT = 2,
-        STICKCONTROL_TYPE_RIGHT = 3,
+        KEYVALUE_CONTROL_TYPE_UP = 0,
+        KEYVALUE_CONTROL_TYPE_DOWN = 1,
+        KEYVALUE_CONTROL_TYPE_LEFT = 2,
+        KEYVALUE_CONTROL_TYPE_RIGHT = 3,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -40,6 +31,23 @@ namespace OpenNGS.Setting.Common
         LANGUAGE_TYPE_HK = 1,
         LANGUAGE_TYPE_US = 2,
         LANGUAGE_TYPE_JM = 3,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public enum RESULT_TYPE
+    {
+        RESULT_TYPE_NONE = 0,
+        RESULT_TYPE_SUCCESS = 1,
+        RESULT_TYPE_FAILED = 2,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public enum ADUIO_TYPE
+    {
+        ADUIO_TYPE_OVERALLAudio = 0,
+        ADUIO_TYPE_SOUND = 1,
+        ADUIO_TYPE_MUSIC = 2,
+        ADUIO_TYPE_VOICE = 3,
     }
 
 }

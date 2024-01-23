@@ -27,14 +27,15 @@ namespace OpenNGS.Systems
 
         private void RefreshCharacter(ulong uin, OpenNGS.Character.Common.CharacterInfo info)
         {
-            if (CharacterDic.TryGetValue(uin, out var c))
-            {
-                c.RefreshCharacter(info);
-            }
-            else
-            {
-                CharacterDic.Add(uin, new Character(info));
-            }
+            //todo
+            //if (CharacterDic.TryGetValue(uin, out var c))
+            //{
+            //    c.RefreshCharacter(info);
+            //}
+            //else
+            //{
+            //    CharacterDic.Add(uin, new Character(info));
+            //}
         }
 
         #region S2C
