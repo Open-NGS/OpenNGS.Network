@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Rank.Data;
 using OpenNGS.Shop.Data;
 using UnityEngine.Events;
@@ -14,14 +15,48 @@ namespace OpenNGS.Systems
         public UnityAction<BuyItemRsq> OnBuyItem;
         public UnityAction<SellItemRsq> OnSellItem;
         public UnityAction<GetShopInfoRsq> OnGetShopInfo;
+
+        private IExchangeSystem m_exchangeSys = null;
+        private IItemSystem m_itemSys = null;
         protected override void OnCreate()
         {
             base.OnCreate();
+        }
+        public void RegisteItemSystem(IExchangeSystem _exchangeSys)
+        {
+            m_exchangeSys = _exchangeSys;
+        }
+
+        public void RegisteItemSystem(IItemSystem _itemSys)
+        {
+            m_itemSys = _itemSys;
         }
 
         public override string GetSystemName()
         {
             return "com.openngs.system.rank";
+        }
+
+        public void BuyItem(BuyItemInfo item)
+        {
+            if (item == null) return;
+            //根据shopItemID获取商品信息
+            Good good = null;
+
+            uint id = m_itemSys.GetGuidByItemID(good.ItemId);
+            List<SourceItem> sourceItems = new List<SourceItem>();
+            List<TargetItem> targetItems = new List<TargetItem>();
+            m_exchangeSys.ExchangeItem();
+        }
+
+        public void SellItem(SellItemInfo item)
+        {
+            
+        }
+
+        public void GetShopInfo(int ShopId)
+        {
+            
         }
 
         #region C2S
