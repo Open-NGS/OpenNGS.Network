@@ -10,14 +10,58 @@ namespace OpenNGS.Exchange.Data
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ExchangeItem : global::ProtoBuf.IExtensible
+    public partial class SourceItem : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ExchangeItem()
+        public SourceItem()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint GUID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Count { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SourceItemArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SourceItemArray()
+        {
+            items = new global::System.Collections.Generic.List<SourceItem>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<SourceItem> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TargetItem : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public TargetItem()
         {
             OnConstructor();
         }
@@ -33,23 +77,23 @@ namespace OpenNGS.Exchange.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ExchangeItemArray : global::ProtoBuf.IExtensible
+    public partial class TargetItemArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ExchangeItemArray()
+        public TargetItemArray()
         {
-            items = new global::System.Collections.Generic.List<ExchangeItem>();
+            items = new global::System.Collections.Generic.List<TargetItem>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ExchangeItem> items { get; private set; }
+        public global::System.Collections.Generic.List<TargetItem> items { get; private set; }
 
     }
 

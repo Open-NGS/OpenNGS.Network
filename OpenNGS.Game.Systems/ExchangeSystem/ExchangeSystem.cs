@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenNGS.Collections.Generic;
 using OpenNGS.Exchange.Data;
+using OpenNGS.Exchange.Common;
+using static UnityEngine.GraphicsBuffer;
 
 namespace OpenNGS.Systems
 {
@@ -26,15 +28,7 @@ namespace OpenNGS.Systems
             return "com.openngs.system.rank";
         }
 
-        public enum EXCHANGE_RESULT_TYPE
-        {
-            EXCHANGE_RESULT_TYPE_NONE = 0,
-            EXCHANGE_RESULT_TYPE_SUCCESS = 1,
-            EXCHANGE_RESULT_TYPE_NOCOUNT = 2,
-            EXCHANGE_RESULT_TYPE_NOTARGET = 3,
-        }
-
-        public EXCHANGE_RESULT_TYPE ExchangeItem(List<ExchangeItem> src, List<ExchangeItem> target)
+        public EXCHANGE_RESULT_TYPE ExchangeItem(List<SourceItem> src, List<TargetItem> target)
         {
             EXCHANGE_RESULT_TYPE result;
             if(target == null || target.Count == 0) { return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOTARGET; }
@@ -46,30 +40,49 @@ namespace OpenNGS.Systems
             else
             {
                 bool res = CheckItemCondition(src);
-                if(res) { result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS; }
-                else { result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT; }
+                if(res) 
+                    result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
+                else 
+                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
             }
             SendRemovetem2Bag(src);
             SendAddItem2Bag(target);
             return result;
         }
 
-        private bool CheckItemCondition(List<ExchangeItem> items)
+        private bool CheckItemCondition(List<SourceItem> items)
         {
             //去背包里查找src里面的道具是否满足条件
+            foreach(SourceItem item in items)
+            {
+                if(m_itemSys.IsItemEnough(item.GUID, item.Count))
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
-        private void SendAddItem2Bag(List<ExchangeItem> items)
+        private void SendAddItem2Bag(List<TargetItem> items)
         {
             if(items == null || items.Count == 0) return;
-            //给背包发送要增加的道具
+            //给背包发送要增加的道具            
+            foreach(TargetItem item in items)
+            {
+                m_itemSys.AddItemsByID(item.ItemID, item.Count);
+            }
+
         }
 
-        private void SendRemovetem2Bag(List<ExchangeItem> items)
+        private void SendRemovetem2Bag(List<SourceItem> items)
         {
             if (items == null || items.Count == 0) return;
             //给背包发送要删除的道具
+            foreach(SourceItem item in items)
+            {
+                m_itemSys.RemoveItemsByGuid(item.GUID, item.Count);
+            }
+            
         }
 
     }
