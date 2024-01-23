@@ -8,7 +8,7 @@ using OpenNGS.Item.Data;
 
 namespace OpenNGS.Systems
 {
-    public class ItemSystem : EntitySystem
+    public class ItemSystem : EntitySystem, IItemSystem
     {
         public List<OpenNGS.Item.Common.ItemData> ItemList = new();
         public Action OnNotifyItemListChange;
@@ -228,6 +228,27 @@ namespace OpenNGS.Systems
             return "com.openngs.system.item";
         }
 
+        public bool IsItemEnough(uint nItemID, uint nCounts)
+        {
+            bool bRes = false;
+            return bRes;
+        }
+        public bool AddItemsByID(uint nItemID, uint nCounts)
+        {
+            bool bRes = false;
+            return bRes;
+        }
+        public bool RemoveItemsByID(uint nItemID, uint nCounts)
+        {
+            bool bRes = false;
+            return bRes;
+        }
+
+        public bool RemoveItemsByGuid(uint nGuid, uint nCounts)
+        {
+            bool bRes = false;
+            return bRes;
+        }
     }
 
 }
