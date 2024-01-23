@@ -75,10 +75,10 @@ namespace OpenNGS.Data
         public string Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
     }
 
@@ -122,16 +122,16 @@ namespace OpenNGS.Data
         public uint Id { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSText Text { get; set; }
+        public global::OpenNGS.Core.NGSText Text { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSText SubText { get; set; }
+        public global::OpenNGS.Core.NGSText SubText { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.NGSText Option { get; set; }
+        public global::OpenNGS.Core.NGSText Option { get; set; }
 
     }
 
@@ -292,7 +292,7 @@ namespace OpenNGS.Data
         public uint TechType { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSText Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public uint Level { get; set; }
@@ -381,10 +381,10 @@ namespace OpenNGS.Data
         public uint TechId { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public uint Level { get; set; }
@@ -717,10 +717,10 @@ namespace OpenNGS.Data
         public string CondiionParam { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::OpenNGS.NGSText Content { get; set; }
+        public global::OpenNGS.Core.NGSText Content { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
         public global::OpenNGSCommon.ANNOUNCEMENT_CLICK_TYPE ClickType { get; set; }
@@ -1081,7 +1081,7 @@ namespace OpenNGS.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         [global::System.ComponentModel.DefaultValue("")]
@@ -1272,7 +1272,7 @@ namespace OpenNGS.Data
         public int LockClickType { get; set; }
 
         [global::ProtoBuf.ProtoMember(16)]
-        public global::OpenNGS.NGSText DesID { get; set; }
+        public global::OpenNGS.Core.NGSText DesID { get; set; }
 
     }
 
@@ -1392,7 +1392,7 @@ namespace OpenNGS.Data
         public global::OpenNGSCommon.NI_ATTR_TYPE Type { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSAttributes Attributes { get; set; }
+        public global::OpenNGS.Core.NGSAttributes Attributes { get; set; }
 
     }
 
@@ -1532,10 +1532,10 @@ namespace OpenNGS.Data
         public uint OptionId { get; set; }
 
         [global::ProtoBuf.ProtoMember(12)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(13)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(14)]
         public uint SectionId { get; set; }
@@ -1545,7 +1545,7 @@ namespace OpenNGS.Data
         public string Component { get; set; }
 
         [global::ProtoBuf.ProtoMember(16)]
-        public global::OpenNGS.NGSText Tips { get; set; }
+        public global::OpenNGS.Core.NGSText Tips { get; set; }
 
         [global::ProtoBuf.ProtoMember(17)]
         public uint ShowLabel { get; set; }
@@ -1604,16 +1604,16 @@ namespace OpenNGS.Data
         public uint IDX { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         public uint Value { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::OpenNGS.NGSText Tips { get; set; }
+        public global::OpenNGS.Core.NGSText Tips { get; set; }
 
     }
 
@@ -1657,13 +1657,13 @@ namespace OpenNGS.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSText Tips { get; set; }
+        public global::OpenNGS.Core.NGSText Tips { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public uint Show { get; set; }
@@ -1716,13 +1716,13 @@ namespace OpenNGS.Data
         public uint Show { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::OpenNGS.NGSText Tips { get; set; }
+        public global::OpenNGS.Core.NGSText Tips { get; set; }
 
     }
 

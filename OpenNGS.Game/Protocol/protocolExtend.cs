@@ -505,7 +505,7 @@ namespace protocol
 			level = 0;
 			exp = 0;
 			equip = null;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGS.NGSAttributes>(attributes);
+			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGS.Core.NGSAttributes>(attributes);
 		}
 		public void OnRelease()
 		{
@@ -516,7 +516,7 @@ namespace protocol
 		}
 		public void OnSpawn()
 		{
-			 attributes = (NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSAttributes));
+			 attributes = (OpenNGS.Core.NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(OpenNGS.Core.NGSAttributes));
 		}
 		public static CharacterInfo SpawnFromPool()
 		{

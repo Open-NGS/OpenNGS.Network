@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenNGS.Localize;
 
-namespace OpenNGS
+namespace OpenNGS.Core
 {
     public partial class NGSText
     {

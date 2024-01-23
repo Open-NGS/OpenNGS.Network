@@ -36,7 +36,7 @@ namespace OpenNGS.Map
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public AREA_TYPE AreaType { get; set; }
@@ -49,7 +49,7 @@ namespace OpenNGS.Map
         public string IconPath { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::OpenNGS.NGSText Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
         public uint Row { get; set; }

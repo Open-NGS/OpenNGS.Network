@@ -1,5 +1,5 @@
 using ProtoBuf.Meta;
-namespace OpenNGS
+namespace OpenNGS.Core
 {
 	public partial class NGSText : OpenNGS.IProtoExtension
 	{

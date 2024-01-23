@@ -658,7 +658,7 @@ namespace protocol
         public ulong[] equip { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSAttributes attributes { get; set; }
+        public global::OpenNGS.Core.NGSAttributes attributes { get; set; }
 
     }
 

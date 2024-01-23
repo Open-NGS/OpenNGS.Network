@@ -258,7 +258,7 @@ namespace Common
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         [global::System.ComponentModel.DefaultValue("")]
@@ -322,10 +322,10 @@ namespace Common
         public string ConditionParam { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.NGSText Title { get; set; }
+        public global::OpenNGS.Core.NGSText Title { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::OpenNGS.NGSText Desc { get; set; }
+        public global::OpenNGS.Core.NGSText Desc { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
         [global::System.ComponentModel.DefaultValue("")]
@@ -394,10 +394,10 @@ namespace Common
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.NGSText Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.NGSText Desc { get; set; }
+        public global::OpenNGS.Core.NGSText Desc { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         [global::System.ComponentModel.DefaultValue("")]

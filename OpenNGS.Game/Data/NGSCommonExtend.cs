@@ -29,7 +29,7 @@ namespace OpenNGSCommon
 			Guid = 0;
 			ItemID = 0;
 			Count = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGS.NGSAttributes>(Attributes);
+			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGS.Core.NGSAttributes>(Attributes);
 		}
 		public void OnRelease()
 		{
@@ -40,7 +40,7 @@ namespace OpenNGSCommon
 		}
 		public void OnSpawn()
 		{
-			 Attributes = (NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSAttributes));
+			 Attributes = (OpenNGS.Core.NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(OpenNGS.Core.NGSAttributes));
 		}
 		public static ItemData SpawnFromPool()
 		{

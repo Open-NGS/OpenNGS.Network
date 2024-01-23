@@ -706,7 +706,7 @@ namespace OpenNGSCommon
         public uint Count { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.NGSAttributes Attributes { get; set; }
+        public global::OpenNGS.Core.NGSAttributes Attributes { get; set; }
 
     }
 
