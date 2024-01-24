@@ -10,7 +10,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace OpenNGS.Systems
 {
-    public class ExchangeSystem : EntitySystem
+    public class ExchangeSystem : EntitySystem, IExchangeSystem
     {
         private IItemSystem m_itemSys = null;
         protected override void OnCreate()

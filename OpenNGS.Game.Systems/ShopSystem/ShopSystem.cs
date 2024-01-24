@@ -43,20 +43,54 @@ namespace OpenNGS.Systems
             //根据shopItemID获取商品信息
             Good good = null;
 
-            uint id = m_itemSys.GetGuidByItemID(good.ItemId);
             List<SourceItem> sourceItems = new List<SourceItem>();
             List<TargetItem> targetItems = new List<TargetItem>();
+            //验证该道具是否是当前商店商品
+            uint id = m_itemSys.GetGuidByItemID(good.PriceItemID);
+            SourceItem sourceItem = new SourceItem();
+            sourceItem.GUID = id;
+            sourceItem.Count = good.PriceItemCount * item.ShopItemCount;
+            sourceItems.Add(sourceItem);
+
+            TargetItem targetItem = new TargetItem();
+            targetItem.ItemID = good.ItemId;
+            targetItem.Count = item.ShopItemCount;
+            targetItems.Add(targetItem);
+
             m_exchangeSys.ExchangeItem(sourceItems, targetItems);
         }
 
         public void SellItem(SellItemInfo item)
         {
-            
+            if (item == null) return;
+            //根据shopItemID获取商品信息
+            Good good = null;
+
+            List<SourceItem> sourceItems = new List<SourceItem>();
+            List<TargetItem> targetItems = new List<TargetItem>();
+
+            //验证该道具是否是当前商店商品
+            //
+
+            SourceItem sourceItem = new SourceItem();
+            sourceItem.GUID = item.GUID;
+            sourceItem.Count = item.ShopItemCount;
+            sourceItems.Add(sourceItem);
+
+            uint id = m_itemSys.GetGuidByItemID(good.PriceItemID);
+            TargetItem targetItem = new TargetItem();
+            targetItem.ItemID = id;
+            targetItem.Count = good.PriceItemCount * item.ShopItemCount;
+            targetItems.Add(targetItem);
+
+            m_exchangeSys.ExchangeItem(sourceItems, targetItems);
         }
 
-        public void GetShopInfo(int ShopId)
+        public List<uint> GetShopInfo(int ShopId)
         {
-            
+            List<uint> result = new List<uint>();
+            //if(NGSStaticData.goods.Items)
+            return result;
         }
 
         #region C2S

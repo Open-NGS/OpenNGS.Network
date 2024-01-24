@@ -249,10 +249,9 @@ namespace OpenNGS.Systems
             bool bRes = false;
             return bRes;
         }
-
         public uint GetGuidByItemID(uint nItemID)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 

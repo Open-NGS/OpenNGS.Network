@@ -184,10 +184,10 @@ namespace OpenNGS.Shop.Data
         public uint ShelfId { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        public uint CurrencyType { get; set; }
+        public uint PriceItemID { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
-        public uint Price { get; set; }
+        public uint PriceItemCount { get; set; }
 
         [global::ProtoBuf.ProtoMember(10)]
         public uint DiscountPrice { get; set; }
@@ -306,10 +306,7 @@ namespace OpenNGS.Shop.Data
         public uint ShopItemCount { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public uint BagRow { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint BagCol { get; set; }
+        public uint GUID { get; set; }
 
     }
 
