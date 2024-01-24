@@ -68,8 +68,8 @@ public class MakeSystem : EntitySystem
             case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
                 // UIManager.Instance.Open("数量不足"); 
                 break;
-            case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOTARGET:
-                // UIManager.Instance.Open("没有目标物品"); 
+            case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                // UIManager.Instance.Open("道具信息错误"); 
                 break;
             default:
                 break;
