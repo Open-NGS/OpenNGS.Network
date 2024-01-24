@@ -53,14 +53,14 @@ namespace OpenNGS.Systems
                 if (item.ItemID == 0 && item.GUID == 0) return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
                 if (item.ItemID == 0)
                 {
-                    if(m_itemSys.IsEnoughByGuid(item.GUID, item.Count))
+                    if(!m_itemSys.IsEnoughByGuid(item.GUID, item.Count))
                     {
                         return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
                     }
                 }
                 else if(item.GUID == 0)
                 {
-                    if (m_itemSys.IsEnoughByItemID(item.ItemID, item.Count))
+                    if (!m_itemSys.IsEnoughByItemID(item.ItemID, item.Count))
                     {
                         return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
                     }

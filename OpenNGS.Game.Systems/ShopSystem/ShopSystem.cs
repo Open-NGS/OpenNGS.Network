@@ -34,7 +34,14 @@ namespace OpenNGS.Systems
             return "com.openngs.system.rank";
         }
 
-        uint shelfID;
+        /// <summary>
+        /// 获取当前开放的货架id
+        /// </summary>
+        private uint GetShelfID(uint shopID)
+        {
+            uint shelfID = 0;
+            return shelfID;
+        }
 
         /// <summary>
         /// 检查商店内是否有该商品
@@ -44,12 +51,12 @@ namespace OpenNGS.Systems
             Good shopItemInfo = NGSStaticData.goods.GetItem(shopItemId);
             uint shelfId = shopItemInfo.ShelfId;
             //验证shelf是否是开启状态
-            if(shelfID != shelfId) 
+            if(shelfId != GetShelfID(shopId)) 
             { 
                 return false; 
             }
 
-            Shelf shelf = NGSStaticData.shelfs.GetItem(shelfID);
+            Shelf shelf = NGSStaticData.shelfs.GetItem(GetShelfID(shopId));
             OpenNGS.Shop.Data.Shop shop = NGSStaticData.shops.GetItem(shelf.ShopId);
 
             if(shopId != shop.ID)
@@ -126,13 +133,11 @@ namespace OpenNGS.Systems
             return false;
         }
 
-        public List<uint> GetShopInfo(int ShopId)
+        public List<Good> GetShopInfo(uint ShopId)
         {
-            List<uint> result = new List<uint>();
-            //if (NGSStaticData.goods.GetItems(ShopId)
-            //{
-
-            //}
+            uint shelfID = GetShelfID(ShopId);
+            if(shelfID == 0) return null;
+            List<Good> result = NGSStaticData.shelfGoods.GetItems(shelfID);
             return result;
         }
 
