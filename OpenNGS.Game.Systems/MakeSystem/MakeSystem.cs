@@ -4,16 +4,20 @@ using OpenNGS.Make.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting.YamlDotNet.Core;
+using UnityEditor;
 using UnityEngine.Events;
 
 public class MakeSystem : EntitySystem
 {
     public Dictionary<uint,MakeInfo>MakeInfos;
-    public Dictionary<uint,ItemInfo> MaterialsInfo;
+    public Dictionary<uint,ItemInfo> ItemInfos;
     public UnityAction<MakeInfo> MakeInfoAction;
-    public MakeInfo makeInfo;
 
     ExchangeSystem exchangeSystem = new ExchangeSystem();
+
+    List<SourceItem> sourcesList;
+    List<TargetItem> targetsList;
 
     private IItemSystem m_itemSys = null;
     public void RegisteItemSystem(IItemSystem _itemSys)
@@ -21,61 +25,59 @@ public class MakeSystem : EntitySystem
         m_itemSys = _itemSys;
     }
 
-    SourceItem sources;
-    List<SourceItem> sourcesList;
-
-    TargetItem targets;
-    List<TargetItem> targetsList;
-    public void Init()
+    // 获取制作数据
+    public void GetMakeInfo(Dictionary<uint, MakeInfo> makeInfo, Dictionary<uint, ItemInfo> itemInfo)
     {
-        MakeInfos = Table<MakeInfo, uint>.map;
-        MaterialsInfo = Table<ItemInfo, uint>.map;
+        MakeInfos = makeInfo;
+        ItemInfos = itemInfo;
     }
 
-    // 获得制作材料
-    public void GetMakeInfo(uint id)
+    // 制作准备
+    public void MakePrepare(uint Makeid)
     {
-        MakeInfos.TryGetValue(id,out makeInfo);
-        foreach (var item in makeInfo.Materials)
-        {
-            uint guid = m_itemSys.GetGuidByItemID(makeInfo.ID);
-            sources.GUID = guid;
-            sources.Count = item.Number;
-            sourcesList.Add(sources);
-        }
+        SourceItem sources = null;
+        TargetItem targets = null;
 
-        foreach (var item in makeInfo.ItemID)
+        ItemInfo itemInfo;
+        MakeInfo makeInfo = null;
+
+        sourcesList.Clear();
+        targetsList.Clear();
+
+        if (ItemInfos.TryGetValue(Makeid, out itemInfo))
         {
-            targets.ItemID = item.ID;
-            targets.Count = item.Number;
-            targetsList.Add(targets);
+            // 制作书
+            uint makeGuid = m_itemSys.GetGuidByItemID(itemInfo.ID);
+            sources.GUID = makeGuid;
+            sources.Count = itemInfo.Number;
+            sourcesList.Add(sources);
+            // 材料
+            if(MakeInfos.TryGetValue(Makeid, out makeInfo))
+            {
+                foreach (var item in makeInfo.Materials)
+                {
+                    uint guid = m_itemSys.GetGuidByItemID(item.ID);
+                    sources.GUID = guid;
+                    sources.Count = item.Number;
+                    sourcesList.Add(sources);
+                }
+                foreach (var item in makeInfo.ItemID)
+                {
+                    targets.ItemID = item.ID;
+                    targets.Count = item.Number;
+                    targetsList.Add(targets);
+                }
+            }
         }
         MakeInfoAction.Invoke(makeInfo);
     }
 
     // 制作
-    public void Forged()
+    public EXCHANGE_RESULT_TYPE Forged()
     {
-        EXCHANGE_RESULT_TYPE type = exchangeSystem.ExchangeItem(sourcesList, targetsList);
-
-        switch (type)
-        {
-            case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE:
-                break;
-            case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS:
-                // UIManager.Instance.Open("制作成功");
-                break;
-            case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
-                // UIManager.Instance.Open("数量不足"); 
-                break;
-            case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
-                // UIManager.Instance.Open("道具信息错误"); 
-                break;
-            default:
-                break;
-        }
+        return exchangeSystem.ExchangeItem(sourcesList, targetsList);
     }
-  
+
     protected override void OnCreate()
     {
         base.OnCreate();
@@ -83,6 +85,6 @@ public class MakeSystem : EntitySystem
 
     public override string GetSystemName()
     {
-        return "com.openngs.system.rank";
+        return "com.openngs.system.Make";
     }
 }
