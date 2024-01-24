@@ -101,9 +101,6 @@ public class DataManager : OpenNGS.Singleton<DataManager>
     }
 
     public static Table<OpenNGS.Map.WorldMap, uint> worldMap = new Table<OpenNGS.Map.WorldMap, uint>((item) => { return item.ID; }, false);
-    public static Table<OpenNGS.Dialog.DialogTalk, uint> dialogTalk = new Table<OpenNGS.Dialog.DialogTalk, uint>((item) => { return item.DialogID; }, false);、
-    public static Table<OpenNGS.Shop.Data.Shop, uint> NGSShop = new Table<OpenNGS.Shop.Data.Shop, uint>((item) => { return item.ID; }, false);
-    public static Table<OpenNGS.Shop.Data.Shelf, uint> NGSShelf = new Table<OpenNGS.Shop.Data.Shelf, uint>((item) => { return item.ID; }, false);
-    public static Table<OpenNGS.Shop.Data.Good, uint> NGSGood = new Table<OpenNGS.Shop.Data.Good, uint>((item) => { return item.ID; }, false);
+    public static Table<OpenNGS.Dialog.DialogTalk, uint> dialogTalk = new Table<OpenNGS.Dialog.DialogTalk, uint>((item) => { return item.DialogID; }, false);
     //public static Table<Common.Shelf, uint> Shelfs = new Table<Common.Shelf, uint>((item) => { return item.ID; }, false);
 }
