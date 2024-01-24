@@ -99,8 +99,4 @@ public class DataManager : OpenNGS.Singleton<DataManager>
         globalTables.Clear();
         seasonTables.Clear();
     }
-
-    public static Table<OpenNGS.Map.WorldMap, uint> worldMap = new Table<OpenNGS.Map.WorldMap, uint>((item) => { return item.ID; }, false);
-    public static Table<OpenNGS.Dialog.DialogTalk, uint> dialogTalk = new Table<OpenNGS.Dialog.DialogTalk, uint>((item) => { return item.DialogID; }, false);
-    //public static Table<Common.Shelf, uint> Shelfs = new Table<Common.Shelf, uint>((item) => { return item.ID; }, false);
 }
