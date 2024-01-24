@@ -228,11 +228,19 @@ namespace OpenNGS.Systems
             return "com.openngs.system.item";
         }
 
-        public bool IsItemEnough(uint nItemID, uint nCounts)
+        public bool IsEnoughByItemID(uint nItemID, uint nCounts)
         {
             bool bRes = false;
             return bRes;
         }
+
+        public bool IsEnoughByGuid(uint nGuid, uint nCounts)
+        {
+            bool bRes = false;
+            return bRes;
+        }
+
+
         public bool AddItemsByID(uint nItemID, uint nCounts)
         {
             bool bRes = false;

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenNGS.Exchange.Data;
-using OpenNGS.Rank.Data;
+using OpenNGS.Shop.Common;
 using OpenNGS.Shop.Data;
 using UnityEngine.Events;
 
@@ -37,15 +34,43 @@ namespace OpenNGS.Systems
             return "com.openngs.system.rank";
         }
 
-        public void BuyItem(BuyItemInfo item)
+        uint shelfID;
+
+        /// <summary>
+        /// 检查商店内是否有该商品
+        /// </summary>
+        private bool CheckShopItem(uint shopId, uint shopItemId)
         {
-            if (item == null) return;
+            Good shopItemInfo = NGSStaticData.goods.GetItem(shopItemId);
+            uint shelfId = shopItemInfo.ShelfId;
+            //验证shelf是否是开启状态
+            if(shelfID != shelfId) 
+            { 
+                return false; 
+            }
+
+            Shelf shelf = NGSStaticData.shelfs.GetItem(shelfID);
+            OpenNGS.Shop.Data.Shop shop = NGSStaticData.shops.GetItem(shelf.ShopId);
+
+            if(shopId != shop.ID)
+            {  
+                return false; 
+            }
+
+            return true;
+        }
+
+        public SHOP_RESULT_TYPE BuyItem(BuyItemInfo item)
+        {
+            if (item == null) return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
             //根据shopItemID获取商品信息
-            Good good = null;
+            if (!CheckShopItem(item.ShopId, item.ShopItemId)) return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
+
+            Good good = NGSStaticData.goods.GetItem(item.ShopItemId);
 
             List<SourceItem> sourceItems = new List<SourceItem>();
             List<TargetItem> targetItems = new List<TargetItem>();
-            //验证该道具是否是当前商店商品
+            
             uint id = m_itemSys.GetGuidByItemID(good.PriceItemID);
             SourceItem sourceItem = new SourceItem();
             sourceItem.GUID = id;
@@ -58,19 +83,21 @@ namespace OpenNGS.Systems
             targetItems.Add(targetItem);
 
             m_exchangeSys.ExchangeItem(sourceItems, targetItems);
+
+            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
         }
 
-        public void SellItem(SellItemInfo item)
+
+        public SHOP_RESULT_TYPE SellItem(SellItemInfo item)
         {
-            if (item == null) return;
-            //根据shopItemID获取商品信息
-            Good good = null;
+            if (item == null) return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
+
+            if (!CheckSellInfo(item)) return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
+
+            Good good = NGSStaticData.goods.GetItem(item.ItemId);
 
             List<SourceItem> sourceItems = new List<SourceItem>();
             List<TargetItem> targetItems = new List<TargetItem>();
-
-            //验证该道具是否是当前商店商品
-            //
 
             SourceItem sourceItem = new SourceItem();
             sourceItem.GUID = item.GUID;
@@ -84,12 +111,28 @@ namespace OpenNGS.Systems
             targetItems.Add(targetItem);
 
             m_exchangeSys.ExchangeItem(sourceItems, targetItems);
+
+            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
+        }
+
+        private bool CheckSellInfo(SellItemInfo item)
+        {
+            List<ShopSell> sellitems = NGSStaticData.sells.GetItems(item.ShopId);
+
+            foreach(ShopSell sell in sellitems)
+            {
+                if(sell.ItemID == item.ItemId) return true;
+            }
+            return false;
         }
 
         public List<uint> GetShopInfo(int ShopId)
         {
             List<uint> result = new List<uint>();
-            //if(NGSStaticData.goods.Items)
+            //if (NGSStaticData.goods.GetItems(ShopId)
+            //{
+
+            //}
             return result;
         }
 

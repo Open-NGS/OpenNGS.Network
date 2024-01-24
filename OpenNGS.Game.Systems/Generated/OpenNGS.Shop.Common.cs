@@ -31,6 +31,16 @@ namespace OpenNGS.Shop.Common
         SHELF_CONDITION_TYPE_CONDITION = 2,
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public enum SHOP_RESULT_TYPE
+    {
+        SHOP_RESULT_TYPE_NONE = 0,
+        SHOP_RESULT_TYPE_SUCCESS = 1,
+        SHOP_RESULT_TYPE_ERROR_ITEM = 2,
+        SHOP_RESULT_TYPE_NO_ITEM = 3,
+        SHOP_RESULT_TYPE_NO_SELL = 4,
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
