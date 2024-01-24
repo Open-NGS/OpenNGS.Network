@@ -12,6 +12,7 @@ namespace OpenNGS.Systems
         public bool RemoveItemsByID(uint nItemID, uint nCounts);
         public bool RemoveItemsByGuid(uint nGuid, uint nCounts);
         public uint GetGuidByItemID(uint nItemID);
+        public uint GetItemCountByGuidID(uint nGuid);
     }
 
 }

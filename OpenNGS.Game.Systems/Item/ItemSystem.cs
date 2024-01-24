@@ -261,6 +261,10 @@ namespace OpenNGS.Systems
         {
             return 0;
         }
+        public uint GetItemCountByGuidID(uint nGuid)
+        {
+            return 0;
+        }
     }
 
 }
