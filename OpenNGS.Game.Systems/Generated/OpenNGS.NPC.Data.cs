@@ -20,7 +20,7 @@ namespace OpenNGS.NPC.Data
         public NPCData()
         {
             Name = "";
-            Component = "";
+            PrefabName = "";
             Package = "";
             OnConstructor();
         }
@@ -36,11 +36,14 @@ namespace OpenNGS.NPC.Data
 
         [global::ProtoBuf.ProtoMember(3)]
         [global::System.ComponentModel.DefaultValue("")]
-        public string Component { get; set; }
+        public string PrefabName { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         [global::System.ComponentModel.DefaultValue("")]
         public string Package { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
+        public uint[] UIID { get; set; }
 
     }
 
