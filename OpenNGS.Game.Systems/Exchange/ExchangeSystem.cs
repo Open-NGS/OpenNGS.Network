@@ -24,7 +24,7 @@ namespace OpenNGS.Systems
 
         public override string GetSystemName()
         {
-            return "com.openngs.system.rank";
+            return "com.openngs.system.exchange";
         }
 
         public EXCHANGE_RESULT_TYPE ExchangeItem(List<SourceItem> src, List<TargetItem> target)
