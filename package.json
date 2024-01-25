@@ -1,5 +1,6 @@
 {
 	"name": "com.openngs.di",
+	"displayName": "OpenNGS DependencyInjection",
 	"version": "0.1.0",
 	"description": "OpenNGS DependencyInjection package",
 	"main": "index.js",
