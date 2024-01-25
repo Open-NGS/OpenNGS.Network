@@ -64,14 +64,14 @@ namespace OpenNGS.Assets
         {
             string bundleName = GetBundleNameByAsset(assetPath);
 #if DEBUG_LOG
-            OpenNGSDebug.DebugFormat("LoadBundleByAsset:{0} - Try Load:{1}", assetPath, bundleName);
+            NgDebug.DebugFormat("LoadBundleByAsset:{0} - Try Load:{1}", assetPath, bundleName);
 #endif
             AssetBundleInfo bundle = GetBundleInfo(bundleName);
             if (bundle == null)
             {
-                OpenNGSDebug.LogErrorFormat("LoadBundleError:{0} - Try Load:{1}", assetPath, bundleName);
+                NgDebug.LogErrorFormat("LoadBundleError:{0} - Try Load:{1}", assetPath, bundleName);
 #if DEBUG_LOG
-                OpenNGSDebug.DebugFormat("LoadBundleByAsset:{0} - Try Load:{1}", assetPath, bundleName);
+                NgDebug.DebugFormat("LoadBundleByAsset:{0} - Try Load:{1}", assetPath, bundleName);
 #endif
             }
             return bundle;
@@ -154,7 +154,7 @@ namespace OpenNGS.Assets
         {
 
 #if DEBUG_LOG
-                OpenNGSDebug.DebugFormat("LoadBundle:{0}", bundleName);
+                NgDebug.DebugFormat("LoadBundle:{0}", bundleName);
 #endif
 
             var path = OpenNGS.IO.Path.Combine(GetStreamingAssetsPath(), bundleName);
@@ -184,7 +184,7 @@ namespace OpenNGS.Assets
         private AssetBundle LoadNextBundle(string path)
         {
 #if DEBUG_LOG
-            OpenNGSDebug.DebugFormat("LoadNextBundle:{0}", path);
+            NgDebug.DebugFormat("LoadNextBundle:{0}", path);
 #endif
             try
             {

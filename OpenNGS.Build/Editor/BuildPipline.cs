@@ -7,7 +7,7 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using System.IO;
 
-public class OpenNGSBuildPipline : IActiveBuildTargetChanged
+public class BuildPipline : IActiveBuildTargetChanged
 {   
     public static string AssetBundlePath
     {
@@ -250,11 +250,12 @@ public class OpenNGSBuildPipline : IActiveBuildTargetChanged
             options.options |= BuildOptions.EnableDeepProfilingSupport;
         }
 
-        #if UNITY_2021_2_OR_NEWER
-        //EditorUserBuildSettings.il2CppCodeGeneration = Il2CppCodeGeneration.OptimizeSize;
+        #if UNITY_2022_2_OR_NEWER
         BuildTargetGroup targetGroup = BuildPipeline.GetBuildTargetGroup(buildTarget);
         NamedBuildTarget _nameBuildTarget = NamedBuildTarget.FromBuildTargetGroup(targetGroup);
         PlayerSettings.SetIl2CppCodeGeneration(_nameBuildTarget, Il2CppCodeGeneration.OptimizeSize);
+		#elif UNITY_2021_2_OR_NEWER
+		EditorUserBuildSettings.il2CppCodeGeneration = Il2CppCodeGeneration.OptimizeSize;
         #endif
 
         Debug.LogFormat("BuildPlayer.locationPathName:{0}", options.locationPathName);

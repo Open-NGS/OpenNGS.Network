@@ -52,7 +52,7 @@ namespace OpenNGS.Logs
                 }
             }
             Inited = true;
-            OpenNGSDebug.LogFormat("OpenNGS Log System Init: enable:{0} appenders:{1}", Config.LogEnable, Config.LogAppenders == null ? 0 : Config.LogAppenders.Count);
+            NgDebug.LogFormat("OpenNGS Log System Init: enable:{0} appenders:{1}", Config.LogEnable, Config.LogAppenders == null ? 0 : Config.LogAppenders.Count);
         }
 
         public static void LogMessage(string condition, string stackTrace, LogType type)

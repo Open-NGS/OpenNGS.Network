@@ -5,14 +5,14 @@ using System.Text;
 
 namespace OpenNGS.Pool
 {
-    public class OpenNGSPoolManager
+    public class PoolManager
     {
-        public class NObjectPool<T> where T : IPoolObject
+        public class ObjectPool<T> where T : IPoolObject
         {
             Queue<T> availableObjects;
             HashSet<T> usedObjects;
 
-            public NObjectPool(int size)
+            public ObjectPool(int size)
             {
                 availableObjects = new Queue<T>(size);
                 usedObjects = new HashSet<T>();
@@ -45,12 +45,12 @@ namespace OpenNGS.Pool
             }
         }
 
-        static Dictionary<Type, NObjectPool<IPoolObject>> Pools = new Dictionary<Type, NObjectPool<IPoolObject>>();
+        static Dictionary<Type, ObjectPool<IPoolObject>> Pools = new Dictionary<Type, ObjectPool<IPoolObject>>();
         static int initSize = 10;
         public static T New<T>() where T : IPoolObject, new()
         {
-            //OpenNGS.Profiling.Profiler.BeginSample("NObjectPool.New");
-            NObjectPool<IPoolObject> pool;
+            //OpenNGS.Profiling.Profiler.BeginSample("ObjectPool.New");
+            ObjectPool<IPoolObject> pool;
             T obj = default(T);
 
             if (Pools.TryGetValue(typeof(T), out pool))
@@ -59,7 +59,7 @@ namespace OpenNGS.Pool
             }
             else
             {
-                pool = new NObjectPool<IPoolObject>(initSize);
+                pool = new ObjectPool<IPoolObject>(initSize);
                 Pools.Add(typeof(T), pool);
             }
             if (obj == null)
@@ -76,10 +76,10 @@ namespace OpenNGS.Pool
         public static void InitPool<T>(int size) where T : IPoolObject, new()
         {
             initSize = size;
-            NObjectPool<IPoolObject> pool;
+            ObjectPool<IPoolObject> pool;
             if (!Pools.TryGetValue(typeof(T), out pool))
             {
-                pool = new NObjectPool<IPoolObject>(size);
+                pool = new ObjectPool<IPoolObject>(size);
                 Pools.Add(typeof(T), pool);
             }
             for (int i = 0; i < size; i++)
@@ -92,7 +92,7 @@ namespace OpenNGS.Pool
 
         public static void Delete<T>(IPoolObject obj) where T : IPoolObject, new()
         {
-            NObjectPool<IPoolObject> pool;
+            ObjectPool<IPoolObject> pool;
             if (Pools.TryGetValue(typeof(T), out pool))
             {
                 obj.Clear();
@@ -103,7 +103,7 @@ namespace OpenNGS.Pool
 
         public static void DeleteAll<T>() where T : IPoolObject, new()
         {
-            NObjectPool<IPoolObject> pool;
+            ObjectPool<IPoolObject> pool;
             if (Pools.TryGetValue(typeof(T), out pool))
             {
                 pool.RecycleAll();

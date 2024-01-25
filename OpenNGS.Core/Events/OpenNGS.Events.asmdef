@@ -1,5 +1,5 @@
 {
-    "name": "OpenNGSFramework.Events",
+    "name": "OpenNGS.Events",
     "rootNamespace": "",
     "references": [
         "GUID:4b63a8bfa1c0be143841c224d2254a70"

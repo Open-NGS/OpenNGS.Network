@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace OpenNGS.Assets
 {
-    public class OpenNGSResources
+    public class AssetLoader
     {
 #if UNITY_EDITOR
         public static bool RawMode = true;  // editor测试bundle模式改为false
@@ -22,28 +22,28 @@ namespace OpenNGS.Assets
             path = path.ToLowerInvariant();
             T result = default(T);
 #if DEBUG_LOG
-            OpenNGS.Profiling.ProfilerLog.Start("OpenNGSResources.Load", path);
+            OpenNGS.Profiling.ProfilerLog.Start("AssetLoader.Load", path);
 #endif
 
 #if UNITY_EDITOR
             if (RawMode)
             {
                 result = LoadFromRaw<T>(path);
-                OpenNGSDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]",path));
+                NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]",path));
             }
             else
 #else
                 result = LoadFromBundle<T>(path);
-            OpenNGSDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]",path));
+            	NgDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]",path));
 #endif
 
 #if DEBUG_LOG
-            OpenNGS.Profiling.ProfilerLog.End("OpenNGSResources.Load", path);
+            OpenNGS.Profiling.ProfilerLog.End("AssetLoader.Load", path);
 #endif
 
             if (!result)
             {
-                Debug.LogError($"OpenNGSResources -- Faild to load asset : {path}");
+                Debug.LogError($"AssetLoader -- Faild to load asset : {path}");
             }
 
             return result;
@@ -75,9 +75,9 @@ namespace OpenNGS.Assets
             path = path.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             string assetName = System.IO.Path.GetFileNameWithoutExtension(path);
 #if DEBUG_LOG
-            OpenNGSDebug.DebugFormat("OpenNGSResources.LoadFromBundle:assetName:{0} from path:{1}", assetName, path);
+            NgDebug.DebugFormat("AssetLoader.LoadFromBundle:assetName:{0} from path:{1}", assetName, path);
 
-            OpenNGS.Profiling.ProfilerLog.Start("OpenNGSResources.LoadFromBundle:" + path);
+            OpenNGS.Profiling.ProfilerLog.Start("AssetLoader.LoadFromBundle:" + path);
 #endif
             AssetBundleInfo bundle = AssetBundleManager.Instance.LoadBundleByAsset(path);
             if (bundle != null)
@@ -85,7 +85,7 @@ namespace OpenNGS.Assets
                 asset = bundle.LoadAsset<T>(assetName);
             }
 #if DEBUG_LOG
-            OpenNGS.Profiling.ProfilerLog.End("OpenNGSResources.LoadFromBundle:" + path);
+            OpenNGS.Profiling.ProfilerLog.End("AssetLoader.LoadFromBundle:" + path);
 #endif
             return asset;
         }

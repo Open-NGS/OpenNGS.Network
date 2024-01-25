@@ -2,34 +2,34 @@ using Newtonsoft.Json;
 using System;
 using OpenNGS.Logs;
 
-public class OpenNGSDebug
+public class NgDebug
 {
 
     const string DebugTag = "Debug";
 
     public static void LogJson(string message, object obj)
     {
-        OpenNGSDebug.Log(message + ":" + JsonConvert.SerializeObject(obj));
+        NgDebug.Log(message + ":" + JsonConvert.SerializeObject(obj));
     }
     
     public static void LogJsonError(string message, object obj)
     {
-        OpenNGSDebug.LogError(message + ":" + JsonConvert.SerializeObject(obj));
+        NgDebug.LogError(message + ":" + JsonConvert.SerializeObject(obj));
     }
     
     public static void LogErrorJson(string message, object obj)
     {
-        OpenNGSDebug.LogError(message + ":" + JsonConvert.SerializeObject(obj));
+        NgDebug.LogError(message + ":" + JsonConvert.SerializeObject(obj));
     }
 
     public static void Log(object message)
     {
-        OpenNGSDebug.LogFormat("{0}", message);
+        NgDebug.LogFormat("{0}", message);
     }
 
     public static void LogError(object message)
     {
-        OpenNGSDebug.LogErrorFormat("{0}", message);
+        NgDebug.LogErrorFormat("{0}", message);
     }
 
     public static void LogFormat(string format, params object[] args)

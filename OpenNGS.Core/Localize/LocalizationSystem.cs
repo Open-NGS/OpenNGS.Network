@@ -66,8 +66,8 @@ namespace OpenNGS.Localize
             string value = "";
             if (_localizationStrings != null && !_localizationStrings.TryGetValue(key, out value))
             {
-                OpenNGSDebug.LogError($"Localize key: {key} not found");
-                value = string.Format("NGSText[{0}]",key);
+                NgDebug.LogError($"Localize key: {key} not found");
+                value = string.Format("Text[{0}]",key);
             }
             return value;
         }

@@ -52,14 +52,14 @@ namespace OpenNGS.Logs.Appenders
                     File.Delete(filePath + this.filename);
                     string name = filePath + this.filename;
                     fileWriter = File.AppendText(name);
-                    OpenNGSDebug.Log("CreateLogFile:" + new FileInfo(name).FullName);
+                    NgDebug.Log("CreateLogFile:" + new FileInfo(name).FullName);
                 }
                 else
                 {
                     string name = filePath + this.filename.Replace(".", "_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture) + ".");
                     File.Delete(name);
                     fileWriter = File.AppendText(name);
-                    OpenNGSDebug.Log("CreateLogFile:" + new FileInfo(name).FullName);
+                    NgDebug.Log("CreateLogFile:" + new FileInfo(name).FullName);
                 }
 
                 fileWriter.AutoFlush = true;
@@ -67,7 +67,7 @@ namespace OpenNGS.Logs.Appenders
             }
             catch (Exception ex)
             {
-                OpenNGSDebug.LogException(ex);
+                NgDebug.LogException(ex);
             }
         }
 

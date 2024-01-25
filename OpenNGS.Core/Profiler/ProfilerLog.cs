@@ -36,7 +36,7 @@ namespace OpenNGS.Profiling
             
             float time = Time.RealtimeSinceStartup;
             records[key] = new ProfilerData() { time = time, indent = indent };
-            OpenNGSDebug.LogFormat(Tag, "{0," + indent + "}@[{1}]Begin :{2}", "", key, time);
+            NgDebug.LogFormat(Tag, "{0," + indent + "}@[{1}]Begin :{2}", "", key, time);
             indent += 4;
 #endif
         }
@@ -47,7 +47,7 @@ namespace OpenNGS.Profiling
             if (records.ContainsKey(key))
             {
                 float elapsed = Time.RealtimeSinceStartup - records[key].time;
-                OpenNGSDebug.LogFormat(Tag, "{0," + records[key].indent + "}@[{1}]End :{2} - Elapsed :{3:f3}s", "", key, Time.RealtimeSinceStartup, elapsed);
+                NgDebug.LogFormat(Tag, "{0," + records[key].indent + "}@[{1}]End :{2} - Elapsed :{3:f3}s", "", key, Time.RealtimeSinceStartup, elapsed);
             }
 #endif
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace OpenNGS.Audio
 {
-    public abstract class OpenNGSAudioEngine
+    public abstract class AudioDriver
     {
 
         public virtual void Play<T>(T audio, GameObject obj)

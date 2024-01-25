@@ -15,43 +15,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace OpenNGS
 {
     /// <summary>
-    /// RoutineItem
+    /// RoutineSequence
     /// </summary>
-    internal class Coroutine
+    public class CoroutineSequence
     {
-        private IEnumerator routine;
+        private List<Coroutine> Routines = new List<Coroutine>();
         public string name;
         public bool isDone;
 
-        public Coroutine(string name, IEnumerator routine)
+        public CoroutineSequence(string name)
         {
             this.name = name;
             this.isDone = false;
-            this.routine = routine;
+        }
+
+        private void AddRoutine(Coroutine routine)
+        {
+            this.Routines.Add(routine);
+        }
+
+        public CoroutineSequence AddCoroutine(IEnumerator co)
+        {
+            AddRoutine(new Coroutine(this.name + "." + co.GetType().FullName, co));
+            return this;
         }
 
         public IEnumerator Run()
         {
 #if PROFILER
-            Profiling.ProfilerLog.Start("NgCoroutine", name);
+            Profiling.ProfilerLog.Start("NiCoroutineSequence(" + name + ")");
 #endif
-            yield return routine;
+            foreach (Coroutine routine in Routines)
+            {
+                yield return routine.Run();
+            }
 #if PROFILER
-            Profiling.ProfilerLog.End("NgCoroutine", name);
+            Profiling.ProfilerLog.End("NiCoroutineSequence(" + name + ")");
 #endif
             this.isDone = true;
-
         }
 
-        ~Coroutine()
+        ~CoroutineSequence()
         {
             if (!this.isDone)
             {
 #if PROFILER
-                Profiling.ProfilerLog.End("RoutineItem", name);
+                Profiling.ProfilerLog.End("NiCoroutineSequence(" + name + ")");
 #endif
             }
         }

@@ -16,36 +16,36 @@ namespace OpenNGS.Pool
     {
     }
 
-    public class OpenNGSPoolObject<T> : IPoolObject  where T : IPoolObject, new()
+    public class PoolObject<T> : IPoolObject  where T : IPoolObject, new()
     {
         public static T New()
         {
-            return OpenNGSPoolManager.New<T>();
+            return PoolManager.New<T>();
         }
 
         public static void InitPool(int size)
         {
-            OpenNGSPoolManager.InitPool<T>(size);
+            PoolManager.InitPool<T>(size);
         }
 
         public void Dispose()
         {
-            OpenNGSPoolManager.Delete<T>(this);
+            PoolManager.Delete<T>(this);
         }
 
         public void Delete()
         {
-            OpenNGSPoolManager.Delete<T>(this);
+            PoolManager.Delete<T>(this);
         }
 
         public static void Delete(T obj)
         {
-            OpenNGSPoolManager.Delete<T>(obj);
+            PoolManager.Delete<T>(obj);
         }
 
         public static void DeleteAll()
         {
-            OpenNGSPoolManager.DeleteAll<T>();
+            PoolManager.DeleteAll<T>();
         }
 
         public virtual void Create() { }

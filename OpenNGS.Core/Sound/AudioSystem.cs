@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace OpenNGS.Audio
 {
-    public class OpenNGSSoundManager : Singleton<OpenNGSSoundManager>
+    public class AudioSystem : Singleton<AudioSystem>
     {
         private bool m_Mute;
         private const int POSITION_GAMEOBJECT_POOL = 30;
@@ -24,9 +24,9 @@ namespace OpenNGS.Audio
             }
         }
 
-        private OpenNGSAudioEngine m_AudioEngine;
+        private AudioDriver m_AudioEngine;
 
-        public void Initialize(OpenNGSAudioEngine audioEngine)
+        public void Initialize(AudioDriver audioEngine)
         {
             m_AudioEngine = audioEngine;
         }

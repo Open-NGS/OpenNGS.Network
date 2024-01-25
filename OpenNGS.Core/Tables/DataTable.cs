@@ -8,14 +8,14 @@ using UnityEngine;
 namespace OpenNGS.Tables
 {
 
-    public interface IOpenNGSTable
+    public interface IDataTable
     {
         string Name { get; }
         void Load(string filename);
         void Unload();
     }
 
-    public abstract class OpenNGSTableBase<T, ITEM> : OpenNGS.Singleton<T>, IOpenNGSTable where T : Singleton<T>, new()
+    public abstract class TableBase<T, ITEM> : OpenNGS.Singleton<T>, IDataTable where T : Singleton<T>, new()
     {
         public List<ITEM> Items { get; private set; }
 
@@ -43,7 +43,7 @@ namespace OpenNGS.Tables
                 data = File.ReadAllBytes(filenameNew);
 
                 if (data == null) {
-                    Debug.LogError("[NGSTable:Load]can't find " + filename + " and " + filenameNew);
+                    Debug.LogError("[DataTable:Load]can't find " + filename + " and " + filenameNew);
 #if DEBUG_LOG && PROFILER
                     OpenNGS.Profiling.ProfilerLog.End("Tables.Load", filename);
 #endif
@@ -52,7 +52,7 @@ namespace OpenNGS.Tables
 
             }
             
-            this.Items = OpenNGSTable.Serializer.Deserialize<List<ITEM>>(data);
+            this.Items = DataTable.Serializer.Deserialize<List<ITEM>>(data);
             this.Prepare();
             this.loaded = true;
 #if DEBUG_LOG &&PROFILER
@@ -74,13 +74,13 @@ namespace OpenNGS.Tables
         }
     }
 
-    public class OpenNGSTable
+    public class DataTable
     {
         public static ISerializer Serializer { get; set; }
 
     }
 
-    public class OpenNGSTable<ITEM, KEY> : OpenNGSTableBase<OpenNGSTable<ITEM, KEY>, ITEM>, IOpenNGSTable
+    public class DataTable<ITEM, KEY> : TableBase<DataTable<ITEM, KEY>, ITEM>, IDataTable
     {
         public static Dictionary<KEY, ITEM> map = new Dictionary<KEY, ITEM>();
 
@@ -88,11 +88,11 @@ namespace OpenNGS.Tables
 
         KeyGetter keyGetter;
 
-        public OpenNGSTable()
+        public DataTable()
         {
 
         }
-        public OpenNGSTable(KeyGetter keyGetter)
+        public DataTable(KeyGetter keyGetter)
         {
             this.keyGetter = keyGetter;
         }
@@ -131,7 +131,7 @@ namespace OpenNGS.Tables
         }
     }
 
-    public class NGSTable<ITEM, PK, SK>  : OpenNGSTableBase<NGSTable<ITEM, PK, SK>, ITEM>, IOpenNGSTable
+    public class DataTable<ITEM, PK, SK>  : TableBase<DataTable<ITEM, PK, SK>, ITEM>, IDataTable
     {
         public Dictionary<PK, Dictionary<SK, ITEM>> Map = new Dictionary<PK, Dictionary<SK, ITEM>>();
 
@@ -141,7 +141,7 @@ namespace OpenNGS.Tables
         PKeyGetter pkGetter;
         SKeyGetter skGetter;
 
-        public NGSTable<ITEM, PK, SK> SetKeyGetter(PKeyGetter pkgetter , SKeyGetter skgetter)
+        public DataTable<ITEM, PK, SK> SetKeyGetter(PKeyGetter pkgetter , SKeyGetter skgetter)
         {
             pkGetter = pkgetter;
             skGetter = skgetter;
@@ -209,7 +209,7 @@ namespace OpenNGS.Tables
     }
 
 
-    public class NGSListTable<ITEM, KEY> : OpenNGSTableBase<OpenNGSTable<ITEM, KEY>, ITEM>, IOpenNGSTable
+    public class DataCollectionTable<ITEM, KEY> : TableBase<DataTable<ITEM, KEY>, ITEM>, IDataTable
     {
         public Dictionary<KEY, List<ITEM>> Map = new Dictionary<KEY, List<ITEM>>();
 
@@ -217,7 +217,7 @@ namespace OpenNGS.Tables
 
         KeyGetter keyGetter;
 
-        public NGSListTable(KeyGetter getter)
+        public DataCollectionTable(KeyGetter getter)
         {
             this.keyGetter = getter;
         }

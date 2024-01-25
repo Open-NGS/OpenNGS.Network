@@ -21,7 +21,7 @@ namespace OpenNGS.Net
                     //int classid = (int)info.GetValue(null);
                     int classid = type.GetHashCode();
                     #if DEBUG_LOG
-                    OpenNGSDebug.LogFormat("ProtoPool.RegisterTypes:{0}:{1}", classid, type.Name);
+                    NgDebug.LogFormat("ProtoPool.RegisterTypes:{0}:{1}", classid, type.Name);
                     #endif
                     Tuple<int, Type, Stack<IProtoExtension>> poolinfo = new Tuple<int, Type, Stack<IProtoExtension>>(classid, type, new Stack<IProtoExtension>());
                     ObjectPoolDict.Add(classid, poolinfo);
@@ -48,7 +48,7 @@ namespace OpenNGS.Net
 
             int classid = obj.GetType().GetHashCode();
             #if DEBUG_LOG
-            OpenNGSDebug.LogFormat("ProtoPool.Release:{0}:{1}", classid, obj.GetType().Name);
+            NgDebug.LogFormat("ProtoPool.Release:{0}:{1}", classid, obj.GetType().Name);
             #endif
             if (ObjectPoolDict.TryGetValue(classid, out Tuple<int, Type, Stack<IProtoExtension>> objectinfo))
             {
@@ -64,7 +64,7 @@ namespace OpenNGS.Net
         {
             int classid = type.GetHashCode();
             #if DEBUG_LOG
-            OpenNGSDebug.LogFormat("ProtoPool.Get:{0}:{1}", classid, type.Name);
+            NgDebug.LogFormat("ProtoPool.Get:{0}:{1}", classid, type.Name);
             #endif
             if (ObjectPoolDict.TryGetValue(classid, out Tuple<int, Type, Stack<IProtoExtension>> objectinfo))
             {
