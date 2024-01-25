@@ -19,8 +19,6 @@ namespace OpenNGS.Make.Data
         }
         public MakeInfo()
         {
-            Name = "";
-            Description = "";
             Materials = new global::System.Collections.Generic.List<ItemInfo>();
             ItemID = new global::System.Collections.Generic.List<ItemInfo>();
             OnConstructor();
@@ -32,20 +30,12 @@ namespace OpenNGS.Make.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Name { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Description { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
         public global::System.Collections.Generic.List<ItemInfo> Materials { get; private set; }
 
-        [global::ProtoBuf.ProtoMember(5)]
+        [global::ProtoBuf.ProtoMember(3)]
         public uint Probability { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6)]
+        [global::ProtoBuf.ProtoMember(4)]
         public global::System.Collections.Generic.List<ItemInfo> ItemID { get; private set; }
 
     }
@@ -82,6 +72,7 @@ namespace OpenNGS.Make.Data
         public ItemInfo()
         {
             Name = "";
+            Description = "";
             Icon = "";
             OnConstructor();
         }
@@ -96,12 +87,19 @@ namespace OpenNGS.Make.Data
         public string Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.Item.Common.ITEM_TYPE ItemType { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public uint Number { get; set; }
+        public global::OpenNGS.Item.Common.ITEM_TYPE ItemType { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
+        public uint MaxNumber { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public uint StackMax { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7)]
         [global::System.ComponentModel.DefaultValue("")]
         public string Icon { get; set; }
 
