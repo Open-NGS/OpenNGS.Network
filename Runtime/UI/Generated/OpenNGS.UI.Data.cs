@@ -20,6 +20,7 @@ namespace OpenNGS.UI.Data
         public UIConfig()
         {
             IdOfUI = "";
+            SystemName = "";
             Component = "";
             Package = "";
             Dependences = new global::System.Collections.Generic.List<string>();
@@ -36,26 +37,30 @@ namespace OpenNGS.UI.Data
         public string IdOfUI { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.UI.Common.UI_SYSTEM Type { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string SystemName { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Component { get; set; }
+        public global::OpenNGS.UI.Common.UI_SYSTEM Type { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         [global::System.ComponentModel.DefaultValue("")]
-        public string Package { get; set; }
+        public string Component { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::System.Collections.Generic.List<string> Dependences { get; private set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Package { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
-        public global::OpenNGS.UI.Common.UI_LAYER Layer { get; set; }
+        public global::System.Collections.Generic.List<string> Dependences { get; private set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        public bool Stack { get; set; }
+        public global::OpenNGS.UI.Common.UI_LAYER Layer { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
+        public bool Stack { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10)]
         public bool Cache { get; set; }
 
     }
