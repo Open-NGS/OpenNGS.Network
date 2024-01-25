@@ -28,6 +28,9 @@ namespace OpenNGS.Exchange.Data
         public uint GUID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
         public uint Count { get; set; }
 
     }

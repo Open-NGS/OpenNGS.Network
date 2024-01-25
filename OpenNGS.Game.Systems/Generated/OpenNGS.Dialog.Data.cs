@@ -10,6 +10,50 @@ namespace OpenNGS.Dialog.Data
 {
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class Dialogue : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public Dialogue()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint DialogueID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
+        public uint[] DialogueDataID { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DialogueArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DialogueArray()
+        {
+            items = new global::System.Collections.Generic.List<Dialogue>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<Dialogue> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class DialogTalk : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -19,33 +63,47 @@ namespace OpenNGS.Dialog.Data
         }
         public DialogTalk()
         {
-            Comments = "";
+            Name = "";
+            AvatarLeft = "";
+            AvatarRight = "";
+            Content = "";
+            AudioFiles = "";
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogID { get; set; }
+        public uint DialogueDataID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         [global::System.ComponentModel.DefaultValue("")]
-        public string Comments { get; set; }
+        public string Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint TalkID { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AvatarLeft { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public uint IsEnd { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AvatarRight { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public uint ContentID { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Content { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public uint ChoiceID { get; set; }
+        public bool IsEnd { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7)]
-        public uint ChoiceCount { get; set; }
+        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
+        public uint[] Options { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint OptionCount { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AudioFiles { get; set; }
 
     }
 
@@ -67,6 +125,55 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<DialogTalk> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class Option : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public Option()
+        {
+            OptionContent = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint OptionID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string OptionContent { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint NextDialogueIndices { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class OptionArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public OptionArray()
+        {
+            items = new global::System.Collections.Generic.List<Option>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<Option> items { get; private set; }
 
     }
 
