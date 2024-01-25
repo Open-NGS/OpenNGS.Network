@@ -38,7 +38,7 @@ namespace OpenNGS.Systems
                 case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
                     return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
             }             
-            SendRemovetem2Bag(src);
+            SendRemoveItem2Bag(src);
             SendAddItem2Bag(target);
             return result;
         }
@@ -50,20 +50,16 @@ namespace OpenNGS.Systems
             //去背包里查找src里面的道具是否满足条件
             foreach(SourceItem item in items)
             {
-                if (item.ItemID == 0 && item.GUID == 0) return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
-                if (item.ItemID == 0)
+                if (item.GUID != 0)
                 {
                     if(!m_itemSys.IsEnoughByGuid(item.GUID, item.Count))
                     {
                         return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
                     }
                 }
-                else if(item.GUID == 0)
+                else
                 {
-                    if (!m_itemSys.IsEnoughByItemID(item.ItemID, item.Count))
-                    {
-                        return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
-                    }
+                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
                 }
             }
             return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
@@ -77,22 +73,17 @@ namespace OpenNGS.Systems
             {
                 m_itemSys.AddItemsByID(item.ItemID, item.Count);
             }
-
         }
 
-        private void SendRemovetem2Bag(List<SourceItem> items)
+        private void SendRemoveItem2Bag(List<SourceItem> items)
         {
             if (items == null || items.Count == 0) return;
             //给背包发送要删除的道具
             foreach(SourceItem item in items)
             {
-                if (item.ItemID == 0)
+                if (item.GUID != 0)
                 {
                     m_itemSys.RemoveItemsByGuid(item.GUID, item.Count);
-                }
-                else if (item.GUID == 0)
-                {
-                    m_itemSys.RemoveItemsByID(item.ItemID, item.Count);
                 }
             }
             
