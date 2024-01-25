@@ -21,7 +21,7 @@ namespace OpenNGS.UI
         public IView CreateView(string id, string package, string component, int layer, bool cache)
         {
             var view = UIFactory.CreateView(package, component);
-            OpenNGSDebug.Log($"UGUISystem CreateView {id}  {view}");
+            NgDebug.Log($"UGUISystem CreateView {id}  {view}");
             view.Init(id, layer, cache);
             return view;
         }
@@ -34,7 +34,7 @@ namespace OpenNGS.UI
         private void RequestAtlas(string tag, System.Action<SpriteAtlas> callback)
         {
             Debug.Log($"Need Load Atlas {tag}");
-            var sa = OpenNGSResources.Load<SpriteAtlas>($"UI/Atlas/{tag}.spriteatlas");
+            var sa = AssetLoader.Load<SpriteAtlas>($"UI/Atlas/{tag}.spriteatlas");
             if (sa != null)
             {
                 Debug.Log($"Load Atlas {tag} success");
@@ -49,7 +49,7 @@ namespace OpenNGS.UI
         /// </summary>
         private void PreloadFonts()
         {
-            OpenNGSResources.Load<Font>("UI/Fonts/OpenNGSSans-W3.ttf", float.MaxValue);
+            AssetLoader.Load<Font>("UI/Fonts/OpenNGSSans-W3.ttf", float.MaxValue);
         }
     }
 }

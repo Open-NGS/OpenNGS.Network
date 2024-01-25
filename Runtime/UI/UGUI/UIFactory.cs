@@ -10,7 +10,7 @@ namespace OpenNGS.UI.UGUI
         public static IUView CreateView(string package, string component)
         {
             IUView viewCtr = null;
-            var prefab = OpenNGSResources.Load<GameObject>($"UI/View/{package}/{component}.prefab");
+            var prefab = AssetLoader.Load<GameObject>($"UI/View/{package}/{component}.prefab");
             if (null == prefab)
             {
                 prefab = Resources.Load($"{package}/{component}", typeof(GameObject)) as GameObject;
@@ -18,14 +18,14 @@ namespace OpenNGS.UI.UGUI
             
             if (prefab == null)
             {
-                OpenNGSDebug.LogError($"UGUI resources not found: {package}/{component}");
+                NgDebug.LogError($"UGUI resources not found: {package}/{component}");
                 return null;
             }
             
             var root = GameObject.FindWithTag("UGUIRoot");
             if (root == null)
             {
-                OpenNGSDebug.LogError("UGUI Root not found!");
+                NgDebug.LogError("UGUI Root not found!");
                 return null;
             }
             

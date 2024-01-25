@@ -17,7 +17,7 @@ namespace OpenNGS.UI
         {
             if (m_Index == index)
             {
-                OpenNGSDebug.LogError("[CustomTabItem] Repeated Init!");
+                NgDebug.LogError("[CustomTabItem] Repeated Init!");
                 return;
             }
 
