@@ -1,4 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
 using OpenNGSCommon;
+using OpenNGS.DI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 using Common;
 using Systems;
 using UnityEngine;
+using OpenNGS;
 
 /// <summary>
 /// GameContext: dealing with different Levels in different game stage.
@@ -19,9 +22,11 @@ public enum  GameContextType
     World,
 }
 
-public abstract class GameContext
+public abstract class GameContext : IApplicationContext
 {
     public GameMode GameMode { get; private set; }
+
+    SystemBuilder builder = new SystemBuilder();
     private Dictionary<string, IGameSubSystem> _systems = new Dictionary<string, IGameSubSystem>();
 
     public void Init(GameMode gameMode)
@@ -30,6 +35,9 @@ public abstract class GameContext
 
         GameMode = gameMode;
         OnInit();
+
+        builder.InitApplication(this);
+
         foreach (var sys in this._systems)
         {
             Debug.Log($"GameContext Init: {sys.Key}");
@@ -119,4 +127,7 @@ public abstract class GameContext
             sys.Value.OnWorldLeave();
         }
     }
+
+    public abstract void ConfigureServices(IServiceCollection services);
+    public abstract void Configure(IApplicationBuilder app);
 }
