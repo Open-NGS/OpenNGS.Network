@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Tables;
 
-public interface ITable : IOpenNGSTable
+public interface ITable : IDataTable
 {
     bool IsSeasonTable { get; }
     void Load();
 }
 
-public class Table<ITEM, KEY> : OpenNGSTable<ITEM, KEY>, ITable
+public class Table<ITEM, KEY> : DataTable<ITEM, KEY>, ITable
 {
     public bool IsSeasonTable { get; private set; }
 
-    public Table(OpenNGSTable<ITEM, KEY>.KeyGetter getter, bool season) : base(getter)
+    public Table(DataTable<ITEM, KEY>.KeyGetter getter, bool season) : base(getter)
     {
         this.IsSeasonTable = season;
         DataManager.Instance.AddTable(this);
@@ -25,11 +25,11 @@ public class Table<ITEM, KEY> : OpenNGSTable<ITEM, KEY>, ITable
     }
 }
 
-public class SettingTable<ITEM, KEY> : OpenNGSTable<ITEM, KEY>, ITable
+public class SettingTable<ITEM, KEY> : DataTable<ITEM, KEY>, ITable
 {
     public bool IsSeasonTable { get; private set; }
 
-    public SettingTable(OpenNGSTable<ITEM, KEY>.KeyGetter getter, bool season) : base(getter)
+    public SettingTable(DataTable<ITEM, KEY>.KeyGetter getter, bool season) : base(getter)
     {
         this.IsSeasonTable = season;
         DataManager.Instance.AddTable(this);
@@ -43,11 +43,11 @@ public class SettingTable<ITEM, KEY> : OpenNGSTable<ITEM, KEY>, ITable
     }
 }
 
-public class ListTableBase<ITEM, KEY> : NGSListTable<ITEM, KEY>, ITable
+public class ListTableBase<ITEM, KEY> : DataCollectionTable<ITEM, KEY>, ITable
 {
     public bool IsSeasonTable { get; private set; }
 
-    public ListTableBase(NGSListTable<ITEM, KEY>.KeyGetter getter, bool season) : base(getter)
+    public ListTableBase(DataCollectionTable<ITEM, KEY>.KeyGetter getter, bool season) : base(getter)
     {
         this.IsSeasonTable = season;
         DataManager.Instance.AddTable(this);
@@ -60,11 +60,11 @@ public class ListTableBase<ITEM, KEY> : NGSListTable<ITEM, KEY>, ITable
 }
 
 
-public class Table<ITEM, PK, SK> : NGSTable<ITEM, PK, SK>, ITable
+public class Table<ITEM, PK, SK> : DataTable<ITEM, PK, SK>, ITable
 {
     public bool IsSeasonTable { get; private set; }
 
-    public Table(NGSTable<ITEM, PK, SK>.PKeyGetter pkgetter, NGSTable<ITEM, PK, SK>.SKeyGetter skgetter, bool season)
+    public Table(DataTable<ITEM, PK, SK>.PKeyGetter pkgetter, DataTable<ITEM, PK, SK>.SKeyGetter skgetter, bool season)
     {
         this.IsSeasonTable = season;
         base.SetKeyGetter(pkgetter, skgetter);

@@ -971,7 +971,7 @@ public sealed class NetworkModule
         loginErrno = (ResultCode)errcode;
         loginRsp = rsp;
 
-        OpenNGSDebug.LogJson("NetworkModule.HandleLoginResponse", rsp);
+        NgDebug.LogJson("NetworkModule.HandleLoginResponse", rsp);
 
         string msg = string.Empty;
         if (CheckSvrRetCode(errcode))

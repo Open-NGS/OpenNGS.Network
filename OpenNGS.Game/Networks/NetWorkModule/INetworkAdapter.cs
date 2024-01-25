@@ -203,7 +203,7 @@ public abstract class INetworkAdapter
     {
         get
         {
-            return MissQBoot.mInstance.GetMissQVersion();
+            return "1";
 
         }
     }
@@ -215,7 +215,7 @@ public abstract class INetworkAdapter
             string version = PlayerPrefs.GetString(MissQBaseConst.CONSTResVersionKey, "");
             if (string.IsNullOrEmpty(version))
             {
-                version = MissQBoot.mInstance.GetMissQResVersion();
+                version = "1";
             }
             return version;
         }

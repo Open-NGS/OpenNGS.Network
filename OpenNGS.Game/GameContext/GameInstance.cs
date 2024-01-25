@@ -55,7 +55,7 @@ public class GameInstance : OpenNGS.Singleton<GameInstance>
         OpenNGS.Profiling.ProfilerLog.Start("GameInstance.Init");
 
 #if UNITY_EDITOR
-        if (!OpenNGSResources.RawMode)
+        if (!AssetLoader.RawMode)
         {
             AssetBundleManager.Instance.Init();
         }

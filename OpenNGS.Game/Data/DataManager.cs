@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Tables;
 using System.IO;
-using Data;
 using OpenNGS.IO;
 using OpenNGS.Serialization;
 
@@ -31,7 +30,7 @@ public class DataManager : OpenNGS.Singleton<DataManager>
 
     public DataManager()
     {
-        OpenNGSTable.Serializer = new TableSerializer();
+        DataTable.Serializer = new TableSerializer();
     }
 
     public string GetDataFile(string name, bool season)

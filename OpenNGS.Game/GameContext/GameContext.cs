@@ -26,13 +26,13 @@ public abstract class GameContext
 
     public void Init(GameMode gameMode)
     {
-        Debug.Log($"OpenNGS GameContext Init : {_systems.Count}");
+        Debug.Log($"GameContext Init : {_systems.Count}");
 
         GameMode = gameMode;
         OnInit();
         foreach (var sys in this._systems)
         {
-            Debug.Log($"OpenNGS GameContext Init: {sys.Key}");
+            Debug.Log($"GameContext Init: {sys.Key}");
             sys.Value.Init();
         }
     }

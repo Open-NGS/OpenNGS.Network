@@ -38,7 +38,7 @@ namespace Systems
             string msg = string.Empty;
             if (NetworkModule.Instance.CheckSvrRetCode(errcode))
             {
-                // OpenNGSDebug.LogJson("HandleStatusResponse Success", rsp);
+                // NgDebug.LogJson("HandleStatusResponse Success", rsp);
                 try
                 {
                     OnStatus(temp);
@@ -56,7 +56,7 @@ namespace Systems
         
         public void OnStatus(StatusDataList status)
         {
-            OpenNGSDebug.LogJson("StatusSystem OnStatus", status);
+            NgDebug.LogJson("StatusSystem OnStatus", status);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"StatusSystem:;OnStatus[{status.status_datas.Count}]");
             foreach (var data in status.status_datas)
