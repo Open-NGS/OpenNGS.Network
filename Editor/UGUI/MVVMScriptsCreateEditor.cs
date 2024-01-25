@@ -27,7 +27,7 @@ public class MVVMScriptsCreateEditor : EditorWindow
     private readonly string m_UIFolder = "Assets/Game/Scripts/UI/";
     private readonly string m_ModelFolder = "Assets/Game/Scripts/Model/";
     private readonly string m_SystemFolder = "Assets/Game/Scripts/Systems/";
-    private readonly string m_TemplateFolder = "Packages/com.openngs.ni.ui/Editor/MVVMScriptTemplate/";
+    private readonly string m_TemplateFolder = "Packages/com.openngs.ui/Editor/MVVMScriptTemplate/";
 
     private VisualElement m_CreateViewModelPanel, m_CreateModelPanel, m_CreateSystemPanel;
     public void CreateGUI()
@@ -88,7 +88,7 @@ public class MVVMScriptsCreateEditor : EditorWindow
 
     private VisualElement AddCreateViewModelPanel()
     {
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.openngs.ni.ui/Editor/MVVMScriptsCreateUI0.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.openngs.ui/Editor/MVVMScriptsCreateUI0.uxml");
         var elements = visualTree.Instantiate();
 
         m_RightPane.Add(elements);
@@ -166,7 +166,7 @@ public class MVVMScriptsCreateEditor : EditorWindow
 
     private VisualElement AddCreateModelPanel()
     {
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.openngs.ni.ui/Editor/MVVMScriptsCreateUI1.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.openngs.ui/Editor/MVVMScriptsCreateUI1.uxml");
         var elements = visualTree.Instantiate();
         m_RightPane.Add(elements);
         
@@ -229,7 +229,7 @@ public class MVVMScriptsCreateEditor : EditorWindow
     
     private VisualElement AddCreateSystemPanel()
     {
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.openngs.ni.ui/Editor/MVVMScriptsCreateUI2.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.openngs.ui/Editor/MVVMScriptsCreateUI2.uxml");
         var elements = visualTree.Instantiate();
         m_RightPane.Add(elements);
         
