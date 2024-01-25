@@ -10,7 +10,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace OpenNGS.Systems
 {
-    public class ExchangeSystem : EntitySystem
+    public class ExchangeSystem : EntitySystem, IExchangeSystem
     {
         private IItemSystem m_itemSys = null;
         protected override void OnCreate()
@@ -22,45 +22,47 @@ namespace OpenNGS.Systems
             m_itemSys = _itemSys;
         }
 
-
         public override string GetSystemName()
         {
-            return "com.openngs.system.rank";
+            return "com.openngs.system.exchange";
         }
 
         public EXCHANGE_RESULT_TYPE ExchangeItem(List<SourceItem> src, List<TargetItem> target)
         {
-            EXCHANGE_RESULT_TYPE result;
-            if(target == null || target.Count == 0) { return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOTARGET; }
-            
-            if (src == null || src.Count == 0)
+            EXCHANGE_RESULT_TYPE result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
+
+            switch (CheckItemCondition(src))
             {
-                result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
-            }
-            else
-            {
-                bool res = CheckItemCondition(src);
-                if(res) 
-                    result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
-                else 
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
                     return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
-            }
-            SendRemovetem2Bag(src);
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
+            }             
+            SendRemoveItem2Bag(src);
             SendAddItem2Bag(target);
             return result;
         }
 
-        private bool CheckItemCondition(List<SourceItem> items)
+        private EXCHANGE_RESULT_TYPE CheckItemCondition(List<SourceItem> items)
         {
+            if(items.Count == 0 || items == null) return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
+
             //去背包里查找src里面的道具是否满足条件
             foreach(SourceItem item in items)
             {
-                if(m_itemSys.IsItemEnough(item.GUID, item.Count))
+                if (item.GUID != 0)
                 {
-                    return false;
+                    if(!m_itemSys.IsEnoughByGuid(item.GUID, item.Count))
+                    {
+                        return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
+                    }
+                }
+                else
+                {
+                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
                 }
             }
-            return true;
+            return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
         }
 
         private void SendAddItem2Bag(List<TargetItem> items)
@@ -71,16 +73,18 @@ namespace OpenNGS.Systems
             {
                 m_itemSys.AddItemsByID(item.ItemID, item.Count);
             }
-
         }
 
-        private void SendRemovetem2Bag(List<SourceItem> items)
+        private void SendRemoveItem2Bag(List<SourceItem> items)
         {
             if (items == null || items.Count == 0) return;
             //给背包发送要删除的道具
             foreach(SourceItem item in items)
             {
-                m_itemSys.RemoveItemsByGuid(item.GUID, item.Count);
+                if (item.GUID != 0)
+                {
+                    m_itemSys.RemoveItemsByGuid(item.GUID, item.Count);
+                }
             }
             
         }
