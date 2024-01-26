@@ -29,6 +29,11 @@ namespace Systems
 
     public abstract class GameSystemBase<T> : OpenNGS.Singleton<T>, IGameSubSystem where T : GameSystemBase<T>, new()
     {
+        public GameSystemBase()
+        {
+            instance = this as T;
+        }
+
         public GameMode GameMode { get; private set; }
 
         public abstract GameContextType GetGameContextType();
@@ -43,7 +48,10 @@ namespace Systems
         
         protected virtual void OnClear() { }
         
-        public virtual void Init() { }
+        public virtual void Init() {
+            Instance.RegisterStatus();
+            Instance.OnCreate();
+        }
 
         public virtual void OnPlayerLogin()
         {
