@@ -32,6 +32,28 @@ public class MakeSystem : EntitySystem
         sourcesList.Clear();
         targetsList.Clear();
 
+<<<<<<< HEAD
+        //itemInfo = NGSStaticData.items.GetItem(item.ID);
+        //makeInfo = NGSStaticData.makes.GetItem(item.ID);
+        //// 制作书
+        //sources.GUID = makeGridId;
+        //sources.Count = itemInfo.StackMax;
+        //sourcesList.Add(sources);
+        //// 材料
+        //foreach (var mater in makeInfo.Materials)
+        //{
+        //    uint guid = m_itemSys.GetItemCountByGuidID(mater.ID);
+        //    sources.GUID = guid;
+        //    sources.Count = mater.StackMax;
+        //    sourcesList.Add(sources);
+        //}
+        //foreach (var items in makeInfo.ItemID)
+        //{
+        //    targets.ItemID = items.ID;
+        //    targets.Count = items.StackMax;
+        //    targetsList.Add(targets);
+        //}
+=======
         itemInfo = m_itemSys.GetItemInfo(item.ID);
         makeInfo = m_itemSys.GetItemByItmes(item.ID);
         // 制作书
@@ -52,6 +74,7 @@ public class MakeSystem : EntitySystem
             targets.Count = items.StackMax;
             targetsList.Add(targets);
         }
+>>>>>>> 71f5ca0148fbed141d2b8cbd4766b3a3ad5e18b9
         return exchangeSystem.ExchangeItem(sourcesList, targetsList);
     }
 
