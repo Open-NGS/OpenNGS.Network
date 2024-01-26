@@ -20,6 +20,20 @@ namespace OpenNGS.DI
             Services = container.BuildServiceProvider();
             ApplicationContext.Systems = Services;
             context.Configure(this);
+
+            foreach (var system in container) {
+
+                var service = Services.GetService(system.ServiceType);
+                if (service is ISystem)
+                {
+                    var sys = (ISystem)service;
+
+                    Debug.Log($"SystemBuilder Init: {sys.GetSystemName()}");
+                    sys.Init();
+                }
+                
+                
+            }
         }
 
     }
