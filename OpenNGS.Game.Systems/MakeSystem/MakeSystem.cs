@@ -32,8 +32,8 @@ public class MakeSystem : EntitySystem
         sourcesList.Clear();
         targetsList.Clear();
 
-        itemInfo = NGSStaticData.items.GetItem(item.ID);
-        makeInfo = NGSStaticData.makes.GetItem(item.ID);
+        itemInfo = m_itemSys.GetItemInfo(item.ID);
+        makeInfo = m_itemSys.GetItemByItmes(item.ID);
         // ÖÆ×÷Êé
         sources.GUID = makeGridId;
         sources.Count = itemInfo.StackMax;

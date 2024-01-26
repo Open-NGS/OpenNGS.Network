@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Item;
 using OpenNGS.Item.Data;
+using OpenNGS.Make.Data;
 
 namespace OpenNGS.Systems
 {
@@ -29,7 +30,17 @@ namespace OpenNGS.Systems
             m_IsNewPlayer = isNewPlayer;
         }
 
+        public ItemInfo GetItemInfo(uint itemId)
+        {
+            ItemInfo itemInfo = new ItemInfo();
+            return itemInfo;
+        }
 
+        public MakeInfo GetItemByItmes(uint itemId)
+        {
+            MakeInfo makeInfo = new MakeInfo();
+            return makeInfo;
+        }
 
         protected override void OnCreate()
         {
