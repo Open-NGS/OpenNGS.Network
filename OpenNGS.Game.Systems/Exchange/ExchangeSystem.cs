@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using OpenNGS.Collections.Generic;
 using OpenNGS.Exchange.Data;
 using OpenNGS.Exchange.Common;
-using static UnityEngine.GraphicsBuffer;
 
 namespace OpenNGS.Systems
 {
     public class ExchangeSystem : EntitySystem, IExchangeSystem
     {
         private IItemSystem m_itemSys = null;
+        private int aaa = 100;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -89,5 +89,9 @@ namespace OpenNGS.Systems
             
         }
 
+        public void Test()
+        {
+            int aa = 0;
+        }
     }
 }

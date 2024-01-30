@@ -11,5 +11,6 @@ namespace OpenNGS.Systems
     public interface IExchangeSystem
     {
         public EXCHANGE_RESULT_TYPE ExchangeItem(List<SourceItem> src, List<TargetItem> target);
+        public void Test();
     }
 }
