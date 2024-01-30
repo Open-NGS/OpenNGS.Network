@@ -1,14 +1,15 @@
+using OpenNGS.Character.Common;
+using OpenNGS.Rank.Data;
 using OpenNGSCommon;
-using Rpc.Naming;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 namespace OpenNGS.Systems
 {
     class CharacterSystem : EntitySystem, ICharacterSystem
     {
         public readonly Dictionary<ulong, Character> CharacterDic = new Dictionary<ulong, Character>();
+
+        private readonly Dictionary<ulong, OpenNGS.Rank.Data.CharacterInfo> m_dicChar = new Dictionary<ulong, OpenNGS.Rank.Data.CharacterInfo>();
         public readonly List<string> cachedRandomNames = new List<string>();
 
         private ISaveSystem m_saveSystem;
@@ -31,7 +32,6 @@ namespace OpenNGS.Systems
                 {
                     CharacterSaveData myInterface = (CharacterSaveData)_saveInfo;
                     myInterface.characterInfoArray.items.Add(new Rank.Data.CharacterInfo());
-                    int a = 0;
                 }
             }
             m_saveSystem.SaveFile();
@@ -39,12 +39,31 @@ namespace OpenNGS.Systems
 
         public void RefreshCharacter()
         {
-            throw new System.NotImplementedException();
+            ISaveInfo _saveInfo = m_saveSystem.GetFileData("CHARACTER");
+            if (_saveInfo != null)
+            {
+                if (_saveInfo is CharacterSaveData)
+                {
+                    CharacterSaveData _charData = (CharacterSaveData)_saveInfo;
+                    foreach (Rank.Data.CharacterInfo _charInf in _charData.characterInfoArray.items)
+                    {
+                        if(m_dicChar.ContainsKey(_charInf.ID) == false)
+                        {
+                            m_dicChar.Add(_charInf.ID, _charInf);
+                        }
+                    }
+                }
+            }
+                        
         }
 
-        OpenNGS.Character.Common.CharacterInfo ICharacterSystem.GetCharacterInfo(ulong uin)
+        public OpenNGS.Rank.Data.CharacterInfo GetCharacterInfo(ulong uin)
         {
-            throw new System.NotImplementedException();
+            if (m_dicChar.TryGetValue(uin, out var characterInfo))
+            {
+                return characterInfo;
+            }
+            return null;
         }
     }
 }
