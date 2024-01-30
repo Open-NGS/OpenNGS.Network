@@ -6,23 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[global::ProtoBuf.ProtoContract()]
-public class SaveData : ISaveEntity
+namespace OpenNGS.Systems
 {
-    [global::ProtoBuf.ProtoMember(1)]
-    public ItemData saveItems;
-    [global::ProtoBuf.ProtoMember(2)]
-    public RankData saveRanks;
-
-    public void Init()
+    [global::ProtoBuf.ProtoContract()]
+    public class SaveData : ISaveEntity
     {
-        saveItems = new ItemData();
-        saveRanks = new RankData();
+        [global::ProtoBuf.ProtoMember(1)]
+        public ItemData saveItems;
+        [global::ProtoBuf.ProtoMember(2)]
+        public RankData saveRanks;
+        [global::ProtoBuf.ProtoMember(3)]
+        public CharacterSaveData charaInfos;
+        public void Init()
+        {
+            saveItems = new ItemData();
+            saveRanks = new RankData();
+            charaInfos = new CharacterSaveData();
+        }
+
+        public void MigrateToVersion(int i)
+        {
+        }
     }
 
-    public void MigrateToVersion(int i)
-    {
-        throw new System.NotImplementedException();
-    }
+
 }
-

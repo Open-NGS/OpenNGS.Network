@@ -15,6 +15,8 @@ public class LoginGameContext : GameContext
     public override void ConfigureServices(IServiceCollection services)
     {
         services.Add(new ServiceDescriptor(typeof(IExchangeSystem), new ExchangeSystem()));
+        services.Add(new ServiceDescriptor(typeof(ISaveSystem), new SaveSystem()));
+        services.Add(new ServiceDescriptor(typeof(ICharacterSystem), new CharacterSystem()));
     }
 
     protected override void OnInit()

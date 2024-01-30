@@ -6,48 +6,45 @@ using UnityEngine;
 using UnityEngine.Events;
 namespace OpenNGS.Systems
 {
-    class CharacterSystem : EntitySystem
+    class CharacterSystem : EntitySystem, ICharacterSystem
     {
         public readonly Dictionary<ulong, Character> CharacterDic = new Dictionary<ulong, Character>();
         public readonly List<string> cachedRandomNames = new List<string>();
 
+        private ISaveSystem m_saveSystem;
+        public override void InitSystem()
+        {
+            m_saveSystem = App.GetService<ISaveSystem>();
+        }
         public Character GetCharacter(ulong uin)
         {
             CharacterDic.TryGetValue(uin, out var character);
             return character;
         }
 
-        public async Task<OpenNGS.Character.Common.GetCharacterRsp> GetCharacterInfo(ulong uin)
+        public void CreateCharacter()
         {
-            //todolist
-            var rsp = new OpenNGS.Character.Common.GetCharacterRsp();
-            OnGetCharacterRsp(uin, rsp);
-            return rsp;
-        }
-
-        private void RefreshCharacter(ulong uin, OpenNGS.Character.Common.CharacterInfo info)
-        {
-            //todo
-            //if (CharacterDic.TryGetValue(uin, out var c))
-            //{
-            //    c.RefreshCharacter(info);
-            //}
-            //else
-            //{
-            //    CharacterDic.Add(uin, new Character(info));
-            //}
-        }
-
-        #region S2C
-        private void OnGetCharacterRsp(ulong uin, OpenNGS.Character.Common.GetCharacterRsp rsp)
-        {
-            if (rsp?.info == null)
+            ISaveInfo _saveInfo = m_saveSystem.GetFileData("CHARACTER");
+            if(_saveInfo != null)
             {
-                return;
+                if(_saveInfo is CharacterSaveData)
+                {
+                    CharacterSaveData myInterface = (CharacterSaveData)_saveInfo;
+                    myInterface.characterInfoArray.items.Add(new Rank.Data.CharacterInfo());
+                    int a = 0;
+                }
             }
-
-            RefreshCharacter(uin, rsp.info);
+            m_saveSystem.SaveFile();
         }
-        #endregion
+
+        public void RefreshCharacter()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        OpenNGS.Character.Common.CharacterInfo ICharacterSystem.GetCharacterInfo(ulong uin)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

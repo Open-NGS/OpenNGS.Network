@@ -14,5 +14,9 @@ namespace OpenNGS.Systems
         public virtual void OnStatus(StatusData status) { }
 
         public virtual string GetSystemName() { return ""; }
+        public virtual void InitSystem()
+        {
+
+        }
     }
 }
