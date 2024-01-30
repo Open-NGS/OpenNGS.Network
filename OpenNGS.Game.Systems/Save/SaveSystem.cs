@@ -10,7 +10,6 @@ using UnityEngine;
 
 namespace OpenNGS.Systems
 {
-
     public class SaveSystem : EntitySystem, ISaveSystem
     {
         public static string SAVE_ITEM_TAG = "ITEM";
@@ -32,7 +31,6 @@ namespace OpenNGS.Systems
 
         private int Capture;
         private int index;
-        private SaveData saveData;
 
         public void Init(int capture, int version)
         {
@@ -42,18 +40,24 @@ namespace OpenNGS.Systems
             this.index = SaveDataManager<SaveData>.Instance.ActiveIndex;
             saveInfo = new Dictionary<string, ISaveInfo>();
 
-            if (SaveDataManager<SaveData>.Instance.Current == null)
+            if (SaveDataManager<SaveData>.Instance.GetSlot(index) == null)
             {
                 this.index = 0;
-                AddFile();
+                InitFilt();
             }
 
-            InfoInit();
+            InitDicInfo();
         }
 
-        private void InfoInit()
+        private void InitFilt()
         {
-            saveData = SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data;
+            SaveDataManager<SaveData>.Instance.ActiveIndex = index;
+            SaveDataManager<SaveData>.Instance.NewSaveData(true);
+        }
+
+        private void InitDicInfo()
+        {
+            SaveData saveData = SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data;
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
@@ -67,28 +71,27 @@ namespace OpenNGS.Systems
             {
                 return false;
             }
+            SaveFile();
+            index++;
+            SaveDataManager<SaveData>.Instance.ActiveIndex = index;
             SaveDataManager<SaveData>.Instance.NewSaveData(true);
-            InfoInit();
-            //savefile();
+            InitDicInfo();
             return true;
         }
 
         public bool DeleteFile(int targeIndex)
         {
             if (targeIndex < 0 || targeIndex >= Capture) return false;
-            if (targeIndex == index)
-            {
-                ChangeFile(targeIndex - 1);
-            }
+            
             SaveDataManager<SaveData>.Instance.Delete(targeIndex);
             return true;
         }
 
         public void SaveFile()
         {
-            SaveDataManager<SaveData>.Instance.Current.saveItems = saveInfo[SAVE_ITEM_TAG] as ItemData;
-            SaveDataManager<SaveData>.Instance.Current.saveRanks = saveInfo[SAVE_RANK_TAG] as RankData;
-            SaveDataManager<SaveData>.Instance.Current.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as CharacterSaveData;
+            SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data.saveItems = saveInfo[SAVE_ITEM_TAG] as ItemData;
+            SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data.saveRanks = saveInfo[SAVE_RANK_TAG] as RankData;
+            SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as CharacterSaveData;
 
             SaveDataManager<SaveData>.Instance.Save();
         }
@@ -98,7 +101,7 @@ namespace OpenNGS.Systems
             if (targeIndex < 0 || targeIndex >= Capture) return false;
             this.index = targeIndex;
             SaveDataManager<SaveData>.Instance.ActiveIndex = targeIndex;
-            InfoInit();
+            InitDicInfo();
             return true;
         }
 
@@ -106,7 +109,6 @@ namespace OpenNGS.Systems
         {
             if (data == null) return;
             saveInfo[name] = data;
-            SaveFile();
         }
 
         public ISaveInfo GetFileData(string name)
@@ -117,5 +119,4 @@ namespace OpenNGS.Systems
             return data;
         }
     }
-
 }
