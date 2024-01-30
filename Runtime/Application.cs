@@ -22,4 +22,17 @@ namespace OpenNGS
     {
         public IServiceProvider Services { get; }
     }
+
+    public static class App
+    {
+        private static IApplicationBuilder m_builder;
+        public static T GetService<T>()
+        {
+            return (T)m_builder.Services.GetService(typeof(T));
+        }
+        public static void SetAppBuilder(IApplicationBuilder _appBuilder)
+        {
+            m_builder = _appBuilder;
+        }
+    }
 }

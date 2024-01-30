@@ -20,6 +20,7 @@ namespace OpenNGS.DI
             Services = container.BuildServiceProvider();
             ApplicationContext.Systems = Services;
             context.Configure(this);
+            App.SetAppBuilder(this);
         }
 
     }
