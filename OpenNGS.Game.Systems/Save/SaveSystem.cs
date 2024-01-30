@@ -19,7 +19,6 @@ namespace OpenNGS.Systems
         protected override void OnCreate()
         {
             base.OnCreate();
-            Init(10, 1);
         }
 
         public override string GetSystemName()
