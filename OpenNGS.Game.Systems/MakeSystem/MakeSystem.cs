@@ -4,7 +4,7 @@ using OpenNGS.Make.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
 
-public class MakeSystem : EntitySystem
+public class MakeSystem : EntitySystem,IMakeSystem
 {
     ExchangeSystem exchangeSystem = new ExchangeSystem();
 

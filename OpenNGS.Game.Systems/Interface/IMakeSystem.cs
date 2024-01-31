@@ -1,0 +1,10 @@
+using OpenNGS.Exchange.Common;
+using OpenNGS.Make.Data;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface IMakeSystem
+{
+    public EXCHANGE_RESULT_TYPE Forged(uint makeGridId, ItemInfo item);
+}
