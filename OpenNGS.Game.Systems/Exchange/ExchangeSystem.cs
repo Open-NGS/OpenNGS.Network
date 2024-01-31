@@ -17,9 +17,9 @@ namespace OpenNGS.Systems
         {
             base.OnCreate();
         }
-        public void RegisteItemSystem(IItemSystem _itemSys)
+        public override void InitSystem()
         {
-            m_itemSys = _itemSys;
+            m_itemSys = App.GetService<IItemSystem>();
         }
 
         public override string GetSystemName()

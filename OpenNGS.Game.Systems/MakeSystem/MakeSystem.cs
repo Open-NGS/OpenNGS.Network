@@ -1,3 +1,4 @@
+using OpenNGS;
 using OpenNGS.Exchange.Common;
 using OpenNGS.Exchange.Data;
 using OpenNGS.Make.Data;
@@ -12,9 +13,9 @@ public class MakeSystem : EntitySystem,IMakeSystem
     List<TargetItem> targetsList = new List<TargetItem>();
 
     private IItemSystem m_itemSys = null;
-    public void RegisteItemSystem(IItemSystem _itemSys)
+    public override void InitSystem()
     {
-        m_itemSys = _itemSys;
+        m_itemSys = App.GetService<IItemSystem>();
     }
 
     /// <summary>

@@ -249,6 +249,9 @@ namespace OpenNGS.Shop.Data
         [global::ProtoBuf.ProtoMember(1)]
         public uint ShopId { get; set; }
 
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint ShelfId { get; set; }
+
         [global::ProtoBuf.ProtoMember(3)]
         public uint ShopItemId { get; set; }
 
@@ -600,6 +603,12 @@ namespace OpenNGS.Shop.Data
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint SellPriceItem { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint SellPriceCount { get; set; }
 
     }
 
