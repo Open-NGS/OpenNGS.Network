@@ -13,7 +13,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
 
-public class SettingSystem : EntitySystem
+public class SettingSystem : EntitySystem, ISettingSystem
 {
     public GetSettingRsq OnGetSetting;
     public UnityAction<Dictionary<uint, GameSettingLabel>>OnGameSettingLabel;

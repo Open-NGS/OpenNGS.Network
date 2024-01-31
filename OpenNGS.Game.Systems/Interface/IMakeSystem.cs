@@ -4,7 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMakeSystem
+namespace OpenNGS.Systems
 {
-    public EXCHANGE_RESULT_TYPE Forged(uint makeGridId, ItemInfo item);
+    public interface IMakeSystem
+    {
+        public EXCHANGE_RESULT_TYPE Forged(uint makeGridId, ItemInfo item);
+    }
 }
