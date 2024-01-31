@@ -63,10 +63,8 @@ namespace OpenNGS.Dialog.Data
         }
         public DialogTalk()
         {
-            Name = "";
             AvatarLeft = "";
             AvatarRight = "";
-            Content = "";
             AudioFiles = "";
             OnConstructor();
         }
@@ -77,8 +75,7 @@ namespace OpenNGS.Dialog.Data
         public uint DialogueDataID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         [global::System.ComponentModel.DefaultValue("")]
@@ -89,8 +86,7 @@ namespace OpenNGS.Dialog.Data
         public string AvatarRight { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Content { get; set; }
+        public global::OpenNGS.Core.NGSText Content { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
         public bool IsEnd { get; set; }
@@ -138,7 +134,6 @@ namespace OpenNGS.Dialog.Data
         }
         public Option()
         {
-            OptionContent = "";
             OnConstructor();
         }
 
@@ -148,8 +143,7 @@ namespace OpenNGS.Dialog.Data
         public uint OptionID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string OptionContent { get; set; }
+        public global::OpenNGS.Core.NGSText OptionContent { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint NextDialogueIndices { get; set; }
