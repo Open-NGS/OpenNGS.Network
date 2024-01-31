@@ -72,6 +72,27 @@ namespace OpenNGS.Character.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class CharacterInfoArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public CharacterInfoArray()
+        {
+            items = new global::System.Collections.Generic.List<CharacterInfo>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<CharacterInfo> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class LimitInfo : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;

@@ -1,5 +1,4 @@
 using OpenNGS.Character.Common;
-using OpenNGS.Rank.Data;
 using OpenNGSCommon;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace OpenNGS.Systems
     {
         public readonly Dictionary<ulong, Character> CharacterDic = new Dictionary<ulong, Character>();
 
-        private readonly Dictionary<ulong, OpenNGS.Rank.Data.CharacterInfo> m_dicChar = new Dictionary<ulong, OpenNGS.Rank.Data.CharacterInfo>();
+        private readonly Dictionary<ulong, OpenNGS.Character.Common.CharacterInfo> m_dicChar = new Dictionary<ulong, OpenNGS.Character.Common.CharacterInfo>();
         public readonly List<string> cachedRandomNames = new List<string>();
 
         private ISaveSystem m_saveSystem;
@@ -23,7 +22,7 @@ namespace OpenNGS.Systems
             return character;
         }
 
-        public void CreateCharacter()
+        public void CreateCharacter(string strCharName)
         {
             ISaveInfo _saveInfo = m_saveSystem.GetFileData("CHARACTER");
             if(_saveInfo != null)
@@ -31,7 +30,9 @@ namespace OpenNGS.Systems
                 if(_saveInfo is CharacterSaveData)
                 {
                     CharacterSaveData myInterface = (CharacterSaveData)_saveInfo;
-                    myInterface.characterInfoArray.items.Add(new Rank.Data.CharacterInfo());
+                    OpenNGS.Character.Common.CharacterInfo _charInfo = new OpenNGS.Character.Common.CharacterInfo();
+                    _charInfo.nickname = strCharName;
+                    myInterface.characterInfoArray.items.Add(_charInfo);
                 }
             }
             m_saveSystem.SaveFile();
@@ -45,11 +46,11 @@ namespace OpenNGS.Systems
                 if (_saveInfo is CharacterSaveData)
                 {
                     CharacterSaveData _charData = (CharacterSaveData)_saveInfo;
-                    foreach (Rank.Data.CharacterInfo _charInf in _charData.characterInfoArray.items)
+                    foreach (OpenNGS.Character.Common.CharacterInfo _charInf in _charData.characterInfoArray.items)
                     {
-                        if(m_dicChar.ContainsKey(_charInf.ID) == false)
+                        if(m_dicChar.ContainsKey(_charInf.uin) == false)
                         {
-                            m_dicChar.Add(_charInf.ID, _charInf);
+                            m_dicChar.Add(_charInf.uin, _charInf);
                         }
                     }
                 }
@@ -57,7 +58,7 @@ namespace OpenNGS.Systems
                         
         }
 
-        public OpenNGS.Rank.Data.CharacterInfo GetCharacterInfo(ulong uin)
+        public OpenNGS.Character.Common.CharacterInfo GetCharacterInfo(ulong uin)
         {
             if (m_dicChar.TryGetValue(uin, out var characterInfo))
             {

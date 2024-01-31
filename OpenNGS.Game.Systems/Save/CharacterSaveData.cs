@@ -1,4 +1,4 @@
-using OpenNGS.Rank.Data;
+using OpenNGS.Character.Common;
 
 [global::ProtoBuf.ProtoContract()]
 public class CharacterSaveData : ISaveInfo
