@@ -39,7 +39,7 @@ namespace OpenNGS.SaveData
 
         private string mainSaveName = "data";
 
-        private int activeIndex;
+        private int activeIndex = -1;
 
         public int ActiveIndex
         {
@@ -128,6 +128,10 @@ namespace OpenNGS.SaveData
                     this.Save();
                 }
                 this.activeIndex = this.FindValidIndex();
+                if(Index.Slots.ContainsKey(this.activeIndex) == true)
+                {
+                    this.activeData = this.GetSaveData(this.activeIndex);
+                }
             }
         }
 
