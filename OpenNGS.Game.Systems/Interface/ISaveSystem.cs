@@ -9,8 +9,8 @@ namespace OpenNGS.Systems
     public interface ISaveSystem
     {
         //对档进行处理
-        public bool AddFile();
-        public bool DeleteFile(int targeIndex);
+        public void AddFile();
+        public void DeleteFile(int targeIndex);
         public void SaveFile();
         public bool ChangeFile(int targeIndex);
 

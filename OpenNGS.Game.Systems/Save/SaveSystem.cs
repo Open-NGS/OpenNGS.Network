@@ -28,35 +28,23 @@ namespace OpenNGS.Systems
 
         private Dictionary<string, ISaveInfo> saveInfo;
 
-        private int Capture;
-        private int index;
-
         public void Init(int capture, int version)
         {
             PosixFileSystem fs = new PosixFileSystem();
             SaveDataManager<SaveData>.Instance.Init(fs, capture, version);
-            this.Capture = capture;
-            this.index = SaveDataManager<SaveData>.Instance.ActiveIndex;
             saveInfo = new Dictionary<string, ISaveInfo>();
 
-            if (SaveDataManager<SaveData>.Instance.GetSlot(index) == null)
+            if (SaveDataManager<SaveData>.Instance.Current == null)
             {
-                this.index = 0;
-                InitFilt();
+                SaveDataManager<SaveData>.Instance.NewSaveData(true);
             }
 
             InitDicInfo();
         }
 
-        private void InitFilt()
-        {
-            SaveDataManager<SaveData>.Instance.ActiveIndex = index;
-            SaveDataManager<SaveData>.Instance.NewSaveData(true);
-        }
-
         private void InitDicInfo()
         {
-            SaveData saveData = SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data;
+            SaveData saveData = SaveDataManager<SaveData>.Instance.Current;
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
@@ -64,41 +52,33 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_CHARACTER_TAG] = saveData.charaInfos;
         }
 
-        public bool AddFile()
+        public void AddFile()
         {
-            if (index + 1 >= Capture)
-            {
-                return false;
-            }
             SaveFile();
-            index++;
-            SaveDataManager<SaveData>.Instance.ActiveIndex = index;
+            SaveDataManager<SaveData>.Instance.ActiveIndex++;
             SaveDataManager<SaveData>.Instance.NewSaveData(true);
             InitDicInfo();
-            return true;
         }
 
-        public bool DeleteFile(int targeIndex)
+        public void DeleteFile(int targeIndex)
         {
-            if (targeIndex < 0 || targeIndex >= Capture) return false;
-            
             SaveDataManager<SaveData>.Instance.Delete(targeIndex);
-            return true;
         }
 
         public void SaveFile()
         {
-            SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data.saveItems = saveInfo[SAVE_ITEM_TAG] as ItemData;
-            SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data.saveRanks = saveInfo[SAVE_RANK_TAG] as RankData;
-            SaveDataManager<SaveData>.Instance.GetSlot(index).SaveData.Data.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as CharacterSaveData;
+            SaveDataManager<SaveData>.Instance.Current.saveItems = saveInfo[SAVE_ITEM_TAG] as ItemData;
+            SaveDataManager<SaveData>.Instance.Current.saveRanks = saveInfo[SAVE_RANK_TAG] as RankData;
+            SaveDataManager<SaveData>.Instance.Current.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as CharacterSaveData;
 
             SaveDataManager<SaveData>.Instance.Save();
         }
 
         public bool ChangeFile(int targeIndex)
         {
-            if (targeIndex < 0 || targeIndex >= Capture) return false;
-            this.index = targeIndex;
+            if (targeIndex < 0 || targeIndex >= SaveDataManager<SaveData>.Instance.Capacity) 
+                return false;
+
             SaveDataManager<SaveData>.Instance.ActiveIndex = targeIndex;
             InitDicInfo();
             return true;
