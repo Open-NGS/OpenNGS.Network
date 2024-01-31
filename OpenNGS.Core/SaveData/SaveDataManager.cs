@@ -55,6 +55,10 @@ namespace OpenNGS.SaveData
                 {
                     this.Index.Current = value;
                 }
+                if (Index.Slots.ContainsKey(this.activeIndex) == true)
+                {
+                    this.activeData = this.GetSaveData(this.activeIndex);
+                }
             }
         }
 
