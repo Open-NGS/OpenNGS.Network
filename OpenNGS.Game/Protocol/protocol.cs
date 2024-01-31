@@ -634,35 +634,6 @@ namespace protocol
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class CharacterInfo : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public CharacterInfo()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint level { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint exp { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
-        public ulong[] equip { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.Core.NGSAttributes attributes { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class NotifyInfo : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;

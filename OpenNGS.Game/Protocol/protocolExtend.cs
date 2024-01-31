@@ -498,31 +498,6 @@ namespace protocol
 			return (Attributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Attributes));
 		}
 	}
-	public partial class CharacterInfo : OpenNGS.IProtoExtension
-	{
-		public void Clear()
-		{
-			level = 0;
-			exp = 0;
-			equip = null;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGS.Core.NGSAttributes>(attributes);
-		}
-		public void OnRelease()
-		{
-			level = 0;
-			exp = 0;
-			equip = null;
-			OpenNGS.Net.ProtoPool.Instance.Release(attributes);
-		}
-		public void OnSpawn()
-		{
-			 attributes = (OpenNGS.Core.NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(OpenNGS.Core.NGSAttributes));
-		}
-		public static CharacterInfo SpawnFromPool()
-		{
-			return (CharacterInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(CharacterInfo));
-		}
-	}
 	public partial class NotifyInfo : OpenNGS.IProtoExtension
 	{
 		public void Clear()
