@@ -39,6 +39,7 @@ namespace OpenNGS.SaveData
 
         private string mainSaveName = "data";
 
+
         private int activeIndex = -1;
 
         public int ActiveIndex
