@@ -17,11 +17,14 @@ namespace OpenNGS.Systems
         public RankData saveRanks;
         [global::ProtoBuf.ProtoMember(3)]
         public CharacterSaveData charaInfos;
+        [global::ProtoBuf.ProtoMember(4)]
+        public DialogData dialogData;
         public void Init()
         {
             saveItems = new ItemData();
             saveRanks = new RankData();
             charaInfos = new CharacterSaveData();
+            dialogData = new DialogData();
         }
 
         public void MigrateToVersion(int i)
