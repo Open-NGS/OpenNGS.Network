@@ -11,6 +11,7 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Shop.Data.Good, uint, uint> goods = new Table<OpenNGS.Shop.Data.Good, uint, uint>((item) => { return item.ShelfId; }, (item) => { return item.ID; }, false);
         
         public static Table<OpenNGS.Dialog.Data.DialogTalk, uint> DialogTalk = new Table<OpenNGS.Dialog.Data.DialogTalk, uint>((item) => { return item.DialogueDataID;}, false);
+        public static Table<OpenNGS.Dialog.Data.Dialogue, uint> Dialogue = new Table<OpenNGS.Dialog.Data.Dialogue, uint>((item) => { return item.DialogueID; }, false);
         //public static Table<OpenNGS.Make.Data.ItemInfo, uint> items = new Table<OpenNGS.Make.Data.ItemInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.MakeInfo, uint> makes = new Table<OpenNGS.Make.Data.MakeInfo, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.ShopSell, uint, uint> sells = new Table<OpenNGS.Shop.Data.ShopSell, uint, uint>((item) => { return item.ShopID; }, (item) => { return item.ItemID; }, false);
