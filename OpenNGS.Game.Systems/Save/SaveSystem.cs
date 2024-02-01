@@ -51,6 +51,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
             saveInfo[SAVE_RANK_TAG] = saveData.saveRanks;
             saveInfo[SAVE_CHARACTER_TAG] = saveData.charaInfos;
+            saveInfo[SAVE_DIALOG_TAG] = saveData.dialogData;
         }
 
         public void AddFile()
