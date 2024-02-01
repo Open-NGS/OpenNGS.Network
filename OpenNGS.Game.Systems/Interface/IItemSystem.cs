@@ -1,4 +1,5 @@
 using OpenNGS.Make.Data;
+using OpenNGS.Suit.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,9 @@ namespace OpenNGS.Systems
         public bool RemoveItemsByGuid(uint nGuid, uint nCounts);
         public uint GetGuidByItemID(uint nItemID);
         public uint GetItemCountByGuidID(uint nGuid);
-        public ItemInfo GetItemInfo(uint nItemId);
+        public OpenNGS.Item.Data.Item GetItemInfo(uint nItemId);
+        public List<OpenNGS.Item.Data.Item> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
+        public SuitData GetSuitData(uint suitID);
         public MakeInfo GetItemByItmes(uint nItemId);
     }
 

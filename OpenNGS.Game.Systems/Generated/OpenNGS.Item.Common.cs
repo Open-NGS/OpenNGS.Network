@@ -27,17 +27,11 @@ namespace OpenNGS.Item.Common
     public enum ITEM_TYPE
     {
         ITEM_TYPE_NONE = 0,
-        ITEM_TYPE_EQUIP_WEAPON = 1,
-        ITEM_TYPE_EQUIP_ARMOR = 2,
-        ITEM_TYPE_EQUIP_MOUNT = 4,
-        ITEM_TYPE_EQUIP_RELICS = 8,
-        ITEM_TYPE_EQUIP_ALL = 15,
-        ITEM_TYPE_MATERIAL_BLUEPRINT = 256,
-        ITEM_TYPE_MATERIAL_STUFF = 512,
-        ITEM_TYPE_MATERIAL_ALL = 768,
-        ITEM_TYPE_DECORATION = 1024,
-        ITEM_TYPE_HANDHELD = 1280,
-        ITEM_TYPE_CONSUMABLE = 1536,
+        ITEM_TYPE_EQUIP = 1,
+        ITEM_TYPE_MATERIAL_BLUEPRINT = 2,
+        ITEM_TYPE_MATERIAL_STUFF = 3,
+        ITEM_TYPE_RESOURCE = 4,
+        ITEM_TYPE_CONSUMABLE = 5,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -46,6 +40,12 @@ namespace OpenNGS.Item.Common
         ITEM_KIND_NONE = 0,
         ITEM_KIND_UPPER_CLOTHES = 1,
         ITEM_KIND_LOWER_CLOTHES = 2,
+        ITEM_KIND_EQUIP_WEAPON = 3,
+        ITEM_KIND_EQUIP_HEAD = 4,
+        ITEM_KIND_EQUIP_BODY = 5,
+        ITEM_KIND_EQUIP_ARM = 6,
+        ITEM_KIND_EQUIP_LEG = 7,
+        ITEM_KIND_EQUIP_BACK = 8,
     }
 
     [global::ProtoBuf.ProtoContract()]

@@ -6,6 +6,7 @@ using UnityEngine;
 using OpenNGS.Item;
 using OpenNGS.Item.Data;
 using OpenNGS.Make.Data;
+using OpenNGS.Suit.Data;
 
 namespace OpenNGS.Systems
 {
@@ -30,10 +31,22 @@ namespace OpenNGS.Systems
             m_IsNewPlayer = isNewPlayer;
         }
 
-        public ItemInfo GetItemInfo(uint itemId)
+        public OpenNGS.Item.Data.Item GetItemInfo(uint itemId)
         {
-            ItemInfo itemInfo = new ItemInfo();
+            OpenNGS.Item.Data.Item itemInfo = new OpenNGS.Item.Data.Item();
             return itemInfo;
+        }
+
+        public List<OpenNGS.Item.Data.Item> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
+        {
+            List<OpenNGS.Item.Data.Item> itemInfos=new List<OpenNGS.Item.Data.Item>();
+            return itemInfos;
+        }
+
+        public SuitData GetSuitData(uint suitID)
+        {
+            SuitData suitData=new SuitData();
+            return suitData;
         }
 
         public MakeInfo GetItemByItmes(uint itemId)
@@ -53,6 +66,7 @@ namespace OpenNGS.Systems
         {
             return ItemList.Find(x => x.Guid == uid);
         }
+
 
         public OpenNGS.Item.Common.ItemData GetItemDataByItemId(uint itemId)
         {
@@ -276,6 +290,8 @@ namespace OpenNGS.Systems
         {
             return 0;
         }
+
+        
     }
 
 }

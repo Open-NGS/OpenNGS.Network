@@ -19,8 +19,8 @@ namespace OpenNGS.Make.Data
         }
         public MakeInfo()
         {
-            Materials = new global::System.Collections.Generic.List<ItemInfo>();
-            ItemID = new global::System.Collections.Generic.List<ItemInfo>();
+            Materials = new global::System.Collections.Generic.List<global::OpenNGS.Item.Data.Item>();
+            ItemID = new global::System.Collections.Generic.List<global::OpenNGS.Item.Data.Item>();
             OnConstructor();
         }
 
@@ -30,13 +30,13 @@ namespace OpenNGS.Make.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ItemInfo> Materials { get; private set; }
+        public global::System.Collections.Generic.List<global::OpenNGS.Item.Data.Item> Materials { get; private set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint Probability { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::System.Collections.Generic.List<ItemInfo> ItemID { get; private set; }
+        public global::System.Collections.Generic.List<global::OpenNGS.Item.Data.Item> ItemID { get; private set; }
 
     }
 
@@ -58,71 +58,6 @@ namespace OpenNGS.Make.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<MakeInfo> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ItemInfo : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ItemInfo()
-        {
-            Name = "";
-            Description = "";
-            Icon = "";
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Name { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Description { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.Item.Common.ITEM_TYPE ItemType { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint MaxNumber { get; set; }
-
-        [global::ProtoBuf.ProtoMember(6)]
-        public uint StackMax { get; set; }
-
-        [global::ProtoBuf.ProtoMember(7)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Icon { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ItemInfoArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ItemInfoArray()
-        {
-            items = new global::System.Collections.Generic.List<ItemInfo>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ItemInfo> items { get; private set; }
 
     }
 

@@ -8,6 +8,6 @@ namespace OpenNGS.Systems
 {
     public interface IMakeSystem
     {
-        public EXCHANGE_RESULT_TYPE Forged(uint makeGridId, ItemInfo item);
+        public EXCHANGE_RESULT_TYPE Forged(uint makeGridId, OpenNGS.Item.Data.Item item);
     }
 }

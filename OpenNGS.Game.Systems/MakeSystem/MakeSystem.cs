@@ -23,18 +23,18 @@ public class MakeSystem : EntitySystem,IMakeSystem
     /// </summary>
     /// <param name="makeGridId">格子ID</param>
     /// <param name="item">道具ID</param>
-    public EXCHANGE_RESULT_TYPE Forged(uint makeGridId,ItemInfo item)
+    public EXCHANGE_RESULT_TYPE Forged(uint makeGridId,OpenNGS.Item.Data.Item item)
     {
         SourceItem sources = null;
         TargetItem targets = null;
-        ItemInfo itemInfo;
+        OpenNGS.Item.Data.Item itemInfo;
         MakeInfo makeInfo;
 
         sourcesList.Clear();
         targetsList.Clear();
 
-        itemInfo = m_itemSys.GetItemInfo(item.ID);
-        makeInfo = m_itemSys.GetItemByItmes(item.ID);
+        itemInfo = m_itemSys.GetItemInfo(item.Id);
+        makeInfo = m_itemSys.GetItemByItmes(item.Id);
         // 制作书
         sources.GUID = makeGridId;
         sources.Count = itemInfo.StackMax;
@@ -42,14 +42,14 @@ public class MakeSystem : EntitySystem,IMakeSystem
         // 材料
         foreach (var mater in makeInfo.Materials)
         {
-            uint guid = m_itemSys.GetItemCountByGuidID(mater.ID);
+            uint guid = m_itemSys.GetItemCountByGuidID(mater.Id);
             sources.GUID = guid;
             sources.Count = mater.StackMax;
             sourcesList.Add(sources);
         }
         foreach (var items in makeInfo.ItemID)
         {
-            targets.ItemID = items.ID;
+            targets.ItemID = items.Id;
             targets.Count = items.StackMax;
             targetsList.Add(targets);
         }
