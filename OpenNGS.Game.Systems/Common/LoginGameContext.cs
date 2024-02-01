@@ -20,7 +20,7 @@ public class LoginGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IShopSystem), new ShopSystem()));
         services.Add(new ServiceDescriptor(typeof(ISettingSystem), new SettingSystem()));
         services.Add(new ServiceDescriptor(typeof(IDialogSystem), new DialogSystem()));
-        services.Add(new ServiceDescriptor(typeof(IEquipSystem), new DialogSystem()));
+        services.Add(new ServiceDescriptor(typeof(IEquipSystem), new EquipSystem()));
     }
 
     protected override void OnInit()
