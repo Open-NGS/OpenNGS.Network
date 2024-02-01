@@ -20,7 +20,6 @@ namespace OpenNGS.Setting.Data
         public GameSettingLabel()
         {
             Name = "";
-            UIName = "";
             OnConstructor();
         }
 
@@ -32,10 +31,6 @@ namespace OpenNGS.Setting.Data
         [global::ProtoBuf.ProtoMember(2)]
         [global::System.ComponentModel.DefaultValue("")]
         public string Name { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string UIName { get; set; }
 
     }
 
