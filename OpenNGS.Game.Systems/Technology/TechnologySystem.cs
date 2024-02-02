@@ -129,7 +129,7 @@ namespace OpenNGS.Systems
             {
                 for (int i = 0; i < tNode.SonNode.Length; i++)
                 {
-                    m_technologyData.nodesSaveData[tNode.SonNode[i]].locked = true;
+                    m_technologyData.nodesSaveData[tNode.SonNode[i]].locked = false;
                 }
             }
 
