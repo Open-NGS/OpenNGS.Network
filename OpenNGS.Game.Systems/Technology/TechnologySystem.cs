@@ -167,11 +167,17 @@ namespace OpenNGS.Systems
             SaveTechnologyData();
             return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_SUCCESS;
         }
+        //获取技能状态数据
+        public TechnologyNodeSaveData GetNodeSaveData(uint id)
+        {
+            return m_technologyData.nodesSaveData[id];
+        }
         //保存数据
         public void SaveTechnologyData()
         {
             m_saveSystem.SetFileData("TECHNOLOGY", m_technologyData);
             m_saveSystem.SaveFile();
         }
+
     }
 }
