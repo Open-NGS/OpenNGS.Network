@@ -61,6 +61,9 @@ namespace OpenNGS.Technology.Data
         [global::ProtoBuf.ProtoMember(11, IsPacked = true)]
         public float[] CreatePos { get; set; }
 
+        [global::ProtoBuf.ProtoMember(12)]
+        public uint TreeIndex { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
