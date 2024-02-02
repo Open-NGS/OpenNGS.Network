@@ -10,14 +10,14 @@ namespace OpenNGS.Technology.Data
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class PointData : global::ProtoBuf.IExtensible
+    public partial class NodeData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public PointData()
+        public NodeData()
         {
             Name = "";
             Description = "";
@@ -34,47 +34,53 @@ namespace OpenNGS.Technology.Data
         public string Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint Cost { get; set; }
+        public uint CostItemID { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public uint Level { get; set; }
+        public uint CostItemCount { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
+        public uint Level { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
         [global::System.ComponentModel.DefaultValue("")]
         public string Description { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6)]
+        [global::ProtoBuf.ProtoMember(7)]
         public bool Locked { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7)]
+        [global::ProtoBuf.ProtoMember(8)]
         public bool Activated { get; set; }
 
-        [global::ProtoBuf.ProtoMember(8, IsPacked = true)]
-        public uint[] SonPoint { get; set; }
+        [global::ProtoBuf.ProtoMember(9, IsPacked = true)]
+        public uint[] SonNode { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9)]
-        public uint ParentPoint { get; set; }
+        [global::ProtoBuf.ProtoMember(10)]
+        public uint ParentNode { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11, IsPacked = true)]
+        public float[] CreatePos { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class PointDataArray : global::ProtoBuf.IExtensible
+    public partial class NodeDataArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public PointDataArray()
+        public NodeDataArray()
         {
-            items = new global::System.Collections.Generic.List<PointData>();
+            items = new global::System.Collections.Generic.List<NodeData>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<PointData> items { get; private set; }
+        public global::System.Collections.Generic.List<NodeData> items { get; private set; }
 
     }
 

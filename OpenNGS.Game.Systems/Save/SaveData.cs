@@ -19,12 +19,15 @@ namespace OpenNGS.Systems
         public CharacterSaveData charaInfos;
         [global::ProtoBuf.ProtoMember(4)]
         public DialogData dialogData;
+        [global::ProtoBuf.ProtoMember(5)]
+        public TechnologyData technologyData;
         public void Init()
         {
             saveItems = new ItemData();
             saveRanks = new RankData();
             charaInfos = new CharacterSaveData();
             dialogData = new DialogData();
+            technologyData = new TechnologyData();
         }
 
         public void MigrateToVersion(int i)

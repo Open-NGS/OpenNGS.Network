@@ -16,6 +16,8 @@ namespace OpenNGS.Systems
         public static string SAVE_RANK_TAG = "RANK";
         public static string SAVE_CHARACTER_TAG = "CHARACTER";
         public static string SAVE_DIALOG_TAG = "DIALOG";
+        public static string SAVE_TECHNOLOGY_TAG = "TECHNOLOGY";
+
 
         protected override void OnCreate()
         {
@@ -52,6 +54,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_RANK_TAG] = saveData.saveRanks;
             saveInfo[SAVE_CHARACTER_TAG] = saveData.charaInfos;
             saveInfo[SAVE_DIALOG_TAG] = saveData.dialogData;
+            saveInfo[SAVE_TECHNOLOGY_TAG] = saveData.technologyData;
         }
 
         public void AddFile()
@@ -73,6 +76,7 @@ namespace OpenNGS.Systems
             SaveDataManager<SaveData>.Instance.Current.saveRanks = saveInfo[SAVE_RANK_TAG] as RankData;
             SaveDataManager<SaveData>.Instance.Current.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as CharacterSaveData;
             SaveDataManager<SaveData>.Instance.Current.dialogData = saveInfo[SAVE_DIALOG_TAG] as DialogData;
+            SaveDataManager<SaveData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as TechnologyData;
             SaveDataManager<SaveData>.Instance.Save();
         }
 
