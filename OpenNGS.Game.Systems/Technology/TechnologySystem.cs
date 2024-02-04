@@ -160,19 +160,22 @@ namespace OpenNGS.Systems
             //设置对应科技技能状态
             uint costSum = 0;
             NodeData tNode = null;
-            foreach(var node in m_technologyData.nodesSaveData.Values)
+            foreach(var key in m_technologyData.nodesSaveData.Keys)
             {
-                tNode = NGSStaticData.technologyNodes.GetItem(node.id);
-                node.level = 0;
-                node.activated = false;
-                node.locked = tNode.ParentNode != 0;
-                costSum += tNode.CostItemCount;
+                tNode = NGSStaticData.technologyNodes.GetItem(key);
+                if (m_technologyData.nodesSaveData[key].activated)
+                {
+                    costSum += tNode.CostItemCount;
+                }
+                m_technologyData.nodesSaveData[key].level = 0;
+                m_technologyData.nodesSaveData[key].activated = false;
+                m_technologyData.nodesSaveData[key].locked = tNode.ParentNode != 0;
             }
-            if(tNode != null)
+            if(tNode == null)
             {
                 return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
             }
-            m_itemSystem.AddItemsByID(costSum, tNode.CostItemID);
+            //m_itemSystem.AddItemsByID(tNode.CostItemID, costSum);
 
             //调整玩家属性
             //xxx();
