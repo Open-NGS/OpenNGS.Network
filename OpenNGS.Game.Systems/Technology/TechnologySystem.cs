@@ -102,6 +102,17 @@ namespace OpenNGS.Systems
         //升级技能
         public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint technologyNodeID)
         {
+            //已升级过
+            if (m_technologyData.nodesSaveData[technologyNodeID].activated)
+            {
+                return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_ERROR_UPGRADE;
+            }
+            //未解锁
+            if (m_technologyData.nodesSaveData[technologyNodeID].locked)
+            {
+                return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_UNLOCK;
+            }
+
             sourceItems.Clear();
             targetItems.Clear();
             //科技点数交易科技点
@@ -109,8 +120,10 @@ namespace OpenNGS.Systems
             TargetItem technologyNode = new TargetItem();
 
             NodeData tNode = NGSStaticData.technologyNodes.GetItem(technologyNodeID);
-            uint id = m_itemSystem.GetGuidByItemID(tNode.CostItemID);
-            technologyDots.GUID = id;//科技点数对应ItemID
+
+            //暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
+            //uint id = m_itemSystem.GetGuidByItemID(tNode.CostItemID);
+            technologyDots.GUID = 0;//科技点数对应ItemID
             technologyDots.Count = tNode.CostItemCount;//升级科技点需要的科技点数
             sourceItems.Add(technologyDots);
             technologyNode.ItemID = tNode.ID;//科技点
