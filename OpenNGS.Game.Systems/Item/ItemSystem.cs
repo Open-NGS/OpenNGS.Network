@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Item;
 using OpenNGS.Item.Data;
-using OpenNGS.Make.Data;
 using OpenNGS.Suit.Data;
 
 namespace OpenNGS.Systems
@@ -49,9 +48,9 @@ namespace OpenNGS.Systems
             return suitData;
         }
 
-        public MakeInfo GetItemByItmes(uint itemId)
+        public MakeDesign GetItemByItmes(uint itemId)
         {
-            MakeInfo makeInfo = new MakeInfo();
+            MakeDesign makeInfo = new MakeDesign();
             return makeInfo;
         }
 

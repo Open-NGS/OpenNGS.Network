@@ -1,7 +1,7 @@
 using OpenNGS;
 using OpenNGS.Exchange.Common;
 using OpenNGS.Exchange.Data;
-using OpenNGS.Make.Data;
+using OpenNGS.Item.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
 
@@ -28,7 +28,7 @@ public class MakeSystem : EntitySystem,IMakeSystem
         SourceItem sources = null;
         TargetItem targets = null;
         OpenNGS.Item.Data.Item itemInfo;
-        MakeInfo makeInfo;
+        MakeDesign makeInfo;
 
         sourcesList.Clear();
         targetsList.Clear();
@@ -40,19 +40,19 @@ public class MakeSystem : EntitySystem,IMakeSystem
         sources.Count = itemInfo.StackMax;
         sourcesList.Add(sources);
         // ²ÄÁÏ
-        foreach (var mater in makeInfo.Materials)
-        {
-            uint guid = m_itemSys.GetItemCountByGuidID(mater.Id);
-            sources.GUID = guid;
-            sources.Count = mater.StackMax;
-            sourcesList.Add(sources);
-        }
-        foreach (var items in makeInfo.ItemID)
-        {
-            targets.ItemID = items.Id;
-            targets.Count = items.StackMax;
-            targetsList.Add(targets);
-        }
+        //foreach (var mater in makeInfo.Materials)
+        //{
+        //    uint guid = m_itemSys.GetItemCountByGuidID(mater.Id);
+        //    sources.GUID = guid;
+        //    sources.Count = mater.StackMax;
+        //    sourcesList.Add(sources);
+        //}
+        //foreach (var items in makeInfo.ItemID)
+        //{
+        //    targets.ItemID = items.Id;
+        //    targets.Count = items.StackMax;
+        //    targetsList.Add(targets);
+        //}
         return exchangeSystem.ExchangeItem(sourcesList, targetsList);
     }
 

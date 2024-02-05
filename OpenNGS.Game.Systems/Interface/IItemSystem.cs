@@ -1,5 +1,5 @@
-using OpenNGS.Make.Data;
 using OpenNGS.Suit.Data;
+using OpenNGS.Item.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Data.Item GetItemInfo(uint nItemId);
         public List<OpenNGS.Item.Data.Item> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
         public SuitData GetSuitData(uint suitID);
-        public MakeInfo GetItemByItmes(uint nItemId);
+        public MakeDesign GetItemByItmes(uint nItemId);
     }
 
 }

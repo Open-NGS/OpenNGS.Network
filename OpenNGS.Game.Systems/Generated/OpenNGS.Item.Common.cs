@@ -28,10 +28,9 @@ namespace OpenNGS.Item.Common
     {
         ITEM_TYPE_NONE = 0,
         ITEM_TYPE_EQUIP = 1,
-        ITEM_TYPE_MATERIAL_BLUEPRINT = 2,
-        ITEM_TYPE_MATERIAL_STUFF = 3,
-        ITEM_TYPE_RESOURCE = 4,
-        ITEM_TYPE_CONSUMABLE = 5,
+        ITEM_TYPE_CRAFT = 2,
+        ITEM_TYPE_RESOURCE = 3,
+        ITEM_TYPE_CONSUMABLE = 4,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -46,6 +45,8 @@ namespace OpenNGS.Item.Common
         ITEM_KIND_EQUIP_ARM = 6,
         ITEM_KIND_EQUIP_LEG = 7,
         ITEM_KIND_EQUIP_BACK = 8,
+        ITEM_KIND_MATERIAL_BLUEPRINT = 9,
+        ITEM_KIND_MATERIAL_STUFF = 10,
     }
 
     [global::ProtoBuf.ProtoContract()]
