@@ -27,17 +27,17 @@ public class MakeSystem : EntitySystem,IMakeSystem
     {
         SourceItem sources = null;
         TargetItem targets = null;
-        OpenNGS.Item.Data.Item itemInfo;
+        OpenNGS.Item.Common.ItemData itemInfo;
         MakeDesign makeInfo;
 
         sourcesList.Clear();
         targetsList.Clear();
 
-        itemInfo = m_itemSys.GetItemInfo(item.Id);
+        //itemInfo = m_itemSys.GetItemInfo(item.Id);
         makeInfo = m_itemSys.GetItemByItmes(item.Id);
         // 制作书
         sources.GUID = makeGridId;
-        sources.Count = itemInfo.StackMax;
+        //sources.Count = itemInfo.StackMax;
         sourcesList.Add(sources);
         // 材料
         //foreach (var mater in makeInfo.Materials)

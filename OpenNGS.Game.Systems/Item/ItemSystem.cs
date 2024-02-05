@@ -30,15 +30,15 @@ namespace OpenNGS.Systems
             m_IsNewPlayer = isNewPlayer;
         }
 
-        public OpenNGS.Item.Data.Item GetItemInfo(uint itemId)
+        public OpenNGS.Item.Common.ItemData GetItemInfo(uint itemId)
         {
-            OpenNGS.Item.Data.Item itemInfo = new OpenNGS.Item.Data.Item();
+            OpenNGS.Item.Common.ItemData itemInfo = new OpenNGS.Item.Common.ItemData();
             return itemInfo;
         }
 
-        public List<OpenNGS.Item.Data.Item> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
         {
-            List<OpenNGS.Item.Data.Item> itemInfos=new List<OpenNGS.Item.Data.Item>();
+            List<OpenNGS.Item.Common.ItemData> itemInfos=new List<OpenNGS.Item.Common.ItemData>();
             return itemInfos;
         }
 

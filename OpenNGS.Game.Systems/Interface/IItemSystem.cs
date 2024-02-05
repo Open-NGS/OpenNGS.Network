@@ -18,8 +18,8 @@ namespace OpenNGS.Systems
 
         public uint GetGuidByItemID(uint nItemID);
         public uint GetItemCountByGuidID(uint nGuid);
-        public OpenNGS.Item.Data.Item GetItemInfo(uint nItemId);
-        public List<OpenNGS.Item.Data.Item> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
+        public OpenNGS.Item.Common.ItemData GetItemDataByItemId(uint itemId);
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
         public SuitData GetSuitData(uint suitID);
         public MakeDesign GetItemByItmes(uint nItemId);
     }

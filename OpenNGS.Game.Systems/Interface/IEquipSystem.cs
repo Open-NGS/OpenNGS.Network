@@ -9,8 +9,5 @@ public interface IEquipSystem
     //卸下装备
     public bool UnEquipItem(uint ItemIndex);
     //获取装备数据
-    public OpenNGS.Item.Data.Item GetEquip(uint EquipDataID);
-    public List<OpenNGS.Item.Data.Item> GetEquipList();
-    //public int AttributeCalculate(OpenNGS.Item.Data.Item EquipData, int CharacterData);//角色属性需修改
-    //public void RefreshEquipUI(OpenNGS.Item.Data.Item EquipData);
+    public List<OpenNGS.Item.Common.ItemData> GetEquipList();
 }

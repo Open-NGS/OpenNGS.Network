@@ -10,9 +10,11 @@ using OpenNGS;
 public class EquipSystem : EntitySystem, IEquipSystem
 {
     //装备背包（未装备）列表
-    List<OpenNGS.Item.Data.Item> EquipInventory;
-    //装备列表
-    List<OpenNGS.Item.Data.Item> EquipItems = new List<OpenNGS.Item.Data.Item>();
+    List<OpenNGS.Item.Common.ItemData> EquipInventory;
+    //材料列表
+    List<OpenNGS.Item.Common.ItemData> CraftInventory;
+    //装备(可装备)列表
+    List<OpenNGS.Item.Common.ItemData> EquipItems = new List<OpenNGS.Item.Common.ItemData>();
     private IItemSystem m_itemSys = null;
     private IMakeSystem m_makeSystem = null;
     public override void InitSystem()
@@ -29,51 +31,43 @@ public class EquipSystem : EntitySystem, IEquipSystem
     public void GetItemInfo()//从ItemSystem获得数据
     {
         EquipInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_EQUIP);//获得装备库存数据
-        
+        CraftInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_CRAFT);//获得材料库存数据
     }
 
     /// <summary>
     /// 使用装备
     /// </summary>
-    /// <param name="ItemIndex">装备ID</param>
-    public void EquipItem(uint ItemIndex)
+    /// <param name="GridIndex">格子ID</param>
+    public void EquipItem(uint GridIndex)
     {
-        EquipItems.Add(EquipInventory[(int)ItemIndex]);
+        EquipItems.Add(EquipInventory[(int)GridIndex]);
     }
 
     /// <summary>
     /// 卸下装备
     /// </summary>
-    /// <param name="ItemIndex">装备ID</param>
+    /// <param name="GridIndex">格子ID</param>
     /// <returns></returns>
-    public bool UnEquipItem(uint ItemIndex)
+    public bool UnEquipItem(uint GridIndex)
     {
-        return EquipItems.Remove(EquipItems[(int)ItemIndex]);
+        return EquipItems.Remove(EquipItems[(int)GridIndex]);
 
     }
 
-    public List<OpenNGS.Item.Data.Item> GetEquipList()//获得当前装备列表
+    public List<OpenNGS.Item.Common.ItemData> GetEquipList()//获得当前装备列表
     {
         return EquipItems;
     }
 
-    /// <summary>
-    /// 根据装备ID获得装备信息
-    /// </summary>
-    /// <param name="EquipDataID">装备ID</param>
-    /// <returns></returns>
-    public OpenNGS.Item.Data.Item GetEquip(uint EquipDataID)
-    {
-        return EquipInventory.Find(t=>t.Id==EquipDataID);
-    }
+ 
 
     /// <summary>
     /// 制作武器装备
     /// </summary>
-    /// <param name="itemIndex">装备ID</param>
-    public void MakeEquip(uint itemIndex)
+    /// <param name="GridIndex">格子ID</param>
+    public void MakeEquip(uint GridIndex)
     {
-        m_makeSystem.Forged(itemIndex - 1, EquipInventory[(int)itemIndex - 1]);
+        //m_makeSystem.Forged(itemIndex);
     }
 
     /// <summary>
@@ -85,12 +79,12 @@ public class EquipSystem : EntitySystem, IEquipSystem
     {
         SuitData suitData = m_itemSys.GetSuitData(suitDataID);
         uint[] EquipIDs = suitData.ConsistEquipID;
-        List<OpenNGS.Item.Data.Item> SuitEquips = new List<OpenNGS.Item.Data.Item>();//存储组成套装需要的装备
+        List<OpenNGS.Item.Common.ItemData> SuitEquips = new List<OpenNGS.Item.Common.ItemData>();//存储组成套装需要的装备
         for (uint i = 0; i < EquipIDs.Length; i++)
         {
-            if (EquipItems.Contains(EquipItems[(int)EquipIDs[i]]))
+            if (EquipItems[(int)i].ItemID == EquipIDs[i])
             {
-                SuitEquips.Add(GetEquip(EquipIDs[i]));
+                SuitEquips.Add(m_itemSys.GetItemDataByItemId(EquipIDs[i]));
             }
         }
         if (EquipIDs.Length == SuitEquips.Count)
