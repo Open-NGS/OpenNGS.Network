@@ -1,21 +1,19 @@
 using OpenNGS.Dialog.Data;
 using System.Collections.Generic;
+using Systems;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
-    public class DialogSystem : EntitySystem, IDialogSystem
+    public class DialogSystem : GameSubSystem<DialogSystem>, IDialogSystem
     {
         private ISaveSystem m_saveSystem;
         private DialogData m_dialogData;
-        public override void InitSystem()
+        protected override void OnCreate()
         {
             m_saveSystem = App.GetService<ISaveSystem>();
             LoadDialogData();
-        }
-        protected override void OnCreate()
-        {
             base.OnCreate();
         }
 
