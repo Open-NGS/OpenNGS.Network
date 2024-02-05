@@ -1,5 +1,6 @@
 using OpenNGS.Rank.Common;
 using OpenNGS.Rank.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,23 +10,17 @@ using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
-    public class RankSystem : GameSubSystem<RankSystem>
+    public class RankSystem : GameSubSystem<RankSystem>, IRankSystem
     {
         public UnityAction<GetRankRsq> OnGetRank;
         public UnityAction<List<RankInfo>> OnGetRankList;
 
-        //¹Ø¿¨ÊýÁ¿
-        int nLevelCount = 10;
         Dictionary<uint, uint[]> lastIndexs;
 
         protected override void OnCreate()
         {
             base.OnCreate();
             lastIndexs = new Dictionary<uint, uint[]>();
-            for (uint i = 0; i < nLevelCount; i++)
-            {
-                lastIndexs[i] = new uint[(uint)RANK_DIFFICULT_TYPE.RANK_DIFFICULT_TYPE_MAX];
-            }
         }
 
         public override string GetSystemName()
@@ -35,7 +30,14 @@ namespace OpenNGS.Systems
 
         public void GetRankInfo(uint nLevelID, RANK_DIFFICULT_TYPE _typ)
         {
-            uint lastIndex = lastIndexs[nLevelID][(uint)_typ];
+            uint[] indexs = null;
+            if (!lastIndexs.TryGetValue(nLevelID, out indexs))
+            {
+                indexs = new uint[(uint)RANK_DIFFICULT_TYPE.RANK_DIFFICULT_TYPE_MAX];
+                lastIndexs[nLevelID] = indexs;
+            }
+
+            uint lastIndex = indexs[(uint)_typ];
             RequestRank(nLevelID, lastIndex, _typ);
         }
 
