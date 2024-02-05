@@ -290,7 +290,10 @@ namespace OpenNGS.Systems
             return 0;
         }
 
-        
+        public bool UseItem(uint nGuid)
+        {
+            return false;
+        }
     }
 
 }
