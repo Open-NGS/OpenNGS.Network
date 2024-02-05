@@ -38,10 +38,15 @@ public abstract class GameContext : IApplicationContext
 
         builder.InitApplication(this);
 
-        foreach (var sys in this._systems)
+
+        int nCounts = builder.container.Count;
+        for( int i = 0; i < nCounts; i++ )
         {
-            Debug.Log($"GameContext Init: {sys.Key}");
-            sys.Value.Init();
+            if( builder.container[i].ImplementationInstance is IGameSubSystem)
+            {
+                IGameSubSystem _subSys = (IGameSubSystem)(builder.container[i].ImplementationInstance);
+                _subSys.Init();
+            }
         }
     }
 

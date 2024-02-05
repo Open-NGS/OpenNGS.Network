@@ -49,8 +49,8 @@ namespace Systems
         protected virtual void OnClear() { }
         
         public virtual void Init() {
-            Instance.RegisterStatus();
-            Instance.OnCreate();
+            RegisterStatus();
+            OnCreate();
         }
 
         public virtual void OnPlayerLogin()
