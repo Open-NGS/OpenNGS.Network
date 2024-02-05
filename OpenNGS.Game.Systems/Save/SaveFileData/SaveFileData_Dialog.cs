@@ -2,7 +2,7 @@
 
 [global::ProtoBuf.ProtoContract()]
 
-public class DialogData : ISaveInfo
+public class SaveFileData_Dialog : ISaveInfo
 {
     [global::ProtoBuf.ProtoMember(1)]
     public int DialogDataID;

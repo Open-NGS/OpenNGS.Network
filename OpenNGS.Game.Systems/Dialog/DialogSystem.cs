@@ -9,7 +9,7 @@ namespace OpenNGS.Systems
     public class DialogSystem : GameSubSystem<DialogSystem>, IDialogSystem
     {
         private ISaveSystem m_saveSystem;
-        private DialogData m_dialogData;
+        private SaveFileData_Dialog m_dialogData;
         protected override void OnCreate()
         {
             m_saveSystem = App.GetService<ISaveSystem>();
@@ -36,14 +36,14 @@ namespace OpenNGS.Systems
         private void LoadDialogData()
         {
             ISaveInfo saveInfo = m_saveSystem.GetFileData("DIALOG");
-            if (saveInfo != null && saveInfo is DialogData)
+            if (saveInfo != null && saveInfo is SaveFileData_Dialog)
             {
-                m_dialogData = (DialogData)saveInfo;
+                m_dialogData = (SaveFileData_Dialog)saveInfo;
             }
             else
             {
                 // 如果没有保存数据，创建一个新的对话数据
-                m_dialogData = new DialogData();
+                m_dialogData = new SaveFileData_Dialog();
             }
         }
 

@@ -34,12 +34,12 @@ namespace OpenNGS.Systems
         public void Init(int capture, int version)
         {
             PosixFileSystem fs = new PosixFileSystem();
-            SaveDataManager<SaveData>.Instance.Init(fs, capture, version);
+            SaveDataManager<SaveFileData>.Instance.Init(fs, capture, version);
             saveInfo = new Dictionary<string, ISaveInfo>();
 
-            if (SaveDataManager<SaveData>.Instance.Current == null)
+            if (SaveDataManager<SaveFileData>.Instance.Current == null)
             {
-                SaveDataManager<SaveData>.Instance.NewSaveData(true);
+                SaveDataManager<SaveFileData>.Instance.NewSaveData(true);
             }
 
             InitDicInfo();
@@ -47,7 +47,7 @@ namespace OpenNGS.Systems
 
         private void InitDicInfo()
         {
-            SaveData saveData = SaveDataManager<SaveData>.Instance.Current;
+            SaveFileData saveData = SaveDataManager<SaveFileData>.Instance.Current;
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
@@ -60,32 +60,32 @@ namespace OpenNGS.Systems
         public void AddFile()
         {
             SaveFile();
-            SaveDataManager<SaveData>.Instance.ActiveIndex++;
-            SaveDataManager<SaveData>.Instance.NewSaveData(true);
+            SaveDataManager<SaveFileData>.Instance.ActiveIndex++;
+            SaveDataManager<SaveFileData>.Instance.NewSaveData(true);
             InitDicInfo();
         }
 
         public void DeleteFile(int targeIndex)
         {
-            SaveDataManager<SaveData>.Instance.Delete(targeIndex);
+            SaveDataManager<SaveFileData>.Instance.Delete(targeIndex);
         }
 
         public void SaveFile()
         {
-            SaveDataManager<SaveData>.Instance.Current.saveItems = saveInfo[SAVE_ITEM_TAG] as ItemData;
-            SaveDataManager<SaveData>.Instance.Current.saveRanks = saveInfo[SAVE_RANK_TAG] as RankData;
-            SaveDataManager<SaveData>.Instance.Current.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as CharacterSaveData;
-            SaveDataManager<SaveData>.Instance.Current.dialogData = saveInfo[SAVE_DIALOG_TAG] as DialogData;
-            SaveDataManager<SaveData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as TechnologyData;
-            SaveDataManager<SaveData>.Instance.Save();
+            SaveDataManager<SaveFileData>.Instance.Current.saveItems = saveInfo[SAVE_ITEM_TAG] as SaveFileData_Item;
+            SaveDataManager<SaveFileData>.Instance.Current.saveRanks = saveInfo[SAVE_RANK_TAG] as SaveFileData_Rank;
+            SaveDataManager<SaveFileData>.Instance.Current.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as SaveFileData_Character;
+            SaveDataManager<SaveFileData>.Instance.Current.dialogData = saveInfo[SAVE_DIALOG_TAG] as SaveFileData_Dialog;
+            SaveDataManager<SaveFileData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as SaveFileData_Technology;
+            SaveDataManager<SaveFileData>.Instance.Save();
         }
 
         public bool ChangeFile(int targeIndex)
         {
-            if (targeIndex < 0 || targeIndex >= SaveDataManager<SaveData>.Instance.Capacity)
+            if (targeIndex < 0 || targeIndex >= SaveDataManager<SaveFileData>.Instance.Capacity)
                 return false;
 
-            SaveDataManager<SaveData>.Instance.ActiveIndex = targeIndex;
+            SaveDataManager<SaveFileData>.Instance.ActiveIndex = targeIndex;
             InitDicInfo();
             return true;
         }

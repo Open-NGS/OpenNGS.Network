@@ -22,6 +22,7 @@ public class LoginGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IDialogSystem), new DialogSystem()));
         services.Add(new ServiceDescriptor(typeof(IEquipSystem), new EquipSystem()));
         services.Add(new ServiceDescriptor(typeof(ITechnologySystem), new TechnologySystem()));
+        services.Add(new ServiceDescriptor(typeof(IRankSystem), new RankSystem()));
     }
 
     protected override void OnInit()

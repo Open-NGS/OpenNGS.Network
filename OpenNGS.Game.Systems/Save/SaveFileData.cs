@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 namespace OpenNGS.Systems
 {
     [global::ProtoBuf.ProtoContract()]
-    public class SaveData : ISaveEntity
+    public class SaveFileData : ISaveEntity
     {
         [global::ProtoBuf.ProtoMember(1)]
-        public ItemData saveItems;
+        public SaveFileData_Item saveItems;
         [global::ProtoBuf.ProtoMember(2)]
-        public RankData saveRanks;
+        public SaveFileData_Rank saveRanks;
         [global::ProtoBuf.ProtoMember(3)]
-        public CharacterSaveData charaInfos;
+        public SaveFileData_Character charaInfos;
         [global::ProtoBuf.ProtoMember(4)]
-        public DialogData dialogData;
+        public SaveFileData_Dialog dialogData;
         [global::ProtoBuf.ProtoMember(5)]
-        public TechnologyData technologyData;
+        public SaveFileData_Technology technologyData;
         public void Init()
         {
-            saveItems = new ItemData();
-            saveRanks = new RankData();
-            charaInfos = new CharacterSaveData();
-            dialogData = new DialogData();
-            technologyData = new TechnologyData();
+            saveItems = new SaveFileData_Item();
+            saveRanks = new SaveFileData_Rank();
+            charaInfos = new SaveFileData_Character();
+            dialogData = new SaveFileData_Dialog();
+            technologyData = new SaveFileData_Technology();
         }
 
         public void MigrateToVersion(int i)

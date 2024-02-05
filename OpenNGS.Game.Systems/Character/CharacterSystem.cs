@@ -27,9 +27,9 @@ namespace OpenNGS.Systems
             ISaveInfo _saveInfo = m_saveSystem.GetFileData("CHARACTER");
             if(_saveInfo != null)
             {
-                if(_saveInfo is CharacterSaveData)
+                if(_saveInfo is SaveFileData_Character)
                 {
-                    CharacterSaveData myInterface = (CharacterSaveData)_saveInfo;
+                    SaveFileData_Character myInterface = (SaveFileData_Character)_saveInfo;
                     OpenNGS.Character.Common.CharacterInfo _charInfo = new OpenNGS.Character.Common.CharacterInfo();
                     _charInfo.nickname = strCharName;
                     myInterface.characterInfoArray.items.Add(_charInfo);
@@ -43,9 +43,9 @@ namespace OpenNGS.Systems
             ISaveInfo _saveInfo = m_saveSystem.GetFileData("CHARACTER");
             if (_saveInfo != null)
             {
-                if (_saveInfo is CharacterSaveData)
+                if (_saveInfo is SaveFileData_Character)
                 {
-                    CharacterSaveData _charData = (CharacterSaveData)_saveInfo;
+                    SaveFileData_Character _charData = (SaveFileData_Character)_saveInfo;
                     foreach (OpenNGS.Character.Common.CharacterInfo _charInf in _charData.characterInfoArray.items)
                     {
                         if(m_dicChar.ContainsKey(_charInf.uin) == false)

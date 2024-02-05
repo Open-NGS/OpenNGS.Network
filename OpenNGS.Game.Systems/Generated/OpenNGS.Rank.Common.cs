@@ -23,6 +23,7 @@ namespace OpenNGS.Rank.Common
         RANK_DIFFICULT_TYPE_NONE = 0,
         RANK_DIFFICULT_TYPE_NORMAL = 1,
         RANK_DIFFICULT_TYPE_HARD = 2,
+        RANK_DIFFICULT_TYPE_MAX = 3,
     }
 
 }

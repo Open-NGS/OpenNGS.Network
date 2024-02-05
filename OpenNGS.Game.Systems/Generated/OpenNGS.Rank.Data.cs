@@ -126,6 +126,9 @@ namespace OpenNGS.Rank.Data
         [global::ProtoBuf.ProtoMember(2)]
         public global::OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE RankType { get; set; }
 
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Index { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -175,6 +178,9 @@ namespace OpenNGS.Rank.Data
         public global::OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE RankType { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
+        public uint Index { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
         public global::System.Collections.Generic.List<RankInfo> RankInfo { get; private set; }
 
     }

@@ -1,8 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
+
 
 [global::ProtoBuf.ProtoContract()]
 public class ItemSaveData
@@ -19,14 +17,3 @@ public class ItemSaveData
     public int Quality;
 }
 
-[global::ProtoBuf.ProtoContract()]
-public class ItemData : ISaveInfo
-{
-    [global::ProtoBuf.ProtoMember(1)]
-    public Dictionary<long, ItemSaveData> _items;
-
-    public ItemData() 
-    { 
-        _items = new Dictionary<long, ItemSaveData>();
-    }
-}

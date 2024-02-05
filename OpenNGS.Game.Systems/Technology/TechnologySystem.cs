@@ -20,7 +20,7 @@ namespace OpenNGS.Systems
         private IExchangeSystem m_exchangeSyetem = null;
         private IItemSystem m_itemSystem = null;
         private ISaveSystem m_saveSystem = null;
-        private TechnologyData m_technologyData;
+        private SaveFileData_Technology m_technologyData;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -38,13 +38,13 @@ namespace OpenNGS.Systems
         {
             //获取存档数据
             ISaveInfo saveInfo = m_saveSystem.GetFileData("TECHNOLOGY");
-            if(saveInfo != null && saveInfo is TechnologyData)
+            if(saveInfo != null && saveInfo is SaveFileData_Technology)
             {
-                m_technologyData = (TechnologyData)saveInfo;
+                m_technologyData = (SaveFileData_Technology)saveInfo;
             }
             else
             {
-                m_technologyData = new TechnologyData();
+                m_technologyData = new SaveFileData_Technology();
             }
             
         }

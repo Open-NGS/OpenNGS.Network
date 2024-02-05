@@ -1,12 +1,12 @@
 using OpenNGS.Character.Common;
 
 [global::ProtoBuf.ProtoContract()]
-public class CharacterSaveData : ISaveInfo
+public class SaveFileData_Character : ISaveInfo
 {
     [global::ProtoBuf.ProtoMember(1)]
     public CharacterInfoArray characterInfoArray;
 
-    public CharacterSaveData()
+    public SaveFileData_Character()
     {
         characterInfoArray = new CharacterInfoArray();
     }

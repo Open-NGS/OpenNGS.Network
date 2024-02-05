@@ -14,15 +14,3 @@ public class TechnologyNodeSaveData
     [global::ProtoBuf.ProtoMember(4)]
     public bool activated;
 }
-
-[global::ProtoBuf.ProtoContract()]
-public class TechnologyData : ISaveInfo
-{
-    [global::ProtoBuf.ProtoMember(1)]
-    public Dictionary<uint, TechnologyNodeSaveData> nodesSaveData;
-
-    public TechnologyData()
-    {
-        nodesSaveData = new Dictionary<uint, TechnologyNodeSaveData>();
-    }
-}
