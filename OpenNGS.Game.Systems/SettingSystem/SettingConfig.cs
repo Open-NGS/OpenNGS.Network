@@ -1,14 +1,11 @@
 using OpenNGS.Systems;
 using OpenNGS;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Audio;
 using OpenNGS.Setting.Data;
 using OpenNGS.Setting.Common;
 using Systems;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-using System.Globalization;
 
 public class SettingConfig :GameSubSystem<SettingConfig>
 {
@@ -16,11 +13,10 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     private static ISaveSystem _saveSystem;
 
     static GameObject go ;
-    static List<AudioSettingInfo> audio;
+    static List<AudioSettingInfo> audio = new List<AudioSettingInfo>(4);
     static bool framesInfo;
     static RESOLUTIONRATION_TYPE resolution;
 
-    static Dictionary<string,string> keys = new Dictionary<string,string>();
     static List<KeyControlSettingInfo> KeysList;
     static KeyControlSettingInfo KeysCont;
 
@@ -49,7 +45,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     {
         get 
         {
-            if (settingData == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_MUSIC); }
+            if (audio == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_MUSIC); }
             return audio[(int)ADUIO_TYPE.ADUIO_TYPE_MUSIC].Switch;
         }
         set
@@ -61,7 +57,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     }
     public static bool SoundOn
     {
-        get { if (settingData == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_SOUND); } return audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Switch; }
+        get { if (audio == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_SOUND); } return audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Switch; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Switch = value;
