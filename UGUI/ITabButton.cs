@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITabButton
+namespace OpenNGS.UI
 {
-    public void Select(bool select);
+    public interface ITabButton
+    {
+        public void Select(bool select);
 
+    }
 }
