@@ -6,11 +6,12 @@ using OpenNGS.UI.DataBinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Systems;
 using UnityEngine;
 
 namespace OpenNGS.Systems
 {
-    public class SaveSystem : EntitySystem, ISaveSystem
+    public class SaveSystem : GameSubSystem<SaveSystem>, ISaveSystem
     {
         public static string SAVE_ITEM_TAG = "ITEM";
         public static string SAVE_RANK_TAG = "RANK";
@@ -23,6 +24,7 @@ namespace OpenNGS.Systems
         protected override void OnCreate()
         {
             base.OnCreate();
+            Init(10, 1);
         }
 
         public override string GetSystemName()
