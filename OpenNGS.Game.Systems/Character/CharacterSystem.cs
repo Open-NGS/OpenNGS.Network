@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace OpenNGS.Systems
 {
-    class CharacterSystem : EntitySystem, ICharacterSystem
+    public class CharacterSystem : EntitySystem, ICharacterSystem
     {
         public readonly Dictionary<ulong, Character> CharacterDic = new Dictionary<ulong, Character>();
 
