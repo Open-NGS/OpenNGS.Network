@@ -7,10 +7,11 @@ using OpenNGS.Exchange.Common;
 using OpenNGS.Technology.Common;
 using OpenNGS.SaveData;
 using OpenNGSCommon;
+using Systems;
 
 namespace OpenNGS.Systems
 {
-    public class TechnologySystem : EntitySystem, ITechnologySystem
+    public class TechnologySystem : GameSubSystem<TechnologySystem>, ITechnologySystem
     {
         public uint technologyDots = 0;
 
@@ -23,16 +24,13 @@ namespace OpenNGS.Systems
         private SaveFileData_Technology m_technologyData;
         protected override void OnCreate()
         {
+            m_exchangeSyetem = App.GetService<IExchangeSystem>();
+            m_itemSystem = App.GetService<IItemSystem>();
+            m_saveSystem = App.GetService<ISaveSystem>();
+            InitData();
             base.OnCreate();
         }
 
-        public override void InitSystem()
-        {
-            m_exchangeSyetem = App.GetService<IExchangeSystem>();
-            m_itemSystem = App.GetService<IItemSystem>(); 
-            m_saveSystem = App.GetService<ISaveSystem>();
-            InitData();
-        }
 
         public void InitData()
         {
@@ -194,6 +192,9 @@ namespace OpenNGS.Systems
             m_saveSystem.SetFileData("TECHNOLOGY", m_technologyData);
             m_saveSystem.SaveFile();
         }
-
+        public override string GetSystemName()
+        {
+            return "com.openngs.system.TechnologySystem";
+        }
     }
 }

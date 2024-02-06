@@ -6,8 +6,9 @@ using UnityEngine;
 using OpenNGS.Suit.Data;
 using OpenNGS.Item.Common;
 using OpenNGS;
+using Systems;
 
-public class EquipSystem : EntitySystem, IEquipSystem
+public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
     //装备背包（未装备）列表
     List<OpenNGS.Item.Common.ItemData> EquipInventory;
@@ -17,14 +18,11 @@ public class EquipSystem : EntitySystem, IEquipSystem
     List<OpenNGS.Item.Common.ItemData> EquipItems = new List<OpenNGS.Item.Common.ItemData>();
     private IItemSystem m_itemSys = null;
     private IMakeSystem m_makeSystem = null;
-    public override void InitSystem()
-    {
-        m_itemSys = App.GetService<IItemSystem>();
-        m_makeSystem=App.GetService<IMakeSystem>();
-    }
 
     protected override void OnCreate()
     {
+        m_itemSys = App.GetService<IItemSystem>();
+        m_makeSystem = App.GetService<IMakeSystem>();
         base.OnCreate();
     }
 
@@ -92,5 +90,9 @@ public class EquipSystem : EntitySystem, IEquipSystem
             return true;
         }
         else { return false; }
+    }
+    public override string GetSystemName()
+    {
+        return "com.openngs.system.EquipSystem";
     }
 }

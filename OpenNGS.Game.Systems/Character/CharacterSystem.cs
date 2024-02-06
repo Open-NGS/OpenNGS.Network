@@ -1,10 +1,11 @@
 using OpenNGS.Character.Common;
 using OpenNGSCommon;
 using System.Collections.Generic;
+using Systems;
 using UnityEngine;
 namespace OpenNGS.Systems
 {
-    public class CharacterSystem : EntitySystem, ICharacterSystem
+    public class CharacterSystem : GameSubSystem<CharacterSystem>, ICharacterSystem
     {
         public readonly Dictionary<ulong, Character> CharacterDic = new Dictionary<ulong, Character>();
 
@@ -12,9 +13,10 @@ namespace OpenNGS.Systems
         public readonly List<string> cachedRandomNames = new List<string>();
 
         private ISaveSystem m_saveSystem;
-        public override void InitSystem()
+        protected override void OnCreate()
         {
             m_saveSystem = App.GetService<ISaveSystem>();
+            base.OnCreate();
         }
         public Character GetCharacter(ulong uin)
         {
@@ -66,5 +68,10 @@ namespace OpenNGS.Systems
             }
             return null;
         }
+    public override string GetSystemName()
+    {
+        return "com.openngs.system.CharacterSystem";
+    }
+
     }
 }

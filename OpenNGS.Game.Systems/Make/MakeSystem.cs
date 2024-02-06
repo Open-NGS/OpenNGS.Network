@@ -4,8 +4,9 @@ using OpenNGS.Exchange.Data;
 using OpenNGS.Item.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
+using Systems;
 
-public class MakeSystem : EntitySystem,IMakeSystem
+public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
 {
     ExchangeSystem exchangeSystem = new ExchangeSystem();
 
@@ -13,10 +14,7 @@ public class MakeSystem : EntitySystem,IMakeSystem
     List<TargetItem> targetsList = new List<TargetItem>();
 
     private IItemSystem m_itemSys = null;
-    public override void InitSystem()
-    {
-        m_itemSys = App.GetService<IItemSystem>();
-    }
+
 
     /// <summary>
     /// ÖÆ×÷
@@ -58,6 +56,7 @@ public class MakeSystem : EntitySystem,IMakeSystem
 
     protected override void OnCreate()
     {
+        m_itemSys = App.GetService<IItemSystem>();
         base.OnCreate();
     }
 

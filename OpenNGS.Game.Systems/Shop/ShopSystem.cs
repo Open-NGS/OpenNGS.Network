@@ -4,11 +4,12 @@ using OpenNGS.Exchange.Common;
 using OpenNGS.Exchange.Data;
 using OpenNGS.Shop.Common;
 using OpenNGS.Shop.Data;
+using Systems;
 using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
-    public class ShopSystem : EntitySystem, IShopSystem
+    public class ShopSystem : GameSubSystem<ShopSystem>, IShopSystem
     {
         public UnityAction<BuyItemRsq> OnBuyItem;
         public UnityAction<SellItemRsq> OnSellItem;
@@ -19,15 +20,12 @@ namespace OpenNGS.Systems
         private ISaveSystem m_saveSys = null;
         protected override void OnCreate()
         {
-            base.OnCreate();
-        }
-
-        public override void InitSystem()
-        {
             m_exchangeSys = App.GetService<IExchangeSystem>();
             m_itemSys = App.GetService<IItemSystem>();
             m_saveSys = App.GetService<ISaveSystem>();
+            base.OnCreate();
         }
+
 
         public override string GetSystemName()
         {

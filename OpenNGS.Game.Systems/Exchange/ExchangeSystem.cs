@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 using OpenNGS.Collections.Generic;
 using OpenNGS.Exchange.Data;
 using OpenNGS.Exchange.Common;
+using Systems;
 
 namespace OpenNGS.Systems
 {
-    public class ExchangeSystem : EntitySystem, IExchangeSystem
+    public class ExchangeSystem : GameSubSystem<ExchangeSystem>, IExchangeSystem
     {
         private IItemSystem m_itemSys = null;
         private int aaa = 100;
         protected override void OnCreate()
         {
+            m_itemSys = App.GetService<IItemSystem>();
             base.OnCreate();
         }
-        public override void InitSystem()
-        {
-            m_itemSys = App.GetService<IItemSystem>();
-        }
+
 
         public override string GetSystemName()
         {

@@ -6,10 +6,11 @@ using UnityEngine;
 using OpenNGS.Item;
 using OpenNGS.Item.Data;
 using OpenNGS.Suit.Data;
+using Systems;
 
 namespace OpenNGS.Systems
 {
-    public class ItemSystem : EntitySystem, IItemSystem
+    public class ItemSystem : GameSubSystem<ItemSystem>, IItemSystem
     {
         public List<OpenNGS.Item.Common.ItemData> ItemList = new();
         public Action OnNotifyItemListChange;

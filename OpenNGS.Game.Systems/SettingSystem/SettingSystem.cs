@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
+using Systems;
 using UnityEditor;
 
 //using Unity.VisualScripting.YamlDotNet.Core.Tokens;
@@ -16,7 +17,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
 
-public class SettingSystem : EntitySystem, ISettingSystem
+public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 {
     public GetSettingRsq OnGetSetting;
 
