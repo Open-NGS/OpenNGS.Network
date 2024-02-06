@@ -17,6 +17,7 @@ namespace OpenNGS.Systems
         public static string SAVE_CHARACTER_TAG = "CHARACTER";
         public static string SAVE_DIALOG_TAG = "DIALOG";
         public static string SAVE_TECHNOLOGY_TAG = "TECHNOLOGY";
+        public static string SAVE_SETTING_TAG = "SETTING";
 
 
         protected override void OnCreate()
@@ -35,6 +36,7 @@ namespace OpenNGS.Systems
         {
             PosixFileSystem fs = new PosixFileSystem();
             SaveDataManager<SaveFileData>.Instance.Init(fs, capture, version);
+            SaveDataManager<SettingData>.Instance.Init(fs, 1, version);
             saveInfo = new Dictionary<string, ISaveInfo>();
 
             if (SaveDataManager<SaveFileData>.Instance.Current == null)
@@ -79,6 +81,11 @@ namespace OpenNGS.Systems
             SaveDataManager<SaveFileData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as SaveFileData_Technology;
             SaveDataManager<SaveFileData>.Instance.Save();
         }
+        public void SettingSaveFile(ISaveInfo data)
+        {
+            SaveDataManager<SettingData>.Instance.Current.settingSaveData = saveInfo[SAVE_SETTING_TAG] as SettingSaveData;
+            SaveDataManager<SaveFileData>.Instance.Save();
+        }
 
         public bool ChangeFile(int targeIndex)
         {
@@ -103,5 +110,7 @@ namespace OpenNGS.Systems
             if (!saveInfo.TryGetValue(name, out data)) return null;
             return data;
         }
+
+    
     }
 }

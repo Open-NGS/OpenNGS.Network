@@ -17,5 +17,7 @@ namespace OpenNGS.Systems
         //对档内部数据进行处理
         public void SetFileData(string name, ISaveInfo data);
         public ISaveInfo GetFileData(string name);
+        public void SettingSaveFile(ISaveInfo data);
+
     }
 }
