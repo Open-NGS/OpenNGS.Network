@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace OpenNGS.UI
 {
-    public class TabSwitchCom
+    public class TabSwitchCom : MonoBehaviour
     {
         public GameObject[] tabPages;
 
