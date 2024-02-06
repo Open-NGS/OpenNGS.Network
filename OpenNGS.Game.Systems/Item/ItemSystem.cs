@@ -337,6 +337,8 @@ namespace OpenNGS.Systems
                 itemData.Count += nCounts;
                 m_itemData._items[itemData.Guid].Count += (int)nCounts;
             }
+            //更新动态数据
+            m_saveSystem.SetFileData("ITEM", m_itemData);
             return true;
         }
         public bool RemoveItemsByID(uint nItemID, uint nCounts)
@@ -358,6 +360,8 @@ namespace OpenNGS.Systems
             {
                 m_itemData._items[GetGuidByItemID(nItemID)].Count = (int)itemData.Count;
             }
+            //更新动态数据
+            m_saveSystem.SetFileData("ITEM", m_itemData);
             return true;
         }
 
@@ -379,6 +383,8 @@ namespace OpenNGS.Systems
             {
                 m_itemData._items[nGuid].Count = (int)itemData.Count;
             }
+            //更新动态数据
+            m_saveSystem.SetFileData("ITEM", m_itemData);
             return true;
         }
         public uint GetGuidByItemID(uint nItemID)
