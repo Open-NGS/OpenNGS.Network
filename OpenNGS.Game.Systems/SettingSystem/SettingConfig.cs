@@ -78,7 +78,6 @@ public class SettingConfig :GameSubSystem<SettingConfig>
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Switch = value;
             settingData.AudioInfo[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Switch = value;
             SoundManager.Instance.OverallOn = value;
-
         }
     }
     public static bool VoiceOn

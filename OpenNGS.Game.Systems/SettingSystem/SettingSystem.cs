@@ -24,27 +24,31 @@ public class SettingSystem : EntitySystem, ISettingSystem
     GameObject go = new GameObject();
 
     // 整体音效
-    public void OverAllToogle(bool on)
+    public bool OverAllToogle(bool on)
     {
         SettingConfig.OverallOn = on;
+        return on;
     }
 
     // 音效
-    public void SoundToogle(bool on)
+    public bool SoundToogle(bool on)
     {
         SettingConfig.SoundOn = on;
+        return on;
     }
 
     // 音乐
-    public void MusicToogle(bool on)
+    public bool MusicToogle(bool on)
     {
         SettingConfig.MusicOn = on;
+        return on;
     }
 
     // 语音
-    public void VoiceToogle(bool on)
+    public bool VoiceToogle(bool on)
     {
         SettingConfig.VoiceOn = on;
+        return on;
     }
 
     // 音乐大小
@@ -72,9 +76,10 @@ public class SettingSystem : EntitySystem, ISettingSystem
     }
 
     // 垂直同步
-    public void VerticalSync(bool on)
+    public bool VerticalSync(bool on)
     {
         SettingConfig.VerticalSync = on;
+        return on;
     }
     
     // 按键控制
