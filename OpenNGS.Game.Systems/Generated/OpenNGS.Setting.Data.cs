@@ -105,14 +105,14 @@ namespace OpenNGS.Setting.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ScreenSettingInfo : global::ProtoBuf.IExtensible
+    public partial class FramesInfo : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ScreenSettingInfo()
+        public FramesInfo()
         {
             OnConstructor();
         }
@@ -122,29 +122,26 @@ namespace OpenNGS.Setting.Data
         [global::ProtoBuf.ProtoMember(1)]
         public bool VerticalSynchronization { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE ResolutionRatio { get; set; }
-
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ScreenSettingInfoArray : global::ProtoBuf.IExtensible
+    public partial class FramesInfoArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ScreenSettingInfoArray()
+        public FramesInfoArray()
         {
-            items = new global::System.Collections.Generic.List<ScreenSettingInfo>();
+            items = new global::System.Collections.Generic.List<FramesInfo>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ScreenSettingInfo> items { get; private set; }
+        public global::System.Collections.Generic.List<FramesInfo> items { get; private set; }
 
     }
 
@@ -205,6 +202,7 @@ namespace OpenNGS.Setting.Data
         }
         public KeyControlSettingInfo()
         {
+            KeyName = "";
             Key = "";
             OnConstructor();
         }
@@ -212,7 +210,8 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Setting.Common.KEYVALUE_CONTROL_TYPE KeyType { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string KeyName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         [global::System.ComponentModel.DefaultValue("")]
@@ -306,10 +305,13 @@ namespace OpenNGS.Setting.Data
         public global::System.Collections.Generic.List<KeyControlSettingInfo> keyControlSettingInfo { get; private set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public ScreenSettingInfo screenSettingInfo { get; set; }
+        public FramesInfo FramesInfo { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         public Language language { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public global::OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE ResolutionRatios { get; set; }
 
     }
 

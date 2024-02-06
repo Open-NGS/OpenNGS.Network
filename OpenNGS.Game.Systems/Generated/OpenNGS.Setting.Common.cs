@@ -16,15 +16,6 @@ namespace OpenNGS.Setting.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public enum KEYVALUE_CONTROL_TYPE
-    {
-        KEYVALUE_CONTROL_TYPE_UP = 0,
-        KEYVALUE_CONTROL_TYPE_DOWN = 1,
-        KEYVALUE_CONTROL_TYPE_LEFT = 2,
-        KEYVALUE_CONTROL_TYPE_RIGHT = 3,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public enum LANGUAGE_TYPE
     {
         LANGUAGE_TYPE_ZH = 0,

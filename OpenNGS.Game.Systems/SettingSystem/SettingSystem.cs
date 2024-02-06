@@ -1,3 +1,4 @@
+using OpenNGS.Audio;
 using OpenNGS.Collections.Generic;
 using OpenNGS.Rank.Data;
 using OpenNGS.Setting.Common;
@@ -8,6 +9,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
+using UnityEditor;
+
 //using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,112 +19,79 @@ using UnityEngine.TextCore.Text;
 public class SettingSystem : EntitySystem, ISettingSystem
 {
     public GetSettingRsq OnGetSetting;
-    public UnityAction<Dictionary<uint, GameSettingLabel>>OnGameSettingLabel;
-    public Dictionary<uint, GameSettingLabel> OnGameSettingLabels;
-
-    public UnityAction<List<AudioSettingInfo>> Onaudio; // 音频
-    public UnityAction<List<KeyControlSettingInfo>> OnkeyControl;  // 按键
-    public UnityAction<OpenNGS.Setting.Data.ScreenSettingInfo> Onscreen; // 画面
-    public UnityAction<OpenNGS.Setting.Data.Language> Onlanguage; //语言
-
-    public Dictionary<uint, AudioSettingInfo> sadsadsadsInfo; 
-
-
-    public SettingInfo settingInfo;
-
-    public AudioSettingInfo audio;
-    public KeyControlSettingInfo keyControl;
-    public Language language;
 
     public string pathName = "";
+    GameObject go = new GameObject();
 
-    public void Init()
+    // 整体音效
+    public void OverAllToogle(bool on)
     {
-        if (OnGameSettingLabels == null) { OnGameSettingLabels = Table<GameSettingLabel, uint>.map; }
-    }
-
-    // 设置标签
-    public void GetGameSettingLabel()
-    {
-        OnGameSettingLabel.Invoke(OnGameSettingLabels);
+        SettingConfig.OverallOn = on;
     }
 
-    // 获得音频
-    public void GetAduio()
+    // 音效
+    public void SoundToogle(bool on)
     {
-        Onaudio.Invoke(settingInfo.audioSettingInfo);
-    }
-   
-    // 修改音效
-    public void SetAudio(uint value,bool start,OpenNGS.Setting.Common.ADUIO_TYPE _TYPE)
-    {
-        settingInfo.audioSettingInfo[(int)_TYPE].AduioType = _TYPE;
-        settingInfo.audioSettingInfo[(int)_TYPE].Value = value;
-        settingInfo.audioSettingInfo[(int)_TYPE].Switch = start;
-    }
-    // 获得按键
-    public void GetKeyControl()
-    {
-        OnkeyControl.Invoke(settingInfo.keyControlSettingInfo);
+        SettingConfig.SoundOn = on;
     }
 
-    // 修改按键
-    public void SetKeyControl(OpenNGS.Setting.Common.KEYVALUE_CONTROL_TYPE _TYPE,string key)
+    // 音乐
+    public void MusicToogle(bool on)
     {
-        settingInfo.keyControlSettingInfo[(int)_TYPE].Key = key;
-        settingInfo.keyControlSettingInfo[(int)_TYPE].KeyType = _TYPE;
+        SettingConfig.MusicOn = on;
     }
 
-    // 获得分辨率
-    public void GetResolutionRatio()
+    // 语音
+    public void VoiceToogle(bool on)
     {
-        Onscreen.Invoke(OnGetSetting.SettingInfo.screenSettingInfo);
+        SettingConfig.VoiceOn = on;
     }
 
-    // 修改垂直同步
-    public void SetVerticalSynchronization(bool start)
+    // 音乐大小
+    public void MusicVolume(float vol)
     {
-        settingInfo.screenSettingInfo.VerticalSynchronization = start;
+        SettingConfig.MusicVolume = (int)vol;
     }
 
-    // 修改分辨率
-    public void SetResolutionRatio(OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE _TYPE)
+    // 音效大小
+    public void SoundVolume(float vol)
     {
-        settingInfo.screenSettingInfo.ResolutionRatio = _TYPE;
-    }
-    // 获取语言
-    public void GetLanguage()
-    {
-        Onlanguage.Invoke(OnGetSetting.SettingInfo.language);
+        SettingConfig.SoundVolume = (int)vol;
     }
 
-    // 修改语言
-    public void SetLanguage(OpenNGS.Setting.Common.LANGUAGE_TYPE _TYPE)
+    // 整体音频
+    public void OverallVolume(float vol)
     {
-        settingInfo.language.languageType = _TYPE;
+        SettingConfig.OverallVolume = (int)vol;
+    }
+
+    // 语音大小
+    public void VoiceVolume(float vol)
+    {
+        SettingConfig.VoiceVolume = (int)vol;
+    }
+
+    // 垂直同步
+    public void VerticalSync(bool on)
+    {
+        SettingConfig.VerticalSync = on;
+    }
+    
+    // 按键控制
+    public void KeyControl(string key,string value)
+    {
+        SettingConfig.KeyControl(key,value);
+    }
+    // 分辨率
+    public void Resolution(RESOLUTIONRATION_TYPE _TYPE)
+    {
+        SettingConfig.Resolution = _TYPE;
     }
 
     // 保存
     public void Save()
     {
-        MakeFile(pathName);
-        SendGameSetting(settingInfo);
-    }
-
-    // 本地Save
-    public void MakeFile(string pathName)
-    {
-        if (File.Exists(pathName))
-        {
-            File.Delete(pathName);
-            FileStream NewText = File.Create(pathName);
-            NewText.Close();
-        }
-        else
-        {
-            FileStream NewText = File.Create(pathName);
-            NewText.Close();
-        }
+        SettingConfig.Save();
     }
 
     #region C2S
@@ -139,12 +109,9 @@ public class SettingSystem : EntitySystem, ISettingSystem
         if (rsp.Result == OpenNGS.Setting.Common.RESULT_TYPE.RESULT_TYPE_SUCCESS)
         {
             OnGetSetting = rsp;
-
-            Onaudio.Invoke(rsp.SettingInfo.audioSettingInfo);
-            OnkeyControl.Invoke(rsp.SettingInfo.keyControlSettingInfo);
-            Onscreen.Invoke(rsp.SettingInfo.screenSettingInfo);
-            Onlanguage.Invoke(rsp.SettingInfo.language);
+            
         }
+
         else
         {
             Debug.LogError(""+rsp.Result);
@@ -167,4 +134,6 @@ public class SettingSystem : EntitySystem, ISettingSystem
     {
         return "com.openngs.system.GameSetting";
     }
+
+  
 }
