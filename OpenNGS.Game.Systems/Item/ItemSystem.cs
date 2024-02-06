@@ -25,54 +25,85 @@ namespace OpenNGS.Systems
         private ulong m_Uin;
         private bool m_IsNewPlayer;
 
+        private ISaveSystem m_saveSystem = null;
+        private SaveFileData_Item m_itemData = null;
+
         public void Init(ulong uin, bool isNewPlayer)
         {
             m_Uin = uin;
             m_IsNewPlayer = isNewPlayer;
         }
-
-        public OpenNGS.Item.Common.ItemData GetItemInfo(uint itemId)
+        protected override void OnCreate()
         {
-            OpenNGS.Item.Common.ItemData itemInfo = new OpenNGS.Item.Common.ItemData();
-            return itemInfo;
+            m_saveSystem = App.GetService<ISaveSystem>();
+            base.OnCreate();
+            m_IsCreate = false;
+            GetItems();
         }
-
-        public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
+        //获取存档数据
+        public void GetItems()
         {
-            List<OpenNGS.Item.Common.ItemData> itemInfos=new List<OpenNGS.Item.Common.ItemData>();
-            return itemInfos;
+            ISaveInfo saveInfo = m_saveSystem.GetFileData("ITEM");
+            if (saveInfo != null && saveInfo is SaveFileData_Item)
+            {
+                m_itemData = (SaveFileData_Item)saveInfo;
+            }
+            else
+            {
+                m_itemData = new SaveFileData_Item();
+            }
+            OpenNGS.Item.Common.ItemData itemData = new Item.Common.ItemData();
+            foreach (var item in m_itemData._items.Values)
+            {
+                itemData.Guid = (uint)item.GUID;
+                itemData.ItemID = (uint)item.ItemID;
+                itemData.Count = (uint)item.Count;
+                ItemList.Add(itemData);
+            }
         }
 
         public SuitData GetSuitData(uint suitID)
         {
-            SuitData suitData=new SuitData();
+            SuitData suitData = new SuitData();
             return suitData;
         }
-
+        
         public MakeDesign GetItemByItmes(uint itemId)
         {
             MakeDesign makeInfo = new MakeDesign();
             return makeInfo;
         }
 
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            m_IsCreate = false;
-            GetItems();
-        }
-
-        public OpenNGS.Item.Common.ItemData GetItemData(ulong uid)
+        //获取道具信息(通过GUID)
+        public OpenNGS.Item.Common.ItemData GetItemDataByGuid(ulong uid)
         {
             return ItemList.Find(x => x.Guid == uid);
         }
 
-
+        //获取道具信息(通过itemID)
         public OpenNGS.Item.Common.ItemData GetItemDataByItemId(uint itemId)
         {
             return ItemList.Find(x => x.ItemID == itemId);
         }
-
+        //获取某类所以道具的信息
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
+        {
+            List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
+            foreach (OpenNGS.Item.Common.ItemData itemInfo in ItemList)
+            {
+                if (NGSStaticData.items.GetItem(itemInfo.ItemID).ItemType == iTEM_TYPE)
+                {
+                    itemInfos.Add(itemInfo);
+                }
+            }
+            //放回某类物品前排序,避免物品混乱
+            itemInfos.Sort((a, b) =>
+            {
+                return (int)(a.ItemID - b.ItemID);
+            });
+            return itemInfos;
+        }
+        //获取道具放置数量
         public long GetItemPlaceCount(ulong itemGuid)
         {
             long count = 0;
@@ -89,16 +120,17 @@ namespace OpenNGS.Systems
             return count;
         }
 
+
         #region C2S
 
-        private void GetItems()
-        {
-            Debug.Log($"{nameof(ItemSystem)} GetItems");
-            //ItemService.Instance.GetItemRequest(m_Uin).ContinueWith((rsp) =>
-            //{
-            //    OnGetItemResponse(rsp.Result);
-            //});
-        }
+        //private void GetItems()
+        //{
+        //    Debug.Log($"{nameof(ItemSystem)} GetItems");
+        //    //ItemService.Instance.GetItemRequest(m_Uin).ContinueWith((rsp) =>
+        //    //{
+        //    //    OnGetItemResponse(rsp.Result);
+        //    //});
+        //}
 
         //public async Task UseItemRequest(ItemData itemData, int count, Action<List<NgsCommon.ItemList>> callback = null)
         //{
@@ -252,48 +284,130 @@ namespace OpenNGS.Systems
         {
             return "com.openngs.system.item";
         }
-
+        
         public bool IsEnoughByItemID(uint nItemID, uint nCounts)
         {
-            bool bRes = false;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
+            if(itemData == null)
+            {
+                return false;
+            }
+            bool bRes = itemData.Count >= nCounts;
             return bRes;
         }
 
         public bool IsEnoughByGuid(uint nGuid, uint nCounts)
         {
-            bool bRes = false;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByGuid(nGuid);
+            if (itemData == null)
+            {
+                return false;
+            }
+            bool bRes = itemData.Count >= nCounts;
             return bRes;
         }
 
 
         public bool AddItemsByID(uint nItemID, uint nCounts)
         {
-            bool bRes = false;
-            return bRes;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
+            //新添加的物品
+            if (itemData == null)
+            {
+                itemData = new OpenNGS.Item.Common.ItemData();
+                itemData.ItemID = nItemID;
+                itemData.Count = nCounts;
+                uint Guid_index = 1;
+                while (m_itemData._items.ContainsKey(Guid_index))
+                {
+                    Guid_index++;
+                }
+                itemData.Guid = Guid_index;
+                ItemList.Add(itemData);
+                //添加到动态数据
+                ItemSaveData itemSaveData = new ItemSaveData();
+                itemSaveData.GUID = itemData.Guid;
+                itemSaveData.ItemID = (int)itemData.ItemID;
+                itemSaveData.Count = (int)itemData.Count;
+                m_itemData._items[Guid_index] = itemSaveData;
+            }
+            //已添加的物品，增加数量
+            else
+            {
+                itemData.Count += nCounts;
+                m_itemData._items[itemData.Guid].Count += (int)nCounts;
+            }
+            return true;
         }
         public bool RemoveItemsByID(uint nItemID, uint nCounts)
         {
-            bool bRes = false;
-            return bRes;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
+            if (itemData == null)
+            {
+                return false;
+            }
+            itemData.Count = (uint)Mathf.Max(0, (int)itemData.Count - (int)nCounts);
+            if(itemData.Count <= 0)
+            {
+                //若物品为0,在动态数据与缓存链表中删去该物品
+                m_itemData._items.Remove(GetGuidByItemID(nItemID));
+                int index = ItemList.FindIndex(x => x.ItemID == nItemID);
+                ItemList.RemoveAt(index);
+            }
+            else
+            {
+                m_itemData._items[GetGuidByItemID(nItemID)].Count = (int)itemData.Count;
+            }
+            return true;
         }
 
         public bool RemoveItemsByGuid(uint nGuid, uint nCounts)
         {
-            bool bRes = false;
-            return bRes;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByGuid(nGuid);
+            if (itemData == null)
+            {
+                return false;
+            }
+            itemData.Count = (uint)Mathf.Max(0, (int)itemData.Count - (int)nCounts);
+            if (itemData.Count <= 0)
+            {
+                m_itemData._items.Remove(nGuid);
+                int index = ItemList.FindIndex(x => x.Guid == nGuid);
+                ItemList.RemoveAt(index);
+            }
+            else
+            {
+                m_itemData._items[nGuid].Count = (int)itemData.Count;
+            }
+            return true;
         }
         public uint GetGuidByItemID(uint nItemID)
         {
-            return 0;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
+            if (itemData == null)
+            {
+                return 0;
+            }
+            return itemData.Guid;
         }
         public uint GetItemCountByGuidID(uint nGuid)
         {
-            return 0;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByGuid(nGuid);
+            if(itemData == null)
+            {
+                return 0;
+            }
+            return itemData.Count;
         }
 
         public bool UseItem(uint nGuid)
         {
-            return false;
+            OpenNGS.Item.Common.ItemData itemData = GetItemDataByGuid(nGuid);
+            if(itemData == null)
+            {
+                return false;
+            }
+            return itemData.Count > 0;
         }
     }
 

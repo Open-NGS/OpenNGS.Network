@@ -24,13 +24,12 @@ namespace OpenNGS.Systems
         private SaveFileData_Technology m_technologyData;
         protected override void OnCreate()
         {
-            m_exchangeSyetem = App.GetService<IExchangeSystem>();
-            m_itemSystem = App.GetService<IItemSystem>();
-            m_saveSystem = App.GetService<ISaveSystem>();
-            InitData();
             base.OnCreate();
+            m_saveSystem = App.GetService<ISaveSystem>();
+            m_itemSystem = App.GetService<IItemSystem>();
+            m_exchangeSyetem = App.GetService<IExchangeSystem>();
+            InitData();
         }
-
 
         public void InitData()
         {
@@ -120,8 +119,8 @@ namespace OpenNGS.Systems
             NodeData tNode = NGSStaticData.technologyNodes.GetItem(technologyNodeID);
 
             //暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
-            //uint id = m_itemSystem.GetGuidByItemID(tNode.CostItemID);
-            technologyDots.GUID = 0;//科技点数对应ItemID
+            uint id = m_itemSystem.GetGuidByItemID(tNode.CostItemID);
+            technologyDots.GUID = id;//科技点数对应ItemID
             technologyDots.Count = tNode.CostItemCount;//升级科技点需要的科技点数
             sourceItems.Add(technologyDots);
             technologyNode.ItemID = tNode.ID;//科技点
@@ -173,7 +172,7 @@ namespace OpenNGS.Systems
             {
                 return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
             }
-            //m_itemSystem.AddItemsByID(tNode.CostItemID, costSum);
+            m_itemSystem.AddItemsByID(2, costSum);
 
             //调整玩家属性
             //xxx();
@@ -192,9 +191,10 @@ namespace OpenNGS.Systems
             m_saveSystem.SetFileData("TECHNOLOGY", m_technologyData);
             m_saveSystem.SaveFile();
         }
+
         public override string GetSystemName()
         {
-            return "com.openngs.system.TechnologySystem";
+            return "com.openngs.system.technology";
         }
     }
 }
