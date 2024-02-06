@@ -4,26 +4,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static TabSwitchCom;
-
-public class TabSwitchCom
+namespace OpenNGS.UI
 {
-    public GameObject[] tabPages;
-  
-    public void SelectTab<T>(int index, T[] uls) where T : ITabButton
+    public class TabSwitchCom
     {
-        for (int i = 0; i < uls.Length; i++)
+        public GameObject[] tabPages;
+
+        public void SelectTab<T>(int index, T[] uls) where T : ITabButton
         {
-            if (uls != null)
+            for (int i = 0; i < uls.Length; i++)
             {
-                uls[i].Select(i == index);
-                if (i < tabPages.Length)
-                    tabPages[i].SetActive(i == index);
+                if (uls != null)
+                {
+                    uls[i].Select(i == index);
+                    if (i < tabPages.Length)
+                        tabPages[i].SetActive(i == index);
+                }
             }
         }
-    }
-    void Update()
-    {
-        
     }
 }
