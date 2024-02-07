@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IEquipSystem 
 {
+    //获取数据
+    public void GetItemInfo();
     //使用装备
     public void EquipItem(uint ItemIndex);
     //卸下装备

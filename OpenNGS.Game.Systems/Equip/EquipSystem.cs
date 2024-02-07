@@ -71,23 +71,25 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     /// <param name="GridIndex">格子ID</param>
     public void MakeEquip(uint GridIndex)
     {
-        //m_makeSystem.Forged(GridIndex);
+        uint guid = CraftInventory[(int)GridIndex].Guid;
+        //m_makeSystem.Forged(guid);
     }
 
     /// <summary>
     /// 分解装备
     /// </summary>
-    /// <param name="GridIndex"></param>
+    /// <param name="GridIndex">格子ID</param>
     public void DisassembleEquip(uint GridIndex)
     {
         SourceItem source=new SourceItem();
         TargetItem target=new TargetItem();
+        uint guid = EquipInventory[(int)GridIndex].Guid;
         //根据guidID找到要分解的装备
-        source.Count = m_itemSys.GetItemDataByGuid(GridIndex).Count;
-        source.GUID = GridIndex;
+        source.Count = m_itemSys.GetItemDataByGuid(guid).Count;
+        source.GUID = guid;
         sourcesList.Add(source);
         //根据装备确定返回材料
-        target.ItemID = m_itemSys.GetItemDataByGuid(GridIndex).ItemID;
+        target.ItemID = EquipInventory[(int)GridIndex].ItemID;
         target.Count=m_itemSys.GetDisassembleEquipIno(target.ItemID).MaterialNum;
         targetsList.Add(target);
         m_exchangeSystem.ExchangeItem(sourcesList, targetsList);
@@ -104,10 +106,11 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
         SuitData suitData = m_itemSys.GetSuitData(suitDataID);
         uint[] EquipIDs = suitData.ConsistEquipID;
         List<OpenNGS.Item.Common.ItemData> SuitEquips = new List<OpenNGS.Item.Common.ItemData>();//存储组成套装需要的装备
-        for (uint i = 0; i < EquipIDs.Length; i++)
+        for (uint i=0,j = 0; i < EquipIDs.Length; i++)
         {
-            if (EquipItems[(int)i].ItemID == EquipIDs[i])
+            if (EquipItems[(int)i].ItemID == EquipIDs[j])
             {
+                j++;
                 SuitEquips.Add(m_itemSys.GetItemDataByItemId(EquipIDs[i]));
             }
         }

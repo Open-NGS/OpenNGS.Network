@@ -7,6 +7,7 @@ using OpenNGS.Item;
 using OpenNGS.Item.Data;
 using OpenNGS.Suit.Data;
 using Systems;
+using OpenNGS.Item.Common;
 
 namespace OpenNGS.Systems
 {
