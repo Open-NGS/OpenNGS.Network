@@ -119,7 +119,7 @@ namespace OpenNGS.Systems
             NodeData tNode = NGSStaticData.technologyNodes.GetItem(technologyNodeID);
 
             //暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
-            uint id = m_itemSystem.GetGuidByItemID(tNode.CostItemID);
+            uint id = m_itemSystem.GetGuidByItemID(2);
             technologyDots.GUID = id;//科技点数对应ItemID
             technologyDots.Count = tNode.CostItemCount;//升级科技点需要的科技点数
             sourceItems.Add(technologyDots);
@@ -127,9 +127,14 @@ namespace OpenNGS.Systems
             technologyNode.Count = 1;//升级科技点
             targetItems.Add(technologyNode);
             //科技点数不足
-            if (m_exchangeSyetem.ExchangeItem(sourceItems, targetItems) == EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT)
+            switch(m_exchangeSyetem.ExchangeItem(sourceItems, targetItems))
             {
-                return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE:
+                    return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NONE;
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
+                    return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                    return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_ERROR_UPGRADE;
             }
 
             //设置对应科技技能状态和解锁子技能

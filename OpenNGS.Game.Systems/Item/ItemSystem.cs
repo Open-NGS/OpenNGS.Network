@@ -52,9 +52,10 @@ namespace OpenNGS.Systems
             {
                 m_itemData = new SaveFileData_Item();
             }
-            OpenNGS.Item.Common.ItemData itemData = new Item.Common.ItemData();
+            ItemList.Clear();//加载动态数据前先清空道具缓存
             foreach (var item in m_itemData._items.Values)
             {
+                OpenNGS.Item.Common.ItemData itemData = new Item.Common.ItemData();
                 itemData.Guid = (uint)item.GUID;
                 itemData.ItemID = (uint)item.ItemID;
                 itemData.Count = (uint)item.Count;
@@ -415,7 +416,6 @@ namespace OpenNGS.Systems
             }
             return itemData.Count > 0;
         }
-
         public DisassembleEquipIno GetDisassembleEquipIno(uint itemId)
         {
             DisassembleEquipIno disassembleInfo = new DisassembleEquipIno();
