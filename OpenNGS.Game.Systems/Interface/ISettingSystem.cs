@@ -34,6 +34,9 @@ namespace OpenNGS.Systems
         public void Resolution(RESOLUTIONRATION_TYPE _TYPE);
     // 保存
         public void Save();
+    // 按键
+        public List<KeyControlSettingInfo> GetKeyControl();
+
 
     }
 }
