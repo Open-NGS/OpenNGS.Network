@@ -472,6 +472,9 @@ namespace OpenNGS.Item.Data
         [global::ProtoBuf.ProtoMember(6)]
         public uint MaterialCount { get; set; }
 
+        [global::ProtoBuf.ProtoMember(7)]
+        public float BackPercent { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -492,6 +495,56 @@ namespace OpenNGS.Item.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<MakeDesign> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DisassembleEquipIno : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DisassembleEquipIno()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint MaterialNum { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint MakeDesignID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public float BackProbability { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DisassembleEquipInoArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DisassembleEquipInoArray()
+        {
+            items = new global::System.Collections.Generic.List<DisassembleEquipIno>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<DisassembleEquipIno> items { get; private set; }
 
     }
 

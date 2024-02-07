@@ -7,6 +7,7 @@ using OpenNGS.Suit.Data;
 using OpenNGS.Item.Common;
 using OpenNGS;
 using Systems;
+using OpenNGS.Exchange.Data;
 
 public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
@@ -16,13 +17,18 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     List<OpenNGS.Item.Common.ItemData> CraftInventory;
     //装备(可装备)列表
     List<OpenNGS.Item.Common.ItemData> EquipItems = new List<OpenNGS.Item.Common.ItemData>();
+    //传给交易系统
+    List<SourceItem> sourcesList = new List<SourceItem>();
+    List<TargetItem> targetsList = new List<TargetItem>();
     private IItemSystem m_itemSys = null;
     private IMakeSystem m_makeSystem = null;
+    private IExchangeSystem m_exchangeSystem = null;
 
     protected override void OnCreate()
     {
         m_itemSys = App.GetService<IItemSystem>();
         m_makeSystem = App.GetService<IMakeSystem>();
+        m_exchangeSystem=App.GetService<IExchangeSystem>();
         base.OnCreate();
     }
 
@@ -65,8 +71,28 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     /// <param name="GridIndex">格子ID</param>
     public void MakeEquip(uint GridIndex)
     {
-        //m_makeSystem.Forged(itemIndex);
+        //m_makeSystem.Forged(GridIndex);
     }
+
+    /// <summary>
+    /// 分解装备
+    /// </summary>
+    /// <param name="GridIndex"></param>
+    public void DisassembleEquip(uint GridIndex)
+    {
+        SourceItem source=new SourceItem();
+        TargetItem target=new TargetItem();
+        //根据guidID找到要分解的装备
+        source.Count = m_itemSys.GetItemDataByGuid(GridIndex).Count;
+        source.GUID = GridIndex;
+        sourcesList.Add(source);
+        //根据装备确定返回材料
+        target.ItemID = m_itemSys.GetItemDataByGuid(GridIndex).ItemID;
+        target.Count=m_itemSys.GetDisassembleEquipIno(target.ItemID).MaterialNum;
+        targetsList.Add(target);
+        m_exchangeSystem.ExchangeItem(sourcesList, targetsList);
+    }
+
 
     /// <summary>
     /// 传入套装ID判断是否已达成触发条件

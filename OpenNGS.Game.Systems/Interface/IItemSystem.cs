@@ -22,7 +22,8 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.ItemData GetItemDataByItemId(uint itemId);
         public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
         public SuitData GetSuitData(uint suitID);
-        public MakeDesign GetItemByItmes(uint nItemId);
+        public MakeDesign GetItemByItmes(uint itemId);
+        public DisassembleEquipIno GetDisassembleEquipIno(uint itemId);
     }
 
 }

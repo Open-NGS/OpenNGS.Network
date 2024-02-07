@@ -415,6 +415,12 @@ namespace OpenNGS.Systems
             }
             return itemData.Count > 0;
         }
+
+        public DisassembleEquipIno GetDisassembleEquipIno(uint itemId)
+        {
+            DisassembleEquipIno disassembleInfo = new DisassembleEquipIno();
+            return disassembleInfo;
+        }
     }
 
 }
