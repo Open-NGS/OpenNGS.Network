@@ -24,6 +24,13 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     public string pathName = "";
     GameObject go = new GameObject();
 
+    public List<KeyControlSettingInfo> GetKeyControl()
+    {
+        return SettingConfig.KeysList;
+    }
+
+
+
     // ’˚ÃÂ“Ù–ß
     public bool OverAllToogle(bool on)
     {

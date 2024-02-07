@@ -13,22 +13,34 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     private static ISaveSystem _saveSystem;
 
     static GameObject go ;
-    static List<AudioSettingInfo> audio = new List<AudioSettingInfo>(4);
-    static bool framesInfo;
-    static RESOLUTIONRATION_TYPE resolution;
 
-    static List<KeyControlSettingInfo> KeysList;
+    static List<AudioSettingInfo> audio = new List<AudioSettingInfo>(4);
+    static RESOLUTIONRATION_TYPE resolution;
+    static bool framesInfo;
+    public static List<KeyControlSettingInfo> KeysList;
+
     static KeyControlSettingInfo KeysCont;
 
     static SettingSaveData settingData;
     static Dictionary<uint,SettingInfo> settingInfo;
+    static bool NoneArchive;
     protected override void OnCreate()
     {
         _saveSystem = App.GetService<ISaveSystem>();
 
         settingInfo = NGSStaticData.setting;
         settingData = _saveSystem.GetFileData("SETTING") as SettingSaveData;
-
+        if (settingData != null)
+        {
+            NoneArchive = true;
+            foreach (var item in settingInfo)
+            {
+                framesInfo = item.Value.FramesInfo.VerticalSynchronization;
+                resolution = item.Value.ResolutionRatios;
+                audio = item.Value.audioSettingInfo;
+                KeysList = item.Value.keyControlSettingInfo;
+            }
+        }
         audio = settingData.AudioInfo;
         resolution = settingData.Resoulution;
         framesInfo = settingData.FramesInfo.VerticalSynchronization;
@@ -45,19 +57,17 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     {
         get 
         {
-            if (audio == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_MUSIC); }
             return audio[(int)ADUIO_TYPE.ADUIO_TYPE_MUSIC].Switch;
         }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_MUSIC].Switch = value;
-            settingData.AudioInfo[(int)ADUIO_TYPE.ADUIO_TYPE_MUSIC].Switch = value;
             SoundManager.Instance.MusicOn = value;
         }
     }
     public static bool SoundOn
     {
-        get { if (audio == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_SOUND); } return audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Switch; }
+        get { return audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Switch; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Switch = value;
@@ -68,7 +78,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
 
     public static bool OverallOn
     {
-        get { if (settingData == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio); } return audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Switch; }
+        get {  return audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Switch; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Switch = value;
@@ -78,7 +88,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     }
     public static bool VoiceOn
     {
-        get { if (settingData == null) { return GetAudio(ADUIO_TYPE.ADUIO_TYPE_VOICE); } return audio[(int)ADUIO_TYPE.ADUIO_TYPE_VOICE].Switch; }
+        get {  return audio[(int)ADUIO_TYPE.ADUIO_TYPE_VOICE].Switch; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_VOICE].Switch = value;
@@ -89,7 +99,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
    
     public static bool VerticalSync
     {
-        get { if (settingData == null) { return GetVorticalSyn(); } return framesInfo; }
+        get { return framesInfo; }
         set 
         {
             framesInfo = value; 
@@ -99,7 +109,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
 
     public static int MusicVolume
     {
-        get { if (settingData == null) { GetSound(ADUIO_TYPE.ADUIO_TYPE_MUSIC); } return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_MUSIC].Value; }
+        get { return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_MUSIC].Value; }
 
         set
         {
@@ -110,7 +120,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     }
     public static int SoundVolume
     {
-        get { if (settingData == null) { GetSound(ADUIO_TYPE.ADUIO_TYPE_SOUND); } return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Value; }
+        get {  return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Value; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_SOUND].Value = (uint)value;
@@ -120,7 +130,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     }
     public static int OverallVolume
     {
-        get { if (settingData == null) { GetSound(ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio); } return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Value; }
+        get { return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Value; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_OVERALLAudio].Value = (uint)value;
@@ -130,7 +140,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     }
     public static int VoiceVolume
     {
-        get { if (settingData == null) { GetSound(ADUIO_TYPE.ADUIO_TYPE_VOICE); } return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_VOICE].Value; }
+        get { return (int)audio[(int)ADUIO_TYPE.ADUIO_TYPE_VOICE].Value; }
         set
         {
             audio[(int)ADUIO_TYPE.ADUIO_TYPE_VOICE].Value = (uint)value;
@@ -171,23 +181,15 @@ public class SettingConfig :GameSubSystem<SettingConfig>
         }
     }
 
-    // 默认音效开关
-    public static bool GetAudio(ADUIO_TYPE _TYPE)
+    // 默认音效
+    public static AudioSettingInfo GetAudio(ADUIO_TYPE _TYPE)
     {
-        foreach (var item in settingInfo.Values)
+        for (int i = 0; i < audio.Count; i++)
         {
-             return item.audioSettingInfo[(int)_TYPE].Switch;
+            if (audio[i].AduioType == _TYPE)
+               return audio[i];
         }
-        return false;
-    }
-    // 默认音效大小
-    public static int GetSound(ADUIO_TYPE _TYPE)
-    {
-        foreach (var item in settingInfo.Values)
-        {
-            return (int)item.audioSettingInfo[(int)_TYPE].Value;
-        }
-        return 0;
+        return null;
     }
 
     // 默认垂直同步
@@ -221,6 +223,10 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     }
     public static void Save()
     {
+        settingData.AudioInfo = audio;
+        settingData.Resoulution = resolution;
+        settingData.FramesInfo.VerticalSynchronization = framesInfo;
+        settingData.KeyControlInfo = KeysList;
         _saveSystem.SettingSaveFile(settingData);
     }
 }
