@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Item;
 using OpenNGS.Item.Data;
+using OpenNGS.Item.Common;
 using OpenNGS.Suit.Data;
 using Systems;
-using OpenNGS.Item.Common;
 
 namespace OpenNGS.Systems
 {
@@ -28,6 +28,9 @@ namespace OpenNGS.Systems
 
         private ISaveSystem m_saveSystem = null;
         private SaveFileData_Item m_itemData = null;
+
+        private uint guid_cache = 1;
+        private Queue<uint> guid_free = new Queue<uint>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -83,9 +86,9 @@ namespace OpenNGS.Systems
         }
 
         //获取道具信息(通过itemID)
-        public OpenNGS.Item.Common.ItemData GetItemDataByItemId(uint itemId)
+        public List<OpenNGS.Item.Common.ItemData> GetItemDataByItemId(uint itemId)
         {
-            return ItemList.Find(x => x.ItemID == itemId);
+            return ItemList.FindAll(x => x.ItemID == itemId);
         }
         //获取某类所以道具的信息
         public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
@@ -289,12 +292,17 @@ namespace OpenNGS.Systems
         
         public bool IsEnoughByItemID(uint nItemID, uint nCounts)
         {
-            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
+            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
             if(itemData == null)
             {
                 return false;
             }
-            bool bRes = itemData.Count >= nCounts;
+            uint sum = 0;
+            foreach(var item in itemData)
+            {
+                sum += item.Count;
+            }
+            bool bRes = sum >= nCounts;
             return bRes;
         }
 
@@ -312,32 +320,73 @@ namespace OpenNGS.Systems
 
         public bool AddItemsByID(uint nItemID, uint nCounts)
         {
-            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
+            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
             //新添加的物品
-            if (itemData == null)
+            if (itemData != null && itemData.Count > 0)
             {
-                itemData = new OpenNGS.Item.Common.ItemData();
-                itemData.ItemID = nItemID;
-                itemData.Count = nCounts;
-                uint Guid_index = 1;
-                while (m_itemData._items.ContainsKey(Guid_index))
+                //先查找背包可堆叠的空位
+                for (int i = 0; i < itemData.Count; i++)
                 {
-                    Guid_index++;
+                    if (itemData[i].Count < NGSStaticData.items.GetItem(nItemID).StackMax)
+                    {
+                        uint volumn = NGSStaticData.items.GetItem(nItemID).StackMax - itemData[i].Count;
+                        //该格子装不下
+                        if (nCounts - volumn >= 0)
+                        {
+                            itemData[i].Count = NGSStaticData.items.GetItem(nItemID).StackMax;
+                            m_itemData._items[itemData[i].Guid].Count = (int)NGSStaticData.items.GetItem(nItemID).StackMax;
+                            nCounts -= volumn;
+                        }
+                        //该格子能装下
+                        else
+                        {
+                            itemData[i].Count += nCounts;
+                            m_itemData._items[itemData[i].Guid].Count += (int)nCounts;
+                            nCounts -= volumn;
+                        }
+                    }
+                    if (nCounts <= 0)
+                    {
+                        break;
+                    }
                 }
-                itemData.Guid = Guid_index;
-                ItemList.Add(itemData);
+            }
+            while (nCounts > 0)
+            {
+                OpenNGS.Item.Common.ItemData item = new OpenNGS.Item.Common.ItemData();
+                item.ItemID = nItemID;
+                //前面有空闲出来的Guid
+                if(guid_free.Count > 0)
+                {
+                    item.Guid = guid_free.Dequeue();
+                }
+                //前面无空闲Guid则用后面数赋值
+                else
+                {
+                    while (m_itemData._items.ContainsKey(guid_cache))
+                    {
+                        guid_cache++;
+                    }
+                    item.Guid = guid_cache;
+                }
+                //超出最大堆叠数
+                if (nCounts > NGSStaticData.items.GetItem(nItemID).StackMax)
+                {
+                    item.Count = NGSStaticData.items.GetItem(nItemID).StackMax;
+                    nCounts -= NGSStaticData.items.GetItem(nItemID).StackMax;
+                }
+                else
+                {
+                    item.Count = nCounts;
+                    nCounts = 0;
+                }
+                ItemList.Add(item);
                 //添加到动态数据
                 ItemSaveData itemSaveData = new ItemSaveData();
-                itemSaveData.GUID = itemData.Guid;
-                itemSaveData.ItemID = (int)itemData.ItemID;
-                itemSaveData.Count = (int)itemData.Count;
-                m_itemData._items[Guid_index] = itemSaveData;
-            }
-            //已添加的物品，增加数量
-            else
-            {
-                itemData.Count += nCounts;
-                m_itemData._items[itemData.Guid].Count += (int)nCounts;
+                itemSaveData.GUID = item.Guid;
+                itemSaveData.ItemID = (int)item.ItemID;
+                itemSaveData.Count = (int)item.Count;
+                m_itemData._items[item.Guid] = itemSaveData;
             }
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
@@ -345,22 +394,30 @@ namespace OpenNGS.Systems
         }
         public bool RemoveItemsByID(uint nItemID, uint nCounts)
         {
-            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
-            if (itemData == null)
+            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
+            if (itemData == null || itemData.Count <= 0)
             {
                 return false;
             }
-            itemData.Count = (uint)Mathf.Max(0, (int)itemData.Count - (int)nCounts);
-            if(itemData.Count <= 0)
+            //从后往前删除共计nCounts个的该物品
+            for(int i = itemData.Count - 1; i >= 0 ; i--)
             {
-                //若物品为0,在动态数据与缓存链表中删去该物品
-                m_itemData._items.Remove(GetGuidByItemID(nItemID));
-                int index = ItemList.FindIndex(x => x.ItemID == nItemID);
-                ItemList.RemoveAt(index);
-            }
-            else
-            {
-                m_itemData._items[GetGuidByItemID(nItemID)].Count = (int)itemData.Count;
+                //该格子物品数量未达到nCounts
+                if ((int)nCounts - (int)itemData[i].Count >= 0)
+                {
+                    //若物品为0,在动态数据与缓存链表中删去该物品
+                    nCounts -= itemData[i].Count;
+                    guid_free.Enqueue(itemData[i].Guid);//Guid空闲出来后放入队列
+                    m_itemData._items.Remove(itemData[i].Guid);
+                    int index = ItemList.FindLastIndex(x => x.ItemID == nItemID);
+                    ItemList.RemoveAt(index);
+                }
+                else
+                {
+                    itemData[i].Count = itemData[i].Count - nCounts;
+                    m_itemData._items[itemData[i].Guid].Count = (int)itemData[i].Count;
+                    break;
+                }
             }
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
@@ -375,12 +432,15 @@ namespace OpenNGS.Systems
                 return false;
             }
             itemData.Count = (uint)Mathf.Max(0, (int)itemData.Count - (int)nCounts);
+            //物品移除后无剩余
             if (itemData.Count <= 0)
             {
+                guid_free.Enqueue(nGuid);//Guid空闲出来后放入队列
                 m_itemData._items.Remove(nGuid);
                 int index = ItemList.FindIndex(x => x.Guid == nGuid);
                 ItemList.RemoveAt(index);
             }
+            //物品移除后有剩余
             else
             {
                 m_itemData._items[nGuid].Count = (int)itemData.Count;
@@ -391,12 +451,12 @@ namespace OpenNGS.Systems
         }
         public uint GetGuidByItemID(uint nItemID)
         {
-            OpenNGS.Item.Common.ItemData itemData = GetItemDataByItemId(nItemID);
-            if (itemData == null)
+            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
+            if (itemData != null && itemData.Count > 0)
             {
                 return 0;
             }
-            return itemData.Guid;
+            return itemData[0].Guid;
         }
         public uint GetItemCountByGuidID(uint nGuid)
         {
@@ -410,12 +470,12 @@ namespace OpenNGS.Systems
 
         public bool UseItem(uint nGuid)
         {
-            OpenNGS.Item.Common.ItemData itemData = GetItemDataByGuid(nGuid);
-            if(itemData == null)
+            if(!IsEnoughByGuid(nGuid, 1))
             {
                 return false;
             }
-            return itemData.Count > 0;
+            RemoveItemsByGuid(nGuid, 1);
+            return true;
         }
         public DisassembleEquipIno GetDisassembleEquipIno(uint itemId)
         {

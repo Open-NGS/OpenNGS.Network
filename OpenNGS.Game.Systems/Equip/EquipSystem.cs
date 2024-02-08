@@ -111,7 +111,7 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
             if (EquipItems[(int)i].ItemID == EquipIDs[j])
             {
                 j++;
-                SuitEquips.Add(m_itemSys.GetItemDataByItemId(EquipIDs[i]));
+                //SuitEquips.Add(m_itemSys.GetItemDataByItemId(EquipIDs[i]));
             }
         }
         if (EquipIDs.Length == SuitEquips.Count)
