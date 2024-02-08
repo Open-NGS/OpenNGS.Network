@@ -331,7 +331,7 @@ namespace OpenNGS.Systems
                     {
                         uint volumn = NGSStaticData.items.GetItem(nItemID).StackMax - itemData[i].Count;
                         //该格子装不下
-                        if (nCounts - volumn >= 0)
+                        if ((int)nCounts - (int)volumn >= 0)
                         {
                             itemData[i].Count = NGSStaticData.items.GetItem(nItemID).StackMax;
                             m_itemData._items[itemData[i].Guid].Count = (int)NGSStaticData.items.GetItem(nItemID).StackMax;
