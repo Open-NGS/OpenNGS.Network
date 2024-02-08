@@ -172,6 +172,7 @@ namespace OpenNGS.Systems
                 m_technologyData.nodesSaveData[key].level = 0;
                 m_technologyData.nodesSaveData[key].activated = false;
                 m_technologyData.nodesSaveData[key].locked = tNode.ParentNode != 0;
+                m_itemSystem.RemoveItemsByID(key, 1);
             }
             if(tNode == null)
             {
