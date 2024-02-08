@@ -342,7 +342,8 @@ namespace OpenNGS.Systems
                         {
                             itemData[i].Count += nCounts;
                             m_itemData._items[itemData[i].Guid].Count += (int)nCounts;
-                            nCounts -= volumn;
+                            nCounts = 0;
+                            break;
                         }
                     }
                     if (nCounts <= 0)
@@ -454,9 +455,9 @@ namespace OpenNGS.Systems
             List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
             if (itemData != null && itemData.Count > 0)
             {
-                return 0;
+                return itemData[0].Guid;
             }
-            return itemData[0].Guid;
+            return 0;
         }
         public uint GetItemCountByGuidID(uint nGuid)
         {
