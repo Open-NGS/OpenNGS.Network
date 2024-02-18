@@ -22,5 +22,13 @@ namespace OpenNGS.UI
                 }
             }
         }
+
+        public void CloseSelectTab()
+        {
+            for (int i = 0; i < tabPages.Length; i++)
+            {
+                tabPages[i].SetActive(false);
+            }
+        }
     }
 }
