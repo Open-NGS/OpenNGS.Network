@@ -72,18 +72,16 @@ namespace OpenNGS.Systems
         //获取道具信息(通过GUID)
         public OpenNGS.Item.Common.ItemData GetItemDataByGuid(ulong uid)
         {
-            foreach(ItemSaveData itemData in m_itemData._items.Values)
+            ItemSaveData itemData = m_itemData._items[(long)uid];
+            if(itemData == null)
             {
-                if((ulong)itemData.GUID == uid)
-                {
-                    OpenNGS.Item.Common.ItemData item = new ItemData();
-                    item.Guid = (uint)itemData.GUID;
-                    item.ItemID = (uint)itemData.ItemID;
-                    item.Count = (uint)itemData.Count;
-                    return item;
-                }
+                return null;
             }
-            return null;
+            OpenNGS.Item.Common.ItemData item = new ItemData();
+            item.ItemID = (uint)itemData.ItemID;
+            item.Guid = (uint)itemData.GUID;
+            item.Count = (uint)itemData.Count;
+            return item;
         }
 
         //获取道具信息(通过itemID)
@@ -429,8 +427,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    itemData[i].Count = itemData[i].Count - nCounts;
-                    m_itemData._items[itemData[i].Guid].Count = (int)itemData[i].Count;
+                    m_itemData._items[itemData[i].Guid].Count = (int)(itemData[i].Count - nCounts);
                     break;
                 }
             }
@@ -456,7 +453,7 @@ namespace OpenNGS.Systems
             //物品移除后有剩余
             else
             {
-                m_itemData._items[nGuid].Count = (int)itemData.Count;
+                m_itemData._items[nGuid].Count = (int)(itemData.Count - nCounts);
             }
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
