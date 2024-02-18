@@ -83,10 +83,10 @@ namespace OpenNGS.Systems
             List<SourceItem> sourceItems = new List<SourceItem>();
             List<TargetItem> targetItems = new List<TargetItem>();
 
-            uint id = m_itemSys.GetGuidByItemID(good.PriceItemID);
+            uint id = m_itemSys.GetGuidByItemID(good.CurrencyId);
             SourceItem sourceItem = new SourceItem();
             sourceItem.GUID = id;
-            sourceItem.Count = good.PriceItemCount * item.ShopItemCount;
+            sourceItem.Count = good.CurrencyCounts * item.ShopItemCount;
             sourceItems.Add(sourceItem);
 
             TargetItem targetItem = new TargetItem();

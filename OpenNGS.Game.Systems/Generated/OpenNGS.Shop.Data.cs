@@ -184,10 +184,10 @@ namespace OpenNGS.Shop.Data
         public uint ShelfId { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        public uint PriceItemID { get; set; }
+        public uint CurrencyId { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
-        public uint PriceItemCount { get; set; }
+        public uint CurrencyCounts { get; set; }
 
         [global::ProtoBuf.ProtoMember(10)]
         public uint DiscountPrice { get; set; }
