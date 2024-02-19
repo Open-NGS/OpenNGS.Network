@@ -3,6 +3,7 @@ using OpenNGS.Item.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OpenNGS.Item.Common;
 
 namespace OpenNGS.Systems
 {
@@ -28,10 +29,10 @@ namespace OpenNGS.Systems
         public MakeDesign GetItemByItmes(uint itemId);
         public DisassembleEquipIno GetDisassembleEquipIno(uint itemId);
         //穿装备
-        public bool Equipped(uint nGuid);
+        public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //脱装备
-        public bool Unequipped(uint nGuid);
-        public List<OpenNGS.Item.Common.ItemData> GetEquippedList();
+        public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
+        public Dictionary<uint, ItemData> GetEquippedList();
     }
 
 }

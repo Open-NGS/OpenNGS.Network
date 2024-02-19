@@ -126,6 +126,14 @@ namespace OpenNGS.Item.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public enum EQUIP_RESULT_TYPE
+    {
+        EQUIP_RESULT_TYPE_NONE = 0,
+        EQUIP_RESULT_TYPE_SUCCESS = 1,
+        EQUIP_RESULT_TYPE_ERROR = 2,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ItemData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;

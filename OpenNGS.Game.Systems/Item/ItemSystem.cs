@@ -32,7 +32,7 @@ namespace OpenNGS.Systems
         private Queue<uint> guid_free = new Queue<uint>();
 
         //已穿上的装备
-        public List<ItemData> equipped = new List<ItemData>();
+        public Dictionary<uint,ItemData> equipped = new Dictionary<uint,ItemData>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -75,15 +75,15 @@ namespace OpenNGS.Systems
         //获取道具信息(通过GUID)
         public OpenNGS.Item.Common.ItemData GetItemDataByGuid(ulong uid)
         {
-            ItemSaveData itemData = m_itemData._items[(long)uid];
-            if(itemData == null)
+            ItemSaveData itemData;
+            if(m_itemData._items.TryGetValue((long)uid,out itemData))
             {
                 return null;
             }
             OpenNGS.Item.Common.ItemData item = new ItemData();
-            item.ItemID = (uint)itemData.ItemID;
-            item.Guid = (uint)itemData.GUID;
-            item.Count = (uint)itemData.Count;
+            item.ItemID = itemData.ItemID;
+            item.Guid = itemData.GUID;
+            item.Count = itemData.Count;
             return item;
         }
 
@@ -518,22 +518,27 @@ namespace OpenNGS.Systems
             return disassembleInfo;
         }
 
-        public bool Equipped(uint nGuid)
+        public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index,uint nGuid)
         {
-            if (!IsEnoughByGuid(nGuid, 1))
+            if (equipped.ContainsKey(index))
             {
-                return false;
+                equipped[index] = GetItemDataByGuid(nGuid);
+                return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            equipped.Add(GetItemDataByGuid(nGuid));
-            return true;
+            return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
-        public bool Unequipped(uint nGuid)
+        public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index)
         {
-            return equipped.Remove(GetItemDataByGuid(nGuid));
+            if(!equipped.ContainsKey(index))
+            {
+                return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
+            }
+            equipped.Remove(index);
+            return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
-        public List<ItemData> GetEquippedList()
+        public Dictionary<uint, ItemData> GetEquippedList()
         {
             return equipped;
         }
