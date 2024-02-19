@@ -126,6 +126,29 @@ namespace OpenNGS.Systems
             });
             return itemInfos;
         }
+
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfosInBag()
+        {
+            List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();
+            foreach(ItemSaveData itemInfo in m_itemData._items.Values)
+            {
+                if (NGSStaticData.items.GetItem(itemInfo.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
+                {
+                    ItemData itemData = new ItemData();
+                    itemData.ItemID = itemInfo.ItemID;
+                    itemData.Guid = itemInfo.GUID;
+                    itemData.Count = itemInfo.Count;
+                    itemInfos.Add(itemData);
+                }
+            }
+            //放回某类物品前排序,避免物品混乱
+            itemInfos.Sort((a, b) =>
+            {
+                return (int)(a.ItemID - b.ItemID);
+            });
+            return itemInfos;
+        }
+
         //获取道具放置数量
         public long GetItemPlaceCount(ulong itemGuid)
         {
