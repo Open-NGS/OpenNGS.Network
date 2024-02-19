@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Technology.Common;
 using OpenNGS.Technology.Data;
+using Dynamic.Data;
 
 namespace OpenNGS.Systems
 {
@@ -15,7 +16,7 @@ namespace OpenNGS.Systems
         //UI层初始化获取科技技能数据
         public Dictionary<uint, NodeData> GetNodes(int treeCount);
         //获取技能状态数据
-        public TechnologyNodeSaveData GetNodeSaveData(uint id);
+        public TechNodeSaveData GetNodeSaveData(uint id);
 
         //升级科技点
         public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint id);

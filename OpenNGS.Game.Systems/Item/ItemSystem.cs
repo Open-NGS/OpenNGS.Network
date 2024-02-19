@@ -8,6 +8,7 @@ using OpenNGS.Item.Data;
 using OpenNGS.Item.Common;
 using OpenNGS.Suit.Data;
 using Systems;
+using Dynamic.Data;
 
 namespace OpenNGS.Systems
 {
@@ -349,14 +350,14 @@ namespace OpenNGS.Systems
                         if ((int)nCounts - (int)volumn >= 0)
                         {
                             itemData[i].Count = NGSStaticData.items.GetItem(nItemID).StackMax;
-                            m_itemData._items[itemData[i].Guid].Count = (int)NGSStaticData.items.GetItem(nItemID).StackMax;
+                            m_itemData._items[itemData[i].Guid].Count = NGSStaticData.items.GetItem(nItemID).StackMax;
                             nCounts -= volumn;
                         }
                         //该格子能装下
                         else
                         {
                             itemData[i].Count += nCounts;
-                            m_itemData._items[itemData[i].Guid].Count += (int)nCounts;
+                            m_itemData._items[itemData[i].Guid].Count += nCounts;
                             nCounts = 0;
                             break;
                         }
@@ -399,8 +400,8 @@ namespace OpenNGS.Systems
                 //添加到动态数据
                 ItemSaveData itemSaveData = new ItemSaveData();
                 itemSaveData.GUID = item.Guid;
-                itemSaveData.ItemID = (int)item.ItemID;
-                itemSaveData.Count = (int)item.Count;
+                itemSaveData.ItemID = item.ItemID;
+                itemSaveData.Count = item.Count;
                 m_itemData._items[item.Guid] = itemSaveData;
             }
             //更新动态数据
@@ -427,7 +428,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    m_itemData._items[itemData[i].Guid].Count = (int)(itemData[i].Count - nCounts);
+                    m_itemData._items[itemData[i].Guid].Count = itemData[i].Count - nCounts;
                     break;
                 }
             }
@@ -453,7 +454,7 @@ namespace OpenNGS.Systems
             //物品移除后有剩余
             else
             {
-                m_itemData._items[nGuid].Count = (int)(itemData.Count - nCounts);
+                m_itemData._items[nGuid].Count = itemData.Count - nCounts;
             }
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
