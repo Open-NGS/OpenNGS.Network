@@ -24,6 +24,11 @@ namespace OpenNGS.Systems
         public SuitData GetSuitData(uint suitID);
         public MakeDesign GetItemByItmes(uint itemId);
         public DisassembleEquipIno GetDisassembleEquipIno(uint itemId);
+        //穿装备
+        public bool Equipped(uint nGuid);
+        //脱装备
+        public bool Unequipped(uint nGuid);
+        public List<OpenNGS.Item.Common.ItemData> GetEquippedList();
     }
 
 }

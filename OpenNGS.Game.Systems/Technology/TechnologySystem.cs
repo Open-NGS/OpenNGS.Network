@@ -83,13 +83,13 @@ namespace OpenNGS.Systems
                     m_technologyData.nodesSaveData[id] = data_tmp;
 
                     technologyNodes[nodeData.ID] = nodeData;
-                    if (nodeData.SonNode == null)
+                    if (nodeData.ChildNodes == null)
                     {
                         continue;
                     }
-                    for (int j = 0; j < nodeData.SonNode.Length; j++)
+                    for (int j = 0; j < nodeData.ChildNodes.Length; j++)
                     {
-                        queue.Enqueue(nodeData.SonNode[j]);
+                        queue.Enqueue(nodeData.ChildNodes[j]);
                     }
                 }
             }
@@ -141,11 +141,11 @@ namespace OpenNGS.Systems
             //设置对应科技技能状态和解锁子技能
             m_technologyData.nodesSaveData[technologyNodeID].Level++;
             m_technologyData.nodesSaveData[technologyNodeID].Activated = true;
-            if (tNode.SonNode != null)
+            if (tNode.ChildNodes != null)
             {
-                for (int i = 0; i < tNode.SonNode.Length; i++)
+                for (int i = 0; i < tNode.ChildNodes.Length; i++)
                 {
-                    m_technologyData.nodesSaveData[tNode.SonNode[i]].Locked = false;
+                    m_technologyData.nodesSaveData[tNode.ChildNodes[i]].Locked = false;
                 }
             }
 

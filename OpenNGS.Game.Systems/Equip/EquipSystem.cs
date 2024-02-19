@@ -38,30 +38,30 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
         CraftInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_CRAFT);//获得材料库存数据
     }
 
-    /// <summary>
-    /// 使用装备
-    /// </summary>
-    /// <param name="GridIndex">格子ID</param>
-    public void EquipItem(uint GridIndex)
-    {
-        EquipItems.Add(EquipInventory[(int)GridIndex]);
-    }
+    ///// <summary>
+    ///// 使用装备
+    ///// </summary>
+    ///// <param name="GridIndex">格子ID</param>
+    //public void EquipItem(uint GridIndex)
+    //{
+    //    EquipItems.Add(EquipInventory[(int)GridIndex]);
+    //}
 
-    /// <summary>
-    /// 卸下装备
-    /// </summary>
-    /// <param name="GridIndex">格子ID</param>
-    /// <returns></returns>
-    public bool UnEquipItem(uint GridIndex)
-    {
-        return EquipItems.Remove(EquipItems[(int)GridIndex]);
+    ///// <summary>
+    ///// 卸下装备
+    ///// </summary>
+    ///// <param name="GridIndex">格子ID</param>
+    ///// <returns></returns>
+    //public bool UnEquipItem(uint GridIndex)
+    //{
+    //    return EquipItems.Remove(EquipItems[(int)GridIndex]);
 
-    }
+    //}
 
-    public List<OpenNGS.Item.Common.ItemData> GetEquipList()//获得当前装备列表
-    {
-        return EquipItems;
-    }
+    //public List<OpenNGS.Item.Common.ItemData> GetEquipList()//获得当前装备列表
+    //{
+    //    return EquipItems;
+    //}
 
  
 

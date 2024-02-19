@@ -19,8 +19,6 @@ namespace OpenNGS.Technology.Data
         }
         public NodeData()
         {
-            Name = "";
-            Description = "";
             OnConstructor();
         }
 
@@ -30,8 +28,7 @@ namespace OpenNGS.Technology.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint CostItemID { get; set; }
@@ -43,8 +40,7 @@ namespace OpenNGS.Technology.Data
         public uint Level { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
         public bool Locked { get; set; }
@@ -53,7 +49,7 @@ namespace OpenNGS.Technology.Data
         public bool Activated { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, IsPacked = true)]
-        public uint[] SonNode { get; set; }
+        public uint[] ChildNodes { get; set; }
 
         [global::ProtoBuf.ProtoMember(10)]
         public uint ParentNode { get; set; }

@@ -19,7 +19,6 @@ namespace OpenNGS.Systems
 
         public Dictionary<ulong, long> TempPlaceDic = new Dictionary<ulong, long>();
         public Dictionary<ulong, long> EternalPlaceDic = new Dictionary<ulong, long>();
-
         private bool m_IsCreate;
         public List<int> m_Filters = new() { 0, 1, 2, 3 };
 
@@ -31,6 +30,9 @@ namespace OpenNGS.Systems
 
         private uint guid_cache = 1;
         private Queue<uint> guid_free = new Queue<uint>();
+
+        //已穿上的装备
+        public List<ItemData> equipped = new List<ItemData>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -337,7 +339,7 @@ namespace OpenNGS.Systems
         public bool AddItemsByID(uint nItemID, uint nCounts)
         {
             List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
-            //新添加的物品
+            //已获得过的物品
             if (itemData != null && itemData.Count > 0)
             {
                 //先查找背包可堆叠的空位
@@ -428,7 +430,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    m_itemData._items[itemData[i].Guid].Count = itemData[i].Count - nCounts;
+                    m_itemData._items[itemData[i].Guid].Count = (itemData[i].Count - nCounts);
                     break;
                 }
             }
@@ -454,7 +456,7 @@ namespace OpenNGS.Systems
             //物品移除后有剩余
             else
             {
-                m_itemData._items[nGuid].Count = itemData.Count - nCounts;
+                m_itemData._items[nGuid].Count = (itemData.Count - nCounts);
             }
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
@@ -491,6 +493,26 @@ namespace OpenNGS.Systems
         {
             DisassembleEquipIno disassembleInfo = new DisassembleEquipIno();
             return disassembleInfo;
+        }
+
+        public bool Equipped(uint nGuid)
+        {
+            if (!IsEnoughByGuid(nGuid, 1))
+            {
+                return false;
+            }
+            equipped.Add(GetItemDataByGuid(nGuid));
+            return true;
+        }
+
+        public bool Unequipped(uint nGuid)
+        {
+            return equipped.Remove(GetItemDataByGuid(nGuid));
+        }
+
+        public List<ItemData> GetEquippedList()
+        {
+            return equipped;
         }
     }
 
