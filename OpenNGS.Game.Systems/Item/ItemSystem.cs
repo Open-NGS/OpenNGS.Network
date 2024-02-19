@@ -76,7 +76,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.ItemData GetItemDataByGuid(ulong uid)
         {
             ItemSaveData itemData;
-            if(m_itemData._items.TryGetValue((long)uid,out itemData))
+            if(!m_itemData._items.TryGetValue((long)uid,out itemData))
             {
                 return null;
             }
