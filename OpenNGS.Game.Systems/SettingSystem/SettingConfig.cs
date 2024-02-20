@@ -186,7 +186,7 @@ public class SettingConfig :GameSubSystem<SettingConfig>
     {
         for (int i = 0; i < audio.Count; i++)
         {
-            if (audio[i].AduioType == _TYPE)
+            //if (audio[i].AduioType == _TYPE)
                return audio[i];
         }
         return null;

@@ -157,7 +157,7 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Setting.Common.ADUIO_TYPE AduioType { get; set; }
+        public global::OpenNGS.Core.NGSText AduioName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint Value { get; set; }
@@ -248,7 +248,7 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Core.NGSText languageType { get; set; }
+        public global::OpenNGS.Core.NGSText languageName { get; set; }
 
     }
 
