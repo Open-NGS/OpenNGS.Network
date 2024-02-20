@@ -21,6 +21,8 @@ namespace OpenNGS.Systems
         public SaveFileData_Dialog dialogData;
         [global::ProtoBuf.ProtoMember(5)]
         public SaveFileData_Technology technologyData;
+        [global::ProtoBuf.ProtoMember(6)]
+        public SaveFileData_Stat statData;
         public void Init()
         {
             saveItems = new SaveFileData_Item();
@@ -28,6 +30,7 @@ namespace OpenNGS.Systems
             charaInfos = new SaveFileData_Character();
             dialogData = new SaveFileData_Dialog();
             technologyData = new SaveFileData_Technology();
+            statData = new SaveFileData_Stat();
         }
 
         public void MigrateToVersion(int i)

@@ -19,6 +19,7 @@ namespace OpenNGS.Systems
         public static string SAVE_DIALOG_TAG = "DIALOG";
         public static string SAVE_TECHNOLOGY_TAG = "TECHNOLOGY";
         public static string SAVE_SETTING_TAG = "SETTING";
+        public static string SAVE_STAT_TAG = "STAT";
 
 
         protected override void OnCreate()
@@ -59,6 +60,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_CHARACTER_TAG] = saveData.charaInfos;
             saveInfo[SAVE_DIALOG_TAG] = saveData.dialogData;
             saveInfo[SAVE_TECHNOLOGY_TAG] = saveData.technologyData;
+            saveInfo[SAVE_STAT_TAG] = saveData.statData;
         }
 
         public void AddFile()
@@ -81,6 +83,7 @@ namespace OpenNGS.Systems
             SaveDataManager<SaveFileData>.Instance.Current.charaInfos = saveInfo[SAVE_CHARACTER_TAG] as SaveFileData_Character;
             SaveDataManager<SaveFileData>.Instance.Current.dialogData = saveInfo[SAVE_DIALOG_TAG] as SaveFileData_Dialog;
             SaveDataManager<SaveFileData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as SaveFileData_Technology;
+            SaveDataManager<SaveFileData>.Instance.Current.statData = saveInfo[SAVE_STAT_TAG] as SaveFileData_Stat;
             SaveDataManager<SaveFileData>.Instance.Save();
         }
         public void SettingSaveFile(ISaveInfo data)

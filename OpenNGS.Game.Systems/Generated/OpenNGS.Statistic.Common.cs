@@ -44,6 +44,14 @@ namespace OpenNGS.Statistic.Common
         STAT_EVENT_USE_ITEM = 1,
         STAT_EVENT_ADD_ITEM = 2,
         STAT_EVENT_SETTLE_MINIGAME = 3,
+        STAT_EVENT_LEVEL_TIME = 4,
+        STAT_EVENT_KILL_ENEMY_COUNTS = 5,
+        STAT_EVENT_UPGRADE_TECH = 6,
+        STAT_EVENT_UPGRADE_ITEM = 7,
+        STAT_EVENT_COLLECT_SUIT = 8,
+        STAT_EVENT_PUZZLE_PLAY = 9,
+        STAT_EVENT_PROCESS_MOVEON = 10,
+        STAT_EVENT_UI_CLICK = 11,
     }
 
     [global::ProtoBuf.ProtoContract()]
