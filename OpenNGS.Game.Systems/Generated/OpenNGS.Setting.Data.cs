@@ -19,8 +19,6 @@ namespace OpenNGS.Setting.Data
         }
         public GameSettingLabel()
         {
-            Name = "";
-            UIName = "";
             OnConstructor();
         }
 
@@ -30,12 +28,10 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string UIName { get; set; }
+        public global::OpenNGS.Core.NGSText UIName { get; set; }
 
     }
 
@@ -202,20 +198,16 @@ namespace OpenNGS.Setting.Data
         }
         public KeyControlSettingInfo()
         {
-            KeyName = "";
-            Key = "";
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string KeyName { get; set; }
+        public global::OpenNGS.Core.NGSText KeyName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Key { get; set; }
+        public global::OpenNGS.Core.NGSText Key { get; set; }
 
     }
 
@@ -256,7 +248,7 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Setting.Common.LANGUAGE_TYPE languageType { get; set; }
+        public global::OpenNGS.Core.NGSText languageType { get; set; }
 
     }
 
@@ -346,7 +338,6 @@ namespace OpenNGS.Setting.Data
         }
         public SoundPath()
         {
-            soundPath = "";
             OnConstructor();
         }
 
@@ -356,8 +347,7 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string soundPath { get; set; }
+        public global::OpenNGS.Core.NGSText soundPath { get; set; }
 
     }
 
@@ -392,7 +382,6 @@ namespace OpenNGS.Setting.Data
         }
         public MusicPath()
         {
-            musicPath = "";
             OnConstructor();
         }
 
@@ -402,8 +391,7 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string musicPath { get; set; }
+        public global::OpenNGS.Core.NGSText musicPath { get; set; }
 
     }
 

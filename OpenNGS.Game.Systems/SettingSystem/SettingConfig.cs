@@ -157,16 +157,16 @@ public class SettingConfig :GameSubSystem<SettingConfig>
             {
                 if(KeysList[i].KeyName == keyName)
                 {
-                    KeysList[i].KeyName = keyName;
-                    KeysList[i].Key = keyValue;
+                    //KeysList[i].KeyName = keyName;
+                    //KeysList[i].Key = keyValue;
                 }
             }
         }
         else
         {
             KeysCont = new KeyControlSettingInfo();
-            KeysCont.KeyName = keyName;
-            KeysCont.Key = keyValue;
+            //KeysCont.KeyName = keyName;
+            //KeysCont.Key = keyValue;
             KeysList.Add(KeysCont);
         }
         settingData.KeyControlInfo = KeysList;
