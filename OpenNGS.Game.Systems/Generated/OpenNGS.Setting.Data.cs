@@ -250,6 +250,9 @@ namespace OpenNGS.Setting.Data
         [global::ProtoBuf.ProtoMember(1)]
         public global::OpenNGS.Core.NGSText languageName { get; set; }
 
+        [global::ProtoBuf.ProtoMember(2)]
+        public bool Default { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
