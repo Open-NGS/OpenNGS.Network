@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace OpenNGS.Events
 {
@@ -26,7 +25,7 @@ namespace OpenNGS.Events
             {
                 if (temp != null && temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to add invalid type of eventhandler");
+                    //Debug.LogError("Try to add invalid type of eventhandler");
                     return;
                 }
 
@@ -48,7 +47,7 @@ namespace OpenNGS.Events
             {
                 if (temp != null && temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to add invalid type of eventhandler");
+                    //Debug.LogError("Try to add invalid type of eventhandler");
                     return;
                 }
 
@@ -69,7 +68,7 @@ namespace OpenNGS.Events
             {
                 if (temp != null && temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to add invalid type of eventhandler");
+                    //Debug.LogError("Try to add invalid type of eventhandler");
                     return;
                 }
 
@@ -90,7 +89,7 @@ namespace OpenNGS.Events
             {
                 if (temp != null && temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to add invalid type of eventhandler");
+                    //Debug.LogError("Try to add invalid type of eventhandler");
                     return;
                 }
 
@@ -111,7 +110,7 @@ namespace OpenNGS.Events
             {
                 if (temp != null && temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to add invalid type of eventhandler");
+                    //Debug.LogError("Try to add invalid type of eventhandler");
                     return;
                 }
 
@@ -138,7 +137,7 @@ namespace OpenNGS.Events
 
                 if (temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to remove invalid type of eventhandler");
+                    //Debug.LogError("Try to remove invalid type of eventhandler");
                     return;
                 }
 
@@ -159,7 +158,7 @@ namespace OpenNGS.Events
 
                 if (temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to remove invalid type of eventhandler");
+                    //Debug.LogError("Try to remove invalid type of eventhandler");
                     return;
                 }
 
@@ -180,7 +179,7 @@ namespace OpenNGS.Events
 
                 if (temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to remove invalid type of eventhandler");
+                    //Debug.LogError("Try to remove invalid type of eventhandler");
                     return;
                 }
 
@@ -201,7 +200,7 @@ namespace OpenNGS.Events
 
                 if (temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to remove invalid type of eventhandler");
+                    //Debug.LogError("Try to remove invalid type of eventhandler");
                     return;
                 }
 
@@ -222,7 +221,7 @@ namespace OpenNGS.Events
 
                 if (temp.GetType() != handler.GetType())
                 {
-                    Debug.LogError("Try to remove invalid type of eventhandler");
+                    //Debug.LogError("Try to remove invalid type of eventhandler");
                     return;
                 }
 
