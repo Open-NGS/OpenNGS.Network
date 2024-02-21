@@ -40,25 +40,31 @@ namespace OpenNGS.Technology.Data
         public uint Level { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public global::OpenNGS.Core.NGSText Description { get; set; }
+        public uint MaxLevel { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
-        public bool Locked { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
+        public bool Locked { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9)]
         public bool Activated { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(10, IsPacked = true)]
         public uint[] ChildNodes { get; set; }
 
-        [global::ProtoBuf.ProtoMember(10)]
-        public uint ParentNode { get; set; }
-
         [global::ProtoBuf.ProtoMember(11, IsPacked = true)]
+        public uint[] ParentNode { get; set; }
+
+        [global::ProtoBuf.ProtoMember(12, IsPacked = true)]
         public float[] CreatePos { get; set; }
 
-        [global::ProtoBuf.ProtoMember(12)]
+        [global::ProtoBuf.ProtoMember(13)]
         public uint TreeIndex { get; set; }
+
+        [global::ProtoBuf.ProtoMember(14)]
+        public uint Icon { get; set; }
 
     }
 
