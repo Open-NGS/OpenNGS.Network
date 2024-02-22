@@ -10,7 +10,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 {
     public GetSettingRsq OnGetSetting;
     private ISaveSystem m_saveSystem = null;
-    private SaveFileData_Setting _setting = null;
+    public SaveFileData_Setting _setting = null;
 
     protected override void OnCreate()
     {
