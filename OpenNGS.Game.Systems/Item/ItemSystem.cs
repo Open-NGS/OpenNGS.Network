@@ -132,6 +132,10 @@ namespace OpenNGS.Systems
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();
             foreach(ItemSaveData itemInfo in m_itemData._items.Values)
             {
+                if (equipped.ContainsValue(GetItemDataByGuid(itemInfo.GUID)))
+                {
+                    continue;
+                }
                 if (NGSStaticData.items.GetItem(itemInfo.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
                 {
                     ItemData itemData = new ItemData();
