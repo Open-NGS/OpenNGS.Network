@@ -31,7 +31,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
     public bool SettingInfo()
     {
-        if (_setting!= null)
+        if (_setting._audio.Count == 0)
         {
             return true;
         }
