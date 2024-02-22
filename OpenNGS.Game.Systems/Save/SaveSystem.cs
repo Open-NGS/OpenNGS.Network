@@ -18,10 +18,9 @@ namespace OpenNGS.Systems
         public static string SAVE_CHARACTER_TAG = "CHARACTER";
         public static string SAVE_DIALOG_TAG = "DIALOG";
         public static string SAVE_TECHNOLOGY_TAG = "TECHNOLOGY";
-        public static string SAVE_SETTING_TAG = "SETTING";
         public static string SAVE_STAT_TAG = "STAT";
 
-
+        public static string SAVE_SETTING_AUDIO = "AUDIO";
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -34,13 +33,14 @@ namespace OpenNGS.Systems
         }
 
         private Dictionary<string, ISaveInfo> saveInfo;
-
+        SaveFileData_Setting settingData;
         public void Init(int capture, int version)
         {
             PosixFileSystem fs = new PosixFileSystem();
             SaveDataManager<SaveFileData>.Instance.Init(fs, capture, version);
             SaveDataManager<SaveSettingData>.Instance.Init(fs, 1, version);
             saveInfo = new Dictionary<string, ISaveInfo>();
+            settingData = new SaveFileData_Setting();
 
             if (SaveDataManager<SaveFileData>.Instance.Current == null)
             {
@@ -53,7 +53,7 @@ namespace OpenNGS.Systems
         private void InitDicInfo()
         {
             SaveFileData saveData = SaveDataManager<SaveFileData>.Instance.Current;
-            SaveSettingData SettingData = SaveDataManager<SaveSettingData>.Instance.Current;
+            settingData = SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData;
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
@@ -62,7 +62,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_DIALOG_TAG] = saveData.dialogData;
             saveInfo[SAVE_TECHNOLOGY_TAG] = saveData.technologyData;
             saveInfo[SAVE_STAT_TAG] = saveData.statData;
-            saveInfo[SAVE_SETTING_TAG] = SettingData.settingSaveData;
+
         }
 
         public void AddFile()
@@ -88,9 +88,9 @@ namespace OpenNGS.Systems
             SaveDataManager<SaveFileData>.Instance.Current.statData = saveInfo[SAVE_STAT_TAG] as SaveFileData_Stat;
             SaveDataManager<SaveFileData>.Instance.Save();
         }
-        public void SettingSaveFile(ISaveInfo data)
+        public void SettingSaveFile()
         {
-            SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData = saveInfo[SAVE_SETTING_TAG] as SaveFileData_Setting;
+            SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData = settingData;
             SaveDataManager<SaveSettingData>.Instance.Save();
         }
 
@@ -116,6 +116,17 @@ namespace OpenNGS.Systems
             ISaveInfo data = null;
             if (!saveInfo.TryGetValue(name, out data)) return null;
             return data;
+        }
+
+        public void SetSettingData(ISaveInfo data)
+        {
+            if (data == null) return;
+            settingData = (SaveFileData_Setting)data;
+        }
+
+        public ISaveInfo GetSettingData()
+        {
+            return settingData;
         }
 
     
