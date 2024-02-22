@@ -69,9 +69,9 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
 
 
-    public void SetVertical(bool state)
+    public void SetVertical(VerticalSynchronizationData state)
     {
-        _setting._vertical.state = state;
+        _setting._vertical.state = state.state;
         m_saveSystem.SetFileData("SETTING", _setting);
     }
 

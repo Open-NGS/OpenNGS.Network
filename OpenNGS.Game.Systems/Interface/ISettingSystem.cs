@@ -22,7 +22,7 @@ namespace OpenNGS.Systems
         public Dictionary<string, LanguageData> GetLanguage();
         // 第一次保存
 
-        public void SetVertical(bool state);
+        public void SetVertical(VerticalSynchronizationData state);
         public void SetAudio(AudioSettinData audio);
         public void SetKeyControl(KeyControlSettingData keyControl);
         public void SetLanguage(LanguageData language);
