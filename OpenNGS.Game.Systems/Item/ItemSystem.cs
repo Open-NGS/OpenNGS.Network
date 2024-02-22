@@ -34,7 +34,7 @@ namespace OpenNGS.Systems
         private Queue<uint> guid_free = new Queue<uint>();
 
         //已穿上的装备
-        public Dictionary<uint,uint> equipped = new Dictionary<uint,uint>();
+        public Dictionary<uint,ItemData> equipped = new Dictionary<uint,ItemData>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -134,10 +134,6 @@ namespace OpenNGS.Systems
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();
             foreach(ItemSaveData itemInfo in m_itemData._items.Values)
             {
-                if (equipped.ContainsValue(itemInfo.GUID))
-                {
-                    continue;
-                }
                 if (NGSStaticData.items.GetItem(itemInfo.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
                 {
                     ItemData itemData = new ItemData();
@@ -530,7 +526,7 @@ namespace OpenNGS.Systems
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            equipped[index] = nGuid;
+            equipped[index] = GetItemDataByGuid(nGuid);
             EquipBoxChange?.Invoke(nGuid,GetItemDataByGuid(nGuid));
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
@@ -545,7 +541,7 @@ namespace OpenNGS.Systems
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
-        public Dictionary<uint, uint> GetEquippedList()
+        public Dictionary<uint, ItemData> GetEquippedList()
         {
             return equipped;
         }

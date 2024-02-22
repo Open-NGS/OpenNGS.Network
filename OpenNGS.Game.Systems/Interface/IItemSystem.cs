@@ -33,7 +33,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //ÍÑ×°±¸
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
-        public Dictionary<uint, uint> GetEquippedList();
+        public Dictionary<uint, ItemData> GetEquippedList();
     }
 
 }
