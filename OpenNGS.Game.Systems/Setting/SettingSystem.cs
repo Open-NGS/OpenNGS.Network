@@ -27,10 +27,6 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
         {
             _setting = (SaveFileData_Setting)saveInfo;
         }
-        else
-        {
-            _setting = new SaveFileData_Setting();
-        }
     }
 
     public bool SettingInfo()
@@ -39,6 +35,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
         {
             return true;
         }
+        _setting = new SaveFileData_Setting();
         return false;
     }
 
