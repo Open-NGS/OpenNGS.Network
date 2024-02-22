@@ -16,6 +16,8 @@ namespace OpenNGS.Systems
     {
         public Action OnNotifyItemListChange;
         public Action OnPlacementChange;
+        public Action<uint, ItemData> BagBoxChange;
+        public Action<uint, ItemData> EquipBoxChange;
 
         public Dictionary<ulong, long> TempPlaceDic = new Dictionary<ulong, long>();
         public Dictionary<ulong, long> EternalPlaceDic = new Dictionary<ulong, long>();
@@ -32,7 +34,7 @@ namespace OpenNGS.Systems
         private Queue<uint> guid_free = new Queue<uint>();
 
         //已穿上的装备
-        public Dictionary<uint,ItemData> equipped = new Dictionary<uint,ItemData>();
+        public Dictionary<uint,uint> equipped = new Dictionary<uint,uint>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -132,7 +134,7 @@ namespace OpenNGS.Systems
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();
             foreach(ItemSaveData itemInfo in m_itemData._items.Values)
             {
-                if (equipped.ContainsValue(GetItemDataByGuid(itemInfo.GUID)))
+                if (equipped.ContainsValue(itemInfo.GUID))
                 {
                     continue;
                 }
@@ -528,7 +530,8 @@ namespace OpenNGS.Systems
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            equipped[index] = GetItemDataByGuid(nGuid);
+            equipped[index] = nGuid;
+            EquipBoxChange?.Invoke(nGuid,GetItemDataByGuid(nGuid));
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
@@ -542,7 +545,7 @@ namespace OpenNGS.Systems
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
-        public Dictionary<uint, ItemData> GetEquippedList()
+        public Dictionary<uint, uint> GetEquippedList()
         {
             return equipped;
         }

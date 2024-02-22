@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Item.Common;
+using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
@@ -32,7 +33,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //ÍÑ×°±¸
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
-        public Dictionary<uint, ItemData> GetEquippedList();
+        public Dictionary<uint, uint> GetEquippedList();
     }
 
 }
