@@ -520,11 +520,11 @@ namespace OpenNGS.Systems
 
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index,uint nGuid)
         {
-            if (equipped.ContainsKey(index))
+            if (equipped.ContainsKey(index) || !IsEnoughByGuid(nGuid,1))
             {
-                equipped[index] = GetItemDataByGuid(nGuid);
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
+            equipped[index] = GetItemDataByGuid(nGuid);
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
