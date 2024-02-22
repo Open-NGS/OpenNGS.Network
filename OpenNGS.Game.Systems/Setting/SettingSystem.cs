@@ -35,7 +35,11 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
     public bool SettingInfo()
     {
-        return _setting != null;
+        if (_setting!= null)
+        {
+            return true;
+        }
+        return false;
     }
 
     // ´¹Ö±Í¬²½
