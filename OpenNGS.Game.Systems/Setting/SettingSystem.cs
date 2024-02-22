@@ -91,7 +91,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     }
     public void SetKeyControl(KeyControlSettingData keyControl)
     {
-        if (_setting._keyControl.ContainsValue(keyControl))
+        if (_setting._keyControl.ContainsKey(keyControl.KeyName))
         {
             _setting._keyControl[keyControl.KeyName] = keyControl;
         }
