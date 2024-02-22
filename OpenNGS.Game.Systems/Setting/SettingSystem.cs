@@ -33,6 +33,11 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
         }
     }
 
+    public bool SettingInfo()
+    {
+        return _setting != null;
+    }
+
     // ´¹Ö±Í¬²½
     public VerticalSynchronizationData GetFrames()
     {

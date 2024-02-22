@@ -11,6 +11,7 @@ namespace OpenNGS.Systems
 {
     public interface ISettingSystem
     {
+        public bool SettingInfo();
         //获得画面数据
         public VerticalSynchronizationData GetFrames();
     // 获得音频数据
