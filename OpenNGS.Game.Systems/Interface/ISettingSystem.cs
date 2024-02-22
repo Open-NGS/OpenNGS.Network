@@ -20,7 +20,8 @@ namespace OpenNGS.Systems
         public Dictionary<string, KeyControlSettingData> GetKeyControl();
     // 获得语言数据
         public Dictionary<string, LanguageData> GetLanguage();
-
+        // 第一次保存
+        public void SaveFirst(VerticalSynchronizationData verticals, Dictionary<string, AudioSettinData> Audios, Dictionary<string, KeyControlSettingData> keyControls, Dictionary<string, LanguageData> languages, ResolutionRatiosData resolutions);
         public void SetFrames(bool state);
         public void SetAudio(string name, int value, bool state);
         public void SetKeyControl(string name, string key);
