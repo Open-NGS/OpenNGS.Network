@@ -75,7 +75,19 @@ namespace OpenNGS.Setting.Data
         public global::OpenNGS.Setting.Common.RESULT_TYPE Result { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public SettingInfo SettingInfo { get; set; }
+        public VerticalSynchronization Vertical { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public AudioSettingInfo Audio { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public KeyControlSettingInfo KeyControl { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public Language Languages { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public ResolutionRatios ScreenView { get; set; }
 
     }
 
@@ -101,14 +113,14 @@ namespace OpenNGS.Setting.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class FramesInfo : global::ProtoBuf.IExtensible
+    public partial class VerticalSynchronization : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public FramesInfo()
+        public VerticalSynchronization()
         {
             OnConstructor();
         }
@@ -116,28 +128,31 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public bool VerticalSynchronization { get; set; }
+        public global::OpenNGS.Core.NGSText VerName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public bool state { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class FramesInfoArray : global::ProtoBuf.IExtensible
+    public partial class VerticalSynchronizationArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public FramesInfoArray()
+        public VerticalSynchronizationArray()
         {
-            items = new global::System.Collections.Generic.List<FramesInfo>();
+            items = new global::System.Collections.Generic.List<VerticalSynchronization>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<FramesInfo> items { get; private set; }
+        public global::System.Collections.Generic.List<VerticalSynchronization> items { get; private set; }
 
     }
 
@@ -277,145 +292,46 @@ namespace OpenNGS.Setting.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class SettingInfo : global::ProtoBuf.IExtensible
+    public partial class ResolutionRatios : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public SettingInfo()
+        public ResolutionRatios()
         {
-            audioSettingInfo = new global::System.Collections.Generic.List<AudioSettingInfo>();
-            keyControlSettingInfo = new global::System.Collections.Generic.List<KeyControlSettingInfo>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<AudioSettingInfo> audioSettingInfo { get; private set; }
+        public global::OpenNGS.Core.NGSText ResName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<KeyControlSettingInfo> keyControlSettingInfo { get; private set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public FramesInfo FramesInfo { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public Language language { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE ResolutionRatios { get; set; }
+        public global::OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE ResType { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class SettingInfoArray : global::ProtoBuf.IExtensible
+    public partial class ResolutionRatiosArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public SettingInfoArray()
+        public ResolutionRatiosArray()
         {
-            items = new global::System.Collections.Generic.List<SettingInfo>();
+            items = new global::System.Collections.Generic.List<ResolutionRatios>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<SettingInfo> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SoundPath : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public SoundPath()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText soundPath { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SoundPathArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public SoundPathArray()
-        {
-            items = new global::System.Collections.Generic.List<SoundPath>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<SoundPath> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class MusicPath : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public MusicPath()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText musicPath { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class MusicPathArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public MusicPathArray()
-        {
-            items = new global::System.Collections.Generic.List<MusicPath>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<MusicPath> items { get; private set; }
+        public global::System.Collections.Generic.List<ResolutionRatios> items { get; private set; }
 
     }
 

@@ -39,7 +39,7 @@ namespace OpenNGS.Systems
         {
             PosixFileSystem fs = new PosixFileSystem();
             SaveDataManager<SaveFileData>.Instance.Init(fs, capture, version);
-            SaveDataManager<SettingData>.Instance.Init(fs, 1, version);
+            SaveDataManager<SaveSettingData>.Instance.Init(fs, 1, version);
             saveInfo = new Dictionary<string, ISaveInfo>();
 
             if (SaveDataManager<SaveFileData>.Instance.Current == null)
@@ -53,6 +53,7 @@ namespace OpenNGS.Systems
         private void InitDicInfo()
         {
             SaveFileData saveData = SaveDataManager<SaveFileData>.Instance.Current;
+            SaveSettingData SettingData = SaveDataManager<SaveSettingData>.Instance.Current;
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
@@ -61,6 +62,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_DIALOG_TAG] = saveData.dialogData;
             saveInfo[SAVE_TECHNOLOGY_TAG] = saveData.technologyData;
             saveInfo[SAVE_STAT_TAG] = saveData.statData;
+            saveInfo[SAVE_SETTING_TAG] = SettingData.settingSaveData;
         }
 
         public void AddFile()
@@ -88,8 +90,8 @@ namespace OpenNGS.Systems
         }
         public void SettingSaveFile(ISaveInfo data)
         {
-            SaveDataManager<SettingData>.Instance.Current.settingSaveData = saveInfo[SAVE_SETTING_TAG] as SettingSaveData;
-            SaveDataManager<SaveFileData>.Instance.Save();
+            SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData = saveInfo[SAVE_SETTING_TAG] as SaveFileData_Setting;
+            SaveDataManager<SaveSettingData>.Instance.Save();
         }
 
         public bool ChangeFile(int targeIndex)

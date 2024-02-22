@@ -42,27 +42,6 @@ namespace Dynamic.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ItemSaveDataArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ItemSaveDataArray()
-        {
-            items = new global::System.Collections.Generic.List<ItemSaveData>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ItemSaveData> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class RankSaveData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -85,27 +64,6 @@ namespace Dynamic.Data
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint ClearTime { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class RankSaveDataArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public RankSaveDataArray()
-        {
-            items = new global::System.Collections.Generic.List<RankSaveData>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<RankSaveData> items { get; private set; }
 
     }
 
@@ -155,6 +113,136 @@ namespace Dynamic.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public uint DialogID { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class VerticalSynchronizationData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public VerticalSynchronizationData()
+        {
+            FramesName = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string FramesName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public bool state { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AudioSettinData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AudioSettinData()
+        {
+            AduioName = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AduioName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Value { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public bool Switch { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class KeyControlSettingData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public KeyControlSettingData()
+        {
+            KeyName = "";
+            Key = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string KeyName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Key { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class LanguageData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public LanguageData()
+        {
+            languageName = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string languageName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public bool Default { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ResolutionRatiosData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ResolutionRatiosData()
+        {
+            ResName = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ResName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE ResType { get; set; }
 
     }
 

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 [global::ProtoBuf.ProtoContract()]
 
-public class SettingData : ISaveEntity
+public class SaveSettingData : ISaveEntity
 {
     [global::ProtoBuf.ProtoMember(1)]
-    public SettingSaveData settingSaveData;
+    public SaveFileData_Setting settingSaveData;
   
     public void Init()
     {
-        settingSaveData = new SettingSaveData();
+        settingSaveData = new SaveFileData_Setting();
     }
 
     public void MigrateToVersion(int i)

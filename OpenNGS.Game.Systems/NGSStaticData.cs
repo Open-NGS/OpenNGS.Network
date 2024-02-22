@@ -16,7 +16,6 @@ namespace OpenNGS.Systems
         //public static Table<OpenNGS.Make.Data.ItemInfo, uint> items = new Table<OpenNGS.Make.Data.ItemInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.MakeInfo, uint> makes = new Table<OpenNGS.Make.Data.MakeInfo, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.ShopSell, uint, uint> sells = new Table<OpenNGS.Shop.Data.ShopSell, uint, uint>((item) => { return item.ShopID; }, (item) => { return item.ItemID; }, false);
-        public static Dictionary<uint, OpenNGS.Setting.Data.SettingInfo> setting = SettingTable<OpenNGS.Setting.Data.SettingInfo,uint>.map;
         public static Table<OpenNGS.Statistic.Data.StatData,uint> s_statDatas = new Table<Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
         public static void Init() { }
     }
