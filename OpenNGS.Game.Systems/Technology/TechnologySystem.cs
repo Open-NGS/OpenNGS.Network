@@ -50,7 +50,7 @@ namespace OpenNGS.Systems
         {
             return m_itemSystem.GetItemCountByGuidID(technologyDotID);
         }
-        public Dictionary<uint, NodeData> GetNodes(int treeCount)
+        public Dictionary<uint, NodeData> InitNodes(int treeCount)
         {
             Dictionary<uint, NodeData> technologyNodes = new Dictionary<uint, NodeData>();
             TechNodeSaveData data_tmp;
@@ -95,6 +95,13 @@ namespace OpenNGS.Systems
             }
 
             return technologyNodes;
+        }
+        //获取一棵树的所有结点
+        public List<NodeData> GetTreeNodes(uint treeIndex)
+        {
+            List<NodeData> nodeDatas = new List<NodeData>();
+
+            return nodeDatas;
         }
 
         //升级技能

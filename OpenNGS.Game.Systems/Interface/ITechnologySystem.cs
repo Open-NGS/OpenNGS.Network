@@ -14,7 +14,9 @@ namespace OpenNGS.Systems
         public uint GetTechnologyDots(uint technologyDotID);
 
         //UI层初始化获取科技技能数据
-        public Dictionary<uint, NodeData> GetNodes(int treeCount);
+        public Dictionary<uint, NodeData> InitNodes(int treeCount);
+        //获取一棵树的所有结点
+        public List<NodeData> GetTreeNodes(uint treeIndex);
         //获取技能状态数据
         public TechNodeSaveData GetNodeSaveData(uint id);
 
