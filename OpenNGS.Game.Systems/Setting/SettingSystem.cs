@@ -78,7 +78,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
     public void SetAudio(AudioSettinData audio)
     {
-        if (_setting._audio.ContainsValue(audio))
+        if (_setting._audio.ContainsKey(audio.AduioName))
         {
             _setting._audio[audio.AduioName] = audio;
         }
@@ -104,7 +104,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
     public void SetLanguage(LanguageData language)
     {
-        if (_setting._language.ContainsValue(language))
+        if (_setting._language.ContainsKey(language.languageName))
         {
             _setting._language[language.languageName] = language;
         }
