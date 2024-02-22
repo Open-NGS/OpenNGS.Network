@@ -41,7 +41,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     // ¥π÷±Õ¨≤Ω
     public VerticalSynchronizationData GetFrames()
     {
-        return _setting._frames;
+        return _setting._vertical;
     }
 
     // “Ù∆µ
@@ -69,75 +69,54 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
 
 
-    public void SetFrames(bool state)
+    public void SetVertical(bool state)
     {
-        _setting._frames.state = state;
+        _setting._vertical.state = state;
         m_saveSystem.SetFileData("SETTING", _setting);
     }
 
-    public void SetAudio(string name,int value,bool state)
+    public void SetAudio(AudioSettinData audio)
     {
-        AudioSettinData audio = new AudioSettinData();
-        audio.AduioName = name;
-        audio.Value = (uint)value;
-        audio.Switch = state;
         if (_setting._audio.ContainsValue(audio))
         {
-            _setting._audio[name] = audio;
+            _setting._audio[audio.AduioName] = audio;
         }
         else
         {
-            _setting._audio.Add(name,audio);
+            _setting._audio.Add(audio.AduioName, audio);
         }
         m_saveSystem.SetFileData("SETTING", _setting);
 
     }
-    public void SetKeyControl(string name,string key)
+    public void SetKeyControl(KeyControlSettingData keyControl)
     {
-        KeyControlSettingData keyControl = new KeyControlSettingData();
-        keyControl.KeyName = name;
-        keyControl.Key = key;
         if (_setting._keyControl.ContainsValue(keyControl))
         {
-            _setting._keyControl[name] = keyControl;
+            _setting._keyControl[keyControl.KeyName] = keyControl;
         }
         else
         {
-            _setting._keyControl.Add(name, keyControl);
+            _setting._keyControl.Add(keyControl.KeyName, keyControl);
         }
         m_saveSystem.SetFileData("SETTING", _setting);
-
     }
 
-    public void SetLanguage(string name)
+    public void SetLanguage(LanguageData language)
     {
-        LanguageData language = new LanguageData();
-        language.languageName = name;
         if (_setting._language.ContainsValue(language))
         {
-            _setting._language[name] = language;
+            _setting._language[language.languageName] = language;
         }
         else
         {
-            _setting._language.Add(name, language);
+            _setting._language.Add(language.languageName, language);
         }
         m_saveSystem.SetFileData("SETTING", _setting);
-
     }
 
-    public void SetResolution(string name)
+    public void SetResolution(ResolutionRatiosData resolution)
     {
-        ResolutionRatiosData resolution = new ResolutionRatiosData();
-        resolution.ResName = name;
-        m_saveSystem.SetFileData("SETTING", _setting);
-    }
-
-    public void SaveFirst(VerticalSynchronizationData verticals, Dictionary<string, AudioSettinData> Audios, Dictionary<string, KeyControlSettingData> keyControls, Dictionary<string, LanguageData> languages, ResolutionRatiosData resolutions)
-    {
-        _setting._frames = verticals;
-        _setting._audio = Audios;
-        _setting._keyControl = keyControls;
-        _setting.resolution = resolutions;
+        resolution.ResName = resolution.ResName;
         m_saveSystem.SetFileData("SETTING", _setting);
     }
 

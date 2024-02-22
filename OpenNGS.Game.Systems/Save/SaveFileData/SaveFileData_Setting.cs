@@ -7,7 +7,7 @@ using UnityEngine;
 public class SaveFileData_Setting :ISaveInfo
 {
     [global::ProtoBuf.ProtoMember(1)]
-    public VerticalSynchronizationData _frames;
+    public VerticalSynchronizationData _vertical;
     public Dictionary<string, AudioSettinData> _audio;
     public Dictionary<string, KeyControlSettingData> _keyControl;
     public Dictionary<string, LanguageData> _language;
@@ -15,7 +15,7 @@ public class SaveFileData_Setting :ISaveInfo
 
     public SaveFileData_Setting() 
     {
-        _frames = new VerticalSynchronizationData();
+        _vertical = new VerticalSynchronizationData();
         _audio = new Dictionary<string, AudioSettinData>();
         _keyControl = new Dictionary<string, KeyControlSettingData>();
         _language = new Dictionary<string, LanguageData>();

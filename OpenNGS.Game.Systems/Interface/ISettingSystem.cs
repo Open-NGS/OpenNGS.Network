@@ -21,12 +21,11 @@ namespace OpenNGS.Systems
     // 获得语言数据
         public Dictionary<string, LanguageData> GetLanguage();
         // 第一次保存
-        public void SaveFirst(VerticalSynchronizationData verticals, Dictionary<string, AudioSettinData> Audios, Dictionary<string, KeyControlSettingData> keyControls, Dictionary<string, LanguageData> languages, ResolutionRatiosData resolutions);
-        public void SetFrames(bool state);
-        public void SetAudio(string name, int value, bool state);
-        public void SetKeyControl(string name, string key);
-        public void SetLanguage(string name);
-        public void SetResolution(string name);
 
+        public void SetVertical(bool state);
+        public void SetAudio(AudioSettinData audio);
+        public void SetKeyControl(KeyControlSettingData keyControl);
+        public void SetLanguage(LanguageData language);
+        public void SetResolution(ResolutionRatiosData resolution);
     }
 }
