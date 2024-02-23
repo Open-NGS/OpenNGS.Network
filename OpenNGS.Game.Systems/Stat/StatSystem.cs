@@ -29,10 +29,10 @@ namespace OpenNGS.Systems
                 m_saveStat = new SaveFileData_Stat();
             }
 
-
             foreach (OpenNGS.Statistic.Data.StatData _statData in NGSStaticData.s_statDatas.Items)
             {
                 List<OpenNGS.Statistic.Common.StatValue> _lst = null;
+                StatValue _statVal = null;
                 if (m_saveStat.DicStatValue.ContainsKey(_statData.StatEvent) == false)
                 {
                     _lst = new List<StatValue>();
@@ -42,10 +42,21 @@ namespace OpenNGS.Systems
                 {
                     _lst = m_saveStat.DicStatValue[_statData.StatEvent];
                 }
-                StatValue _statVal = new StatValue();
-                _statVal.id = _statData.Id;
-                _statVal.totalval = 0;
-                _lst.Add(_statVal);
+                foreach(StatValue _statValFound in _lst)
+                {
+                    if(_statValFound.id == _statData.Id)
+                    {
+                        _statVal = _statValFound;
+                        break;
+                    }
+                }
+                if(_statVal == null)
+                {
+                    _statVal = new StatValue();
+                    _lst.Add(_statVal);
+                    _statVal.id = _statData.Id;
+                    _statVal.totalval = 0;
+                }
             }
         }
 

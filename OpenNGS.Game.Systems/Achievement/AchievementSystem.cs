@@ -20,7 +20,7 @@ namespace OpenNGS.Systems
             base.OnCreate();
 
             ISaveInfo saveInfo = m_saveSys.GetFileData("ACHIEVEMENT");
-            if (saveInfo != null && saveInfo is SaveFileData_Stat)
+            if (saveInfo != null && saveInfo is SaveFileData_Achievement)
             {
                 m_saveAchi = (SaveFileData_Achievement)saveInfo;
             }
