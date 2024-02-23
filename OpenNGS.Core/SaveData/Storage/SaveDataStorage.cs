@@ -7,6 +7,7 @@ using OpenNGS.Crypto;
 using OpenNGS.IO;
 using OpenNGS.SaveData;
 using ProtoBuf;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace OpenNGS.SaveData.Storage
@@ -22,19 +23,24 @@ namespace OpenNGS.SaveData.Storage
             Temp = 3,
         }
 
-/*
+        /*
 
-    save_data/
-        + {userId}/
-            + indexies.dat
-            + autosave.dat
-            + 0/data0           current data.
-                data1           update before save data0.
-                data2           update when load success.
+        save_data/
+            + {userId}/
+                game_save_data
+                    + indexies.dat
+                    + autosave.dat
+                    + 0/data0           current data.
+                        data1           update before save data0.
+                        data2           update when load success.
+                setting_save_data
+                    + indexies.dat
+                    + autosave.dat
+                    + 0/data0           current data.
+                        data1           update before save data0.
+                        data2           update when load success.
 
-
-
-*/
+        */
 
         /// <summary>
         /// Save data max capacity
@@ -54,13 +60,21 @@ namespace OpenNGS.SaveData.Storage
 
         private long magic = 0x5685432132698754 | 0x6654219875421325;
 
-        public void Init(IFileSystem fs, int capacity, int version)
+        public void Init(IFileSystem fs, int capacity, int version, bool isSetting)
         {
             fsSave = fs;
             this.Capacity = capacity;
             this.Version = version;
 
-            this.RootPath = "save_data";
+            if (!isSetting)
+            {
+                this.RootPath = "save_data/game_save_data";
+            }
+            else
+            {
+                this.RootPath = "save_data/setting_save_data";
+            }
+
         }
 
         /// <summary>

@@ -103,7 +103,7 @@ namespace OpenNGS.SaveData
 #endif
         }
 
-        public void Init(IFileSystem fs, int capacity, int version)
+        public void Init(IFileSystem fs, int capacity, int version, bool isSetting)
         {
             if (mInited)
             {
@@ -112,8 +112,7 @@ namespace OpenNGS.SaveData
             mInited = true;
 
             this.Capacity = capacity;
-            storage.Init(fs, capacity, version);
-
+            storage.Init(fs, capacity, version, isSetting);
             LoadIndex();
         }
 

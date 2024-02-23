@@ -9,7 +9,7 @@ namespace OpenNGS.SaveData.Storage
     interface ILocalSaveData<T> where T : ISaveEntity, new()
     {
         int Version { get; }
-        void Init(IFileSystem fs, int capacity, int version);
+        void Init(IFileSystem fs, int capacity, int version, bool isSetting);
         void LoadIndex(Action<IndexiesData<T>> onIndexiesLoaded);
         void SaveIndex(IndexiesData<T> indexies);
         void LoadData(int index, string name, Action<SaveDataResult, SaveData<T>> onSaveDataLoaded);

@@ -14,7 +14,7 @@ namespace OpenNGS.SaveData.Storage
 
         public int Version { get;private set; }
 
-        public void Init(IFileSystem fs, int capacity, int version)
+        public void Init(IFileSystem fs, int capacity, int version, bool isSetting)
         {
             this.Version = version;
 #if UNITY_PS4
