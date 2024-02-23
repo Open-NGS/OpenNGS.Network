@@ -19,8 +19,7 @@ namespace OpenNGS.Achievement.Data
         }
         public Achievement()
         {
-            Name = "";
-            Description = "";
+            IconPath = "";
             OnConstructor();
         }
 
@@ -45,15 +44,17 @@ namespace OpenNGS.Achievement.Data
         public uint SubSameOwner { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Name { get; set; }
+        public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Description { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
         public uint AwardGroupID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string IconPath { get; set; }
 
     }
 
