@@ -38,14 +38,18 @@ namespace OpenNGS.Systems
         public void Init(int capture, int version)
         {
             PosixFileSystem fs = new PosixFileSystem();
-            SaveDataManager<SaveFileData>.Instance.Init(fs, capture, version);
-            SaveDataManager<SaveSettingData>.Instance.Init(fs, 1, version);
+            SaveDataManager<SaveFileData>.Instance.Init(fs, capture, version, false);
+            SaveDataManager<SaveSettingData>.Instance.Init(fs, 1, version, true);
             saveInfo = new Dictionary<string, ISaveInfo>();
             settingData = new SaveFileData_Setting();
 
             if (SaveDataManager<SaveFileData>.Instance.Current == null)
             {
                 SaveDataManager<SaveFileData>.Instance.NewSaveData(true);
+            }
+            if (SaveDataManager<SaveSettingData>.Instance.Current == null)
+            {
+                SaveDataManager<SaveSettingData>.Instance.NewSaveData(true);
             }
 
             InitDicInfo();
@@ -54,10 +58,9 @@ namespace OpenNGS.Systems
         private void InitDicInfo()
         {
             SaveFileData saveData = SaveDataManager<SaveFileData>.Instance.Current;
-            if (SaveDataManager<SaveSettingData>.Instance.Current != null)
-            {
-                settingData = SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData;
-            }
+
+            settingData = SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData;
+
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
