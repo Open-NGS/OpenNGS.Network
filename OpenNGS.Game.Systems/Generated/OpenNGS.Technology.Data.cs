@@ -19,6 +19,7 @@ namespace OpenNGS.Technology.Data
         }
         public NodeData()
         {
+            Icon = "";
             OnConstructor();
         }
 
@@ -64,7 +65,8 @@ namespace OpenNGS.Technology.Data
         public uint TreeIndex { get; set; }
 
         [global::ProtoBuf.ProtoMember(14)]
-        public uint Icon { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Icon { get; set; }
 
     }
 

@@ -97,9 +97,9 @@ namespace OpenNGS.Systems
             return technologyNodes;
         }
         //获取一棵树的所有结点
-        public List<NodeData> GetTreeNodes(uint treeIndex)
+        public List<TechNodeSaveData> GetTreeNodes(uint treeIndex)
         {
-            List<NodeData> nodeDatas = new List<NodeData>();
+            List<TechNodeSaveData> nodeDatas = new List<TechNodeSaveData>();
 
             return nodeDatas;
         }
