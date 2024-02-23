@@ -13,6 +13,10 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Item.Data.Item,uint> items = new Table<Item.Data.Item, uint>((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Dialog.Data.DialogTalk, uint> DialogTalk = new Table<OpenNGS.Dialog.Data.DialogTalk, uint>((item) => { return item.DialogueDataID;}, false);
         public static Table<OpenNGS.Dialog.Data.Dialogue, uint> Dialogue = new Table<OpenNGS.Dialog.Data.Dialogue, uint>((item) => { return item.DialogueID; }, false);
+        public static Table<OpenNGS.Levels.Data.NGSLevelInfo,uint> levelInfo=new Table<Levels.Data.NGSLevelInfo, uint>((item) => { return item.ID; }, false);
+        public static Table<OpenNGS.Suit.Data.SuitData,uint> suitInfo=new Table<Suit.Data.SuitData, uint>((item) => { return item.ID; }, false);
+        public static Table<OpenNGS.UI.Data.UIConfig,uint>  uiConfig=new Table<UI.Data.UIConfig, uint>((item) => { return item.Id; }, false);
+        public static Table<OpenNGS.Enemy.Data.EnemyInfo,uint> enemyInfo=new Table<Enemy.Data.EnemyInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.ItemInfo, uint> items = new Table<OpenNGS.Make.Data.ItemInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.MakeInfo, uint> makes = new Table<OpenNGS.Make.Data.MakeInfo, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.ShopSell, uint, uint> sells = new Table<OpenNGS.Shop.Data.ShopSell, uint, uint>((item) => { return item.ShopID; }, (item) => { return item.ItemID; }, false);

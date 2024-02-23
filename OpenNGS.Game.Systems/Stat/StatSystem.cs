@@ -226,26 +226,162 @@ namespace OpenNGS.Systems
             }
         }
 
-        //STAT_EVENT_LEVEL_TIME
-        private void _updateValLevelTime(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
+        //STAT_EVENT_LEVEL_TIME (关卡时长)
+        private void _updateValLevelTime(ulong levelID, ulong levelDuration, StatValue _statVal, StatData _statData)
         {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.Levels.Data.NGSLevelInfo _item = NGSStaticData.levelInfo.GetItem((uint)levelID);
+                if (_item != null)
+                {
+                    if (_statData.ObjCategory == (uint)levelID)
+                    {
+                        bCanUpdate = true;
+                    }
+                }
+            }
+            if (bCanUpdate == true)
+            {
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_UPDATE)
+                {
+                    _statVal.totalval = levelDuration;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MIN)
+                {
+                    if (_statVal.totalval < levelDuration)
+                        _statVal.totalval = levelDuration;
+                    else return;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MAX)
+                {
+                    if (_statVal.totalval > levelDuration)
+                        _statVal.totalval = levelDuration;
+                    else return;
+                }
+            }
         }
 
-        //STAT_EVENT_KILL_ENEMY_COUNTS
-        private void _updateValKillEnemy(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
+        //STAT_EVENT_KILL_ENEMY_COUNTS（杀敌数量）
+        private void _updateValKillEnemy(ulong enemyID, ulong killCount, StatValue _statVal, StatData _statData)
         {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.Enemy.Data.EnemyInfo _item = NGSStaticData.enemyInfo.GetItem((uint)enemyID);
+                if (_item != null)
+                {
+                    if (_statData.ObjCategory == (uint)enemyID)
+                    {
+                        bCanUpdate = true;
+                    }
+                }
+            }
+            if (bCanUpdate == true)
+            {
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
+                {
+                    _statVal.totalval += killCount;
+                }
+            }
         }
-        //STAT_EVENT_UPGRADE_TECH
-        private void _updateValUpgradeTech(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
+
+
+        //STAT_EVENT_UPGRADE_TECH(科技升级)
+        private void _updateValUpgradeTech(ulong techID, ulong levelNum, StatValue _statVal, StatData _statData)
         {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.Technology.Data.NodeData _item = NGSStaticData.technologyNodes.GetItem((uint)techID);
+                if (_item != null)
+                {
+                    if (_statData.ObjCategory == (uint)techID)
+                    {
+                        bCanUpdate = true;
+                    }
+                }
+            }
+
+            if (bCanUpdate == true)
+            {
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_UPDATE)
+                {
+                    _statVal.totalval = levelNum;
+                }
+            }
         }
-        //STAT_EVENT_UPGRADE_ITEM
-        private void _updateValUpgradeItem(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
+        //STAT_EVENT_UPGRADE_ITEM(物品升级)
+        private void _updateValUpgradeItem(ulong itemID, ulong levelNum, StatValue _statVal, StatData _statData)
         {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.Item.Data.Item _item = NGSStaticData.items.GetItem((uint)itemID);
+                if (_item != null)
+                {
+                    if (_statData.ObjCategory == (uint)itemID)
+                    {
+                        bCanUpdate = true;
+                    }
+                }
+            }
+
+            if (bCanUpdate == true)
+            {
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_UPDATE)
+                {
+                    _statVal.totalval = levelNum;
+                }
+            }
         }
         //STAT_EVENT_COLLECT_SUIT
-        private void _updateValCollectSuit(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
+        private void _updateValCollectSuit(ulong suitID, ulong lParam2, StatValue _statVal, StatData _statData)
         {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.Suit.Data.SuitData _item = NGSStaticData.suitInfo.GetItem((uint)suitID);
+                if (_item != null)
+                {
+                    if (_statData.ObjCategory == (uint)suitID)
+                    {
+                        bCanUpdate = true;
+                    }
+                }
+            }
+
+            if (bCanUpdate == true)
+            {
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
+                {
+                    _statVal.totalval += 1;
+                }
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_COUNT)
+                {
+                    _statVal.totalval += 1;
+                }
+            }
         }
         //STAT_EVENT_PUZZLE_PLAY
         private void _updateValPuzzlePlay(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
@@ -256,9 +392,30 @@ namespace OpenNGS.Systems
         {
         }
         //STAT_EVENT_UI_CLICK
-        private void _updateValUIClicked(ulong lParam1, ulong lParam2, StatValue _statVal, StatData _statData)
+        private void _updateValUIClicked(ulong uiID, ulong lParam2, StatValue _statVal, StatData _statData)
         {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.UI.Data.UIConfig _item = NGSStaticData.uiConfig.GetItem((uint)uiID);
+                if (_statData.ObjCategory == (uint)uiID)
+                {
+                    bCanUpdate = true;
+                }
+            }
+            if (bCanUpdate == true)
+            {
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
+                {
+                    _statVal.totalval += 1;
+                }
+            }
         }
+
 
         public override string GetSystemName()
         {

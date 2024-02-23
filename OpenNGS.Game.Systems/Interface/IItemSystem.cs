@@ -24,6 +24,8 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Common.ItemData> GetItemDataByItemId(uint itemId);
         //获取某种类型所有道具(二级分类)
         public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
+        //获取某种类型所有道具(三级分类)
+        public List<OpenNGS.Item.Common.ItemData> GetThirdItemInfo(OpenNGS.Item.Common.ITEM_KIND iTEM_TYPE);
         //获取背包中的所有道具
         public List<OpenNGS.Item.Common.ItemData> GetItemInfosInBag();
         public SuitData GetSuitData(uint suitID);

@@ -129,6 +129,12 @@ namespace OpenNGS.Systems
             return itemInfos;
         }
 
+        public List<OpenNGS.Item.Common.ItemData> GetThirdItemInfo(OpenNGS.Item.Common.ITEM_KIND iTEM_TYPE)
+        {
+            List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
+            return itemInfos;
+        }
+
         public List<OpenNGS.Item.Common.ItemData> GetItemInfosInBag()
         {
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();

@@ -15,6 +15,8 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     List<OpenNGS.Item.Common.ItemData> EquipInventory;
     //材料列表
     List<OpenNGS.Item.Common.ItemData> CraftInventory;
+    //制作材料列表
+    List<OpenNGS.Item.Common.ItemData> MaterialList;
     //装备(可装备)列表
     List<OpenNGS.Item.Common.ItemData> EquipItems = new List<OpenNGS.Item.Common.ItemData>();
     //传给交易系统
@@ -38,30 +40,10 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
         CraftInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_CRAFT);//获得材料库存数据
     }
 
-    ///// <summary>
-    ///// 使用装备
-    ///// </summary>
-    ///// <param name="GridIndex">格子ID</param>
-    //public void EquipItem(uint GridIndex)
-    //{
-    //    EquipItems.Add(EquipInventory[(int)GridIndex]);
-    //}
-
-    ///// <summary>
-    ///// 卸下装备
-    ///// </summary>
-    ///// <param name="GridIndex">格子ID</param>
-    ///// <returns></returns>
-    //public bool UnEquipItem(uint GridIndex)
-    //{
-    //    return EquipItems.Remove(EquipItems[(int)GridIndex]);
-
-    //}
-
-    //public List<OpenNGS.Item.Common.ItemData> GetEquipList()//获得当前装备列表
-    //{
-    //    return EquipItems;
-    //}
+    public List<OpenNGS.Item.Common.ItemData> GetItemData()
+    {
+        return MaterialList = m_itemSys.GetThirdItemInfo(ITEM_KIND.ITEM_KIND_MATERIAL_STUFF);
+    }
 
  
 
@@ -69,10 +51,11 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     /// 制作武器装备
     /// </summary>
     /// <param name="GridIndex">格子ID</param>
-    public void MakeEquip(uint GridIndex)
+    public bool MakeEquip(uint GridIndex)
     {
         uint guid = CraftInventory[(int)GridIndex].Guid;
         //m_makeSystem.Forged(guid);
+        return true;
     }
 
     /// <summary>
