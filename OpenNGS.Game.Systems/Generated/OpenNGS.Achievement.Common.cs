@@ -34,13 +34,34 @@ namespace OpenNGS.Achievement.Common
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint id { get; set; }
+        public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint value { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public ACHIEVEMENT_STATUS status { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AchievementInfoArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AchievementInfoArray()
+        {
+            items = new global::System.Collections.Generic.List<AchievementInfo>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<AchievementInfo> items { get; private set; }
 
     }
 

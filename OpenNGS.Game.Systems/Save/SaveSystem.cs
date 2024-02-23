@@ -19,6 +19,7 @@ namespace OpenNGS.Systems
         public static string SAVE_DIALOG_TAG = "DIALOG";
         public static string SAVE_TECHNOLOGY_TAG = "TECHNOLOGY";
         public static string SAVE_STAT_TAG = "STAT";
+        public static string SAVE_ACHIEVEMENT_TAG = "ACHIEVEMENT";
 
         public static string SAVE_SETTING_AUDIO = "AUDIO";
         protected override void OnCreate()
@@ -53,7 +54,10 @@ namespace OpenNGS.Systems
         private void InitDicInfo()
         {
             SaveFileData saveData = SaveDataManager<SaveFileData>.Instance.Current;
-            settingData = SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData;
+            if (SaveDataManager<SaveSettingData>.Instance.Current != null)
+            {
+                settingData = SaveDataManager<SaveSettingData>.Instance.Current.settingSaveData;
+            }
             saveInfo.Clear();
 
             saveInfo[SAVE_ITEM_TAG] = saveData.saveItems;
@@ -62,7 +66,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_DIALOG_TAG] = saveData.dialogData;
             saveInfo[SAVE_TECHNOLOGY_TAG] = saveData.technologyData;
             saveInfo[SAVE_STAT_TAG] = saveData.statData;
-
+            saveInfo[SAVE_ACHIEVEMENT_TAG] = saveData.achiData;
         }
 
         public void AddFile()
@@ -86,6 +90,7 @@ namespace OpenNGS.Systems
             SaveDataManager<SaveFileData>.Instance.Current.dialogData = saveInfo[SAVE_DIALOG_TAG] as SaveFileData_Dialog;
             SaveDataManager<SaveFileData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as SaveFileData_Technology;
             SaveDataManager<SaveFileData>.Instance.Current.statData = saveInfo[SAVE_STAT_TAG] as SaveFileData_Stat;
+            SaveDataManager<SaveFileData>.Instance.Current.achiData = saveInfo[SAVE_ACHIEVEMENT_TAG] as SaveFileData_Achievement;
             SaveDataManager<SaveFileData>.Instance.Save();
         }
         public void SettingSaveFile()

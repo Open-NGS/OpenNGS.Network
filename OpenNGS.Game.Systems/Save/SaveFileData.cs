@@ -23,6 +23,9 @@ namespace OpenNGS.Systems
         public SaveFileData_Technology technologyData;
         [global::ProtoBuf.ProtoMember(6)]
         public SaveFileData_Stat statData;
+        [global::ProtoBuf.ProtoMember(7)]
+        public SaveFileData_Achievement achiData;
+        
         public void Init()
         {
             saveItems = new SaveFileData_Item();
@@ -31,6 +34,7 @@ namespace OpenNGS.Systems
             dialogData = new SaveFileData_Dialog();
             technologyData = new SaveFileData_Technology();
             statData = new SaveFileData_Stat();
+            achiData = new SaveFileData_Achievement();
         }
 
         public void MigrateToVersion(int i)

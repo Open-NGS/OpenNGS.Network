@@ -17,6 +17,7 @@ namespace OpenNGS.Systems
         //public static Table<OpenNGS.Make.Data.MakeInfo, uint> makes = new Table<OpenNGS.Make.Data.MakeInfo, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.ShopSell, uint, uint> sells = new Table<OpenNGS.Shop.Data.ShopSell, uint, uint>((item) => { return item.ShopID; }, (item) => { return item.ItemID; }, false);
         public static Table<OpenNGS.Statistic.Data.StatData,uint> s_statDatas = new Table<Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
+        public static Table<OpenNGS.Achievement.Data.Achievement, uint> s_achiDatas = new Table<Achievement.Data.Achievement, uint>((item) => { return item.ID; }, false);
         public static void Init() { }
     }
 }

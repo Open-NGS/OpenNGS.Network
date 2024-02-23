@@ -25,6 +25,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(ITechnologySystem), new TechnologySystem()));
         services.Add(new ServiceDescriptor(typeof(IRankSystem), new RankSystem()));
         services.Add(new ServiceDescriptor(typeof(IStatSystem), new StatSystem()));
+        services.Add(new ServiceDescriptor(typeof(IAchievementSystem), new AchievementSystem()));
     }
 
     protected override void OnInit()

@@ -52,6 +52,9 @@ namespace OpenNGS.Achievement.Data
         [global::System.ComponentModel.DefaultValue("")]
         public string Description { get; set; }
 
+        [global::ProtoBuf.ProtoMember(9)]
+        public uint AwardGroupID { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -72,6 +75,53 @@ namespace OpenNGS.Achievement.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<Achievement> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AchievementAward : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AchievementAward()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Counts { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AchievementAwardArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AchievementAwardArray()
+        {
+            items = new global::System.Collections.Generic.List<AchievementAward>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<AchievementAward> items { get; private set; }
 
     }
 

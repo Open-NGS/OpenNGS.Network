@@ -1,6 +1,7 @@
 using OpenNGS.Item.Common;
 using OpenNGS.Statistic.Common;
 using OpenNGS.Statistic.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Systems;
@@ -11,6 +12,8 @@ namespace OpenNGS.Systems
     {
         private ISaveSystem m_saveSys;
         private SaveFileData_Stat m_saveStat;
+        private OpenNGS.Events.EventSystem m_eventSys = new Events.EventSystem();
+        //public void 
         protected override void OnCreate()
         {
             m_saveSys = App.GetService<ISaveSystem>();
@@ -50,7 +53,32 @@ namespace OpenNGS.Systems
         { 
             base.OnClear();
         }
-
+        public bool GetStatValueByID(uint nStatID, out ulong ulValue)
+        {
+            ulValue = 0;
+            StatData _statData = NGSStaticData.s_statDatas.GetItem(nStatID);
+            if(_statData != null)
+            {
+                return GetStatValue(_statData.StatEvent, nStatID, out ulValue);
+            }
+            return false;
+        }
+        public bool GetStatValue(STAT_EVENT eStatEvt, uint nStatID, out ulong ulValue)
+        {
+            if (m_saveStat.DicStatValue.TryGetValue(eStatEvt, out List<StatValue> _lstStatValue) == true)
+            {
+                foreach (StatValue _statValue in _lstStatValue)
+                {
+                    if(_statValue.id == nStatID)
+                    {
+                        ulValue = _statValue.totalval;
+                        return true;
+                    }
+                }
+            }
+            ulValue = 0;
+            return false;
+        }
         public void UpdateStat(STAT_EVENT _statEvt, ulong lParam1, ulong lParam2)
         {
             if(m_saveStat.DicStatValue.ContainsKey(_statEvt) == true)
@@ -126,6 +154,8 @@ namespace OpenNGS.Systems
 
             m_saveSys.SetFileData("STAT", m_saveStat);
             m_saveSys.SaveFile();
+
+            m_eventSys.PostEvent((int)StatEventNotify.StatEventNotify_Update);
         }
 
         //STAT_EVENT_USE_ITEM = 1,
@@ -222,6 +252,15 @@ namespace OpenNGS.Systems
         public override string GetSystemName()
         {
             return "com.openngs.system.stat";
+        }
+
+        public void Subscribe(int EventID, Action handler)
+        {
+            m_eventSys.Subscribe(EventID, handler);
+        }
+        public void Unsubscribe(int EventID, Action handler)
+        {
+            m_eventSys.Unsubscribe(EventID, handler);
         }
     }
 }
