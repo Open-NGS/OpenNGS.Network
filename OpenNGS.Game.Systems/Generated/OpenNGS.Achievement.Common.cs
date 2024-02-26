@@ -19,6 +19,17 @@ namespace OpenNGS.Achievement.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public enum ACHIEVEMENT_RESULT
+    {
+        ACHIEVEMENT_RESULT_NONE = 0,
+        ACHIEVEMENT_RESULT_ACHI_NOT_EXIST = 1,
+        ACHIEVEMENT_RESULT_AWARD_HAS_GOT = 2,
+        ACHIEVEMENT_RESULT_AWARD_SUCCESS = 3,
+        ACHIEVEMENT_RESULT_AWARD_NOCOUNTS = 4,
+        ACHIEVEMENT_RESULT_AWARD_ERROR_ITEMS = 5,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class AchievementInfo : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;

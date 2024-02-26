@@ -1,4 +1,5 @@
 using OpenNGS.Achievement.Common;
+using OpenNGS.Exchange.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace OpenNGS.Systems
     public interface IAchievementSystem
     {
         public OpenNGS.Achievement.Common.ACHIEVEMENT_STATUS GetAchievementStatus(uint nAchieID);
-        public bool GetAchievementReward(uint nAchieID);
+        public ACHIEVEMENT_RESULT GetAchievementReward(uint nAchieID);
         public void UpdateAchievementIfNeed();
         public Dictionary<uint, AchievementInfo> GetAchievementData();
     }

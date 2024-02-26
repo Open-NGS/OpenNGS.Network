@@ -1,4 +1,7 @@
 using OpenNGS.Achievement.Common;
+using OpenNGS.Achievement.Data;
+using OpenNGS.Exchange.Common;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Statistic.Data;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +15,13 @@ namespace OpenNGS.Systems
         private ISaveSystem m_saveSys;
         private SaveFileData_Achievement m_saveAchi;
         private IStatSystem m_statSys;
-        private bool m_bStatDirty = false; 
+        private bool m_bStatDirty = false;
+        private IExchangeSystem m_exchangeSys;
         protected override void OnCreate()
         {
             m_saveSys = App.GetService<ISaveSystem>();
             m_statSys = App.GetService<IStatSystem>();
+            m_exchangeSys = App.GetService<IExchangeSystem>();
             base.OnCreate();
 
             ISaveInfo saveInfo = m_saveSys.GetFileData("ACHIEVEMENT");
@@ -89,16 +94,52 @@ namespace OpenNGS.Systems
             return _status;
         }
 
-        public bool GetAchievementReward(uint nAchieID)
+        public ACHIEVEMENT_RESULT GetAchievementReward(uint nAchieID)
         {
-            if(m_saveAchi.DicAchievement.ContainsKey(nAchieID))
+            ACHIEVEMENT_RESULT _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_NONE;
+            if (m_saveAchi.DicAchievement.ContainsKey(nAchieID))
             {
                 m_saveAchi.DicAchievement[nAchieID].status = ACHIEVEMENT_STATUS.ACHIEVEMENT_STATUS_DONE;
                 _saveAchievement();
-                //todo 交易系统处理物品
-                return true;
+
+                List<SourceItem> lstSource = new List<SourceItem>();
+                List<TargetItem> lstTarget = new List<TargetItem>();
+
+                List<AchievementAward> _lstAward = NGSStaticData.s_achiAward.GetItems(nAchieID);
+                foreach(AchievementAward _award in _lstAward)
+                {
+                    TargetItem _target = new TargetItem();
+                    _target.ItemID = _award.ItemID;
+                    _target.Count = _award.Counts;
+                    lstTarget.Add(_target);
+                }
+                EXCHANGE_RESULT_TYPE _ExchangeRes = m_exchangeSys.ExchangeItem(lstSource, lstTarget);
+                switch(_ExchangeRes)
+                {
+                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
+                        {
+                            _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_AWARD_NOCOUNTS;
+                        }
+                        break;
+                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS:
+                        {
+                            _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_AWARD_SUCCESS;
+                        }
+                        break;
+                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                        {
+                            _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_AWARD_ERROR_ITEMS;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-            return false;
+            else
+            {
+                _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_ACHI_NOT_EXIST;
+            }
+            return _res;
         }
 
         public override string GetSystemName()
