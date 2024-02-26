@@ -1,4 +1,6 @@
 ﻿using Dynamic.Data;
+using OpenNGS.Systems;
+using OpenNGSCommon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,12 @@ public class SaveFileData_Item : ISaveInfo
 {
     [global::ProtoBuf.ProtoMember(1)]
     public Dictionary<long, ItemSaveData> _items;
+    [global::ProtoBuf.ProtoMember(2)]
+    public Dictionary<uint, OpenNGS.Item.Common.ItemData> _equips;
 
     public SaveFileData_Item() 
     { 
         _items = new Dictionary<long, ItemSaveData>();
+        _equips = new Dictionary<uint, OpenNGS.Item.Common.ItemData>();
     }
 }

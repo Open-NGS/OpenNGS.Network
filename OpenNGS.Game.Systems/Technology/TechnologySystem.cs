@@ -50,14 +50,14 @@ namespace OpenNGS.Systems
         {
             return m_itemSystem.GetItemCountByGuidID(technologyDotID);
         }
-        public Dictionary<uint, NodeData> InitNodes(int treeCount)
+        public Dictionary<uint, NodeData> InitNodes(List<uint> rootNodeIDs)
         {
             Dictionary<uint, NodeData> technologyNodes = new Dictionary<uint, NodeData>();
             TechNodeSaveData data_tmp;
-            for(int i = 1; i <= treeCount; i++)
+            for(int i = 0; i < rootNodeIDs.Count; i++)
             {
                 Queue<uint> queue = new Queue<uint>();
-                queue.Enqueue((uint)i);
+                queue.Enqueue(rootNodeIDs[i]);
                 while(queue.Count > 0)
                 {
                     uint id = queue.Dequeue();
@@ -100,7 +100,13 @@ namespace OpenNGS.Systems
         public List<TechNodeSaveData> GetTreeNodes(uint treeIndex)
         {
             List<TechNodeSaveData> nodeDatas = new List<TechNodeSaveData>();
-
+            foreach(var node in m_technologyData.nodesSaveData.Values)
+            {
+                if(node.ID == treeIndex)
+                {
+                    nodeDatas.Add(node);
+                }
+            }
             return nodeDatas;
         }
 

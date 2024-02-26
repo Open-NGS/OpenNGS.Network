@@ -16,8 +16,8 @@ namespace OpenNGS.Systems
     {
         public Action OnNotifyItemListChange;
         public Action OnPlacementChange;
-        public Action<uint, ItemData> BagBoxChange;
-        public Action<uint, ItemData> EquipBoxChange;
+        public Action<uint,OpenNGS.Item.Common.ItemData> BagBoxChange;
+        public Action<uint,OpenNGS.Item.Common.ItemData> EquipBoxChange;
 
         public Dictionary<ulong, long> TempPlaceDic = new Dictionary<ulong, long>();
         public Dictionary<ulong, long> EternalPlaceDic = new Dictionary<ulong, long>();
@@ -33,8 +33,6 @@ namespace OpenNGS.Systems
         private uint guid_cache = 1;
         private Queue<uint> guid_free = new Queue<uint>();
 
-        //已穿上的装备
-        public Dictionary<uint,ItemData> equipped = new Dictionary<uint,ItemData>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -115,9 +113,9 @@ namespace OpenNGS.Systems
                 if (NGSStaticData.items.GetItem(itemInfo.ItemID).ItemType == iTEM_TYPE)
                 {
                     OpenNGS.Item.Common.ItemData itemData = new ItemData();
-                    itemData.ItemID = (uint)itemInfo.ItemID;
-                    itemData.Guid = (uint)itemInfo.GUID;
-                    itemData.Count = (uint)itemInfo.Count;
+                    itemData.ItemID = itemInfo.ItemID;
+                    itemData.Guid = itemInfo.GUID;
+                    itemData.Count = itemInfo.Count;
                     itemInfos.Add(itemData);
                 }
             }
@@ -129,9 +127,25 @@ namespace OpenNGS.Systems
             return itemInfos;
         }
 
-        public List<OpenNGS.Item.Common.ItemData> GetThirdItemInfo(OpenNGS.Item.Common.ITEM_KIND iTEM_TYPE)
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
         {
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
+            foreach(ItemSaveData itemInfo in m_itemData._items.Values)
+            {
+                if(NGSStaticData.items.GetItem(itemInfo.ItemID).Kind == iTEM_KIND)
+                {
+                    OpenNGS.Item.Common.ItemData itemData = new ItemData();
+                    itemData.ItemID = itemInfo.ItemID;
+                    itemData.Guid = itemInfo.GUID;
+                    itemData.Count = itemInfo.Count;
+                    itemInfos.Add(itemData);
+                }
+            }
+            //放回某类物品前排序,避免物品混乱
+            itemInfos.Sort((a, b) =>
+            {
+                return (int)(a.ItemID - b.ItemID);
+            });
             return itemInfos;
         }
 
@@ -528,28 +542,54 @@ namespace OpenNGS.Systems
 
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index,uint nGuid)
         {
-            if (equipped.ContainsKey(index) || !IsEnoughByGuid(nGuid,1))
+            if (m_itemData._equips.ContainsKey(index) || !IsEnoughByGuid(nGuid,1))
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            equipped[index] = GetItemDataByGuid(nGuid);
-            EquipBoxChange?.Invoke(nGuid,GetItemDataByGuid(nGuid));
+            m_itemData._equips[index] = GetItemDataByGuid(nGuid);
+            m_itemData._items.Remove(nGuid);
+            BagBoxChange?.Invoke(nGuid,GetItemDataByGuid(nGuid));
+            //更新动态数据
+            m_saveSystem.SetFileData("ITEM", m_itemData);
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index)
         {
-            if(!equipped.ContainsKey(index))
+            if(!m_itemData._equips.ContainsKey(index))
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            equipped.Remove(index);
+            AddItemsByID(m_itemData._equips[index].ItemID, m_itemData._equips[index].Count);
+            m_itemData._equips.Remove(index);
+            //更新动态数据
+            m_saveSystem.SetFileData("ITEM", m_itemData);
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
         public Dictionary<uint, ItemData> GetEquippedList()
         {
-            return equipped;
+            return m_itemData._equips;
+        }
+        //添加道具栏变更事件
+        public void AddAction_bagChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        {
+            BagBoxChange += ac;
+        }
+        //添加装备栏变更事件
+        public void AddAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        {
+            EquipBoxChange += ac;
+        }
+        //删去道具栏变更事件
+        public void RemoveAction_bagChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        {
+            BagBoxChange -= ac;
+        }
+        //删去装备栏变更事件
+        public void RemoveAction_equipChange(Action<uint,OpenNGS.Item.Common.ItemData> ac)
+        {
+            EquipBoxChange -= ac;
         }
     }
 

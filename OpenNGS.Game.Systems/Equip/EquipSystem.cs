@@ -42,7 +42,7 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 
     public List<OpenNGS.Item.Common.ItemData> GetItemData()
     {
-        return MaterialList = m_itemSys.GetThirdItemInfo(ITEM_KIND.ITEM_KIND_MATERIAL_STUFF);
+        return MaterialList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_STUFF);
     }
 
  
