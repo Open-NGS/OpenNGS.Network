@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenNGS.Item.Common;
 using UnityEngine.Events;
+using System;
 
 namespace OpenNGS.Systems
 {
@@ -25,7 +26,7 @@ namespace OpenNGS.Systems
         //获取某种类型所有道具(二级分类)
         public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
         //获取某种类型所有道具(三级分类)
-        public List<OpenNGS.Item.Common.ItemData> GetThirdItemInfo(OpenNGS.Item.Common.ITEM_KIND iTEM_TYPE);
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND);
         //获取背包中的所有道具
         public List<OpenNGS.Item.Common.ItemData> GetItemInfosInBag();
         public SuitData GetSuitData(uint suitID);
@@ -36,6 +37,14 @@ namespace OpenNGS.Systems
         //脱装备
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
         public Dictionary<uint, ItemData> GetEquippedList();
+        //传入道具栏变更的事件
+        public void AddAction_bagChange(Action<uint ,OpenNGS.Item.Common.ItemData> ac);
+        //传入装备栏变更的事件
+        public void AddAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
+        //删去道具栏变更事件
+        public void RemoveAction_bagChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
+        //删去装备栏变更事件
+        public void RemoveAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
     }
 
 }
