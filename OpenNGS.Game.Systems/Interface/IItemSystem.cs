@@ -44,7 +44,7 @@ namespace OpenNGS.Systems
         //删去道具栏变更事件
         public void RemoveAction_bagChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
         //删去装备栏变更事件
-        public void RemoveAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        public void RemoveAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
     }
 
 }
