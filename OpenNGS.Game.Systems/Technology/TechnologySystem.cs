@@ -54,7 +54,7 @@ namespace OpenNGS.Systems
         {
             Dictionary<uint, NodeData> technologyNodes = new Dictionary<uint, NodeData>();
             TechNodeSaveData data_tmp;
-            for(int i = 1; i <= rootNodeIDs.Count; i++)
+            for(int i = 0; i < rootNodeIDs.Count; i++)
             {
                 Queue<uint> queue = new Queue<uint>();
                 queue.Enqueue(rootNodeIDs[i]);
