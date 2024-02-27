@@ -7,6 +7,14 @@ namespace OpenNGS.Systems
 {
     public interface IMakeSystem
     {
-        public EXCHANGE_RESULT_TYPE Forged(uint makeGridId, OpenNGS.Item.Data.Item item);
+        // ÖÆ×÷
+        public EXCHANGE_RESULT_TYPE Material();
+        // ²ÄÁÏ
+        public void MakeMaterials(OpenNGS.Item.Common.ItemData itemData);
+        // Í¼Ö½
+        public void MkaeDesign(OpenNGS.Item.Common.ItemData itemInfo);
+
+
+
     }
 }
