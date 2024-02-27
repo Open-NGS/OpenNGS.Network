@@ -526,6 +526,17 @@ namespace OpenNGS.Systems
             return itemData.Count;
         }
 
+        public uint GetItemTotalCountByItemID(uint itemID)
+        {
+            uint sum = 0;
+            List<ItemData> items = GetItemDataByItemId(itemID);
+            foreach (var item in items)
+            {
+                sum += item.Count;
+            }
+            return sum;
+        }
+
         public bool UseItem(uint nGuid)
         {
             if(!IsEnoughByGuid(nGuid, 1))
