@@ -20,6 +20,7 @@ namespace OpenNGS.Systems
         public static string SAVE_TECHNOLOGY_TAG = "TECHNOLOGY";
         public static string SAVE_STAT_TAG = "STAT";
         public static string SAVE_ACHIEVEMENT_TAG = "ACHIEVEMENT";
+        public static string SAVE_HANDBOOK_TAG = "HANDBOOK";
 
         public static string SAVE_SETTING_AUDIO = "AUDIO";
         protected override void OnCreate()
@@ -70,6 +71,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_TECHNOLOGY_TAG] = saveData.technologyData;
             saveInfo[SAVE_STAT_TAG] = saveData.statData;
             saveInfo[SAVE_ACHIEVEMENT_TAG] = saveData.achiData;
+            saveInfo[SAVE_HANDBOOK_TAG] = saveData.handbookData;
         }
 
         public void AddFile()
@@ -94,6 +96,7 @@ namespace OpenNGS.Systems
             SaveDataManager<SaveFileData>.Instance.Current.technologyData = saveInfo[SAVE_TECHNOLOGY_TAG] as SaveFileData_Technology;
             SaveDataManager<SaveFileData>.Instance.Current.statData = saveInfo[SAVE_STAT_TAG] as SaveFileData_Stat;
             SaveDataManager<SaveFileData>.Instance.Current.achiData = saveInfo[SAVE_ACHIEVEMENT_TAG] as SaveFileData_Achievement;
+            SaveDataManager<SaveFileData>.Instance.Current.handbookData = saveInfo[SAVE_HANDBOOK_TAG] as SaveFileData_HandBook;
             SaveDataManager<SaveFileData>.Instance.Save();
         }
         public void SettingSaveFile()
