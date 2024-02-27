@@ -8,11 +8,11 @@ namespace OpenNGS.Systems
     public interface IMakeSystem
     {
         // ÖÆ×÷
-        public EXCHANGE_RESULT_TYPE Material();
+        public EXCHANGE_RESULT_TYPE Make();
         // ²ÄÁÏ
         public void MakeMaterials(OpenNGS.Item.Common.ItemData itemData);
         // Í¼Ö½
-        public void MkaeDesign(OpenNGS.Item.Common.ItemData itemInfo);
+        public void MakeDesign(OpenNGS.Item.Common.ItemData itemInfo);
 
 
 

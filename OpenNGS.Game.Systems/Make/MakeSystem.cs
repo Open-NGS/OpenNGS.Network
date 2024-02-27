@@ -27,7 +27,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     /// ÖÆ×÷
     /// </summary>
     /// <returns></returns>
-    public EXCHANGE_RESULT_TYPE Material()
+    public EXCHANGE_RESULT_TYPE Make()
     {
         Random r = new Random();
         int number = r.Next(1,10);
@@ -54,7 +54,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     }
 
     // Í¼Ö½
-    public void MkaeDesign(OpenNGS.Item.Common.ItemData itemInfo)
+    public void MakeDesign(OpenNGS.Item.Common.ItemData itemInfo)
     {
         SourceItem sourcesMakeBook = new SourceItem();
         sourcesMakeBook.GUID = itemInfo.Guid;
