@@ -116,7 +116,7 @@ namespace OpenNGS.Systems
                 EXCHANGE_RESULT_TYPE _ExchangeRes = m_exchangeSys.ExchangeItem(lstSource, lstTarget);
                 switch(_ExchangeRes)
                 {
-                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
+                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
                         {
                             _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_AWARD_NOCOUNTS;
                         }
@@ -126,7 +126,7 @@ namespace OpenNGS.Systems
                             _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_AWARD_SUCCESS;
                         }
                         break;
-                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
                         {
                             _res = ACHIEVEMENT_RESULT.ACHIEVEMENT_RESULT_AWARD_ERROR_ITEMS;
                         }

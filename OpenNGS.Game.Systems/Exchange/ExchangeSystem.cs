@@ -32,10 +32,10 @@ namespace OpenNGS.Systems
 
             switch (CheckItemCondition(src))
             {
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
-                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
-                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
+                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH;
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
+                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM;
             }             
             SendRemoveItem2Bag(src);
             SendAddItem2Bag(target);
@@ -44,24 +44,26 @@ namespace OpenNGS.Systems
 
         private EXCHANGE_RESULT_TYPE CheckItemCondition(List<SourceItem> items)
         {
-            if(items.Count == 0 || items == null) return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
+            EXCHANGE_RESULT_TYPE res = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
+            if (items.Count == 0 || items == null) return res;
 
+            
             //去背包里查找src里面的道具是否满足条件
-            foreach(SourceItem item in items)
+            foreach (SourceItem item in items)
             {
                 if (item.GUID != 0)
                 {
                     if(!m_itemSys.IsEnoughByGuid(item.GUID, item.Count))
                     {
-                        return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT;
+                        res = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH;
                     }
                 }
                 else
                 {
-                    return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM;
+                    res = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM;
                 }
             }
-            return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
+            return res;
         }
 
         private void SendAddItem2Bag(List<TargetItem> items)

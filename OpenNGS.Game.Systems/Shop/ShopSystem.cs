@@ -96,9 +96,9 @@ namespace OpenNGS.Systems
 
             switch (m_exchangeSys.ExchangeItem(sourceItems, targetItems))
             {
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
                     return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
                     return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
             }
 
@@ -133,9 +133,9 @@ namespace OpenNGS.Systems
 
             switch (m_exchangeSys.ExchangeItem(sourceItems, targetItems))
             {
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOCOUNT:
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
                     return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_ERROR_ITEM:
+                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
                     return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
             }
 
