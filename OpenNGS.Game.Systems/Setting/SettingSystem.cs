@@ -46,7 +46,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     }
 
     // “Ù∆µ
-    public Dictionary<string, AudioSettinData> GetAudioSettin()
+    public Dictionary<string, AudioSettinData> GetAudioSetting()
     {
         return _setting._audio;
     }
