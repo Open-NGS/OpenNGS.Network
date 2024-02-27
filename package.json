@@ -2,7 +2,7 @@
 	"name": "com.openngs.battle",
 	"displayName": "OpenNGS Battle",
 	"version": "0.1.0",
-	"description": "OpenNGS Battle package test",
+	"description": "OpenNGS Battle package",
 	"main": "index.js",
 	"scripts": {
 		"test" : "script-content"
