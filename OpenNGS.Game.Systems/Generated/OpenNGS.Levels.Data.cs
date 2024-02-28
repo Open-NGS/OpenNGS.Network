@@ -111,14 +111,14 @@ namespace OpenNGS.Levels.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class LevelData : global::ProtoBuf.IExtensible
+    public partial class LevelStageData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public LevelData()
+        public LevelStageData()
         {
             OnConstructor();
         }
@@ -146,23 +146,23 @@ namespace OpenNGS.Levels.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class LevelDataArray : global::ProtoBuf.IExtensible
+    public partial class LevelStageDataArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public LevelDataArray()
+        public LevelStageDataArray()
         {
-            items = new global::System.Collections.Generic.List<LevelData>();
+            items = new global::System.Collections.Generic.List<LevelStageData>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<LevelData> items { get; private set; }
+        public global::System.Collections.Generic.List<LevelStageData> items { get; private set; }
 
     }
 
@@ -212,77 +212,6 @@ namespace OpenNGS.Levels.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<ConditionData> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class LevelEnemyInfo : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public LevelEnemyInfo()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint EnemyID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.Levels.Common.ENEMY_INITTYPE EnemyInitType { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public bool IsActiveAtBegin { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.Levels.Common.ENEMY_INITTRIGGER EnemyInitTrigger { get; set; }
-
-        [global::ProtoBuf.ProtoMember(6)]
-        public uint EnemyNum { get; set; }
-
-        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
-        public uint[] AreaPos { get; set; }
-
-        [global::ProtoBuf.ProtoMember(8)]
-        public uint MinDistance { get; set; }
-
-        [global::ProtoBuf.ProtoMember(9)]
-        public uint MaxDistance { get; set; }
-
-        [global::ProtoBuf.ProtoMember(10)]
-        public uint IntervalTime { get; set; }
-
-        [global::ProtoBuf.ProtoMember(11)]
-        public uint SpecificEnemyID { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class LevelEnemyInfoArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public LevelEnemyInfoArray()
-        {
-            items = new global::System.Collections.Generic.List<LevelEnemyInfo>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<LevelEnemyInfo> items { get; private set; }
 
     }
 
