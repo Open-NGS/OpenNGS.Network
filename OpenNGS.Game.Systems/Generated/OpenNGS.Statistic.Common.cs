@@ -52,6 +52,13 @@ namespace OpenNGS.Statistic.Common
         STAT_EVENT_PUZZLE_PLAY = 9,
         STAT_EVENT_PROCESS_MOVEON = 10,
         STAT_EVENT_UI_CLICK = 11,
+        STAT_EVENT_LEVEL_GOT_DAMAGE = 12,
+        STAT_EVENT_LEVEL_DEATH_COUNTS = 13,
+        STAT_EVENT_LEVEL_DAMAGE = 14,
+        STAT_EVENT_LEVEL_DAMAGE_PER_SECOND = 15,
+        STAT_EVENT_LEVEL_FINISH = 16,
+        STAT_EVENT_LEVEL_SURVIVE_TIME = 17,
+        STAT_EVENT_LEVEL_KILL_ENEMY = 18,
     }
 
     [global::ProtoBuf.ProtoContract()]

@@ -153,8 +153,16 @@ namespace OpenNGS.Systems
                                         _updateValUIClicked(lParam1, lParam2, _statValue, _statData);
                                     }
                                     break;
+                                case STAT_EVENT.STAT_EVENT_LEVEL_GOT_DAMAGE:
+                                case STAT_EVENT.STAT_EVENT_LEVEL_DEATH_COUNTS:
+                                case STAT_EVENT.STAT_EVENT_LEVEL_DAMAGE:
+                                case STAT_EVENT.STAT_EVENT_LEVEL_DAMAGE_PER_SECOND:
+                                case STAT_EVENT.STAT_EVENT_LEVEL_FINISH:
+                                case STAT_EVENT.STAT_EVENT_LEVEL_SURVIVE_TIME:
+                                case STAT_EVENT.STAT_EVENT_LEVEL_KILL_ENEMY:
                                 default:
                                     {
+                                        _updateValLevel(lParam1, lParam2, _statValue, _statData);
                                         break;
                                     }
                             }
@@ -167,6 +175,37 @@ namespace OpenNGS.Systems
             m_saveSys.SaveFile();
 
             m_eventSys.PostEvent((int)StatEventNotify.StatEventNotify_Update);
+        }
+
+        private void _updateValLevel(ulong lLevelID, ulong lParam2, StatValue _statVal, StatData _statData)
+        {
+            bool bCanUpdate = false;
+            if (_statData.ObjCategory == 0)
+            {
+                bCanUpdate = true;
+            }
+            else
+            {
+                OpenNGS.Levels.Data.NGSLevelInfo _item = NGSStaticData.levelInfo.GetItem((uint)lLevelID);
+                if (_item != null)
+                {
+                    if (_statData.ObjCategory == (uint)lLevelID)
+                    {
+                        bCanUpdate = true;
+                    }
+                }
+            }
+
+            if (bCanUpdate == true)
+            {
+                //STAT_TYPE_CALCULATE_MAX
+                //STAT_TYPE_CALCULATE_MIN
+                //STAT_TYPE_CALCULATE_SUM
+                if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
+                {
+                    _statVal.totalval += 1;
+                }
+            }
         }
 
         //STAT_EVENT_USE_ITEM = 1,
@@ -193,7 +232,15 @@ namespace OpenNGS.Systems
             {
                 if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
                 {
-                    _statVal.totalval += 1;
+                    _statVal.totalval += lParam2;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MAX)
+                {
+                    _statVal.totalval = _statVal.totalval > lParam2 ? _statVal.totalval : lParam2;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MIN)
+                {
+                    _statVal.totalval = _statVal.totalval < lParam2 ? _statVal.totalval : lParam2;
                 }
             }
         }
