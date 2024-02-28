@@ -1,3 +1,4 @@
+using OpenNGS.Systems;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,33 @@ public class LevelStageBegin : ILevelStage
     public List<StageExecution> lstUpdateExecution ;
     public List<StageExecution> lstEndExecution ;
 
-    public void Init(List<StageExecution> LstBeginExecution, List<StageExecution> LstUpdateExecution, List<StageExecution> LstEndExecution)
+    public void Init(int levelId)
     {
-        lstBeginExecution=LstBeginExecution;
-        lstUpdateExecution=LstUpdateExecution;
-        lstEndExecution=LstEndExecution;
+        lstBeginExecution = new List<StageExecution>();
+        lstUpdateExecution = new List<StageExecution>();
+        lstEndExecution = new List<StageExecution>();
+
+        StageExecution updateExecution = new StageExecution();
+        uint[] conditionlist = NGSStaticData.levelData.GetItem(levelId).StartCondition;
+        AddConditionsToList(updateExecution, conditionlist);
+        lstUpdateExecution.Add(updateExecution);
+    }
+
+    private void AddConditionsToList(StageExecution execution, uint[] conditionIds)
+    {
+        foreach (uint conditionId in conditionIds)
+        {
+            string conditionName = NGSStaticData.conditionData.GetItem(conditionId).Condition;
+            Type conditionType = Type.GetType(conditionName);
+            if (conditionType != null)
+            {
+                ICondition condition = Activator.CreateInstance(conditionType) as ICondition;
+                if (condition != null)
+                {
+                    execution.AddCondition(condition);
+                }
+            }
+        }
     }
 
     public void OnStageBegin()

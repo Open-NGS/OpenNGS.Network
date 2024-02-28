@@ -5,7 +5,6 @@ using UnityEngine;
 
 public interface ILevelSystem
 {
-    public void CurLevel(int levelid);
-    public void SetTimer(int timer);
+    public void SetLevel(int levelid);
     public void UpdateStages(float deltaTime);
 }

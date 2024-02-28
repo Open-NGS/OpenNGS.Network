@@ -27,7 +27,7 @@ public class StageExecution
         return true;
     }
 
-    public void Execution()
+    public virtual void Execution()
     {
         Debug.Log("Executing stage...");
     }

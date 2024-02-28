@@ -110,6 +110,111 @@ namespace OpenNGS.Levels.Data
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class LevelData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public LevelData()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint LevelID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint CompletionTime { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
+        public uint[] StartCondition { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
+        public uint[] FailureCondition { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
+        public uint[] VictoryCondition { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
+        public uint[] EndCondition { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class LevelDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public LevelDataArray()
+        {
+            items = new global::System.Collections.Generic.List<LevelData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<LevelData> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ConditionData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ConditionData()
+        {
+            Condition = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ConditionID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Core.NGSText ConditionName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Condition { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ConditionDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ConditionDataArray()
+        {
+            items = new global::System.Collections.Generic.List<ConditionData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ConditionData> items { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021

@@ -12,9 +12,9 @@ public class LevelStage
     protected int levelTime;
     protected LevelSystem levelSystem;
 
-    public List<StageExecution> LstBeginExecution = new List<StageExecution>();
-    public List<StageExecution> LstUpdateExecution = new List<StageExecution>();
-    public List<StageExecution> LstEndExecution = new List<StageExecution>();
+    //public List<StageExecution> LstBeginExecution = null;
+    //public List<StageExecution> LstUpdateExecution = null;
+    //public List<StageExecution> LstEndExecution = null;
 
 
     public List<ILevelStage> lstStages = new List<ILevelStage>();
@@ -31,13 +31,13 @@ public class LevelStage
     {
         // 创建关卡并添加到列表中
         LevelStageBegin _stageBegin = new LevelStageBegin();
-        _stageBegin.Init(LstBeginExecution, LstUpdateExecution, LstEndExecution);
+        _stageBegin.Init(levelId);
         lstStages.Add(_stageBegin);
         LevelStageProcess _stageProcess = new LevelStageProcess();
-        _stageProcess.Init(LstBeginExecution, LstUpdateExecution, LstEndExecution);
+        _stageProcess.Init(levelId);
         lstStages.Add(_stageProcess);
         LevelStageEnd _stageEnd = new LevelStageEnd();
-        _stageEnd.Init(LstBeginExecution, LstUpdateExecution, LstEndExecution);
+        _stageEnd.Init(levelId);
         lstStages.Add(_stageEnd);
     }
     public void StartBegin()
@@ -55,7 +55,7 @@ public class LevelStage
 
         if (currentStageIndex < lstStages.Count)
         {
-            lstStages[currentStageIndex].OnStageUpdate(deltaTime);
+            //lstStages[currentStageIndex].OnStageUpdate(deltaTime);
             if (lstStages[currentStageIndex].OnStageUpdate(deltaTime))
             {
                 m_bNextStage = true;

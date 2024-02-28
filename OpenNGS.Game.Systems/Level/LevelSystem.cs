@@ -28,14 +28,10 @@ public class LevelSystem : GameSubSystem<LevelSystem>, ILevelSystem
         return "com.openngs.system.LevelSystem";
     }
 
-    public void CurLevel(int levelid)
+    public void SetLevel(int levelid)
     {
-        levelId = levelid;
-    }
-
-    public void SetTimer(int timer)
-    {
-        levelTime = timer;
+        levelId = (int)NGSStaticData.levelData.GetItem(levelid).LevelID;
+        levelTime = (int)NGSStaticData.levelData.GetItem(levelid).CompletionTime;
     }
 
 
@@ -53,4 +49,5 @@ public class LevelSystem : GameSubSystem<LevelSystem>, ILevelSystem
     {
         lstStages[0].UpdateStages(deltaTime);
     }
+
 }

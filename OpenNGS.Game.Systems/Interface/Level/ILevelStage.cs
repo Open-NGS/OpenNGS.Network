@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface ILevelStage
 {
-    public void Init(List<StageExecution> LstBeginExecution, List<StageExecution> LstUpdateExecution,List<StageExecution> LstEndExecution);
+    public void Init(int levelId);
     public void OnStageBegin();
     public bool OnStageUpdate(float deltaTime);
     public void OnStageEnd();
