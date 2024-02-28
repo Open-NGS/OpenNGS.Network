@@ -427,7 +427,7 @@ namespace OpenNGS.Systems
                 //前面无空闲Guid则用后面数赋值
                 else
                 {
-                    while (m_itemData._items.ContainsKey(guid_cache))
+                    while (m_itemData._items.ContainsKey(guid_cache) || m_itemData._equips.ContainsKey(guid_cache))
                     {
                         guid_cache++;
                     }
