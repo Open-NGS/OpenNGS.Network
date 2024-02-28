@@ -35,6 +35,7 @@ namespace OpenNGS.Statistic.Common
         STAT_TYPE_CALCULATE_COUNT = 4,
         STAT_TYPE_CALCULATE_UPDATE = 5,
         STAT_TYPE_CALCULATE_LIST = 6,
+        STAT_TYPE_CALCULATE_AVERAGE = 7,
     }
 
     [global::ProtoBuf.ProtoContract()]

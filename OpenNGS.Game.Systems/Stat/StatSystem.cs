@@ -198,12 +198,21 @@ namespace OpenNGS.Systems
 
             if (bCanUpdate == true)
             {
-                //STAT_TYPE_CALCULATE_MAX
-                //STAT_TYPE_CALCULATE_MIN
-                //STAT_TYPE_CALCULATE_SUM
                 if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
                 {
-                    _statVal.totalval += 1;
+                    _statVal.totalval += lParam2;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MAX)
+                {
+                    _statVal.totalval = _statVal.totalval > lParam2 ? _statVal.totalval : lParam2;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MIN)
+                {
+                    _statVal.totalval = _statVal.totalval < lParam2 ? _statVal.totalval : lParam2;
+                }
+                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_AVERAGE)
+                {
+                    _statVal.totalval = (_statVal.totalval + lParam2)/ 2;
                 }
             }
         }
@@ -233,14 +242,6 @@ namespace OpenNGS.Systems
                 if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_SUM)
                 {
                     _statVal.totalval += lParam2;
-                }
-                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MAX)
-                {
-                    _statVal.totalval = _statVal.totalval > lParam2 ? _statVal.totalval : lParam2;
-                }
-                else if (_statData.StatType == STAT_TYPE.STAT_TYPE_CALCULATE_MIN)
-                {
-                    _statVal.totalval = _statVal.totalval < lParam2 ? _statVal.totalval : lParam2;
                 }
             }
         }
