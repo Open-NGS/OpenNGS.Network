@@ -6,6 +6,7 @@ using UnityEngine;
 using OpenNGS.Item.Common;
 using UnityEngine.Events;
 using System;
+using Dynamic.Data;
 
 namespace OpenNGS.Systems
 {
@@ -37,7 +38,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //脱装备
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
-        public Dictionary<uint, ItemData> GetEquippedList();
+        public Dictionary<long, ItemSaveData> GetEquippedList();
         //传入道具栏变更的事件
         public void AddAction_bagChange(Action<uint ,OpenNGS.Item.Common.ItemData> ac);
         //传入装备栏变更的事件

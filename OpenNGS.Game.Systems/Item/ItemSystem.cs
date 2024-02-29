@@ -557,7 +557,7 @@ namespace OpenNGS.Systems
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            m_itemData._equips[index] = GetItemDataByGuid(nGuid);
+            m_itemData._equips[index] = m_itemData._items[nGuid];
             m_itemData._items.Remove(nGuid);
             BagBoxChange?.Invoke(nGuid,GetItemDataByGuid(nGuid));
             //更新动态数据
@@ -571,15 +571,14 @@ namespace OpenNGS.Systems
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            ItemData item = m_itemData._equips[index];
+            m_itemData._items[m_itemData._equips[index].GUID] = m_itemData._equips[index];
             m_itemData._equips.Remove(index);
-            AddItemsByID(item.ItemID, item.Count);
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
-        public Dictionary<uint, ItemData> GetEquippedList()
+        public Dictionary<long, ItemSaveData> GetEquippedList()
         {
             return m_itemData._equips;
         }
