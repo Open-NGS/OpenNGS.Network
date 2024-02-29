@@ -126,6 +126,14 @@ namespace OpenNGS.Item.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public enum NUMBER_FORMAT
+    {
+        NUMBER_FORMAT_INTEGER = 0,
+        NUMBER_FORMAT_DECIMAL = 1,
+        NUMBER_FORMAT_PERCENTAGE = 2,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public enum EQUIP_RESULT_TYPE
     {
         EQUIP_RESULT_TYPE_NONE = 0,
