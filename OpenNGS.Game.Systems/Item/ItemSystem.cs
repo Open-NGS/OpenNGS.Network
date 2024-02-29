@@ -571,8 +571,9 @@ namespace OpenNGS.Systems
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            AddItemsByID(m_itemData._equips[index].ItemID, m_itemData._equips[index].Count);
+            ItemData item = m_itemData._equips[index];
             m_itemData._equips.Remove(index);
+            AddItemsByID(item.ItemID, item.Count);
             //更新动态数据
             m_saveSystem.SetFileData("ITEM", m_itemData);
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
