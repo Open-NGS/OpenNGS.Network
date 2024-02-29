@@ -60,6 +60,7 @@ namespace OpenNGS.Statistic.Common
         STAT_EVENT_LEVEL_FINISH = 16,
         STAT_EVENT_LEVEL_SURVIVE_TIME = 17,
         STAT_EVENT_LEVEL_KILL_ENEMY = 18,
+        STAT_EVENT_LEVEL_PASS_TIME = 19,
     }
 
     [global::ProtoBuf.ProtoContract()]
