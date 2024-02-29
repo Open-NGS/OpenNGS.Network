@@ -2,6 +2,7 @@ namespace Neptune
 {
     public class NeptuneBattle : OpenNGS.Singleton<NeptuneBattle>
     {
+        public int Round;
         // Start is called before the first frame update
         void Start()
         {
