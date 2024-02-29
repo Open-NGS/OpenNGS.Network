@@ -1,4 +1,5 @@
 using OpenNGS;
+using OpenNGS.Statistic.Data;
 using OpenNGS.Systems;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,14 +9,13 @@ using UnityEngine;
 
 public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
 {
-    IStatSystem stat = null;
+    IStatSystem stat;
     List<OpenNGS.Levels.Data.NGSLevelInfo> levelStages = NGSStaticData.levelInfo.Items;
-    List<OpenNGS.Statistic.Data.StatData> stats = NGSStaticData.s_statDatas.Items;
+    List<StatData> stats = NGSStaticData.s_statDatas.Items;
 
-    Dictionary<string, ulong> SingleData = new Dictionary<string, ulong>();
-    Dictionary<uint, Dictionary<string, ulong>> LevelData = new Dictionary<uint, Dictionary<string, ulong>>();
+    Dictionary<StatData, ulong> SingleData = new Dictionary<StatData, ulong>();
 
-    Dictionary<string, ulong> OverallData = new Dictionary<string, ulong>();
+    Dictionary<StatData, ulong> OverallData = new Dictionary<StatData, ulong>();
 
     protected override void OnCreate()
     {
@@ -24,26 +24,26 @@ public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
     }
 
     // 单局
-    public Dictionary<uint, Dictionary<string, ulong>> SingleRecor()
+    public Dictionary<StatData, ulong> SingleRecor()
     {
+        SingleData.Clear();
         for (int i = 0; i < levelStages.Count; i++)
         {
             for (int j = 0; j < stats.Count; j++)
             {
-                if (levelStages[i].ID == stats[j].ObjCategory)
+                if (levelStages[i].ID == stats[j].ObjCategory && stats[j].Id > 2)
                 {
                     ulong data;
                     stat.GetStatValueByID(stats[j].Id, out data);
-                    SingleData.Add(stats[j].Description, data);
-                    LevelData.Add(stats[j].Id, SingleData);
+                    SingleData.Add(stats[j], data);
                 }
             }
         }
-        return LevelData;
+        return SingleData;
     }
 
     // 全局
-    public Dictionary<string, ulong> OverallRecor()
+    public Dictionary<StatData, ulong> OverallRecor()
     {
         for (int i = 0; i < stats.Count; i++)
         {
@@ -51,13 +51,13 @@ public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
             {
                 ulong data;
                 stat.GetStatValueByID(stats[i].Id, out data);
-                OverallData.Add(stats[i].Description,data);
+                OverallData.Add(stats[i],data);
             }
         }
         return OverallData;
     }
     public override string GetSystemName()
     {
-        throw new System.NotImplementedException();
+        return "com.openngs.system.record";
     }
 }
