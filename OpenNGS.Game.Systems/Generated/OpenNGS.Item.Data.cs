@@ -548,6 +548,173 @@ namespace OpenNGS.Item.Data
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class EquipStats : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public EquipStats()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint HP { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT HP_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint ATK { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ATK_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public uint HealthRegeneration { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT HealthRegeneration_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint HealingAddition { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT HealingAddition_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10)]
+        public uint LifeTheftProbability { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT LifeTheftProbability_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(12)]
+        public uint LifeSteal { get; set; }
+
+        [global::ProtoBuf.ProtoMember(13)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT LifeSteal_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(14)]
+        public uint Defense { get; set; }
+
+        [global::ProtoBuf.ProtoMember(15)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT Defense_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(16)]
+        public uint Speed { get; set; }
+
+        [global::ProtoBuf.ProtoMember(17)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT Speed_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(18)]
+        public uint PenetratingPower { get; set; }
+
+        [global::ProtoBuf.ProtoMember(19)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT PenetratingPower_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(20)]
+        public uint SkillCD { get; set; }
+
+        [global::ProtoBuf.ProtoMember(21)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillCD_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(22)]
+        public uint PickRange { get; set; }
+
+        [global::ProtoBuf.ProtoMember(23)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT PickRange_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(24)]
+        public uint SkillDuration { get; set; }
+
+        [global::ProtoBuf.ProtoMember(25)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillDuration_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(26)]
+        public uint SkillTime { get; set; }
+
+        [global::ProtoBuf.ProtoMember(27)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillTime_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(28)]
+        public uint CriticalHitRate { get; set; }
+
+        [global::ProtoBuf.ProtoMember(29)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT CriticalHitRate_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(30)]
+        public uint CriticalHitDamage { get; set; }
+
+        [global::ProtoBuf.ProtoMember(31)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT CriticalHitDamage_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public uint MoneyRate { get; set; }
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT MoneyRate_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        public uint ExperienceValueMultiplier { get; set; }
+
+        [global::ProtoBuf.ProtoMember(35)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ExperienceValueMultiplier_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(36)]
+        public uint AvoidanceProbability { get; set; }
+
+        [global::ProtoBuf.ProtoMember(37)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT AvoidanceProbability_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(38)]
+        public uint MagazineCapacity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(39)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT MagazineCapacity_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(40)]
+        public uint ChangingVelocity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(41)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ChangingVelocity_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(42)]
+        public uint ExperienceValuePickingRange { get; set; }
+
+        [global::ProtoBuf.ProtoMember(43)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ExperienceValuePickingRange_NF { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class EquipStatsArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public EquipStatsArray()
+        {
+            items = new global::System.Collections.Generic.List<EquipStats>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<EquipStats> items { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
