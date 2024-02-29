@@ -109,6 +109,55 @@ namespace OpenNGS.HandBook.Data
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class HandBookGroup : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public HandBookGroup()
+        {
+            IconPath = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Core.NGSText Name { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string IconPath { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class HandBookGroupArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public HandBookGroupArray()
+        {
+            items = new global::System.Collections.Generic.List<HandBookGroup>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<HandBookGroup> items { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
