@@ -43,7 +43,7 @@ namespace OpenNGS.HandBook.Common
         [global::ProtoBuf.ProtoMember(1)]
         public uint ID { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3)]
+        [global::ProtoBuf.ProtoMember(2)]
         public HANDBOOK_STATUS status { get; set; }
 
     }
