@@ -45,6 +45,7 @@ public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
     // È«¾Ö
     public Dictionary<StatData, ulong> OverallRecor()
     {
+        OverallData.Clear();
         for (int i = 0; i < stats.Count; i++)
         {
             if (stats[i].ObjCategory == 0)
