@@ -95,7 +95,7 @@ public class Aes
             output[i] = this.State[i % 4, i / 4];
         }
 
-    }  // Cipher()  加密  每一轮都经历了 SubBytes, ShiftRows, MixColumns 和 AddRoundKey 四个环节，但是最后一轮没有 MixColumns 环节
+    }  // Cipher()  加密  每一轮都经历�?SubBytes, ShiftRows, MixColumns �?AddRoundKey 四个环节，但是最后一轮没�?MixColumns 环节
 
     /// <summary>
     /// decipher 16-bit input
@@ -131,7 +131,7 @@ public class Aes
             output[i] = this.State[i % 4, i / 4];
         }
 
-    }  // InvCipher()  解密  每一轮都经历了 invShiftRows, inSubBytes, AddRoundKey 和 invMixColumns 四个环节，但是最后一轮没有 invMixColumns 环节
+    }  // InvCipher()  解密  每一轮都经历�?invShiftRows, inSubBytes, AddRoundKey �?invMixColumns 四个环节，但是最后一轮没�?invMixColumns 环节
 
     private void SetNbNkNr(KeySize keySize)
     {
@@ -198,7 +198,7 @@ public class Aes
         /*e*/  {0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb, 0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61},
         /*f*/  {0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d} };
 
-    }  // BuildInvSbox()  用于解密过程中的逆字节代换运算
+    }  // BuildInvSbox()  用于解密过程中的逆字节代换运�?
 
     private void BuildRcon()
     {
@@ -225,7 +225,7 @@ public class Aes
                 this.State[r, c] = (byte)((int)this.State[r, c] ^ (int)w[(round * 4) + c, r]);
             }
         }
-    }  // AddRoundKey()  轮密钥加法变换
+    }  // AddRoundKey()  轮密钥加法变�?
 
     private void SubBytes()
     {
@@ -247,7 +247,7 @@ public class Aes
                 this.State[r, c] = this.iSbox[(this.State[r, c] >> 4), (this.State[r, c] & 0x0f)];
             }
         }
-    }  // InvSubBytes  逆字节代替变换
+    }  // InvSubBytes  逆字节代替变�?
 
     private void ShiftRows()
     {
@@ -267,7 +267,7 @@ public class Aes
                 this.State[r, c] = temp[r, (c + r) % Nb];
             }
         }
-    }  // ShiftRows()  行位移变换
+    }  // ShiftRows()  行位移变�?
 
     private void InvShiftRows()
     {
@@ -310,7 +310,7 @@ public class Aes
             this.State[3, c] = (byte)((int)gfmultby03(temp[0, c]) ^ (int)gfmultby01(temp[1, c]) ^
                                        (int)gfmultby01(temp[2, c]) ^ (int)gfmultby02(temp[3, c]));
         }
-    }  // MixColumns()  列混合变换
+    }  // MixColumns()  列混合变�?
 
     private void InvMixColumns()
     {

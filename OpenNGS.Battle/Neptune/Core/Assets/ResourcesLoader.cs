@@ -161,15 +161,16 @@ public class ResourcesLoader : BehaviourSingleton<ResourcesLoader>
 
     public static void Load<T>(string resource, UnityAction<T> onLoaded, bool autoDestroy = true, bool localized = false) where T : Object
     {
-        if (LoadUIFromResources && (resource.StartsWithFast("UI/prefab") || resource.StartsWithFast("UI/Prefab")))
-        {
-            T obj = Resources.Load<T>(resource);
-            if (obj == null)
-                Debug.LogError("Load: asset is null :" + resource + ". \n");
-            onLoaded(obj);
-        }
-        else
-            ResourcesLoader.Instance.LoadAsset<T>(resource, onLoaded, autoDestroy, localized);
+        Debug.Assert(false);
+        //if (LoadUIFromResources && (resource.StartsWithFast("UI/prefab") || resource.StartsWithFast("UI/Prefab")))
+        //{
+        //    T obj = Resources.Load<T>(resource);
+        //    if (obj == null)
+        //        Debug.LogError("Load: asset is null :" + resource + ". \n");
+        //    onLoaded(obj);
+        //}
+        //else
+        //    ResourcesLoader.Instance.LoadAsset<T>(resource, onLoaded, autoDestroy, localized);
     }
     /// <summary>
     /// 加载Sprite 从Resrouces

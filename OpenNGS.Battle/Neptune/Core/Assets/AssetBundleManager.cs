@@ -241,8 +241,9 @@ public class AssetBundleManager : BehaviourSingleton<AssetBundleManager>
             //Debug.LogFormat("AssetBundle Unload:{0}", bundle.name);
             if (delay)
             {
-                if (!bundle.name.StartsWithFast("ui/"))
-                    this.m_DelayUnloadBundles.Add(bundle);
+                //if (!bundle.name.StartsWithFast("ui/"))
+                //    this.m_DelayUnloadBundles.Add(bundle);
+                Debug.Assert(false);
             }
             else
             {
@@ -460,17 +461,6 @@ public class AssetBundleManager : BehaviourSingleton<AssetBundleManager>
             }
             //if (AssetBundleManager.Instance.m_AllBundles.ContainsKey(bundlename))
             return bundlename;
-            if (bundlename.StartsWithFast("level/"))
-                return bundlename;
-            int lastslash = resource.LastIndexOf('/');
-            if (lastslash > 0)
-            {
-                bundlename = resource.Substring(0, lastslash) + ext;
-                if (AssetBundleManager.Instance.m_AllBundles.ContainsKey(bundlename))
-                    return bundlename;
-            }
-            Debug.LogErrorFormat("GetBundleFilename Error:{0}", resource);
-            return "";
         }
         return bundlename;
     }
