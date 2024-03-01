@@ -18,6 +18,8 @@ namespace OpenNGS.Systems
         private bool m_bStatDirty = false;
         private IExchangeSystem m_exchangeSys;
 
+        private uint GroupID;
+
         protected override void OnCreate()
         {
             m_saveSys = App.GetService<ISaveSystem>();
@@ -41,7 +43,6 @@ namespace OpenNGS.Systems
                     m_saveHandBook.DicHandBook[_statData.ID] = new HandBookInfo();
                     m_saveHandBook.DicHandBook[_statData.ID].ID = _statData.ID;
                     m_saveHandBook.DicHandBook[_statData.ID].status = HANDBOOK_STATUS.HANDBOOK_STATUS_STATING;
-                    m_saveHandBook.DicHandBook[_statData.ID].value = 0;
                 }
             }
             m_statSys.Subscribe((int)StatEventNotify.StatEventNotify_Update, _statUpdate);
@@ -64,13 +65,9 @@ namespace OpenNGS.Systems
                     {
                         if (m_statSys.GetStatValueByID(_handBookInfo.StatID, out ulong ulStatVal) == true)
                         {
-                            if (kvp.Value.value < ulStatVal)
+                            if (ulStatVal > 0)
                             {
-                                kvp.Value.value = (uint)ulStatVal;
-                                if (kvp.Value.value > _handBookInfo.StatValue)
-                                {
-                                    kvp.Value.status = HANDBOOK_STATUS.HANDBOOK_STATUS_PENDING;
-                                }
+                                kvp.Value.status = HANDBOOK_STATUS.HANDBOOK_STATUS_ACTIVE;
                             }
                         }
                     }
@@ -84,7 +81,12 @@ namespace OpenNGS.Systems
             m_saveSys.SaveFile();
         }
 
-        public Dictionary<uint, HandBookInfo> GetHandBookData(uint GroupID)
+        public void SetHandBookIndex(uint groupID)
+        {
+            this.GroupID = groupID;
+        }
+
+        public Dictionary<uint, HandBookInfo> GetHandBookData()
         {
             Dictionary<uint, HandBookInfo> m_handBook = new Dictionary<uint, HandBookInfo> ();
             foreach (KeyValuePair<uint, HandBookInfo> kvp in m_saveHandBook.DicHandBook)
@@ -107,54 +109,6 @@ namespace OpenNGS.Systems
             }
 
             return _status;
-        }
-
-        public HANDBOOK_RESULT GetHandBookReward(uint nHandBookID)
-        {
-            HANDBOOK_RESULT _res = HANDBOOK_RESULT.HANDBOOK_RESULT_NONE;
-            if (m_saveHandBook.DicHandBook.ContainsKey(nHandBookID))
-            {
-                m_saveHandBook.DicHandBook[nHandBookID].status = HANDBOOK_STATUS.HANDBOOK_STATUS_DONE;
-                _saveHandBook();
-
-                List<SourceItem> lstSource = new List<SourceItem>();
-                List<TargetItem> lstTarget = new List<TargetItem>();
-
-                List<AchievementAward> _lstAward = NGSStaticData.s_achiAward.GetItems(nHandBookID);
-                foreach (AchievementAward _award in _lstAward)
-                {
-                    TargetItem _target = new TargetItem();
-                    _target.ItemID = _award.ItemID;
-                    _target.Count = _award.Counts;
-                    lstTarget.Add(_target);
-                }
-                EXCHANGE_RESULT_TYPE _ExchangeRes = m_exchangeSys.ExchangeItem(lstSource, lstTarget);
-                switch (_ExchangeRes)
-                {
-                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
-                        {
-                            _res = HANDBOOK_RESULT.HANDBOOK_RESULT_AWARD_NOCOUNTS;
-                        }
-                        break;
-                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS:
-                        {
-                            _res = HANDBOOK_RESULT.HANDBOOK_RESULT_AWARD_SUCCESS;
-                        }
-                        break;
-                    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
-                        {
-                            _res = HANDBOOK_RESULT.HANDBOOK_RESULT_AWARD_ERROR_ITEMS;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                _res = HANDBOOK_RESULT.HANDBOOK_RESULT_NOT_EXIST;
-            }
-            return _res;
         }
 
         public override string GetSystemName()

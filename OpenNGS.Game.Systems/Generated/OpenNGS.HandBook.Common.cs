@@ -13,11 +13,8 @@ namespace OpenNGS.HandBook.Common
     public enum HANDBOOK_RESULT
     {
         HANDBOOK_RESULT_NONE = 0,
-        HANDBOOK_RESULT_NOT_EXIST = 1,
-        HANDBOOK_RESULT_AWARD_HAS_GOT = 2,
-        HANDBOOK_RESULT_AWARD_SUCCESS = 3,
-        HANDBOOK_RESULT_AWARD_NOCOUNTS = 4,
-        HANDBOOK_RESULT_AWARD_ERROR_ITEMS = 5,
+        HANDBOOK_RESULT_SUCCESS = 1,
+        HANDBOOK_RESULT_NOT_EXIST = 2,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -25,8 +22,7 @@ namespace OpenNGS.HandBook.Common
     {
         HANDBOOK_STATUS_NONE = 0,
         HANDBOOK_STATUS_STATING = 1,
-        HANDBOOK_STATUS_PENDING = 2,
-        HANDBOOK_STATUS_DONE = 3,
+        HANDBOOK_STATUS_ACTIVE = 2,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -46,9 +42,6 @@ namespace OpenNGS.HandBook.Common
 
         [global::ProtoBuf.ProtoMember(1)]
         public uint ID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint value { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public HANDBOOK_STATUS status { get; set; }
