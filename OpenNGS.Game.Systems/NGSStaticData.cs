@@ -27,7 +27,7 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Achievement.Data.Achievement, uint> s_achiDatas = new Table<Achievement.Data.Achievement, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Item.Data.MakeDesign, uint> MakeItems = new Table<Item.Data.MakeDesign, uint>((item) => { return item.ID; }, false);
         public static ListTableBase<OpenNGS.Achievement.Data.AchievementAward, uint> s_achiAward = new ListTableBase<Achievement.Data.AchievementAward, uint>((item) => { return item.ID; }, false);
-        public static Table<OpenNGS.HandBook.Data.HandBook, uint> s_handBook = new Table<HandBook.Data.HandBook, uint> ((item) => { return item.GroupID; }, false);
+        public static Table<OpenNGS.HandBook.Data.HandBook, uint> s_handBook = new Table<HandBook.Data.HandBook, uint> ((item) => { return item.ID; }, false);
         
         public static void Init() { }
     }
