@@ -101,6 +101,9 @@ namespace OpenNGS.Dialog.Data
         [global::System.ComponentModel.DefaultValue("")]
         public string AudioFiles { get; set; }
 
+        [global::ProtoBuf.ProtoMember(10)]
+        public bool IsRight { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
