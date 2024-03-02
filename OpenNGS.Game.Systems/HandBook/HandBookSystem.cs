@@ -97,7 +97,7 @@ namespace OpenNGS.Systems
                 }
             }
             
-            return m_saveHandBook.DicHandBook;
+            return m_handBook;
         }
 
         public HANDBOOK_STATUS GetHandBookStatus(uint nHandBookID)
