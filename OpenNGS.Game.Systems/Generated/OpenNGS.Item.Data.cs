@@ -458,7 +458,7 @@ namespace OpenNGS.Item.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint Probability { get; set; }
+        public float Probability { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint TargetItemID { get; set; }
