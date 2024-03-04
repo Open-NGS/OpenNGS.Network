@@ -10,7 +10,7 @@ public class LevelStage
 {
     protected int levelId;
     protected int levelTime;
-    protected LevelSystem levelSystem;
+    protected LevelProcessSystem levelProcessSystem;
 
     //public List<StageExecution> LstBeginExecution = null;
     //public List<StageExecution> LstUpdateExecution = null;

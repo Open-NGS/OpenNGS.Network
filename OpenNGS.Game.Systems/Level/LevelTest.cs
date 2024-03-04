@@ -7,22 +7,29 @@ using UnityEngine;
 public class LevelTest : MonoBehaviour
 {
     public int levelID = 0;
-    private LevelSystem levelSystem;
+    public LevelProcessSystem levelProcessSystem;
 
-
+    private StartCondition startCondition;
+    private EndCondition endCondition;
     private void Start()
     {
-        levelSystem = new LevelSystem();
-        levelSystem.SetLevel(levelID);     
-        levelSystem.InitStages();
+        levelProcessSystem = new LevelProcessSystem();
+        levelProcessSystem.SetLevel(levelID);
+        levelProcessSystem.InitStages();
 
-        levelSystem.lstStages[0].StartBegin();
+        LevelStageBegin levelStageBegin = levelProcessSystem.lstStages[0].lstStages[0] as LevelStageBegin;
+        OpenStartUIExecution openStartUIExecution = new OpenStartUIExecution();
+        levelStageBegin.lstBeginExecution.Add(openStartUIExecution);
+        CloseStartUIExecution closeStartUIExecution = new CloseStartUIExecution();
+        levelStageBegin.lstEndExecution.Add(closeStartUIExecution);
+
+        levelProcessSystem.lstStages[0].StartBegin();
     }
     private void Update()
     {
-        if (levelSystem.lstStages[0].currentStageIndex < 3)
+        if (levelProcessSystem.lstStages[0].currentStageIndex < 3)
         {
-            levelSystem.UpdateStages(UnityEngine.Time.deltaTime);
+            levelProcessSystem.UpdateStages(UnityEngine.Time.deltaTime);
         }
         else
         {
@@ -30,4 +37,18 @@ public class LevelTest : MonoBehaviour
         }
 
     }
+    public void StartBotton()
+    {
+        LevelStageBegin levelStageBegin = levelProcessSystem.lstStages[0].lstStages[0] as LevelStageBegin;
+        startCondition = (StartCondition)levelStageBegin.lstUpdateExecution[0].LstCondition[0];
+        startCondition.isStart = true;
+    }
+
+    public void EndBotton()
+    {
+        LevelStageEnd levelStageEnd = levelProcessSystem.lstStages[0].lstStages[2] as LevelStageEnd;
+        endCondition = (EndCondition)levelStageEnd.lstUpdateExecution[0].LstCondition[0];
+        endCondition.isEnd = true;
+    }
+
 }

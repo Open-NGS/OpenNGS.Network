@@ -21,6 +21,8 @@ public class LevelStageBegin : ILevelStage
         uint[] conditionlist = NGSStaticData.levelData.GetItem(levelId).StartCondition;
         AddConditionsToList(updateExecution, conditionlist);
         lstUpdateExecution.Add(updateExecution);
+
+
     }
 
     private void AddConditionsToList(StageExecution execution, uint[] conditionIds)

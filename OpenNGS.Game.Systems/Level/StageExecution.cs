@@ -50,4 +50,10 @@ public class StageExecution
         }
         return bRes;
     }
+
+    public void ExecuteSpecificExecution<T>() where T : StageExecution, new()
+    {
+        T specificExecution = new T();
+        specificExecution.Execution();
+    }
 }

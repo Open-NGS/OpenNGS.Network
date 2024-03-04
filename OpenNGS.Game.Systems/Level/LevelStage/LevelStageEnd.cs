@@ -21,6 +21,12 @@ public class LevelStageEnd : ILevelStage
         uint[] conditionlist = NGSStaticData.levelData.GetItem(levelId).EndCondition;
         AddConditionsToList(updateExecution, conditionlist);
         lstUpdateExecution.Add(updateExecution);
+
+        StageExecution beginExecution = new StageExecution();
+        lstBeginExecution.Add(beginExecution);
+
+        StageExecution endExecution = new StageExecution();
+        lstEndExecution.Add(endExecution);
     }
 
     private void AddConditionsToList(StageExecution execution, uint[] conditionIds)
