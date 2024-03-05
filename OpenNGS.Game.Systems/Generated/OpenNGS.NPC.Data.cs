@@ -36,14 +36,17 @@ namespace OpenNGS.NPC.Data
         public string Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string PrefabName { get; set; }
+        public global::OpenNGS.Core.NGSText GameName { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         [global::System.ComponentModel.DefaultValue("")]
+        public string PrefabName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue("")]
         public string Package { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
         public global::System.Collections.Generic.List<global::OpenNGS.NPC.Common.NPC_UIBIND> UIID { get; private set; }
 
     }
