@@ -130,9 +130,10 @@ namespace OpenNGS.Item.Common
     [global::ProtoBuf.ProtoContract()]
     public enum NUMBER_FORMAT
     {
-        NUMBER_FORMAT_INTEGER = 0,
-        NUMBER_FORMAT_DECIMAL = 1,
-        NUMBER_FORMAT_PERCENTAGE = 2,
+        NUMBER_FORMAT_NONE = 0,
+        NUMBER_FORMAT_INTEGER = 1,
+        NUMBER_FORMAT_DECIMAL = 2,
+        NUMBER_FORMAT_PERCENTAGE = 3,
     }
 
     [global::ProtoBuf.ProtoContract()]

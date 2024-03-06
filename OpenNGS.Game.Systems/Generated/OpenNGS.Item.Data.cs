@@ -579,117 +579,153 @@ namespace OpenNGS.Item.Data
         public global::OpenNGS.Item.Common.NUMBER_FORMAT ATK_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
-        public uint HealthRegeneration { get; set; }
+        public uint ATKAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(7)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT HealthRegeneration_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ATKAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        public uint HealingAddition { get; set; }
+        public uint HealthRegeneration { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT HealingAddition_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT HealthRegeneration_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(10)]
-        public uint LifeTheftProbability { get; set; }
+        public uint HealingAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(11)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT LifeTheftProbability_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT HealingAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(12)]
-        public uint LifeSteal { get; set; }
+        public uint LifeTheftProbability { get; set; }
 
         [global::ProtoBuf.ProtoMember(13)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT LifeSteal_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT LifeTheftProbability_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(14)]
-        public uint Defense { get; set; }
+        public uint LifeSteal { get; set; }
 
         [global::ProtoBuf.ProtoMember(15)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT Defense_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT LifeSteal_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(16)]
-        public uint Speed { get; set; }
+        public uint Defense { get; set; }
 
         [global::ProtoBuf.ProtoMember(17)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT Speed_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT Defense_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(18)]
-        public uint PenetratingPower { get; set; }
+        public uint DefenseAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(19)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT PenetratingPower_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT DefenseAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(20)]
-        public uint SkillCD { get; set; }
+        public uint Speed { get; set; }
 
         [global::ProtoBuf.ProtoMember(21)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillCD_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT Speed_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(22)]
-        public uint PickRange { get; set; }
+        public uint SpeedAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(23)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT PickRange_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SpeedAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(24)]
-        public uint SkillDuration { get; set; }
+        public uint PenetratingPower { get; set; }
 
         [global::ProtoBuf.ProtoMember(25)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillDuration_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT PenetratingPower_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(26)]
-        public uint SkillTime { get; set; }
+        public uint SkillCD { get; set; }
 
         [global::ProtoBuf.ProtoMember(27)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillTime_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillCD_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(28)]
-        public uint CriticalHitRate { get; set; }
+        public uint PickRange { get; set; }
 
         [global::ProtoBuf.ProtoMember(29)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT CriticalHitRate_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT PickRange_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(30)]
-        public uint CriticalHitDamage { get; set; }
+        public uint PickRangeAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(31)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT CriticalHitDamage_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT PickRangeAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(32)]
-        public uint MoneyRate { get; set; }
+        public uint SkillDuration { get; set; }
 
         [global::ProtoBuf.ProtoMember(33)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT MoneyRate_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillDuration_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(34)]
-        public uint ExperienceValueMultiplier { get; set; }
+        public uint SkillDurationAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(35)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT ExperienceValueMultiplier_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillDurationAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(36)]
-        public uint AvoidanceProbability { get; set; }
+        public uint SkillTime { get; set; }
 
         [global::ProtoBuf.ProtoMember(37)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT AvoidanceProbability_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillTime_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(38)]
-        public uint MagazineCapacity { get; set; }
+        public uint SkillTimeAddition { get; set; }
 
         [global::ProtoBuf.ProtoMember(39)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT MagazineCapacity_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT SkillTimeAddition_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(40)]
-        public uint ChangingVelocity { get; set; }
+        public uint CriticalHitRate { get; set; }
 
         [global::ProtoBuf.ProtoMember(41)]
-        public global::OpenNGS.Item.Common.NUMBER_FORMAT ChangingVelocity_NF { get; set; }
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT CriticalHitRate_NF { get; set; }
 
         [global::ProtoBuf.ProtoMember(42)]
-        public uint ExperienceValuePickingRange { get; set; }
+        public uint CriticalHitDamage { get; set; }
 
         [global::ProtoBuf.ProtoMember(43)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT CriticalHitDamage_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(44)]
+        public uint MoneyRate { get; set; }
+
+        [global::ProtoBuf.ProtoMember(45)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT MoneyRate_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(46)]
+        public uint ExperienceValueMultiplier { get; set; }
+
+        [global::ProtoBuf.ProtoMember(47)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ExperienceValueMultiplier_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(48)]
+        public uint AvoidanceProbability { get; set; }
+
+        [global::ProtoBuf.ProtoMember(49)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT AvoidanceProbability_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(50)]
+        public uint MagazineCapacity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(51)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT MagazineCapacity_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(52)]
+        public uint ChangingVelocity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(53)]
+        public global::OpenNGS.Item.Common.NUMBER_FORMAT ChangingVelocity_NF { get; set; }
+
+        [global::ProtoBuf.ProtoMember(54)]
+        public uint ExperienceValuePickingRange { get; set; }
+
+        [global::ProtoBuf.ProtoMember(55)]
         public global::OpenNGS.Item.Common.NUMBER_FORMAT ExperienceValuePickingRange_NF { get; set; }
 
     }
