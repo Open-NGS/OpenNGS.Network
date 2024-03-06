@@ -47,6 +47,7 @@ namespace OpenNGS.Item.Common
         ITEM_KIND_EQUIP_BACK = 8,
         ITEM_KIND_MATERIAL_BLUEPRINT = 9,
         ITEM_KIND_MATERIAL_STUFF = 10,
+        ITEM_KIND_MATERIAL_STONE = 11,
     }
 
     [global::ProtoBuf.ProtoContract()]
