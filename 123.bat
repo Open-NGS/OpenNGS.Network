@@ -1,0 +1,1 @@
+start C:\\Users\Tiamli\AppData\Local\UGit\app-5.18.0\resources\app\git\git-bash.exe
