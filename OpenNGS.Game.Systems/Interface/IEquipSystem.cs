@@ -1,21 +1,18 @@
+using OpenNGS.Item.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface IEquipSystem 
 {
-    //获取数据
-    public void GetItemInfo();
-    ////使用装备
-    //public void EquipItem(uint ItemIndex);
-    ////卸下装备
-    //public bool UnEquipItem(uint ItemIndex);
-    ////返回已装备列表
-    //public List<OpenNGS.Item.Common.ItemData> GetEquipList();
+    //通过二级分类获取数据
+    public List<OpenNGS.Item.Common.ItemData> GetItemInfoByType(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
+    //通过三级级分类获取数据
+    public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND);
     //制作装备
-    public bool MakeEquip(uint GridIndex);
+    public bool MakeEquip(Dictionary<ITEM_KIND, ItemData> keyValuePairs);
     //分解装备
-    public void DisassembleEquip(uint GridIndex);
+    public void DisassembleEquip(ItemData item);
 
-    public List<OpenNGS.Item.Common.ItemData> GetItemData();
+
 }

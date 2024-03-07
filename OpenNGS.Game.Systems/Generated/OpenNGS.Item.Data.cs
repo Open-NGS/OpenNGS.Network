@@ -516,14 +516,11 @@ namespace OpenNGS.Item.Data
         [global::ProtoBuf.ProtoMember(1)]
         public uint ID { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint MaterialNum { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
+        public uint[] MaterialID { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint MakeDesignID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public float BackProbability { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
+        public uint[] MaterialNum { get; set; }
 
     }
 

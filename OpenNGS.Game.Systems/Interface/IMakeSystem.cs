@@ -13,7 +13,8 @@ namespace OpenNGS.Systems
         public void MakeMaterials(OpenNGS.Item.Common.ItemData itemData);
         // Õº÷Ω
         public void MakeDesign(OpenNGS.Item.Common.ItemData itemInfo);
-
+        //–“‘À Ø
+        public void LuckyStone(OpenNGS.Item.Common.ItemData itemInfo);
 
 
     }

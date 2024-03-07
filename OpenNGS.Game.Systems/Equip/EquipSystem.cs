@@ -8,6 +8,9 @@ using OpenNGS.Item.Common;
 using OpenNGS;
 using Systems;
 using OpenNGS.Exchange.Data;
+using Common;
+using UnityEngine.Windows.Speech;
+using OpenNGS.Exchange.Common;
 
 public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
@@ -15,8 +18,12 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     List<OpenNGS.Item.Common.ItemData> EquipInventory;
     //材料列表
     List<OpenNGS.Item.Common.ItemData> CraftInventory;
-    //制作材料列表
-    List<OpenNGS.Item.Common.ItemData> MaterialList;
+    //图纸列表
+    List<OpenNGS.Item.Common.ItemData> BlueprintList;
+    //材料列表
+    List<OpenNGS.Item.Common.ItemData> CraftList;
+    //幸运石列表
+    List<OpenNGS.Item.Common.ItemData> LuckyStoneList;
     //装备(可装备)列表
     List<OpenNGS.Item.Common.ItemData> EquipItems = new List<OpenNGS.Item.Common.ItemData>();
     //传给交易系统
@@ -34,47 +41,99 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
         base.OnCreate();
     }
 
-    public void GetItemInfo()//从ItemSystem获得数据
+    //通过二级分类获得数据
+    public List<OpenNGS.Item.Common.ItemData> GetItemInfoByType(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
     {
-        EquipInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_EQUIP);//获得装备库存数据
-        CraftInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_CRAFT);//获得材料库存数据
+        if(iTEM_TYPE== ITEM_TYPE.ITEM_TYPE_EQUIP)
+        {
+            EquipInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_EQUIP);//获得装备库存数据
+            return EquipInventory;
+        }
+        else if(iTEM_TYPE == ITEM_TYPE.ITEM_TYPE_CRAFT)
+        {
+            CraftInventory = m_itemSys.GetItemInfos(ITEM_TYPE.ITEM_TYPE_CRAFT);//获得材料库存数据
+            return CraftInventory;
+        }
+        else { return null; }
     }
 
-    public List<OpenNGS.Item.Common.ItemData> GetItemData()
+    //通过三级分类获得数据
+    public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
     {
-        return MaterialList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_STUFF);
+        if (iTEM_KIND == ITEM_KIND.ITEM_KIND_MATERIAL_BLUEPRINT)
+        {
+            BlueprintList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_BLUEPRINT);//获得图纸数据
+            return BlueprintList;
+        }
+        else if (iTEM_KIND == ITEM_KIND.ITEM_KIND_MATERIAL_STUFF)
+        {
+            CraftList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_STUFF);//获得材料库存数据
+            return CraftList;
+        }
+        else if (iTEM_KIND == ITEM_KIND.ITEM_KIND_MATERIAL_STONE)
+        {
+            LuckyStoneList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_STONE);//获得幸运石数据
+            return LuckyStoneList;
+        }
+        else { return null; }
     }
+    
 
  
 
     /// <summary>
-    /// 制作武器装备
+    /// 制作武器
     /// </summary>
-    /// <param name="GridIndex">格子ID</param>
-    public bool MakeEquip(uint GridIndex)
+    /// <param name="keyValuePairs">图纸、材料、幸运石字典</param>
+    /// <returns></returns>
+    public bool MakeEquip(Dictionary<ITEM_KIND,ItemData> keyValuePairs)
     {
-        uint guid = CraftInventory[(int)GridIndex].Guid;
-        //m_makeSystem.Forged(guid);
-        return true;
+        foreach(var kv in keyValuePairs)
+        {
+            switch (kv.Key)
+            {
+                case ITEM_KIND.ITEM_KIND_MATERIAL_BLUEPRINT:
+                    m_makeSystem.MakeDesign(kv.Value);//传入图纸
+                    break;
+                case ITEM_KIND .ITEM_KIND_MATERIAL_STUFF:
+                    m_makeSystem.MakeMaterials(kv.Value);//传入材料   
+                    break;
+                case ITEM_KIND.ITEM_KIND_MATERIAL_STONE:
+                    m_makeSystem.LuckyStone(kv.Value);//传入幸运石
+                    break;
+            }
+        }
+        if (m_makeSystem.Make()== EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     /// <summary>
     /// 分解装备
     /// </summary>
-    /// <param name="GridIndex">格子ID</param>
-    public void DisassembleEquip(uint GridIndex)
+    /// <param name="item">装备ItemData</param>
+    public void DisassembleEquip(ItemData item)
     {
         SourceItem source=new SourceItem();
         TargetItem target=new TargetItem();
-        uint guid = EquipInventory[(int)GridIndex].Guid;
-        //根据guidID找到要分解的装备
-        source.Count = m_itemSys.GetItemDataByGuid(guid).Count;
-        source.GUID = guid;
+        DisassembleEquipIno MaterialInfo = NGSStaticData.disassembleEquipIno.GetItem(item.ItemID);
+        //将装备复制给目标物体
+        source.Count = item.Count;
+        source.GUID = item.Guid;
         sourcesList.Add(source);
-        //根据装备确定返回材料
-        target.ItemID = EquipInventory[(int)GridIndex].ItemID;
-        target.Count=m_itemSys.GetDisassembleEquipIno(target.ItemID).MaterialNum;
-        targetsList.Add(target);
+        //确定分解获得的材料
+        for(int i = 0; i < MaterialInfo.MaterialID.Length; i++)
+        {
+            target.ItemID = MaterialInfo.MaterialID[i];
+            target.Count = MaterialInfo.MaterialNum[i];
+            targetsList.Add(target);  
+        }
         m_exchangeSystem.ExchangeItem(sourcesList, targetsList);
     }
 
@@ -107,4 +166,6 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     {
         return "com.openngs.system.EquipSystem";
     }
+
+  
 }

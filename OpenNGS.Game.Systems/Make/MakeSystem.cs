@@ -31,8 +31,8 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     {
         Random r = new Random();
         int number = r.Next(1,10);
-        // 概率
-        if (number >= (makeMaterial.Probability * 10))
+        // 概率条件成功进入
+        if (number <= (makeMaterial.Probability * 10))
         {
             EXCHANGE_RESULT_TYPE _TYPEs = ExchangeSystem.ExchangeItem(sourcesList, targetsList);
             return _TYPEs;
@@ -68,6 +68,11 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         TargetItem target = new TargetItem();
         target.ItemID = Target.Id;
         targetsList.Add(target);
+    }
+
+    public void LuckyStone(OpenNGS.Item.Common.ItemData itemInfo)
+    {
+
     }
     public override string GetSystemName()
     {
