@@ -10,16 +10,19 @@ using Systems;
 public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
 {
     List<SourceItem> sourcesList = new List<SourceItem>();
+    List<SourceItem> sourcesMaterList = new List<SourceItem>();
     List<TargetItem> targetsList = new List<TargetItem>();
 
     public IExchangeSystem ExchangeSystem = null;
     MakeDesign makeMaterial = null;
+    float Probability = 0;
 
     protected override void OnCreate()
     {
         ExchangeSystem = App.GetService<IExchangeSystem>();
         sourcesList.Clear();
         targetsList.Clear();
+        sourcesMaterList.Clear();
         base.OnCreate();
     }
 
@@ -32,15 +35,17 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         Random r = new Random();
         int number = r.Next(1,10);
         // 概率条件成功进入
-        if (number <= (makeMaterial.Probability * 10))
+        if (number <= ((makeMaterial.Probability + Probability) * 10))
         {
             EXCHANGE_RESULT_TYPE _TYPEs = ExchangeSystem.ExchangeItem(sourcesList, targetsList);
             return _TYPEs;
         }
-        //返还比例
-        this.sourcesList[1].Count = this.sourcesList[1].Count * (1-(uint)makeMaterial.BackPercent);
+        //返还材料比例
+        for (int i = 0; i < sourcesMaterList.Count; i++)
+        {
+            this.sourcesMaterList[i].Count = this.sourcesMaterList[i].Count * (1 - (uint)makeMaterial.BackPercent);
+        }
         ExchangeSystem.ExchangeItem(sourcesList, null);
-
         return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE;
     }
 
@@ -50,7 +55,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         SourceItem sourcesMakeBook = new SourceItem();
         sourcesMakeBook.GUID = itemData.Guid;
         sourcesMakeBook.Count = itemData.Count;
-        this.sourcesList.Add(sourcesMakeBook);
+        this.sourcesMaterList.Add(sourcesMakeBook);
     }
 
     // 图纸
@@ -70,9 +75,16 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         targetsList.Add(target);
     }
 
+    // 幸运石
     public void LuckyStone(OpenNGS.Item.Common.ItemData itemInfo)
     {
+        LuckyStone item = NGSStaticData.LuckyStone.GetItem(itemInfo.ItemID);
+        Probability += item.UpProbability;
 
+        SourceItem sources = new SourceItem();
+        sources.GUID = itemInfo.Guid;
+        sources.Count = 1;
+        sourcesList.Add(sources);
     }
     public override string GetSystemName()
     {
