@@ -22,15 +22,15 @@ namespace OpenNGS.Systems
             return "com.openngs.system.dialogue";
         }
 
-        public void SetDialogID(int dialogID)
+        public void SetDialogID(uint dialogID)
         {
-            m_dialogData._Dialog.DialogID = (uint)dialogID;
+            m_dialogData._Dialog.DialogID = dialogID;
             SaveDialogData();
         }
 
-        public int GetDialogID()
+        public uint GetDialogID()
         {
-            return (int)m_dialogData._Dialog.DialogID;
+            return m_dialogData._Dialog.DialogID;
         }
 
         private void LoadDialogData()

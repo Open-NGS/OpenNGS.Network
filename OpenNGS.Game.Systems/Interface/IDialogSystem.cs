@@ -8,7 +8,7 @@ namespace OpenNGS.Systems
 {
     public interface IDialogSystem
     {
-        public void SetDialogID(int dialogid);
-        public int GetDialogID();
+        public void SetDialogID(uint dialogid);
+        public uint GetDialogID();
     }
 }
