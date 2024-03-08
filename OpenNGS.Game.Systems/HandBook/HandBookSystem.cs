@@ -91,9 +91,11 @@ namespace OpenNGS.Systems
             Dictionary<uint, HandBookInfo> m_handBook = new Dictionary<uint, HandBookInfo> ();
             foreach (KeyValuePair<uint, HandBookInfo> kvp in m_saveHandBook.DicHandBook)
             {
-                if(GroupID == NGSStaticData.s_handBook.GetItem(kvp.Key).GroupID)
+                OpenNGS.HandBook.Data.HandBook hand = NGSStaticData.s_handBook.GetItem(kvp.Key);
+                if(hand != null)
                 {
-                    m_handBook[kvp.Key] = kvp.Value;
+                    if(hand.GroupID == GroupID)
+                        m_handBook[kvp.Key] = kvp.Value;
                 }
             }
             
