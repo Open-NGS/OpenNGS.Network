@@ -7,7 +7,6 @@ using OpenNGS.Crypto;
 using OpenNGS.IO;
 using OpenNGS.SaveData;
 using ProtoBuf;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace OpenNGS.SaveData.Storage
