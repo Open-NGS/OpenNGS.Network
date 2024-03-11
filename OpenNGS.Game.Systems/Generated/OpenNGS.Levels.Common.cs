@@ -21,7 +21,7 @@ namespace OpenNGS.Levels.Common
     public enum ENEMY_INITTRIGGER
     {
         ENEMY_INITTRIGGER_NONE = 0,
-        ENEMY_INITTRIGGER_INTERVAL = 1,
+        ENEMY_INITTRIGGER_CONSTANT = 1,
         ENEMY_INITTRIGGER_ENEMY = 2,
     }
 

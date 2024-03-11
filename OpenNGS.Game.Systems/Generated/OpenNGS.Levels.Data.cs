@@ -242,9 +242,6 @@ namespace OpenNGS.Levels.Data
         [global::ProtoBuf.ProtoMember(4)]
         public global::OpenNGS.Levels.Common.ENEMY_INITTYPE EnemyInitType { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5)]
-        public bool IsActiveAtBegin { get; set; }
-
         [global::ProtoBuf.ProtoMember(6)]
         public global::OpenNGS.Levels.Common.ENEMY_INITTRIGGER EnemyInitTrigger { get; set; }
 
