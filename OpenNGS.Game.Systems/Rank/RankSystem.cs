@@ -5,15 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Systems;
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
     public class RankSystem : GameSubSystem<RankSystem>, IRankSystem
     {
-        public UnityAction<GetRankRsq> OnGetRank;
-        public UnityAction<List<RankInfo>> OnGetRankList;
+        public Action<GetRankRsq> OnGetRank;
+        public Action<List<RankInfo>> OnGetRankList;
 
         Dictionary<uint, uint[]> lastIndexs;
 

@@ -5,15 +5,14 @@ using OpenNGS.Exchange.Data;
 using OpenNGS.Shop.Common;
 using OpenNGS.Shop.Data;
 using Systems;
-using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
     public class ShopSystem : GameSubSystem<ShopSystem>, IShopSystem
     {
-        public UnityAction<BuyItemRsq> OnBuyItem;
-        public UnityAction<SellItemRsq> OnSellItem;
-        public UnityAction<GetShopInfoRsq> OnGetShopInfo;
+        public Action<BuyItemRsq> OnBuyItem;
+        public Action<SellItemRsq> OnSellItem;
+        public Action<GetShopInfoRsq> OnGetShopInfo;
 
         private IExchangeSystem m_exchangeSys = null;
         private IItemSystem m_itemSys = null;

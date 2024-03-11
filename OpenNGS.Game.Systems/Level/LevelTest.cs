@@ -2,9 +2,9 @@ using OpenNGS;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class LevelTest : MonoBehaviour
+
+public class LevelTest 
 {
     /*
      * 测试脚本
@@ -37,7 +37,7 @@ public class LevelTest : MonoBehaviour
     //    }
     //    else
     //    {
-    //        Debug.Log("关卡结束，跳转主城");
+    //        //Debug.Log("关卡结束，跳转主城");
     //    }
 
     //}

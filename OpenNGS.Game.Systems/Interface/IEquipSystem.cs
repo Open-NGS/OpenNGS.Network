@@ -1,7 +1,6 @@
 using OpenNGS.Item.Common;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public interface IEquipSystem 
 {

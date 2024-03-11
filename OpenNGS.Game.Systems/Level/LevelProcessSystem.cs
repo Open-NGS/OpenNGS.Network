@@ -5,9 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Systems;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.Events;
 
 public class LevelProcessSystem : GameSubSystem<LevelProcessSystem>, ILevelProcessSystem
 {

@@ -2,7 +2,6 @@ using OpenNGS.Item.Data;
 using OpenNGS.Systems;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using OpenNGS.Suit.Data;
 using OpenNGS.Item.Common;
 using OpenNGS;

@@ -2,7 +2,7 @@ using OpenNGS.Systems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 public class LevelStageProcess : ILevelStage
 {
     public List<StageExecution> lstBeginExecution;
@@ -41,7 +41,7 @@ public class LevelStageProcess : ILevelStage
     }
     public void OnStageBegin()
     {
-        Debug.Log("过程阶段的开始状态");
+        ////Debug.Log("过程阶段的开始状态");
         foreach (var _stageExecution in lstBeginExecution)
         {
             if (_stageExecution.IsExecutionValid())
@@ -55,7 +55,7 @@ public class LevelStageProcess : ILevelStage
 
     public bool OnStageUpdate(float deltaTime)
     {
-        Debug.Log("过程阶段的过程状态");
+        //Debug.Log("过程阶段的过程状态");
         bool bRes = false;
         if (lstUpdateExecution.Count == 0 || lstUpdateExecution == null)
         {
@@ -70,7 +70,7 @@ public class LevelStageProcess : ILevelStage
     }
     public void OnStageEnd()
     {
-        Debug.Log("过程阶段的结束状态");
+        //Debug.Log("过程阶段的结束状态");
         foreach (var _stageExecution in lstEndExecution)
         {
             if (_stageExecution.IsExecutionValid())

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenNGSCommon;
-using UnityEngine;
 
 public class UserConfig : UserConfig<UserConfig>, IConfig, ILogConfig
 {

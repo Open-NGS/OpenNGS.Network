@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Systems;
-using UnityEngine;
+
 namespace OpenNGS.Systems
 {
     public class StatSystem : GameSubSystem<StatSystem>, IStatSystem

@@ -2,7 +2,6 @@ using OpenNGS.Character.Common;
 using OpenNGSCommon;
 using System.Collections.Generic;
 using Systems;
-using UnityEngine;
 namespace OpenNGS.Systems
 {
     public class CharacterSystem : GameSubSystem<CharacterSystem>, ICharacterSystem

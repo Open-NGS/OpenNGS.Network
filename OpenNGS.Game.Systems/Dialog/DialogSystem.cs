@@ -1,8 +1,6 @@
 using OpenNGS.Dialog.Data;
 using System.Collections.Generic;
 using Systems;
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using OpenNGS.Systems;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+
 using OpenNGS.Item;
 using OpenNGS.Item.Data;
 using OpenNGS.Item.Common;
@@ -193,7 +193,7 @@ namespace OpenNGS.Systems
 
         //private void GetItems()
         //{
-        //    Debug.Log($"{nameof(ItemSystem)} GetItems");
+        //    //Debug.Log($"{nameof(ItemSystem)} GetItems");
         //    //ItemService.Instance.GetItemRequest(m_Uin).ContinueWith((rsp) =>
         //    //{
         //    //    OnGetItemResponse(rsp.Result);
@@ -215,7 +215,7 @@ namespace OpenNGS.Systems
         //    //    {
         //    //        callback?.Invoke(rsp?.itemList);
         //    //    }
-        //    //    Debug.Log($"{nameof(ItemSystem)} UseItemRequest Success");
+        //    //    //Debug.Log($"{nameof(ItemSystem)} UseItemRequest Success");
         //    //}
         //    //else
         //    //{
@@ -232,7 +232,7 @@ namespace OpenNGS.Systems
             //var rsp = await ItemService.Instance.ReplaceItemsRequest(m_Uin);
             //if (rsp?.result == 0)
             //{
-            //    Debug.Log($"{nameof(ItemSystem)} 找回所有 ReplaceItemsRequest Success");
+            //    //Debug.Log($"{nameof(ItemSystem)} 找回所有 ReplaceItemsRequest Success");
             //}
             //else
             //{
@@ -258,7 +258,7 @@ namespace OpenNGS.Systems
         //        ItemList.Clear();
         //    }
 
-        //    Debug.Log($"{nameof(ItemSystem)} {status.OpCode} OnStatus" + ":" + JsonConvert.SerializeObject(itemLst));
+        //    //Debug.Log($"{nameof(ItemSystem)} {status.OpCode} OnStatus" + ":" + JsonConvert.SerializeObject(itemLst));
 
         //    foreach (var msg in itemLst)
         //    {
@@ -340,7 +340,7 @@ namespace OpenNGS.Systems
         //    if (status.OpCode == StatusOpCode.Status_Sync && !m_IsCreate)
         //    {
         //        // 登录第一次请求完毕后，将所有状态清空
-        //        Debug.Log($"{nameof(ItemSystem)} 登录清空放置状态");
+        //        //Debug.Log($"{nameof(ItemSystem)} 登录清空放置状态");
         //        m_IsCreate = true;
         //        ReplaceItemsRequest();
         //    }

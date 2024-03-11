@@ -4,7 +4,7 @@ using OpenNGS.Setting.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
 using Systems;
-using UnityEngine;
+
 
 public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 {
@@ -144,7 +144,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
         else
         {
-            Debug.LogError(""+rsp.Result);
+            //Debug.LogError(""+rsp.Result);
         }
     }
     #endregion

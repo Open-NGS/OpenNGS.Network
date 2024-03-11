@@ -1,7 +1,7 @@
 using Dynamic.Data;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 [global::ProtoBuf.ProtoContract()]
 public class SaveFileData_Setting :ISaveInfo

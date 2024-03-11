@@ -2,7 +2,7 @@ using OpenNGS.Systems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LevelStageEnd : ILevelStage
@@ -43,7 +43,7 @@ public class LevelStageEnd : ILevelStage
 
     public void OnStageBegin()
     {
-        Debug.Log("结束阶段的开始状态");
+        ////Debug.Log("结束阶段的开始状态");
         foreach (var _stageExecution in lstBeginExecution)
         {
             if (_stageExecution.IsExecutionValid())
@@ -57,7 +57,7 @@ public class LevelStageEnd : ILevelStage
 
     public bool OnStageUpdate(float deltaTime)
     {
-        Debug.Log("结束阶段的过程状态");
+        //Debug.Log("结束阶段的过程状态");
         bool bRes = false;
         if (lstUpdateExecution.Count == 0 || lstUpdateExecution == null)
         {
@@ -72,7 +72,7 @@ public class LevelStageEnd : ILevelStage
     }
     public void OnStageEnd()
     {
-        Debug.Log("结束阶段的结束状态");
+        //Debug.Log("结束阶段的结束状态");
         foreach (var _stageExecution in lstEndExecution)
         {
             if (_stageExecution.IsExecutionValid())
