@@ -26,7 +26,7 @@ namespace OpenNGS.Assets
             OpenNGS.Profiling.ProfilerLog.Start("AssetLoader.Load", path);
 #endif
 
-            if(AlwaysRawMode == true)
+            if (AlwaysRawMode == true)
             {
                 result = LoadFromRaw<T>(path);
                 NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
@@ -37,7 +37,7 @@ namespace OpenNGS.Assets
                 if (RawMode)
                 {
                     result = LoadFromRaw<T>(path);
-                    NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]",path));
+                    NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
                 }
 #else
             else
@@ -60,7 +60,7 @@ namespace OpenNGS.Assets
         }
         public static void LoadScene(string sceneName, LoadSceneMode mode)
         {
-            if(AlwaysRawMode == true)
+            if (AlwaysRawMode == true)
             {
                 SceneManager.LoadScene(sceneName, mode);
             }
@@ -111,7 +111,7 @@ namespace OpenNGS.Assets
 #if UNITY_EDITOR
         public static T LoadFromRaw<T>(string path) where T : Object
         {
-            T asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(Path.Combine(RawResourcePath, path ));
+            T asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(Path.Combine(RawResourcePath, path));
             return asset;
         }
 #endif
