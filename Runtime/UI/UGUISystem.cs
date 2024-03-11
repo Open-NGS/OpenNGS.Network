@@ -49,7 +49,7 @@ namespace OpenNGS.UI
         /// </summary>
         private void PreloadFonts()
         {
-            AssetLoader.Load<Font>("UI/Fonts/OpenNGSSans-W3.ttf", float.MaxValue);
+            //AssetLoader.Load<Font>("UI/Fonts/OpenNGSSans-W3.ttf", float.MaxValue);
         }
     }
 }
