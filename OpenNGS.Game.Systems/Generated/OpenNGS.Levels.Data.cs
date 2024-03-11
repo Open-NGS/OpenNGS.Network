@@ -234,33 +234,39 @@ namespace OpenNGS.Levels.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint EnemyID { get; set; }
+        public uint RuleID { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.Levels.Common.ENEMY_INITTYPE EnemyInitType { get; set; }
+        public uint EnemyID { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public bool IsActiveAtBegin { get; set; }
+        public global::OpenNGS.Levels.Common.ENEMY_INITTYPE EnemyInitType { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public global::OpenNGS.Levels.Common.ENEMY_INITTRIGGER EnemyInitTrigger { get; set; }
+        public bool IsActiveAtBegin { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
+        public global::OpenNGS.Levels.Common.ENEMY_INITTRIGGER EnemyInitTrigger { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7)]
         public uint EnemyNum { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(8, IsPacked = true)]
         public uint[] AreaPos { get; set; }
 
-        [global::ProtoBuf.ProtoMember(8)]
+        [global::ProtoBuf.ProtoMember(9)]
         public uint MinDistance { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9)]
+        [global::ProtoBuf.ProtoMember(10)]
         public uint MaxDistance { get; set; }
 
-        [global::ProtoBuf.ProtoMember(10)]
-        public uint IntervalTime { get; set; }
-
         [global::ProtoBuf.ProtoMember(11)]
+        public uint InitBeginTime { get; set; }
+
+        [global::ProtoBuf.ProtoMember(12)]
+        public uint InitFinishTime { get; set; }
+
+        [global::ProtoBuf.ProtoMember(13)]
         public uint SpecificEnemyID { get; set; }
 
     }

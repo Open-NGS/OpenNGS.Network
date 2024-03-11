@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using OpenNGS;
+using OpenNGS.Core;
 using OpenNGS.Enemy.Data;
 using OpenNGS.Levels.Data;
 using OpenNGS.Systems;
@@ -7,82 +8,96 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Systems;
-using UnityEngine;
-using UnityEngine.Events;
 
-public class EnemySpawnSystem<T> : GameSubSystem<EnemySpawnSystem<T>>, IEnemySpawnSystem<T>
+public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSystem
 {
-    List<LevelEnemyInfo> _levelEnemyInfos;//读取对应关卡敌人
-    List<LevelEnemyInfo> _normalEnemyInfos= new List<LevelEnemyInfo>();//对应关卡普通敌人列表
-    List<LevelEnemyInfo> _eliteEnemyInfos=new List<LevelEnemyInfo>();//对应关卡精英敌人列表
+    private long timestamp;
+    uint m_levelID { get; set; }//关卡ID
+    uint m_enemyRuleID { get; set; }//规则ID
+    public float m_currentTime { get ; set ; }//当前时间
+    LevelEnemyInfo currentLevelEnemy;//读取当前规则状态敌人
+    List<LevelEnemyInfo> _levelEnemyInfos;//读取对应关卡所有敌人
     /// <summary>
-    /// 已生成的敌人字典 uint为敌人ID，int为敌人数量
+    /// 已生成的敌人字典 敌人ID，敌人数量
     /// </summary>
-    Dictionary<uint,int> GeneratedEnemies = new Dictionary<uint,int>();
-    private IEnemySpawner<T> m_spawner;
+    Dictionary<uint,uint> GeneratedEnemies = new Dictionary<uint,uint>();
+    private IEnemySpawner m_spawner;
     protected override void OnCreate()
     {
         base.OnCreate();
+        
     }
-
-    public void InitEnemyAtBegin(uint LevelID, IEnemySpawner<T> _spawner)
+    //初始化关卡信息
+    public void EnterLevel(uint LevelID, IEnemySpawner _spawner)
     {
         m_spawner = _spawner;
-        _levelEnemyInfos = NGSStaticData.levelEnemyInfos.GetItems(LevelID);
-        ClasifyEnemyType();
-        InitAtGameBgein();
+        m_levelID= LevelID;
+        m_enemyRuleID = 1;
+        currentLevelEnemy = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, m_enemyRuleID);
+        timestamp = Time.Timestamp;
     }
-    //对敌人类型分类
-    public void ClasifyEnemyType()
+    
+    //根据时间生成敌人
+    public void InitEnemyByTime()
     {
-        if (_levelEnemyInfos.Count > 0)
+        if (Time.Timestamp - timestamp >= currentLevelEnemy.InitBeginTime)
         {
-            for (int i = 0; i < _levelEnemyInfos.Count; i++)
-            {
-                if (_levelEnemyInfos[i].EnemyInitType == OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_ROUND)
-                {
-                    _normalEnemyInfos.Add(_levelEnemyInfos[i]);
-                }
-                if(_levelEnemyInfos[i].EnemyInitType == OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_AREA)
-                {
-                    _eliteEnemyInfos.Add(_levelEnemyInfos[i]);
-                }
-            }
+            CreateEnemy();//生成
         }
+        else if(Time.Timestamp - timestamp >= currentLevelEnemy.InitFinishTime)
+        {
+            ChangeRule();//更改规则
+        } 
     }
-    //游戏开始时生成敌人
-    public void InitAtGameBgein()
+
+    private void CreateEnemy()
     {
-        for (int i=0;i< _normalEnemyInfos.Count; i++)
+        uint num = currentLevelEnemy.EnemyNum;
+        if (GeneratedEnemies.ContainsKey(currentLevelEnemy.EnemyID))
         {
-            if (_normalEnemyInfos[i].IsActiveAtBegin == true)
+            if(GeneratedEnemies[currentLevelEnemy.EnemyID] < currentLevelEnemy.EnemyNum)
             {
-                SpawnNormalEnemies(_normalEnemyInfos[i], (int)_normalEnemyInfos[i].EnemyNum);
-                GeneratedEnemies.Add(_normalEnemyInfos[i].EnemyID, (int)_normalEnemyInfos[i].EnemyNum);
+                AddEnemy(currentLevelEnemy.EnemyID, num - GeneratedEnemies[currentLevelEnemy.EnemyID]);
             }
         }
-        for (int i = 0; i < _eliteEnemyInfos.Count; i++)
+        else
         {
-            if (_eliteEnemyInfos[i].IsActiveAtBegin == true)
-            {
-                SpawnEliteEnemies(_eliteEnemyInfos[i], (int)_eliteEnemyInfos[i].EnemyNum);
-                GeneratedEnemies.Add(_eliteEnemyInfos[i].EnemyID, (int)_eliteEnemyInfos[i].EnemyNum);
-            }
+            GeneratedEnemies[currentLevelEnemy.EnemyID] = 0;
+            AddEnemy(currentLevelEnemy.EnemyID, num);
         }
     }
+
+    private void AddEnemy(uint enemyID, uint initNum)
+    {
+        if(currentLevelEnemy.EnemyInitType== OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_ROUND)
+        {
+            SpawnNormalEnemies(currentLevelEnemy, initNum);
+        }
+        else if(currentLevelEnemy.EnemyInitType == OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_AREA)
+        {
+            SpawnEliteEnemies(currentLevelEnemy, initNum);
+        }
+        GeneratedEnemies[enemyID]++;
+    }
+
+    private void ChangeRule()
+    {
+        m_enemyRuleID++;
+        currentLevelEnemy = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, m_enemyRuleID);
+    }
+
 
     /// <summary>
     /// 生成普通敌人
     /// </summary>
     /// <param name="enemyInfo">LevelEnemyInfo</param>
-    /// <param name="intNum">生成数量</param>
-    public void SpawnNormalEnemies(LevelEnemyInfo enemyInfo,int intNum)
+    /// <param name="initNum">生成数量</param>
+    private void SpawnNormalEnemies(LevelEnemyInfo enemyInfo,uint initNum)
     {
         float lastX = 0;
-        for(int i = 0; i < intNum; i++)
+        for(int i = 0; i < initNum; i++)
         {
-            GameObject playerPrefab = GameObject.FindGameObjectWithTag("Player");
-            Vector3 SpawnPosition = playerPrefab.transform.position;
+            NGSVector3 SpawnPosition = new NGSVector3();
             float spawnPosX = UnityEngine.Random.Range(-enemyInfo.MinDistance, enemyInfo.MinDistance);
             float spawnPosZ;
             
@@ -90,16 +105,16 @@ public class EnemySpawnSystem<T> : GameSubSystem<EnemySpawnSystem<T>>, IEnemySpa
             {
                 if (JudgePosOrNeg())
                 {
-                    spawnPosZ = Mathf.Sqrt(Mathf.Pow(enemyInfo.MinDistance, 2) - Mathf.Pow(spawnPosX, 2));
+                    spawnPosZ = (float)Math.Sqrt(Math.Pow(enemyInfo.MinDistance, 2) - Math.Pow(spawnPosX, 2));
                 }
                 else
                 {
-                    spawnPosZ = -Mathf.Sqrt(Mathf.Pow(enemyInfo.MinDistance, 2) - Mathf.Pow(spawnPosX, 2));
+                    spawnPosZ = -(float)Math.Sqrt(Math.Pow(enemyInfo.MinDistance, 2) - Math.Pow(spawnPosX, 2));
                 }
-                SpawnPosition = new Vector3(playerPrefab.transform.position.x + spawnPosX,
-                    playerPrefab.transform.position.y, playerPrefab.transform.position.z + spawnPosZ);
-                //先生成一个cube
-                //Instantiate(normalEnemy, SpawnPosition, Quaternion.identity);
+                SpawnPosition.X=spawnPosX; 
+                SpawnPosition.Y=0;
+                SpawnPosition.Z=spawnPosZ;
+
                 m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
                 lastX = spawnPosX;
             }
@@ -117,18 +132,19 @@ public class EnemySpawnSystem<T> : GameSubSystem<EnemySpawnSystem<T>>, IEnemySpa
     /// </summary>
     /// <param name="enemyInfo">LevelEnemyInfo</param>
     /// <param name="intNum">生成数量</param>
-    public void SpawnEliteEnemies(LevelEnemyInfo enemyInfo, int intNum)
+    private void SpawnEliteEnemies(LevelEnemyInfo enemyInfo, uint intNum)
     {
         for (int i = 0; i < intNum; i++)
         {
-            Vector3 SpawnPosition = new Vector3((float)enemyInfo.AreaPos[0], 
-                (float)enemyInfo.AreaPos[1], (float)enemyInfo.AreaPos[2]);
-            //Instantiate(eliteEnemy, SpawnPosition, Quaternion.identity);
+            NGSVector3 SpawnPosition = new NGSVector3();
+            SpawnPosition.X = enemyInfo.AreaPos[0];
+            SpawnPosition.Y = enemyInfo.AreaPos[1];
+            SpawnPosition.Z = enemyInfo.AreaPos[2];
             m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
         }
     }
     //随机正负
-    public bool JudgePosOrNeg()
+    private bool JudgePosOrNeg()
     {
         int value = UnityEngine.Random.Range(0, 2);
         if (value == 0) { return false; }
@@ -140,45 +156,85 @@ public class EnemySpawnSystem<T> : GameSubSystem<EnemySpawnSystem<T>>, IEnemySpa
     /// </summary>
     /// <param name="enemyID">敌人ID</param>
     /// <param name="num">敌人死亡/销毁数量</param>
-    public void EnemyDestory(uint enemyID,int num)
+    public void EnemyDestory(uint enemyID,uint num)
     {
         if(GeneratedEnemies.ContainsKey(enemyID))
         {
+            JudgeTimeAndReturnEnemyNum(enemyID, m_currentTime);
+            LevelEnemyInfo info = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, m_enemyRuleID);
             GeneratedEnemies[enemyID] = GeneratedEnemies[enemyID] - num;
+            
+            //是否为普通敌人
+            if (info.EnemyInitType == OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_ROUND)
+            {
+                JudgeNormalEnemyNum(info);
+            }
+            //是否为精英敌人
+            else if (info.EnemyInitType == OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_ROUND)
+            {
+                JudgeEliteEnemyNum(info);
+            }
         }
+        
     }
     //判断场景内普通敌人数量并生成
-    public void JudgeNormalEnemyNum(uint levelID,uint enemyID)
+    private void JudgeNormalEnemyNum(LevelEnemyInfo info)
     {
-        LevelEnemyInfo info = NGSStaticData.levelEnemyInfo.GetItem(levelID,enemyID);
-        if (GeneratedEnemies.ContainsKey(enemyID))
+        if (GeneratedEnemies.ContainsKey(info.EnemyID))
         {
-            if(info.EnemyNum > GeneratedEnemies[enemyID])
+            if(info.EnemyNum > GeneratedEnemies[info.EnemyID])
             {
-                SpawnNormalEnemies(info, (int)info.EnemyNum - (int)GeneratedEnemies[enemyID]);
-                GeneratedEnemies[enemyID] = (int)info.EnemyNum;
+                SpawnNormalEnemies(info, info.EnemyNum - GeneratedEnemies[info.EnemyID]);
+                GeneratedEnemies[info.EnemyID] = info.EnemyNum;
             }
         }   
     }
     //判断场景内精英敌人数量并生成
-    public void JudgeEliteEnemyNum(uint levelID,uint enemyID)
+    private void JudgeEliteEnemyNum(LevelEnemyInfo info)
     {
-        LevelEnemyInfo info = NGSStaticData.levelEnemyInfo.GetItem(levelID, enemyID);
-        if (!GeneratedEnemies.ContainsKey(enemyID))
+        
+        if (!GeneratedEnemies.ContainsKey(info.EnemyID))
         {
-            SpawnEliteEnemies(info, (int)info.EnemyNum);
-            GeneratedEnemies[enemyID] = (int)info.EnemyNum;
+            SpawnEliteEnemies(info, (info.EnemyNum));
+            GeneratedEnemies[info.EnemyID] = info.EnemyNum;
         }
+    }
+
+    //根据传入时间返回对应规则ID
+    private void JudgeTimeAndReturnEnemyNum(uint enemyID,float currentTime)
+    {
+        List<uint> lstrule = GetRuleID(enemyID);
+        foreach (var _ruleID in lstrule)
+        {
+            //根据场景ID,规则id 找对应LevelEnemyInfo
+            LevelEnemyInfo info = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, _ruleID);
+            if (info.InitBeginTime <= currentTime &&
+                currentTime < info.InitFinishTime)
+            {
+                m_enemyRuleID= _ruleID; break;
+            }
+
+        }
+    }
+    //根据敌人ID获取规则ID列表
+    private List<uint> GetRuleID(uint enemyID)
+    {
+        List<uint> enemyInfosRuleIDs = new List<uint>();
+        foreach (var info in _levelEnemyInfos)
+        {
+            if (info.EnemyID == enemyID)
+            {
+                enemyInfosRuleIDs.Add(info.RuleID);
+            }
+        }
+        return enemyInfosRuleIDs;
     }
     public override string GetSystemName()
     {
         return "com.openngs.system.EnemySpawnSystem";
     }
     
-    //public void InitEnemyAtBegin(uint LevelID, IEnemySpawner _spawner)
-    //{
-    //    m_spawner = _spawner;
-    //}
+
 
 
 }
