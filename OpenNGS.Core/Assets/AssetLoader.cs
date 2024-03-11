@@ -6,7 +6,6 @@ namespace OpenNGS.Assets
 {
     public class AssetLoader
     {
-        public static bool AlwaysRawMode = true;
 #if UNITY_EDITOR
         public static bool RawMode = true;  // editor测试bundle模式改为false
         public static string RawResourcePath = "Assets/Game/BuildAssets/";
@@ -26,26 +25,17 @@ namespace OpenNGS.Assets
             OpenNGS.Profiling.ProfilerLog.Start("AssetLoader.Load", path);
 #endif
 
-            if (AlwaysRawMode == true)
+#if UNITY_EDITOR
+            if (RawMode)
             {
                 result = LoadFromRaw<T>(path);
                 NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
             }
-#if UNITY_EDITOR
             else
-            {
-                if (RawMode)
-                {
-                    result = LoadFromRaw<T>(path);
-                    NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
-                }
 #else
-            else
-            { 
                 result = LoadFromBundle<T>(path);
-                NgDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]", path));
+            	NgDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]",path));
 #endif
-            }
 
 #if DEBUG_LOG
             OpenNGS.Profiling.ProfilerLog.End("AssetLoader.Load", path);
@@ -60,20 +50,13 @@ namespace OpenNGS.Assets
         }
         public static void LoadScene(string sceneName, LoadSceneMode mode)
         {
-            if (AlwaysRawMode == true)
-            {
-                SceneManager.LoadScene(sceneName, mode);
-            }
-            else
-            {
 #if UNITY_EDITOR
-                if (!RawMode)
+            if (!RawMode)
 #endif
-                {
-                    AssetBundleManager.Instance.LoadBundleBySceneName(sceneName);
-                }
-                SceneManager.LoadScene(sceneName, mode);
+            {
+                AssetBundleManager.Instance.LoadBundleBySceneName(sceneName);
             }
+            SceneManager.LoadScene(sceneName, mode);
         }
         public static AsyncOperation LoadSceneAsync(string sceneName, LoadSceneMode mode)
         {
