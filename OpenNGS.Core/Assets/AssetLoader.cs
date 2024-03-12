@@ -137,7 +137,9 @@ namespace OpenNGS.Assets
             }
             else
             {
+#if UNITY_EDITOR
                 asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(fullPath);
+#endif
             }
             return asset;
         }
