@@ -8,7 +8,7 @@ namespace OpenNGS.Assets
     {
         public static bool RawMode = true;  // editor测试bundle模式改为false
         public static bool RawResourceMod = true;
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         public static string RawResourcePath = "Assets/Game/BuildAssets/";
 #else
         public static string RawResourcePath = "BuildAssets/";
@@ -59,14 +59,14 @@ namespace OpenNGS.Assets
 #endif
             if (!result)
             {
-                Debug.LogError($"AssetLoader -- Faild to load asset : {path}");
+                NgDebug.Log($"AssetLoader -- Faild to load asset : {path}");
             }
 
             return result;
         }
         public static void LoadScene(string sceneName, LoadSceneMode mode)
         {
-            if(RawResourceMod == true)
+            if (RawResourceMod == true)
             {
                 SceneManager.LoadScene(sceneName, mode);
             }
@@ -123,17 +123,22 @@ namespace OpenNGS.Assets
 
         public static T LoadFromRaw<T>(string path) where T : Object
         {
-            int firstDotIndex = path.IndexOf('.');
-
-            if (firstDotIndex != -1)
-            {
-                path = path.Substring(0, firstDotIndex);
-            }
             T asset = null;
-            string fullPath = Path.Combine(RawResourcePath, path);
+            string fullPath = path;
             if (RawResourceMod == true)
             {
+                fullPath = Path.Combine(RawResourcePath, path);
+#if UNITY_EDITOR
+                asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(fullPath);
+#else
+                int firstDotIndex = fullPath.IndexOf('.');
+                if (firstDotIndex != -1)
+                {
+                    fullPath = fullPath.Substring(0, firstDotIndex);
+                }
+                NgDebug.Log(string.Format("[test:{0}]", fullPath));
                 asset = Resources.Load<T>(fullPath);
+#endif
             }
             else
             {
