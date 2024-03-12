@@ -98,9 +98,12 @@ namespace OpenNGS.Achievement.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint ItemID { get; set; }
+        public global::OpenNGS.Core.NGSText Description { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
         public uint Counts { get; set; }
 
     }
