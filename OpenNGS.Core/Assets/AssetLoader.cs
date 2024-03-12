@@ -8,10 +8,10 @@ namespace OpenNGS.Assets
     {
         public static bool RawMode = true;  // editor测试bundle模式改为false
         public static bool RawResourceMod = true;
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
         public static string RawResourcePath = "Assets/Game/BuildAssets/";
 #else
-        public static string RawResourcePath = "Assets/Resources/BuildAssets/";
+        public static string RawResourcePath = "BuildAssets/";
 #endif
 
         /// <summary>
@@ -123,7 +123,17 @@ namespace OpenNGS.Assets
 
         public static T LoadFromRaw<T>(string path) where T : Object
         {
-            T asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(Path.Combine(RawResourcePath, path));
+            path = "ui/view/playerground/preb_npcpanel";
+            T asset = null;
+            string fullPath = Path.Combine(RawResourcePath, path);
+            if (RawResourceMod == true)
+            {
+                asset = Resources.Load<T>(fullPath);
+            }
+            else
+            {
+                asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(fullPath);
+            }
             return asset;
         }
     }
