@@ -123,7 +123,12 @@ namespace OpenNGS.Assets
 
         public static T LoadFromRaw<T>(string path) where T : Object
         {
-            path = "ui/view/playerground/preb_npcpanel";
+            int firstDotIndex = path.IndexOf('.');
+
+            if (firstDotIndex != -1)
+            {
+                path = path.Substring(0, firstDotIndex);
+            }
             T asset = null;
             string fullPath = Path.Combine(RawResourcePath, path);
             if (RawResourceMod == true)
