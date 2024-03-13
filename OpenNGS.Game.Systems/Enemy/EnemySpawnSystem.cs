@@ -48,13 +48,9 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
     /// 计时器
     /// </summary>
     /// <param name="intervalTime">间隔时间</param>
-    /// <param name="isPause">是否暂停</param>
-    public  void Timer(float intervalTime,bool isPause)
+    public  void Timer(float intervalTime)
     {
-        if (!isPause)
-        {
-            m_currentTime += intervalTime;
-        }
+        m_currentTime += intervalTime;
     }
     //对当前敌人信息列表按生成开始时间进行排序并存入字典
     private void SortEnemyListByTime()
