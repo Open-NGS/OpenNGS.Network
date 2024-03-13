@@ -16,8 +16,10 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
     bool isInit = true;
     uint m_levelID { get; set; }//关卡ID
     uint m_enemyRuleID { get; set; }//规则ID
-    public float m_currentTime { get ; set ; }//当前游戏进行时间
+    float m_currentTime { get ; set ; }//当前游戏进行时间
+
     LevelEnemyInfo currentInitEnemy;//当前生成敌人
+
     List<LevelEnemyInfo> _levelEnemyInfos;//读取对应关卡所有敌人
     /// <summary>
     /// 当前关卡已生成的敌人字典 敌人ID，敌人数量
@@ -33,6 +35,7 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
         base.OnCreate();
         
     }
+    
     //初始化关卡信息
     public void EnterLevel(uint LevelID, IEnemySpawner _spawner)
     {
@@ -40,6 +43,18 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
         m_levelID= LevelID;
         _levelEnemyInfos=NGSStaticData.levelEnemyInfos.GetItems(m_levelID);
         SortEnemyListByTime();
+    }
+    /// <summary>
+    /// 计时器
+    /// </summary>
+    /// <param name="intervalTime">间隔时间</param>
+    /// <param name="isPause">是否暂停</param>
+    public  void Timer(float intervalTime,bool isPause)
+    {
+        if (!isPause)
+        {
+            m_currentTime += intervalTime;
+        }
     }
     //对当前敌人信息列表按生成开始时间进行排序并存入字典
     private void SortEnemyListByTime()
