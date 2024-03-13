@@ -12,7 +12,7 @@ using Systems;
 
 public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSystem
 {
-    uint initIndex = 1;//生成顺序
+    uint initIndex = 0;//生成顺序
     bool isInit = true;
     uint m_levelID { get; set; }//关卡ID
     uint m_enemyRuleID { get; set; }//规则ID
@@ -51,14 +51,17 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
     public  void Timer(float intervalTime)
     {
         m_currentTime += intervalTime;
+        InitEnemyByTime();
     }
     //对当前敌人信息列表按生成开始时间进行排序并存入字典
     private void SortEnemyListByTime()
     {
         List<LevelEnemyInfo> sortedList=_levelEnemyInfos.OrderBy(p=>p.InitBeginTime).ToList();
-        for (uint i = 1; i <= sortedList.Count; i++)
+        int nIdx = 0;
+        foreach(LevelEnemyInfo _levelEnemyInf in sortedList)
         {
-            levelInfoTimes[i] = sortedList[(int)i].RuleID;
+            levelInfoTimes.Add((uint)nIdx, _levelEnemyInf.RuleID);
+            nIdx++;
         }
     }
     //根据时间生成敌人
