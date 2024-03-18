@@ -18,6 +18,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IExchangeSystem), new ExchangeSystem()));
         services.Add(new ServiceDescriptor(typeof(IItemSystem),new ItemSystem()));
         services.Add(new ServiceDescriptor(typeof(ICharacterSystem), new CharacterSystem()));
+        services.Add(new ServiceDescriptor(typeof(IMakeSystem), new MakeSystem()));
         services.Add(new ServiceDescriptor(typeof(IShopSystem), new ShopSystem()));
         services.Add(new ServiceDescriptor(typeof(ISettingSystem), new SettingSystem()));
         services.Add(new ServiceDescriptor(typeof(IRecordSystem), new RecordSystem()));
