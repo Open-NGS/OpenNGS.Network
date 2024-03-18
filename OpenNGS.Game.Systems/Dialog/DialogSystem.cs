@@ -42,13 +42,31 @@ namespace OpenNGS.Systems
             {
                 // 如果没有保存数据，创建一个新的对话数据
                 m_dialogData = new SaveFileData_Dialog();
+                
             }
+            if(m_dialogData._Dialog.DialogID == 0)
+            {
+                if(NGSStaticData.dialogInitInfo.Items.Count > 0)
+                {
+                    OpenNGS.Dialog.Data.DialogInitInfo item = NGSStaticData.dialogInitInfo.Items[0];
+                    if(item != null)
+                    {
+                        SetDialogID(item.DialogueID);
+                    }
+                }
+            }
+
         }
 
         private void SaveDialogData()
         {
             m_saveSystem.SetFileData("DIALOG", m_dialogData);
             m_saveSystem.SaveFile();
+        }
+
+        protected override void OnClear()
+        {
+            SaveDialogData();
         }
 
         //#region C2S
