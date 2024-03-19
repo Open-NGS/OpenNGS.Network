@@ -48,7 +48,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
             float numb = (this.sourcesMaterList[i].Count * probability)*1.0f / 10;
             uint value = (uint)Math.Floor(numb);
             uint num = makeMaterial.MaterialCount - value;
-            this.sourcesMaterList[i].Count = value;
+            this.sourcesMaterList[i].Count = num;
         }
         ExchangeSystem.ExchangeItem(sourcesMaterList, null);
         ExchangeSystem.ExchangeItem(sourcesList, null);
