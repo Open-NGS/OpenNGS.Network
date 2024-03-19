@@ -120,7 +120,7 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     public void DisassembleEquip(ItemData item)
     {
         SourceItem source=new SourceItem();
-        TargetItem target=new TargetItem();
+        
         DisassembleEquipIno MaterialInfo = NGSStaticData.disassembleEquipIno.GetItem(item.ItemID);
         //将装备复制给目标物体
         source.Count = item.Count;
@@ -129,6 +129,7 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
         //确定分解获得的材料
         for(int i = 0; i < MaterialInfo.MaterialID.Length; i++)
         {
+            TargetItem target = new TargetItem();
             target.ItemID = MaterialInfo.MaterialID[i];
             target.Count = MaterialInfo.MaterialNum[i];
             targetsList.Add(target);  
