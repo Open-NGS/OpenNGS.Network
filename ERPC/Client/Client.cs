@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Google.Protobuf;
-using OpenNGS.Net;
+using OpenNGS.Network;
 
 namespace OpenNGS.ERPC
 {

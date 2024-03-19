@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Google.Protobuf;
-using OpenNGS.Net;
+using OpenNGS.Network;
 
 namespace OpenNGS.ERPC
 {
