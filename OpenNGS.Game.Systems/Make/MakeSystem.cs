@@ -38,8 +38,8 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         if (number <= ((makeMaterial.Probability + Probability) * 10))
         {
             ExchangeSystem.ExchangeItem(sourcesList, targetsList);
-            EXCHANGE_RESULT_TYPE _MakeMaterial = ExchangeSystem.ExchangeItem(sourcesMaterList,null);
-            return _MakeMaterial;
+            EXCHANGE_RESULT_TYPE _TYPE = ExchangeSystem.ExchangeItem(sourcesMaterList,null);
+            return _TYPE;
         }
         //·µ»¹²ÄÁÏ±ÈÀý
         for (int i = 0; i < sourcesMaterList.Count; i++)
