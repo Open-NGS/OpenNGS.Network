@@ -45,6 +45,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         for (int i = 0; i < sourcesMaterList.Count; i++)
         {
             this.sourcesMaterList[i].Count = this.sourcesMaterList[i].Count * (1 - (uint)makeMaterial.BackPercent);
+            ExchangeSystem.ExchangeItem(sourcesMaterList, null);
         }
         ExchangeSystem.ExchangeItem(sourcesList, null);
         return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE;
