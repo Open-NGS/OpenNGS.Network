@@ -65,6 +65,12 @@ namespace OpenNGS.Core
             return this.Attributes.Get(Convert.ToInt32(type));
         }
 
+        public long this[T attr]
+        {
 
+            get { return this.Get(attr); }
+
+            set { this.Set(attr, value); }
+        }
     }
 }

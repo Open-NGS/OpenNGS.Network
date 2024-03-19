@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using OpenNGS.Extension;
+using OpenNGS.Serialization;
 using OpenNGSCommon;
 using ProtoBuf;
 
@@ -13,7 +13,7 @@ namespace OpenNGSCommon
             List<T> messages = new List<T>();
             foreach (var data in this.Datas)
             {
-                T msg = FileExtension.Deserialize<T>(data);
+                T msg = FileSerializer.Deserialize<T>(data);
                 if (msg != null)
                     messages.Add(msg);
                 else
@@ -28,7 +28,7 @@ namespace OpenNGSCommon
         {
             if(this.Datas.Count>0)
             {
-                T msg = FileExtension.Deserialize<T>(this.Datas[0]);
+                T msg = FileSerializer.Deserialize<T>(this.Datas[0]);
                 return msg;
             }
             return default(T);

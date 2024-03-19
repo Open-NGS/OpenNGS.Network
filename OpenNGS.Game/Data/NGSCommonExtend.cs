@@ -19,7 +19,7 @@ namespace OpenNGSCommon
 		}
 		public static OwnerInfo SpawnFromPool()
 		{
-			return (OwnerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(OwnerInfo));
+			return (OwnerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(OwnerInfo));
 		}
 	}
 	public partial class ItemData : OpenNGS.IProtoExtension
@@ -29,22 +29,22 @@ namespace OpenNGSCommon
 			Guid = 0;
 			ItemID = 0;
 			Count = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGS.Core.NGSAttributes>(Attributes);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGS.Core.NGSAttributes>(Attributes);
 		}
 		public void OnRelease()
 		{
 			Guid = 0;
 			ItemID = 0;
 			Count = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(Attributes);
+			OpenNGS.Network.ProtoPool.Instance.Release(Attributes);
 		}
 		public void OnSpawn()
 		{
-			 Attributes = (OpenNGS.Core.NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(OpenNGS.Core.NGSAttributes));
+			 Attributes = (OpenNGS.Core.NGSAttributes)OpenNGS.Network.ProtoPool.Instance.Get(typeof(OpenNGS.Core.NGSAttributes));
 		}
 		public static ItemData SpawnFromPool()
 		{
-			return (ItemData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ItemData));
+			return (ItemData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ItemData));
 		}
 	}
 	public partial class ItemList : OpenNGS.IProtoExtension
@@ -53,7 +53,7 @@ namespace OpenNGSCommon
 		{
 			for(int ItemsCount = 0; ItemsCount < Items.Count; ItemsCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.ItemData>(Items[ItemsCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.ItemData>(Items[ItemsCount]);
 			}
 			Items.Clear();
 		}
@@ -61,7 +61,7 @@ namespace OpenNGSCommon
 		{
 			for(int ItemsCount = 0; ItemsCount < Items.Count; ItemsCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.ItemData>(Items[ItemsCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.ItemData>(Items[ItemsCount]);
 			}
 			Items.Clear();
 		}
@@ -69,12 +69,12 @@ namespace OpenNGSCommon
 		{
 			for(int ItemsCount = 0; ItemsCount < Items.Count; ItemsCount++)
 			{
-				 Items[ItemsCount] = (ItemData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ItemData));
+				 Items[ItemsCount] = (ItemData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ItemData));
 			}
 		}
 		public static ItemList SpawnFromPool()
 		{
-			return (ItemList)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ItemList));
+			return (ItemList)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ItemList));
 		}
 	}
 	public partial class ItemSet : OpenNGS.IProtoExtension
@@ -90,7 +90,7 @@ namespace OpenNGSCommon
 		}
 		public static ItemSet SpawnFromPool()
 		{
-			return (ItemSet)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ItemSet));
+			return (ItemSet)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ItemSet));
 		}
 	}
 	public partial class Queue : OpenNGS.IProtoExtension
@@ -106,7 +106,7 @@ namespace OpenNGSCommon
 			RemainTime = 0;
 			Status = QUEUE_STATUS.QUEUE_STATUS_IDLE;
 			UpdateType = QUEUE_UPDATE_TYPE.QUEUE_UPDATE_TYPE_TIME;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.OwnerInfo>(Owner);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.OwnerInfo>(Owner);
 			Param = 0;
 		}
 		public void OnRelease()
@@ -120,16 +120,16 @@ namespace OpenNGSCommon
 			RemainTime = 0;
 			Status = QUEUE_STATUS.QUEUE_STATUS_IDLE;
 			UpdateType = QUEUE_UPDATE_TYPE.QUEUE_UPDATE_TYPE_TIME;
-			OpenNGS.Net.ProtoPool.Instance.Release(Owner);
+			OpenNGS.Network.ProtoPool.Instance.Release(Owner);
 			Param = 0;
 		}
 		public void OnSpawn()
 		{
-			 Owner = (OwnerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(OwnerInfo));
+			 Owner = (OwnerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(OwnerInfo));
 		}
 		public static Queue SpawnFromPool()
 		{
-			return (Queue)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Queue));
+			return (Queue)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Queue));
 		}
 	}
 	public partial class QueueSet : OpenNGS.IProtoExtension
@@ -145,7 +145,7 @@ namespace OpenNGSCommon
 		}
 		public static QueueSet SpawnFromPool()
 		{
-			return (QueueSet)OpenNGS.Net.ProtoPool.Instance.Get(typeof(QueueSet));
+			return (QueueSet)OpenNGS.Network.ProtoPool.Instance.Get(typeof(QueueSet));
 		}
 	}
 	public partial class QuestNode : OpenNGS.IProtoExtension
@@ -175,7 +175,7 @@ namespace OpenNGSCommon
 		}
 		public static QuestNode SpawnFromPool()
 		{
-			return (QuestNode)OpenNGS.Net.ProtoPool.Instance.Get(typeof(QuestNode));
+			return (QuestNode)OpenNGS.Network.ProtoPool.Instance.Get(typeof(QuestNode));
 		}
 	}
 	public partial class QuestNodeGroup : OpenNGS.IProtoExtension
@@ -197,7 +197,7 @@ namespace OpenNGSCommon
 		}
 		public static QuestNodeGroup SpawnFromPool()
 		{
-			return (QuestNodeGroup)OpenNGS.Net.ProtoPool.Instance.Get(typeof(QuestNodeGroup));
+			return (QuestNodeGroup)OpenNGS.Network.ProtoPool.Instance.Get(typeof(QuestNodeGroup));
 		}
 	}
 	public partial class TechTree : OpenNGS.IProtoExtension
@@ -215,7 +215,7 @@ namespace OpenNGSCommon
 		}
 		public static TechTree SpawnFromPool()
 		{
-			return (TechTree)OpenNGS.Net.ProtoPool.Instance.Get(typeof(TechTree));
+			return (TechTree)OpenNGS.Network.ProtoPool.Instance.Get(typeof(TechTree));
 		}
 	}
 	public partial class Tech : OpenNGS.IProtoExtension
@@ -237,7 +237,7 @@ namespace OpenNGSCommon
 		}
 		public static Tech SpawnFromPool()
 		{
-			return (Tech)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Tech));
+			return (Tech)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Tech));
 		}
 	}
 	public partial class SeasonInfo : OpenNGS.IProtoExtension
@@ -257,7 +257,7 @@ namespace OpenNGSCommon
 		}
 		public static SeasonInfo SpawnFromPool()
 		{
-			return (SeasonInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SeasonInfo));
+			return (SeasonInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SeasonInfo));
 		}
 	}
 	public partial class RankRow : OpenNGS.IProtoExtension
@@ -266,21 +266,21 @@ namespace OpenNGSCommon
 		{
 			player_id = 0;
 			score = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.SeasonInfo>(season_info);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.SeasonInfo>(season_info);
 		}
 		public void OnRelease()
 		{
 			player_id = 0;
 			score = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(season_info);
+			OpenNGS.Network.ProtoPool.Instance.Release(season_info);
 		}
 		public void OnSpawn()
 		{
-			 season_info = (SeasonInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SeasonInfo));
+			 season_info = (SeasonInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SeasonInfo));
 		}
 		public static RankRow SpawnFromPool()
 		{
-			return (RankRow)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankRow));
+			return (RankRow)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankRow));
 		}
 	}
 	public partial class RankPage : OpenNGS.IProtoExtension
@@ -289,7 +289,7 @@ namespace OpenNGSCommon
 		{
 			for(int rank_rowsCount = 0; rank_rowsCount < rank_rows.Count; rank_rowsCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankRow>(rank_rows[rank_rowsCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankRow>(rank_rows[rank_rowsCount]);
 			}
 			rank_rows.Clear();
 		}
@@ -297,7 +297,7 @@ namespace OpenNGSCommon
 		{
 			for(int rank_rowsCount = 0; rank_rowsCount < rank_rows.Count; rank_rowsCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankRow>(rank_rows[rank_rowsCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankRow>(rank_rows[rank_rowsCount]);
 			}
 			rank_rows.Clear();
 		}
@@ -305,12 +305,12 @@ namespace OpenNGSCommon
 		{
 			for(int rank_rowsCount = 0; rank_rowsCount < rank_rows.Count; rank_rowsCount++)
 			{
-				 rank_rows[rank_rowsCount] = (RankRow)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankRow));
+				 rank_rows[rank_rowsCount] = (RankRow)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankRow));
 			}
 		}
 		public static RankPage SpawnFromPool()
 		{
-			return (RankPage)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankPage));
+			return (RankPage)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankPage));
 		}
 	}
 	public partial class RankType : OpenNGS.IProtoExtension
@@ -338,7 +338,7 @@ namespace OpenNGSCommon
 		}
 		public static RankType SpawnFromPool()
 		{
-			return (RankType)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankType));
+			return (RankType)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankType));
 		}
 	}
 	public partial class ServiceInfo : OpenNGS.IProtoExtension
@@ -356,7 +356,7 @@ namespace OpenNGSCommon
 		}
 		public static ServiceInfo SpawnFromPool()
 		{
-			return (ServiceInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ServiceInfo));
+			return (ServiceInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ServiceInfo));
 		}
 	}
 	public partial class GetRequest : OpenNGS.IProtoExtension
@@ -378,7 +378,7 @@ namespace OpenNGSCommon
 		}
 		public static GetRequest SpawnFromPool()
 		{
-			return (GetRequest)OpenNGS.Net.ProtoPool.Instance.Get(typeof(GetRequest));
+			return (GetRequest)OpenNGS.Network.ProtoPool.Instance.Get(typeof(GetRequest));
 		}
 	}
 	public partial class PlayerIdentifier : OpenNGS.IProtoExtension
@@ -396,7 +396,7 @@ namespace OpenNGSCommon
 		}
 		public static PlayerIdentifier SpawnFromPool()
 		{
-			return (PlayerIdentifier)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerIdentifier));
+			return (PlayerIdentifier)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerIdentifier));
 		}
 	}
 	public partial class ListRequest : OpenNGS.IProtoExtension
@@ -418,7 +418,7 @@ namespace OpenNGSCommon
 		}
 		public static ListRequest SpawnFromPool()
 		{
-			return (ListRequest)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ListRequest));
+			return (ListRequest)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ListRequest));
 		}
 	}
 	public partial class IdRequest : OpenNGS.IProtoExtension
@@ -436,7 +436,7 @@ namespace OpenNGSCommon
 		}
 		public static IdRequest SpawnFromPool()
 		{
-			return (IdRequest)OpenNGS.Net.ProtoPool.Instance.Get(typeof(IdRequest));
+			return (IdRequest)OpenNGS.Network.ProtoPool.Instance.Get(typeof(IdRequest));
 		}
 	}
 	public partial class ResponseResult : OpenNGS.IProtoExtension
@@ -456,7 +456,7 @@ namespace OpenNGSCommon
 		}
 		public static ResponseResult SpawnFromPool()
 		{
-			return (ResponseResult)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ResponseResult));
+			return (ResponseResult)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ResponseResult));
 		}
 	}
 	public partial class MailSenderInfo : OpenNGS.IProtoExtension
@@ -480,7 +480,7 @@ namespace OpenNGSCommon
 		}
 		public static MailSenderInfo SpawnFromPool()
 		{
-			return (MailSenderInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MailSenderInfo));
+			return (MailSenderInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MailSenderInfo));
 		}
 	}
 	public partial class MailReceiverInfo : OpenNGS.IProtoExtension
@@ -500,7 +500,7 @@ namespace OpenNGSCommon
 		}
 		public static MailReceiverInfo SpawnFromPool()
 		{
-			return (MailReceiverInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MailReceiverInfo));
+			return (MailReceiverInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MailReceiverInfo));
 		}
 	}
 	public partial class PlayerBaseInfo : OpenNGS.IProtoExtension
@@ -524,7 +524,7 @@ namespace OpenNGSCommon
 		}
 		public static PlayerBaseInfo SpawnFromPool()
 		{
-			return (PlayerBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerBaseInfo));
+			return (PlayerBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerBaseInfo));
 		}
 	}
 	public partial class PlayerStatusInfo : OpenNGS.IProtoExtension
@@ -544,7 +544,7 @@ namespace OpenNGSCommon
 		}
 		public static PlayerStatusInfo SpawnFromPool()
 		{
-			return (PlayerStatusInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerStatusInfo));
+			return (PlayerStatusInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerStatusInfo));
 		}
 	}
 	public partial class ChannelInfo : OpenNGS.IProtoExtension
@@ -566,37 +566,37 @@ namespace OpenNGSCommon
 		}
 		public static ChannelInfo SpawnFromPool()
 		{
-			return (ChannelInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ChannelInfo));
+			return (ChannelInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ChannelInfo));
 		}
 	}
 	public partial class ChatInfo : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.ChannelInfo>(channel);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.ChannelInfo>(channel);
 			content = null;
 			argsparams = null;
 			time = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.PlayerBaseInfo>(sender);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.PlayerBaseInfo>(sender);
 			seq = 0;
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(channel);
+			OpenNGS.Network.ProtoPool.Instance.Release(channel);
 			content = null;
 			argsparams = null;
 			time = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(sender);
+			OpenNGS.Network.ProtoPool.Instance.Release(sender);
 			seq = 0;
 		}
 		public void OnSpawn()
 		{
-			 channel = (ChannelInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ChannelInfo));
-			 sender = (PlayerBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerBaseInfo));
+			 channel = (ChannelInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ChannelInfo));
+			 sender = (PlayerBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerBaseInfo));
 		}
 		public static ChatInfo SpawnFromPool()
 		{
-			return (ChatInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ChatInfo));
+			return (ChatInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ChatInfo));
 		}
 	}
 	public partial class MatchPlayerAttribute : OpenNGS.IProtoExtension
@@ -616,7 +616,7 @@ namespace OpenNGSCommon
 		}
 		public static MatchPlayerAttribute SpawnFromPool()
 		{
-			return (MatchPlayerAttribute)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchPlayerAttribute));
+			return (MatchPlayerAttribute)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchPlayerAttribute));
 		}
 	}
 	public partial class MatchPlayer : OpenNGS.IProtoExtension
@@ -624,20 +624,20 @@ namespace OpenNGSCommon
 		public void Clear()
 		{
 			uin = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchPlayerAttribute>(attributes);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchPlayerAttribute>(attributes);
 		}
 		public void OnRelease()
 		{
 			uin = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(attributes);
+			OpenNGS.Network.ProtoPool.Instance.Release(attributes);
 		}
 		public void OnSpawn()
 		{
-			 attributes = (MatchPlayerAttribute)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchPlayerAttribute));
+			 attributes = (MatchPlayerAttribute)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchPlayerAttribute));
 		}
 		public static MatchPlayer SpawnFromPool()
 		{
-			return (MatchPlayer)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchPlayer));
+			return (MatchPlayer)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchPlayer));
 		}
 	}
 	public partial class MatchTicket : OpenNGS.IProtoExtension
@@ -647,7 +647,7 @@ namespace OpenNGSCommon
 			ticket_id = null;
 			ticket_uid = 0;
 			match_code = null;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchPlayer>(players);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchPlayer>(players);
 			begin_time = 0;
 			status = 0;
 		}
@@ -656,17 +656,17 @@ namespace OpenNGSCommon
 			ticket_id = null;
 			ticket_uid = 0;
 			match_code = null;
-			OpenNGS.Net.ProtoPool.Instance.Release(players);
+			OpenNGS.Network.ProtoPool.Instance.Release(players);
 			begin_time = 0;
 			status = 0;
 		}
 		public void OnSpawn()
 		{
-			 players = (MatchPlayer)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchPlayer));
+			 players = (MatchPlayer)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchPlayer));
 		}
 		public static MatchTicket SpawnFromPool()
 		{
-			return (MatchTicket)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchTicket));
+			return (MatchTicket)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchTicket));
 		}
 	}
 	public partial class MatchResultPlayer : OpenNGS.IProtoExtension
@@ -684,7 +684,7 @@ namespace OpenNGSCommon
 		}
 		public static MatchResultPlayer SpawnFromPool()
 		{
-			return (MatchResultPlayer)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchResultPlayer));
+			return (MatchResultPlayer)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchResultPlayer));
 		}
 	}
 	public partial class MatchCamp : OpenNGS.IProtoExtension
@@ -692,20 +692,20 @@ namespace OpenNGSCommon
 		public void Clear()
 		{
 			score = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchResultPlayer>(players);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchResultPlayer>(players);
 		}
 		public void OnRelease()
 		{
 			score = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(players);
+			OpenNGS.Network.ProtoPool.Instance.Release(players);
 		}
 		public void OnSpawn()
 		{
-			 players = (MatchResultPlayer)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchResultPlayer));
+			 players = (MatchResultPlayer)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchResultPlayer));
 		}
 		public static MatchCamp SpawnFromPool()
 		{
-			return (MatchCamp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchCamp));
+			return (MatchCamp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchCamp));
 		}
 	}
 	public partial class MatchResult : OpenNGS.IProtoExtension
@@ -716,7 +716,7 @@ namespace OpenNGSCommon
 			result_uid = null;
 			match_code = null;
 			create_time = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchCamp>(camps);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MatchCamp>(camps);
 		}
 		public void OnRelease()
 		{
@@ -724,15 +724,15 @@ namespace OpenNGSCommon
 			result_uid = null;
 			match_code = null;
 			create_time = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(camps);
+			OpenNGS.Network.ProtoPool.Instance.Release(camps);
 		}
 		public void OnSpawn()
 		{
-			 camps = (MatchCamp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchCamp));
+			 camps = (MatchCamp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchCamp));
 		}
 		public static MatchResult SpawnFromPool()
 		{
-			return (MatchResult)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MatchResult));
+			return (MatchResult)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MatchResult));
 		}
 	}
 	public partial class RoomStatus : OpenNGS.IProtoExtension
@@ -742,7 +742,7 @@ namespace OpenNGSCommon
 			roomTid = 0;
 			roomUid = 0;
 			token = null;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomUrl>(roomurl);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomUrl>(roomurl);
 			status = 0;
 			maxPlayerLimit = 0;
 			uin = 0;
@@ -754,7 +754,7 @@ namespace OpenNGSCommon
 			roomTid = 0;
 			roomUid = 0;
 			token = null;
-			OpenNGS.Net.ProtoPool.Instance.Release(roomurl);
+			OpenNGS.Network.ProtoPool.Instance.Release(roomurl);
 			status = 0;
 			maxPlayerLimit = 0;
 			uin = 0;
@@ -763,11 +763,11 @@ namespace OpenNGSCommon
 		}
 		public void OnSpawn()
 		{
-			 roomurl = (RoomUrl)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomUrl));
+			 roomurl = (RoomUrl)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomUrl));
 		}
 		public static RoomStatus SpawnFromPool()
 		{
-			return (RoomStatus)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomStatus));
+			return (RoomStatus)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomStatus));
 		}
 	}
 	public partial class RoomUrl : OpenNGS.IProtoExtension
@@ -793,7 +793,7 @@ namespace OpenNGSCommon
 		}
 		public static RoomUrl SpawnFromPool()
 		{
-			return (RoomUrl)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomUrl));
+			return (RoomUrl)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomUrl));
 		}
 	}
 	public partial class RoomSetting : OpenNGS.IProtoExtension
@@ -817,7 +817,7 @@ namespace OpenNGSCommon
 		}
 		public static RoomSetting SpawnFromPool()
 		{
-			return (RoomSetting)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomSetting));
+			return (RoomSetting)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomSetting));
 		}
 	}
 	public partial class Vector3 : OpenNGS.IProtoExtension
@@ -839,7 +839,7 @@ namespace OpenNGSCommon
 		}
 		public static Vector3 SpawnFromPool()
 		{
-			return (Vector3)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Vector3));
+			return (Vector3)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Vector3));
 		}
 	}
 	public partial class EntityKey : OpenNGS.IProtoExtension
@@ -865,34 +865,34 @@ namespace OpenNGSCommon
 		}
 		public static EntityKey SpawnFromPool()
 		{
-			return (EntityKey)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EntityKey));
+			return (EntityKey)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EntityKey));
 		}
 	}
 	public partial class EntityPos : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Vector3>(pos);
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Vector3>(direction);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Vector3>(pos);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Vector3>(direction);
 			speed = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Vector3>(target);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Vector3>(target);
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(pos);
-			OpenNGS.Net.ProtoPool.Instance.Release(direction);
+			OpenNGS.Network.ProtoPool.Instance.Release(pos);
+			OpenNGS.Network.ProtoPool.Instance.Release(direction);
 			speed = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(target);
+			OpenNGS.Network.ProtoPool.Instance.Release(target);
 		}
 		public void OnSpawn()
 		{
-			 pos = (Vector3)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Vector3));
-			 direction = (Vector3)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Vector3));
-			 target = (Vector3)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Vector3));
+			 pos = (Vector3)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Vector3));
+			 direction = (Vector3)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Vector3));
+			 target = (Vector3)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Vector3));
 		}
 		public static EntityPos SpawnFromPool()
 		{
-			return (EntityPos)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EntityPos));
+			return (EntityPos)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EntityPos));
 		}
 	}
 	public partial class EntityAttr : OpenNGS.IProtoExtension
@@ -916,18 +916,18 @@ namespace OpenNGSCommon
 		}
 		public static EntityAttr SpawnFromPool()
 		{
-			return (EntityAttr)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EntityAttr));
+			return (EntityAttr)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EntityAttr));
 		}
 	}
 	public partial class Entity : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityKey>(id);
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityPos>(pos);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityKey>(id);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityPos>(pos);
 			for(int attrsCount = 0; attrsCount < attrs.Count; attrsCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityAttr>(attrs[attrsCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityAttr>(attrs[attrsCount]);
 			}
 			attrs.Clear();
 			avatar = null;
@@ -940,11 +940,11 @@ namespace OpenNGSCommon
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(id);
-			OpenNGS.Net.ProtoPool.Instance.Release(pos);
+			OpenNGS.Network.ProtoPool.Instance.Release(id);
+			OpenNGS.Network.ProtoPool.Instance.Release(pos);
 			for(int attrsCount = 0; attrsCount < attrs.Count; attrsCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityAttr>(attrs[attrsCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.EntityAttr>(attrs[attrsCount]);
 			}
 			attrs.Clear();
 			avatar = null;
@@ -957,16 +957,16 @@ namespace OpenNGSCommon
 		}
 		public void OnSpawn()
 		{
-			 id = (EntityKey)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EntityKey));
-			 pos = (EntityPos)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EntityPos));
+			 id = (EntityKey)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EntityKey));
+			 pos = (EntityPos)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EntityPos));
 			for(int attrsCount = 0; attrsCount < attrs.Count; attrsCount++)
 			{
-				 attrs[attrsCount] = (EntityAttr)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EntityAttr));
+				 attrs[attrsCount] = (EntityAttr)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EntityAttr));
 			}
 		}
 		public static Entity SpawnFromPool()
 		{
-			return (Entity)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Entity));
+			return (Entity)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Entity));
 		}
 	}
 	public partial class PlayerDesc : OpenNGS.IProtoExtension
@@ -986,7 +986,7 @@ namespace OpenNGSCommon
 		}
 		public static PlayerDesc SpawnFromPool()
 		{
-			return (PlayerDesc)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerDesc));
+			return (PlayerDesc)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerDesc));
 		}
 	}
 	public partial class StatusData : OpenNGS.IProtoExtension
@@ -1019,7 +1019,7 @@ namespace OpenNGSCommon
 		}
 		public static StatusData SpawnFromPool()
 		{
-			return (StatusData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(StatusData));
+			return (StatusData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(StatusData));
 		}
 	}
 	public partial class StatusDataList : OpenNGS.IProtoExtension
@@ -1029,7 +1029,7 @@ namespace OpenNGSCommon
 			timestamp = 0;
 			for(int status_datasCount = 0; status_datasCount < status_datas.Count; status_datasCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status_datas[status_datasCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status_datas[status_datasCount]);
 			}
 			status_datas.Clear();
 		}
@@ -1038,7 +1038,7 @@ namespace OpenNGSCommon
 			timestamp = 0;
 			for(int status_datasCount = 0; status_datasCount < status_datas.Count; status_datasCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status_datas[status_datasCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status_datas[status_datasCount]);
 			}
 			status_datas.Clear();
 		}
@@ -1046,12 +1046,12 @@ namespace OpenNGSCommon
 		{
 			for(int status_datasCount = 0; status_datasCount < status_datas.Count; status_datasCount++)
 			{
-				 status_datas[status_datasCount] = (StatusData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(StatusData));
+				 status_datas[status_datasCount] = (StatusData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(StatusData));
 			}
 		}
 		public static StatusDataList SpawnFromPool()
 		{
-			return (StatusDataList)OpenNGS.Net.ProtoPool.Instance.Get(typeof(StatusDataList));
+			return (StatusDataList)OpenNGS.Network.ProtoPool.Instance.Get(typeof(StatusDataList));
 		}
 	}
 	public partial class DirtyMarkInfo : OpenNGS.IProtoExtension
@@ -1071,7 +1071,7 @@ namespace OpenNGSCommon
 		}
 		public static DirtyMarkInfo SpawnFromPool()
 		{
-			return (DirtyMarkInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(DirtyMarkInfo));
+			return (DirtyMarkInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(DirtyMarkInfo));
 		}
 	}
 	public partial class RoomData : OpenNGS.IProtoExtension
@@ -1079,20 +1079,20 @@ namespace OpenNGSCommon
 		public void Clear()
 		{
 			owner = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomUrl>(room_url);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomUrl>(room_url);
 		}
 		public void OnRelease()
 		{
 			owner = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(room_url);
+			OpenNGS.Network.ProtoPool.Instance.Release(room_url);
 		}
 		public void OnSpawn()
 		{
-			 room_url = (RoomUrl)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomUrl));
+			 room_url = (RoomUrl)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomUrl));
 		}
 		public static RoomData SpawnFromPool()
 		{
-			return (RoomData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomData));
+			return (RoomData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomData));
 		}
 	}
 	public partial class InviteInfo : OpenNGS.IProtoExtension
@@ -1101,7 +1101,7 @@ namespace OpenNGSCommon
 		{
 			from_uin = 0;
 			to_uin = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomData>(room_info);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomData>(room_info);
 			result = ReplyResultCode.RET_NONE;
 			timestamp = 0;
 		}
@@ -1109,17 +1109,17 @@ namespace OpenNGSCommon
 		{
 			from_uin = 0;
 			to_uin = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(room_info);
+			OpenNGS.Network.ProtoPool.Instance.Release(room_info);
 			result = ReplyResultCode.RET_NONE;
 			timestamp = 0;
 		}
 		public void OnSpawn()
 		{
-			 room_info = (RoomData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomData));
+			 room_info = (RoomData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomData));
 		}
 		public static InviteInfo SpawnFromPool()
 		{
-			return (InviteInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(InviteInfo));
+			return (InviteInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(InviteInfo));
 		}
 	}
 	public partial class RequestEnterInfo : OpenNGS.IProtoExtension
@@ -1128,7 +1128,7 @@ namespace OpenNGSCommon
 		{
 			request_uin = 0;
 			be_requested_uin = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomData>(room_info);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomData>(room_info);
 			result = ReplyResultCode.RET_NONE;
 			timestamp = 0;
 		}
@@ -1136,17 +1136,17 @@ namespace OpenNGSCommon
 		{
 			request_uin = 0;
 			be_requested_uin = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(room_info);
+			OpenNGS.Network.ProtoPool.Instance.Release(room_info);
 			result = ReplyResultCode.RET_NONE;
 			timestamp = 0;
 		}
 		public void OnSpawn()
 		{
-			 room_info = (RoomData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomData));
+			 room_info = (RoomData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomData));
 		}
 		public static RequestEnterInfo SpawnFromPool()
 		{
-			return (RequestEnterInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RequestEnterInfo));
+			return (RequestEnterInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RequestEnterInfo));
 		}
 	}
 	public partial class PlayerSocialStatusData : OpenNGS.IProtoExtension
@@ -1154,23 +1154,23 @@ namespace OpenNGSCommon
 		public void Clear()
 		{
 			uin = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.PlayerStatusInfo>(status_info);
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomData>(room_info);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.PlayerStatusInfo>(status_info);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomData>(room_info);
 		}
 		public void OnRelease()
 		{
 			uin = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(status_info);
-			OpenNGS.Net.ProtoPool.Instance.Release(room_info);
+			OpenNGS.Network.ProtoPool.Instance.Release(status_info);
+			OpenNGS.Network.ProtoPool.Instance.Release(room_info);
 		}
 		public void OnSpawn()
 		{
-			 status_info = (PlayerStatusInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerStatusInfo));
-			 room_info = (RoomData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomData));
+			 status_info = (PlayerStatusInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerStatusInfo));
+			 room_info = (RoomData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomData));
 		}
 		public static PlayerSocialStatusData SpawnFromPool()
 		{
-			return (PlayerSocialStatusData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerSocialStatusData));
+			return (PlayerSocialStatusData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerSocialStatusData));
 		}
 	}
 	public partial class UserSettingValueItem : OpenNGS.IProtoExtension
@@ -1190,7 +1190,7 @@ namespace OpenNGSCommon
 		}
 		public static UserSettingValueItem SpawnFromPool()
 		{
-			return (UserSettingValueItem)OpenNGS.Net.ProtoPool.Instance.Get(typeof(UserSettingValueItem));
+			return (UserSettingValueItem)OpenNGS.Network.ProtoPool.Instance.Get(typeof(UserSettingValueItem));
 		}
 	}
 	public partial class ObjectiveNode : OpenNGS.IProtoExtension
@@ -1220,28 +1220,28 @@ namespace OpenNGSCommon
 		}
 		public static ObjectiveNode SpawnFromPool()
 		{
-			return (ObjectiveNode)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ObjectiveNode));
+			return (ObjectiveNode)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ObjectiveNode));
 		}
 	}
 	public partial class RankingKey : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankingType>(ObjType);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankingType>(ObjType);
 			ObjectId = 0;
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(ObjType);
+			OpenNGS.Network.ProtoPool.Instance.Release(ObjType);
 			ObjectId = 0;
 		}
 		public void OnSpawn()
 		{
-			 ObjType = (RankingType)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankingType));
+			 ObjType = (RankingType)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankingType));
 		}
 		public static RankingKey SpawnFromPool()
 		{
-			return (RankingKey)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankingKey));
+			return (RankingKey)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankingKey));
 		}
 	}
 	public partial class RankingType : OpenNGS.IProtoExtension
@@ -1265,31 +1265,31 @@ namespace OpenNGSCommon
 		}
 		public static RankingType SpawnFromPool()
 		{
-			return (RankingType)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankingType));
+			return (RankingType)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankingType));
 		}
 	}
 	public partial class RankingNode : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankingKey>(RankKey);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankingKey>(RankKey);
 			Value = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankBaseInfo>(BaseInfo);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankBaseInfo>(BaseInfo);
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(RankKey);
+			OpenNGS.Network.ProtoPool.Instance.Release(RankKey);
 			Value = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(BaseInfo);
+			OpenNGS.Network.ProtoPool.Instance.Release(BaseInfo);
 		}
 		public void OnSpawn()
 		{
-			 RankKey = (RankingKey)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankingKey));
-			 BaseInfo = (RankBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankBaseInfo));
+			 RankKey = (RankingKey)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankingKey));
+			 BaseInfo = (RankBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankBaseInfo));
 		}
 		public static RankingNode SpawnFromPool()
 		{
-			return (RankingNode)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankingNode));
+			return (RankingNode)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankingNode));
 		}
 	}
 	public partial class RankPlayerBaseInfo : OpenNGS.IProtoExtension
@@ -1313,7 +1313,7 @@ namespace OpenNGSCommon
 		}
 		public static RankPlayerBaseInfo SpawnFromPool()
 		{
-			return (RankPlayerBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankPlayerBaseInfo));
+			return (RankPlayerBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankPlayerBaseInfo));
 		}
 	}
 	public partial class RankGuildBaseInfo : OpenNGS.IProtoExtension
@@ -1335,29 +1335,29 @@ namespace OpenNGSCommon
 		}
 		public static RankGuildBaseInfo SpawnFromPool()
 		{
-			return (RankGuildBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankGuildBaseInfo));
+			return (RankGuildBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankGuildBaseInfo));
 		}
 	}
 	public partial class RankBaseInfo : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankPlayerBaseInfo>(player);
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankGuildBaseInfo>(guild);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankPlayerBaseInfo>(player);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RankGuildBaseInfo>(guild);
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(player);
-			OpenNGS.Net.ProtoPool.Instance.Release(guild);
+			OpenNGS.Network.ProtoPool.Instance.Release(player);
+			OpenNGS.Network.ProtoPool.Instance.Release(guild);
 		}
 		public void OnSpawn()
 		{
-			 player = (RankPlayerBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankPlayerBaseInfo));
-			 guild = (RankGuildBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankGuildBaseInfo));
+			 player = (RankPlayerBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankPlayerBaseInfo));
+			 guild = (RankGuildBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankGuildBaseInfo));
 		}
 		public static RankBaseInfo SpawnFromPool()
 		{
-			return (RankBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RankBaseInfo));
+			return (RankBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RankBaseInfo));
 		}
 	}
 	public partial class LimitInfo : OpenNGS.IProtoExtension
@@ -1377,7 +1377,7 @@ namespace OpenNGSCommon
 		}
 		public static LimitInfo SpawnFromPool()
 		{
-			return (LimitInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LimitInfo));
+			return (LimitInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LimitInfo));
 		}
 	}
 	public partial class AccountIdentity : OpenNGS.IProtoExtension
@@ -1397,7 +1397,7 @@ namespace OpenNGSCommon
 		}
 		public static AccountIdentity SpawnFromPool()
 		{
-			return (AccountIdentity)OpenNGS.Net.ProtoPool.Instance.Get(typeof(AccountIdentity));
+			return (AccountIdentity)OpenNGS.Network.ProtoPool.Instance.Get(typeof(AccountIdentity));
 		}
 	}
 	public partial class AccountInfo : OpenNGS.IProtoExtension
@@ -1405,31 +1405,31 @@ namespace OpenNGSCommon
 		public void Clear()
 		{
 			gameid = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.AccountIdentity>(identity);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.AccountIdentity>(identity);
 			openid = 0;
 			permission = 0;
 			createtime = 0;
 			lastlogintime = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.LimitInfo>(limit);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.LimitInfo>(limit);
 		}
 		public void OnRelease()
 		{
 			gameid = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(identity);
+			OpenNGS.Network.ProtoPool.Instance.Release(identity);
 			openid = 0;
 			permission = 0;
 			createtime = 0;
 			lastlogintime = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(limit);
+			OpenNGS.Network.ProtoPool.Instance.Release(limit);
 		}
 		public void OnSpawn()
 		{
-			 identity = (AccountIdentity)OpenNGS.Net.ProtoPool.Instance.Get(typeof(AccountIdentity));
-			 limit = (LimitInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LimitInfo));
+			 identity = (AccountIdentity)OpenNGS.Network.ProtoPool.Instance.Get(typeof(AccountIdentity));
+			 limit = (LimitInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LimitInfo));
 		}
 		public static AccountInfo SpawnFromPool()
 		{
-			return (AccountInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(AccountInfo));
+			return (AccountInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(AccountInfo));
 		}
 	}
 	public partial class UserInfo : OpenNGS.IProtoExtension
@@ -1453,7 +1453,7 @@ namespace OpenNGSCommon
 		}
 		public static UserInfo SpawnFromPool()
 		{
-			return (UserInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(UserInfo));
+			return (UserInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(UserInfo));
 		}
 	}
 	public partial class CharacterInfo : OpenNGS.IProtoExtension
@@ -1466,9 +1466,9 @@ namespace OpenNGSCommon
 			avatar = null;
 			userid = 0;
 			openid = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.LimitInfo>(limit);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.LimitInfo>(limit);
 			imageurl = null;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.AccountIdentity>(identity);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.AccountIdentity>(identity);
 		}
 		public void OnRelease()
 		{
@@ -1478,18 +1478,18 @@ namespace OpenNGSCommon
 			avatar = null;
 			userid = 0;
 			openid = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(limit);
+			OpenNGS.Network.ProtoPool.Instance.Release(limit);
 			imageurl = null;
-			OpenNGS.Net.ProtoPool.Instance.Release(identity);
+			OpenNGS.Network.ProtoPool.Instance.Release(identity);
 		}
 		public void OnSpawn()
 		{
-			 limit = (LimitInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LimitInfo));
-			 identity = (AccountIdentity)OpenNGS.Net.ProtoPool.Instance.Get(typeof(AccountIdentity));
+			 limit = (LimitInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LimitInfo));
+			 identity = (AccountIdentity)OpenNGS.Network.ProtoPool.Instance.Get(typeof(AccountIdentity));
 		}
 		public static CharacterInfo SpawnFromPool()
 		{
-			return (CharacterInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(CharacterInfo));
+			return (CharacterInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(CharacterInfo));
 		}
 	}
 	public partial class MiniGameUrl : OpenNGS.IProtoExtension
@@ -1517,7 +1517,7 @@ namespace OpenNGSCommon
 		}
 		public static MiniGameUrl SpawnFromPool()
 		{
-			return (MiniGameUrl)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGameUrl));
+			return (MiniGameUrl)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGameUrl));
 		}
 	}
 	public partial class MiniGameLevelData : OpenNGS.IProtoExtension
@@ -1549,7 +1549,7 @@ namespace OpenNGSCommon
 		}
 		public static MiniGameLevelData SpawnFromPool()
 		{
-			return (MiniGameLevelData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGameLevelData));
+			return (MiniGameLevelData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGameLevelData));
 		}
 	}
 	public partial class MiniGamePlayerData : OpenNGS.IProtoExtension
@@ -1569,7 +1569,7 @@ namespace OpenNGSCommon
 		}
 		public static MiniGamePlayerData SpawnFromPool()
 		{
-			return (MiniGamePlayerData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGamePlayerData));
+			return (MiniGamePlayerData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGamePlayerData));
 		}
 	}
 	public partial class MiniGameData : OpenNGS.IProtoExtension
@@ -1577,41 +1577,41 @@ namespace OpenNGSCommon
 		public void Clear()
 		{
 			appid = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MiniGameUrl>(game_url);
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomUrl>(room_url);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MiniGameUrl>(game_url);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomUrl>(room_url);
 			roomtid = 0;
 			create_time = 0;
 			for(int playersCount = 0; playersCount < players.Count; playersCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MiniGamePlayerData>(players[playersCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MiniGamePlayerData>(players[playersCount]);
 			}
 			players.Clear();
 		}
 		public void OnRelease()
 		{
 			appid = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(game_url);
-			OpenNGS.Net.ProtoPool.Instance.Release(room_url);
+			OpenNGS.Network.ProtoPool.Instance.Release(game_url);
+			OpenNGS.Network.ProtoPool.Instance.Release(room_url);
 			roomtid = 0;
 			create_time = 0;
 			for(int playersCount = 0; playersCount < players.Count; playersCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MiniGamePlayerData>(players[playersCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.MiniGamePlayerData>(players[playersCount]);
 			}
 			players.Clear();
 		}
 		public void OnSpawn()
 		{
-			 game_url = (MiniGameUrl)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGameUrl));
-			 room_url = (RoomUrl)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomUrl));
+			 game_url = (MiniGameUrl)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGameUrl));
+			 room_url = (RoomUrl)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomUrl));
 			for(int playersCount = 0; playersCount < players.Count; playersCount++)
 			{
-				 players[playersCount] = (MiniGamePlayerData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGamePlayerData));
+				 players[playersCount] = (MiniGamePlayerData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGamePlayerData));
 			}
 		}
 		public static MiniGameData SpawnFromPool()
 		{
-			return (MiniGameData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGameData));
+			return (MiniGameData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGameData));
 		}
 	}
 	public partial class MiniGameMsgHead : OpenNGS.IProtoExtension
@@ -1635,7 +1635,7 @@ namespace OpenNGSCommon
 		}
 		public static MiniGameMsgHead SpawnFromPool()
 		{
-			return (MiniGameMsgHead)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MiniGameMsgHead));
+			return (MiniGameMsgHead)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MiniGameMsgHead));
 		}
 	}
 	public class NGSCommonPBFactory

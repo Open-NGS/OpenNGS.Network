@@ -4,7 +4,7 @@ using UnityEngine;
 using protocol;
 using System;
 using UnityEngine.Events;
-using OpenNGS.Net;
+using OpenNGS.Network;
 using OpenNGS;
 
 namespace protocol

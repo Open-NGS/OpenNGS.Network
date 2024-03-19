@@ -23,7 +23,7 @@ namespace protocol
 		}
 		public static MsgHead SpawnFromPool()
 		{
-			return (MsgHead)OpenNGS.Net.ProtoPool.Instance.Get(typeof(MsgHead));
+			return (MsgHead)OpenNGS.Network.ProtoPool.Instance.Get(typeof(MsgHead));
 		}
 	}
 	public partial class HeartbeatReq : OpenNGS.IProtoExtension
@@ -43,7 +43,7 @@ namespace protocol
 		}
 		public static HeartbeatReq SpawnFromPool()
 		{
-			return (HeartbeatReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(HeartbeatReq));
+			return (HeartbeatReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(HeartbeatReq));
 		}
 	}
 	public partial class HeartbeatRsp : OpenNGS.IProtoExtension
@@ -61,7 +61,7 @@ namespace protocol
 		}
 		public static HeartbeatRsp SpawnFromPool()
 		{
-			return (HeartbeatRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(HeartbeatRsp));
+			return (HeartbeatRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(HeartbeatRsp));
 		}
 	}
 	public partial class LoginPlayerInfo : OpenNGS.IProtoExtension
@@ -87,7 +87,7 @@ namespace protocol
 		}
 		public static LoginPlayerInfo SpawnFromPool()
 		{
-			return (LoginPlayerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LoginPlayerInfo));
+			return (LoginPlayerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LoginPlayerInfo));
 		}
 	}
 	public partial class LoginReq : OpenNGS.IProtoExtension
@@ -119,7 +119,7 @@ namespace protocol
 		}
 		public static LoginReq SpawnFromPool()
 		{
-			return (LoginReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LoginReq));
+			return (LoginReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LoginReq));
 		}
 	}
 	public partial class LoginRsp : OpenNGS.IProtoExtension
@@ -133,7 +133,7 @@ namespace protocol
 			version = null;
 			for(int charactersCount = 0; charactersCount < characters.Count; charactersCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.LoginPlayerInfo>(characters[charactersCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.LoginPlayerInfo>(characters[charactersCount]);
 			}
 			characters.Clear();
 			state = LoginState.LOGINSTATE_NONE;
@@ -147,7 +147,7 @@ namespace protocol
 			version = null;
 			for(int charactersCount = 0; charactersCount < characters.Count; charactersCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.LoginPlayerInfo>(characters[charactersCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.LoginPlayerInfo>(characters[charactersCount]);
 			}
 			characters.Clear();
 			state = LoginState.LOGINSTATE_NONE;
@@ -156,12 +156,12 @@ namespace protocol
 		{
 			for(int charactersCount = 0; charactersCount < characters.Count; charactersCount++)
 			{
-				 characters[charactersCount] = (LoginPlayerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LoginPlayerInfo));
+				 characters[charactersCount] = (LoginPlayerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LoginPlayerInfo));
 			}
 		}
 		public static LoginRsp SpawnFromPool()
 		{
-			return (LoginRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LoginRsp));
+			return (LoginRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LoginRsp));
 		}
 	}
 	public partial class LogoutReq : OpenNGS.IProtoExtension
@@ -179,7 +179,7 @@ namespace protocol
 		}
 		public static LogoutReq SpawnFromPool()
 		{
-			return (LogoutReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LogoutReq));
+			return (LogoutReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LogoutReq));
 		}
 	}
 	public partial class LogoutRsp : OpenNGS.IProtoExtension
@@ -197,7 +197,7 @@ namespace protocol
 		}
 		public static LogoutRsp SpawnFromPool()
 		{
-			return (LogoutRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(LogoutRsp));
+			return (LogoutRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(LogoutRsp));
 		}
 	}
 	public partial class KickNtf : OpenNGS.IProtoExtension
@@ -215,7 +215,7 @@ namespace protocol
 		}
 		public static KickNtf SpawnFromPool()
 		{
-			return (KickNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(KickNtf));
+			return (KickNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(KickNtf));
 		}
 	}
 	public partial class CreatePlayerReq : OpenNGS.IProtoExtension
@@ -235,7 +235,7 @@ namespace protocol
 		}
 		public static CreatePlayerReq SpawnFromPool()
 		{
-			return (CreatePlayerReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(CreatePlayerReq));
+			return (CreatePlayerReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(CreatePlayerReq));
 		}
 	}
 	public partial class CreatePlayerRsp : OpenNGS.IProtoExtension
@@ -257,7 +257,7 @@ namespace protocol
 		}
 		public static CreatePlayerRsp SpawnFromPool()
 		{
-			return (CreatePlayerRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(CreatePlayerRsp));
+			return (CreatePlayerRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(CreatePlayerRsp));
 		}
 	}
 	public partial class PlayerInfo : OpenNGS.IProtoExtension
@@ -281,7 +281,7 @@ namespace protocol
 		}
 		public static PlayerInfo SpawnFromPool()
 		{
-			return (PlayerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerInfo));
+			return (PlayerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerInfo));
 		}
 	}
 	public partial class EnterGameReq : OpenNGS.IProtoExtension
@@ -299,7 +299,7 @@ namespace protocol
 		}
 		public static EnterGameReq SpawnFromPool()
 		{
-			return (EnterGameReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EnterGameReq));
+			return (EnterGameReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EnterGameReq));
 		}
 	}
 	public partial class EnterGameRsp : OpenNGS.IProtoExtension
@@ -308,21 +308,21 @@ namespace protocol
 		{
 			result = 0;
 			state = LoginState.LOGINSTATE_NONE;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.PlayerInfo>(character);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.PlayerInfo>(character);
 		}
 		public void OnRelease()
 		{
 			result = 0;
 			state = LoginState.LOGINSTATE_NONE;
-			OpenNGS.Net.ProtoPool.Instance.Release(character);
+			OpenNGS.Network.ProtoPool.Instance.Release(character);
 		}
 		public void OnSpawn()
 		{
-			 character = (PlayerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerInfo));
+			 character = (PlayerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerInfo));
 		}
 		public static EnterGameRsp SpawnFromPool()
 		{
-			return (EnterGameRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(EnterGameRsp));
+			return (EnterGameRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(EnterGameRsp));
 		}
 	}
 	public partial class GetPlayerInfoReq : OpenNGS.IProtoExtension
@@ -340,7 +340,7 @@ namespace protocol
 		}
 		public static GetPlayerInfoReq SpawnFromPool()
 		{
-			return (GetPlayerInfoReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(GetPlayerInfoReq));
+			return (GetPlayerInfoReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(GetPlayerInfoReq));
 		}
 	}
 	public partial class GetPlayerInfoRsp : OpenNGS.IProtoExtension
@@ -348,20 +348,20 @@ namespace protocol
 		public void Clear()
 		{
 			result = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.PlayerInfo>(character);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.PlayerInfo>(character);
 		}
 		public void OnRelease()
 		{
 			result = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(character);
+			OpenNGS.Network.ProtoPool.Instance.Release(character);
 		}
 		public void OnSpawn()
 		{
-			 character = (PlayerInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerInfo));
+			 character = (PlayerInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerInfo));
 		}
 		public static GetPlayerInfoRsp SpawnFromPool()
 		{
-			return (GetPlayerInfoRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(GetPlayerInfoRsp));
+			return (GetPlayerInfoRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(GetPlayerInfoRsp));
 		}
 	}
 	public partial class Zone : OpenNGS.IProtoExtension
@@ -381,7 +381,7 @@ namespace protocol
 		}
 		public static Zone SpawnFromPool()
 		{
-			return (Zone)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Zone));
+			return (Zone)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Zone));
 		}
 	}
 	public partial class FriendBaseInfo : OpenNGS.IProtoExtension
@@ -407,7 +407,7 @@ namespace protocol
 		}
 		public static FriendBaseInfo SpawnFromPool()
 		{
-			return (FriendBaseInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(FriendBaseInfo));
+			return (FriendBaseInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(FriendBaseInfo));
 		}
 	}
 	public partial class StatusReq : OpenNGS.IProtoExtension
@@ -419,7 +419,7 @@ namespace protocol
 			pos = 0;
 			for(int zonesCount = 0; zonesCount < zones.Count; zonesCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.Zone>(zones[zonesCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.Zone>(zones[zonesCount]);
 			}
 			zones.Clear();
 			first = false;
@@ -431,7 +431,7 @@ namespace protocol
 			pos = 0;
 			for(int zonesCount = 0; zonesCount < zones.Count; zonesCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.Zone>(zones[zonesCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.Zone>(zones[zonesCount]);
 			}
 			zones.Clear();
 			first = false;
@@ -440,12 +440,12 @@ namespace protocol
 		{
 			for(int zonesCount = 0; zonesCount < zones.Count; zonesCount++)
 			{
-				 zones[zonesCount] = (Zone)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Zone));
+				 zones[zonesCount] = (Zone)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Zone));
 			}
 		}
 		public static StatusReq SpawnFromPool()
 		{
-			return (StatusReq)OpenNGS.Net.ProtoPool.Instance.Get(typeof(StatusReq));
+			return (StatusReq)OpenNGS.Network.ProtoPool.Instance.Get(typeof(StatusReq));
 		}
 	}
 	public partial class StatusRsp : OpenNGS.IProtoExtension
@@ -455,7 +455,7 @@ namespace protocol
 			svr_time = 0;
 			for(int statusCount = 0; statusCount < status.Count; statusCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status[statusCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status[statusCount]);
 			}
 			status.Clear();
 		}
@@ -464,7 +464,7 @@ namespace protocol
 			svr_time = 0;
 			for(int statusCount = 0; statusCount < status.Count; statusCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status[statusCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.StatusData>(status[statusCount]);
 			}
 			status.Clear();
 		}
@@ -472,12 +472,12 @@ namespace protocol
 		{
 			for(int statusCount = 0; statusCount < status.Count; statusCount++)
 			{
-				 status[statusCount] = (StatusData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(StatusData));
+				 status[statusCount] = (StatusData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(StatusData));
 			}
 		}
 		public static StatusRsp SpawnFromPool()
 		{
-			return (StatusRsp)OpenNGS.Net.ProtoPool.Instance.Get(typeof(StatusRsp));
+			return (StatusRsp)OpenNGS.Network.ProtoPool.Instance.Get(typeof(StatusRsp));
 		}
 	}
 	public partial class Attributes : OpenNGS.IProtoExtension
@@ -495,7 +495,7 @@ namespace protocol
 		}
 		public static Attributes SpawnFromPool()
 		{
-			return (Attributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Attributes));
+			return (Attributes)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Attributes));
 		}
 	}
 	public partial class NotifyInfo : OpenNGS.IProtoExtension
@@ -526,7 +526,7 @@ namespace protocol
 		}
 		public static NotifyInfo SpawnFromPool()
 		{
-			return (NotifyInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NotifyInfo));
+			return (NotifyInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NotifyInfo));
 		}
 	}
 	public partial class ServiceTraceData : OpenNGS.IProtoExtension
@@ -548,7 +548,7 @@ namespace protocol
 		}
 		public static ServiceTraceData SpawnFromPool()
 		{
-			return (ServiceTraceData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ServiceTraceData));
+			return (ServiceTraceData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ServiceTraceData));
 		}
 	}
 	public partial class ServiceTraceDatas : OpenNGS.IProtoExtension
@@ -557,7 +557,7 @@ namespace protocol
 		{
 			for(int datasCount = 0; datasCount < datas.Count; datasCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.ServiceTraceData>(datas[datasCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.ServiceTraceData>(datas[datasCount]);
 			}
 			datas.Clear();
 		}
@@ -565,7 +565,7 @@ namespace protocol
 		{
 			for(int datasCount = 0; datasCount < datas.Count; datasCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<protocol.ServiceTraceData>(datas[datasCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<protocol.ServiceTraceData>(datas[datasCount]);
 			}
 			datas.Clear();
 		}
@@ -573,12 +573,12 @@ namespace protocol
 		{
 			for(int datasCount = 0; datasCount < datas.Count; datasCount++)
 			{
-				 datas[datasCount] = (ServiceTraceData)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ServiceTraceData));
+				 datas[datasCount] = (ServiceTraceData)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ServiceTraceData));
 			}
 		}
 		public static ServiceTraceDatas SpawnFromPool()
 		{
-			return (ServiceTraceDatas)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ServiceTraceDatas));
+			return (ServiceTraceDatas)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ServiceTraceDatas));
 		}
 	}
 	public partial class AnnouncementInfo : OpenNGS.IProtoExtension
@@ -606,7 +606,7 @@ namespace protocol
 		}
 		public static AnnouncementInfo SpawnFromPool()
 		{
-			return (AnnouncementInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(AnnouncementInfo));
+			return (AnnouncementInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(AnnouncementInfo));
 		}
 	}
 	public partial class PlayerIdentifier : OpenNGS.IProtoExtension
@@ -624,7 +624,7 @@ namespace protocol
 		}
 		public static PlayerIdentifier SpawnFromPool()
 		{
-			return (PlayerIdentifier)OpenNGS.Net.ProtoPool.Instance.Get(typeof(PlayerIdentifier));
+			return (PlayerIdentifier)OpenNGS.Network.ProtoPool.Instance.Get(typeof(PlayerIdentifier));
 		}
 	}
 	public partial class GetRequest : OpenNGS.IProtoExtension
@@ -646,7 +646,7 @@ namespace protocol
 		}
 		public static GetRequest SpawnFromPool()
 		{
-			return (GetRequest)OpenNGS.Net.ProtoPool.Instance.Get(typeof(GetRequest));
+			return (GetRequest)OpenNGS.Network.ProtoPool.Instance.Get(typeof(GetRequest));
 		}
 	}
 	public partial class ResponseResult : OpenNGS.IProtoExtension
@@ -666,7 +666,7 @@ namespace protocol
 		}
 		public static ResponseResult SpawnFromPool()
 		{
-			return (ResponseResult)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ResponseResult));
+			return (ResponseResult)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ResponseResult));
 		}
 	}
 	public partial class ServiceInfo : OpenNGS.IProtoExtension
@@ -684,7 +684,7 @@ namespace protocol
 		}
 		public static ServiceInfo SpawnFromPool()
 		{
-			return (ServiceInfo)OpenNGS.Net.ProtoPool.Instance.Get(typeof(ServiceInfo));
+			return (ServiceInfo)OpenNGS.Network.ProtoPool.Instance.Get(typeof(ServiceInfo));
 		}
 	}
 	public partial class SyncOperateNtf : OpenNGS.IProtoExtension
@@ -694,22 +694,22 @@ namespace protocol
 			ticketId = 0;
 			uin = 0;
 			operateType = 0;
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Entity>(entity);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Entity>(entity);
 		}
 		public void OnRelease()
 		{
 			ticketId = 0;
 			uin = 0;
 			operateType = 0;
-			OpenNGS.Net.ProtoPool.Instance.Release(entity);
+			OpenNGS.Network.ProtoPool.Instance.Release(entity);
 		}
 		public void OnSpawn()
 		{
-			 entity = (Entity)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Entity));
+			 entity = (Entity)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Entity));
 		}
 		public static SyncOperateNtf SpawnFromPool()
 		{
-			return (SyncOperateNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SyncOperateNtf));
+			return (SyncOperateNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SyncOperateNtf));
 		}
 	}
 	public partial class SyncEntityNtf : OpenNGS.IProtoExtension
@@ -719,7 +719,7 @@ namespace protocol
 			ticketId = 0;
 			for(int entitysCount = 0; entitysCount < entitys.Count; entitysCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Entity>(entitys[entitysCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Entity>(entitys[entitysCount]);
 			}
 			entitys.Clear();
 			delEntityIds = null;
@@ -729,7 +729,7 @@ namespace protocol
 			ticketId = 0;
 			for(int entitysCount = 0; entitysCount < entitys.Count; entitysCount++)
 			{
-				OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Entity>(entitys[entitysCount]);
+				OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.Entity>(entitys[entitysCount]);
 			}
 			entitys.Clear();
 			delEntityIds = null;
@@ -738,12 +738,12 @@ namespace protocol
 		{
 			for(int entitysCount = 0; entitysCount < entitys.Count; entitysCount++)
 			{
-				 entitys[entitysCount] = (Entity)OpenNGS.Net.ProtoPool.Instance.Get(typeof(Entity));
+				 entitys[entitysCount] = (Entity)OpenNGS.Network.ProtoPool.Instance.Get(typeof(Entity));
 			}
 		}
 		public static SyncEntityNtf SpawnFromPool()
 		{
-			return (SyncEntityNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SyncEntityNtf));
+			return (SyncEntityNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SyncEntityNtf));
 		}
 	}
 	public partial class SyncEventNtf : OpenNGS.IProtoExtension
@@ -765,7 +765,7 @@ namespace protocol
 		}
 		public static SyncEventNtf SpawnFromPool()
 		{
-			return (SyncEventNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SyncEventNtf));
+			return (SyncEventNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SyncEventNtf));
 		}
 	}
 	public partial class RoomPrivilegeOperateNtf : OpenNGS.IProtoExtension
@@ -785,7 +785,7 @@ namespace protocol
 		}
 		public static RoomPrivilegeOperateNtf SpawnFromPool()
 		{
-			return (RoomPrivilegeOperateNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomPrivilegeOperateNtf));
+			return (RoomPrivilegeOperateNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomPrivilegeOperateNtf));
 		}
 	}
 	public partial class SyncHostNtf : OpenNGS.IProtoExtension
@@ -807,26 +807,26 @@ namespace protocol
 		}
 		public static SyncHostNtf SpawnFromPool()
 		{
-			return (SyncHostNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SyncHostNtf));
+			return (SyncHostNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SyncHostNtf));
 		}
 	}
 	public partial class SyncRoomSettingNtf : OpenNGS.IProtoExtension
 	{
 		public void Clear()
 		{
-			OpenNGS.Net.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomSetting>(setting);
+			OpenNGS.Network.ProtoFactory.Instance.RecycleProtocol<OpenNGSCommon.RoomSetting>(setting);
 		}
 		public void OnRelease()
 		{
-			OpenNGS.Net.ProtoPool.Instance.Release(setting);
+			OpenNGS.Network.ProtoPool.Instance.Release(setting);
 		}
 		public void OnSpawn()
 		{
-			 setting = (RoomSetting)OpenNGS.Net.ProtoPool.Instance.Get(typeof(RoomSetting));
+			 setting = (RoomSetting)OpenNGS.Network.ProtoPool.Instance.Get(typeof(RoomSetting));
 		}
 		public static SyncRoomSettingNtf SpawnFromPool()
 		{
-			return (SyncRoomSettingNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SyncRoomSettingNtf));
+			return (SyncRoomSettingNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SyncRoomSettingNtf));
 		}
 	}
 	public partial class SyncPlayerStatusNtf : OpenNGS.IProtoExtension
@@ -846,7 +846,7 @@ namespace protocol
 		}
 		public static SyncPlayerStatusNtf SpawnFromPool()
 		{
-			return (SyncPlayerStatusNtf)OpenNGS.Net.ProtoPool.Instance.Get(typeof(SyncPlayerStatusNtf));
+			return (SyncPlayerStatusNtf)OpenNGS.Network.ProtoPool.Instance.Get(typeof(SyncPlayerStatusNtf));
 		}
 	}
 	public class protocolPBFactory

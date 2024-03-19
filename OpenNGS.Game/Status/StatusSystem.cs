@@ -4,7 +4,8 @@ using System.IO;
 using System.Text;
 using MissQ.Tools;
 using OpenNGS.Extension;
-using OpenNGS.Net;
+using OpenNGS.Network;
+using OpenNGS.Serialization;
 using OpenNGSCommon;
 using ProtoBuf;
 using UnityEngine;
@@ -79,7 +80,7 @@ namespace Systems
 
         private void MessageHeadStatusHandler(byte[] data)
         {
-            OnStatus(FileExtension.Deserialize<StatusDataList>(data));
+            OnStatus(FileSerializer.Deserialize<StatusDataList>(data));
         }
     }
 }

@@ -1,4 +1,5 @@
 using OpenNGS.Extension;
+using OpenNGS.Serialization;
 using OpenNGSCommon;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Rpc
         {
             ReqMeta.TryAdd("uin", UIN.ToString());
             
-            SetAction("com.openngs.xr.status_system", (byte[] val) => { StatusSystem.Instance.OnStatus(FileExtension.Deserialize<StatusDataList>(val)); });
+            SetAction("com.openngs.xr.status_system", (byte[] val) => { StatusSystem.Instance.OnStatus(FileSerializer.Deserialize<StatusDataList>(val)); });
         }
     }
 }

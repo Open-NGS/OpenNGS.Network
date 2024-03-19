@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using OpenNGS.Net;
+using OpenNGS.Network;
 using OpenNGS.Extension;
 using protocol;
 

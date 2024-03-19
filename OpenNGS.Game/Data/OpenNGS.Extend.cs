@@ -16,7 +16,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSText SpawnFromPool()
 		{
-			return (NGSText)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSText));
+			return (NGSText)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSText));
 		}
 	}
 	public partial class NGSAttributes : OpenNGS.IProtoExtension
@@ -32,7 +32,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSAttributes SpawnFromPool()
 		{
-			return (NGSAttributes)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSAttributes));
+			return (NGSAttributes)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSAttributes));
 		}
 	}
 	public partial class NGSVoid : OpenNGS.IProtoExtension
@@ -48,7 +48,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSVoid SpawnFromPool()
 		{
-			return (NGSVoid)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSVoid));
+			return (NGSVoid)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSVoid));
 		}
 	}
 	public partial class NGSVector2 : OpenNGS.IProtoExtension
@@ -68,7 +68,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSVector2 SpawnFromPool()
 		{
-			return (NGSVector2)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSVector2));
+			return (NGSVector2)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSVector2));
 		}
 	}
 	public partial class NGSVector3 : OpenNGS.IProtoExtension
@@ -90,7 +90,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSVector3 SpawnFromPool()
 		{
-			return (NGSVector3)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSVector3));
+			return (NGSVector3)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSVector3));
 		}
 	}
 	public partial class NGSVector4 : OpenNGS.IProtoExtension
@@ -114,7 +114,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSVector4 SpawnFromPool()
 		{
-			return (NGSVector4)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSVector4));
+			return (NGSVector4)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSVector4));
 		}
 	}
 	public partial class NGSMessage : OpenNGS.IProtoExtension
@@ -138,7 +138,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSMessage SpawnFromPool()
 		{
-			return (NGSMessage)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSMessage));
+			return (NGSMessage)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSMessage));
 		}
 	}
 	public partial class NGSResult : OpenNGS.IProtoExtension
@@ -158,7 +158,7 @@ namespace OpenNGS.Core
 		}
 		public static NGSResult SpawnFromPool()
 		{
-			return (NGSResult)OpenNGS.Net.ProtoPool.Instance.Get(typeof(NGSResult));
+			return (NGSResult)OpenNGS.Network.ProtoPool.Instance.Get(typeof(NGSResult));
 		}
 	}
 	public class NGSPBFactory

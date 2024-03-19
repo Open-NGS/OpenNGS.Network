@@ -10,7 +10,6 @@ using UnityEngine.Events;
 namespace Services
 {
 
-#if Enable_NewNetworkModule
     public class MessageContext
     {
 
@@ -37,35 +36,10 @@ namespace Services
         }
 
     }
-#else
-
-     public class MessageContext<T>
-    {
-        public event UnityAction<int,T> Handler;
-
-
-        public MessageContext()
-        {
-
-        }
-        public MessageContext(UnityAction<int, T> callback)
-        {
-            this.Handler += callback;
-        }
-
-
-        public void OnResponse(int errcode, T rsp)
-        {
-            if (this.Handler != null)
-                this.Handler(errcode, rsp);
-        }
-
-    }
-#endif
 
     public class MessageService : OpenNGS.Singleton<MessageService>
     {
-#if Enable_NewNetworkModule
+#if true
         public MessageContext SendMessage(SCSPkg pkg)
         {
     
@@ -75,7 +49,7 @@ namespace Services
 
             /*为了兼容demo现有逻辑，暂时保留现有回调机制，但这部分逻辑会有时序问题，SendRequest可能会失败，
             失败时会立即调用回调并返回Fail，但此时回调事件并没有被设置，并且pkg已经被回收对象池，这时body会是null
-            暂时判断下防止报错，demo过后统一使用反射协议回调管线*/
+            暂时判断下防止报错，过后统一使用反射协议回调管线*/
             if (pkg.body != null)
                 return pkg.body.rspcontext;
             else
