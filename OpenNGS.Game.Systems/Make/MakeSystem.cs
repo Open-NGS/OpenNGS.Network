@@ -37,8 +37,9 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         // 概率条件成功进入
         if (number <= ((makeMaterial.Probability + Probability) * 10))
         {
-            EXCHANGE_RESULT_TYPE _TYPEs = ExchangeSystem.ExchangeItem(sourcesList, targetsList);
-            return _TYPEs;
+            ExchangeSystem.ExchangeItem(sourcesList, targetsList);
+            EXCHANGE_RESULT_TYPE _MakeMaterial = ExchangeSystem.ExchangeItem(sourcesMaterList,null);
+            return _MakeMaterial;
         }
         //返还材料比例
         for (int i = 0; i < sourcesMaterList.Count; i++)
@@ -83,7 +84,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
 
         SourceItem sources = new SourceItem();
         sources.GUID = itemInfo.Guid;
-        sources.Count = 1;
+        sources.Count = itemInfo.Count;
         sourcesList.Add(sources);
     }
     public override string GetSystemName()
