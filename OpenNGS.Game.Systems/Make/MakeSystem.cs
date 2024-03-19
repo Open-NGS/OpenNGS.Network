@@ -44,7 +44,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         //·µ»¹²ÄÁÏ±ÈÀı
         for (int i = 0; i < sourcesMaterList.Count; i++)
         {
-            int probability = (int)(makeMaterial.BackPercent * 10);
+            int probability = (int)(10 - makeMaterial.BackPercent * 10);
             float numb = (this.sourcesMaterList[i].Count * probability)*1.0f / 10;
             uint value = (uint)Math.Floor(numb);
             this.sourcesMaterList[i].Count = value;
