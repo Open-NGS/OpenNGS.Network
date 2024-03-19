@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace OpenNGS.Build
 {
+#if UNITY_2022_1_OR_NEWER
     public class BuildPlayerProcessor : UnityEditor.Build.BuildPlayerProcessor
     {
         public override void PrepareForBuild(BuildPlayerContext buildPlayerContext)
@@ -16,4 +17,6 @@ namespace OpenNGS.Build
             //buildPlayerContext.AddAdditionalPathToStreamingAssets(BuildPipline.AssetBundlePath);
         }
     }
+#endif
+
 }

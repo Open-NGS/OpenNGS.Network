@@ -111,7 +111,7 @@ namespace OpenNGS.Configs
             //        throw new Exception(string.Format("Can not create folder: {0} {1}", configPath, ex.Message));
             //    }
             //}
-            FileExtension.WriteJson(Path.Combine(configPath,name), config, Formatting.Indented);
+            JsonUtil.WriteJson(Path.Combine(configPath,name), config, Formatting.Indented);
             //File.WriteAllText(Path.Combine(configPath,name), json, Encoding.UTF8);
         }
     }

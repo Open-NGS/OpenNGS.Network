@@ -142,8 +142,8 @@ public class BuildPipline : IActiveBuildTargetChanged
         }
 
         if (PiplineSettings.PlatformTemplatePath.Length > 0) {
-            var templatePath = PiplineSettings.PlatformTemplatePath.Split(".")[0] + ".template";
-            var scriptPath = PiplineSettings.PlatformTemplatePath.Split(".")[0] + ".cs";
+            var templatePath = PiplineSettings.PlatformTemplatePath.Split('.')[0] + ".template";
+            var scriptPath = PiplineSettings.PlatformTemplatePath.Split('.')[0] + ".cs";
             if (System.IO.File.Exists(templatePath)) {
                 if (!FileParametric.Parametric(templatePath, scriptPath, CommandLine.Arguments)) {
                     EditorApplication.Exit(4);// 流水线参数化模板文件失败
@@ -204,7 +204,7 @@ public class BuildPipline : IActiveBuildTargetChanged
         {
             if (!string.IsNullOrEmpty(PiplineSettings.ExtraScriptingDefines))
             {
-                options.extraScriptingDefines = PiplineSettings.ExtraScriptingDefines.Split(";", System.StringSplitOptions.RemoveEmptyEntries);
+                options.extraScriptingDefines = PiplineSettings.ExtraScriptingDefines.Split(";".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
             }
 
             if (!string.IsNullOrEmpty(PiplineSettings.OutputPath))
@@ -270,7 +270,7 @@ public class BuildPipline : IActiveBuildTargetChanged
     {
         if (!string.IsNullOrEmpty(PiplineSettings.BuiltinScenes))
         {
-            return PiplineSettings.BuiltinScenes.Split(",", System.StringSplitOptions.RemoveEmptyEntries);
+            return PiplineSettings.BuiltinScenes.Split(",".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
         }
 
         return new string[0];
@@ -340,14 +340,13 @@ public class BuildPipline : IActiveBuildTargetChanged
                 return BuildTargetGroup.GameCoreXboxOne;
             case BuildTarget.GameCoreXboxSeries:
                 return BuildTargetGroup.GameCoreXboxSeries;
+#if UNITY_2022_3_OR_NEWER
             case BuildTarget.EmbeddedLinux:
                 return BuildTargetGroup.EmbeddedLinux;
+#endif
             case BuildTarget.Lumin:
                 return BuildTargetGroup.Lumin;
-#if UNITY_2021_3_11
-            case BuildTarget.LinuxHeadlessSimulation:
-                return BuildTargetGroup.LinuxHeadlessSimulation;
-#else
+#if UNITY_2021_3_OR_NEWER
             case BuildTarget.LinuxHeadlessSimulation:
                 return BuildTargetGroup.LinuxHeadlessSimulation;
 #endif

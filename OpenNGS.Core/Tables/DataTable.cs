@@ -37,9 +37,17 @@ namespace OpenNGS.Tables
             byte[] data = File.ReadAllBytes(filename);
  
             if (data == null) {
+#if UNITY_2021_1_OR_NEWER
                 var filenameList = filename.Split("/");
                 filenameList[^1] = filenameList[^1].ToLower();
                 var filenameNew = String.Join("/", filenameList);
+
+#else
+                var filenameList = filename.Split('/');
+                filenameList[filenameList.Length-1] = filenameList[filenameList.Length - 1].ToLower();
+                var filenameNew = String.Join("/", filenameList);
+
+#endif
                 data = File.ReadAllBytes(filenameNew);
 
                 if (data == null) {
@@ -55,7 +63,7 @@ namespace OpenNGS.Tables
             this.Items = DataTable.Serializer.Deserialize<List<ITEM>>(data);
             this.Prepare();
             this.loaded = true;
-#if DEBUG_LOG &&PROFILER
+#if DEBUG_LOG && PROFILER
             OpenNGS.Profiling.ProfilerLog.End("Tables.Load", filename);
 #endif
         }

@@ -20,7 +20,7 @@ namespace OpenNGS.Localize
         private const string LocalizationFilePath = "Localization/{0}/Localization.json";
         private const string DefaultLocalizationFilePath = "Localization/Localization.json";
 
-        private Dictionary<string, string> _localizationStrings = new ();
+        private Dictionary<string, string> _localizationStrings = new Dictionary<string, string>();
 
 
         private SystemLanguage _lan;
@@ -45,7 +45,7 @@ namespace OpenNGS.Localize
             }
 
             // var dataAsJson = FileSystem.Read(file).ToString();
-            _localizationStrings = FileExtension.LoadJson<Dictionary<string, string>>(file);
+            _localizationStrings = JsonUtil.LoadJson<Dictionary<string, string>>(file);
             // var dataAsJson = File.ReadAllText(file);
             // _localizationStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataAsJson);
         }

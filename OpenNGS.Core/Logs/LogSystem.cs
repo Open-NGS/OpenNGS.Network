@@ -43,7 +43,12 @@ namespace OpenNGS.Logs
                 {
                     if (appenderConfig.Enable)
                     {
+#if UNITY_2021_1_OR_NEWER
                         var appender = AppenderMap.GetValueOrDefault(appenderConfig.Name);
+#else
+                        AppenderMap.TryGetValue(appenderConfig.Name,out var appender);
+#endif
+
                         if (appender != null && appender.TypeIdentify == appenderConfig.Type)
                         {
                             appender.Init(appenderConfig);

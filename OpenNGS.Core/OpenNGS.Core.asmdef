@@ -1,10 +1,7 @@
 {
     "name": "OpenNGS.Core",
     "rootNamespace": "",
-    "references": [
-        "GUID:26ec928a3b13f964eb3ad549a6aeb935",
-        "GUID:6a16ad35578c2844fb031c42edd5b2c0"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,

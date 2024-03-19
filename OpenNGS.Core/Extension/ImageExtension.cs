@@ -87,7 +87,11 @@ namespace OpenNGS.Extension
                     r.BaseStream.Seek(1, SeekOrigin.Current);
                     if (tex.width != width || tex.height != height)
                     {
+#if UNITY_2021_1_OR_NEWER
                         tex.Reinitialize(width, height);
+#else
+                        tex.Resize(width, height);
+#endif
                     }
                     Color32[] pulledColors = new Color32[width * height];
 

@@ -2,7 +2,7 @@
     "name": "OpenNGS.Core.Unity",
     "rootNamespace": "",
     "references": [
-        "GUID:4b63a8bfa1c0be143841c224d2254a70"
+        "OpenNGS.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
