@@ -73,6 +73,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         // 目标物品
         TargetItem target = new TargetItem();
         target.ItemID = Target.Id;
+        target.Count = 1;
         targetsList.Add(target);
     }
 
