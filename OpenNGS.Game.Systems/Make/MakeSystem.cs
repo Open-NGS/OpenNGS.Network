@@ -80,7 +80,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     public void LuckyStone(OpenNGS.Item.Common.ItemData itemInfo)
     {
         LuckyStone item = NGSStaticData.LuckyStone.GetItem(itemInfo.ItemID);
-        Probability += item.UpProbability;
+        Probability += item.UpProbability * itemInfo.Count;
 
         SourceItem sources = new SourceItem();
         sources.GUID = itemInfo.Guid;
