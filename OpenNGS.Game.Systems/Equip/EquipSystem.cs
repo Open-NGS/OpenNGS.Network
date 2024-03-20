@@ -135,6 +135,8 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
             targetsList.Add(target);  
         }
         m_exchangeSystem.ExchangeItem(sourcesList, targetsList);
+        sourcesList.Clear();
+        targetsList.Clear();
     }
 
 
