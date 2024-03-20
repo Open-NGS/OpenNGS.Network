@@ -20,9 +20,6 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     protected override void OnCreate()
     {
         ExchangeSystem = App.GetService<IExchangeSystem>();
-        sourcesList.Clear();
-        targetsList.Clear();
-        sourcesMaterList.Clear();
         base.OnCreate();
     }
 
@@ -39,6 +36,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         {
             ExchangeSystem.ExchangeItem(sourcesList, targetsList);
             EXCHANGE_RESULT_TYPE _TYPE = ExchangeSystem.ExchangeItem(sourcesMaterList,null);
+            ClearList();
             return _TYPE;
         }
         //·µ»¹²ÄÁÏ±ÈÀý
@@ -52,6 +50,7 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         }
         ExchangeSystem.ExchangeItem(sourcesMaterList, null);
         ExchangeSystem.ExchangeItem(sourcesList, null);
+        ClearList();
         return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE;
     }
 
@@ -92,6 +91,12 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         sources.GUID = itemInfo.Guid;
         sources.Count = itemInfo.Count;
         sourcesList.Add(sources);
+    }
+    private void ClearList()
+    {
+        sourcesList.Clear();
+        targetsList.Clear();
+        sourcesMaterList.Clear();
     }
     public override string GetSystemName()
     {
