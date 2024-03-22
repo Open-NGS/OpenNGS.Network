@@ -166,7 +166,7 @@ namespace OpenNGS.Tables
                 }
                 catch (System.Exception ex)
                 {
-                    throw ex;
+                    throw new Exception(string.Format("{0}:{1}.{2} \nPrepare Exceotion:\n{3}", this.Name, GetPKey(item), GetSKey(item), ex));
                 }
             }
         }
