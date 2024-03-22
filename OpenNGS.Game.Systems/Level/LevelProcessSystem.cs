@@ -1,3 +1,4 @@
+using OpenNGS.Levels.Data;
 using OpenNGS.Rank.Data;
 using OpenNGS.Systems;
 using System;
@@ -8,16 +9,15 @@ using Systems;
 
 public class LevelProcessSystem : GameSubSystem<LevelProcessSystem>, ILevelProcessSystem
 {
-    public int levelId;
-    public int levelTime;
+    private List<ILevelStage> levelStages;
+    
     private bool m_bNextStage = false;
-    public List<LevelStage> lstStages;
-    public int currentStageIndex = 0;
+    private bool m_bStart = false;
 
     protected override void OnCreate()
     {
         base.OnCreate();
-        InitStages();
+        levelStages = new List<ILevelStage>();
     }
 
     public override string GetSystemName()
@@ -25,26 +25,48 @@ public class LevelProcessSystem : GameSubSystem<LevelProcessSystem>, ILevelProce
         return "com.openngs.system.LevelProcessSystem";
     }
 
-    public void SetLevel(int levelid)
+    public void InitLevelStage(ILevelStageFactor factor)
     {
-        levelId = (int)NGSStaticData.levelData.GetItem(levelid).LevelID;
-        levelTime = (int)NGSStaticData.levelData.GetItem(levelid).CompletionTime;
+        levelStages = factor.GetLevelStage();
+        //StartBegin();
     }
 
-
-
-    public void InitStages()
+    public void StartBegin()
     {
-        lstStages = new List<LevelStage>();        
-        LevelStage _stageBegin = new LevelStage(levelId, levelTime);
-        lstStages.Add(_stageBegin);
-        _stageBegin.InitStages();
-
+        if (levelStages == null || levelStages.Count == 0) return;
+        currentStage = levelStages[currentStageIndex];
+        m_bStart = true;
     }
 
+    private ILevelStage currentStage;
+    private int currentStageIndex;
     public void UpdateStages(float deltaTime)
     {
-        lstStages[0].UpdateStages(deltaTime);
-    }
+        if (!m_bStart) return;
+        if (levelStages == null || levelStages.Count == 0) return;
 
+        if (currentStage.GetBeginStageExecute())
+        {
+            currentStage.OnStageBegin();
+            return;
+        }
+        else if (currentStage.GetUpdateStageExecute())
+        {
+            currentStage.OnStageUpdate(deltaTime);
+            return;
+        }
+        else if(currentStage.GetEndStageExecute())
+        {
+            currentStage.OnStageEnd();
+            return;
+        }
+        else
+        {
+            currentStageIndex++;
+            if(currentStageIndex < levelStages.Count)
+            {
+                currentStage = levelStages[currentStageIndex];
+            }
+        }
+    }
 }

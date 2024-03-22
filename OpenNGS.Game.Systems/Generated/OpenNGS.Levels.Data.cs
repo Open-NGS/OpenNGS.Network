@@ -129,19 +129,10 @@ namespace OpenNGS.Levels.Data
         public uint LevelID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint CompletionTime { get; set; }
+        public global::OpenNGS.Levels.Common.LEVEL_STAGE_TYPE LevelStageType { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
-        public uint[] StartCondition { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
-        public uint[] FailureCondition { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
-        public uint[] VictoryCondition { get; set; }
-
-        [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
-        public uint[] EndCondition { get; set; }
+        public uint[] LevelStageParam { get; set; }
 
     }
 
@@ -167,16 +158,112 @@ namespace OpenNGS.Levels.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ConditionData : global::ProtoBuf.IExtensible
+    public partial class StageData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ConditionData()
+        public StageData()
         {
-            Condition = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint StageID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Levels.Common.STAGE_EXECUTION_TYPE ExecutionType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
+        public uint[] ExecutionID { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class StageDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public StageDataArray()
+        {
+            items = new global::System.Collections.Generic.List<StageData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<StageData> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ExecutionData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExecutionData()
+        {
+            ExecutionClassName = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ExecutionID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ExecutionClassName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
+        public uint[] ConditionID { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ExecutionDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExecutionDataArray()
+        {
+            items = new global::System.Collections.Generic.List<ExecutionData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ExecutionData> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ExecuteCondtionData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExecuteCondtionData()
+        {
+            ConditionName = "";
             OnConstructor();
         }
 
@@ -186,32 +273,35 @@ namespace OpenNGS.Levels.Data
         public uint ConditionID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText ConditionName { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ConditionName { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string Condition { get; set; }
+        public uint ConditionParam1 { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint ConditionParam2 { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class ConditionDataArray : global::ProtoBuf.IExtensible
+    public partial class ExecuteCondtionDataArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ConditionDataArray()
+        public ExecuteCondtionDataArray()
         {
-            items = new global::System.Collections.Generic.List<ConditionData>();
+            items = new global::System.Collections.Generic.List<ExecuteCondtionData>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ConditionData> items { get; private set; }
+        public global::System.Collections.Generic.List<ExecuteCondtionData> items { get; private set; }
 
     }
 

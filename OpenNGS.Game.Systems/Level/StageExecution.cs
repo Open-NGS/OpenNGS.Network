@@ -1,30 +1,34 @@
+using OpenNGS.Levels.Common;
 using System.Collections;
 using System.Collections.Generic;
 
 
 public class StageExecution
 {
-    public List<ICondition> LstCondition = new List<ICondition>();
+    private List<ICondition> LstCondition;
+
     public StageExecution()
     {
         LstCondition = new List<ICondition>();
     }
 
-    public void AddCondition(ICondition condition)
+
+    public virtual void InitExecute(uint LevelID){}
+
+    public void AddCondition(List<ICondition> conditions)
     {
-        LstCondition.Add(condition);
+        LstCondition = conditions;
     }
 
     public bool IsExecutionValid()
     {
+        if(LstCondition == null || LstCondition.Count == 0) return true;
+        bool bRes = false;
         foreach (var condition in LstCondition)
         {
-            if (!condition.IsConditionValid())
-            {
-                return false;
-            }
+            bRes = bRes || condition.IsConditionValid();
         }
-        return true;
+        return bRes;
     }
 
     public virtual void Execution()
@@ -35,7 +39,7 @@ public class StageExecution
     public bool StageUpdate(float timer)
     {
         bool bRes = false;
-        if (LstCondition.Count == 0)
+        if (LstCondition == null || LstCondition.Count == 0)
         {
             return true;  // 如果没有执行块，直接返回 true 进入下一个阶段
         }
@@ -49,11 +53,5 @@ public class StageExecution
             }
         }
         return bRes;
-    }
-
-    public void ExecuteSpecificExecution<T>() where T : StageExecution, new()
-    {
-        T specificExecution = new T();
-        specificExecution.Execution();
     }
 }

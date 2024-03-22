@@ -1,82 +1,94 @@
+using OpenNGS.Levels.Common;
 using OpenNGS.Systems;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Networking.UnityWebRequest;
+using UnityEngine.UI;
 
-public class LevelStage 
+public class LevelStage : ILevelStage
 {
-    protected int levelId;
-    protected int levelTime;
-    protected LevelProcessSystem levelProcessSystem;
+    public List<StageExecution> lstBeginExecution;
+    public List<StageExecution> lstUpdateExecution;
+    public List<StageExecution> lstEndExecution;
 
-    //public List<StageExecution> LstBeginExecution = null;
-    //public List<StageExecution> LstUpdateExecution = null;
-    //public List<StageExecution> LstEndExecution = null;
+    private int curBeginExcIdx;
+    private int curEndExcIdx;
 
-
-    public List<ILevelStage> lstStages = new List<ILevelStage>();
-    public int currentStageIndex = 0;
-    private bool m_bNextStage = false;
-    public LevelStage(int id, int time)
+    public LevelStage()
     {
-        levelId = id;
-        levelTime = time;
-
+        lstBeginExecution = new List<StageExecution>();
+        lstUpdateExecution = new List<StageExecution>();
+        lstEndExecution = new List<StageExecution>();
+        curBeginExcIdx = 0;
+        curEndExcIdx = 0;
     }
 
-    public void InitStages()
+    public void AddExecutions(STAGE_EXECUTION_TYPE type, List<StageExecution> executions)
     {
-        // 创建关卡并添加到列表中
-        LevelStageBegin _stageBegin = new LevelStageBegin();
-        _stageBegin.Init(levelId);
-        lstStages.Add(_stageBegin);
-        LevelStageProcess _stageProcess = new LevelStageProcess();
-        _stageProcess.Init(levelId);
-        lstStages.Add(_stageProcess);
-        LevelStageEnd _stageEnd = new LevelStageEnd();
-        _stageEnd.Init(levelId);
-        lstStages.Add(_stageEnd);
-    }
-    public void StartBegin()
-    {
-        lstStages[currentStageIndex].OnStageBegin();
-    }
-
-    public void UpdateStages(float deltaTime)
-    {
-        if (m_bNextStage)
+        switch (type)
         {
-            NextStage();
-            m_bNextStage = false;
-        }
-
-        if (currentStageIndex < lstStages.Count)
-        {
-            //lstStages[currentStageIndex].OnStageUpdate(deltaTime);
-            if (lstStages[currentStageIndex].OnStageUpdate(deltaTime))
-            {
-                m_bNextStage = true;
-            }
-            if (currentStageIndex == lstStages.Count - 1)
-            {
-                lstStages[currentStageIndex].OnStageEnd();
-                m_bNextStage = false;
-                currentStageIndex++;
-            }
+            case STAGE_EXECUTION_TYPE.STAGE_EXECUTION_TYPE_BEGIN:
+                lstBeginExecution = executions;
+                break;
+            case STAGE_EXECUTION_TYPE.STAGE_EXECUTION_TYPE_PROCESS:
+                lstUpdateExecution = executions;
+                break;
+            case STAGE_EXECUTION_TYPE.STAGE_EXECUTION_TYPE_END:
+                lstEndExecution = executions;
+                break;
         }
     }
 
-    // 进入下一个关卡阶段
-    public void NextStage()
+    public void OnStageBegin()
     {
-        if (currentStageIndex < lstStages.Count - 1)
+        if (lstBeginExecution == null || lstBeginExecution.Count == 0) return;
+        if (curEndExcIdx == lstEndExecution.Count) return;
+        //Debug.Log("开始阶段的开始状态");
+        if (lstBeginExecution[curBeginExcIdx].IsExecutionValid())
         {
-            lstStages[currentStageIndex].OnStageEnd(); // 先执行当前阶段的结束逻辑
-            currentStageIndex++;
-            lstStages[currentStageIndex].OnStageBegin(); // 进入下一个阶段的开始逻辑
+            lstBeginExecution[curBeginExcIdx].Execution();
+            curBeginExcIdx++;
         }
+    }
+
+    public bool GetBeginStageExecute()
+    {
+        if (lstBeginExecution == null || lstBeginExecution.Count == 0) return true;
+        return curBeginExcIdx < lstBeginExecution.Count;
+    }
+
+    private bool bRes;
+    public void  OnStageUpdate(float deltaTime)
+    {
+        foreach (var _updateExecution in lstUpdateExecution)
+        {
+            bRes = bRes || _updateExecution.StageUpdate(deltaTime);
+        }
+    }
+
+    public bool GetUpdateStageExecute()
+    {
+        if (lstUpdateExecution.Count == 0 || lstUpdateExecution == null) return true;
+
+        return bRes == false;
+    }
+
+    public void OnStageEnd()
+    {
+        if (lstEndExecution == null || lstEndExecution.Count == 0) return;
+        if (curEndExcIdx == lstEndExecution.Count) return;
+        //Debug.Log("开始阶段的开始状态");
+        if (lstEndExecution[curEndExcIdx].IsExecutionValid())
+        {
+            lstEndExecution[curEndExcIdx].Execution();
+            curEndExcIdx++;
+        }
+    }
+
+    public bool GetEndStageExecute()
+    {
+        if (lstEndExecution == null || lstEndExecution.Count == 0) return true;
+        return curEndExcIdx < lstEndExecution.Count;
     }
 }
