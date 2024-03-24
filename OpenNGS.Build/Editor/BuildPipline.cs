@@ -340,12 +340,13 @@ public class BuildPipline : IActiveBuildTargetChanged
                 return BuildTargetGroup.GameCoreXboxOne;
             case BuildTarget.GameCoreXboxSeries:
                 return BuildTargetGroup.GameCoreXboxSeries;
-#if UNITY_2022_3_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
             case BuildTarget.EmbeddedLinux:
                 return BuildTargetGroup.EmbeddedLinux;
-#endif
+#else
             case BuildTarget.Lumin:
                 return BuildTargetGroup.Lumin;
+#endif
 #if UNITY_2021_3_OR_NEWER
             case BuildTarget.LinuxHeadlessSimulation:
                 return BuildTargetGroup.LinuxHeadlessSimulation;

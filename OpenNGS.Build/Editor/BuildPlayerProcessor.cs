@@ -13,8 +13,11 @@ namespace OpenNGS.Build
     {
         public override void PrepareForBuild(BuildPlayerContext buildPlayerContext)
         {
-            //Debug.LogFormat("BuildPlayerProcessor.AddAdditionalPathToStreamingAssets:{0}", BuildPipline.AssetBundlePath);
-            //buildPlayerContext.AddAdditionalPathToStreamingAssets(BuildPipline.AssetBundlePath);
+            Debug.LogFormat("BuildPlayerProcessor.AddAdditionalPathToStreamingAssets:{0}", BuildPipline.AssetBundlePath);
+            if (System.IO.Directory.Exists(BuildPipline.AssetBundlePath))
+            {
+                buildPlayerContext.AddAdditionalPathToStreamingAssets(BuildPipline.AssetBundlePath);
+            }
         }
     }
 #endif

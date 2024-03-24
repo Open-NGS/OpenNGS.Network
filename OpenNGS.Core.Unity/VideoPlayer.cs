@@ -11,7 +11,7 @@ namespace OpenNGS
         public Camera TargetCamera { get; set; }
         UnityEngine.Video.VideoPlayer player;
 
-        bool isPlaying = false;
+        public bool isPlaying { get; private set; } = false;
 
         private void Awake()
         {
