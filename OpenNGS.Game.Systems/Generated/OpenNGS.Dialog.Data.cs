@@ -63,8 +63,6 @@ namespace OpenNGS.Dialog.Data
         }
         public DialogTalk()
         {
-            AvatarLeft = "";
-            AvatarRight = "";
             AudioFiles = "";
             OnConstructor();
         }
@@ -78,12 +76,10 @@ namespace OpenNGS.Dialog.Data
         public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string AvatarLeft { get; set; }
+        public uint AvatarLeft { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string AvatarRight { get; set; }
+        public uint AvatarRight { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public global::OpenNGS.Core.NGSText Content { get; set; }
@@ -171,47 +167,6 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<Option> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class DialogInitInfo : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public DialogInitInfo()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogueID { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class DialogInitInfoArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public DialogInitInfoArray()
-        {
-            items = new global::System.Collections.Generic.List<DialogInitInfo>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<DialogInitInfo> items { get; private set; }
 
     }
 

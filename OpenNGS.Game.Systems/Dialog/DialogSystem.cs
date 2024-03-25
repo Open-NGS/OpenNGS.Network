@@ -44,18 +44,6 @@ namespace OpenNGS.Systems
                 m_dialogData = new SaveFileData_Dialog();
                 
             }
-            if(m_dialogData._Dialog.DialogID == 0)
-            {
-                if(NGSStaticData.dialogInitInfo.Items.Count > 0)
-                {
-                    OpenNGS.Dialog.Data.DialogInitInfo item = NGSStaticData.dialogInitInfo.Items[0];
-                    if(item != null)
-                    {
-                        SetDialogID(item.DialogueID);
-                    }
-                }
-            }
-
         }
 
         private void SaveDialogData()

@@ -37,7 +37,6 @@ namespace OpenNGS.Systems
         public static ListTableBase<OpenNGS.Levels.Data.LevelEnemyInfo,uint> levelEnemyInfos=new ListTableBase<Levels.Data.LevelEnemyInfo, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Item.Data.DisassembleEquipIno,uint> disassembleEquipIno =new Table<Item.Data.DisassembleEquipIno, uint> ((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Item.Data.LuckyStone, uint> LuckyStone = new Table<Item.Data.LuckyStone, uint> ((item) => { return item.ID; }, false);
-        public static Table<OpenNGS.Dialog.Data.DialogInitInfo, uint> dialogInitInfo = new Table<Dialog.Data.DialogInitInfo, uint> ((item) => { return item.DialogueID; }, false);
         
         public static void Init() { }
     }
