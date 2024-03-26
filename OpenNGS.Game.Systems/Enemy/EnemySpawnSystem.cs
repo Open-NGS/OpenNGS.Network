@@ -123,7 +123,6 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
     /// <param name="initNum">生成数量</param>
     private void SpawnNormalEnemies(LevelEnemyInfo enemyInfo,uint initNum)
     {
-        float lastX = 0;
         if (initNum == 0)
         {
             return;
@@ -131,33 +130,22 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
         for(int i = 0; i < initNum; i++)
         {
             NGSVector3 SpawnPosition = new NGSVector3();
-            float spawnPosX = UnityEngine.Random.Range(-enemyInfo.MinDistance, enemyInfo.MinDistance);
-            float spawnPosZ;
-            
-            if (spawnPosX < lastX - 1 || spawnPosX > lastX + 1)
+            Random random = new Random();
+            float spawnPosX = random.Next((int)-enemyInfo.MaxDistance, (int)enemyInfo.MaxDistance);
+            float spawnPosZ = random.Next((int)-enemyInfo.MaxDistance, (int)enemyInfo.MaxDistance);
+            float squaresSum = (float)Math.Pow(spawnPosX, 2) + (float)Math.Pow(spawnPosZ, 2);
+            if (Math.Pow(enemyInfo.MinDistance, 2)<squaresSum && squaresSum< Math.Pow(enemyInfo.MaxDistance, 2))
             {
-                if (JudgePosOrNeg())
-                {
-                    spawnPosZ = (float)Math.Sqrt(Math.Pow(enemyInfo.MinDistance, 2) - Math.Pow(spawnPosX, 2));
-                }
-                else
-                {
-                    spawnPosZ = -(float)Math.Sqrt(Math.Pow(enemyInfo.MinDistance, 2) - Math.Pow(spawnPosX, 2));
-                }
-                SpawnPosition.X=spawnPosX; 
-                SpawnPosition.Y=0;
-                SpawnPosition.Z=spawnPosZ;
+                SpawnPosition.X = spawnPosX;
+                SpawnPosition.Y = 0;
+                SpawnPosition.Z = spawnPosZ;
 
                 m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
-                lastX = spawnPosX;
             }
             else
             {
-                lastX = spawnPosX;
-                i--;
-                continue;
+                i--;continue;
             }
-
         }
     }
     /// <summary>
