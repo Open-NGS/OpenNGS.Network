@@ -67,7 +67,7 @@ namespace OpenNGS.Character.Common
         public AccountIdentity identity { get; set; }
 
         [global::ProtoBuf.ProtoMember(10)]
-        public global::OpenNGS.Core.NGSAttributes attributes { get; set; }
+        public global::OpenNGS.Core.AttributesSingle attributes { get; set; }
 
     }
 
