@@ -169,7 +169,7 @@ namespace OpenNGS.Item.Common
         public uint Count { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.Core.NGSAttributes Attributes { get; set; }
+        public global::OpenNGS.Core.AttributesSingle Attributes { get; set; }
 
     }
 
