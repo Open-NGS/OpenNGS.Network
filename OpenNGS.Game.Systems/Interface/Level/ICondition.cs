@@ -7,6 +7,6 @@ using System.Collections.Generic;
 
 public interface ICondition
 {
-    public void InitCondition(ExecuteCondtionData data);
+    public void InitCondition(uint ConditionParam1, uint ConditionParam2);
     public bool IsConditionValid();
 }
