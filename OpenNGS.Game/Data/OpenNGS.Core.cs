@@ -32,14 +32,36 @@ namespace OpenNGS.Core
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class NGSAttributes : global::ProtoBuf.IExtensible
+    public partial class AttributesInt32 : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public NGSAttributes()
+        public AttributesInt32()
+        {
+            Values = new global::System.Collections.Generic.Dictionary<long, int>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, int> Values { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributesInt64 : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributesInt64()
         {
             Values = new global::System.Collections.Generic.Dictionary<long, long>();
             OnConstructor();
@@ -50,6 +72,102 @@ namespace OpenNGS.Core
         [global::ProtoBuf.ProtoMember(1)]
         [global::ProtoBuf.ProtoMap]
         public global::System.Collections.Generic.Dictionary<long, long> Values { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributesSingle : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributesSingle()
+        {
+            Values = new global::System.Collections.Generic.Dictionary<long, float>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, float> Values { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributesDouble : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributesDouble()
+        {
+            Values = new global::System.Collections.Generic.Dictionary<long, double>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, double> Values { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class Attribute : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public Attribute()
+        {
+            Name = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint Id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Name { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public NGSText Title { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public NGSText Description { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributeArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributeArray()
+        {
+            items = new global::System.Collections.Generic.List<Attribute>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<Attribute> items { get; private set; }
 
     }
 
