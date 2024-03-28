@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public interface ILevelStage
 {
-    public void AddExecutions(STAGE_EXECUTION_TYPE type, List<StageExecution> executions);
+    public void AddExecutions(int type, List<IStageExecution> executions);
     public void OnStageBegin();
     public bool GetBeginStageExecute();
     public void OnStageUpdate(float deltaTime);
