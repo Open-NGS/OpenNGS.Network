@@ -14,7 +14,7 @@ public class UnityLogger : ILogHandler
 
     public void LogException(Exception exception, UnityEngine.Object context)
     {
-        UnityAppender.logger.LogException(exception, context);
+        //UnityAppender.logger.LogException(exception, context);
         LogSystem.LogException("Unity", exception, context);
     }
 }

@@ -36,7 +36,7 @@ namespace OpenNGS.Logs.Appenders
 
         public override void AppendException(string tag, Exception exception, object context)
         {
-            logger.LogException(exception, context as UnityEngine.Object);
+            //logger.LogException(exception, context as UnityEngine.Object);
         }
     }
 }
