@@ -12,22 +12,32 @@ namespace OpenNGS.Logs
         public enum FilterType
         {
             /// <summary>
-            /// Filter All(Log all logs)
+            /// -1 : Filter All(Log all logs)
             /// </summary>
             All = -1,
             /// <summary>
-            /// Filter Nothing(No log will be logged)
+            /// 0 : Filter Nothing(No log will be logged)
             /// </summary>
             None = 0,
-
+            /// <summary>
+            /// 1 : Filter Error(Error log will be logged)
+            /// </summary>
             Error = 1 << LogType.Error,
-
+            /// <summary>
+            /// 2 : Filter Error(Error log will be logged)
+            /// </summary>
             Log = 1 << LogType.Log,
-
+            /// <summary>
+            /// 4 : Filter Error(Error log will be logged)
+            /// </summary>
             Warning = 1 << LogType.Warning,
-
+            /// <summary>
+            /// 8 : Filter Error(Error log will be logged)
+            /// </summary>
             Exception = 1 << LogType.Exception,
-
+            /// <summary>
+            /// 16 : Filter Error(Error log will be logged)
+            /// </summary>
             Assert = 1 << LogType.Assert,
 
         }

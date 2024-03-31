@@ -5,7 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnityLogger : ILogHandler
+
+/// <summary>
+/// 拦截 Unity 的日志处理
+/// </summary>
+public class UnityLoggerHandler : ILogHandler
 {
     public void LogFormat(UnityEngine.LogType logType, UnityEngine.Object context, string format, params object[] args)
     {

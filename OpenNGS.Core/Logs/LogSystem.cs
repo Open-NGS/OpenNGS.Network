@@ -105,6 +105,9 @@ namespace OpenNGS.Logs
             {
                 for (int i = 0; i < Appenders.Count; i++)
                 {
+                    if (Appenders[i].TypeIdentify == "Unity")
+                        continue;
+
                     Appenders[i].LogException(Tag, exception, context);
                 }
             }

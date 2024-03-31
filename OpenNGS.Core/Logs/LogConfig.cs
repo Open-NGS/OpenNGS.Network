@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,7 @@ namespace OpenNGS.Logs
         public string LogFile;
         public LogFilter.FilterType FilterType;
         public string FilterTags;
+        [JsonConverter(typeof(StringEnumConverter))]
         public LogFormat Format;
         public bool Roll;
     }

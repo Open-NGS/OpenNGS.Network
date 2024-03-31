@@ -10,14 +10,26 @@ namespace OpenNGS.Logs.Appenders
     {
         public override string TypeIdentify => "Unity";
 
+        //new Logger(new DebugLogHandler());
+
         public static ILogHandler logger;
 
         public UnityAppender() : base("Unity")
         {
-            logger = UnityEngine.Debug.unityLogger.logHandler;
-            UnityEngine.Debug.unityLogger.logHandler = new UnityLogger();
+            InitUnityLoggerHandler();
         }
 
+        static void InitUnityLoggerHandler()
+        {
+            if (logger == null)
+            {
+                logger = UnityEngine.Debug.unityLogger.logHandler;
+            }
+            if (UnityEngine.Debug.unityLogger.logHandler is not UnityLoggerHandler)
+            {
+                UnityEngine.Debug.unityLogger.logHandler = new UnityLoggerHandler();
+            }
+        }
         ~UnityAppender()
         {
             if (logger != null && UnityEngine.Debug.unityLogger.logHandler == this)
@@ -36,7 +48,7 @@ namespace OpenNGS.Logs.Appenders
 
         public override void AppendException(string tag, Exception exception, object context)
         {
-            //logger.LogException(exception, context as UnityEngine.Object);
+            logger.LogException(exception, context as UnityEngine.Object);
         }
     }
 }

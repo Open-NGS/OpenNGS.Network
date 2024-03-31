@@ -27,6 +27,11 @@ public class NgDebug
         NgDebug.LogFormat("{0}", message);
     }
 
+    public static void LogWarning(object message)
+    {
+        NgDebug.LogWarningFormat("{0}", message);
+    }
+
     public static void LogError(object message)
     {
         NgDebug.LogErrorFormat("{0}", message);
@@ -45,6 +50,17 @@ public class NgDebug
     {
         LogFormat(DebugTag, format, args);
     }
+
+
+    public static void LogWarningFormat(string format, params object[] args)
+    {
+        LogSystem.LogFormat(null, LogType.Warning, null, format, args);
+    }
+    public static void LogWarningFormat(string tag, string format, params object[] args)
+    {
+        LogSystem.LogFormat(tag, LogType.Warning, null, format, args);
+    }
+
 
     public static void LogErrorFormat(string format, params object[] args)
     {
