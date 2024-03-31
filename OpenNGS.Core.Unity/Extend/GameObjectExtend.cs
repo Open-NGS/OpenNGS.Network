@@ -36,6 +36,22 @@ public static class GameObjectExtend{
 		}
 	}
 
+    public static bool TrySetInteger(this Animator animtor, string trigger, int val)
+    {
+        if (animtor)
+        {
+            foreach(var param in animtor.parameters)
+            {
+                if (param.name == trigger)
+                {
+                    animtor.SetTrigger(trigger);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static void SetToggleIsOn(this Toggle toggle,bool isOn)
     {
         if (toggle)
