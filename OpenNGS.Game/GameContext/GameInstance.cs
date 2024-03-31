@@ -23,7 +23,7 @@ public class GameInstance : OpenNGS.Singleton<GameInstance>
 
     public void Init()
     {
-        Debug.Log("XRHome:Initialize() - Start");
+        Debug.Log("GameInstance:Initialize() - Start");
 
 #if UNITY_EDITOR
         FileSystem.Init(null, new UnityPathProvider());
@@ -50,7 +50,7 @@ public class GameInstance : OpenNGS.Singleton<GameInstance>
             }
         }
 
-        OpenNGS.Logs.LogSystem.Init(GameConfig.Config, new BaseAppender[] { new UnityAppender(), new FileAppender("NormalLog"), new FileAppender("ErrorLog"), new FileAppender("ProfilerLog") });
+        OpenNGS.Logs.LogSystem.Init(GameConfig.Config, new BaseAppender[] { new UnityAppender(), new FileAppender("NormalLog"), new FileAppender("BattleLogger"), new FileAppender("ProfilerLog") });
 
         OpenNGS.Profiling.ProfilerLog.Start("GameInstance.Init");
 
