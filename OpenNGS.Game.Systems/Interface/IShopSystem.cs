@@ -14,6 +14,5 @@ namespace OpenNGS.Systems
         public SHOP_RESULT_TYPE BuyItem(BuyItemInfo item);
         public SHOP_RESULT_TYPE SellItem(SellItemInfo item);
         public Dictionary<uint, Good> GetGoodsInfo(uint currentShopId, uint shelfId);
-        public Dictionary<uint, Shelf> GetShelfsInfo(uint currentShopId);
     }
 }

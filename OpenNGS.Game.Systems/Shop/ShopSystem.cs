@@ -28,9 +28,12 @@ namespace OpenNGS.Systems
 
         public override string GetSystemName()
         {
-            return "com.openngs.system.rank";
+            return "com.openngs.system.shop";
         }
 
+        /// <summary>
+        /// 获取当前页面内的商品列表
+        /// </summary>
         public Dictionary<uint, Good> GetGoodsInfo(uint currentShopId, uint shelfId)
         {
             Shelf shelf = NGSStaticData.shelfs.GetItem(currentShopId, shelfId);
@@ -40,14 +43,6 @@ namespace OpenNGS.Systems
 
             Dictionary<uint, Good> result = NGSStaticData.goods.GetItems(shelfId);
             return result;
-        }
-
-        public Dictionary<uint, Shelf> GetShelfsInfo(uint currentShopId)
-        {
-            Dictionary<uint, Shelf> shelfs = NGSStaticData.shelfs.GetItems(currentShopId);
-            if (shelfs == null) return null;
-
-            return shelfs;
         }
 
         /// <summary>
