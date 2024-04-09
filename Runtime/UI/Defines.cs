@@ -96,6 +96,7 @@ namespace OpenNGS.UI
         YesNoCancel = 3,
         YesNo = 4,
         RetryCancel = 5,
+        CancelTryContinue = 6,
     }
 
     public enum MessageContextMenuType
