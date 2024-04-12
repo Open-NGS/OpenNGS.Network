@@ -64,6 +64,9 @@ namespace OpenNGS.Statistic.Data
         [global::ProtoBuf.ProtoMember(12)]
         public global::OpenNGS.Statistic.Common.STAT_TYPE StatType { get; set; }
 
+        [global::ProtoBuf.ProtoMember(13)]
+        public bool Global { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
