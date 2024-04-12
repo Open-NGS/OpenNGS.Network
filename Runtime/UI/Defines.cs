@@ -11,8 +11,6 @@ namespace OpenNGS.UI
     public enum UIVisiblity
     {
         Normal = 0, //正常状态
-
-
     }
 
 
@@ -114,6 +112,7 @@ namespace OpenNGS.UI
     public interface IMessageBoxContainer
     {
         IMessageBox ShowMessageBox(string title, string content, MessageBoxButtons buttons, Action<IMessageBox> onResult);
+        IMessageBox ShowMessageBox(uint messageId, MessageBoxButtons buttons, Action<IMessageBox> onResult, object[] args);
         void CloseMessageBox();
     }
 
