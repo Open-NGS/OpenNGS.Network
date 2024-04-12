@@ -21,6 +21,7 @@ namespace OpenNGS.Systems
         public static string SAVE_STAT_TAG = "STAT";
         public static string SAVE_ACHIEVEMENT_TAG = "ACHIEVEMENT";
         public static string SAVE_HANDBOOK_TAG = "HANDBOOK";
+        public static string SAVE_REWARD_TAG = "REWARD";
 
         public static string SAVE_SETTING_AUDIO = "AUDIO";
         protected override void OnCreate()
@@ -72,6 +73,7 @@ namespace OpenNGS.Systems
             saveInfo[SAVE_STAT_TAG] = saveData.statData;
             saveInfo[SAVE_ACHIEVEMENT_TAG] = saveData.achiData;
             saveInfo[SAVE_HANDBOOK_TAG] = saveData.handbookData;
+            saveInfo[SAVE_REWARD_TAG] = saveData.rewardData;
         }
 
         public void AddFile()
