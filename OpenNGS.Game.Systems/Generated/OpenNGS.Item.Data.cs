@@ -827,6 +827,73 @@ namespace OpenNGS.Item.Data
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ItemSaveDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ItemSaveDataArray()
+        {
+            items = new global::System.Collections.Generic.List<ItemSaveData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ItemSaveData> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ItemContainer : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ItemContainer()
+        {
+            items = new global::System.Collections.Generic.List<ItemSaveData>();
+            equips = new global::System.Collections.Generic.List<ItemSaveData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ItemSaveData> items { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<ItemSaveData> equips { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ItemContainerArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ItemContainerArray()
+        {
+            items = new global::System.Collections.Generic.List<ItemContainer>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ItemContainer> items { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
