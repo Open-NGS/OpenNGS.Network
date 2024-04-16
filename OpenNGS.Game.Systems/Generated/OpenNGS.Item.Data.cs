@@ -859,7 +859,7 @@ namespace OpenNGS.Item.Data
         public ItemContainer()
         {
             items = new global::System.Collections.Generic.List<ItemSaveData>();
-            equips = new global::System.Collections.Generic.List<ItemSaveData>();
+            equipDict = new global::System.Collections.Generic.List<equips>();
             OnConstructor();
         }
 
@@ -869,7 +869,7 @@ namespace OpenNGS.Item.Data
         public global::System.Collections.Generic.List<ItemSaveData> items { get; private set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ItemSaveData> equips { get; private set; }
+        public global::System.Collections.Generic.List<equips> equipDict { get; private set; }
 
     }
 
@@ -891,6 +891,50 @@ namespace OpenNGS.Item.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<ItemContainer> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class equips : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public equips()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint index { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ItemSaveData equip { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class equipsArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public equipsArray()
+        {
+            items = new global::System.Collections.Generic.List<equips>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<equips> items { get; private set; }
 
     }
 
