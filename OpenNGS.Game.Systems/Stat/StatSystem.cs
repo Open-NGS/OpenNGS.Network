@@ -10,54 +10,56 @@ namespace OpenNGS.Systems
 {
     public class StatSystem : GameSubSystem<StatSystem>, IStatSystem
     {
-        private ISaveSystem m_saveSys;
+        //private ISaveSystem m_saveSys;
         private SaveFileData_Stat m_saveStat;
         private OpenNGS.Events.EventSystem m_eventSys = new Events.EventSystem();
         //public void 
         protected override void OnCreate()
         {
-            m_saveSys = App.GetService<ISaveSystem>();
+            //m_saveSys = App.GetService<ISaveSystem>();
             base.OnCreate();
 
-            ISaveInfo saveInfo = m_saveSys.GetFileData("STAT");
-            if (saveInfo != null && saveInfo is SaveFileData_Stat)
-            {
-                m_saveStat = (SaveFileData_Stat)saveInfo;
-            }
-            else
-            {
-                m_saveStat = new SaveFileData_Stat();
-            }
+            //ISaveInfo saveInfo = m_saveSys.GetFileData("STAT");
+            //SaveFileData saveData = m_saveSys.GetFileData();
+            //SaveFileData_Stat saveInfo = saveData.statData;
+            //if (saveInfo != null && saveInfo is SaveFileData_Stat)
+            //{
+            //    m_saveStat = (SaveFileData_Stat)saveInfo;
+            //}
+            //else
+            //{
+            //    m_saveStat = new SaveFileData_Stat();
+            //}
 
-            foreach (OpenNGS.Statistic.Data.StatData _statData in NGSStaticData.s_statDatas.Items)
-            {
-                List<OpenNGS.Statistic.Common.StatValue> _lst = null;
-                StatValue _statVal = null;
-                if (m_saveStat.DicStatValue.ContainsKey(_statData.StatEvent) == false)
-                {
-                    _lst = new List<StatValue>();
-                    m_saveStat.DicStatValue.Add(_statData.StatEvent, _lst);
-                }
-                else
-                {
-                    _lst = m_saveStat.DicStatValue[_statData.StatEvent];
-                }
-                foreach(StatValue _statValFound in _lst)
-                {
-                    if(_statValFound.id == _statData.Id)
-                    {
-                        _statVal = _statValFound;
-                        break;
-                    }
-                }
-                if(_statVal == null)
-                {
-                    _statVal = new StatValue();
-                    _lst.Add(_statVal);
-                    _statVal.id = _statData.Id;
-                    _statVal.totalval = 0;
-                }
-            }
+            //foreach (OpenNGS.Statistic.Data.StatData _statData in NGSStaticData.s_statDatas.Items)
+            //{
+            //    List<OpenNGS.Statistic.Common.StatValue> _lst = null;
+            //    StatValue _statVal = null;
+            //    if (m_saveStat.DicStatValue.ContainsKey(_statData.StatEvent) == false)
+            //    {
+            //        _lst = new List<StatValue>();
+            //        m_saveStat.DicStatValue.Add(_statData.StatEvent, _lst);
+            //    }
+            //    else
+            //    {
+            //        _lst = m_saveStat.DicStatValue[_statData.StatEvent];
+            //    }
+            //    foreach(StatValue _statValFound in _lst)
+            //    {
+            //        if(_statValFound.id == _statData.Id)
+            //        {
+            //            _statVal = _statValFound;
+            //            break;
+            //        }
+            //    }
+            //    if(_statVal == null)
+            //    {
+            //        _statVal = new StatValue();
+            //        _lst.Add(_statVal);
+            //        _statVal.id = _statData.Id;
+            //        _statVal.totalval = 0;
+            //    }
+            //}
         }
 
         protected override void OnClear() 
@@ -171,8 +173,8 @@ namespace OpenNGS.Systems
                 }
             }
 
-            m_saveSys.SetFileData("STAT", m_saveStat);
-            m_saveSys.SaveFile();
+            //m_saveSys.SetFileData("STAT", m_saveStat);
+            //m_saveSys.SaveFile();
 
             m_eventSys.PostEvent((int)StatEventNotify.StatEventNotify_Update);
         }

@@ -21,12 +21,12 @@ namespace OpenNGS.Systems
 
         private IExchangeSystem m_exchangeSyetem = null;
         private IItemSystem m_itemSystem = null;
-        private ISaveSystem m_saveSystem = null;
+        //private ISaveSystem m_saveSystem = null;
         private SaveFileData_Technology m_technologyData;
         protected override void OnCreate()
         {
             base.OnCreate();
-            m_saveSystem = App.GetService<ISaveSystem>();
+            //m_saveSystem = App.GetService<ISaveSystem>();
             m_itemSystem = App.GetService<IItemSystem>();
             m_exchangeSyetem = App.GetService<IExchangeSystem>();
             InitData();
@@ -35,15 +35,17 @@ namespace OpenNGS.Systems
         public void InitData()
         {
             //获取存档数据
-            ISaveInfo saveInfo = m_saveSystem.GetFileData("TECHNOLOGY");
-            if(saveInfo != null && saveInfo is SaveFileData_Technology)
-            {
-                m_technologyData = (SaveFileData_Technology)saveInfo;
-            }
-            else
-            {
-                m_technologyData = new SaveFileData_Technology();
-            }
+            //ISaveInfo saveInfo = m_saveSystem.GetFileData("TECHNOLOGY");
+            //SaveFileData saveData = m_saveSystem.GetFileData();
+            //SaveFileData_Technology saveInfo = saveData.technologyData;
+            //if (saveInfo != null && saveInfo is SaveFileData_Technology)
+            //{
+            //    m_technologyData = (SaveFileData_Technology)saveInfo;
+            //}
+            //else
+            //{
+            //    m_technologyData = new SaveFileData_Technology();
+            //}
             
         }
         public uint GetTechnologyDots(uint technologyDotID)
@@ -208,8 +210,8 @@ namespace OpenNGS.Systems
         //保存数据
         public void SaveTechnologyData()
         {
-            m_saveSystem.SetFileData("TECHNOLOGY", m_technologyData);
-            m_saveSystem.SaveFile();
+            //m_saveSystem.SetFileData("TECHNOLOGY", m_technologyData);
+            //m_saveSystem.SaveFile();
         }
 
         public override string GetSystemName()

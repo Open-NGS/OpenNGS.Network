@@ -13,15 +13,14 @@ namespace OpenNGS.Systems
         public Action<BuyItemRsq> OnBuyItem;
         public Action<SellItemRsq> OnSellItem;
         public Action<GetShopInfoRsq> OnGetShopInfo;
-
         private IExchangeSystem m_exchangeSys = null;
         private IItemSystem m_itemSys = null;
-        private ISaveSystem m_saveSys = null;
+        //private ISaveSystem m_saveSys = null;
         protected override void OnCreate()
         {
             m_exchangeSys = App.GetService<IExchangeSystem>();
             m_itemSys = App.GetService<IItemSystem>();
-            m_saveSys = App.GetService<ISaveSystem>();
+            //m_saveSys = App.GetService<ISaveSystem>();
             base.OnCreate();
         }
 
@@ -96,7 +95,7 @@ namespace OpenNGS.Systems
                     return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
             }
 
-            m_saveSys.SaveFile();
+            //m_saveSys.SaveFile();
 
             return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
         }
@@ -133,7 +132,7 @@ namespace OpenNGS.Systems
                     return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
             }
 
-            m_saveSys.SaveFile();
+            //m_saveSys.SaveFile();
 
             return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
         }

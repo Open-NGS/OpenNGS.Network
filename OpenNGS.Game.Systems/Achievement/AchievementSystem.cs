@@ -11,42 +11,44 @@ namespace OpenNGS.Systems
 {
     public class AchievementSystem : GameSubSystem<AchievementSystem>, IAchievementSystem
     {
-        private ISaveSystem m_saveSys;
+        //private ISaveSystem m_saveSys;
         private SaveFileData_Achievement m_saveAchi;
         private IStatSystem m_statSys;
         private bool m_bStatDirty = false;
         private IExchangeSystem m_exchangeSys;
         protected override void OnCreate()
         {
-            m_saveSys = App.GetService<ISaveSystem>();
+            //m_saveSys = App.GetService<ISaveSystem>();
             m_statSys = App.GetService<IStatSystem>();
             m_exchangeSys = App.GetService<IExchangeSystem>();
             base.OnCreate();
 
-            ISaveInfo saveInfo = m_saveSys.GetFileData("ACHIEVEMENT");
-            if (saveInfo != null && saveInfo is SaveFileData_Achievement)
-            {
-                m_saveAchi = (SaveFileData_Achievement)saveInfo;
-            }
-            else
-            {
-                m_saveAchi = new SaveFileData_Achievement();
-            }
-            foreach (OpenNGS.Achievement.Data.Achievement _statData in NGSStaticData.s_achiDatas.Items)
-            {
-                if(m_saveAchi.DicAchievement.TryGetValue(_statData.ID, out AchievementInfo _achiInfo) == false)
-                {
-                    m_saveAchi.DicAchievement[_statData.ID] = new AchievementInfo();
-                    m_saveAchi.DicAchievement[_statData.ID].ID = _statData.ID;
-                    m_saveAchi.DicAchievement[_statData.ID].status = ACHIEVEMENT_STATUS.ACHIEVEMENT_STATUS_STATING;
-                    m_saveAchi.DicAchievement[_statData.ID].value = 0;
-                }
-                else
-                {
+            //ISaveInfo saveInfo = m_saveSys.GetFileData("ACHIEVEMENT");
+            //SaveFileData saveData = m_saveSys.GetFileData();
+            //SaveFileData_Achievement saveInfo = saveData.achiData;
+            //if (saveInfo != null && saveInfo is SaveFileData_Achievement)
+            //{
+            //    m_saveAchi = (SaveFileData_Achievement)saveInfo;
+            //}
+            //else
+            //{
+            //    m_saveAchi = new SaveFileData_Achievement();
+            //}
+            //foreach (OpenNGS.Achievement.Data.Achievement _statData in NGSStaticData.s_achiDatas.Items)
+            //{
+            //    if(m_saveAchi.DicAchievement.TryGetValue(_statData.ID, out AchievementInfo _achiInfo) == false)
+            //    {
+            //        m_saveAchi.DicAchievement[_statData.ID] = new AchievementInfo();
+            //        m_saveAchi.DicAchievement[_statData.ID].ID = _statData.ID;
+            //        m_saveAchi.DicAchievement[_statData.ID].status = ACHIEVEMENT_STATUS.ACHIEVEMENT_STATUS_STATING;
+            //        m_saveAchi.DicAchievement[_statData.ID].value = 0;
+            //    }
+            //    else
+            //    {
 
-                }
-            }
-            m_statSys.Subscribe((int)StatEventNotify.StatEventNotify_Update,_statUpdate);
+            //    }
+            //}
+            //m_statSys.Subscribe((int)StatEventNotify.StatEventNotify_Update,_statUpdate);
         }
         private void _statUpdate()
         {
@@ -80,8 +82,10 @@ namespace OpenNGS.Systems
         }
         private void _saveAchievement()
         {
-            m_saveSys.SetFileData("ACHIEVEMENT", m_saveAchi);
-            m_saveSys.SaveFile();
+            //m_saveSys.SetFileData("ACHIEVEMENT", m_saveAchi);
+            //SaveFileData saveData = m_saveSys.SetFileData();
+            //m_itemSys.AddItemContainer(saveData.itemContainer);
+            //m_saveSys.SaveFile();
         }
         public Dictionary<uint, AchievementInfo> GetAchievementData()
         {

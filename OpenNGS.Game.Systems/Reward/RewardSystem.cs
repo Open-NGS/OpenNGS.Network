@@ -8,34 +8,34 @@ using Systems;
 public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
 {
     IItemSystem m_itemSys;
-    ISaveSystem m_saveSys;
+    //ISaveSystem m_saveSys;
     private SaveFileData_Reward m_reward;
 
     protected override void OnCreate()
     {
         base.OnCreate();
         m_itemSys = App.GetService<IItemSystem>();
-        m_saveSys = App.GetService<ISaveSystem>();
+        //m_saveSys = App.GetService<ISaveSystem>();
 
-        ISaveInfo saveInfo = m_saveSys.GetFileData("REWARD");
-        if (saveInfo != null && saveInfo is SaveFileData_Reward)
-        {
-            m_reward = (SaveFileData_Reward)saveInfo;
-        }
-        else
-        {
-            m_reward = new SaveFileData_Reward();
-        }
+        //ISaveInfo saveInfo = m_saveSys.GetFileData("REWARD");
+        //if (saveInfo != null && saveInfo is SaveFileData_Reward)
+        //{
+        //    m_reward = (SaveFileData_Reward)saveInfo;
+        //}
+        //else
+        //{
+        //    m_reward = new SaveFileData_Reward();
+        //}
 
-        foreach (Reward reward in NGSStaticData.reward.Items)
-        {
-            if (m_reward.DicReward.TryGetValue(reward.Id, out RewardSaveData data) == false)
-            {
-                m_reward.DicReward[reward.Id] = new RewardSaveData();
-                m_reward.DicReward[reward.Id].Id = reward.Id;
-                m_reward.DicReward[reward.Id].ReceiveCount = 0;
-            }
-        }
+        //foreach (Reward reward in NGSStaticData.reward.Items)
+        //{
+        //    if (m_reward.DicReward.TryGetValue(reward.Id, out RewardSaveData data) == false)
+        //    {
+        //        m_reward.DicReward[reward.Id] = new RewardSaveData();
+        //        m_reward.DicReward[reward.Id].Id = reward.Id;
+        //        m_reward.DicReward[reward.Id].ReceiveCount = 0;
+        //    }
+        //}
     }
 
     public override string GetSystemName()

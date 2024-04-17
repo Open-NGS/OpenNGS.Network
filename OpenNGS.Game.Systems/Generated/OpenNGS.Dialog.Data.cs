@@ -25,10 +25,10 @@ namespace OpenNGS.Dialog.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogueID { get; set; }
+        public uint DialogID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
-        public uint[] DialogueDataID { get; set; }
+        public uint[] DialogDataIDs { get; set; }
 
     }
 
@@ -63,6 +63,8 @@ namespace OpenNGS.Dialog.Data
         }
         public DialogTalk()
         {
+            AvatarLeft = "";
+            AvatarRight = "";
             AudioFiles = "";
             OnConstructor();
         }
@@ -70,16 +72,18 @@ namespace OpenNGS.Dialog.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogueDataID { get; set; }
+        public uint DialogTalkID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint AvatarLeft { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AvatarLeft { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public uint AvatarRight { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AvatarRight { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public global::OpenNGS.Core.NGSText Content { get; set; }
@@ -88,10 +92,10 @@ namespace OpenNGS.Dialog.Data
         public bool IsEnd { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
-        public uint[] Options { get; set; }
+        public uint[] ChoiceIDs { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        public uint OptionCount { get; set; }
+        public uint ChoiceCount { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
         [global::System.ComponentModel.DefaultValue("")]
@@ -142,10 +146,19 @@ namespace OpenNGS.Dialog.Data
         public uint OptionID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText OptionContent { get; set; }
+        public global::OpenNGS.Dialog.Common.DIALOG_CHOICE_CONDITION_TYPE DialogChoiceCondition { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint NextDialogueIndices { get; set; }
+        public global::OpenNGS.Core.NGSText OptionContent { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint Weight { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint NextDialogIndex { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public uint EffectID { get; set; }
 
     }
 
@@ -167,6 +180,159 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<Option> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DialogList : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DialogList()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint DialogID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
+        public uint[] DialogTalkIDs { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::OpenNGS.Dialog.Common.DIALOG_TYPE DialogType { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DialogListArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DialogListArray()
+        {
+            items = new global::System.Collections.Generic.List<DialogList>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<DialogList> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class Effect : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public Effect()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint EffectID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint QuestGroupID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Function { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::OpenNGS.Dialog.Common.PARAM_TYPE ParamType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint Param { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class EffectArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public EffectArray()
+        {
+            items = new global::System.Collections.Generic.List<Effect>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<Effect> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DialogChoice : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DialogChoice()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint DialogChoiceID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Dialog.Common.DIALOG_CHOICE_CONDITION_TYPE DialogChoiceCondition { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::OpenNGS.Core.NGSText DialogChoiceContent { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint Weight { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint NextDialogIndex { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DialogChoiceArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DialogChoiceArray()
+        {
+            items = new global::System.Collections.Generic.List<DialogChoice>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<DialogChoice> items { get; private set; }
 
     }
 

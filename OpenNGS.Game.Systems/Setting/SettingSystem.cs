@@ -9,12 +9,12 @@ using Systems;
 public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 {
     public GetSettingRsq OnGetSetting;
-    private ISaveSystem m_saveSystem = null;
+    //private ISaveSystem m_saveSystem = null;
     public SaveFileData_Setting _setting = null;
 
     protected override void OnCreate()
     {
-        m_saveSystem = App.GetService<ISaveSystem>();
+        //m_saveSystem = App.GetService<ISaveSystem>();
         base.OnCreate();
         GetSetting();
     }
@@ -22,11 +22,11 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     // 获取存档数据
     public void GetSetting()
     {
-        ISaveInfo saveInfo = m_saveSystem.GetSettingData();
-        if (saveInfo != null && saveInfo is SaveFileData_Setting)
-        {
-            _setting = (SaveFileData_Setting)saveInfo;
-        }
+        //ISaveInfo saveInfo = m_saveSystem.GetSettingData();
+        //if (saveInfo != null && saveInfo is SaveFileData_Setting)
+        //{
+        //    _setting = (SaveFileData_Setting)saveInfo;
+        //}
     }
 
     public bool SettingInfo()
@@ -73,8 +73,8 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     public void SetVertical(VerticalSynchronizationData state)
     {
         _setting._vertical.state = state.state;
-        m_saveSystem.SetSettingData(_setting);
-        m_saveSystem.SettingSaveFile();
+        //m_saveSystem.SetSettingData(_setting);
+        //m_saveSystem.SettingSaveFile();
     }
 
     public void SetAudio(AudioSettinData audio)
@@ -87,8 +87,8 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
         {
             _setting._audio.Add(audio.AduioName, audio);
         }
-        m_saveSystem.SetSettingData(_setting);
-        m_saveSystem.SettingSaveFile();
+        //m_saveSystem.SetSettingData(_setting);
+        //m_saveSystem.SettingSaveFile();
     }
     public void SetKeyControl(KeyControlSettingData keyControl)
     {
@@ -100,8 +100,8 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
         {
             _setting._keyControl.Add(keyControl.KeyName, keyControl);
         }
-        m_saveSystem.SetSettingData(_setting);
-        m_saveSystem.SettingSaveFile();
+        //m_saveSystem.SetSettingData(_setting);
+        //m_saveSystem.SettingSaveFile();
     }
 
     public void SetLanguage(LanguageData language)
@@ -114,15 +114,15 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
         {
             _setting._language.Add(language.languageName, language);
         }
-        m_saveSystem.SetSettingData(_setting);
-        m_saveSystem.SettingSaveFile();
+        //m_saveSystem.SetSettingData(_setting);
+        //m_saveSystem.SettingSaveFile();
     }
 
     public void SetResolution(ResolutionRatiosData resolution)
     {
         resolution.ResName = resolution.ResName;
-        m_saveSystem.SetSettingData(_setting);
-        m_saveSystem.SettingSaveFile();
+        //m_saveSystem.SetSettingData(_setting);
+        //m_saveSystem.SettingSaveFile();
     }
 
     #region C2S

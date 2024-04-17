@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using Dynamic.Data;
+using OpenNGS.Dialog.Data;
 
 namespace OpenNGS.Systems
 {
@@ -35,7 +36,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //脱装备
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
-        public Dictionary<long, ItemSaveData> GetEquippedList();
+        public List<equips> GetEquippedList();
         //传入道具栏变更的事件
         public void AddAction_bagChange(Action<uint ,OpenNGS.Item.Common.ItemData> ac);
         //传入装备栏变更的事件
@@ -44,6 +45,7 @@ namespace OpenNGS.Systems
         public void RemoveAction_bagChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
         //删去装备栏变更事件
         public void RemoveAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
+        void AddItemContainer(ItemContainer Container);
     }
 
 }

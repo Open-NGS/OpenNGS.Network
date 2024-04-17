@@ -871,6 +871,10 @@ namespace OpenNGS.Item.Data
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<equips> equipDict { get; private set; }
 
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public int bbb = 0;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
