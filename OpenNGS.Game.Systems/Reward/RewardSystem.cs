@@ -1,4 +1,5 @@
 using OpenNGS;
+using OpenNGS.Item.Data;
 using OpenNGS.Rank.Common;
 using OpenNGS.Reward.Data;
 using OpenNGS.Systems;
@@ -8,43 +9,49 @@ using Systems;
 public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
 {
     IItemSystem m_itemSys;
-    //ISaveSystem m_saveSys;
-    private SaveFileData_Reward m_reward;
 
     protected override void OnCreate()
     {
         base.OnCreate();
         m_itemSys = App.GetService<IItemSystem>();
-        //m_saveSys = App.GetService<ISaveSystem>();
-
-        //ISaveInfo saveInfo = m_saveSys.GetFileData("REWARD");
-        //if (saveInfo != null && saveInfo is SaveFileData_Reward)
-        //{
-        //    m_reward = (SaveFileData_Reward)saveInfo;
-        //}
-        //else
-        //{
-        //    m_reward = new SaveFileData_Reward();
-        //}
-
-        //foreach (Reward reward in NGSStaticData.reward.Items)
-        //{
-        //    if (m_reward.DicReward.TryGetValue(reward.Id, out RewardSaveData data) == false)
-        //    {
-        //        m_reward.DicReward[reward.Id] = new RewardSaveData();
-        //        m_reward.DicReward[reward.Id].Id = reward.Id;
-        //        m_reward.DicReward[reward.Id].ReceiveCount = 0;
-        //    }
-        //}
     }
+
+    RewardContainer rewardContainer;
 
     public override string GetSystemName()
     {
         return "openngs.system.rewardsystem";
     }
 
+    public void AddRewardContainer(RewardContainer container)
+    {
+        if(container != null)
+        {
+            rewardContainer = container;
+        }
+        else
+        {
+            rewardContainer = new RewardContainer();
+        }
+
+        foreach(Reward reward in NGSStaticData.reward.Items)
+        {
+            RewardSaveData item = rewardContainer.GetRewardById(reward.Id);
+            if (item == null)
+            {
+                item = new RewardSaveData();
+                item.Id = reward.Id;
+                item.ReceiveCount = 0;
+                rewardContainer.AddRewards(item);
+            }
+        }
+
+    }
+
     public List<RewardData> GetReward(uint rewardId)
     {
+        if (rewardContainer == null) return null;
+
         Reward reward = NGSStaticData.reward.GetItem(rewardId);
         List<RewardContent> rewardList = NGSStaticData.rewardContent.GetItems(rewardId);
         List<RewardData> reslist = new List<RewardData>();
@@ -74,6 +81,8 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
 
     public RESULT_TYPE ReceiveReward(uint rewardId)
     {
+        if (rewardContainer == null) return RESULT_TYPE.RESULT_TYPE_NONE;
+
         RESULT_TYPE resultType = RESULT_TYPE.RESULT_TYPE_FAILED;
         Reward rewardItem = NGSStaticData.reward.GetItem(rewardId);
         if (rewardItem != null)
@@ -86,10 +95,10 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
                 {
                     m_itemSys.AddItemsByID(item.ItemID, item.ItemCount);
                 }
-                //SaveFileData_Reward saveItem = m_saveSys.GetFileData("REWARD") as SaveFileData_Reward;
-                if (m_reward.DicReward.TryGetValue(rewardId, out RewardSaveData data))
+                RewardSaveData data = rewardContainer.GetRewardById(rewardId);
+                if (data != null)
                 {
-                    data.ReceiveCount++;
+                    rewardContainer.UpdateReward(data, ++data.ReceiveCount);
                 }
             }
         }
@@ -103,8 +112,8 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
         RewardCondition condition = NGSStaticData.rewardCondition.GetItem(conditionId);
         if (condition != null)
         {
-            //SaveFileData_Reward rewardItem = m_saveSys.GetFileData("REWARD") as SaveFileData_Reward;
-            if (m_reward.DicReward.TryGetValue(rewardId, out RewardSaveData data))
+            RewardSaveData data = rewardContainer.GetRewardById(rewardId);
+            if (data != null)
             {
                 if (data.ReceiveCount < condition.ObtainCountLimit)
                 {
@@ -118,6 +127,7 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
     protected override void OnClear()
     {
         m_itemSys = null;
+        rewardContainer = null;
         base.OnClear();
     }
 }
