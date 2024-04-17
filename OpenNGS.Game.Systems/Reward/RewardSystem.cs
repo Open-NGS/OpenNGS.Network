@@ -1,5 +1,4 @@
 using OpenNGS;
-using OpenNGS.HandBook.Common;
 using OpenNGS.Rank.Common;
 using OpenNGS.Reward.Data;
 using OpenNGS.Systems;

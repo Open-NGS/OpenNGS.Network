@@ -26,8 +26,6 @@ namespace OpenNGS.Systems
         [global::ProtoBuf.ProtoMember(7)]
         public SaveFileData_Achievement achiData;
         [global::ProtoBuf.ProtoMember(8)]
-        public SaveFileData_HandBook handbookData;
-        [global::ProtoBuf.ProtoMember(9)]
         public SaveFileData_Reward rewardData;
 
         public void Init()
@@ -39,7 +37,6 @@ namespace OpenNGS.Systems
             technologyData = new SaveFileData_Technology();
             statData = new SaveFileData_Stat();
             achiData = new SaveFileData_Achievement();
-            handbookData = new SaveFileData_HandBook();
             rewardData = new SaveFileData_Reward();
         }
 
