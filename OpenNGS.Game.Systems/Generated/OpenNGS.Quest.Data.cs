@@ -55,7 +55,7 @@ namespace OpenNGS.Quest.Data
         public uint RewardID { get; set; }
 
         [global::ProtoBuf.ProtoMember(11)]
-        public uint IsBan { get; set; }
+        public bool IsBan { get; set; }
 
     }
 
@@ -126,7 +126,7 @@ namespace OpenNGS.Quest.Data
         public uint RewardID { get; set; }
 
         [global::ProtoBuf.ProtoMember(11)]
-        public uint IsBan { get; set; }
+        public bool IsBan { get; set; }
 
     }
 
