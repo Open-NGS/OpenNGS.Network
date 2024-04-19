@@ -8,6 +8,39 @@
 #pragma warning disable 0612, 0618, 1591, 3021
 namespace Dynamic.Data
 {
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ItemSaveData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ItemSaveData()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint GUID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Durability { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint Count { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint Quality { get; set; }
+
+    }
+
     [global::ProtoBuf.ProtoContract()]
     public partial class RankSaveData : global::ProtoBuf.IExtensible
     {
