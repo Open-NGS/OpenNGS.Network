@@ -63,8 +63,6 @@ namespace OpenNGS.Dialog.Data
         }
         public DialogTalk()
         {
-            AvatarLeft = "";
-            AvatarRight = "";
             AudioFiles = "";
             OnConstructor();
         }
@@ -78,12 +76,10 @@ namespace OpenNGS.Dialog.Data
         public global::OpenNGS.Core.NGSText Name { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string AvatarLeft { get; set; }
+        public uint AvatarLeft { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string AvatarRight { get; set; }
+        public uint AvatarRight { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public global::OpenNGS.Core.NGSText Content { get; set; }
