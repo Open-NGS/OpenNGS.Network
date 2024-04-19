@@ -25,10 +25,10 @@ namespace OpenNGS.Dialog.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogID { get; set; }
+        public uint DialogueID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
-        public uint[] DialogDataIDs { get; set; }
+        public uint[] DialogueDataID { get; set; }
 
     }
 
@@ -146,19 +146,10 @@ namespace OpenNGS.Dialog.Data
         public uint OptionID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Dialog.Common.DIALOG_CHOICE_CONDITION_TYPE DialogChoiceCondition { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
         public global::OpenNGS.Core.NGSText OptionContent { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint Weight { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint NextDialogIndex { get; set; }
-
-        [global::ProtoBuf.ProtoMember(6)]
-        public uint EffectID { get; set; }
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint NextDialogueIndices { get; set; }
 
     }
 
@@ -231,59 +222,6 @@ namespace OpenNGS.Dialog.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class Effect : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public Effect()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint EffectID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint QuestGroupID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint Function { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public global::OpenNGS.Dialog.Common.PARAM_TYPE ParamType { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint Param { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class EffectArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public EffectArray()
-        {
-            items = new global::System.Collections.Generic.List<Effect>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<Effect> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class DialogChoice : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -312,6 +250,9 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(5)]
         public uint NextDialogIndex { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public uint QuestGroupID { get; set; }
 
     }
 
