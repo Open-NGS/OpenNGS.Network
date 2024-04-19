@@ -243,15 +243,18 @@ namespace OpenNGS.Dialog.Data
         public global::OpenNGS.Dialog.Common.DIALOG_CHOICE_CONDITION_TYPE DialogChoiceCondition { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.Core.NGSText DialogChoiceContent { get; set; }
+        public uint Param { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
-        public uint Weight { get; set; }
+        public global::OpenNGS.Core.NGSText DialogChoiceContent { get; set; }
 
         [global::ProtoBuf.ProtoMember(5)]
-        public uint NextDialogIndex { get; set; }
+        public uint Weight { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
+        public uint NextDialogIndex { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7)]
         public uint QuestGroupID { get; set; }
 
     }
