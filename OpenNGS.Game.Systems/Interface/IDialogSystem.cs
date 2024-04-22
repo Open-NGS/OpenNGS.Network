@@ -11,12 +11,10 @@ namespace OpenNGS.Systems
     {
         DialogTalk CurrentDialog { get; set; }
         List<DialogChoice> Choices { get; set; }
-        //public void SetDialogID(uint dialogid);
-        public uint GetDialogID();
-        ///
         public void LoadDialogs(uint dialogId);
         public void SelectChoice(DialogChoice option);
         public void NextDialog();
         public List<DialogueHistoryEntry> GetHistory();
+        void SetChoiceEvaluator(IDialogChoiceCondition choiceEvaluator);
     }
 }

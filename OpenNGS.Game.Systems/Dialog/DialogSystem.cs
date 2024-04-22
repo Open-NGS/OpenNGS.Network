@@ -11,6 +11,10 @@ using static UnityEditor.Progress;
 
 namespace OpenNGS.Systems
 {
+    public interface IDialogChoiceCondition
+    {
+        bool EvaluateCondition(DialogChoice Choice);
+    }
     public class DialogueHistoryEntry
     {
 
@@ -29,7 +33,7 @@ namespace OpenNGS.Systems
 
     public class DialogSystem : GameSubSystem<DialogSystem>, IDialogSystem
     {
-        //private IQuestSystem _questSys;
+        private IQuestSystem _questSys;
         public List<DialogTalk> DialogTalks = new List<DialogTalk>();
         public List<DialogChoice> Choices = new List<DialogChoice>();
         public List<DialogueHistoryEntry> History = new List<DialogueHistoryEntry>();
@@ -45,9 +49,16 @@ namespace OpenNGS.Systems
             get => Choices;
             set => Choices = value;
         }
+
+        private IDialogChoiceCondition _choiceEvaluator;
+
+        public void SetChoiceEvaluator(IDialogChoiceCondition choiceEvaluator)
+        {
+            _choiceEvaluator = choiceEvaluator;
+        }
         protected override void OnCreate()
         {
-            //_questSys = App.GetService<IQuestSystem>();
+            _questSys = App.GetService<IQuestSystem>();
             base.OnCreate();
         }
         protected override void OnClear()
@@ -79,12 +90,11 @@ namespace OpenNGS.Systems
             if (CurrentIndex < DialogTalks.Count)
             {
                 CurrentDialog = DialogTalks[CurrentIndex];
-                //DialogUI.Instance.ShowDialog(CurrentDialog);
                 History.Add(new DialogueHistoryEntry(CurrentDialog));
                 if (CurrentDialog.ChoiceIDs != null)
                 {
                     uint[] choices = CurrentDialog.ChoiceIDs;
-                    ShowOption(choices);
+                    ShowChoice(choices);
                 }
                 else
                 {
@@ -97,40 +107,23 @@ namespace OpenNGS.Systems
             CurrentIndex++;
             DisplayDialog();
         }
-
-
         private bool IsOptionAvailable(DialogChoice Choice)
         {
-            DIALOG_CHOICE_CONDITION_TYPE ConditionType;
-            ConditionType = Choice.DialogChoiceCondition;
-            switch (ConditionType)
+            if (Choice.DialogChoiceCondition == DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_NONE)
             {
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_NONE:
-                    return true;
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_PLAYER_LEVEL:
-                    return true;
-                //return CheckPlayerLevel(RequiredLevel);
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_PLAYER_INVENTORY:
-                    return true;
-                //return CheckPlayerInventory(RequiredItem);
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_PLAYER_QUEST_PROGRESS:
-                    return true;
-                //return CheckPlayerQuestProgress(RequiredQuest, RequiredQuestStage);
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_TIME_OF_DAY:
-                    return true;
-                //return CheckTimeOfDay(RequiredTimeOfDay);
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_LOCATION:
-                    return true;
-                //return CheckPlayerLocation(RequiredLocation);
-                case DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_PREVIOUS_CHOICE:
-                    return true;
-                //return CheckPreviousChoice(RequiredPreviousChoice);
-                default:
-                    return false;
+                return true;
+            }
+            if (_choiceEvaluator == null)
+            {
+                throw new InvalidOperationException("DialogChoiceEvaluator not set.");
+            }
+            else
+            {
+                return _choiceEvaluator.EvaluateCondition(Choice);
             }
         }
 
-        public void ShowOption(uint[] options)
+        public void ShowChoice(uint[] options)
         {
             Choices.Clear();
             foreach (uint optionid in options)
@@ -141,7 +134,6 @@ namespace OpenNGS.Systems
                     Choices.Add(choice);
                 }
             }
-            //DialogUI.Instance.ShowOptions(Options);
         }
         public void SelectChoice(DialogChoice choice)
         {
@@ -156,45 +148,18 @@ namespace OpenNGS.Systems
                     History.Add(new DialogueHistoryEntry(null, true, Choice));
                 }
             }
-            //if (choice.EffectID > 0)
-            //{
-            //    //ExecuteOptionEffect(option.EffectID);
-            //}
-            //else
-            //{
+            if (choice.QuestGroupID>0)
+            {
+                _questSys.AddQuestGroup(choice.QuestGroupID);
+                _questSys.StartQuest(choice.QuestGroupID);
+            }
             CurrentIndex = (int)choice.NextDialogIndex;
             DisplayDialog();
         }
-        //private void ExecuteOptionEffect(uint effectID)
-        //{
-        //    Effect effect = NGSStaticData.Effect.GetItem(effectID);
-        //    if (effect.QuestGroupID > 0)
-        //    {
-        //        _questSys.AddQuest(effect.QuestGroupID);
-
-        //    }
-        //    //function
-        //}
 
         public List<DialogueHistoryEntry> GetHistory()
         {
             return History;
         }
-
-        public void SetDialogID(uint dialogid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public uint GetDialogID()
-        {
-            throw new NotImplementedException();
-        }
-
-        //private void EndDialogue()
-        //{
-        //    DialogUI.Instance.HideDialog();
-        //}
-
     }
 }
