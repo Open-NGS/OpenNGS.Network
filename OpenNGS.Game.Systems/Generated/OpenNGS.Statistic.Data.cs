@@ -90,6 +90,49 @@ namespace OpenNGS.Statistic.Data
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class StatisticContainer : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public StatisticContainer()
+        {
+            StatisticSaveData = new global::System.Collections.Generic.Dictionary<ulong, global::OpenNGS.Statistic.Common.StatValue>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<ulong, global::OpenNGS.Statistic.Common.StatValue> StatisticSaveData { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class StatisticContainerArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public StatisticContainerArray()
+        {
+            items = new global::System.Collections.Generic.List<StatisticContainer>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<StatisticContainer> items { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021

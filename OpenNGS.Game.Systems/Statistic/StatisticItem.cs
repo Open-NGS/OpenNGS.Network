@@ -4,18 +4,18 @@ class StatisticItem
 {
     public StatData Config;
 
-    public delegate void ValueChanged(uint statId, double value);
+    public delegate void ValueChanged(uint statId, ulong value);
 
     public event ValueChanged OnValueChanged;
 
-    public double Value = 0;
+    public ulong Value = 0;
 
     public StatisticItem(StatData config)
     {
         this.Config = config;
     }
 
-    internal bool Execute(STAT_EVENT @event, int category, int type, int subType, int objId, double value)
+    internal bool Execute(STAT_EVENT @event, int category, int type, int subType, int objId, ulong value)
     {
         if (this.Config.StatEvent != @event) return false;
         if (this.Config.ObjCategory != 0 && this.Config.ObjCategory != category) return false;
@@ -55,7 +55,7 @@ class StatisticItem
         return true;
     }
 
-    public void Set(double value)
+    public void Set(ulong value)
     {
         this.Value = value;
         if (OnValueChanged != null)

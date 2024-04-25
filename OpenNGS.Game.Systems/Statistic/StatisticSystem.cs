@@ -1,20 +1,22 @@
-Ôªøusing OpenNGS;
+using OpenNGS;
+using OpenNGS.Item.Data;
 using OpenNGS.SaveData;
 using OpenNGS.Statistic.Common;
+using OpenNGS.Statistic.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
 using Systems;
 
 namespace OpenNGS.Systems
 {
-    class StatisticalSystem : GameSubSystem<StatSystem>, IStatisticSystem
+    class StatisticSystem : GameSubSystem<StatisticSystem>, IStatisticSystem
     {
-        private Dictionary<int, double> globalStatistics;  //ÂÖ®Â±Ä
-        private Dictionary<int, double> gameStatistics = new Dictionary<int, double>();    //Â±ÄÂÜÖ
+        private Dictionary<int, double> globalStatistics;  //»´æ÷
+        //private Dictionary<int, double> gameStatistics = new Dictionary<int, double>();    //æ÷ƒ⁄
         private Dictionary<int, StatisticItem> Items = new Dictionary<int, StatisticItem>();
 
         private bool loaded = false;
-
+        private StatisticContainer m_Container = null;
         internal void RegisterEventHandler(IStatisticEvent item)
         {
             if (item.StatID == 0) return;
@@ -22,6 +24,17 @@ namespace OpenNGS.Systems
             if (stat != null)
             {
                 stat.OnValueChanged += item.OnStatValueChange;
+            }
+        }
+        public void AddStatContainer(StatisticContainer Container)
+        {
+            if (Container != null)
+            {
+                m_Container = Container;
+            }
+            else
+            {
+                m_Container = new StatisticContainer();
             }
         }
 
@@ -38,18 +51,17 @@ namespace OpenNGS.Systems
             //}
         }
 
-        private void OnStatValueChanged(int statId, double value)
+        private void OnStatValueChanged(uint statId, ulong value)
         {
-            if (!loaded) return;
-            if (this.GetItem(statId).Config.Global)
-                this.globalStatistics[statId] = value;
-            else
-                this.gameStatistics[statId] = value;
+            if(m_Container != null)
+            {
+                m_Container.SetStat(statId, value);
+            }
         }
 
         private void OnLoaded()
         {
-            //todo Áä∂ÊÄÅÁ≥ªÁªüÂ≠òÊ°£Ê∑ªÂä†
+            //todo ◊¥Ã¨œµÕ≥¥ÊµµÃÌº”
             //if (SaveDataManager.Instance.Current != null)
             //{
             //    loaded = false;
@@ -71,15 +83,15 @@ namespace OpenNGS.Systems
             //}
         }
 
-        internal void Stat(STAT_EVENT @event, int category, int type, int subType, int objId, double value)
+        public void Stat(STAT_EVENT @event, int category, int type, int subType, int objId, double value)
         {
             foreach (var kv in this.Items)
             {
-                kv.Value.Execute(@event, category, type, subType, objId, value);
+                kv.Value.Execute(@event, category, type, subType, objId, (ulong)value);
             }
         }
 
-        internal void ResetStatsByEvent(STAT_EVENT @event)
+        public void ResetStatsByEvent(STAT_EVENT @event)
         {
             foreach (var kv in this.Items)
             {
@@ -90,58 +102,54 @@ namespace OpenNGS.Systems
             }
         }
 
-        internal int GetStatInt(int id)
+        public int GetStatInt(int id)
         {
             return (int)GetStat(id);
         }
 
-        internal double GetStat(int id)
+        public double GetStat(int id)
         {
             var item = this.GetItem(id);
             if (item == null) return 0;
-            //if (item.Config.StatEvent == STAT_EVENT.QueryStatus)
-            //{
-            //    item.Query();
-            //}
             return item.Value;
         }
 
         private StatisticItem GetItem(int id)
         {
             if (id == 0) return null;
-            StatisticItem item = null;
+            StatisticItem item;
             this.Items.TryGetValue(id, out item);
             return item;
         }
 
-        internal Dictionary<int, double> GetGameStatistic()
-        {
-            return this.gameStatistics;
-        }
+        //internal Dictionary<int, double> GetGameStatistic()
+        //{
+        //    return this.gameStatistics;
+        //}
 
-        internal void ResetGameStats(Dictionary<int, double> stats)
-        {
-            this.gameStatistics.Clear();
-            foreach (var kv in this.Items)
-            {
-                StatisticItem item = kv.Value;
-                if (!item.Config.Global)
-                {
-                    item.Value = 0;
-                    if (stats != null)
-                    {
-                        double val = 0;
-                        if (stats.TryGetValue(kv.Key, out val))
-                        {
-                            item.Value = val;
-                            this.gameStatistics.Add(kv.Key, val);
-                        }
-                    }
-                }
-            }
-        }
+        //internal void ResetGameStats(Dictionary<int, double> stats)
+        //{
+        //    //this.gameStatistics.Clear();
+        //    foreach (var kv in this.Items)
+        //    {
+        //        StatisticItem item = kv.Value;
+        //        if (!item.Config.Global)
+        //        {
+        //            item.Value = 0;
+        //            if (stats != null)
+        //            {
+        //                double val;
+        //                if (stats.TryGetValue(kv.Key, out val))
+        //                {
+        //                    item.Value = (ulong)val;
+        //                    this.gameStatistics.Add(kv.Key, val);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
-        internal void ResetStat(int id)
+        public void ResetStat(int id)
         {
             var item = this.GetItem(id);
             if (item == null) return;
@@ -151,6 +159,12 @@ namespace OpenNGS.Systems
         public override string GetSystemName()
         {
             return "com.openngs.system.statistic";
+        }
+
+        protected override void OnClear()
+        {
+            m_Container = null;
+            base.OnClear();
         }
     }
 }
