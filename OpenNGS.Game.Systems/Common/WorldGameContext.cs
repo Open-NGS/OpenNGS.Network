@@ -30,6 +30,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(INotificationSystem), new NotificationSystem()));
         services.Add(new ServiceDescriptor(typeof(IRewardSystem), new RewardSystem()));
         services.Add(new ServiceDescriptor(typeof(IQuestSystem), new QuestSystem()));
+        services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
     }
 
     protected override void OnInit()
