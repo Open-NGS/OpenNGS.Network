@@ -13,7 +13,7 @@ namespace OpenNGS.Systems
     {
         private Dictionary<int, double> globalStatistics;  //全局
         //private Dictionary<int, double> gameStatistics = new Dictionary<int, double>();    //局内
-        private Dictionary<int, StatisticItem> Items = new Dictionary<int, StatisticItem>();
+        private Dictionary<uint, StatisticItem> Items = new Dictionary<uint, StatisticItem>();
 
         private bool loaded = false;
         private StatisticContainer m_Container = null;
@@ -35,6 +35,22 @@ namespace OpenNGS.Systems
             else
             {
                 m_Container = new StatisticContainer();
+            }
+
+            for(int nIdx = 0; nIdx < NGSStaticData.statisticItems.Items.Count; nIdx++)
+            {
+                StatData _statDataInfo = NGSStaticData.statisticItems.Items[nIdx];
+                var item = new StatisticItem(_statDataInfo);
+                this.Items.Add(_statDataInfo.Id, item);
+                if (m_Container.StatisticSaveData.ContainsKey(_statDataInfo.Id) == true)
+                {
+                    item.Set(m_Container.StatisticSaveData[_statDataInfo.Id].totalval);
+                }
+                else
+                {
+                    item.Set(0);
+                }
+                item.OnValueChanged += OnStatValueChanged;
             }
         }
 
@@ -102,19 +118,19 @@ namespace OpenNGS.Systems
             }
         }
 
-        public int GetStatInt(int id)
+        public int GetStatInt(uint id)
         {
             return (int)GetStat(id);
         }
 
-        public double GetStat(int id)
+        public double GetStat(uint id)
         {
             var item = this.GetItem(id);
             if (item == null) return 0;
             return item.Value;
         }
 
-        private StatisticItem GetItem(int id)
+        private StatisticItem GetItem(uint id)
         {
             if (id == 0) return null;
             StatisticItem item;
@@ -149,7 +165,7 @@ namespace OpenNGS.Systems
         //    }
         //}
 
-        public void ResetStat(int id)
+        public void ResetStat(uint id)
         {
             var item = this.GetItem(id);
             if (item == null) return;

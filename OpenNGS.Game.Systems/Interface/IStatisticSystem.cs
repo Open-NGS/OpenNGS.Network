@@ -11,15 +11,15 @@ namespace OpenNGS.Systems
         void AddStatContainer(StatisticContainer Container);
         void Stat(STAT_EVENT @event, int category, int type, int subType, int objId, double value);
         void ResetStatsByEvent(STAT_EVENT @event);
-        int GetStatInt(int id);
-        double GetStat(int id);
-        void ResetStat(int id);
+        int GetStatInt(uint id);
+        double GetStat(uint id);
+        void ResetStat(uint id);
         void RegisterEventHandler(IStatisticEvent item);
     }
 
     public interface IStatisticEvent
     {
-        int StatID { get; }
+        uint StatID { get; }
         void OnStatValueChange(uint statId, ulong value);
     }
 
