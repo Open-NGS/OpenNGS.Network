@@ -17,7 +17,7 @@ namespace OpenNGS.Systems
 
         private bool loaded = false;
         private StatisticContainer m_Container = null;
-        internal void RegisterEventHandler(IStatisticEvent item)
+        public void RegisterEventHandler(IStatisticEvent item)
         {
             if (item.StatID == 0) return;
             var stat = this.GetItem(item.StatID);

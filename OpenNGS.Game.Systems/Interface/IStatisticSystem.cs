@@ -14,6 +14,7 @@ namespace OpenNGS.Systems
         int GetStatInt(int id);
         double GetStat(int id);
         void ResetStat(int id);
+        void RegisterEventHandler(IStatisticEvent item);
     }
 
     public interface IStatisticEvent
