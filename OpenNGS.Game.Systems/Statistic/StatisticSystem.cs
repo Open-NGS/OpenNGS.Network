@@ -40,17 +40,20 @@ namespace OpenNGS.Systems
             for(int nIdx = 0; nIdx < NGSStaticData.statisticItems.Items.Count; nIdx++)
             {
                 StatData _statDataInfo = NGSStaticData.statisticItems.Items[nIdx];
-                var item = new StatisticItem(_statDataInfo);
-                this.Items.Add(_statDataInfo.Id, item);
-                if (m_Container.StatisticSaveData.ContainsKey(_statDataInfo.Id) == true)
+                if(this.Items.ContainsKey(_statDataInfo.Id) == false)
                 {
-                    item.Set(m_Container.StatisticSaveData[_statDataInfo.Id].totalval);
+                    var item = new StatisticItem(_statDataInfo);
+                    this.Items.Add(_statDataInfo.Id, item);
+                    if (m_Container.StatisticSaveData.ContainsKey(_statDataInfo.Id) == true)
+                    {
+                        item.Set(m_Container.StatisticSaveData[_statDataInfo.Id].totalval);
+                    }
+                    else
+                    {
+                        item.Set(0);
+                    }
+                    item.OnValueChanged += OnStatValueChanged;
                 }
-                else
-                {
-                    item.Set(0);
-                }
-                item.OnValueChanged += OnStatValueChanged;
             }
         }
 
