@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using OpenNGS.Technology.Common;
 using OpenNGS.Technology.Data;
 using Dynamic.Data;
+using OpenNGS.Reward.Data;
 
 namespace OpenNGS.Systems
 {
@@ -25,5 +26,7 @@ namespace OpenNGS.Systems
 
         //重置科技点
         public TECHNOLOGY_RESULT_TYPE ResetNode();
+
+        public void AddTechContainer(TechContainer container);
     }
 }

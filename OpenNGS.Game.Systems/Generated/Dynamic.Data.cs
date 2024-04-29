@@ -68,35 +68,6 @@ namespace Dynamic.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class TechNodeSaveData : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public TechNodeSaveData()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint Level { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public bool Locked { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public bool Activated { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class DialogSaveData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;

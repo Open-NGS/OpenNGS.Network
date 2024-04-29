@@ -1,14 +1,10 @@
 using OpenNGS.Exchange.Data;
-using System.Collections;
 using System.Collections.Generic;
-
 using OpenNGS.Technology.Data;
 using OpenNGS.Exchange.Common;
 using OpenNGS.Technology.Common;
-using OpenNGS.SaveData;
-using OpenNGSCommon;
 using Systems;
-using Dynamic.Data;
+
 
 namespace OpenNGS.Systems
 {
@@ -21,37 +17,47 @@ namespace OpenNGS.Systems
 
         private IExchangeSystem m_exchangeSyetem = null;
         private IItemSystem m_itemSystem = null;
-        //private ISaveSystem m_saveSystem = null;
-        private SaveFileData_Technology m_technologyData;
+
         protected override void OnCreate()
         {
             base.OnCreate();
-            //m_saveSystem = App.GetService<ISaveSystem>();
             m_itemSystem = App.GetService<IItemSystem>();
             m_exchangeSyetem = App.GetService<IExchangeSystem>();
-            InitData();
+
         }
 
-        public void InitData()
+        TechContainer TechContainer;
+
+        public void AddTechContainer(TechContainer container)
         {
-            //获取存档数据
-            //ISaveInfo saveInfo = m_saveSystem.GetFileData("TECHNOLOGY");
-            //SaveFileData saveData = m_saveSystem.GetFileData();
-            //SaveFileData_Technology saveInfo = saveData.technologyData;
-            //if (saveInfo != null && saveInfo is SaveFileData_Technology)
-            //{
-            //    m_technologyData = (SaveFileData_Technology)saveInfo;
-            //}
-            //else
-            //{
-            //    m_technologyData = new SaveFileData_Technology();
-            //}
-            
+            if (container != null)
+            {
+                TechContainer = container;
+            }
+            else
+            {
+                TechContainer = new TechContainer();
+            }
+
+            foreach (NodeData data in NGSStaticData.technologyNodes.Items)
+            {
+                TechNodeSaveData item = TechContainer.GetTechNodeById(data.ID);
+                if (item == null)
+                {
+                    item = new TechNodeSaveData();
+                    item.ID = data.ID;
+                    item.Locked = false;
+                    item.Activated = false;
+                    TechContainer.AddTechNode(item);
+                }
+            }
         }
+
         public uint GetTechnologyDots(uint technologyDotID)
         {
             return m_itemSystem.GetItemCountByGuidID(technologyDotID);
         }
+
         public Dictionary<uint, NodeData> InitNodes(List<uint> rootNodeIDs)
         {
             Dictionary<uint, NodeData> technologyNodes = new Dictionary<uint, NodeData>();
@@ -69,8 +75,9 @@ namespace OpenNGS.Systems
                     }
                     NodeData nodeData = NGSStaticData.technologyNodes.GetItem(id);
 
+                    data_tmp = TechContainer.GetTechNodeById(id);
                     //查找动态数据修改该节点状态,先判断动态数据是否有这个数据
-                    if(m_technologyData.nodesSaveData.TryGetValue(id,out data_tmp))
+                    if (data_tmp != null)
                     {
                         nodeData.Level = data_tmp.Level;
                         nodeData.Locked = data_tmp.Locked;
@@ -82,7 +89,7 @@ namespace OpenNGS.Systems
                     data_tmp.Level = nodeData.Level;
                     data_tmp.Locked = nodeData.Locked;
                     data_tmp.Activated = nodeData.Activated;
-                    m_technologyData.nodesSaveData[id] = data_tmp;
+                    TechContainer.SetTechNode(data_tmp);
 
                     technologyNodes[nodeData.ID] = nodeData;
                     if (nodeData.ChildNodes == null)
@@ -102,7 +109,7 @@ namespace OpenNGS.Systems
         public List<TechNodeSaveData> GetTreeNodes(uint treeIndex)
         {
             List<TechNodeSaveData> nodeDatas = new List<TechNodeSaveData>();
-            foreach(var node in m_technologyData.nodesSaveData.Values)
+            foreach(var node in TechContainer.techDict)
             {
                 if(node.ID == treeIndex)
                 {
@@ -116,12 +123,12 @@ namespace OpenNGS.Systems
         public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint technologyNodeID)
         {
             //已升级过
-            if (m_technologyData.nodesSaveData[technologyNodeID].Activated)
+            if (TechContainer.GetTechNodeById(technologyNodeID).Activated)
             {
                 return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_ERROR_UPGRADE;
             }
             //未解锁
-            if (m_technologyData.nodesSaveData[technologyNodeID].Locked)
+            if (TechContainer.GetTechNodeById(technologyNodeID).Locked)
             {
                 return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_UNLOCK;
             }
@@ -154,21 +161,19 @@ namespace OpenNGS.Systems
             }
 
             //设置对应科技技能状态和解锁子技能
-            m_technologyData.nodesSaveData[technologyNodeID].Level++;
-            m_technologyData.nodesSaveData[technologyNodeID].Activated = true;
+            TechContainer.GetTechNodeById(technologyNodeID).Level++;
+            TechContainer.GetTechNodeById(technologyNodeID).Activated = true;
             if (tNode.ChildNodes != null)
             {
                 for (int i = 0; i < tNode.ChildNodes.Length; i++)
                 {
-                    m_technologyData.nodesSaveData[tNode.ChildNodes[i]].Locked = false;
+                    TechContainer.GetTechNodeById(technologyNodeID).Locked = false;
                 }
             }
-
 
             //调整玩家属性
             //xxx();
 
-            SaveTechnologyData();
             return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_SUCCESS; 
         }
 
@@ -178,17 +183,18 @@ namespace OpenNGS.Systems
             //设置对应科技技能状态
             uint costSum = 0;
             NodeData tNode = null;
-            foreach(var key in m_technologyData.nodesSaveData.Keys)
+            foreach(TechNodeSaveData data in TechContainer.techDict)
             {
-                tNode = NGSStaticData.technologyNodes.GetItem(key);
-                if (m_technologyData.nodesSaveData[key].Activated)
+                tNode = NGSStaticData.technologyNodes.GetItem(data.ID);
+                if (TechContainer.GetTechNodeById(data.ID).Activated)
                 {
                     costSum += tNode.CostItemCount;
                 }
-                m_technologyData.nodesSaveData[key].Level = 0;
-                m_technologyData.nodesSaveData[key].Activated = false;
-                m_technologyData.nodesSaveData[key].Locked = tNode.ParentNode != null;
-                m_itemSystem.RemoveItemsByID(key, 1);
+                TechContainer.GetTechNodeById(data.ID).Level = 0;
+                TechContainer.GetTechNodeById(data.ID).Activated = false;
+                TechContainer.GetTechNodeById(data.ID).Locked = tNode.ParentNode != null;
+
+                m_itemSystem.RemoveItemsByID(data.ID, 1);
             }
             if(tNode == null)
             {
@@ -198,20 +204,14 @@ namespace OpenNGS.Systems
 
             //调整玩家属性
             //xxx();
-            
-            SaveTechnologyData();
+
             return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_SUCCESS;
         }
+
         //获取技能状态数据
         public TechNodeSaveData GetNodeSaveData(uint id)
         {
-            return m_technologyData.nodesSaveData[id];
-        }
-        //保存数据
-        public void SaveTechnologyData()
-        {
-            //m_saveSystem.SetFileData("TECHNOLOGY", m_technologyData);
-            //m_saveSystem.SaveFile();
+            return TechContainer.GetTechNodeById(id);
         }
 
         public override string GetSystemName()
