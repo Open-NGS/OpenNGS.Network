@@ -38,7 +38,6 @@ namespace OpenNGS.Setting.Common
         ADUIO_TYPE_OVERALLAudio = 0,
         ADUIO_TYPE_SOUND = 1,
         ADUIO_TYPE_MUSIC = 2,
-        ADUIO_TYPE_VOICE = 3,
     }
 
 }
