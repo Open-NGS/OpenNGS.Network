@@ -324,6 +324,7 @@ namespace OpenNGS.Setting.Data
         public ResolutionRatios()
         {
             ResName = "";
+            ResValue = "";
             OnConstructor();
         }
 
@@ -337,7 +338,8 @@ namespace OpenNGS.Setting.Data
         public string ResName { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint ResValue { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ResValue { get; set; }
 
     }
 
