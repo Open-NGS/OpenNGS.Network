@@ -172,12 +172,15 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Setting.Common.ADUIO_TYPE AduioName { get; set; }
+        public global::OpenNGS.Core.NGSText AduioName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint Value { get; set; }
+        public global::OpenNGS.Setting.Common.ADUIO_TYPE AduioType { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
+        public uint Value { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
         public bool Switch { get; set; }
 
     }
@@ -263,9 +266,12 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Setting.Common.LANGUAGE_TYPE languageName { get; set; }
+        public global::OpenNGS.Core.NGSText languageName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Setting.Common.LANGUAGE_TYPE languageType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
         public bool Default { get; set; }
 
     }
