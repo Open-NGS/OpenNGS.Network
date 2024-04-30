@@ -216,16 +216,20 @@ namespace OpenNGS.Setting.Data
         }
         public KeyControlSettingInfo()
         {
+            KeyName = "";
+            Key = "";
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Core.NGSText KeyName { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string KeyName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText Key { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Key { get; set; }
 
     }
 
