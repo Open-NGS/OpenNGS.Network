@@ -100,11 +100,12 @@ namespace OpenNGS.Item.Common
     [global::ProtoBuf.ProtoContract()]
     public enum ITEM_RARITY_TYPE
     {
-        ITEM_RARITY_TYPE_WORN = 0,
-        ITEM_RARITY_TYPE_NORMAL = 1,
-        ITEM_RARITY_TYPE_RARE = 2,
-        ITEM_RARITY_TYPE_EPIC = 3,
-        ITEM_RARITY_TYPE_LEGENDARY = 4,
+        ITEM_RARITY_TYPE_NONE = 0,
+        ITEM_RARITY_TYPE_WORN = 1,
+        ITEM_RARITY_TYPE_NORMAL = 2,
+        ITEM_RARITY_TYPE_RARE = 3,
+        ITEM_RARITY_TYPE_EPIC = 4,
+        ITEM_RARITY_TYPE_LEGENDARY = 5,
     }
 
     [global::ProtoBuf.ProtoContract()]
