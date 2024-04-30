@@ -11,21 +11,25 @@ namespace OpenNGS.Systems
 {
     public interface ISettingSystem
     {
-        public bool SettingInfo();
         //获得画面数据
-        public VerticalSynchronizationData GetFrames();
+        public VerticalSynchronization GetVerticals();
         // 获得音频数据
-        public Dictionary<string, AudioSettinData> GetAudioSetting();
+        public List<AudioSettingInfo> GetAudioSetting();
     // 获得按键数据
-        public Dictionary<string, KeyControlSettingData> GetKeyControl();
+        public List<KeyControlSettingInfo> GetKeyControl();
     // 获得语言数据
-        public Dictionary<string, LanguageData> GetLanguage();
+        public Language GetLanguage();
         // 获得分辨率数据
-        public ResolutionRatiosData GetResolution();
-        public void SetVertical(VerticalSynchronizationData state);
-        public void SetAudio(AudioSettinData audio);
-        public void SetKeyControl(KeyControlSettingData keyControl);
-        public void SetLanguage(LanguageData language);
-        public void SetResolution(ResolutionRatiosData resolution);
+        public ResolutionRatios GetResolution();
+
+
+        public void SetVertical(VerticalSynchronization state);
+        public void SetAudio(AudioSettingInfo audio);
+        public void SetKeyControl(KeyControlSettingInfo keyControl);
+        public void SetLanguage(Language language);
+        public void SetResolution(ResolutionRatios resolution);
+
+        public void AddSettingContainer(SettingContainer container);
+
     }
 }

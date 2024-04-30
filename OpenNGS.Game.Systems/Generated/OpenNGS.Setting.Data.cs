@@ -172,7 +172,7 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Core.NGSText AduioName { get; set; }
+        public global::OpenNGS.Setting.Common.ADUIO_TYPE AduioName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint Value { get; set; }
@@ -263,7 +263,7 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Core.NGSText languageName { get; set; }
+        public global::OpenNGS.Setting.Common.LANGUAGE_TYPE languageName { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public bool Default { get; set; }
@@ -332,6 +332,61 @@ namespace OpenNGS.Setting.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<ResolutionRatios> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SettingContainer : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SettingContainer()
+        {
+            Audio = new global::System.Collections.Generic.List<AudioSettingInfo>();
+            KeyControl = new global::System.Collections.Generic.List<KeyControlSettingInfo>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public VerticalSynchronization Vertical { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<AudioSettingInfo> Audio { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::System.Collections.Generic.List<KeyControlSettingInfo> KeyControl { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public Language Language { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public ResolutionRatios ResolutionRatios { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SettingContainerArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SettingContainerArray()
+        {
+            items = new global::System.Collections.Generic.List<SettingContainer>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<SettingContainer> items { get; private set; }
 
     }
 

@@ -1,5 +1,6 @@
 using Dynamic.Data;
 using OpenNGS;
+using OpenNGS.Item.Data;
 using OpenNGS.Setting.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
@@ -9,120 +10,85 @@ using Systems;
 public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 {
     public GetSettingRsq OnGetSetting;
-    //private ISaveSystem m_saveSystem = null;
-    public SaveFileData_Setting _setting = null;
+    private SettingContainer _container = null;
 
     protected override void OnCreate()
     {
-        //m_saveSystem = App.GetService<ISaveSystem>();
         base.OnCreate();
-        GetSetting();
     }
 
-    // 获取存档数据
-    public void GetSetting()
+    // 画面
+    public VerticalSynchronization GetVerticals()
     {
-        //ISaveInfo saveInfo = m_saveSystem.GetSettingData();
-        //if (saveInfo != null && saveInfo is SaveFileData_Setting)
-        //{
-        //    _setting = (SaveFileData_Setting)saveInfo;
-        //}
-    }
-
-    public bool SettingInfo()
-    {
-        if (_setting._audio.Count != 0)
-        {
-            return true;
-        }
-        _setting = new SaveFileData_Setting();
-        return false;
-    }
-
-    // 垂直同步
-    public VerticalSynchronizationData GetFrames()
-    {
-        return _setting._vertical;
+        return _container.Vertical;
     }
 
     // 音频
-    public Dictionary<string, AudioSettinData> GetAudioSetting()
+    public List<AudioSettingInfo> GetAudioSetting()
     {
-        return _setting._audio;
+        return _container.Audio;
     }
 
     // 按键
-    public Dictionary<string, KeyControlSettingData> GetKeyControl()
+    public List<KeyControlSettingInfo> GetKeyControl()
     {
-        return _setting._keyControl;
+        return _container.KeyControl;
     }
 
     // 语言
-    public Dictionary<string, LanguageData> GetLanguage()
+    public Language GetLanguage()
     {
-        return _setting._language;
+        return _container.Language;
     }
     // 分辨率
-    public ResolutionRatiosData GetResolution()
+    public ResolutionRatios GetResolution()
     {
-        return _setting.resolution;
+        return _container.ResolutionRatios;
     }
 
 
 
-    public void SetVertical(VerticalSynchronizationData state)
+    public void SetVertical(VerticalSynchronization state)
     {
-        _setting._vertical.state = state.state;
-        //m_saveSystem.SetSettingData(_setting);
-        //m_saveSystem.SettingSaveFile();
+        _container.SetVertical(state);
     }
 
-    public void SetAudio(AudioSettinData audio)
+    public void SetAudio(AudioSettingInfo audio)
     {
-        if (_setting._audio.ContainsKey(audio.AduioName))
+        _container.SetAudio(audio);
+    }
+    public void SetKeyControl(KeyControlSettingInfo keyControl)
+    {
+        _container.SetKeyControl(keyControl);
+    }
+
+    public void SetLanguage(Language language)
+    {
+        _container.SetLanguage(language);
+    }
+
+    public void SetResolution(ResolutionRatios resolution)
+    {
+        _container.SetResolutionRatios(resolution);
+    }
+
+
+    public void AddSettingContainer(SettingContainer container)
+    {
+        if (container != null)
         {
-            _setting._audio[audio.AduioName] = audio;
+            _container = container;
         }
         else
         {
-            _setting._audio.Add(audio.AduioName, audio);
+            _container = new SettingContainer();
         }
-        //m_saveSystem.SetSettingData(_setting);
-        //m_saveSystem.SettingSaveFile();
-    }
-    public void SetKeyControl(KeyControlSettingData keyControl)
-    {
-        if (_setting._keyControl.ContainsKey(keyControl.KeyName))
-        {
-            _setting._keyControl[keyControl.KeyName] = keyControl;
-        }
-        else
-        {
-            _setting._keyControl.Add(keyControl.KeyName, keyControl);
-        }
-        //m_saveSystem.SetSettingData(_setting);
-        //m_saveSystem.SettingSaveFile();
     }
 
-    public void SetLanguage(LanguageData language)
+    protected override void OnClear()
     {
-        if (_setting._language.ContainsKey(language.languageName))
-        {
-            _setting._language[language.languageName] = language;
-        }
-        else
-        {
-            _setting._language.Add(language.languageName, language);
-        }
-        //m_saveSystem.SetSettingData(_setting);
-        //m_saveSystem.SettingSaveFile();
-    }
-
-    public void SetResolution(ResolutionRatiosData resolution)
-    {
-        resolution.ResName = resolution.ResName;
-        //m_saveSystem.SetSettingData(_setting);
-        //m_saveSystem.SettingSaveFile();
+        _container = null;
+        base.OnClear();
     }
 
     #region C2S
