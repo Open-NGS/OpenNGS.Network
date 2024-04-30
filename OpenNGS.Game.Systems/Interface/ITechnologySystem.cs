@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 using OpenNGS.Technology.Common;
 using OpenNGS.Technology.Data;
-using Dynamic.Data;
-using OpenNGS.Reward.Data;
 
 namespace OpenNGS.Systems
 {
