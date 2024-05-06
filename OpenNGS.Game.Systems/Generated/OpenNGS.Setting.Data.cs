@@ -122,6 +122,7 @@ namespace OpenNGS.Setting.Data
         }
         public VerticalSynchronization()
         {
+            VerName = "";
             OnConstructor();
         }
 
@@ -131,7 +132,8 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText VerName { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string VerName { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public bool state { get; set; }
@@ -169,6 +171,7 @@ namespace OpenNGS.Setting.Data
         }
         public AudioSettingInfo()
         {
+            AduioName = "";
             OnConstructor();
         }
 
@@ -178,7 +181,8 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText AduioName { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string AduioName { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public global::OpenNGS.Setting.Common.ADUIO_TYPE AduioType { get; set; }
@@ -273,6 +277,7 @@ namespace OpenNGS.Setting.Data
         }
         public Language()
         {
+            languageName = "";
             OnConstructor();
         }
 
@@ -282,7 +287,8 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText languageName { get; set; }
+        [global::System.ComponentModel.DefaultValue("")]
+        public string languageName { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public global::OpenNGS.Setting.Common.LANGUAGE_TYPE languageType { get; set; }
