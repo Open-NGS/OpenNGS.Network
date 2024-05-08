@@ -26,5 +26,7 @@ namespace OpenNGS.Systems
         public TECHNOLOGY_RESULT_TYPE ResetNode();
 
         public void AddTechContainer(TechContainer container);
+
+        public List<TechNodeSaveData> GetAllActivedNodes();
     }
 }

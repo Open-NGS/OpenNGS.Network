@@ -167,7 +167,7 @@ namespace OpenNGS.Systems
             {
                 for (int i = 0; i < tNode.ChildNodes.Length; i++)
                 {
-                    TechContainer.GetTechNodeById(technologyNodeID).Locked = false;
+                    TechContainer.GetTechNodeById(tNode.ChildNodes[i]).Locked = false;
                 }
             }
 
@@ -217,6 +217,19 @@ namespace OpenNGS.Systems
         public override string GetSystemName()
         {
             return "com.openngs.system.technology";
+        }
+
+        public List<TechNodeSaveData> GetAllActivedNodes()
+        {
+            List<TechNodeSaveData> result = new List<TechNodeSaveData>();
+            foreach(TechNodeSaveData data in TechContainer.techDict)
+            {
+                if(data.Activated == true)
+                {
+                    result.Add(data);
+                }
+            }
+            return result;
         }
     }
 }
