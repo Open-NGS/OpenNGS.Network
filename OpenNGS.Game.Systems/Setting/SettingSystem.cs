@@ -1,6 +1,3 @@
-using Dynamic.Data;
-using OpenNGS;
-using OpenNGS.Item.Data;
 using OpenNGS.Setting.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
@@ -18,56 +15,56 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     }
 
     // ª≠√Ê
-    public VerticalSynchronization GetVerticals()
+    public OpenNGS.Setting.Data.VerticalSynchronizationData GetVerticals()
     {
         return _container.Vertical;
     }
 
     // “Ù∆µ
-    public List<AudioSettingInfo> GetAudioSetting()
+    public List<AudioSettingData> GetAudioSetting()
     {
         return _container.Audio;
     }
 
     // ∞¥º¸
-    public List<KeyControlSettingInfo> GetKeyControl()
+    public List<OpenNGS.Setting.Data.KeyControlSettingData> GetKeyControl()
     {
         return _container.KeyControl;
     }
 
     // ”Ô—‘
-    public Language GetLanguage()
+    public OpenNGS.Setting.Data.LanguageData GetLanguage()
     {
         return _container.Language;
     }
     // ∑÷±Ê¬ 
-    public ResolutionRatios GetResolution()
+    public OpenNGS.Setting.Data.ResolutionRatiosData GetResolution()
     {
         return _container.ResolutionRatios;
     }
 
 
 
-    public void SetVertical(VerticalSynchronization state)
+    public void SetVertical(OpenNGS.Setting.Data.VerticalSynchronizationData state)
     {
         _container.SetVertical(state);
     }
 
-    public void SetAudio(AudioSettingInfo audio)
+    public void SetAudio(AudioSettingData audio)
     {
         _container.SetAudio(audio);
     }
-    public void SetKeyControl(KeyControlSettingInfo keyControl)
+    public void SetKeyControl(OpenNGS.Setting.Data.KeyControlSettingData keyControl)
     {
         _container.SetKeyControl(keyControl);
     }
 
-    public void SetLanguage(Language language)
+    public void SetLanguage(OpenNGS.Setting.Data.LanguageData language)
     {
         _container.SetLanguage(language);
     }
 
-    public void SetResolution(ResolutionRatios resolution)
+    public void SetResolution(OpenNGS.Setting.Data.ResolutionRatiosData resolution)
     {
         _container.SetResolutionRatios(resolution);
     }
