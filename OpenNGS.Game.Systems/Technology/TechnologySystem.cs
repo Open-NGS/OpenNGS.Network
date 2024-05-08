@@ -38,19 +38,6 @@ namespace OpenNGS.Systems
             {
                 TechContainer = new TechContainer();
             }
-
-            foreach (NodeData data in NGSStaticData.technologyNodes.Items)
-            {
-                TechNodeSaveData item = TechContainer.GetTechNodeById(data.ID);
-                if (item == null)
-                {
-                    item = new TechNodeSaveData();
-                    item.ID = data.ID;
-                    item.Locked = false;
-                    item.Activated = false;
-                    TechContainer.AddTechNode(item);
-                }
-            }
         }
 
         public uint GetTechnologyDots(uint technologyDotID)
