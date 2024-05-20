@@ -16,6 +16,7 @@ namespace OpenNGS.Systems
         public void StartQuest(uint questGroupID);
         public void CompleteQuest(uint questGroupID, uint questID);
         void AddQuestContainer(QuestContainer Container);
+        bool IsQuestGroupCompleted(uint questGroupID);
 
     }
 }

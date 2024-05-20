@@ -257,7 +257,7 @@ namespace OpenNGS.Systems
 
             return completedQuestGroups;
         }
-        public bool IsQuestGroupCompleted(uint questGroupID)
+        public virtual bool IsQuestGroupCompleted(uint questGroupID)
         {
             QuestGroup questGroup = GetQuestGroupById(questGroupID);
             if (questGroup == null) return false;
