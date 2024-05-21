@@ -39,6 +39,7 @@ namespace OpenNGS.Systems
         public List<DialogueHistoryEntry> History = new List<DialogueHistoryEntry>();
         public DialogTalk CurrentDialog;
         private int CurrentIndex;
+        private uint m_nDialogID;
         DialogTalk IDialogSystem.CurrentDialog
         {
             get => CurrentDialog;
@@ -72,6 +73,7 @@ namespace OpenNGS.Systems
 
         public void LoadDialogs(uint dialogId)
         {
+            m_nDialogID = dialogId;
             DialogTalks.Clear();
             History.Clear();
             CurrentIndex = 0;
@@ -121,6 +123,11 @@ namespace OpenNGS.Systems
             {
                 return _choiceEvaluator.EvaluateCondition(Choice);
             }
+        }
+
+        public uint GetCurrentDialogID()
+        {
+            return m_nDialogID;
         }
 
         public void ShowChoice(uint[] options)

@@ -16,5 +16,6 @@ namespace OpenNGS.Systems
         public void NextDialog();
         public List<DialogueHistoryEntry> GetHistory();
         void SetChoiceEvaluator(IDialogChoiceCondition choiceEvaluator);
+        uint GetCurrentDialogID();
     }
 }
