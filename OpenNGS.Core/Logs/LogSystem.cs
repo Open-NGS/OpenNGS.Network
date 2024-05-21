@@ -105,8 +105,9 @@ namespace OpenNGS.Logs
             {
                 for (int i = 0; i < Appenders.Count; i++)
                 {
-                    if (Appenders[i].TypeIdentify == "Unity")
-                        continue;
+                    // 需要打开，否则unity无法在console里面输出异常
+                    //if (Appenders[i].TypeIdentify == "Unity")
+                    //    continue;
 
                     Appenders[i].LogException(Tag, exception, context);
                 }
