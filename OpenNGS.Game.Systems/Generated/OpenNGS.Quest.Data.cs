@@ -161,14 +161,14 @@ namespace OpenNGS.Quest.Data
         }
         public QuestContainer()
         {
-            QuestList = new global::System.Collections.Generic.List<QuestGroup>();
+            QuestList = new global::System.Collections.Generic.List<QuestGroupData>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<QuestGroup> QuestList { get; private set; }
+        public global::System.Collections.Generic.List<QuestGroupData> QuestList { get; private set; }
 
     }
 
@@ -190,6 +190,95 @@ namespace OpenNGS.Quest.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<QuestContainer> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class QuestData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public QuestData()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint QuestID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Quest.Common.QUEST_STATUS Status { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class QuestDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public QuestDataArray()
+        {
+            items = new global::System.Collections.Generic.List<QuestData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<QuestData> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class QuestGroupData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public QuestGroupData()
+        {
+            Quests = new global::System.Collections.Generic.List<QuestData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint QuestGroupID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<QuestData> Quests { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class QuestGroupDataArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public QuestGroupDataArray()
+        {
+            items = new global::System.Collections.Generic.List<QuestGroupData>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<QuestGroupData> items { get; private set; }
 
     }
 

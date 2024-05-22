@@ -6,33 +6,35 @@ namespace OpenNGS.Quest.Data
 {
     public partial class QuestContainer
     {
-        public void AddQuestGroup(QuestGroup quest)
+        public void AddQuestGroup(QuestGroupData quest)
         {
             QuestList.Add(quest);
         }
-        public void RemoveQuestGroup(QuestGroup quest)
+        public void RemoveQuestGroup(QuestGroupData quest)
         {
             QuestList.Remove(quest);
         }
 
-        public void UpdateQuest(Quest quest, OpenNGS.Quest.Common.QUEST_STATUS status)
+        public void UpdateQuest(QuestData quest, OpenNGS.Quest.Common.QUEST_STATUS status)
         {
             quest.Status = status;
         }
-        public QuestGroup GetQuestGroupById(int QuestGroupID)
+        public QuestGroupData GetQuestGroupById(int QuestGroupID)
         {
             return QuestList.FirstOrDefault(i => i.QuestGroupID == QuestGroupID);
         }
 
-        public Quest GetQuestById(uint questGroupID, uint questID)
+        public QuestData GetQuestById(uint questGroupID, uint questID)
         {
-            QuestGroup questGroup= QuestList.FirstOrDefault(i => i.QuestGroupID == questGroupID);
-            foreach (var quests in questGroup.Quests)
+            QuestGroupData questGroup = QuestList.FirstOrDefault(i => i.QuestGroupID == questGroupID);
+            if(questGroup != null )
             {
-                if (quests == questID)
+                foreach (var _quest in questGroup.Quests)
                 {
-                    OpenNGS.Quest.Data.Quest quest = NGSStaticData.Quest.GetItem(questGroupID);
-                    return quest;
+                    if (_quest.QuestID == questID)
+                    {
+                        return _quest;
+                    }
                 }
             }
             return null;
