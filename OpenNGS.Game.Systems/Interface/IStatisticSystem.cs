@@ -9,7 +9,8 @@ namespace OpenNGS.Systems
     public interface IStatisticSystem
     {
         void AddStatContainer(StatisticContainer Container);
-        void Stat(STAT_EVENT @event, int category, int type, int subType, int objId, double value);
+        void StatByStatisticID(uint statId, double val);
+        void Stat(STAT_EVENT @event, uint category, uint type, uint subType, uint objId, double value);
         void ResetStatsByEvent(STAT_EVENT @event);
         int GetStatInt(uint id);
         double GetStat(uint id);

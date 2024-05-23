@@ -102,7 +102,16 @@ namespace OpenNGS.Systems
             //}
         }
 
-        public void Stat(STAT_EVENT @event, int category, int type, int subType, int objId, double value)
+        public void StatByStatisticID(uint statId, double val)
+        {
+            StatData _statData = NGSStaticData.s_statDatas.GetItem(statId);
+            if(_statData != null)
+            {
+                Stat(_statData.StatEvent, _statData.ObjCategory, _statData.ObjType, _statData.ObjSubType, _statData.ObjID, val);
+            }
+        }
+
+        public void Stat(STAT_EVENT @event, uint category, uint type, uint subType, uint objId, double value)
         {
             foreach (var kv in this.Items)
             {

@@ -15,7 +15,7 @@ class StatisticItem
         this.Config = config;
     }
 
-    internal bool Execute(STAT_EVENT @event, int category, int type, int subType, int objId, ulong value)
+    internal bool Execute(STAT_EVENT @event, uint category, uint type, uint subType, uint objId, ulong value)
     {
         if (this.Config.StatEvent != @event) return false;
         if (this.Config.ObjCategory != 0 && this.Config.ObjCategory != category) return false;
