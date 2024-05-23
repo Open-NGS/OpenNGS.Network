@@ -234,9 +234,12 @@ namespace OpenNGS.Systems
         public void CompleteQuestGroup(uint questGroupID)
         {
             QuestGroup _QuestGroup = NGSStaticData.QuestGroup.GetItem(questGroupID);
-            foreach (uint _questID in _QuestGroup.Quests)
+            if (_QuestGroup != null)
             {
-                CompleteQuest(questGroupID, _questID);
+                foreach (uint _questID in _QuestGroup.Quests)
+                {
+                    CompleteQuest(questGroupID, _questID);
+                }
             }
         }
         private void NextQuest(uint questGroupID, uint questID)
