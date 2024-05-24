@@ -48,6 +48,12 @@ namespace OpenNGS.Audio
             
         }
 
+
+        public virtual void UnloadPackage(string packageName)
+        {
+
+        }
+
         public virtual void SetParam(GameObject obj, string paramName, float paramValue)
         {
             
