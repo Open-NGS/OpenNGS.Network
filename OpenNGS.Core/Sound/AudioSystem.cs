@@ -147,6 +147,26 @@ namespace OpenNGS.Audio
             m_AudioEngine.Resume(obj);
         }
 
+
+        public virtual void PlayMusic(string strMusicName, GameObject gameObject)
+        {
+            if (m_AudioEngine == null)
+            {
+                Debug.LogWarning("Sound System Not Initialized.");
+                return;
+            }
+            m_AudioEngine.PlayMusic(strMusicName, gameObject);
+        }
+        public virtual void StopMusic(string strMusicName, GameObject gameObject)
+        {
+            if (m_AudioEngine == null)
+            {
+                Debug.LogWarning("Sound System Not Initialized.");
+                return;
+            }
+            m_AudioEngine.StopMusic(strMusicName, gameObject);
+        }
+
     }
 
 }

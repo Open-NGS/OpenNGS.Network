@@ -78,7 +78,16 @@ namespace OpenNGS.Audio
         {
            
         }
-       
+
+        public virtual void PlayMusic(string strMusicName, GameObject gameObject)
+        {
+
+        }
+        public virtual void StopMusic(string strMusicName, GameObject gameObject)
+        {
+
+        }
+
     }
 
 }
