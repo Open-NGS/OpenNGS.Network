@@ -28,7 +28,7 @@ namespace OpenNGS.Systems
         public void AddQuestGroup(uint questGroupID)
         {
             QuestGroup _questGroupInf = NGSStaticData.QuestGroup.GetItem(questGroupID);
-            if(!_questGroupInf.IsBan)
+            if(_questGroupInf != null && !_questGroupInf.IsBan)
             {
                 bool bFound = false;
                 foreach(QuestGroupData _groupData in questContainer.QuestList)
