@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using MissQ;
 using MissQ.Common;
+using Networks.NetWorkModule;
 //using GCloud.MSDK;
 
 public enum NoticeType

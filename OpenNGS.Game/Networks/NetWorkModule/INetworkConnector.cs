@@ -1,53 +1,57 @@
 
+using Networks.NetWorkModule;
 
-/// <summary>
-/// 账号平台类型
-/// </summary>
-public enum Platform
+namespace Networks.NetWorkModule
 {
-    None,
-    Guest,
-    QQ,
-    Wechat,
-    Google,
-    Facebook,
-    GameCenter,
-    //AutoLogin,
-}
+    /// <summary>
+    /// 账号平台类型
+    /// </summary>
+    public enum Platform
+    {
+        None,
+        Guest,
+        QQ,
+        Wechat,
+        Google,
+        Facebook,
+        GameCenter,
+        //AutoLogin,
+    }
 
-/// <summary>
-/// 网络环境
-/// </summary>
-public enum NetworkEnv
-{
-    Unknown,
-    NotReachable,
-    Cable,
-    ViaWifi,
-    Via2G,
-    Via3G,
-    Via4G,
-}
+    /// <summary>
+    /// 网络环境
+    /// </summary>
+    public enum NetworkEnv
+    {
+        Unknown,
+        NotReachable,
+        Cable,
+        ViaWifi,
+        Via2G,
+        Via3G,
+        Via4G,
+    }
 
-/// <summary>
-/// 网络运营商
-/// </summary>
-public enum NetworkCarrier
-{
-    Unknown,
-    ChinaMobile,
-    ChinaUnicom,
-    ChinaTelecom,
-    ChinaSpacecom,
-}
+    /// <summary>
+    /// 网络运营商
+    /// </summary>
+    public enum NetworkCarrier
+    {
+        Unknown,
+        ChinaMobile,
+        ChinaUnicom,
+        ChinaTelecom,
+        ChinaSpacecom,
+    }
 
-public enum NetworkWakeUp
-{
-    Success,// 本地原有票据有效，使用原有票据登录
-    AccountRefresh,// 新旧 openid 相同，票据不同。刷新登录票据
-    UrlLogin,// 本地无openid，拉起有票据，使用新票据登录
-    NeedSelect,//"票据均有效，提示玩家选择账号"
-    NeedLogin,//"票据均无效，进入登录页面"
+    public enum NetworkWakeUp
+    {
+        Success,// 本地原有票据有效，使用原有票据登录
+        AccountRefresh,// 新旧 openid 相同，票据不同。刷新登录票据
+        UrlLogin,// 本地无openid，拉起有票据，使用新票据登录
+        NeedSelect,//"票据均有效，提示玩家选择账号"
+        NeedLogin,//"票据均无效，进入登录页面"
+    }
 }
 
 public abstract class INetworkConnector

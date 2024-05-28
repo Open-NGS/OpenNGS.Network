@@ -10,7 +10,8 @@
         "OpenNGS.ERPC",
         "OpenNGS.Network",
         "OpenNGS.Platform",
-        "Platform.GCloud"
+        "Platform.GCloud",
+        "OpenNGS.EEGamesSDK"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -5,6 +5,7 @@ using UnityEngine;
 using MissQ;
 using OpenNGSCommon;
 using protocol;
+using Networks.NetWorkModule;
 //using GameGuide;
 
 public sealed class NetworkModule
