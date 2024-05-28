@@ -35,7 +35,11 @@ namespace OpenNGS.Platform
 
             if (!Platform.IsSupported(PLATFORM_MODULE.LOGIN))
                 return;
-            Platform.GetLogin().Login(channel, permissions, subChannel, extraJson);
+            ILoginProvider _loginProvider = Platform.GetLogin();
+            if(_loginProvider != null)
+            {
+                _loginProvider.Login(channel, permissions, subChannel, extraJson);
+            }
         }
 
         public static void SwitchUser(bool useLaunchUser)
