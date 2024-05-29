@@ -21,6 +21,7 @@ namespace OpenNGS.NPC.Common
         NPC_UIBIND_STORE = 3,
         NPC_UIBIND_TECHNOLOGY = 16,
         NPC_UIBIND_EQUIPBUILD = 17,
+        NPC_UIBIND_STASH = 34,
     }
 
 }
