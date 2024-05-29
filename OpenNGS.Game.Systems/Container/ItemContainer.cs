@@ -8,19 +8,19 @@ namespace OpenNGS.Item.Data
 
         public void AddItem(ItemSaveData item)
         {
-            stashItems.Add(item);
+            bagItems.Add(item);
         }
         public void RemoveItem(ItemSaveData item)
         {
-            stashItems.Remove(item);
-        }
-        public void AddBagItem(ItemSaveData item)
-        {
-            bagItems.Add(item);
-        }
-        public void RemoveBagItem(ItemSaveData item)
-        {
             bagItems.Remove(item);
+        }
+        public void AddStashItem(ItemSaveData item)
+        {
+            stashItems.Add(item);
+        }
+        public void RemoveStashItem(ItemSaveData item)
+        {
+            stashItems.Remove(item);
         }
         public void AddEquips(equips item)
         {

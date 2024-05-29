@@ -61,7 +61,7 @@ namespace OpenNGS.Systems
         //获取道具信息(通过GUID)
         public OpenNGS.Item.Common.ItemData GetItemDataByGuid(ulong uid)
         {
-            ItemSaveData itemData = itemContainer.stashItems.Find(item => item.GUID == uid);
+            ItemSaveData itemData = itemContainer.bagItems.Find(item => item.GUID == uid);
             if (itemData == null)
             {
                 return null;
@@ -77,7 +77,7 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Common.ItemData> GetItemDataByItemId(uint itemId)
         {
             List<OpenNGS.Item.Common.ItemData> itemDatas = new List<ItemData>();
-            foreach (ItemSaveData itemData in itemContainer.stashItems)
+            foreach (ItemSaveData itemData in itemContainer.bagItems)
             {
                 if ((ulong)itemData.ItemID == itemId)
                 {
@@ -94,7 +94,7 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
         {
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
-            foreach (ItemSaveData itemInfo in itemContainer.stashItems)
+            foreach (ItemSaveData itemInfo in itemContainer.bagItems)
             {
                 if (NGSStaticData.items.GetItem(itemInfo.ItemID).ItemType == iTEM_TYPE)
                 {
@@ -116,7 +116,7 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
         {
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
-            foreach(ItemSaveData itemInfo in itemContainer.stashItems)
+            foreach(ItemSaveData itemInfo in itemContainer.bagItems)
             {
                 if(NGSStaticData.items.GetItem(itemInfo.ItemID).Kind == iTEM_KIND)
                 {
@@ -138,7 +138,7 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Common.ItemData> GetItemInfosInBag()
         {
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();
-            foreach(ItemSaveData itemInfo in itemContainer.stashItems)
+            foreach(ItemSaveData itemInfo in itemContainer.bagItems)
             {
                 if (NGSStaticData.items.GetItem(itemInfo.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
                 {
@@ -161,14 +161,14 @@ namespace OpenNGS.Systems
             List<OpenNGS.Item.Common.ItemData> itemInfos = new List<ItemData>();
             foreach (ItemSaveData itemInfo in itemContainer.stashItems)
             {
-                //if (NGSStaticData.items.GetItem(itemInfo.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
-                //{
+                if (NGSStaticData.items.GetItem(itemInfo.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
+                {
                     ItemData itemData = new ItemData();
                     itemData.ItemID = itemInfo.ItemID;
                     itemData.Guid = itemInfo.GUID;
                     itemData.Count = itemInfo.Count;
                     itemInfos.Add(itemData);
-                //}
+                }
             }
             //放回某类物品前排序,避免物品混乱
             itemInfos.Sort((a, b) =>
@@ -403,7 +403,7 @@ namespace OpenNGS.Systems
                         if ((int)nCounts - (int)volumn >= 0)
                         {
                             itemData[i].Count = NGSStaticData.items.GetItem(nItemID).StackMax;
-                            var itemToUpdate = itemContainer.stashItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
+                            var itemToUpdate = itemContainer.bagItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
                             if (itemToUpdate != null)
                             {
                                 itemToUpdate.Count = NGSStaticData.items.GetItem(nItemID).StackMax;
@@ -414,7 +414,7 @@ namespace OpenNGS.Systems
                         else
                         {
                             itemData[i].Count += nCounts;
-                            var itemToUpdate = itemContainer.stashItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
+                            var itemToUpdate = itemContainer.bagItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
                             if (itemToUpdate != null)
                             {
                                 itemToUpdate.Count += nCounts;
@@ -441,7 +441,7 @@ namespace OpenNGS.Systems
                 //前面无空闲Guid则用后面数赋值
                 else
                 {
-                    while (itemContainer.stashItems.Any(item => item.GUID == guid_cache) || itemContainer.equipDict.Any(item => item.index == guid_cache))
+                    while (itemContainer.bagItems.Any(item => item.GUID == guid_cache) || itemContainer.equipDict.Any(item => item.index == guid_cache))
                     {
                         guid_cache++;
                     }
@@ -483,7 +483,7 @@ namespace OpenNGS.Systems
                     //若物品为0,在动态数据与缓存链表中删去该物品
                     nCounts -= itemData[i].Count;
                     guid_free.Enqueue(itemData[i].Guid);//Guid空闲出来后放入队列
-                    var itemToRemove = itemContainer.stashItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
+                    var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
                     if (itemToRemove != null)
                     {
                         itemContainer.RemoveItem(itemToRemove);
@@ -491,7 +491,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    var itemToRemove = itemContainer.stashItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
+                    var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
                     if (itemToRemove != null)
                     {
                         itemToRemove.Count= (itemData[i].Count - nCounts);
@@ -514,7 +514,7 @@ namespace OpenNGS.Systems
             if (itemData.Count == nCounts)
             {
                 guid_free.Enqueue(nGuid);//Guid空闲出来后放入队列
-                var itemToRemove = itemContainer.stashItems.FirstOrDefault(item => item.GUID == nGuid);
+                var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == nGuid);
                 if (itemToRemove != null)
                 {
                     itemContainer.RemoveItem(itemToRemove);
@@ -523,7 +523,7 @@ namespace OpenNGS.Systems
             //物品移除后有剩余
             else
             {
-                var itemToUpdate = itemContainer.stashItems.FirstOrDefault(item => item.GUID == nGuid);
+                var itemToUpdate = itemContainer.bagItems.FirstOrDefault(item => item.GUID == nGuid);
                 if (itemToUpdate != null)
                 {
                     itemToUpdate.Count -= nCounts;
@@ -580,8 +580,8 @@ namespace OpenNGS.Systems
             var changeitem = itemContainer.stashItems.FirstOrDefault(item => item.GUID == nGuid);
             if (changeitem != null)
             {
-                itemContainer.RemoveItem(changeitem);
-                itemContainer.AddBagItem(changeitem);
+                itemContainer.RemoveStashItem(changeitem);
+                itemContainer.AddItem(changeitem);
             }
         }
         public void ItemOutBag(uint nGuid)
@@ -589,8 +589,8 @@ namespace OpenNGS.Systems
             var changeitem = itemContainer.bagItems.FirstOrDefault(item => item.GUID == nGuid);
             if (changeitem != null)
             {
-                itemContainer.AddItem(changeitem);
-                itemContainer.RemoveBagItem(changeitem);
+                itemContainer.AddStashItem(changeitem);
+                itemContainer.RemoveItem(changeitem);
             }
         }
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid)
@@ -604,7 +604,7 @@ namespace OpenNGS.Systems
             {
                 return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_ERROR;
             }
-            var itemToRemove = itemContainer.stashItems.FirstOrDefault(item => item.GUID == nGuid);
+            var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == nGuid);
             if (itemToRemove != null)
             {
                 itemContainer.RemoveItem(itemToRemove);
