@@ -29,6 +29,8 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND);
         //获取背包中的所有道具
         public List<OpenNGS.Item.Common.ItemData> GetItemInfosInBag();
+        //获取仓库中的所有道具
+        public List<OpenNGS.Item.Common.ItemData> GetItemInfosInStash();
         public SuitData GetSuitData(uint suitID);
         public MakeDesign GetItemByItmes(uint itemId);
         public DisassembleEquipIno GetDisassembleEquipIno(uint itemId);
@@ -36,11 +38,17 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //脱装备
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
+
+        public void ItemInBag(uint nGuid);
+        public void ItemOutBag(uint nGuid);
         public List<equips> GetEquippedList();
+
+        public void AddAction_stashChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
         //传入道具栏变更的事件
         public void AddAction_bagChange(Action<uint ,OpenNGS.Item.Common.ItemData> ac);
         //传入装备栏变更的事件
         public void AddAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
+        public void RemoveAction_stashChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
         //删去道具栏变更事件
         public void RemoveAction_bagChange(Action<uint, OpenNGS.Item.Common.ItemData> ac);
         //删去装备栏变更事件
