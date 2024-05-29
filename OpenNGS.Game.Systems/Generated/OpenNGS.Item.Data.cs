@@ -858,18 +858,22 @@ namespace OpenNGS.Item.Data
         }
         public ItemContainer()
         {
-            items = new global::System.Collections.Generic.List<ItemSaveData>();
+            stashItems = new global::System.Collections.Generic.List<ItemSaveData>();
             equipDict = new global::System.Collections.Generic.List<equips>();
+            bagItems = new global::System.Collections.Generic.List<ItemSaveData>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ItemSaveData> items { get; private set; }
+        public global::System.Collections.Generic.List<ItemSaveData> stashItems { get; private set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<equips> equipDict { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::System.Collections.Generic.List<ItemSaveData> bagItems { get; private set; }
 
     }
 
