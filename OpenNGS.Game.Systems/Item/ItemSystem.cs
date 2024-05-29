@@ -409,6 +409,7 @@ namespace OpenNGS.Systems
                                 itemToUpdate.Count = NGSStaticData.items.GetItem(nItemID).StackMax;
                             }
                             nCounts -= volumn;
+                            BagBoxChange?.Invoke(itemData[i].Guid, itemData[i]);
                         }
                         //该格子能装下
                         else
@@ -420,6 +421,7 @@ namespace OpenNGS.Systems
                                 itemToUpdate.Count += nCounts;
                             }
                             nCounts = 0;
+                            BagBoxChange?.Invoke(itemData[i].Guid, itemData[i]);
                             break;
                         }
                     }
@@ -464,6 +466,7 @@ namespace OpenNGS.Systems
                 itemSaveData.ItemID = item.ItemID;
                 itemSaveData.Count = item.Count;
                 itemContainer.AddItem(itemSaveData);
+                BagBoxChange?.Invoke(item.Guid, item);
             }
             return true;
         }
@@ -482,6 +485,7 @@ namespace OpenNGS.Systems
                 {
                     //若物品为0,在动态数据与缓存链表中删去该物品
                     nCounts -= itemData[i].Count;
+                    itemData[i].Count = 0;
                     guid_free.Enqueue(itemData[i].Guid);//Guid空闲出来后放入队列
                     var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
                     if (itemToRemove != null)
@@ -492,12 +496,14 @@ namespace OpenNGS.Systems
                 else
                 {
                     var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == itemData[i].Guid);
+                    itemData[i].Count -= nCounts;
                     if (itemToRemove != null)
                     {
-                        itemToRemove.Count= (itemData[i].Count - nCounts);
+                        itemToRemove.Count = (itemData[i].Count - nCounts);
                     }
                     break;
                 }
+                BagBoxChange?.Invoke(itemData[i].Guid, itemData[i]);
             }
             return true;
         }
@@ -514,6 +520,7 @@ namespace OpenNGS.Systems
             if (itemData.Count == nCounts)
             {
                 guid_free.Enqueue(nGuid);//Guid空闲出来后放入队列
+                itemData.Count = 0;
                 var itemToRemove = itemContainer.bagItems.FirstOrDefault(item => item.GUID == nGuid);
                 if (itemToRemove != null)
                 {
@@ -523,12 +530,14 @@ namespace OpenNGS.Systems
             //物品移除后有剩余
             else
             {
+                itemData.Count -= nCounts;
                 var itemToUpdate = itemContainer.bagItems.FirstOrDefault(item => item.GUID == nGuid);
                 if (itemToUpdate != null)
                 {
                     itemToUpdate.Count -= nCounts;
                 }
             }
+            BagBoxChange?.Invoke(itemData.Guid, itemData);
             return true;
         }
         public uint GetGuidByItemID(uint nItemID)
@@ -613,7 +622,6 @@ namespace OpenNGS.Systems
                 equipDict.index = index;
                 itemContainer.AddEquips(equipDict);
             }
-            BagBoxChange?.Invoke(nGuid, itemData);
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
         }
 
