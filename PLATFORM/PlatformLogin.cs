@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace OpenNGS.Platform
 {
@@ -40,6 +39,23 @@ namespace OpenNGS.Platform
             {
                 _loginProvider.Login(channel, permissions, subChannel, extraJson);
             }
+        }
+
+        public static void RegisteTable(string protocol, string applicationPath)
+        {
+            //string keyPath = "HKEY_CLASSES_ROOT\\" + protocol;
+            //System.Diagnostics.Process.Start("reg", "add \"" + keyPath + "\"");
+
+            //// 设置默认值为URL:自定义协议
+            //System.Diagnostics.Process.Start("reg", "add \"" + keyPath + "\" /v \"URL Protocol\" /d \"\"");
+
+            //// 设置URL协议的命令行
+            //string defaultIconKeyPath = keyPath + "\\DefaultIcon";
+            //System.Diagnostics.Process.Start("reg", "add \"" + defaultIconKeyPath + "\" /ve /t REG_SZ /d \"" + applicationPath + ",1\" /f");
+
+            //// 设置打开命令
+            //string commandKeyPath = keyPath + "\\shell\\open\\command";
+            //System.Diagnostics.Process.Start("reg", "add \"" + commandKeyPath + "\" /ve /t REG_SZ /d \"" + applicationPath + "\\\"%1\"");
         }
 
         public static void SwitchUser(bool useLaunchUser)
