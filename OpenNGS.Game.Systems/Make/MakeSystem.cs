@@ -32,13 +32,13 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         Random r = new Random();
         int number = r.Next(1,10);
         // 概率条件成功进入
-        if (number <= ((makeMaterial.Probability + Probability) * 10))
-        {
-            ExchangeSystem.ExchangeItem(sourcesList, targetsList);
-            EXCHANGE_RESULT_TYPE _TYPE = ExchangeSystem.ExchangeItem(sourcesMaterList,null);
-            ClearList();
-            return _TYPE;
-        }
+        //if (number <= ((makeMaterial.Probability + Probability) * 10))
+        //{
+        //    ExchangeSystem.ExchangeItem(sourcesList, targetsList);
+        //    EXCHANGE_RESULT_TYPE _TYPE = ExchangeSystem.ExchangeItem(sourcesMaterList,null);
+        //    ClearList();
+        //    return _TYPE;
+        //}
         //返还材料比例
         for (int i = 0; i < sourcesMaterList.Count; i++)
         {

@@ -457,17 +457,8 @@ namespace OpenNGS.Item.Data
         [global::ProtoBuf.ProtoMember(1)]
         public uint ID { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2)]
-        public float Probability { get; set; }
-
         [global::ProtoBuf.ProtoMember(3)]
         public uint TargetItemID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint MaterialIndex { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint MaterialsID { get; set; }
 
         [global::ProtoBuf.ProtoMember(6)]
         public uint MaterialCount { get; set; }
@@ -939,6 +930,59 @@ namespace OpenNGS.Item.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<equips> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ComposeCostInfo : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ComposeCostInfo()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::OpenNGS.Item.Common.ITEM_KIND Kind { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::OpenNGS.Item.Common.ITEM_RARITY_TYPE Quality { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint ConsumeCost { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint Cost { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ComposeCostInfoArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ComposeCostInfoArray()
+        {
+            items = new global::System.Collections.Generic.List<ComposeCostInfo>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ComposeCostInfo> items { get; private set; }
 
     }
 
