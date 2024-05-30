@@ -17,9 +17,11 @@ namespace OpenNGS.Platform
 
     public interface IFriendsModule : IPlatfromModule
     {
+#if !NET_STANDARD_2_0
         public OPENNGS_PLATFORM_MODULE Module => OPENNGS_PLATFORM_MODULE.Friends;
+#endif
 
-        public void SetIDCEnv(string url);
+    public void SetIDCEnv(string url);
         public void InitSDK(string appId, string appKey);
         public void SetOpenId(string openId);
         public void SetServer(int platId, int serverId);
