@@ -25,7 +25,7 @@ namespace OpenNGS.Logs.Appenders
             {
                 logger = UnityEngine.Debug.unityLogger.logHandler;
             }
-            if (UnityEngine.Debug.unityLogger.logHandler is not UnityLoggerHandler)
+            if (!(UnityEngine.Debug.unityLogger.logHandler is UnityLoggerHandler))
             {
                 UnityEngine.Debug.unityLogger.logHandler = new UnityLoggerHandler();
             }

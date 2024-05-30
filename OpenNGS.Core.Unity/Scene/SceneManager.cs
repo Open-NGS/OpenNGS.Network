@@ -23,7 +23,7 @@ public class SceneManager : MonoSingleton<SceneManager>, ISingleton
         
     }
 
-    private readonly Dictionary<string, ILoadingProcessor> m_LoadingDic = new();
+    private readonly Dictionary<string, ILoadingProcessor> m_LoadingDic = new Dictionary<string, ILoadingProcessor>();
 
     public void LoadSceneAsync(string sceneName, LoadSceneMode loadSceneMode, bool allowSceneActivation, ILoadingProcessor processor)
     {
