@@ -18,9 +18,9 @@ namespace OpenNGS.Systems
 
         public Action OnNotifyItemListChange;
         public Action OnPlacementChange;
-        public Action<uint, OpenNGS.Item.Common.ItemData> StashBoxChange;
-        public Action<uint, bags> BagBoxChange;
-        public Action<uint,OpenNGS.Item.Common.ItemData> EquipBoxChange;
+        public Action<uint, OpenNGS.Item.Data.ItemSaveData> StashBoxChange;
+        public Action<uint, OpenNGS.Item.Data.ItemSaveData> BagBoxChange;
+        public Action<uint,OpenNGS.Item.Data.ItemSaveData> EquipBoxChange;
 
         public Dictionary<ulong, long> TempPlaceDic = new Dictionary<ulong, long>();
         public Dictionary<ulong, long> EternalPlaceDic = new Dictionary<ulong, long>();
@@ -74,32 +74,33 @@ namespace OpenNGS.Systems
         }
 
         //获取道具信息(通过itemID)
-        public List<OpenNGS.Item.Common.ItemData> GetItemDataByItemId(uint itemId)
+        public List<OpenNGS.Item.Data.ItemSaveData> GetItemDataByItemId(uint itemId)
         {
-            List<OpenNGS.Item.Common.ItemData> itemDatas = new List<ItemData>();
+            List<OpenNGS.Item.Data.ItemSaveData> itemDatas = new List<ItemSaveData>();
             foreach (var bag in itemContainer.bagDict)
             {
                 if (bag.bagItem.ItemID == itemId)
                 {
-                    OpenNGS.Item.Common.ItemData item = new ItemData();
-                    item.Guid = (uint)bag.bagItem.GUID;
+                    OpenNGS.Item.Data.ItemSaveData item = new ItemSaveData();
+                    item.GUID = (uint)bag.bagItem.GUID;
                     item.ItemID = (uint)bag.bagItem.ItemID;
                     item.Count = (uint)bag.bagItem.Count;
+                    itemDatas.Add(item);
                 }
             }
             return itemDatas;
         }
         //获取某类所以道具的信息
-        public List<OpenNGS.Item.Common.ItemData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
+        public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
         {
-            List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
+            List<OpenNGS.Item.Data.ItemSaveData> itemInfos = new List<OpenNGS.Item.Data.ItemSaveData>();
             foreach (bags bag in itemContainer.bagDict)
             {
                 if (NGSStaticData.items.GetItem(bag.bagItem.ItemID).ItemType == iTEM_TYPE)
                 {
-                    OpenNGS.Item.Common.ItemData itemData = new ItemData();
+                    OpenNGS.Item.Data.ItemSaveData itemData = new ItemSaveData();
                     itemData.ItemID = bag.bagItem.ItemID;
-                    itemData.Guid = bag.bagItem.GUID;
+                    itemData.GUID = bag.bagItem.GUID;
                     itemData.Count = bag.bagItem.Count;
                     itemInfos.Add(itemData);
                 }
@@ -112,16 +113,16 @@ namespace OpenNGS.Systems
             return itemInfos;
         }
 
-        public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
+        public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
         {
-            List<OpenNGS.Item.Common.ItemData> itemInfos = new List<OpenNGS.Item.Common.ItemData>();
+            List<OpenNGS.Item.Data.ItemSaveData> itemInfos = new List<OpenNGS.Item.Data.ItemSaveData>();
             foreach (bags bag in itemContainer.bagDict)
             {
                 if (NGSStaticData.items.GetItem(bag.bagItem.ItemID).Kind == iTEM_KIND)
                 {
-                    OpenNGS.Item.Common.ItemData itemData = new ItemData();
+                    OpenNGS.Item.Data.ItemSaveData itemData = new ItemSaveData();
                     itemData.ItemID = bag.bagItem.ItemID;
-                    itemData.Guid = bag.bagItem.GUID;
+                    itemData.GUID = bag.bagItem.GUID;
                     itemData.Count = bag.bagItem.Count;
                     itemInfos.Add(itemData);
                 }
@@ -164,7 +165,7 @@ namespace OpenNGS.Systems
             }
             return itemInfos;
         }
-        public void SortItems(List<OpenNGS.Item.Common.ItemData> itemInfos)
+        public void SortItems(List<OpenNGS.Item.Data.ItemSaveData> itemInfos)
         {
             itemInfos = itemInfos.OrderBy(i =>
             {
@@ -207,14 +208,14 @@ namespace OpenNGS.Systems
 
             for (uint i = 0; i < itemInfos.Count; i++)
             {
-                bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == itemInfos[(int)i].Guid);
+                bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == itemInfos[(int)i].GUID);
                 if (bag != null)
                 {
                     bag.index = i;
                 }
                 else
                 {
-                    var stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == itemInfos[(int)i].Guid);
+                    var stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == itemInfos[(int)i].GUID);
                     stashItem.index = i;
                 }
             }
@@ -403,7 +404,7 @@ namespace OpenNGS.Systems
         
         public bool IsEnoughByItemID(uint nItemID, uint nCounts)
         {
-            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
+            List<OpenNGS.Item.Data.ItemSaveData> itemData = GetItemDataByItemId(nItemID);
             if(itemData == null)
             {
                 return false;
@@ -496,7 +497,7 @@ namespace OpenNGS.Systems
 
         public bool AddItemsByID(uint nItemID, uint nCounts)
         {
-            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
+            List<OpenNGS.Item.Data.ItemSaveData> itemData = GetItemDataByItemId(nItemID);
             //已获得过的物品
             if (itemData != null && itemData.Count > 0)
             {
@@ -510,37 +511,25 @@ namespace OpenNGS.Systems
                         if ((int)nCounts - (int)volumn >= 0)
                         {
                             itemData[i].Count = NGSStaticData.items.GetItem(nItemID).StackMax;
-                            var itemToUpdate = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].Guid);
+                            var itemToUpdate = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].GUID);
                             if (itemToUpdate != null)
                             {
                                 itemToUpdate.bagItem.Count = NGSStaticData.items.GetItem(nItemID).StackMax;
                             }
                             nCounts -= volumn;
-                            ItemSaveData itemSaveData = new ItemSaveData();
-                            itemSaveData.GUID = itemData[i].Guid;
-                            itemSaveData.ItemID = itemData[i].ItemID;
-                            itemSaveData.Count = itemData[i].Count;
-                            bags bag = new bags();
-                            bag.bagItem = itemSaveData;
-                            BagBoxChange?.Invoke(itemData[i].Guid, bag);
+                            BagBoxChange?.Invoke(itemData[i].GUID, itemData[i]);
                         }
                         //该格子能装下
                         else
                         {
                             itemData[i].Count += nCounts;
-                            var itemToUpdate = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].Guid);
+                            var itemToUpdate = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].GUID);
                             if (itemToUpdate != null)
                             {
                                 itemToUpdate.bagItem.Count += nCounts;
                             }
                             nCounts = 0;
-                            ItemSaveData itemSaveData = new ItemSaveData();
-                            itemSaveData.GUID = itemData[i].Guid;
-                            itemSaveData.ItemID = itemData[i].ItemID;
-                            itemSaveData.Count = itemData[i].Count;
-                            bags bag = new bags();
-                            bag.bagItem = itemSaveData;
-                            BagBoxChange?.Invoke(itemData[i].Guid, bag);
+                            BagBoxChange?.Invoke(itemData[i].GUID, itemData[i]);
                             break;
                         }
                     }
@@ -552,12 +541,12 @@ namespace OpenNGS.Systems
             }
             while (nCounts > 0)
             {
-                OpenNGS.Item.Common.ItemData item = new OpenNGS.Item.Common.ItemData();
+                OpenNGS.Item.Data.ItemSaveData item = new OpenNGS.Item.Data.ItemSaveData();
                 item.ItemID = nItemID;
                 //前面有空闲出来的Guid
                 if(guid_free.Count > 0)
                 {
-                    item.Guid = guid_free.Dequeue();
+                    item.GUID = guid_free.Dequeue();
                 }
                 //前面无空闲Guid则用后面数赋值
                 else
@@ -566,7 +555,7 @@ namespace OpenNGS.Systems
                     {
                         guid_cache++;
                     }
-                    item.Guid = guid_cache;
+                    item.GUID = guid_cache;
                 }
                 //超出最大堆叠数
                 if (nCounts > NGSStaticData.items.GetItem(nItemID).StackMax)
@@ -580,22 +569,18 @@ namespace OpenNGS.Systems
                     nCounts = 0;
                 }
                 //添加到动态数据
-                ItemSaveData itemSaveData = new ItemSaveData();
-                itemSaveData.GUID = item.Guid;
-                itemSaveData.ItemID = item.ItemID;
-                itemSaveData.Count = item.Count;
                 bags bag = new bags();
-                bag.bagItem = itemSaveData;
+                bag.bagItem = item;
                 bag.index = 0;
                 MoveBagsBackIndex();
                 itemContainer.AddItem(bag);
-                BagBoxChange?.Invoke(item.Guid, bag);
+                BagBoxChange?.Invoke(item.GUID, item);
             }
             return true;
         }
         public bool RemoveItemsByID(uint nItemID, uint nCounts)
         {
-            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
+            List<OpenNGS.Item.Data.ItemSaveData> itemData = GetItemDataByItemId(nItemID);
             if (itemData == null || itemData.Count <= 0 || !IsEnoughByItemID(nItemID,nCounts))
             {
                 return false;
@@ -609,8 +594,8 @@ namespace OpenNGS.Systems
                     //若物品为0,在动态数据与缓存链表中删去该物品
                     nCounts -= itemData[i].Count;
                     itemData[i].Count = 0;
-                    guid_free.Enqueue(itemData[i].Guid);//Guid空闲出来后放入队列
-                    var itemToRemove = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].Guid);
+                    guid_free.Enqueue(itemData[i].GUID);//Guid空闲出来后放入队列
+                    var itemToRemove = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].GUID);
                     if (itemToRemove != null)
                     {
                         itemContainer.RemoveItem(itemToRemove);
@@ -618,7 +603,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    var itemToRemove = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].Guid);
+                    var itemToRemove = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].GUID);
                     itemData[i].Count -= nCounts;
                     if (itemToRemove != null)
                     {
@@ -626,13 +611,7 @@ namespace OpenNGS.Systems
                     }
                     break;
                 }
-                ItemSaveData itemSaveData = new ItemSaveData();
-                itemSaveData.GUID = itemData[i].Guid;
-                itemSaveData.ItemID = itemData[i].ItemID;
-                itemSaveData.Count = itemData[i].Count;
-                bags bag = new bags();
-                bag.bagItem = itemSaveData;
-                BagBoxChange?.Invoke(itemData[i].Guid, bag);
+                BagBoxChange?.Invoke(itemData[i].GUID, itemData[i]);
             }
             return true;
         }
@@ -666,15 +645,15 @@ namespace OpenNGS.Systems
                     itemToUpdate.bagItem.Count -= nCounts;
                 }
             }
-            BagBoxChange?.Invoke(itemData.bagItem.GUID, itemData);
+            BagBoxChange?.Invoke(itemData.bagItem.GUID, itemData.bagItem);
             return true;
         }
         public uint GetGuidByItemID(uint nItemID)
         {
-            List<OpenNGS.Item.Common.ItemData> itemData = GetItemDataByItemId(nItemID);
+            List<OpenNGS.Item.Data.ItemSaveData> itemData = GetItemDataByItemId(nItemID);
             if (itemData != null && itemData.Count > 0)
             {
-                return itemData[0].Guid;
+                return itemData[0].GUID;
             }
             return 0;
         }
@@ -691,7 +670,7 @@ namespace OpenNGS.Systems
         public uint GetItemTotalCountByItemID(uint itemID)
         {
             uint sum = 0;
-            List<ItemData> items = GetItemDataByItemId(itemID);
+            List<OpenNGS.Item.Data.ItemSaveData> items = GetItemDataByItemId(itemID);
             foreach (var item in items)
             {
                 sum += item.Count;
@@ -860,31 +839,31 @@ namespace OpenNGS.Systems
         {
             return itemContainer.equipDict ;
         }
-        public void AddAction_stashChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        public void AddAction_stashChange(Action<uint, OpenNGS.Item.Data.ItemSaveData> ac)
         {
             StashBoxChange += ac;
         }
         //添加道具栏变更事件
-        public void AddAction_bagChange(Action<uint, bags> ac)
+        public void AddAction_bagChange(Action<uint, OpenNGS.Item.Data.ItemSaveData> ac)
         {
             BagBoxChange += ac;
         }
         //添加装备栏变更事件
-        public void AddAction_equipChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        public void AddAction_equipChange(Action<uint, OpenNGS.Item.Data.ItemSaveData> ac)
         {
             EquipBoxChange += ac;
         }
-        public void RemoveAction_stashChange(Action<uint, OpenNGS.Item.Common.ItemData> ac)
+        public void RemoveAction_stashChange(Action<uint, OpenNGS.Item.Data.ItemSaveData> ac)
         {
             StashBoxChange -= ac;
         }
         //删去道具栏变更事件
-        public void RemoveAction_bagChange(Action<uint, bags> ac)
+        public void RemoveAction_bagChange(Action<uint, OpenNGS.Item.Data.ItemSaveData> ac)
         {
             BagBoxChange -= ac;
         }
         //删去装备栏变更事件
-        public void RemoveAction_equipChange(Action<uint,OpenNGS.Item.Common.ItemData> ac)
+        public void RemoveAction_equipChange(Action<uint,OpenNGS.Item.Data.ItemSaveData> ac)
         {
             EquipBoxChange -= ac;
         }

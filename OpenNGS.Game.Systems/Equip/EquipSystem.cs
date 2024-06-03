@@ -14,17 +14,17 @@ using OpenNGS.Exchange.Common;
 public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
     //装备背包（未装备）列表
-    List<OpenNGS.Item.Common.ItemData> EquipInventory;
+    List<OpenNGS.Item.Data.ItemSaveData> EquipInventory;
     //材料列表
-    List<OpenNGS.Item.Common.ItemData> CraftInventory;
+    List<OpenNGS.Item.Data.ItemSaveData> CraftInventory;
     //图纸列表
-    List<OpenNGS.Item.Common.ItemData> BlueprintList;
+    List<OpenNGS.Item.Data.ItemSaveData> BlueprintList;
     //材料列表
-    List<OpenNGS.Item.Common.ItemData> CraftList;
+    List<OpenNGS.Item.Data.ItemSaveData> CraftList;
     //幸运石列表
-    List<OpenNGS.Item.Common.ItemData> LuckyStoneList;
+    List<OpenNGS.Item.Data.ItemSaveData> LuckyStoneList;
     //装备(可装备)列表
-    List<OpenNGS.Item.Common.ItemData> EquipItems = new List<OpenNGS.Item.Common.ItemData>();
+    List<OpenNGS.Item.Data.ItemSaveData> EquipItems = new List<OpenNGS.Item.Data.ItemSaveData>();
     //传给交易系统
     List<SourceItem> sourcesList = new List<SourceItem>();
     List<TargetItem> targetsList = new List<TargetItem>();
@@ -41,7 +41,7 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     }
 
     //通过二级分类获得数据
-    public List<OpenNGS.Item.Common.ItemData> GetItemInfoByType(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
+    public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfoByType(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE)
     {
         if(iTEM_TYPE== ITEM_TYPE.ITEM_TYPE_EQUIP)
         {
@@ -57,7 +57,7 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     }
 
     //通过三级分类获得数据
-    public List<OpenNGS.Item.Common.ItemData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
+    public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND)
     {
         if (iTEM_KIND == ITEM_KIND.ITEM_KIND_MATERIAL_BLUEPRINT)
         {
