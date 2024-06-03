@@ -851,7 +851,7 @@ namespace OpenNGS.Item.Data
         {
             stashDict = new global::System.Collections.Generic.List<stashs>();
             equipDict = new global::System.Collections.Generic.List<equips>();
-            bagIDict = new global::System.Collections.Generic.List<bags>();
+            bagDict = new global::System.Collections.Generic.List<bags>();
             OnConstructor();
         }
 
@@ -864,7 +864,7 @@ namespace OpenNGS.Item.Data
         public global::System.Collections.Generic.List<equips> equipDict { get; private set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::System.Collections.Generic.List<bags> bagIDict { get; private set; }
+        public global::System.Collections.Generic.List<bags> bagDict { get; private set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         public uint stashCapacity { get; set; }
@@ -1012,9 +1012,6 @@ namespace OpenNGS.Item.Data
 
         [global::ProtoBuf.ProtoMember(2)]
         public ItemSaveData stashItem { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint stashCapacity { get; set; }
 
     }
 
