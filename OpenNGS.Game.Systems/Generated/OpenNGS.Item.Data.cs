@@ -849,22 +849,28 @@ namespace OpenNGS.Item.Data
         }
         public ItemContainer()
         {
-            stashItems = new global::System.Collections.Generic.List<ItemSaveData>();
+            stashDict = new global::System.Collections.Generic.List<stashs>();
             equipDict = new global::System.Collections.Generic.List<equips>();
-            bagItems = new global::System.Collections.Generic.List<ItemSaveData>();
+            bagIDict = new global::System.Collections.Generic.List<bags>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<ItemSaveData> stashItems { get; private set; }
+        public global::System.Collections.Generic.List<stashs> stashDict { get; private set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<equips> equipDict { get; private set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public global::System.Collections.Generic.List<ItemSaveData> bagItems { get; private set; }
+        public global::System.Collections.Generic.List<bags> bagIDict { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint stashCapacity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint bagCapacity { get; set; }
 
     }
 
@@ -983,6 +989,97 @@ namespace OpenNGS.Item.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<ComposeCostInfo> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class stashs : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public stashs()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint index { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ItemSaveData stashItem { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint stashCapacity { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class stashsArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public stashsArray()
+        {
+            items = new global::System.Collections.Generic.List<stashs>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<stashs> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class bags : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public bags()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint index { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ItemSaveData bagItem { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class bagsArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public bagsArray()
+        {
+            items = new global::System.Collections.Generic.List<bags>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<bags> items { get; private set; }
 
     }
 
