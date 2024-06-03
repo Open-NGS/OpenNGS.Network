@@ -516,7 +516,13 @@ namespace OpenNGS.Systems
                                 itemToUpdate.bagItem.Count = NGSStaticData.items.GetItem(nItemID).StackMax;
                             }
                             nCounts -= volumn;
-                            //BagBoxChange?.Invoke(itemData[i].Guid, itemData[i]);
+                            ItemSaveData itemSaveData = new ItemSaveData();
+                            itemSaveData.GUID = itemData[i].Guid;
+                            itemSaveData.ItemID = itemData[i].ItemID;
+                            itemSaveData.Count = itemData[i].Count;
+                            bags bag = new bags();
+                            bag.bagItem = itemSaveData;
+                            BagBoxChange?.Invoke(itemData[i].Guid, bag);
                         }
                         //该格子能装下
                         else
@@ -528,7 +534,13 @@ namespace OpenNGS.Systems
                                 itemToUpdate.bagItem.Count += nCounts;
                             }
                             nCounts = 0;
-                            //BagBoxChange?.Invoke(itemData[i].Guid, itemData[i]);
+                            ItemSaveData itemSaveData = new ItemSaveData();
+                            itemSaveData.GUID = itemData[i].Guid;
+                            itemSaveData.ItemID = itemData[i].ItemID;
+                            itemSaveData.Count = itemData[i].Count;
+                            bags bag = new bags();
+                            bag.bagItem = itemSaveData;
+                            BagBoxChange?.Invoke(itemData[i].Guid, bag);
                             break;
                         }
                     }
@@ -614,7 +626,13 @@ namespace OpenNGS.Systems
                     }
                     break;
                 }
-                //BagBoxChange?.Invoke(itemData[i].Guid, itemData[i]);
+                ItemSaveData itemSaveData = new ItemSaveData();
+                itemSaveData.GUID = itemData[i].Guid;
+                itemSaveData.ItemID = itemData[i].ItemID;
+                itemSaveData.Count = itemData[i].Count;
+                bags bag = new bags();
+                bag.bagItem = itemSaveData;
+                BagBoxChange?.Invoke(itemData[i].Guid, bag);
             }
             return true;
         }
