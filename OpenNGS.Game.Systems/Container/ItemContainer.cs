@@ -6,21 +6,21 @@ namespace OpenNGS.Item.Data
     public partial class ItemContainer
     {
 
-        public void AddItem(ItemSaveData item)
+        public void AddItem(bags item)
         {
-            bagItems.Add(item);
+            bagDict.Add(item);
         }
-        public void RemoveItem(ItemSaveData item)
+        public void RemoveItem(bags item)
         {
-            bagItems.Remove(item);
+            bagDict.Remove(item);
         }
-        public void AddStashItem(ItemSaveData item)
+        public void AddStashItem(stashs item)
         {
-            stashItems.Add(item);
+            stashDict.Add(item);
         }
-        public void RemoveStashItem(ItemSaveData item)
+        public void RemoveStashItem(stashs item)
         {
-            stashItems.Remove(item);
+            stashDict.Remove(item);
         }
         public void AddEquips(equips item)
         {
@@ -34,10 +34,5 @@ namespace OpenNGS.Item.Data
         {
             Item.Count = num;
         }
-        public ItemSaveData GetItemById(int itemId)
-        {
-            return stashItems.FirstOrDefault(i => i.GUID == itemId);
-        }
-
     }
 }
