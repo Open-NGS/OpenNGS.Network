@@ -11,6 +11,12 @@ namespace OpenNGS.UI.UGUI
         public int Layer { get; set; }
         public bool Cache { get; set; }
         public bool Visible { get; private set; }
+
+        public bool CanClose()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Close()
         {
             throw new NotImplementedException();

@@ -50,7 +50,7 @@ namespace OpenNGS.UI
         }
         public void Close()
         {
-            if (CanClose()) // 检查视图是否可以被关闭
+            if (CanClose())
             {
                 OnClose();
                 PlayDismissAnimation();
