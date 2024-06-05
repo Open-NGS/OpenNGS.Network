@@ -107,7 +107,7 @@ namespace OpenNGS.Systems
         }
 
         //升级技能
-        public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint technologyNodeID)
+        public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint technologyNodeID, uint currencyID)
         {
             //已升级过
             if (TechContainer.GetTechNodeById(technologyNodeID).Activated)
@@ -129,7 +129,7 @@ namespace OpenNGS.Systems
             NodeData tNode = NGSStaticData.technologyNodes.GetItem(technologyNodeID);
 
             //暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
-            uint id = m_itemSystem.GetGuidByItemID(2);
+            uint id = m_itemSystem.GetGuidByItemID(currencyID);
             technologyDots.GUID = id;//科技点数对应ItemID
             technologyDots.Count = tNode.CostItemCount;//升级科技点需要的科技点数
             sourceItems.Add(technologyDots);
@@ -165,7 +165,7 @@ namespace OpenNGS.Systems
         }
 
         //重置技能
-        public TECHNOLOGY_RESULT_TYPE ResetNode()
+        public TECHNOLOGY_RESULT_TYPE ResetNode(uint currencyID)
         {
             //设置对应科技技能状态
             uint costSum = 0;
@@ -181,13 +181,13 @@ namespace OpenNGS.Systems
                 TechContainer.GetTechNodeById(data.ID).Activated = false;
                 TechContainer.GetTechNodeById(data.ID).Locked = tNode.ParentNode != null;
 
-                m_itemSystem.RemoveItemsByID(data.ID, 1);
+                //m_itemSystem.RemoveItemsByID(data.ID, 1);
             }
             if(tNode == null)
             {
                 return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
             }
-            m_itemSystem.AddItemsByID(2, costSum);
+            m_itemSystem.AddItemsByID(currencyID, costSum);
 
             //调整玩家属性
             //xxx();

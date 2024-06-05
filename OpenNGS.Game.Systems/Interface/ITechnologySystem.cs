@@ -20,10 +20,10 @@ namespace OpenNGS.Systems
         public TechNodeSaveData GetNodeSaveData(uint id);
 
         //升级科技点
-        public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint id);
+        public TECHNOLOGY_RESULT_TYPE UpgradeNode(uint technologyNodeID, uint currencyID);
 
         //重置科技点
-        public TECHNOLOGY_RESULT_TYPE ResetNode();
+        public TECHNOLOGY_RESULT_TYPE ResetNode(uint currencyID);
 
         public void AddTechContainer(TechContainer container);
 
