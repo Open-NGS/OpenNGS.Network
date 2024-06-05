@@ -44,16 +44,21 @@ namespace OpenNGS.UI
         protected virtual void OpenView(OpenNGSViewParam param) { }
         protected virtual void InitView() { }
         protected virtual void CloseView() { }
-
+        public virtual bool CanClose()
+        {
+            return true;
+        }
         public void Close()
         {
-            OnClose();
-            PlayDismissAnimation();
-            Closed?.Invoke(ID);
-            Destroy(gameObject, DismissAnimationDuration);
-            CloseView();
+            if (CanClose()) // 检查视图是否可以被关闭
+            {
+                OnClose();
+                PlayDismissAnimation();
+                Closed?.Invoke(ID);
+                Destroy(gameObject, DismissAnimationDuration);
+                CloseView();
+            }
         }
-
         public void Show()
         {
             gameObject.SetActive(true);
