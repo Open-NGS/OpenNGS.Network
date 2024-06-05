@@ -57,15 +57,28 @@ namespace OpenNGS.Systems
             MakeDesign makeInfo = new MakeDesign();
             return makeInfo;
         }
-
+        public ItemSaveData GetItemDataByItemID(ulong id)
+        {
+            bags bag = itemContainer.bagDict.Find(item => item.bagItem.ItemID == id);
+            stashs stash = itemContainer.stashDict.Find(item => item.stashItem.ItemID == id);
+            if (bag != null)
+            {
+                return bag.bagItem;
+            }
+            else if(stash != null)
+            {
+                return stash.stashItem;
+            }
+            else { return null; }
+        }
         //获取道具信息(通过GUID)
         public bags GetItemDataByGuid(ulong uid)
         {
             bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == uid);
-            //if (bag == null)
-            //{
-            //    return null;
-            //}
+            if (bag == null)
+            {
+                return null;
+            }
             //OpenNGS.Item.Common.ItemData item = new ItemData();
             //item.ItemID = bag.bagItem.ItemID;
             //item.Guid = bag.bagItem.GUID;
@@ -735,6 +748,19 @@ namespace OpenNGS.Systems
                 return changeitem;
             }
             return null;
+        }
+        public uint GetIndex(uint id, bool isBag)
+        {
+            if (isBag)
+            {
+                var bagItem = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == id);
+                return bagItem.index;
+            }
+            else
+            {
+                var stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == id);
+                return stashItem.index;
+            }
         }
         public void SetIndex(uint i, uint id, bool isBag)
         {

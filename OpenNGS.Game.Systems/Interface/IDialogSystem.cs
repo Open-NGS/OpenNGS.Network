@@ -11,6 +11,7 @@ namespace OpenNGS.Systems
     {
         DialogTalk CurrentDialog { get; set; }
         List<DialogChoice> Choices { get; set; }
+        public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType();
         public void LoadDialogs(uint dialogId);
         public void SelectChoice(DialogChoice option);
         public void NextDialog();

@@ -86,7 +86,11 @@ namespace OpenNGS.Systems
             }
             DisplayDialog();
         }
-
+        public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType()
+        {
+            DialogList dialog = NGSStaticData.Dialogue.GetItem(m_nDialogID);
+            return dialog.DialogType;
+        }
         private void DisplayDialog()
         {
             if (CurrentIndex < DialogTalks.Count)
