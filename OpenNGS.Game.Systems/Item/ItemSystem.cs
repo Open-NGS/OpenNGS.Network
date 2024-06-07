@@ -441,39 +441,36 @@ namespace OpenNGS.Systems
             bool bRes = itemData.bagItem.Count >= nCounts;
             return bRes;
         }
-        private int FindUnusedBagIndex(List<bags> bagDict)
+        private uint FindUnusedBagIndex(List<bags> bagDict)
         {
-            //for (int i = 0; i < itemContainer.bagCapacity; i++)
-            for (int i = 0; i < 200; i++)
+            for (uint i = 0; i < itemContainer.bagCapacity; i++)
             {
                 // 检查索引i是否未被使用
-                bool isIndexUsed = bagDict.Exists(bag => bag.index == (uint)i);
+                bool isIndexUsed = bagDict.Exists(bag => bag.index == i);
                 if (!isIndexUsed)
                 {
-                    return i; // 找到未使用的索引
+                    return i;
                 }
             }
-            return -1; // 没有找到未使用的索引
+            return 0;
         }
-        private int FindUnusedStashIndex(List<stashs> stashDict)
+        private uint FindUnusedStashIndex(List<stashs> stashDict)
         {
-            //for (int i = 0; i < itemContainer.stashCapacity; i++)
-            for (int i = 0; i < 200; i++)
+            for (uint i = 0; i < itemContainer.stashCapacity; i++)
             {
-                // 检查索引i是否未被使用
-                bool isIndexUsed = stashDict.Exists(stash => stash.index == (uint)i);
+                bool isIndexUsed = stashDict.Exists(stash => stash.index == i);
                 if (!isIndexUsed)
                 {
-                    return i; // 找到未使用的索引
+                    return i;
                 }
             }
-            return -1; // 没有找到未使用的索引
+            return 0;
         }
         public void MoveBagsBackIndex()
         {
             var sortedBags = itemContainer.bagDict.OrderBy(bag => bag.index).ToList();
 
-            int unusedIndex = FindUnusedBagIndex(itemContainer.bagDict);
+            uint unusedIndex = FindUnusedBagIndex(itemContainer.bagDict);
             foreach (var bag in sortedBags)
             {
                 if (unusedIndex == bag.index + 1)
@@ -491,7 +488,7 @@ namespace OpenNGS.Systems
         public void MoveStashsBackIndex()
         {
             var sortedBags = itemContainer.stashDict.OrderBy(stash => stash.index).ToList();
-            int unusedIndex = FindUnusedStashIndex(itemContainer.stashDict);
+            uint unusedIndex = FindUnusedStashIndex(itemContainer.stashDict);
             foreach (var stash in sortedBags)
             {
                 if (unusedIndex == stash.index + 1)
@@ -712,8 +709,8 @@ namespace OpenNGS.Systems
             {
                 bags bag = new bags();
                 bag.bagItem = changeitem.stashItem;
-                bag.index = 0;
-                MoveBagsBackIndex();
+                bag.index = FindUnusedBagIndex(itemContainer.bagDict);
+                //MoveBagsBackIndex();
                 itemContainer.AddItem(bag);
             }
         }
@@ -724,8 +721,8 @@ namespace OpenNGS.Systems
             {
                 stashs stash = new stashs();
                 stash.stashItem = changeitem.bagItem;
-                stash.index = 0;
-                MoveStashsBackIndex();
+                stash.index = FindUnusedStashIndex(itemContainer.stashDict);
+                //MoveStashsBackIndex();
                 itemContainer.AddStashItem(stash);
             }
         }
@@ -854,8 +851,8 @@ namespace OpenNGS.Systems
                 itemContainer.RemoveEquips(equippedItem);
                 bags bag = new bags();
                 bag.bagItem = equippedItem.equip;
-                bag.index = 0;
-                MoveBagsBackIndex();
+                bag.index = FindUnusedBagIndex(itemContainer.bagDict); ;
+                //MoveBagsBackIndex();
                 itemContainer.AddItem(bag);
             }
             return EQUIP_RESULT_TYPE.EQUIP_RESULT_TYPE_SUCCESS;
