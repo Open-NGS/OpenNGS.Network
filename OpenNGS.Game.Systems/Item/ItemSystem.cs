@@ -613,12 +613,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    var itemToRemove = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == itemData[i].GUID);
                     itemData[i].Count -= nCounts;
-                    if (itemToRemove != null)
-                    {
-                        itemToRemove.bagItem.Count = (itemData[i].Count - nCounts);
-                    }
                     break;
                 }
                 BagBoxChange?.Invoke(itemData[i].GUID, itemData[i]);
@@ -649,11 +644,6 @@ namespace OpenNGS.Systems
             else
             {
                 itemData.bagItem.Count -= nCounts;
-                var itemToUpdate = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == nGuid);
-                if (itemToUpdate != null)
-                {
-                    itemToUpdate.bagItem.Count -= nCounts;
-                }
             }
             BagBoxChange?.Invoke(itemData.bagItem.GUID, itemData.bagItem);
             return true;
