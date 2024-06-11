@@ -129,7 +129,7 @@ namespace OpenNGS.UI
 
     public interface INotification
     {
-        void Close();
+        bool Close();
     }
 
     public interface IMessageTips : INotification

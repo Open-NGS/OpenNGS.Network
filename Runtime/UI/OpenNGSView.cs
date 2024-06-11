@@ -19,7 +19,7 @@ namespace OpenNGS.UI
         public bool Visible { get; }
         public void Open(OpenNGSViewParam param);
         public bool CanClose();
-        public void Close();
+        public bool Close();
         public void Show();
         public void Hide();
     }

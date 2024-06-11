@@ -17,7 +17,7 @@ namespace OpenNGS.UI.UGUI
             throw new NotImplementedException();
         }
 
-        public void Close()
+        public bool Close()
         {
             throw new NotImplementedException();
         }

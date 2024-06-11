@@ -48,8 +48,9 @@ namespace OpenNGS.UI
         {
             return true;
         }
-        public void Close()
+        public bool Close()
         {
+            bool bClose = false;
             if (CanClose())
             {
                 OnClose();
@@ -57,7 +58,9 @@ namespace OpenNGS.UI
                 Closed?.Invoke(ID);
                 Destroy(gameObject, DismissAnimationDuration);
                 CloseView();
+                bClose = true;
             }
+            return bClose;
         }
         public void Show()
         {
