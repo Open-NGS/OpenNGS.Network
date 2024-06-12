@@ -31,6 +31,7 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Item.Data.MakeDesign, uint> MakeItems = new Table<Item.Data.MakeDesign, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Item.Data.ComposeCostInfo, uint> ComposeInfo = new Table<Item.Data.ComposeCostInfo, uint>((item) => { return item.ID; }, false);
         public static Dictionary<uint,OpenNGS.Item.Data.ComposeCostInfo> ComposeInfos = SettingTable<OpenNGS.Item.Data.ComposeCostInfo,uint>.map;
+        public static Table<OpenNGS.Item.Data.ComposeCostInfo, uint, uint> composeCostInfo = new Table<Item.Data.ComposeCostInfo, uint, uint>((item) => { return (uint)item.Kind; }, (item) => { return (uint)item.Quality; }, false);
         public static ListTableBase<OpenNGS.Achievement.Data.AchievementAward, uint> s_achiAward = new ListTableBase<Achievement.Data.AchievementAward, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Levels.Data.LevelEnemyInfo, uint, uint> levelEnemyInfo = new Table<Levels.Data.LevelEnemyInfo, uint, uint>((item) => { return item.ID; }, (item) => { return item.RuleID; }, false);
         public static ListTableBase<OpenNGS.Levels.Data.LevelEnemyInfo,uint> levelEnemyInfos=new ListTableBase<Levels.Data.LevelEnemyInfo, uint>((item) => { return item.ID; }, false);
