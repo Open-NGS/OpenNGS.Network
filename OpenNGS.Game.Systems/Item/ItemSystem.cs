@@ -505,8 +505,9 @@ namespace OpenNGS.Systems
         }
 
 
-        public bool AddItemsByID(uint nItemID, uint nCounts)
+        public Item.Data.ItemSaveData AddItemsByID(uint nItemID, uint nCounts)
         {
+            Item.Data.ItemSaveData _retItemSaveData = null;
             List<OpenNGS.Item.Data.ItemSaveData> itemData = GetItemDataByItemId(nItemID);
             //已获得过的物品
             if (itemData != null && itemData.Count > 0)
@@ -528,6 +529,7 @@ namespace OpenNGS.Systems
                             }
                             nCounts -= volumn;
                             BagBoxChange?.Invoke(itemData[i].GUID, itemData[i]);
+                            _retItemSaveData = itemData[i];
                         }
                         //该格子能装下
                         else
@@ -540,6 +542,7 @@ namespace OpenNGS.Systems
                             }
                             nCounts = 0;
                             BagBoxChange?.Invoke(itemData[i].GUID, itemData[i]);
+                            _retItemSaveData = itemData[i];
                             break;
                         }
                     }
@@ -585,8 +588,9 @@ namespace OpenNGS.Systems
                 MoveBagsBackIndex();
                 itemContainer.AddItem(bag);
                 BagBoxChange?.Invoke(item.GUID, item);
+                _retItemSaveData = item;
             }
-            return true;
+            return _retItemSaveData;
         }
         public bool RemoveItemsByID(uint nItemID, uint nCounts)
         {

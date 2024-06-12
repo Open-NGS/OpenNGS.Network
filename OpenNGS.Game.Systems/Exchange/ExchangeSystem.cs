@@ -7,6 +7,7 @@ using OpenNGS.Collections.Generic;
 using OpenNGS.Exchange.Data;
 using OpenNGS.Exchange.Common;
 using Systems;
+using OpenNGS.Item.Data;
 
 namespace OpenNGS.Systems
 {
@@ -26,7 +27,7 @@ namespace OpenNGS.Systems
             return "com.openngs.system.exchange";
         }
 
-        public EXCHANGE_RESULT_TYPE ExchangeItem(List<SourceItem> src, List<TargetItem> target)
+        public EXCHANGE_RESULT_TYPE ExchangeItem(List<SourceItem> src, List<TargetItem> target, List<ItemSaveData> LstItemData = null)
         {
             EXCHANGE_RESULT_TYPE result = EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS;
 
@@ -38,7 +39,7 @@ namespace OpenNGS.Systems
                     return EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM;
             }             
             SendRemoveItem2Bag(src);
-            SendAddItem2Bag(target);
+            SendAddItem2Bag(target, LstItemData);
             return result;
         }
 
@@ -66,13 +67,17 @@ namespace OpenNGS.Systems
             return res;
         }
 
-        private void SendAddItem2Bag(List<TargetItem> items)
+        private void SendAddItem2Bag(List<TargetItem> items, List<ItemSaveData> LstItemData)
         {
             if(items == null || items.Count == 0) return;
             //给背包发送要增加的道具            
             foreach(TargetItem item in items)
             {
-                m_itemSys.AddItemsByID(item.ItemID, item.Count);
+                ItemSaveData _itemData = m_itemSys.AddItemsByID(item.ItemID, item.Count);
+                if(LstItemData != null)
+                {
+                    LstItemData.Add(_itemData);
+                }
             }
         }
 
