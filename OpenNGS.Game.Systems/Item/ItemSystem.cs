@@ -11,6 +11,7 @@ using Systems;
 using System.Linq;
 using OpenNGSCommon;
 using ItemData = OpenNGS.Item.Common.ItemData;
+using Codice.Client.BaseCommands;
 
 namespace OpenNGS.Systems
 {
@@ -696,7 +697,45 @@ namespace OpenNGS.Systems
             DisassembleEquipIno disassembleInfo = new DisassembleEquipIno();
             return disassembleInfo;
         }
+        public uint OverlayItemBagStash(uint guid1, uint guid2)
+        {
+            var changeitem2 = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == guid2);
+            if (changeitem2 == null)
+            {
+                var changeitem22 = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == guid2);
+                var changeitem11 = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == guid1);
+                if (changeitem11 == null)
+                {
+                    changeitem22.bagItem.Count += itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == guid1).bagItem.Count;
+                    OutBag(guid1);
+                    return changeitem22.index;
+                }
+                else
+                {
+                    OutStash(guid1);
+                    changeitem22.bagItem.Count += changeitem11.stashItem.Count;
+                    return changeitem22.index;
+                }
+            }
+            else
+            {
+                var changeitem11 = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == guid1);
+                if (changeitem11 == null)
+                {
+                    changeitem2.stashItem.Count += itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == guid1).bagItem.Count;
+                    OutBag(guid1);
+                    return changeitem2.index;
+                }
+                else
+                {
+                    OutStash(guid1);
+                    changeitem2.stashItem.Count += changeitem11.stashItem.Count;
+                    return changeitem2.index;
+                }
+            }
 
+
+        }
         public uint InBag(uint nGuid)
         {
             var changeitem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == nGuid);

@@ -40,7 +40,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //ÍÑ×°±¸
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
-
+        public uint OverlayItemBagStash(uint guid1, uint guid2);
         public uint InBag(uint nGuid);
         public uint InStash(uint nGuid);
         public void OutStash(uint nGuid);
