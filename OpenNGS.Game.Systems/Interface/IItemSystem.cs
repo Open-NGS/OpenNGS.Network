@@ -21,7 +21,7 @@ namespace OpenNGS.Systems
         public uint GetGuidByItemID(uint nItemID);
         public uint GetItemCountByGuidID(uint nGuid);
         public uint GetItemTotalCountByItemID(uint itemID);
-        public OpenNGS.Item.Data.ItemSaveData GetItemDataByItemID(ulong uid);
+        public OpenNGS.Item.Data.ItemSaveData GetItemSaveDataByGuid(ulong guid);
         public bags GetItemDataByGuid(ulong nGuid);
         public List<OpenNGS.Item.Data.ItemSaveData> GetItemDataByItemId(uint itemId);
         //获取某种类型所有道具(二级分类)
@@ -41,10 +41,10 @@ namespace OpenNGS.Systems
         //脱装备
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Unequipped(uint index);
 
-        public void InBag(uint nGuid);
-        public void InStash(uint nGuid);
-        public stashs OutStash(uint nGuid);
-        public bags OutBag(uint nGuid);
+        public uint InBag(uint nGuid);
+        public uint InStash(uint nGuid);
+        public void OutStash(uint nGuid);
+        public void OutBag(uint nGuid);
         public uint GetIndex(uint id, bool isBag);
         public void SetIndex(uint i, uint id,bool isBag);
         public void SetNull(uint i, bool isBag);

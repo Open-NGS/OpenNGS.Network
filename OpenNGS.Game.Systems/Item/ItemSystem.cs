@@ -11,6 +11,7 @@ using Systems;
 using System.Linq;
 using OpenNGSCommon;
 using ItemData = OpenNGS.Item.Common.ItemData;
+
 namespace OpenNGS.Systems
 {
     public class ItemSystem : GameSubSystem<ItemSystem>, IItemSystem
@@ -57,10 +58,10 @@ namespace OpenNGS.Systems
             MakeDesign makeInfo = new MakeDesign();
             return makeInfo;
         }
-        public ItemSaveData GetItemDataByItemID(ulong id)
+        public ItemSaveData GetItemSaveDataByGuid(ulong guid)
         {
-            bags bag = itemContainer.bagDict.Find(item => item.bagItem.ItemID == id);
-            stashs stash = itemContainer.stashDict.Find(item => item.stashItem.ItemID == id);
+            bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == guid);
+            stashs stash = itemContainer.stashDict.Find(item => item.stashItem.GUID == guid);
             if (bag != null)
             {
                 return bag.bagItem;
@@ -696,49 +697,62 @@ namespace OpenNGS.Systems
             return disassembleInfo;
         }
 
-        public void InBag(uint nGuid)
+        public uint InBag(uint nGuid)
         {
             var changeitem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == nGuid);
-            if (changeitem != null)
+            if (NGSStaticData.items.GetItem(changeitem.stashItem.ItemID).Kind == ITEM_KIND.ITEM_KIND_MATERIAL_STUFF && itemContainer.bagDict.FirstOrDefault(item => item.bagItem.ItemID == changeitem.stashItem.ItemID)!=null)
+            {
+                AddItemsByID(changeitem.stashItem.ItemID, changeitem.stashItem.Count);
+                return itemContainer.bagDict.FirstOrDefault(item => item.bagItem.ItemID == changeitem.stashItem.ItemID).index;
+            }
+            else if (changeitem != null)
             {
                 bags bag = new bags();
                 bag.bagItem = changeitem.stashItem;
                 bag.index = FindUnusedBagIndex(itemContainer.bagDict);
                 //MoveBagsBackIndex();
                 itemContainer.AddItem(bag);
+                return bag.index;
             }
+            return 0;
         }
-        public void InStash(uint nGuid)
+        public uint InStash(uint nGuid)
         {
             var changeitem = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == nGuid);
             if (changeitem != null)
             {
-                stashs stash = new stashs();
-                stash.stashItem = changeitem.bagItem;
-                stash.index = FindUnusedStashIndex(itemContainer.stashDict);
-                //MoveStashsBackIndex();
-                itemContainer.AddStashItem(stash);
+                stashs stashItem = itemContainer.stashDict.FirstOrDefault(s => s.stashItem.ItemID == changeitem.bagItem.ItemID);
+                if (stashItem != null)
+                {
+                    stashItem.stashItem.Count += changeitem.bagItem.Count;
+                    return stashItem.index;
+                }
+                else
+                {
+                    stashs stash = new stashs();
+                    stash.stashItem = changeitem.bagItem;
+                    stash.index = FindUnusedStashIndex(itemContainer.stashDict);
+                    itemContainer.AddStashItem(stash);
+                    return stash.index;
+                }
             }
+            return 0;
         }
-        public stashs OutStash(uint nGuid)
+        public void OutStash(uint nGuid)
         {
             var changeitem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == nGuid);
             if (changeitem != null)
             {
                 itemContainer.RemoveStashItem(changeitem);
-                return changeitem;
             }
-            return null;
         }
-        public bags OutBag(uint nGuid)
+        public void OutBag(uint nGuid)
         {
             var changeitem = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == nGuid);
             if (changeitem != null && NGSStaticData.items.GetItem(changeitem.bagItem.ItemID).ItemType != ITEM_TYPE.ITEM_TYPE_RESOURCE)
             {
                 itemContainer.RemoveItem(changeitem);
-                return changeitem;
             }
-            return null;
         }
         public uint GetIndex(uint id, bool isBag)
         {
