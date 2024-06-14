@@ -161,12 +161,19 @@ namespace OpenNGS.Systems
             List<bags> itemInfos = new List<bags>();
             foreach (bags itemInfo in itemContainer.bagDict)
             {
-                if (NGSStaticData.items.GetItem(itemInfo.bagItem.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
+                if(NGSStaticData.items.GetItem(itemInfo.bagItem.ItemID) == null)
                 {
-                    bags itemData = new bags();
-                    itemData.index = itemInfo.index;
-                    itemData.bagItem = itemInfo.bagItem;
-                    itemInfos.Add(itemData);
+                    NgDebug.LogError(string.Format("ItemSystem:GetItemInfosInBag error {0} item not found", itemInfo.bagItem.ItemID));
+                }
+                else
+                {
+                    if (NGSStaticData.items.GetItem(itemInfo.bagItem.ItemID).Visibility == ITEM_VISIBILITY_TYPE.ITEM_VISIBLE)
+                    {
+                        bags itemData = new bags();
+                        itemData.index = itemInfo.index;
+                        itemData.bagItem = itemInfo.bagItem;
+                        itemInfos.Add(itemData);
+                    }
                 }
             }
             return itemInfos;
@@ -564,6 +571,11 @@ namespace OpenNGS.Systems
 
         public Item.Data.ItemSaveData AddItemsByID(uint nItemID, uint nCounts)
         {
+            OpenNGS.Item.Data.Item ItemInfo = NGSStaticData.items.GetItem(nItemID);
+            if(ItemInfo == null)
+            {
+                return null;
+            }
             Item.Data.ItemSaveData _retItemSaveData = null;
             List<OpenNGS.Item.Data.ItemSaveData> itemData = GetItemDataByItemId(nItemID);
             //已获得过的物品
