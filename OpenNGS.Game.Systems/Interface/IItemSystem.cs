@@ -28,6 +28,7 @@ namespace OpenNGS.Systems
         public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfos(OpenNGS.Item.Common.ITEM_TYPE iTEM_TYPE);
         //获取某种类型所有道具(三级分类)
         public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND);
+        public List<OpenNGS.Item.Data.ItemSaveData> MergeItems(List<OpenNGS.Item.Data.ItemSaveData> itemInfos, bool isBag);
         public void SortItems(List<OpenNGS.Item.Data.ItemSaveData> itemInfos);
         //获取背包中的所有道具
         public List<bags> GetItemInfosInBag();
@@ -45,7 +46,7 @@ namespace OpenNGS.Systems
         public uint InStash(uint nGuid);
         public void OutStash(uint nGuid);
         public void OutBag(uint nGuid);
-        public uint GetIndex(uint id, bool isBag);
+        public int GetIndex(uint id, bool isBag);
         public void SetIndex(uint i, uint id,bool isBag);
         public void SetNull(uint i, bool isBag);
         public List<equips> GetEquippedList();

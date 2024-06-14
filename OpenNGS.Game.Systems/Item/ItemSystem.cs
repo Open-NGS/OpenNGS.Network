@@ -12,6 +12,7 @@ using System.Linq;
 using OpenNGSCommon;
 using ItemData = OpenNGS.Item.Common.ItemData;
 using Codice.Client.BaseCommands;
+using Codice.Client.BaseCommands.Merge.Xml;
 
 namespace OpenNGS.Systems
 {
@@ -180,6 +181,55 @@ namespace OpenNGS.Systems
             }
             return itemInfos;
         }
+        public List<OpenNGS.Item.Data.ItemSaveData> MergeItems(List<OpenNGS.Item.Data.ItemSaveData> itemInfos, bool isBag)
+        {
+
+            Dictionary<uint, OpenNGS.Item.Data.ItemSaveData> materialsDict = new Dictionary<uint, OpenNGS.Item.Data.ItemSaveData>();
+            List<OpenNGS.Item.Data.ItemSaveData> itemDatas = new List<ItemSaveData>();
+            foreach (OpenNGS.Item.Data.ItemSaveData itemSaveData in itemInfos)
+            {
+                if (NGSStaticData.items.GetItem(itemSaveData.ItemID).Kind == ITEM_KIND.ITEM_KIND_MATERIAL_STUFF)
+                {
+                    if (materialsDict.ContainsKey(itemSaveData.ItemID))
+                    {
+                        materialsDict[itemSaveData.ItemID].Count += itemSaveData.Count;
+                        if (isBag)
+                        {
+                            OutBag(itemSaveData.GUID);
+                        }
+                        else
+                        {
+                            OutStash(itemSaveData.GUID);
+                        }
+                    }
+                    else
+                    {
+                        materialsDict.Add(itemSaveData.ItemID, itemSaveData);
+                    }
+                }
+                else
+                {
+                    itemDatas.Add(itemSaveData);
+                }
+            }
+            List<ItemSaveData> result = materialsDict.Values.ToList();
+            for (uint i = 0; i < result.Count; i++)
+            {
+                if (isBag)
+                {
+                    bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == result[(int)i].GUID);
+                    bag.bagItem.Count = result[(int)i].Count;
+                }
+                else
+                {
+                    stashs stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == result[(int)i].GUID);
+                    stashItem.stashItem.Count = result[(int)i].Count;
+                }
+                itemDatas.Add(result[(int)i]);
+            }
+            return itemDatas;
+        }
+
         public void SortItems(List<OpenNGS.Item.Data.ItemSaveData> itemInfos)
         {
             itemInfos = itemInfos.OrderBy(i =>
@@ -793,17 +843,32 @@ namespace OpenNGS.Systems
                 itemContainer.RemoveItem(changeitem);
             }
         }
-        public uint GetIndex(uint id, bool isBag)
+        public int GetIndex(uint id, bool isBag)
         {
             if (isBag)
             {
                 var bagItem = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == id);
-                return bagItem.index;
+                if (bagItem != null)
+                {
+                    return (int)bagItem.index;
+                }
+                else
+                {
+                    return -1;
+                }
+
             }
             else
             {
                 var stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == id);
-                return stashItem.index;
+                if (stashItem != null)
+                {
+                    return (int)stashItem.index;
+                }
+                else
+                {
+                    return -1;
+                }
             }
         }
         public void SetIndex(uint i, uint id, bool isBag)
