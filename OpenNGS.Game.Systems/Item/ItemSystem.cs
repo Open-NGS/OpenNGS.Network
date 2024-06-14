@@ -64,6 +64,7 @@ namespace OpenNGS.Systems
         {
             bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == guid);
             stashs stash = itemContainer.stashDict.Find(item => item.stashItem.GUID == guid);
+            equips equip = itemContainer.equipDict.Find(item => item.equip.GUID == guid);
             if (bag != null)
             {
                 return bag.bagItem;
@@ -71,6 +72,10 @@ namespace OpenNGS.Systems
             else if(stash != null)
             {
                 return stash.stashItem;
+            }
+            else if(equip != null)
+            {
+                return equip.equip;
             }
             else { return null; }
         }
