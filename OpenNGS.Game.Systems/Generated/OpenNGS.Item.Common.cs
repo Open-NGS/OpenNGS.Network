@@ -49,6 +49,7 @@ namespace OpenNGS.Item.Common
         ITEM_KIND_MATERIAL_STUFF = 10,
         ITEM_KIND_MATERIAL_STONE = 11,
         ITEM_KIND_EQUIP_RELIC = 12,
+        ITEM_KIND_EQUIP_SHOES = 13,
     }
 
     [global::ProtoBuf.ProtoContract()]
