@@ -825,22 +825,19 @@ namespace OpenNGS.Systems
         public uint InStash(uint nGuid)
         {
             var changeitem = itemContainer.bagDict.FirstOrDefault(item => item.bagItem.GUID == nGuid);
-            if (changeitem != null)
+            if (NGSStaticData.items.GetItem(changeitem.bagItem.ItemID).Kind == ITEM_KIND.ITEM_KIND_MATERIAL_STUFF && itemContainer.stashDict.FirstOrDefault(item => item.stashItem.ItemID == changeitem.bagItem.ItemID) != null)
             {
                 stashs stashItem = itemContainer.stashDict.FirstOrDefault(s => s.stashItem.ItemID == changeitem.bagItem.ItemID);
-                if (stashItem != null)
-                {
-                    stashItem.stashItem.Count += changeitem.bagItem.Count;
-                    return stashItem.index;
-                }
-                else
-                {
-                    stashs stash = new stashs();
-                    stash.stashItem = changeitem.bagItem;
-                    stash.index = FindUnusedStashIndex(itemContainer.stashDict);
-                    itemContainer.AddStashItem(stash);
-                    return stash.index;
-                }
+                stashItem.stashItem.Count += changeitem.bagItem.Count;
+                return stashItem.index;
+            }
+            else if (changeitem != null)
+            {
+                stashs stash = new stashs();
+                stash.stashItem = changeitem.bagItem;
+                stash.index = FindUnusedStashIndex(itemContainer.stashDict);
+                itemContainer.AddStashItem(stash);
+                return stash.index;
             }
             return 0;
         }
