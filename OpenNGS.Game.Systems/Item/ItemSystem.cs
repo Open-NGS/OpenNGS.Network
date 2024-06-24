@@ -256,11 +256,11 @@ namespace OpenNGS.Systems
                         return 2;
                     case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_BODY:
                         return 3;
-                    case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_BACK:
-                        return 4;
                     case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_ARM:
-                        return 5;
+                        return 4;
                     case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_LEG:
+                        return 5;
+                    case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_SHOES:
                         return 6;
                     case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_MATERIAL_BLUEPRINT:
                         return 7;
