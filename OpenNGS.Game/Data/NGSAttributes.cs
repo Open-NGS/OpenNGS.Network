@@ -144,6 +144,11 @@ namespace OpenNGS.Core
             return this.Attributes.Get(Convert.ToInt32(type));
         }
 
+        public void Reset()
+        {
+            this.Attributes.Reset();
+        }
+
         public float this[T attr]
         {
 
