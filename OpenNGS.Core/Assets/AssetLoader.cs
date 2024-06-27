@@ -31,7 +31,9 @@ namespace OpenNGS.Assets
             if (RawResourceMod == true)
             {
                 result = LoadFromRaw<T>(path);
+#if DEBUG_LOG
                 NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
+#endif
             }
             else
             {
@@ -39,14 +41,16 @@ namespace OpenNGS.Assets
                 if (RawMode)
                 {
                     result = LoadFromRaw<T>(path);
+#if DEBUG_LOG
                     NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
+#endif
                 }
                 else
                 {
                     result = LoadFromBundle<T>(path);
                 }
 #else
-                result = LoadFromBundle<T>(path);
+                    result = LoadFromBundle<T>(path);
             }
             NgDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]",path));
 #endif
@@ -59,7 +63,9 @@ namespace OpenNGS.Assets
 #endif
             if (!result)
             {
+#if DEBUG_LOG
                 NgDebug.Log($"AssetLoader -- Faild to load asset : {path}");
+#endif
             }
 
             return result;
