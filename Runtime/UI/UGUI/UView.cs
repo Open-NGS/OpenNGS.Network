@@ -50,16 +50,12 @@ namespace OpenNGS.UI
         }
         public bool Close()
         {
-            bool bClose = false;
-            if (CanClose())
-            {
-                OnClose();
-                PlayDismissAnimation();
-                Closed?.Invoke(ID);
-                Destroy(gameObject, DismissAnimationDuration);
-                CloseView();
-                bClose = true;
-            }
+            bool bClose = true;
+            OnClose();
+            PlayDismissAnimation();
+            Closed?.Invoke(ID);
+            Destroy(gameObject, DismissAnimationDuration);
+            CloseView();
             return bClose;
         }
         public void Show()
