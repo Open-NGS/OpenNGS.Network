@@ -2,17 +2,11 @@ using Newtonsoft.Json;
 using OpenNGS.Systems;
 using System;
 using System.Collections.Generic;
-
-using OpenNGS.Item;
 using OpenNGS.Item.Data;
 using OpenNGS.Item.Common;
 using OpenNGS.Suit.Data;
 using Systems;
 using System.Linq;
-using OpenNGSCommon;
-using ItemData = OpenNGS.Item.Common.ItemData;
-using Codice.Client.BaseCommands;
-using Codice.Client.BaseCommands.Merge.Xml;
 
 namespace OpenNGS.Systems
 {

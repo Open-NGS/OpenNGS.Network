@@ -1,13 +1,10 @@
 using OpenNGS.Collections.Generic;
 using OpenNGS.Dialog.Common;
 using OpenNGS.Dialog.Data;
-using OpenNGS.Tables;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Systems;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace OpenNGS.Systems
 {
