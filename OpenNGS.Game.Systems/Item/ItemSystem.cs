@@ -633,7 +633,9 @@ namespace OpenNGS.Systems
                 //前面无空闲Guid则用后面数赋值
                 else
                 {
-                    while (itemContainer.bagDict.Any(item => item.bagItem.GUID == guid_cache) || itemContainer.equipDict.Any(item => item.index == guid_cache))
+                    while (itemContainer.bagDict.Any(item => item.bagItem.GUID == guid_cache) 
+                        || itemContainer.equipDict.Any(item => item.equip.GUID == guid_cache)
+                        || itemContainer.stashDict.Any(item => item.stashItem.GUID == guid_cache))
                     {
                         guid_cache++;
                     }
