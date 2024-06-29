@@ -158,7 +158,7 @@ namespace OpenNGS.Core
         }
     }
 
-    public class AttributesInt32<T> where T : struct
+    public class AttributesInt32<T> where T : struct, Enum
     {
         AttributesInt32 Attributes;
 
@@ -167,17 +167,17 @@ namespace OpenNGS.Core
             this.Attributes = attributes;
         }
 
-        public void Set(T type, int value)
+        public void Set(int type, int value)
         {
-            this.Attributes.Set(Convert.ToInt32(type), value);
+            this.Attributes.Set(type, value);
         }
 
-        public int Get(T type)
+        public int Get(int type)
         {
-            return this.Attributes.Get(Convert.ToInt32(type));
+            return this.Attributes.Get(type);
         }
 
-        public int this[T attr]
+        public int this[int attr]
         {
 
             get { return this.Get(attr); }
