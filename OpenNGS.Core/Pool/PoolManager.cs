@@ -9,8 +9,8 @@ namespace OpenNGS.Pool
     {
         public class ObjectPool<T> where T : IPoolObject
         {
-            Queue<T> availableObjects;
-            HashSet<T> usedObjects;
+            protected Queue<T> availableObjects;
+            protected HashSet<T> usedObjects;
 
             public ObjectPool(int size)
             {
@@ -29,6 +29,11 @@ namespace OpenNGS.Pool
                 return default(T);
             }
 
+            public void Use(T obj)
+            {
+                usedObjects.Add(obj);
+            }
+
             public void Recycle(T obj)
             {
                 availableObjects.Enqueue(obj);
@@ -45,8 +50,8 @@ namespace OpenNGS.Pool
             }
         }
 
-        static Dictionary<Type, ObjectPool<IPoolObject>> Pools = new Dictionary<Type, ObjectPool<IPoolObject>>();
-        static int initSize = 10;
+        protected static Dictionary<Type, ObjectPool<IPoolObject>> Pools = new Dictionary<Type, ObjectPool<IPoolObject>>();
+        protected static int initSize = 10;
         public static T New<T>() where T : IPoolObject, new()
         {
             //OpenNGS.Profiling.Profiler.BeginSample("ObjectPool.New");
@@ -66,6 +71,7 @@ namespace OpenNGS.Pool
             {
                 obj = new T();
                 obj.Create();
+                pool.Use(obj);
             }
             obj.Initialize();
 
@@ -109,5 +115,6 @@ namespace OpenNGS.Pool
                 pool.RecycleAll();
             }
         }
+
     }
 }
