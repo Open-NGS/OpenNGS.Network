@@ -7,7 +7,6 @@ namespace OpenNGS.Assets
     public class AssetLoader
     {
         public static bool RawMode = true;  // editor测试bundle模式改为false
-        public static bool RawResourceMod = true;
 #if UNITY_EDITOR
         public static string RawResourcePath = "Assets/Game/BuildAssets/";
 #else
@@ -28,7 +27,9 @@ namespace OpenNGS.Assets
             OpenNGS.Profiling.ProfilerLog.Start("AssetLoader.Load", path);
 #endif
 
-            if (RawResourceMod == true)
+#if UNITY_EDITOR
+
+            if (RawMode)
             {
                 result = LoadFromRaw<T>(path);
 #if DEBUG_LOG
@@ -37,27 +38,13 @@ namespace OpenNGS.Assets
             }
             else
             {
-#if UNITY_EDITOR
-                if (RawMode)
-                {
-                    result = LoadFromRaw<T>(path);
-#if DEBUG_LOG
-                    NgDebug.Log(string.Format("OpenNgsRes::Load RawMode path [{0}]", path));
-#endif
-                }
-                else
-                {
-                    result = LoadFromBundle<T>(path);
-                }
-#else
-                    result = LoadFromBundle<T>(path);
-            }
-            NgDebug.Log(string.Format("OpenNgsRes::Load no RawMode path [{0}]",path));
-#endif
 
+#endif
+                result = LoadFromBundle<T>(path);
 #if DEBUG_LOG
             OpenNGS.Profiling.ProfilerLog.End("AssetLoader.Load", path);
 #endif
+
 #if UNITY_EDITOR
             }
 #endif
@@ -72,29 +59,16 @@ namespace OpenNGS.Assets
         }
         public static void LoadScene(string sceneName, LoadSceneMode mode)
         {
-            if (RawResourceMod == true)
-            {
-                SceneManager.LoadScene(sceneName, mode);
-            }
-            else
-            {
 #if UNITY_EDITOR
-                if (!RawMode)
+            if (!RawMode)
 #endif
-                {
-                    AssetBundleManager.Instance.LoadBundleBySceneName(sceneName);
-                }
-                SceneManager.LoadScene(sceneName, mode);
+            {
+                AssetBundleManager.Instance.LoadBundleBySceneName(sceneName);
             }
+            SceneManager.LoadScene(sceneName, mode);
         }
         public static AsyncOperation LoadSceneAsync(string sceneName, LoadSceneMode mode)
         {
-            if (RawResourceMod == true)
-            {
-                return SceneManager.LoadSceneAsync(sceneName, mode);
-            }
-            else
-            {
 #if UNITY_EDITOR
                 if (!RawMode)
 #endif
@@ -102,7 +76,6 @@ namespace OpenNGS.Assets
                     AssetBundleManager.Instance.LoadBundleBySceneName(sceneName);
                 }
                 return SceneManager.LoadSceneAsync(sceneName, mode);
-            }
         }
 
         private static T LoadFromBundle<T>(string path) where T : Object
@@ -131,7 +104,7 @@ namespace OpenNGS.Assets
         {
             T asset = null;
             string fullPath = path;
-            if (RawResourceMod == true)
+            if (RawMode == true)
             {
                 fullPath = Path.Combine(RawResourcePath, path);
 #if UNITY_EDITOR
