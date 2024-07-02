@@ -107,6 +107,7 @@ namespace OpenNGS.Item.Common
         ITEM_RARITY_TYPE_RARE = 3,
         ITEM_RARITY_TYPE_EPIC = 4,
         ITEM_RARITY_TYPE_LEGENDARY = 5,
+        ITEM_RARITY_TYPE_CRAFTBOOK = 6,
     }
 
     [global::ProtoBuf.ProtoContract()]
