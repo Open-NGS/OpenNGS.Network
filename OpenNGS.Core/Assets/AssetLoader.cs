@@ -7,7 +7,7 @@ namespace OpenNGS.Assets
     public class AssetLoader
     {
         public static bool RawMode = true;  // editor测试bundle模式改为false
-        public static bool RawResourceMod = true;
+        public static bool RawResourceMod = false;
 #if UNITY_EDITOR
         public static string RawResourcePath = "Assets/Game/BuildAssets/";
 #else
