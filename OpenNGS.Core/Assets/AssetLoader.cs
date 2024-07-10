@@ -1,7 +1,7 @@
 ﻿using OpenNGS.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.U2D;
 namespace OpenNGS.Assets
 {
     public class AssetLoader
@@ -57,6 +57,21 @@ namespace OpenNGS.Assets
 
             return result;
         }
+
+        static public Sprite LoadIconSprite(string path)
+        {
+            string spriteName = System.IO.Path.GetFileNameWithoutExtension(path);
+            string atlasName = System.IO.Path.GetDirectoryName(path);
+            atlasName = atlasName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            SpriteAtlas spriteAtlas = AssetLoader.Load<SpriteAtlas>(atlasName + ".spriteatlas");
+            if (spriteAtlas == null)
+            {
+                Debug.LogErrorFormat("LoadIconSprite {0} failed. Atlas:{1} not existed.", path, atlasName);
+                return null;
+            }
+            return spriteAtlas.GetSprite(spriteName);
+        }
+
         public static void LoadScene(string sceneName, LoadSceneMode mode)
         {
 #if UNITY_EDITOR

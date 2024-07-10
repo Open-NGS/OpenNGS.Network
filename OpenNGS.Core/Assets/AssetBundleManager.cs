@@ -79,6 +79,10 @@ namespace OpenNGS.Assets
         public AssetBundleInfo LoadBundleBySceneName(string sceneName)
         {
             string bundleName = "scenes/" + sceneName.ToLower() + BundleExt;
+            if( bundles.ContainsKey(bundleName) == false )
+            {
+                return null;
+            }
             return LoadBundleWithDependencies(bundleName);
         }
         public AssetBundleInfo GetBundleInfo(string bundleName)
