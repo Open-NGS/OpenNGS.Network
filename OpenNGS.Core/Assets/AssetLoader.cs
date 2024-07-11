@@ -1,4 +1,5 @@
 ﻿using OpenNGS.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
@@ -58,18 +59,24 @@ namespace OpenNGS.Assets
             return result;
         }
 
+        private static Dictionary<string, Object> m_ObjectCache = new Dictionary<string, Object>();
         static public Sprite LoadIconSprite(string path)
         {
             string spriteName = System.IO.Path.GetFileNameWithoutExtension(path);
             string atlasName = System.IO.Path.GetDirectoryName(path);
             atlasName = atlasName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-            SpriteAtlas spriteAtlas = AssetLoader.Load<SpriteAtlas>(atlasName + ".spriteatlas");
+            if (m_ObjectCache.TryGetValue(atlasName, out Object spriteAtlas))
+            {
+                return ((SpriteAtlas)spriteAtlas).GetSprite(spriteName);
+            }
+            spriteAtlas = AssetLoader.Load<SpriteAtlas>(atlasName + ".spriteatlas");
             if (spriteAtlas == null)
             {
                 Debug.LogErrorFormat("LoadIconSprite {0} failed. Atlas:{1} not existed.", path, atlasName);
                 return null;
             }
-            return spriteAtlas.GetSprite(spriteName);
+            m_ObjectCache[atlasName] = spriteAtlas;
+            return ((SpriteAtlas)spriteAtlas).GetSprite(spriteName);
         }
 
         public static void LoadScene(string sceneName, LoadSceneMode mode)
