@@ -8,7 +8,7 @@
  */
 
 using Newtonsoft.Json;
-using MissQ;
+using OpenNGS;
 
 /// <summary>
 /// TSVector的多态序列化工具, 为了避免normalized的递归序列化

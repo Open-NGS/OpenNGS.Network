@@ -8,7 +8,7 @@
  */
 
 using Newtonsoft.Json;
-using MissQ;
+using OpenNGS;
 
 /// <summary>
 /// FP的多态序列化工具

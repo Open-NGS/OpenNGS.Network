@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MissQ
+namespace OpenNGS
 {
 	public static class FPTools
 	{

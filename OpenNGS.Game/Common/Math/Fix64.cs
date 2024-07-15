@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace MissQ
+namespace OpenNGS
 {
 
     /// <summary>

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MissQ
+namespace OpenNGS
 {
     /// <summary>
     /// 状态类

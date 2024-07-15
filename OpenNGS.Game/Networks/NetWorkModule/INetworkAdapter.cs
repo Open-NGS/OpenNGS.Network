@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-using MissQ;
-using MissQ.Common;
+using OpenNGS;
+using OpenNGS.Common;
 using Networks.NetWorkModule;
 //using GCloud.MSDK;
 
@@ -213,7 +213,7 @@ public abstract class INetworkAdapter
     {
         get
         {
-            string version = PlayerPrefs.GetString(MissQBaseConst.CONSTResVersionKey, "");
+            string version = PlayerPrefs.GetString(BaseConst.CONSTResVersionKey, "");
             if (string.IsNullOrEmpty(version))
             {
                 version = "1";
@@ -222,10 +222,10 @@ public abstract class INetworkAdapter
         }
         set
         {
-            string version = PlayerPrefs.GetString(MissQBaseConst.CONSTResVersionKey, "");
+            string version = PlayerPrefs.GetString(BaseConst.CONSTResVersionKey, "");
             if (!version.Equals(value))
             {
-                PlayerPrefs.SetString(MissQBaseConst.CONSTResVersionKey, value);
+                PlayerPrefs.SetString(BaseConst.CONSTResVersionKey, value);
             }
         }
     }

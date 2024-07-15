@@ -20,7 +20,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace MissQ
+namespace OpenNGS
 {
     /// <summary>
     /// A vector structure.

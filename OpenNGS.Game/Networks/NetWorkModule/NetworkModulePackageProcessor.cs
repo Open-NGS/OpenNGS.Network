@@ -168,7 +168,7 @@ public class NetworkModulePackageProcessor
         if (head != null)
         {
             stream.Position = sizeof(int);
-            MissQ.Tools.ProtoHelper.Serialize(stream, head);
+            OpenNGS.Networks.ProtoHelper.Serialize(stream, head);
 
             stream.Position = 0;
             stream.Write(BitConverter.GetBytes((int)(stream.Length - 4)), 0, 4);
@@ -177,7 +177,7 @@ public class NetworkModulePackageProcessor
 
         if (body != null)
         {
-            MissQ.Tools.ProtoHelper.Serialize(stream, body);
+            OpenNGS.Networks.ProtoHelper.Serialize(stream, body);
         }
     }
 
@@ -231,7 +231,7 @@ public class NetworkModulePackageProcessor
         this.responseStream.SetLength(0);
         this.responseStream.Write(buff, iOffset + 4, iHDLen);
         this.responseStream.Position = 0;
-        MsgHead head = MissQ.Tools.ProtoHelper.Deserialize<MsgHead>(responseStream);
+        MsgHead head = OpenNGS.Networks.ProtoHelper.Deserialize<MsgHead>(responseStream);
         if (head == null)
         {
             Debug.LogError("Deserialize protocol head fail");
@@ -248,7 +248,7 @@ public class NetworkModulePackageProcessor
 
         if (head.msgid == Opcode.OPCODE_HEARTBEAT_RSP)   // 心跳应答包
         {
-            HeartbeatRsp rsp = MissQ.Tools.ProtoHelper.Deserialize<HeartbeatRsp>(responseStream);
+            HeartbeatRsp rsp = OpenNGS.Networks.ProtoHelper.Deserialize<HeartbeatRsp>(responseStream);
             if (rsp == null)
             {
                 Debug.LogError("Deserialize protocol heartbeat body fail");

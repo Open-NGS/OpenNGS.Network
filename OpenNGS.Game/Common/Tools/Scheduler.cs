@@ -10,12 +10,11 @@
 	purpose:	调度器
 *********************************************************************/
 
-using MissQ;
+using OpenNGS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MissQ.Common;
-using UnityEngine;
+using OpenNGS.Common;
 
 /// <summary>
 /// 调度器
@@ -195,7 +194,7 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
 			}
 			catch (Exception e)
 			{
-				Debug.LogError(e);
+                NgDebug.LogError(e);
 			}
 		}
 	}
@@ -210,7 +209,7 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
 			}
 			catch (Exception e)
 			{
-				Debug.LogError(e);
+				NgDebug.LogError(e);
 			}
 		}
 	}
@@ -275,8 +274,8 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         {
             return null;
         }
-        data.Value.Interval = (int)(interval * MissQBaseConst.CONSTUnitThousand);
-        data.Value.RemainTime = (int)(interval * MissQBaseConst.CONSTUnitThousand);
+        data.Value.Interval = (int)(interval * BaseConst.CONSTUnitThousand);
+        data.Value.RemainTime = (int)(interval * BaseConst.CONSTUnitThousand);
         data.Value.Repeat = repeat;
         data.Value.Destroyed = false;
         data.Value.TimerHandler = d;
@@ -305,8 +304,8 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         {
             return null;
         }
-        data.Value.Interval = (int)(interval * MissQBaseConst.CONSTUnitThousand);
-        data.Value.RemainTime = (int)(interval * MissQBaseConst.CONSTUnitThousand);
+        data.Value.Interval = (int)(interval * BaseConst.CONSTUnitThousand);
+        data.Value.RemainTime = (int)(interval * BaseConst.CONSTUnitThousand);
         data.Value.Repeat = repeat;
         data.Value.Destroyed = false;
         data.Value.TimerHandler = d;
@@ -332,8 +331,8 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         {
             return null;
         }
-        data.Value.Interval = (int)(interval * MissQBaseConst.CONSTUnitThousand);
-        data.Value.RemainTime = (int)(interval * MissQBaseConst.CONSTUnitThousand);
+        data.Value.Interval = (int)(interval * BaseConst.CONSTUnitThousand);
+        data.Value.RemainTime = (int)(interval * BaseConst.CONSTUnitThousand);
         data.Value.Repeat = repeat;
         data.Value.Destroyed = false;
         data.Value.TimerHandler = null;
@@ -356,8 +355,8 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         {
             return 0;
         }
-        data.Value.Interval = (int)(interval * MissQBaseConst.CONSTUnitThousand);
-        data.Value.RemainTime = (int)((Time.realtimeSinceStartup + interval) * MissQBaseConst.CONSTUnitThousand);
+        data.Value.Interval = (int)(interval * BaseConst.CONSTUnitThousand);
+        data.Value.RemainTime = (int)((Time.RealtimeSinceStartup + interval) * BaseConst.CONSTUnitThousand);
         data.Value.Repeat = repeat;
         data.Value.Destroyed = false;
         data.Value.TimerHandler = d;
@@ -528,7 +527,7 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         {
             if (corutineData.Value == null)
             {
-                Debug.LogError("corutineData.Value is null");
+                NgDebug.LogError("corutineData.Value is null");
                 break;
             }
             
@@ -558,14 +557,14 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         }
 
         // 定时
-        var deltaTime = (int)(Time.fixedDeltaTime * MissQBaseConst.CONSTUnitThousand);
+        var deltaTime = (int)(UnityEngine.Time.fixedDeltaTime * BaseConst.CONSTUnitThousand);
 
         var timerData = _timerData.First;
         while (timerData != null)
         {
             if (timerData.Value == null)
             {
-                Debug.LogError("timerData.Value is null");
+                NgDebug.LogError("timerData.Value is null");
                 break;
             }
             
@@ -604,7 +603,7 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
         }
 
         //
-        float realtimeSinceStartup = Time.realtimeSinceStartup;
+        float realtimeSinceStartup = Time.RealtimeSinceStartup;
 
         timerData = _realTimerData.First;
         while (timerData != null)
@@ -621,7 +620,7 @@ public class Scheduler : MonoSingleton<Scheduler>, IFSMTimer
                 continue;
             }
 
-            if ((realtimeSinceStartup * MissQBaseConst.CONSTUnitThousand) < timerData.Value.RemainTime)
+            if ((realtimeSinceStartup * BaseConst.CONSTUnitThousand) < timerData.Value.RemainTime)
             {
                 timerData = timerData.Next;
                 continue;

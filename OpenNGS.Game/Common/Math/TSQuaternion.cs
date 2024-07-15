@@ -19,7 +19,7 @@
 
 using System;
 
-namespace MissQ
+namespace OpenNGS
 {
 
     /// <summary>

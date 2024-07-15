@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MissQ {
+namespace OpenNGS {
 
     /**
      *  @brief Generates random numbers based on a deterministic approach.

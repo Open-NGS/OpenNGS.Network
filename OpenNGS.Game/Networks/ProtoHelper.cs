@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-namespace MissQ.Tools
+namespace OpenNGS.Networks
 {
     public class ProtoHelper
     {

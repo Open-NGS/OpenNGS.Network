@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using MissQ;
+using OpenNGS;
 using OpenNGSCommon;
 using protocol;
 using Networks.NetWorkModule;
@@ -156,7 +156,7 @@ public sealed class NetworkModule
 
 
     // 网络连接状态机
-    private MissQ.FSM fsm = new MissQ.FSM();
+    private OpenNGS.FSM fsm = new OpenNGS.FSM();
 
     // 服务器IP
     private string targetIp;

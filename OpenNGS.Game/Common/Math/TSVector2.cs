@@ -32,7 +32,7 @@ SOFTWARE.
 
 using System;
 
-namespace MissQ {
+namespace OpenNGS {
 
     [Serializable]
     public struct TSVector2 : IEquatable<TSVector2>
