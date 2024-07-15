@@ -2,7 +2,7 @@
     "name": "OpenNGS.EEGamesSDK",
     "rootNamespace": "",
     "references": [
-        "GUID:4e33fed6573df504292193820605b256"
+        "OpenNGS.Platform"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
