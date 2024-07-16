@@ -6,7 +6,7 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
-namespace Item.RPC
+namespace OpenNGS.Item.RPC
 {
 
     [global::ProtoBuf.ProtoContract()]
