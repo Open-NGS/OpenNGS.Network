@@ -16,32 +16,33 @@ namespace Sound
             UnityAudioPositionObject.InitPool(0);
         }
 
-        public override void Play(string sound, GameObject obj)
+        public override uint Play(string sound, GameObject obj)
         {
             base.Play(sound, obj);
             AudioClip audioClip = AssetLoader.Load<AudioClip>(sound);
             if (audioClip == null)
             {
                 Debug.LogError($"加载音频文件{sound}失败，无法播放");
-                return;
+                return 0;
             }
 
-            Play(audioClip, obj);
+            return Play(audioClip, obj);
         }
 
-        public override void Play<T>(T audio, GameObject obj)
+        public override uint Play<T>(T audio, GameObject obj)
         {
             base.Play(audio, obj);
             if (!(audio is AudioClip))
             {
-                return;
+                return 0;
             }
 
             AudioSource audioSource;
             if (!TryGetAudioSource(obj, out audioSource, true))
-                return;
+                return 0;
             audioSource.clip = audio as AudioClip;
             audioSource.Play();
+            return (uint)audioSource.GetHashCode();
         }
 
         public override bool IsPlaying<T>(T audio, GameObject obj)

@@ -8,14 +8,14 @@ namespace OpenNGS.Audio
     public abstract class AudioDriver
     {
 
-        public virtual void Play<T>(T audio, GameObject obj)
+        public virtual uint Play<T>(T audio, GameObject obj)
         {
-            
+            return 0;
         }
 
-        public virtual void Play(string sound, GameObject obj)
+        public virtual uint Play(string sound, GameObject obj)
         {
-
+            return 0;
         }
 
         public virtual bool IsPlaying<T>(T audio, GameObject obj)
@@ -26,6 +26,11 @@ namespace OpenNGS.Audio
         public virtual void Stop( GameObject obj,string sound = null)
         {
             
+        }
+
+        public virtual void Stop(GameObject obj, uint soundId)
+        {
+
         }
 
         public virtual void Pause( GameObject obj, string sound =null)

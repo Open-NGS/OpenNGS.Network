@@ -41,14 +41,14 @@ namespace OpenNGS.Audio
             Mute = mute;
         }
 
-        public void Play(string name, GameObject obj = null)
+        public uint Play(string name, GameObject obj = null)
         {
             if (m_AudioEngine == null)
             {
                 Debug.LogWarning("Sound System Not Initialized.");
-                return;
+                return 0;
             }
-            m_AudioEngine.Play(name, obj);
+            return m_AudioEngine.Play(name, obj);
         }
 
         public bool IsPlaying<T>(T audio, GameObject obj)
