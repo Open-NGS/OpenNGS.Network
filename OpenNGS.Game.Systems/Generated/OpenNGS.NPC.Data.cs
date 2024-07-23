@@ -22,7 +22,6 @@ namespace OpenNGS.NPC.Data
             Name = "";
             PrefabName = "";
             Package = "";
-            UIID = new global::System.Collections.Generic.List<global::OpenNGS.NPC.Common.NPC_UIBIND>();
             OnConstructor();
         }
 
@@ -47,7 +46,7 @@ namespace OpenNGS.NPC.Data
         public string Package { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
-        public global::System.Collections.Generic.List<global::OpenNGS.NPC.Common.NPC_UIBIND> UIID { get; private set; }
+        public uint[] UIID { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
         public uint[] DialogIDs { get; set; }
