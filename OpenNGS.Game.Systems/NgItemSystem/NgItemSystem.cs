@@ -1,11 +1,14 @@
 using OpenNGS.Item.Common;
 using OpenNGS.Item.Data;
-using OpenNGS.Item.Service;
+using OpenNGS.Systems;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Systems;
-using UnityEditor.TerrainTools;
+using UnityEditor;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 
 namespace OpenNGS.Systems
@@ -69,14 +72,18 @@ namespace OpenNGS.Systems
             {
                 if (item.ItemID == itemId)
                 {
-                    itemDatas.Add(item);
+                    ItemSaveState itemData = new ItemSaveState();
+                    itemData.GUID = item.GUID;
+                    itemData.ItemID = item.ItemID;
+                    itemData.Count = item.Count;
+                    itemDatas.Add(itemData);
                 }
             }
             return itemDatas;
         }
         private void UpdateItemInContainer(uint nColIdx, ItemSaveState item)
         {
-            var column = GetItemColumnByColIdx(nColIdx);
+            var column = GetItemByColIdx(nColIdx);
             if (column != null)
             {
                 var itemState = column.ItemSaveStates.FirstOrDefault(i => i.GUID == item.GUID);
@@ -86,50 +93,31 @@ namespace OpenNGS.Systems
                 }
             }
         }
-        private bool AssignUniqueGUID(ItemSaveState item)
+        private bool ItemExistsInContainer(uint nColIdx, uint guid)
         {
-            bool isGUIDUnique = false;
-            uint generatedGUID = guid_cache;
-            while (!isGUIDUnique)
+            var column = GetItemByColIdx(nColIdx);
+            if (column != null)
             {
-                isGUIDUnique = true;
-                foreach (var col in itemContainer.Col)
-                {
-                    if (col.ItemSaveStates.Any(i => i.GUID == generatedGUID))
-                    {
-                        isGUIDUnique = false;
-                        generatedGUID = ++guid_cache;
-                        break;
-                    }
-                }
+                return column.ItemSaveStates.Any(i => i.GUID == guid);
             }
-            item.GUID = generatedGUID;
-            return isGUIDUnique;
+            return false;
         }
-
-        public ItemColumn GetItemColumnByColIdx(uint nColIdx)
+        private ItemColumn GetItemByColIdx(uint nColIdx)
         {
             return itemContainer.Col.FirstOrDefault(c => c.ColIdx == nColIdx);
         }
-        public AddItemRsp AddItemsByID(AddItemReq _req)
+        public ItemResult AddItemsByID(uint nItemID, uint nCounts,uint nColIdx)
         {
-            if (_req == null)
-            {
-                UnityEngine.Debug.LogError("AddItemReq is null in AddItemsByID call.");
-                return null;
-            }
-            uint nItemID = _req.ItemID;
-            uint nCounts = _req.Counts;
-            uint nColIdx = _req.ColIdx;
-            AddItemRsp result = new AddItemRsp();
-            result.Result = new ItemResult();
+            ItemResult result = new ItemResult();
+            ItemResultType resultType = new ItemResultType();
+            result.ItemList = new List<ItemSaveState>();
             OpenNGS.Item.Data.Item ItemInfo = NGSStaticData.items.GetItem(nItemID);
+            uint stackMax = ItemInfo.StackMax;
             if (ItemInfo == null)
             {
-                result.Result.ItemResultTyp = ItemResultType.ItemResultType_AddItemFail_NotExist;
+                result.ItemResultType = resultType.ItemResultType_AddItemFail_NotExist;
                 return result;
             }
-            uint stackMax = ItemInfo.StackMax;
             List<ItemSaveState> itemState = GetItemByItemId(nColIdx,nItemID);
             //已获得过的物品
             if (itemState != null && itemState.Count > 0)
@@ -145,25 +133,24 @@ namespace OpenNGS.Systems
                         {
                             itemState[i].Count = stackMax;
                             nCounts -= volumn;
-                            UpdateItemInContainer(nColIdx, itemState[i]);
-                            result.Result.ItemList.Add(itemState[i]);
                         }
                         //该格子能装下
                         else
                         {
                             itemState[i].Count += nCounts;
                             nCounts = 0;
-                            UpdateItemInContainer(nColIdx, itemState[i]);
-                            result.Result.ItemList.Add(itemState[i]);
-                            result.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
                             break;
                         }
+                        UpdateItemInContainer(nColIdx, itemState[i]);
+                        result.ItemList.Add(itemState[i]);
+                        result.ItemResultType = resultType.ItemResultType_Success;
                     }
                     if (nCounts <= 0)
                     {
                         break;
                     }
                 }
+                return result;
             }
             while (nCounts > 0)
             {
@@ -174,66 +161,153 @@ namespace OpenNGS.Systems
                     ColIdx = nColIdx
                 };
 
-                if (!AssignUniqueGUID(newItem))
+                if (guid_free.Count > 0)
                 {
-                    result.Result.ItemResultTyp = ItemResultType.ItemResultType_AddItemFail_NotExist;
-                    return result;
+                    newItem.GUID = guid_free.Dequeue();
                 }
-
+                else
+                {
+                    while (ItemExistsInContainer(nColIdx, guid_cache))
+                    {
+                        guid_cache++;
+                    }
+                    newItem.GUID = guid_cache;
+                }
                 nCounts -= newItem.Count;
                 // 寻找第一个空格
                 bool addedToExistingGrid = false;
-                var column = GetItemColumnByColIdx(nColIdx);
-                uint FirstEmptyGrid = column.Capacity;
+                var column = GetItemByColIdx(nColIdx);
                 for (uint grid = 0; grid < column.Capacity; grid++)
                 {
                     if (!column.ItemSaveStates.Any(i => i.Grid == grid))
                     {
-                        FirstEmptyGrid = grid;
+                        newItem.Grid = grid;
+                        result = AddItemToContainer(nColIdx, newItem);
+                        result.ItemList.Add(newItem);
                         addedToExistingGrid = true;
                         break;
                     }
                 }
+
                 if (!addedToExistingGrid)
                 {
-                    result.Result.ItemResultTyp = ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid;
+                    result.ItemResultType = resultType.ItemResultType_AddItemFail_NotEnoughGrid;
+                    return result;
+                }
+
+                result.ItemResultType = resultType.ItemResultType_Success;
+            }
+
+            return result;
+            //ItemSaveState item = new ItemSaveState();
+            //item.ItemID = nItemID;
+            ////前面有空闲出来的Guid
+            //if (guid_free.Count > 0)
+            //{
+            //    item.GUID = guid_free.Dequeue();
+            //}
+            ////前面无空闲Guid则用后面数赋值
+            //else
+            //{
+            //    while (ItemExistsInContainer(nColIdx, guid_cache))
+            //    {
+            //        guid_cache++;
+            //    }
+            //    item.GUID = guid_cache;
+            //}
+            ////超出最大堆叠数
+            //if (nCounts > NGSStaticData.items.GetItem(nItemID).StackMax)
+            //{
+            //    item.Count = NGSStaticData.items.GetItem(nItemID).StackMax;
+            //    nCounts -= NGSStaticData.items.GetItem(nItemID).StackMax;
+            //}
+            //else
+            //{
+            //    item.Count = nCounts;
+            //    nCounts = 0;
+            //}
+            ////添加到动态数据
+            //result = AddItemToContainer(nColIdx, item);
+            //if (result.ItemResultType == resultType.ItemResultType_Success)
+            //{
+            //    result.ItemList.Add(item);
+            //}
+        //}
+        //    return result;
+        }
+        private ItemResult AddItemToContainer(uint nColIdx, ItemSaveState item)
+        {
+            ItemResult result = new ItemResult();
+            ItemResultType resultType = new ItemResultType();
+            result.ItemResultType = resultType.ItemResultType_AddItemFail_NotExist;
+            bool addedToExistingGrid = false;
+            uint FirstEmptyGrid = 0;
+            var column = GetItemByColIdx(nColIdx);
+            if (column != null)
+            {
+                for (uint grid = 0; grid < column.Capacity; grid++)
+                {
+                    if (!column.ItemSaveStates.Any(i => i.Grid == grid))
+                    {
+                        addedToExistingGrid = true;
+                        FirstEmptyGrid = grid;
+                    }
+                }
+                if (!addedToExistingGrid)
+                {
+                    result.ItemResultType = resultType.ItemResultType_AddItemFail_NotEnoughGrid;
+                    return result;
                 }
                 else
                 {
                     foreach (var itemSaveState in column.ItemSaveStates)
                     {
-                        if (itemSaveState.Grid < FirstEmptyGrid)
+                        if (FirstEmptyGrid == itemSaveState.Grid + 1)
+                        {
+                            itemSaveState.Grid = itemSaveState.Grid + 1;
+                            break;
+                        }
+                        else
                         {
                             itemSaveState.Grid = itemSaveState.Grid + 1;
                         }
+
                     }
-                    newItem.Grid = 0;
-                    column.ItemSaveStates.Add(newItem);
-                    result.Result.ItemList.Add(newItem);
-                    result.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
                 }
+                column.ItemSaveStates.Add(new ItemSaveState
+                {
+                    GUID = item.GUID,
+                    ItemID = item.ItemID,
+                    Count = item.Count,
+                    ColIdx = item.ColIdx,
+                    Grid = 0
+
+                }) ;
+                result.ItemResultType = resultType.ItemResultType_Success;
+                return result;
+                }
+            else
+            {
+                result.ItemResultType = resultType.ItemResultType_AddItemFail_NotEnoughGrid;
+                return result;
             }
-            return result;
         }
 
-        public AddItemRsp RemoveItemsByGrid(RemoveItemReq _req)
+        public ItemResult RemoveItemsByGrid(uint nColIdx, uint nGrid, uint nCounts)
         {
-            uint nColIdx = _req.ColIdx;
-            uint nGrid = _req.Grid;
-            uint nCounts = _req.Counts;
-            AddItemRsp result = new AddItemRsp();
-            result.Result = new ItemResult();
-            var column = GetItemColumnByColIdx(nColIdx);
+            ItemResult result = new ItemResult();
+            ItemResultType resultType = new ItemResultType();
+            var column = GetItemByColIdx(nColIdx);
             if (column == null)
             {
-                result.Result.ItemResultTyp = ItemResultType.ItemResultType_RemoveItemFail_GridNotExist;
+                result.ItemResultType = resultType.ItemResultType_RemoveItemFail_GridNotExist;
                 return result;
             }
 
             var itemState = column.ItemSaveStates.FirstOrDefault(i => i.Grid == nGrid);
             if (itemState == null || itemState.Count < nCounts)
             {
-                result.Result.ItemResultTyp = ItemResultType.ItemResultType_RemoveItemFail_NotEnoughNum;
+                result.ItemResultType = resultType.ItemResultType_RemoveItemFail_GridNotExist;
                 return result;
             }
 
@@ -243,14 +317,14 @@ namespace OpenNGS.Systems
                 column.ItemSaveStates.Remove(itemState);
                 guid_free.Enqueue(nGrid);
             }
-            result.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
-            result.Result.ItemList.Add(itemState);
+            result.ItemResultType = resultType.ItemResultType_Success;
+            result.ItemList.Add(itemState);
             return result;
         }
 
         public uint GetItemCountByGuid(uint nColIdx, uint nGuid)
         {
-            var column = GetItemColumnByColIdx(nColIdx);
+            var column = GetItemByColIdx(nColIdx);
             if (column != null)
             {
                 var itemState = column.ItemSaveStates.FirstOrDefault(i => i.GUID == nGuid);
@@ -262,79 +336,65 @@ namespace OpenNGS.Systems
             return 0;
         }
 
-        public AddItemRsp ExchangeGrid(ChangeItemData _changeItemData)
+        public ItemResult ExchangeGrid(uint nSrcCol, uint nSrcGrid, uint nDstCol, uint nDstGrid)
         {
-            uint nSrcCol = _changeItemData.SrcCol;
-            uint nSrcGrid = _changeItemData.SrcGrid;
-            uint nDstCol = _changeItemData.DstCol;
-            uint nDstGrid = _changeItemData.DstGrid;
-            AddItemRsp result = new AddItemRsp();
-            result.Result = new ItemResult();
+            ItemResult result = new ItemResult();
+            ItemResultType resultType = new ItemResultType();
+            result.ItemList = new List<ItemSaveState>();
             var itemStateSrc = GetItemDatasByColIdx(nSrcCol).FirstOrDefault(i => i.Grid == nSrcGrid);
             var itemStateDst = GetItemDatasByColIdx(nDstCol).FirstOrDefault(i => i.Grid == nDstGrid);
-            if (nSrcCol == nDstCol && nSrcGrid == nDstGrid)
+            if (itemStateSrc != null || itemStateDst != null)
             {
-                result.Result.ItemResultTyp = ItemResultType.ItemResultType_ExchangeGrid_StackFull;
+                result.ItemResultType = resultType.ItemResultType_AddItemFail_NotExist;
                 return result;
-            }
-            var columnDst = GetItemColumnByColIdx(nDstCol);
-            var columnSrc = GetItemColumnByColIdx(nSrcCol);
-
-            bool isSrcEmpty = itemStateSrc == null;
-            bool isDstEmpty = itemStateDst == null;
-
-            if (isSrcEmpty && isDstEmpty)
-            {
-                result.Result.ItemResultTyp = ItemResultType.ItemResultType_ExchangeGridFail_GridNotExist;
-                return result;
-            }
-
-            if (isSrcEmpty && !isDstEmpty)
-            {
-                itemStateDst.ColIdx = nSrcCol;
-                itemStateDst.Grid = nSrcGrid;
-
-                columnDst.ItemSaveStates.Remove(itemStateDst);
-                columnSrc.ItemSaveStates.Add(itemStateDst);
-
-            }
-            else if (!isSrcEmpty && isDstEmpty)
-            {
-                itemStateSrc.ColIdx = nDstCol;
-                itemStateSrc.Grid = nDstGrid;
-
-                columnSrc.ItemSaveStates.Remove(itemStateSrc);
-                columnDst.ItemSaveStates.Add(itemStateSrc);
             }
             else
             {
-                uint tempGrid = itemStateSrc.Grid;
-                uint tempColIdx = itemStateSrc.ColIdx;
+                itemStateSrc.ColIdx = nDstCol;
+                itemStateSrc.Grid = nDstGrid;
+                itemStateDst.ColIdx = nSrcCol;
+                itemStateDst.Grid = nSrcGrid;
 
-                itemStateSrc.Grid = itemStateDst.Grid;
-                itemStateSrc.ColIdx = itemStateDst.ColIdx;
+                var columnDst = GetItemByColIdx(nDstCol);
+                columnDst.ItemSaveStates.Remove(itemStateDst);
+                columnDst.ItemSaveStates.Add(itemStateSrc);
+                var columnSrc = GetItemByColIdx(nSrcCol);
+                columnSrc.ItemSaveStates.Remove(itemStateSrc);
+                columnSrc.ItemSaveStates.Add(itemStateDst);
 
-                itemStateDst.Grid = tempGrid;
-                itemStateDst.ColIdx = tempColIdx;
-
-            }
-            result.Result.ItemList.Add(itemStateSrc);
-            result.Result.ItemList.Add(itemStateDst);
-            result.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
-            return result;
-        }
-        public AddItemRsp SortItems(uint nCol)
-        {
-            AddItemRsp result = new AddItemRsp();
-            result.Result = new ItemResult();
-            List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
-            if (itemSaveDatas == null)
-            {
-                result.Result.ItemResultTyp = ItemResultType.ItemResultType_SortItemFail_NotExist;
+                result.ItemList.Add(itemStateSrc);
+                result.ItemList.Add(itemStateDst);
+                result.ItemResultType = resultType.ItemResultType_Success;
                 return result;
             }
-
-            itemSaveDatas = itemSaveDatas.OrderBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind).ToList();
+        }
+        public void SortItems(uint nCol)
+        {
+            List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
+            //itemSaveDatas = itemSaveDatas.OrderBy(i =>
+            //{
+            //    switch (NGSStaticData.items.GetItem(i.ItemID).Kind)
+            //    {
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_MATERIAL_STUFF:
+            //            return 0;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_WEAPON:
+            //            return 1;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_HEAD:
+            //            return 2;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_BODY:
+            //            return 3;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_ARM:
+            //            return 4;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_LEG:
+            //            return 5;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_EQUIP_SHOES:
+            //            return 6;
+            //        case OpenNGS.Item.Common.ITEM_KIND.ITEM_KIND_MATERIAL_BLUEPRINT:
+            //            return 7;
+            //        default:
+            //            return 8;
+            //    }
+            //}).ToList();
             foreach (var group in itemSaveDatas.GroupBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind))
             {
                 itemSaveDatas.RemoveAll(i => NGSStaticData.items.GetItem(i.ItemID).Kind == group.Key);
@@ -348,91 +408,27 @@ namespace OpenNGS.Systems
 
             for (uint i = 0; i < itemSaveDatas.Count; i++)
             {
-                ItemSaveState item = itemContainer.Col[(int)nCol].ItemSaveStates.Find(item => item.GUID == itemSaveDatas[(int)i].GUID);
-                if (item != null)
+                bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == itemSaveDatas[(int)i].GUID);
+                if (bag != null)
                 {
-                    item.Grid = i;
-                    result.Result.ItemList.Add(item);
+                    bag.index = i;
+                }
+                else
+                {
+                    var stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == itemSaveDatas[(int)i].GUID);
+                    stashItem.index = i;
                 }
             }
-            result.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
-            return result;
         }
-        private List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
+        public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
         {
             List<ItemSaveState> result = new List<ItemSaveState>();
-            var column = GetItemColumnByColIdx(nColIdx);
+            var column = GetItemByColIdx(nColIdx);
             foreach(ItemSaveState itemState in column.ItemSaveStates)
             {
                 result.Add(itemState);
             }
             return result;
-        }
-
-
-        public ItemResultType CanAddItem(AddReq _req)
-        {
-            return ItemResultType.ItemResultType_Success;
-        }
-
-        public AddItemRsp AddItems(AddReq _req)
-        {
-            AddItemRsp addItemRsp = new AddItemRsp();
-            addItemRsp.Result = new ItemResult();
-            addItemRsp.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
-
-            foreach (AddItemReq addItemReq in _req.AddList)
-            {
-                AddItemRsp addResult = AddItemsByID(addItemReq);
-                if (addResult.Result.ItemResultTyp != ItemResultType.ItemResultType_Success)
-                {
-                    addItemRsp.Result.ItemResultTyp = addResult.Result.ItemResultTyp;
-                    addItemRsp.Result.ItemList.AddRange(addResult.Result.ItemList); 
-                }
-                else
-                {
-                    addItemRsp.Result.ItemList.AddRange(addResult.Result.ItemList);
-                }
-            }
-
-            return addItemRsp;
-        }
-
-        public ItemResultType CanRemoveItemByID(RemoveItemsByIDsReq _req)
-        {
-            return ItemResultType.ItemResultType_Success;
-        }
-
-        public AddItemRsp RemoveItemByID(RemoveItemsByIDsReq _req)
-        {
-            AddItemRsp addItemRsp = new AddItemRsp();
-            addItemRsp.Result = new ItemResult();
-            return addItemRsp;
-        }
-
-        public ItemResultType CanRemoveItemByGrid(RemoveItemsByGridsReq _req)
-        {
-            return ItemResultType.ItemResultType_Success;
-        }
-
-        public AddItemRsp RemoveItemByGrid(RemoveItemsByGridsReq _req)
-        {
-            AddItemRsp addItemRsp = new AddItemRsp();
-            addItemRsp.Result = new ItemResult();
-            addItemRsp.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
-
-            foreach (RemoveItemReq removeItemReq in _req.RemoveList)
-            {
-                AddItemRsp removeResult = RemoveItemsByGrid(removeItemReq);
-                if (removeResult.Result.ItemResultTyp != ItemResultType.ItemResultType_Success)
-                {
-                    addItemRsp.Result.ItemResultTyp = removeResult.Result.ItemResultTyp;
-                    addItemRsp.Result.ItemList.AddRange(removeResult.Result.ItemList);
-                    return addItemRsp;
-                }
-                addItemRsp.Result.ItemList.AddRange(removeResult.Result.ItemList);
-            }
-            return addItemRsp;
         }
     }
 }

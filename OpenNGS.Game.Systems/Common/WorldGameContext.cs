@@ -1,6 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using OpenNGS;
 using OpenNGS.Systems;
+using System;
+using System.Collections.Generic;
+using Systems;
 
 public class WorldGameContext : GameContext
 {
@@ -11,8 +14,8 @@ public class WorldGameContext : GameContext
 
     public override void ConfigureServices(IServiceCollection services)
     {
-        //services.Add(new ServiceDescriptor(typeof(IExchangeSystem), new ExchangeSystem()));
-        //services.Add(new ServiceDescriptor(typeof(IItemSystem), new ItemSystem()));
+        services.Add(new ServiceDescriptor(typeof(IExchangeSystem), new ExchangeSystem()));
+        services.Add(new ServiceDescriptor(typeof(IItemSystem),new ItemSystem()));
         services.Add(new ServiceDescriptor(typeof(ICharacterSystem), new CharacterSystem()));
         services.Add(new ServiceDescriptor(typeof(IMakeSystem), new MakeSystem()));
         services.Add(new ServiceDescriptor(typeof(IShopSystem), new ShopSystem()));
@@ -22,17 +25,13 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IEquipSystem), new EquipSystem()));
         services.Add(new ServiceDescriptor(typeof(ITechnologySystem), new TechnologySystem()));
         services.Add(new ServiceDescriptor(typeof(IRankSystem), new RankSystem()));
-        //services.Add(new ServiceDescriptor(typeof(IAchievementSystem), new AchievementSystem()));
+        services.Add(new ServiceDescriptor(typeof(IStatSystem), new StatSystem()));
+        services.Add(new ServiceDescriptor(typeof(IAchievementSystem), new AchievementSystem()));
         services.Add(new ServiceDescriptor(typeof(INotificationSystem), new NotificationSystem()));
         services.Add(new ServiceDescriptor(typeof(IRewardSystem), new RewardSystem()));
         services.Add(new ServiceDescriptor(typeof(IQuestSystem), new QuestSystem()));
         services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
-
         services.Add(new ServiceDescriptor(typeof(INgItemSystem), new NgItemSystem()));
-        services.Add(new ServiceDescriptor(typeof(INgExchangeSystem), new NgExchangeSystem()));
-        services.Add(new ServiceDescriptor(typeof(INgShopSystem), new NgShopSystem()));
-        services.Add(new ServiceDescriptor(typeof(INgDialogSystem), new NgDialogSystem()));
-        services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
     }
 
     protected override void OnInit()
