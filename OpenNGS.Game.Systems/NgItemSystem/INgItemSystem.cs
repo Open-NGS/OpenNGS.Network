@@ -14,7 +14,7 @@ namespace OpenNGS.Systems
         public ItemResult RemoveItemsByGrid(uint nColIdx, uint nGrid, uint nCounts);
         //public uint GetItemCountByGuid(uint nColIdx, uint nGuid);
         public ItemResult ExchangeGrid(uint nSrcCol, uint nSrcGrid, uint nDstCol, uint nDstGrid);
-        public void SortItems(uint nCol);
+        public ItemResult SortItems(uint nCol);
         public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx);
         void AddItemContainer(ItemContainer Container);
     }

@@ -129,7 +129,6 @@ namespace OpenNGS.Systems
                             nCounts -= volumn;
                             UpdateItemInContainer(nColIdx, itemState[i]);
                             result.ItemList.Add(itemState[i]);
-                            //result.ItemResultValue = ItemResultType.ItemResultType_Success;
                         }
                         //该格子能装下
                         else
@@ -172,8 +171,8 @@ namespace OpenNGS.Systems
                 nCounts -= newItem.Count;
                 // 寻找第一个空格
                 bool addedToExistingGrid = false;
-                uint FirstEmptyGrid = 0;
                 var column = GetItemByColIdx(nColIdx);
+                uint FirstEmptyGrid = column.Capacity;
                 for (uint grid = 0; grid < column.Capacity; grid++)
                 {
                     if (!column.ItemSaveStates.Any(i => i.Grid == grid))
@@ -194,12 +193,7 @@ namespace OpenNGS.Systems
                 {
                     foreach (var itemSaveState in column.ItemSaveStates)
                     {
-                        if (FirstEmptyGrid == itemSaveState.Grid + 1)
-                        {
-                            itemSaveState.Grid = itemSaveState.Grid + 1;
-                            break;
-                        }
-                        else
+                        if (itemSaveState.Grid < FirstEmptyGrid)
                         {
                             itemSaveState.Grid = itemSaveState.Grid + 1;
                         }
@@ -263,34 +257,69 @@ namespace OpenNGS.Systems
             result.ItemList = new List<ItemSaveState>();
             var itemStateSrc = GetItemDatasByColIdx(nSrcCol).FirstOrDefault(i => i.Grid == nSrcGrid);
             var itemStateDst = GetItemDatasByColIdx(nDstCol).FirstOrDefault(i => i.Grid == nDstGrid);
-            if (itemStateSrc != null || itemStateDst != null)
+            if (nSrcCol == nDstCol && nSrcGrid == nDstGrid)
             {
-                result.ItemResultValue = ItemResultType.ItemResultType_AddItemFail_NotExist;
+                result.ItemResultValue = ItemResultType.ItemResultType_ExchangeGrid_StackFull;
                 return result;
             }
-            else
+            var columnDst = GetItemByColIdx(nDstCol);
+            var columnSrc = GetItemByColIdx(nSrcCol);
+
+            bool isSrcEmpty = itemStateSrc == null;
+            bool isDstEmpty = itemStateDst == null;
+
+            if (isSrcEmpty && isDstEmpty)
             {
-                itemStateSrc.ColIdx = nDstCol;
-                itemStateSrc.Grid = nDstGrid;
+                result.ItemResultValue = ItemResultType.ItemResultType_ExchangeGridFail_GridNotExist;
+                return result;
+            }
+
+            if (isSrcEmpty && !isDstEmpty)
+            {
                 itemStateDst.ColIdx = nSrcCol;
                 itemStateDst.Grid = nSrcGrid;
 
-                var columnDst = GetItemByColIdx(nDstCol);
                 columnDst.ItemSaveStates.Remove(itemStateDst);
-                columnDst.ItemSaveStates.Add(itemStateSrc);
-                var columnSrc = GetItemByColIdx(nSrcCol);
-                columnSrc.ItemSaveStates.Remove(itemStateSrc);
                 columnSrc.ItemSaveStates.Add(itemStateDst);
 
-                result.ItemList.Add(itemStateSrc);
-                result.ItemList.Add(itemStateDst);
-                result.ItemResultValue = ItemResultType.ItemResultType_Success;
+            }
+            else if (!isSrcEmpty && isDstEmpty)
+            {
+                itemStateSrc.ColIdx = nDstCol;
+                itemStateSrc.Grid = nDstGrid;
+
+                columnSrc.ItemSaveStates.Remove(itemStateSrc);
+                columnDst.ItemSaveStates.Add(itemStateSrc);
+            }
+            else
+            {
+                uint tempGrid = itemStateSrc.Grid;
+                uint tempColIdx = itemStateSrc.ColIdx;
+
+                itemStateSrc.Grid = itemStateDst.Grid;
+                itemStateSrc.ColIdx = itemStateDst.ColIdx;
+
+                itemStateDst.Grid = tempGrid;
+                itemStateDst.ColIdx = tempColIdx;
+
+            }
+            result.ItemList.Add(itemStateSrc);
+            result.ItemList.Add(itemStateDst);
+            result.ItemResultValue = ItemResultType.ItemResultType_Success;
+            return result;
+        }
+        public ItemResult SortItems(uint nCol)
+        {
+            ItemResult result = new ItemResult();
+            result.ItemList = new List<ItemSaveState>();
+            List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
+            if (itemSaveDatas == null)
+            {
+                result.ItemResultValue = ItemResultType.ItemResultType_SortItemFail_NotExist;
                 return result;
             }
-        }
-        public void SortItems(uint nCol)
-        {
-            List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
+
+            itemSaveDatas = itemSaveDatas.OrderBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind).ToList();
             foreach (var group in itemSaveDatas.GroupBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind))
             {
                 itemSaveDatas.RemoveAll(i => NGSStaticData.items.GetItem(i.ItemID).Kind == group.Key);
@@ -304,17 +333,15 @@ namespace OpenNGS.Systems
 
             for (uint i = 0; i < itemSaveDatas.Count; i++)
             {
-                bags bag = itemContainer.bagDict.Find(item => item.bagItem.GUID == itemSaveDatas[(int)i].GUID);
-                if (bag != null)
+                ItemSaveState item = itemContainer.Col[(int)nCol].ItemSaveStates.Find(item => item.GUID == itemSaveDatas[(int)i].GUID);
+                if (item != null)
                 {
-                    bag.index = i;
-                }
-                else
-                {
-                    var stashItem = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == itemSaveDatas[(int)i].GUID);
-                    stashItem.index = i;
+                    item.Grid = i;
+                    result.ItemList.Add(item);
                 }
             }
+            result.ItemResultValue = ItemResultType.ItemResultType_Success;
+            return result;
         }
         public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
         {
