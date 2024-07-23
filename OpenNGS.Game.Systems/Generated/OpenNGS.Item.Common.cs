@@ -158,6 +158,7 @@ namespace OpenNGS.Item.Common
         ItemResultType_RemoveItemFail_GridNotExist = 4,
         ItemResultType_ExchangeGridFail_GridNotExist = 5,
         ItemResultType_AddItemFail_NotExist = 6,
+        ItemResultType_SortItemFail_NotExist = 7,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -231,6 +232,7 @@ namespace OpenNGS.Item.Common
         public global::System.Collections.Generic.Dictionary<long, ItemList> Sets { get; private set; }
 
     }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
