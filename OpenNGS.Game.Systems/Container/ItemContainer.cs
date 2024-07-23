@@ -8,11 +8,11 @@ namespace OpenNGS.Item.Data
 {
     public partial class ItemContainer
     {
-        public void InitializeColumns(uint colIdx, uint capacity)
+        public void InitializeColumns(ItemContainer container, uint colIdx, uint capacity)
         {
-            if (!Col.Any(col => col.ColIdx == colIdx))
+            if (!container.Col.Any(col => col.ColIdx == colIdx))
             {
-                Col.Add(new ItemColumn { ColIdx = colIdx, Capacity = capacity });
+                Col.Add(new ItemColumn { ColIdx = colIdx, ItemSaveStates = new List<ItemSaveState>(), Capacity = capacity });
             }
         }
         public void AddItem(bags item)

@@ -1163,7 +1163,7 @@ namespace OpenNGS.Item.Data
         public uint ColIdx { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ItemSaveState> ItemSaveStates { get; private set; }
+        public global::System.Collections.Generic.List<ItemSaveState> ItemSaveStates { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint Capacity { get; set; }
@@ -1211,7 +1211,7 @@ namespace OpenNGS.Item.Data
         public global::OpenNGS.Item.Common.ItemResultType ItemResultValue { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ItemSaveState> ItemList { get; private set; }
+        public global::System.Collections.Generic.List<ItemSaveState> ItemList { get; set; }
 
     }
 
