@@ -149,6 +149,18 @@ namespace OpenNGS.Item.Common
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public enum ItemResultType
+    {
+        ItemResultType_None = 0,
+        ItemResultType_Success = 1,
+        ItemResultType_ExchangeGrid_StackFull = 2,
+        ItemResultType_AddItemFail_NotEnoughGrid = 3,
+        ItemResultType_RemoveItemFail_GridNotExist = 4,
+        ItemResultType_ExchangeGridFail_GridNotExist = 5,
+        ItemResultType_AddItemFail_NotExist = 6,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ItemData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
