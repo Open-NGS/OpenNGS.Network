@@ -1207,8 +1207,8 @@ namespace OpenNGS.Item.Data
 
         partial void OnConstructor();
 
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ItemResultType { get; set; }
+        [global::ProtoBuf.ProtoMember(1, Name = @"ItemResult")]
+        public global::OpenNGS.Item.Common.ItemResultType ItemResultValue { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<ItemSaveState> ItemList { get; set; }
