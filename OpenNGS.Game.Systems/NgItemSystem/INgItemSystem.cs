@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System;
 using Dynamic.Data;
 using OpenNGS.Dialog.Data;
+using OpenNGS.Item.Service;
 
 namespace OpenNGS.Systems
 {
     public interface INgItemSystem
     {
-        public ItemResult AddItemsByID(uint nItemID, uint nCounts, uint nColIdx);
-        public ItemResult RemoveItemsByGrid(uint nColIdx, uint nGrid, uint nCounts);
+        public AddItemRsp AddItemsByID(AddItemReq _req);
+        public AddItemRsp RemoveItemsByGrid(RemoveItemReq _req);
         //public uint GetItemCountByGuid(uint nColIdx, uint nGuid);
-        public ItemResult ExchangeGrid(uint nSrcCol, uint nSrcGrid, uint nDstCol, uint nDstGrid);
-        public ItemResult SortItems(uint nCol);
+        public AddItemRsp ExchangeGrid(ChangeItemData _changeItemData);
+        public AddItemRsp SortItems(uint nCol);
         public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx);
         void AddItemContainer(ItemContainer Container);
     }
