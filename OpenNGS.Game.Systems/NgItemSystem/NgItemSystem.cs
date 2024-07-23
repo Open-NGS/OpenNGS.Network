@@ -129,7 +129,7 @@ namespace OpenNGS.Systems
                             nCounts -= volumn;
                             UpdateItemInContainer(nColIdx, itemState[i]);
                             result.ItemList.Add(itemState[i]);
-                            result.ItemResultValue = ItemResultType.ItemResultType_Success;
+                            //result.ItemResultValue = ItemResultType.ItemResultType_Success;
                         }
                         //该格子能装下
                         else
@@ -147,7 +147,6 @@ namespace OpenNGS.Systems
                         break;
                     }
                 }
-                return result;
             }
             while (nCounts > 0)
             {
@@ -190,7 +189,6 @@ namespace OpenNGS.Systems
                 if (!addedToExistingGrid)
                 {
                     result.ItemResultValue = ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid;
-                    return result;
                 }
                 else
                 {
@@ -210,7 +208,6 @@ namespace OpenNGS.Systems
                     column.ItemSaveStates.Add(newItem);
                     result.ItemList.Add(newItem);
                     result.ItemResultValue = ItemResultType.ItemResultType_Success;
-                    return result;
                 }
             }
             //
