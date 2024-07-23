@@ -1,6 +1,7 @@
 using OpenNGS;
 using OpenNGS.Exchange.Common;
 using OpenNGS.Exchange.Data;
+using OpenNGS.Item.Common;
 using OpenNGS.Item.Data;
 using OpenNGS.Systems;
 using System;
@@ -81,17 +82,6 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
         targetsList.Add(target);
     }
 
-    // –“‘À Ø
-    public void LuckyStone(OpenNGS.Item.Common.ItemData itemInfo)
-    {
-        LuckyStone item = NGSStaticData.LuckyStone.GetItem(itemInfo.ItemID);
-        Probability += item.UpProbability * itemInfo.Count;
-
-        SourceItem sources = new SourceItem();
-        sources.GUID = itemInfo.Guid;
-        sources.Count = itemInfo.Count;
-        sourcesList.Add(sources);
-    }
     private void ClearList()
     {
         sourcesList.Clear();
@@ -101,5 +91,10 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     public override string GetSystemName()
     {
         return "com.openngs.system.Make";
+    }
+
+    public void LuckyStone(ItemData itemInfo)
+    {
+        throw new NotImplementedException();
     }
 }

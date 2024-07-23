@@ -755,11 +755,6 @@ namespace OpenNGS.Systems
             }
             return RemoveItemsByGuid(nGuid, 1);
         }
-        public DisassembleEquipIno GetDisassembleEquipIno(uint itemId)
-        {
-            DisassembleEquipIno disassembleInfo = new DisassembleEquipIno();
-            return disassembleInfo;
-        }
         public uint OverlayItemBagStash(uint guid1, uint guid2)
         {
             var changeitem2 = itemContainer.stashDict.FirstOrDefault(item => item.stashItem.GUID == guid2);

@@ -21,8 +21,6 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
     List<OpenNGS.Item.Data.ItemSaveData> BlueprintList;
     //材料列表
     List<OpenNGS.Item.Data.ItemSaveData> CraftList;
-    //幸运石列表
-    List<OpenNGS.Item.Data.ItemSaveData> LuckyStoneList;
     //装备(可装备)列表
     List<OpenNGS.Item.Data.ItemSaveData> EquipItems = new List<OpenNGS.Item.Data.ItemSaveData>();
     //传给交易系统
@@ -69,11 +67,6 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
             CraftList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_STUFF);//获得材料库存数据
             return CraftList;
         }
-        else if (iTEM_KIND == ITEM_KIND.ITEM_KIND_MATERIAL_STONE)
-        {
-            LuckyStoneList = m_itemSys.GetItemInfoByKind(ITEM_KIND.ITEM_KIND_MATERIAL_STONE);//获得幸运石数据
-            return LuckyStoneList;
-        }
         else { return null; }
     }
     
@@ -97,9 +90,6 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
                 case ITEM_KIND .ITEM_KIND_MATERIAL_STUFF:
                     m_makeSystem.MakeMaterials(kv.Value);//传入材料   
                     break;
-                case ITEM_KIND.ITEM_KIND_MATERIAL_STONE:
-                    m_makeSystem.LuckyStone(kv.Value);//传入幸运石
-                    break;
             }
         }
         if (m_makeSystem.Make()== EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_SUCCESS)
@@ -111,32 +101,6 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
             return false;
         }
 
-    }
-
-    /// <summary>
-    /// 分解装备
-    /// </summary>
-    /// <param name="item">装备ItemData</param>
-    public void DisassembleEquip(ItemData item)
-    {
-        SourceItem source=new SourceItem();
-        
-        DisassembleEquipIno MaterialInfo = NGSStaticData.disassembleEquipIno.GetItem(item.ItemID);
-        //将装备复制给目标物体
-        source.Count = item.Count;
-        source.GUID = item.Guid;
-        sourcesList.Add(source);
-        //确定分解获得的材料
-        for(int i = 0; i < MaterialInfo.MaterialID.Length; i++)
-        {
-            TargetItem target = new TargetItem();
-            target.ItemID = MaterialInfo.MaterialID[i];
-            target.Count = MaterialInfo.MaterialNum[i];
-            targetsList.Add(target);  
-        }
-        m_exchangeSystem.ExchangeItem(sourcesList, targetsList);
-        sourcesList.Clear();
-        targetsList.Clear();
     }
 
 

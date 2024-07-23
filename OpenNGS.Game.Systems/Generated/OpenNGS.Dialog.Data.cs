@@ -10,14 +10,14 @@ namespace OpenNGS.Dialog.Data
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class Dialogue : global::ProtoBuf.IExtensible
+    public partial class DialogList : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public Dialogue()
+        public DialogList()
         {
             OnConstructor();
         }
@@ -25,31 +25,34 @@ namespace OpenNGS.Dialog.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogueID { get; set; }
+        public uint DialogID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
-        public uint[] DialogueDataID { get; set; }
+        public uint[] DialogTalkIDs { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::OpenNGS.Dialog.Common.DIALOG_TYPE DialogType { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class DialogueArray : global::ProtoBuf.IExtensible
+    public partial class DialogListArray : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public DialogueArray()
+        public DialogListArray()
         {
-            items = new global::System.Collections.Generic.List<Dialogue>();
+            items = new global::System.Collections.Generic.List<DialogList>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<Dialogue> items { get; private set; }
+        public global::System.Collections.Generic.List<DialogList> items { get; private set; }
 
     }
 
@@ -120,100 +123,6 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<DialogTalk> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class Option : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public Option()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint OptionID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Core.NGSText OptionContent { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint NextDialogueIndices { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class OptionArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public OptionArray()
-        {
-            items = new global::System.Collections.Generic.List<Option>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<Option> items { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class DialogList : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public DialogList()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint DialogID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
-        public uint[] DialogTalkIDs { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public global::OpenNGS.Dialog.Common.DIALOG_TYPE DialogType { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class DialogListArray : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public DialogListArray()
-        {
-            items = new global::System.Collections.Generic.List<DialogList>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<DialogList> items { get; private set; }
 
     }
 

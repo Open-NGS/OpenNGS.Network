@@ -36,7 +36,6 @@ namespace OpenNGS.Systems
         public List<stashs> GetItemInfosInStash();
         public SuitData GetSuitData(uint suitID);
         public MakeDesign GetItemByItmes(uint itemId);
-        public DisassembleEquipIno GetDisassembleEquipIno(uint itemId);
         //穿装备
         public OpenNGS.Item.Common.EQUIP_RESULT_TYPE Equipped(uint index, uint nGuid);
         //脱装备

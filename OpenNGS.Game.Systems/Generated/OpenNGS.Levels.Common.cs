@@ -10,24 +10,6 @@ namespace OpenNGS.Levels.Common
 {
 
     [global::ProtoBuf.ProtoContract()]
-    public enum LEVEL_STAGE_TYPE
-    {
-        LEVEL_STAGE_TYPE_NONE = 0,
-        LEVEL_STAGE_TYPE_BEGIN = 1,
-        LEVEL_STAGE_TYPE_PROCESS = 2,
-        LEVEL_STAGE_TYPE_END = 3,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public enum STAGE_EXECUTION_TYPE
-    {
-        STAGE_EXECUTION_TYPE_NONE = 0,
-        STAGE_EXECUTION_TYPE_BEGIN = 1,
-        STAGE_EXECUTION_TYPE_PROCESS = 2,
-        STAGE_EXECUTION_TYPE_END = 3,
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public enum ENEMY_INITTYPE
     {
         ENEMY_INITTYPE_NONE = 0,
