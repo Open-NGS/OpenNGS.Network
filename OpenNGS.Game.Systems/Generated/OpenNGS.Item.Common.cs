@@ -231,45 +231,6 @@ namespace OpenNGS.Item.Common
         public global::System.Collections.Generic.Dictionary<long, ItemList> Sets { get; private set; }
 
     }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ItemResultType : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ItemResultType()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ItemResultType_None { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint ItemResultType_Success { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint ItemResultType_ExchangeGrid_StackFull { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint ItemResultType_AddItemFail_NotEnoughGrid { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint ItemResultType_RemoveItemFail_GridNotExist { get; set; }
-
-        [global::ProtoBuf.ProtoMember(6)]
-        public uint ItemResultType_ExchangeGridFail_GridNotExist { get; set; }
-
-        [global::ProtoBuf.ProtoMember(7)]
-        public uint ItemResultType_AddItemFail_NotExist { get; set; }
-
-    }
-
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
