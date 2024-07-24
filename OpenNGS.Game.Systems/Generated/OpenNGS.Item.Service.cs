@@ -56,6 +56,32 @@ namespace OpenNGS.Item.Service
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class RemoveItemReq : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public RemoveItemReq()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ColIdx { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Grid { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Counts { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ChangeItemData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -85,28 +111,44 @@ namespace OpenNGS.Item.Service
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class RemoveItemReq : global::ProtoBuf.IExtensible
+    public partial class AddReq : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public RemoveItemReq()
+        public AddReq()
         {
+            AddList = new global::System.Collections.Generic.List<AddItemReq>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint ColIdx { get; set; }
+        public global::System.Collections.Generic.List<AddItemReq> AddList { get; private set; }
 
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint Grid { get; set; }
+    }
 
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint Counts { get; set; }
+    [global::ProtoBuf.ProtoContract()]
+    public partial class RemoveReq : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public RemoveReq()
+        {
+            RemoveList = new global::System.Collections.Generic.List<RemoveItemReq>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<RemoveItemReq> RemoveList { get; private set; }
 
     }
 
