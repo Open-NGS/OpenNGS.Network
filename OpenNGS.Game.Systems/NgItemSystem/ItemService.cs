@@ -5,28 +5,9 @@ using OpenNGS;
 using System.Collections.Generic;
 using OpenNGS.Item.Common;
 
-public class ItemService : INgItemSystem
+public class ItemService : Singleton<ItemService> ,INgItemSystem
 {
     INgItemSystem ngItemSystem = App.GetService<INgItemSystem>();
-    private static ItemService _instance;
-    private static readonly object _lock = new object();
-
-    private ItemService() { }
-
-    public static ItemService Instance
-    {
-        get
-        {
-            lock (_lock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new ItemService();
-                }
-                return _instance;
-            }
-        }
-    }
 
     public AddItemRsp AddItemsByID(AddItemReq _req)
     {

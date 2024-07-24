@@ -3,28 +3,9 @@ using OpenNGS;
 using System.Collections.Generic;
 using OpenNGS.Dialog.Service;
 
-public class DialogSerivce : INgDialogSystem
+public class DialogSerivce : Singleton<DialogSerivce>,INgDialogSystem
 {
     INgDialogSystem ngDialogSystem = App.GetService<INgDialogSystem>();
-    private static DialogSerivce _instance;
-    private static readonly object _lock = new object();
-
-    private DialogSerivce() { }
-
-    public static DialogSerivce Instance
-    {
-        get
-        {
-            lock (_lock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new DialogSerivce();
-                }
-                return _instance;
-            }
-        }
-    }
 
     public uint GetDialogDisplayType(uint dialogId)
     {
