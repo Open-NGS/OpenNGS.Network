@@ -4,9 +4,7 @@ using OpenNGS.Item.Data;
 using OpenNGS.Item.Service;
 using OpenNGS.Systems;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ItemLocalAPI : INgItemSystem
 {

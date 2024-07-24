@@ -1,12 +1,7 @@
 using OpenNGS.Dialog.Data;
 using OpenNGS.Dialog.Service;
-using OpenNGS.Item.Data;
-using OpenNGS.Systems;
-using System.Collections;
 using System.Collections.Generic;
 using Systems;
-using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace OpenNGS.Systems
 {

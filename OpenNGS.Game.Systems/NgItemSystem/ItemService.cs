@@ -2,9 +2,7 @@ using OpenNGS.Item.Data;
 using OpenNGS.Item.Service;
 using OpenNGS.Systems;
 using OpenNGS;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using OpenNGS.Item.Common;
 
 public class ItemService : INgItemSystem
