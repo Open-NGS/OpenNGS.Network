@@ -30,6 +30,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
         services.Add(new ServiceDescriptor(typeof(INgItemSystem), new NgItemSystem()));
         services.Add(new ServiceDescriptor(typeof(INgDialogSystem), new NgDialogSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
     }
 
     protected override void OnInit()

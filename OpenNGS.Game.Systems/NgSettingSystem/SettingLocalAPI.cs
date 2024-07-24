@@ -13,9 +13,9 @@ public class SettingLocalAPI : Singleton<SettingLocalAPI>,INgSettingSystem
         ngSettingSystem.AddActionOnSettingChange(ac);
     }
 
-    public void AddSettingContainer(UserSettingContainer container)
+    public void AddItemContainer(UserSettingContainer container)
     {
-        ngSettingSystem.AddSettingContainer(container);
+        ngSettingSystem.AddItemContainer(container);
     }
 
     public void ChangeSetting(int settingType, int value)
