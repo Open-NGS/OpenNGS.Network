@@ -76,13 +76,28 @@ namespace OpenNGS.Exchange.Data
         public uint Grid { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint ItemID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
         public uint Counts { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5)]
-        public bool BUseGrid { get; set; }
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SourceStateArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SourceStateArray()
+        {
+            items = new global::System.Collections.Generic.List<SourceState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<SourceState> items { get; private set; }
 
     }
 
@@ -102,10 +117,34 @@ namespace OpenNGS.Exchange.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint ItemID { get; set; }
+        public uint Col { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
         public uint Counts { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TargetStateArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public TargetStateArray()
+        {
+            items = new global::System.Collections.Generic.List<TargetState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<TargetState> items { get; private set; }
 
     }
 
@@ -135,6 +174,27 @@ namespace OpenNGS.Exchange.Data
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class ExchangeReqArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExchangeReqArray()
+        {
+            items = new global::System.Collections.Generic.List<ExchangeReq>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ExchangeReq> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ExchangeRsp : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -151,10 +211,31 @@ namespace OpenNGS.Exchange.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint result { get; set; }
+        public global::OpenNGS.Exchange.Common.ExchangeResultType result { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemSaveState> LstItemData { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ExchangeRspArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExchangeRspArray()
+        {
+            items = new global::System.Collections.Generic.List<ExchangeRsp>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<ExchangeRsp> items { get; private set; }
 
     }
 

@@ -1,5 +1,5 @@
 using OpenNGS;
-using OpenNGS.Exchange.Service;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Systems;
 
 public class ExchangeService : Singleton<ExchangeService>
@@ -11,23 +11,11 @@ public class ExchangeService : Singleton<ExchangeService>
         m_exchangeApi = clientApi;
     }
 
-    public ExchangeRsp ExchangeItemByGrid(ExchangeByGridIDReq request)
+    public ExchangeRsp ExchangeItem(ExchangeReq request)
     {
         if(m_exchangeApi != null)
         {
-            return m_exchangeApi.ExchangeItemByGrid(request);
-        }
-        else
-        {
-            NgDebug.LogError("ExchangeService not Initiate");
-        }
-        return null;
-    }
-    public ExchangeRsp ExchangeItemByID(ExchangeByItemIDReq request)
-    {
-        if (m_exchangeApi != null)
-        {
-            return m_exchangeApi.ExchangeItemByID(request);
+            return m_exchangeApi.ExchangeItem(request);
         }
         else
         {

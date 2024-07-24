@@ -159,6 +159,7 @@ namespace OpenNGS.Item.Common
         ItemResultType_ExchangeGridFail_GridNotExist = 5,
         ItemResultType_AddItemFail_NotExist = 6,
         ItemResultType_SortItemFail_NotExist = 7,
+        ItemResultType_RemoveItemFail_NotEnoughNum = 8,
     }
 
     [global::ProtoBuf.ProtoContract()]

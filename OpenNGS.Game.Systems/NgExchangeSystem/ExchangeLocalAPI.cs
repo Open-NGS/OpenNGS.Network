@@ -1,5 +1,5 @@
 using OpenNGS;
-using OpenNGS.Exchange.Service;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Systems;
 
 public class ExchangeLocalAPI : Singleton<ExchangeLocalAPI>, IExchangeClientAPI
@@ -11,24 +11,11 @@ public class ExchangeLocalAPI : Singleton<ExchangeLocalAPI>, IExchangeClientAPI
         m_exchangeSys = App.GetService<INgExchangeSystem>();
     }
 
-    public ExchangeRsp ExchangeItemByGrid(ExchangeByGridIDReq request)
+    public ExchangeRsp ExchangeItem(ExchangeReq request)
     {
         if(m_exchangeSys != null)
         {
-            return m_exchangeSys.ExchangeItemByGrid(request);
-        }
-        else
-        {
-            NgDebug.LogError("ExchangeLocalAPI not get INgExchangeSystem");
-        }
-        return null;
-    }
-
-    public ExchangeRsp ExchangeItemByID(ExchangeByItemIDReq request)
-    {
-        if (m_exchangeSys != null)
-        {
-            return m_exchangeSys.ExchangeItemByID(request);
+            return m_exchangeSys.ExchangeItem(request);
         }
         else
         {

@@ -25,7 +25,7 @@ namespace OpenNGS.Exchange.Common
         Success = 1,
         Failed_NotEnough = 2,
         Failed_OverLimitNum = 3,
-        Error_NotDefine_Source = 4,
+        Error_NotExist_Source = 4,
         Error_NotDefine_Target = 5,
     }
 

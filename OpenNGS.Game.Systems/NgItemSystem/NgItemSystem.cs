@@ -230,7 +230,7 @@ namespace OpenNGS.Systems
             var itemState = column.ItemSaveStates.FirstOrDefault(i => i.Grid == nGrid);
             if (itemState == null || itemState.Count < nCounts)
             {
-                result.Result.ItemResultValue = ItemResultType.ItemResultType_RemoveItemFail_GridNotExist;
+                result.Result.ItemResultValue = ItemResultType.ItemResultType_RemoveItemFail_NotEnoughNum;
                 return result;
             }
 
