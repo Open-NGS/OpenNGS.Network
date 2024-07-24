@@ -54,6 +54,110 @@ namespace OpenNGS.Exchange.Data
         public uint Count { get; set; }
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SourceState : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SourceState()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint Col { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Grid { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint Counts { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public bool BUseGrid { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TargetState : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public TargetState()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Counts { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ExchangeReq : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExchangeReq()
+        {
+            src = new global::System.Collections.Generic.List<SourceState>();
+            target = new global::System.Collections.Generic.List<TargetState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<SourceState> src { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<TargetState> target { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ExchangeRsp : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ExchangeRsp()
+        {
+            LstItemData = new global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemSaveState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemSaveState> LstItemData { get; private set; }
+
+    }
+
 }
 #pragma warning restore 0612, 0618, 1591, 3021
 #endregion
