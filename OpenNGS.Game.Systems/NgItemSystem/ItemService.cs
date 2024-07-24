@@ -5,6 +5,7 @@ using OpenNGS;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OpenNGS.Item.Common;
 
 public class ItemService : INgItemSystem
 {
@@ -57,5 +58,25 @@ public class ItemService : INgItemSystem
     public void AddItemContainer(ItemContainer Container)
     {
         ngItemSystem.AddItemContainer(Container);
+    }
+
+    public ItemResultType CanRemoveItem(RemoveReq _req)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public ItemResultType CanAddItem(AddReq _req)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public AddItemRsp AddItems(AddReq _req)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public AddItemRsp RemoveItems(RemoveReq _req)
+    {
+        throw new System.NotImplementedException();
     }
 }

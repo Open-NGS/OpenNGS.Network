@@ -365,6 +365,26 @@ namespace OpenNGS.Systems
             }
             return result;
         }
+
+        public ItemResultType CanRemoveItem(RemoveReq _req)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ItemResultType CanAddItem(AddReq _req)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AddItemRsp AddItems(AddReq _req)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AddItemRsp RemoveItems(RemoveReq _req)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
