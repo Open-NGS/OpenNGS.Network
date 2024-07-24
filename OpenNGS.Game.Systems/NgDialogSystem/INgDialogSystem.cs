@@ -10,7 +10,7 @@ namespace OpenNGS.Systems
         public LoadDialogRsp LoadDialogs(uint dialogId);
         public LoadDialogRsp SelectChoice(ChoiceRep _choiceRep);
         public LoadDialogRsp NextDialog();
-        public List<DialogData> GetHistory();
+        public List<object> GetHistory();
     }
 
 }
