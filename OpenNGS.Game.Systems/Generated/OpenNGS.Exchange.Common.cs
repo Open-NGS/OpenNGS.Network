@@ -18,6 +18,17 @@ namespace OpenNGS.Exchange.Common
         EXCHANGE_RESULT_TYPE_NOITEM = 3,
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public enum ExchangeResultType
+    {
+        None = 0,
+        Success = 1,
+        Failed_NotEnough = 2,
+        Failed_OverLimitNum = 3,
+        Error_NotDefine_Source = 4,
+        Error_NotDefine_Target = 5,
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
