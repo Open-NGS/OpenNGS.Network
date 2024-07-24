@@ -1,3 +1,5 @@
+using OpenNGS.Collections.Generic;
+using OpenNGS.Dialog.Common;
 using OpenNGS.Dialog.Data;
 using System;
 using System.Collections.Generic;
@@ -81,12 +83,12 @@ namespace OpenNGS.Systems
             }
             DisplayDialog();
         }
-        //public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType()
-        //{
-        //    //DialogList dialog = NGSStaticData.Dialogue.GetItem(m_nDialogID);
-        //    return DIALOG_TYPE.DIALOG_TYPE_NORMAL;
+        public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType()
+        {
+            //DialogList dialog = NGSStaticData.Dialogue.GetItem(m_nDialogID);
+            return DIALOG_TYPE.DIALOG_TYPE_NORMAL;
 
-        //}
+        }
         private void DisplayDialog()
         {
             if (CurrentIndex < DialogTalks.Count)
