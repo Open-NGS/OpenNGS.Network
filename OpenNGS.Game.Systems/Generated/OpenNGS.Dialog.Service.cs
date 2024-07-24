@@ -19,6 +19,7 @@ namespace OpenNGS.Dialog.Service
         }
         public LoadDialogRsp()
         {
+            Choice = new global::System.Collections.Generic.List<global::OpenNGS.Dialog.Data.DialogChoice>();
             OnConstructor();
         }
 
@@ -28,7 +29,7 @@ namespace OpenNGS.Dialog.Service
         public global::OpenNGS.Dialog.Data.DialogTalk Talk { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Dialog.Data.DialogChoice Choice { get; set; }
+        public global::System.Collections.Generic.List<global::OpenNGS.Dialog.Data.DialogChoice> Choice { get; set; }
 
     }
 

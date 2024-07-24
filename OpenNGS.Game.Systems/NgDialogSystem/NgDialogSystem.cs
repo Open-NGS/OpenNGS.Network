@@ -1,4 +1,5 @@
 using OpenNGS.Dialog.Data;
+using OpenNGS.Dialog.Service;
 using OpenNGS.Item.Data;
 using OpenNGS.Systems;
 using System.Collections;
@@ -37,8 +38,9 @@ namespace OpenNGS.Systems
         }
 
         // 加载对话
-        public DialogTalk LoadDialogs(uint dialogId)
+        public LoadDialogRsp LoadDialogs(uint dialogId)
         {
+            LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
             DialogTalks.Clear();
             History.Clear();
             CurrentIndex = 0;
@@ -49,27 +51,36 @@ namespace OpenNGS.Systems
                 DialogTalks.Add(dialogData);
             }
             DisplayDialog();
-            return CurrentDialog;
+            loadDialogRsp.Talk = CurrentDialog;
+            loadDialogRsp.Choice = Choices;
+            return loadDialogRsp;
         }
 
         // 选择选项
-        public DialogTalk SelectChoice(DialogChoice choice)
+        public LoadDialogRsp SelectChoice(ChoiceRep _choiceRep)
         {
+            DialogChoice choice = _choiceRep.ChoiceRepValue;
+            LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
             if (Choices.Contains(choice))
             {
                 choice.IsSelected = true;
                 CurrentIndex = (int)choice.NextDialogIndex;
                 DisplayDialog();
             }
-            return CurrentDialog;
+            loadDialogRsp.Talk = CurrentDialog;
+            loadDialogRsp.Choice = Choices;
+            return loadDialogRsp;
         }
 
         // 下一对话
-        public DialogTalk NextDialog()
+        public LoadDialogRsp NextDialog()
         {
+            LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
             CurrentIndex++;
             DisplayDialog();
-            return CurrentDialog;
+            loadDialogRsp.Talk = CurrentDialog;
+            loadDialogRsp.Choice = Choices;
+            return loadDialogRsp;
         }
 
         // 内部方法: 显示对话
