@@ -29,6 +29,9 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IQuestSystem), new QuestSystem()));
         services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
         services.Add(new ServiceDescriptor(typeof(INgItemSystem), new NgItemSystem()));
+
+        services.Add(new ServiceDescriptor(typeof(INgExchangeSystem), new NgExchangeSystem()));
+
         services.Add(new ServiceDescriptor(typeof(INgDialogSystem), new NgDialogSystem()));
         services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
     }

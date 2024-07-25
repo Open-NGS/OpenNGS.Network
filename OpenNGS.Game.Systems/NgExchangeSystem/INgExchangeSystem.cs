@@ -4,7 +4,8 @@ namespace OpenNGS.Systems
 {
     public interface INgExchangeSystem
     {
-        public ExchangeRsp ExchangeItem(ExchangeReq request);
+        public ExchangeRsp ExchangeItemByGrid(ExchangeByGridIDReq request);
+        public ExchangeRsp ExchangeItemByID(ExchangeByItemIDReq request);
     }
 }
 

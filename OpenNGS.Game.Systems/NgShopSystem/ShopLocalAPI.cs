@@ -1,5 +1,5 @@
 using OpenNGS;
-using OpenNGS.Shop.Service;
+using OpenNGS.Shop.Data;
 using OpenNGS.Systems;
 
 public class ShopLocalAPI : Singleton<ShopLocalAPI>, IShopClientAPI

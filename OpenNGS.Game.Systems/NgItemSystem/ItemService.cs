@@ -39,10 +39,6 @@ public class ItemService : Singleton<ItemService> ,INgItemSystem
         ngItemSystem.AddItemContainer(Container);
     }
 
-    public ItemResultType CanRemoveItem(RemoveReq _req)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public ItemResultType CanAddItem(AddReq _req)
     {
@@ -54,7 +50,22 @@ public class ItemService : Singleton<ItemService> ,INgItemSystem
         throw new System.NotImplementedException();
     }
 
-    public AddItemRsp RemoveItems(RemoveReq _req)
+    public ItemResultType CanRemoveItemByID(RemoveItemsByIDsReq _req)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public AddItemRsp RemoveItemByID(RemoveItemsByIDsReq _req)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public ItemResultType CanRemoveItemByGrid(RemoveItemsByGridsReq _req)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public AddItemRsp RemoveItemByGrid(RemoveItemsByGridsReq _req)
     {
         throw new System.NotImplementedException();
     }

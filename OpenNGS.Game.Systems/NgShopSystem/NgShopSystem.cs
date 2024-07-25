@@ -1,7 +1,8 @@
-using OpenNGS.Exchange.Service;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Shop.Data;
-using OpenNGS.Shop.Service;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using Systems;
 
 namespace OpenNGS.Systems
@@ -43,11 +44,11 @@ namespace OpenNGS.Systems
 
                 if(shopMap.ContainsKey(_shop.ID) == false)
                 {
+                    shopMap[_shop.ID] = new List<ShelfState>();
                     ShelfState _shelfState = new ShelfState();
                     _shelfState.ShelfId = _shelfID;             //货架Id
                     _shelfState.RefreshTime = 0;                //下次刷新时间 0 = 不刷新
                     _shelfState.Left = -1;                      //剩余刷新次数 -1 = 无限次
-                    shopMap[_shop.ID] = new List<ShelfState>() { _shelfState };
                     _shelfState.Goods.Add(_goodState);
                 }
                 else
@@ -59,7 +60,6 @@ namespace OpenNGS.Systems
                         _shelfState.ShelfId = _shelfID;
                         _shelfState.RefreshTime = 0;
                         _shelfState.Left = -1;
-                        shopMap[_shop.ID].Add(_shelfState);
                     }
                     _shelfState.Goods.Add(_goodState);
                 }
@@ -102,7 +102,7 @@ namespace OpenNGS.Systems
                     }
                     else
                     {
-                        DoExchange(response, request);
+                        DoExchange(response, request.GoodId, request.GoodCounts);
                         if(response.result == Shop.Common.ShopResultType.Success)
                         {
                             _good.Left -= (int)request.GoodCounts;
@@ -111,7 +111,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    DoExchange(response, request);
+                    DoExchange(response, request.GoodId, request.GoodCounts);
                 }
             }
             else
@@ -125,29 +125,18 @@ namespace OpenNGS.Systems
         /// <summary>
         /// 执行购买逻辑
         /// </summary>
-        private void DoExchange(BuyRsp response, BuyReq request)
+        private void DoExchange(BuyRsp response, uint goodId, uint goodCounts)
         {
-            Good _good = NGSStaticData.goodDatas.GetItem(request.GoodId);
+            Good _good = NGSStaticData.goodDatas.GetItem(goodId);
             if( _good == null )
             {
                 response.result = Shop.Common.ShopResultType.Error_DataInfo;
                 return;
             }
 
-            ExchangeByItemIDReq _exchangeReq = new ExchangeByItemIDReq();
-            ItemSrcState src = new ItemSrcState();
-            src.Col = request.ColIdex;
-            src.ItemID = _good.CurrencyId;
-            src.Counts = _good.CurrencyCounts * request.GoodCounts;
-            _exchangeReq.Source.Add(src);
+            //ExchangeReq _exchangeReq = new ExchangeReq();
 
-            TargetState trg = new TargetState();
-            trg.Col = request.ColIdex;
-            trg.ItemID = _good.ItemId;
-            trg.Counts = request.GoodCounts;
-            _exchangeReq.Target.Add(trg);
-
-            m_exchangeSys.ExchangeItemByID(_exchangeReq);
+            //m_exchangeSys.ExchangeItem();
         }
 
         public ShopRsp GetShopState(ShopReq request)

@@ -15,10 +15,13 @@ namespace OpenNGS.Systems
         public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx);
         void AddItemContainer(ItemContainer Container);
 
-        public ItemResultType CanRemoveItem(RemoveReq _req);
+        //交易系统需要
         public ItemResultType CanAddItem(AddReq _req);
         public AddItemRsp AddItems(AddReq _req);
-        public AddItemRsp RemoveItems(RemoveReq _req);
+        public ItemResultType CanRemoveItemByID(RemoveItemsByIDsReq _req);
+        public AddItemRsp RemoveItemByID(RemoveItemsByIDsReq _req);
+        public ItemResultType CanRemoveItemByGrid(RemoveItemsByGridsReq _req);
+        public AddItemRsp RemoveItemByGrid(RemoveItemsByGridsReq _req);
     }
 
 }

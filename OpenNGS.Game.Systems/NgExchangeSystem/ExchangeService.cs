@@ -11,11 +11,23 @@ public class ExchangeService : Singleton<ExchangeService>
         m_exchangeApi = clientApi;
     }
 
-    public ExchangeRsp ExchangeItem(ExchangeReq request)
+    public ExchangeRsp ExchangeItemByGrid(ExchangeByGridIDReq request)
     {
         if(m_exchangeApi != null)
         {
-            return m_exchangeApi.ExchangeItem(request);
+            return m_exchangeApi.ExchangeItemByGrid(request);
+        }
+        else
+        {
+            NgDebug.LogError("ExchangeService not Initiate");
+        }
+        return null;
+    }
+    public ExchangeRsp ExchangeItemByID(ExchangeByItemIDReq request)
+    {
+        if (m_exchangeApi != null)
+        {
+            return m_exchangeApi.ExchangeItemByID(request);
         }
         else
         {

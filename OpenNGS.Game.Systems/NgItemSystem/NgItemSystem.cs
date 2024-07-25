@@ -366,24 +366,38 @@ namespace OpenNGS.Systems
             return result;
         }
 
-        public ItemResultType CanRemoveItem(RemoveReq _req)
-        {
-            throw new NotImplementedException();
-        }
 
         public ItemResultType CanAddItem(AddReq _req)
         {
-            throw new NotImplementedException();
+            return ItemResultType.ItemResultType_Success;
         }
 
         public AddItemRsp AddItems(AddReq _req)
         {
-            throw new NotImplementedException();
+            AddItemRsp addItemRsp = new AddItemRsp();
+            return addItemRsp;
         }
 
-        public AddItemRsp RemoveItems(RemoveReq _req)
+        public ItemResultType CanRemoveItemByID(RemoveItemsByIDsReq _req)
         {
-            throw new NotImplementedException();
+            return ItemResultType.ItemResultType_Success;
+        }
+
+        public AddItemRsp RemoveItemByID(RemoveItemsByIDsReq _req)
+        {
+            AddItemRsp addItemRsp = new AddItemRsp();
+            return addItemRsp;
+        }
+
+        public ItemResultType CanRemoveItemByGrid(RemoveItemsByGridsReq _req)
+        {
+            return ItemResultType.ItemResultType_Success;
+        }
+
+        public AddItemRsp RemoveItemByGrid(RemoveItemsByGridsReq _req)
+        {
+            AddItemRsp addItemRsp = new AddItemRsp();
+            return addItemRsp;
         }
     }
 }

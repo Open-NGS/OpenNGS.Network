@@ -11,11 +11,24 @@ public class ExchangeLocalAPI : Singleton<ExchangeLocalAPI>, IExchangeClientAPI
         m_exchangeSys = App.GetService<INgExchangeSystem>();
     }
 
-    public ExchangeRsp ExchangeItem(ExchangeReq request)
+    public ExchangeRsp ExchangeItemByGrid(ExchangeByGridIDReq request)
     {
         if(m_exchangeSys != null)
         {
-            return m_exchangeSys.ExchangeItem(request);
+            return m_exchangeSys.ExchangeItemByGrid(request);
+        }
+        else
+        {
+            NgDebug.LogError("ExchangeLocalAPI not get INgExchangeSystem");
+        }
+        return null;
+    }
+
+    public ExchangeRsp ExchangeItemByID(ExchangeByItemIDReq request)
+    {
+        if (m_exchangeSys != null)
+        {
+            return m_exchangeSys.ExchangeItemByID(request);
         }
         else
         {
