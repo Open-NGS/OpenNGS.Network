@@ -628,7 +628,6 @@ namespace OpenNGS.Setting.Data
         }
         public UserSettingSection()
         {
-            GroupID = "";
             Title = "";
             Tips = "";
             OnConstructor();
@@ -640,8 +639,7 @@ namespace OpenNGS.Setting.Data
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string GroupID { get; set; }
+        public uint GroupID { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public uint Show { get; set; }
