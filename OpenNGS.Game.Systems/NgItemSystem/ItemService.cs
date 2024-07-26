@@ -5,38 +5,41 @@ using OpenNGS;
 using System.Collections.Generic;
 using OpenNGS.Item.Common;
 
-public class ItemService : Singleton<ItemService> ,INgItemSystem
+public class ItemService : Singleton<ItemService>
 {
-    INgItemSystem ngItemSystem = App.GetService<INgItemSystem>();
-
+    IItemClientAPI ngItemClientSystem;
+    public void Init(IItemClientAPI itemClientAPI)
+    {
+        ngItemClientSystem = itemClientAPI;
+    }
     public AddItemRsp AddItemsByID(AddItemReq _req)
     {
-        return ngItemSystem.AddItemsByID(_req);
+        return ngItemClientSystem.AddItemsByID(_req);
     }
 
     public AddItemRsp RemoveItemsByGrid(RemoveItemReq _req)
     {
-        return ngItemSystem.RemoveItemsByGrid(_req);
+        return ngItemClientSystem.RemoveItemsByGrid(_req);
     }
 
     public AddItemRsp ExchangeGrid(ChangeItemData _changeItemData)
     {
-        return ngItemSystem.ExchangeGrid(_changeItemData);
+        return ngItemClientSystem.ExchangeGrid(_changeItemData);
     }
 
     public AddItemRsp SortItems(uint nCol)
     {
-        return ngItemSystem.SortItems(nCol);
+        return ngItemClientSystem.SortItems(nCol);
     }
 
     public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
     {
-        return ngItemSystem.GetItemDatasByColIdx(nColIdx);
+        return ngItemClientSystem.GetItemDatasByColIdx(nColIdx);
     }
 
     public void AddItemContainer(ItemContainer Container)
     {
-        ngItemSystem.AddItemContainer(Container);
+        ngItemClientSystem.AddItemContainer(Container);
     }
 
 

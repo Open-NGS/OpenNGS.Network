@@ -6,10 +6,14 @@ using OpenNGS.Systems;
 using System;
 using System.Collections.Generic;
 
-public class ItemLocalAPI : Singleton<ItemLocalAPI>,INgItemSystem
+public class ItemLocalAPI : Singleton<ItemLocalAPI>, IItemClientAPI
 {
-    INgItemSystem ngItemSystem=App.GetService<INgItemSystem>();
+    INgItemSystem ngItemSystem;
 
+    public void Init()
+    {
+        ngItemSystem = App.GetService<INgItemSystem>();
+    }
     public AddItemRsp AddItemsByID(AddItemReq _req)
     {
         return ngItemSystem.AddItemsByID(_req);

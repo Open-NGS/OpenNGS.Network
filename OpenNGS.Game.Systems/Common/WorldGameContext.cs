@@ -12,7 +12,7 @@ public class WorldGameContext : GameContext
     public override void ConfigureServices(IServiceCollection services)
     {
         services.Add(new ServiceDescriptor(typeof(IExchangeSystem), new ExchangeSystem()));
-        services.Add(new ServiceDescriptor(typeof(IItemSystem),new ItemSystem()));
+        //services.Add(new ServiceDescriptor(typeof(IItemSystem),new ItemSystem()));
         services.Add(new ServiceDescriptor(typeof(ICharacterSystem), new CharacterSystem()));
         services.Add(new ServiceDescriptor(typeof(IMakeSystem), new MakeSystem()));
         services.Add(new ServiceDescriptor(typeof(IShopSystem), new ShopSystem()));

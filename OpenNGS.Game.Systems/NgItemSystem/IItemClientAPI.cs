@@ -12,7 +12,7 @@ namespace OpenNGS.Systems
         //public uint GetItemCountByGuid(uint nColIdx, uint nGuid);
         public AddItemRsp ExchangeGrid(ChangeItemData _changeItemData);
         public AddItemRsp SortItems(uint nCol);
-        public ItemColumn GetItemColumnByColIdx(uint nColIdx);
+        public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx);
         void AddItemContainer(ItemContainer Container);
 
         //交易系统需要

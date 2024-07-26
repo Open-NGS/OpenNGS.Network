@@ -8,9 +8,9 @@ namespace OpenNGS.Item.Data
 {
     public partial class ItemContainer
     {
-        public void InitializeColumns(ItemContainer container, uint colIdx, uint capacity)
+        public void InitializeColumns(uint colIdx, uint capacity)
         {
-            if (!container.Col.Any(col => col.ColIdx == colIdx))
+            if (!Col.Any(col => col.ColIdx == colIdx))
             {
                 Col.Add(new ItemColumn { ColIdx = colIdx, ItemSaveStates = new List<ItemSaveState>(), Capacity = capacity });
             }
