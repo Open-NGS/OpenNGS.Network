@@ -32,9 +32,9 @@ public class ItemService : Singleton<ItemService>
         return ngItemClientSystem.SortItems(nCol);
     }
 
-    public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
+    public ItemColumn GetItemColumnByColIdx(uint nColIdx)
     {
-        return ngItemClientSystem.GetItemDatasByColIdx(nColIdx);
+        return ngItemClientSystem.GetItemColumnByColIdx(nColIdx);
     }
 
     public void AddItemContainer(ItemContainer Container)

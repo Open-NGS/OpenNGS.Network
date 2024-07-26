@@ -34,9 +34,9 @@ public class ItemLocalAPI : Singleton<ItemLocalAPI>, IItemClientAPI
         return ngItemSystem.SortItems(nCol);
     }
 
-    public List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
+    public ItemColumn GetItemColumnByColIdx(uint nColIdx)
     {
-        return ngItemSystem.GetItemDatasByColIdx(nColIdx);
+        return ngItemSystem.GetItemColumnByColIdx(nColIdx);
     }
 
     public void AddItemContainer(ItemContainer Container)
