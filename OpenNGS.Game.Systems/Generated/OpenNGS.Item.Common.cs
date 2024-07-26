@@ -27,10 +27,12 @@ namespace OpenNGS.Item.Common
     public enum ITEM_TYPE
     {
         ITEM_TYPE_NONE = 0,
-        ITEM_TYPE_EQUIP = 1,
-        ITEM_TYPE_CRAFT = 2,
-        ITEM_TYPE_RESOURCE = 3,
-        ITEM_TYPE_CONSUMABLE = 4,
+        ITEM_TYPE_RESOURCE = 1,
+        ITEM_TYPE_BAG = 2,
+        ITEM_TYPE_STASH = 3,
+        ITEM_TYPE_EQUIP = 4,
+        ITEM_TYPE_CRAFT = 5,
+        ITEM_TYPE_CONSUMABLE = 6,
     }
 
     [global::ProtoBuf.ProtoContract()]
