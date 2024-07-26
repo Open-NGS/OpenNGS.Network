@@ -19,6 +19,7 @@ namespace OpenNGS.Dialog.Data
         }
         public DialogList()
         {
+            Comments = "";
             OnConstructor();
         }
 
@@ -35,6 +36,10 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(4)]
         public uint Type { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Comments { get; set; }
 
     }
 

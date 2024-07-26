@@ -12,7 +12,7 @@ namespace OpenNGS.Item.Data
         {
             if (!Col.Any(col => col.ColIdx == colIdx))
             {
-                Col.Add(new ItemColumn { ColIdx = colIdx, ItemSaveStates = new List<ItemSaveState>(), Capacity = capacity });
+                Col.Add(new ItemColumn { ColIdx = colIdx, Capacity = capacity });
             }
         }
         public void AddItem(bags item)

@@ -68,7 +68,11 @@ namespace OpenNGS.Systems
             {
                 if (item.ItemID == itemId)
                 {
-                    itemDatas.Add(item);
+                    ItemSaveState itemData = new ItemSaveState();
+                    itemData.GUID = item.GUID;
+                    itemData.ItemID = item.ItemID;
+                    itemData.Count = item.Count;
+                    itemDatas.Add(itemData);
                 }
             }
             return itemDatas;
@@ -100,28 +104,11 @@ namespace OpenNGS.Systems
         }
         public AddItemRsp AddItemsByID(AddItemReq _req)
         {
-            if (_req == null)
-            {
-                UnityEngine.Debug.LogError("AddItemReq is null in AddItemsByID call.");
-                return null; // Or handle it as appropriate for your system
-            }
             uint nItemID = _req.ItemID;
             uint nCounts = _req.Counts;
             uint nColIdx = _req.ColIdx;
 
             AddItemRsp result = new AddItemRsp();
-
-            // 确保 result.Result 被实例化
-            if (result.Result == null)
-            {
-                result.Result = new ItemResult();
-            }
-
-            // 确保 result.Result.ItemList 被实例化
-            if (result.Result.ItemList == null)
-            {
-                result.Result.ItemList = new List<ItemSaveState>();
-            }
             OpenNGS.Item.Data.Item ItemInfo = NGSStaticData.items.GetItem(nItemID);
             if (ItemInfo == null)
             {
@@ -194,7 +181,10 @@ namespace OpenNGS.Systems
                 {
                     if (!column.ItemSaveStates.Any(i => i.Grid == grid))
                     {
+                        //newItem.Grid = 0;
                         FirstEmptyGrid = grid;
+                        //result = AddItemToContainer(nColIdx, newItem);
+                        //result.result.Result.ItemList.Add(newItem);
                         addedToExistingGrid = true;
                         break;
                     }
@@ -218,6 +208,8 @@ namespace OpenNGS.Systems
                     result.Result.ItemResultValue = ItemResultType.ItemResultType_Success;
                 }
             }
+            //
+            var column44 = GetItemByColIdx(nColIdx);
             return result;
         }
 
@@ -273,7 +265,6 @@ namespace OpenNGS.Systems
             uint nDstCol = _changeItemData.DstCol;
             uint nDstGrid = _changeItemData.DstGrid;
             AddItemRsp result = new AddItemRsp();
-            result.Result.ItemList = new List<ItemSaveState>();
             var itemStateSrc = GetItemDatasByColIdx(nSrcCol).FirstOrDefault(i => i.Grid == nSrcGrid);
             var itemStateDst = GetItemDatasByColIdx(nDstCol).FirstOrDefault(i => i.Grid == nDstGrid);
             if (nSrcCol == nDstCol && nSrcGrid == nDstGrid)
@@ -330,7 +321,6 @@ namespace OpenNGS.Systems
         public AddItemRsp SortItems(uint nCol)
         {
             AddItemRsp result = new AddItemRsp();
-            result.Result.ItemList = new List<ItemSaveState>();
             List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
             if (itemSaveDatas == null)
             {
