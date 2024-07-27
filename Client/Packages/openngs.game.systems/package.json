@@ -1,0 +1,15 @@
+{
+	"name": "com.openngs.game.systems",
+	"version": "0.1.0",
+	"description": "OpenNGS game systems package",
+	"main": "index.js",
+	"scripts": {
+		"test" : "script-content"
+	},
+	"author": "kane",
+	"license": "AGPL",
+	"keywords": [
+		"unity3d",
+		"unity3d-npm"
+	]
+}

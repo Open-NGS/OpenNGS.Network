@@ -1,0 +1,23 @@
+{
+    "name": "OpenNGSGame.Systems",
+    "rootNamespace": "",
+    "references": [
+        "OpenNGS.Game",
+        "OpenNGS.Core",
+        "protobuf-net",
+        "OpenNGS.ERPC",
+        "OpenNGS.UI",
+        "OpenNGS.DI",
+        "OpenNGS.Events",
+        "OpenNGS.Data"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
