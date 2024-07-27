@@ -1,0 +1,4 @@
+﻿{
+	"name": "OpenNGS.Platform",
+	"references": ["GCloudSDK"]
+}
