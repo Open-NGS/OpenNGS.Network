@@ -24,6 +24,32 @@ git push -uf origin main
 
 - [ ] [Set up project integrations](https://git.eegames.net/openngs/client/openngs/-/settings/integrations)
 
+
+```
+git subtree add --prefix Client/Packages/openngs.core https://git.eegames.net/openngs/client/openngs.core.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.data https://git.eegames.net/openngs/client/openngs.data.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.di https://git.eegames.net/openngs/client/openngs.di.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.erpc https://git.eegames.net/openngs/client/openngs.erpc.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.network https://git.eegames.net/openngs/client/openngs.network.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.protobuf https://git.eegames.net/openngs/client/openngs.protobuf.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.ui https://git.eegames.net/openngs/client/openngs.ui.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.platform https://git.eegames.net/openngs/client/openngs.platform.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.game https://git.eegames.net/openngs/client/openngs.game.git main --squash
+
+git subtree add --prefix Client/Packages/openngs.game.systems https://git.eegames.net/openngs/client/openngs.game.systems.git main --squash
+
+```
+
+
+
 ## Collaborate with your team
 
 - [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
