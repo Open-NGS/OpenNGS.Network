@@ -1,5 +1,6 @@
 {
 	"name": "com.openngs.network",
+	"displayName": "OpenNGS Network",
 	"version": "0.1.0",
 	"description": "OpenNGS Network package",
 	"main": "index.js",
