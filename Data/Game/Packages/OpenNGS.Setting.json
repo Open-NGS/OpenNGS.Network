@@ -1,0 +1,975 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Setting.Data": {
+      "Name": "OpenNGS.Setting.Data",
+      "ModelPackage": "OpenNGS.Setting.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Setting.Data.GameSettingLabel": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "GameSettingLabel",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.GameSettingLabel",
+          "PackageName": "OpenNGS.Setting.Data.GameSettingLabel",
+          "Description": "设置标签",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GameSettingLabel",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.GameSettingLabel",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "设置标签",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "UIName": {
+                "Name": "UIName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "UI名称",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.GetSettingRsq": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "GetSettingRsq",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.GetSettingRsq",
+          "PackageName": "OpenNGS.Setting.Data.GetSettingRsq",
+          "Description": "设置响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetSettingRsq",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.GetSettingRsq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Result": {
+                "Name": "Result",
+                "Type": "Unknow",
+                "CustomType": "RESULT_TYPE",
+                "Description": "请求结果",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Vertical": {
+                "Name": "Vertical",
+                "Type": "Unknow",
+                "CustomType": "VerticalSynchronization",
+                "Description": "画面",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Audio": {
+                "Name": "Audio",
+                "Type": "Unknow",
+                "CustomType": "AudioSettingInfo",
+                "Description": "音频",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "KeyControl": {
+                "Name": "KeyControl",
+                "Type": "Unknow",
+                "CustomType": "KeyControlSettingInfo",
+                "Description": "按键",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Languages": {
+                "Name": "Languages",
+                "Type": "Unknow",
+                "CustomType": "Language",
+                "Description": "语言",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ScreenView": {
+                "Name": "ScreenView",
+                "Type": "Unknow",
+                "CustomType": "ResolutionRatios",
+                "Description": "分辨率",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.VerticalSynchronization": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "VerticalSynchronization",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.VerticalSynchronization",
+          "PackageName": "OpenNGS.Setting.Data.VerticalSynchronization",
+          "Description": "画面",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "VerticalSynchronization",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.VerticalSynchronization",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "VerName": {
+                "Name": "VerName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "画面类型",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "state": {
+                "Name": "state",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.AudioSettingInfo": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "AudioSettingInfo",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.AudioSettingInfo",
+          "PackageName": "OpenNGS.Setting.Data.AudioSettingInfo",
+          "Description": "音频",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AudioSettingInfo",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.AudioSettingInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "AduioName": {
+                "Name": "AduioName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "音频名称",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "AduioType": {
+                "Name": "AduioType",
+                "Type": "Unknow",
+                "CustomType": "ADUIO_TYPE",
+                "Description": "音频类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Value": {
+                "Name": "Value",
+                "Type": "Uint32",
+                "Description": "数值",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Switch": {
+                "Name": "Switch",
+                "Type": "Bool",
+                "Description": "开关",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.KeyControlSettingInfo": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "KeyControlSettingInfo",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.KeyControlSettingInfo",
+          "PackageName": "OpenNGS.Setting.Data.KeyControlSettingInfo",
+          "Description": "按键",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "KeyControlSettingInfo",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.KeyControlSettingInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "KeyName": {
+                "Name": "KeyName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "按键类型",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Key": {
+                "Name": "Key",
+                "Type": "String",
+                "Description": "键值",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.Language": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "Language",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.Language",
+          "PackageName": "OpenNGS.Setting.Data.Language",
+          "Description": "语言",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Language",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.Language",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "languageName": {
+                "Name": "languageName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "语言名称",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "languageType": {
+                "Name": "languageType",
+                "Type": "Unknow",
+                "CustomType": "LANGUAGE_TYPE",
+                "Description": "语言类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Default": {
+                "Name": "Default",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.ResolutionRatios": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "ResolutionRatios",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.ResolutionRatios",
+          "PackageName": "OpenNGS.Setting.Data.ResolutionRatios",
+          "Description": "分辨率",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ResolutionRatios",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.ResolutionRatios",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ResName": {
+                "Name": "ResName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "分辨率",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ResValue": {
+                "Name": "ResValue",
+                "Type": "String",
+                "Description": "分辨率值",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.SettingContainer": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "SettingContainer",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.SettingContainer",
+          "PackageName": "OpenNGS.Setting.Data.SettingContainer",
+          "Description": "设置存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "SettingContainer",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.SettingContainer",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Vertical": {
+                "Name": "Vertical",
+                "Type": "Unknow",
+                "CustomType": "VerticalSynchronizationData",
+                "Description": "画面",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Audio": {
+                "Name": "Audio",
+                "Type": "Unknow",
+                "CustomType": "AudioSettingData",
+                "Description": "音频",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              },
+              "KeyControl": {
+                "Name": "KeyControl",
+                "Type": "Unknow",
+                "CustomType": "KeyControlSettingData",
+                "Description": "按键",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              },
+              "Language": {
+                "Name": "Language",
+                "Type": "Unknow",
+                "CustomType": "LanguageData",
+                "Description": "语言",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ResolutionRatios": {
+                "Name": "ResolutionRatios",
+                "Type": "Unknow",
+                "CustomType": "ResolutionRatiosData",
+                "Description": "分辨率",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.VerticalSynchronizationData": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "VerticalSynchronizationData",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.VerticalSynchronizationData",
+          "PackageName": "OpenNGS.Setting.Data.VerticalSynchronizationData",
+          "Description": "画面存档结构",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "VerticalSynchronizationData",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.VerticalSynchronizationData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "VerName": {
+                "Name": "VerName",
+                "Type": "String",
+                "Description": "名字",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "State": {
+                "Name": "State",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.AudioSettingData": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "AudioSettingData",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.AudioSettingData",
+          "PackageName": "OpenNGS.Setting.Data.AudioSettingData",
+          "Description": "音频存档结构",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AudioSettingData",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.AudioSettingData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "AudioName": {
+                "Name": "AudioName",
+                "Type": "String",
+                "Description": "名字",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Value": {
+                "Name": "Value",
+                "Type": "String",
+                "Description": "数值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Start": {
+                "Name": "Start",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.KeyControlSettingData": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "KeyControlSettingData",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.KeyControlSettingData",
+          "PackageName": "OpenNGS.Setting.Data.KeyControlSettingData",
+          "Description": "控制存档结构",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "KeyControlSettingData",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.KeyControlSettingData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "KeyName": {
+                "Name": "KeyName",
+                "Type": "String",
+                "Description": "键名",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "KeyValue": {
+                "Name": "KeyValue",
+                "Type": "String",
+                "Description": "键值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.LanguageData": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "LanguageData",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.LanguageData",
+          "PackageName": "OpenNGS.Setting.Data.LanguageData",
+          "Description": "语言存档结构",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "LanguageData",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.LanguageData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "LanName": {
+                "Name": "LanName",
+                "Type": "String",
+                "Description": "语言名称",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Start": {
+                "Name": "Start",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Data.ResolutionRatiosData": {
+          "RawPackage": "OpenNGS.Setting.Data",
+          "Methods": {},
+          "Name": "ResolutionRatiosData",
+          "Package": "OpenNGS.Setting.Data",
+          "Fullname": "OpenNGS.Setting.Data.ResolutionRatiosData",
+          "PackageName": "OpenNGS.Setting.Data.ResolutionRatiosData",
+          "Description": "分辨率存档结构",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ResolutionRatiosData",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Data",
+            "Fullname": "OpenNGS.Setting.Data.ResolutionRatiosData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ResName": {
+                "Name": "ResName",
+                "Type": "String",
+                "Description": "名称",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ResValue": {
+                "Name": "ResValue",
+                "Type": "Uint32",
+                "Description": "数值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Setting.Common"
+      ]
+    },
+    "OpenNGS.Setting.Common": {
+      "Name": "OpenNGS.Setting.Common",
+      "ModelPackage": "OpenNGS.Setting.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE": {
+          "RawPackage": "OpenNGS.Setting.Common",
+          "Methods": {},
+          "Name": "RESOLUTIONRATION_TYPE",
+          "Package": "OpenNGS.Setting.Common",
+          "Fullname": "OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE",
+          "PackageName": "OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE",
+          "Description": "分辨率",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "RESOLUTIONRATION_TYPE",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Common",
+            "Fullname": "OpenNGS.Setting.Common.RESOLUTIONRATION_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "RESOLUTIONRATION_TYPE_PROGRESSIVE": {
+                "Name": "RESOLUTIONRATION_TYPE_PROGRESSIVE",
+                "Type": "Uint32",
+                "Description": "1920*1080",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Common.LANGUAGE_TYPE": {
+          "RawPackage": "OpenNGS.Setting.Common",
+          "Methods": {},
+          "Name": "LANGUAGE_TYPE",
+          "Package": "OpenNGS.Setting.Common",
+          "Fullname": "OpenNGS.Setting.Common.LANGUAGE_TYPE",
+          "PackageName": "OpenNGS.Setting.Common.LANGUAGE_TYPE",
+          "Description": "语言",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "LANGUAGE_TYPE",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Common",
+            "Fullname": "OpenNGS.Setting.Common.LANGUAGE_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "LANGUAGE_TYPE_ZH": {
+                "Name": "LANGUAGE_TYPE_ZH",
+                "Type": "Uint32",
+                "Description": "简体中文",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LANGUAGE_TYPE_HK": {
+                "Name": "LANGUAGE_TYPE_HK",
+                "Type": "Uint32",
+                "Description": "繁体中文",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LANGUAGE_TYPE_US": {
+                "Name": "LANGUAGE_TYPE_US",
+                "Type": "Uint32",
+                "Description": "ENGLISH",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LANGUAGE_TYPE_JM": {
+                "Name": "LANGUAGE_TYPE_JM",
+                "Type": "Uint32",
+                "Description": "日本语",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Common.RESULT_TYPE": {
+          "RawPackage": "OpenNGS.Setting.Common",
+          "Methods": {},
+          "Name": "RESULT_TYPE",
+          "Package": "OpenNGS.Setting.Common",
+          "Fullname": "OpenNGS.Setting.Common.RESULT_TYPE",
+          "PackageName": "OpenNGS.Setting.Common.RESULT_TYPE",
+          "Description": "结果类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "RESULT_TYPE",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Common",
+            "Fullname": "OpenNGS.Setting.Common.RESULT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "RESULT_TYPE_NONE": {
+                "Name": "RESULT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RESULT_TYPE_SUCCESS": {
+                "Name": "RESULT_TYPE_SUCCESS",
+                "Type": "Uint32",
+                "Description": "成功",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RESULT_TYPE_FAILED": {
+                "Name": "RESULT_TYPE_FAILED",
+                "Type": "Uint32",
+                "Description": "失败",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        },
+        "OpenNGS.Setting.Common.ADUIO_TYPE": {
+          "RawPackage": "OpenNGS.Setting.Common",
+          "Methods": {},
+          "Name": "ADUIO_TYPE",
+          "Package": "OpenNGS.Setting.Common",
+          "Fullname": "OpenNGS.Setting.Common.ADUIO_TYPE",
+          "PackageName": "OpenNGS.Setting.Common.ADUIO_TYPE",
+          "Description": "音频类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ADUIO_TYPE",
+            "Package": "OpenNGS.Setting",
+            "Namespcae": "OpenNGS.Setting.Common",
+            "Fullname": "OpenNGS.Setting.Common.ADUIO_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ADUIO_TYPE_OVERALLAudio": {
+                "Name": "ADUIO_TYPE_OVERALLAudio",
+                "Type": "Uint32",
+                "Description": "整体音效",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ADUIO_TYPE_SOUND": {
+                "Name": "ADUIO_TYPE_SOUND",
+                "Type": "Uint32",
+                "Description": "音效",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ADUIO_TYPE_MUSIC": {
+                "Name": "ADUIO_TYPE_MUSIC",
+                "Type": "Uint32",
+                "Description": "音乐",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Setting"
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Setting",
+  "PackageFile": "Packages/OpenNGS.Setting.json"
+}

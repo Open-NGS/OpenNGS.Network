@@ -1,0 +1,59 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Avator.Data": {
+      "Name": "OpenNGS.Avator.Data",
+      "ModelPackage": "OpenNGS.Avator.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Avator.Data.CharacterDisplayInfo": {
+          "RawPackage": "OpenNGS.Avator.Data",
+          "Methods": {},
+          "Name": "CharacterDisplayInfo",
+          "Package": "OpenNGS.Avator.Data",
+          "Fullname": "OpenNGS.Avator.Data.CharacterDisplayInfo",
+          "PackageName": "OpenNGS.Avator.Data.CharacterDisplayInfo",
+          "Description": "场景信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "CharacterDisplayInfo",
+            "Package": "OpenNGS.Avator",
+            "Namespcae": "OpenNGS.Avator.Data",
+            "Fullname": "OpenNGS.Avator.Data.CharacterDisplayInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Avator.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "角色ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "DisplayURL": {
+                "Name": "DisplayURL",
+                "Type": "String",
+                "Description": "展示的头像URL",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Avator"
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Avator",
+  "PackageFile": "Packages/OpenNGS.Avator.json"
+}

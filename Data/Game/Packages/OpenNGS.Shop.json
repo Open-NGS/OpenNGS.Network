@@ -1,0 +1,1033 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Shop.Data": {
+      "Name": "OpenNGS.Shop.Data",
+      "ModelPackage": "OpenNGS.Shop.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Shop.Data.Shop": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "Shop",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.Shop",
+          "PackageName": "OpenNGS.Shop.Data.Shop",
+          "Description": "商店信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Shop",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.Shop",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "商店Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "商店名称",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "OpenTime": {
+                "Name": "OpenTime",
+                "Type": "String",
+                "Description": "固定开放时间",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Duration": {
+                "Name": "Duration",
+                "Type": "Uint32",
+                "Description": "开放持续时间",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.Shelf": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "Shelf",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.Shelf",
+          "PackageName": "OpenNGS.Shop.Data.Shelf",
+          "Description": "商店信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Shelf",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.Shelf",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "货架Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ShopId": {
+                "Name": "ShopId",
+                "Type": "Uint32",
+                "Description": "所属商店",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Condition": {
+                "Name": "Condition",
+                "Type": "Unknow",
+                "CustomType": "SHELF_CONDITION_TYPE",
+                "Description": "售卖条件",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ConditionParam": {
+                "Name": "ConditionParam",
+                "Type": "String",
+                "Description": "售卖条件参数",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Title": {
+                "Name": "Title",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "货架标题",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Desc": {
+                "Name": "Desc",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "货架描述",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Bg": {
+                "Name": "Bg",
+                "Type": "String",
+                "Description": "货架背景图",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "State": {
+                "Name": "State",
+                "Type": "Unknow",
+                "CustomType": "SHELF_STATE_TYPE",
+                "Description": "货架状态",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RefreshCount": {
+                "Name": "RefreshCount",
+                "Type": "Uint32",
+                "Description": "可刷新次数",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RefreshCurrency": {
+                "Name": "RefreshCurrency",
+                "Type": "Uint32",
+                "Description": "刷新货币类型",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RefreshCost": {
+                "Name": "RefreshCost",
+                "Type": "Uint32",
+                "Description": "刷新货币价格",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RefreshTime": {
+                "Name": "RefreshTime",
+                "Type": "String",
+                "Description": "固定刷新时间",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "GoodCount": {
+                "Name": "GoodCount",
+                "Type": "Uint32",
+                "Description": "商品数量",
+                "Tag": 13,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.Good": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "Good",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.Good",
+          "PackageName": "OpenNGS.Shop.Data.Good",
+          "Description": "商店信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Good",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.Good",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "商品Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "商品名字",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Desc": {
+                "Name": "Desc",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "商品描述",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Icon": {
+                "Name": "Icon",
+                "Type": "String",
+                "Description": "商品图标",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemId": {
+                "Name": "ItemId",
+                "Type": "Uint32",
+                "Description": "道具表Id",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemNum": {
+                "Name": "ItemNum",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ShelfId": {
+                "Name": "ShelfId",
+                "Type": "Uint32",
+                "Description": "归属货架",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "CurrencyId": {
+                "Name": "CurrencyId",
+                "Type": "Uint32",
+                "Description": "货币ID",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "CurrencyCounts": {
+                "Name": "CurrencyCounts",
+                "Type": "Uint32",
+                "Description": "价格",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "DiscountPrice": {
+                "Name": "DiscountPrice",
+                "Type": "Uint32",
+                "Description": "折扣价格",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "DiscountInfo": {
+                "Name": "DiscountInfo",
+                "Type": "String",
+                "Description": "折扣信息",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Weight": {
+                "Name": "Weight",
+                "Type": "Uint32",
+                "Description": "刷新权重",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Limit": {
+                "Name": "Limit",
+                "Type": "Uint32",
+                "Description": "限购次数",
+                "Tag": 13,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Quality": {
+                "Name": "Quality",
+                "Type": "Uint32",
+                "Description": "品质",
+                "Tag": 14,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Tag": {
+                "Name": "Tag",
+                "Type": "Unknow",
+                "CustomType": "GOOD_TAG_TYPE",
+                "Description": "商品标签",
+                "Tag": 15,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.BuyItemInfo": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "BuyItemInfo",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.BuyItemInfo",
+          "PackageName": "OpenNGS.Shop.Data.BuyItemInfo",
+          "Description": "购买信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "BuyItemInfo",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.BuyItemInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ShopId": {
+                "Name": "ShopId",
+                "Type": "Uint32",
+                "Description": "商店Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ShelfId": {
+                "Name": "ShelfId",
+                "Type": "Uint32",
+                "Description": "货架Id",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ShopItemId": {
+                "Name": "ShopItemId",
+                "Type": "Uint32",
+                "Description": "购买物品",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ShopItemCount": {
+                "Name": "ShopItemCount",
+                "Type": "Uint32",
+                "Description": "购买数量",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.SellItemInfo": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "SellItemInfo",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.SellItemInfo",
+          "PackageName": "OpenNGS.Shop.Data.SellItemInfo",
+          "Description": "出售信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "SellItemInfo",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.SellItemInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ShopId": {
+                "Name": "ShopId",
+                "Type": "Uint32",
+                "Description": "商店Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemId": {
+                "Name": "ItemId",
+                "Type": "Uint32",
+                "Description": "购买物品",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ShopItemCount": {
+                "Name": "ShopItemCount",
+                "Type": "Uint32",
+                "Description": "购买数量",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "GUID": {
+                "Name": "GUID",
+                "Type": "Uint32",
+                "Description": "道具的GUID",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.BuyItemReq": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "BuyItemReq",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.BuyItemReq",
+          "PackageName": "OpenNGS.Shop.Data.BuyItemReq",
+          "Description": "购买请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "BuyItemReq",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.BuyItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "BuyItem": {
+                "Name": "BuyItem",
+                "Type": "Unknow",
+                "CustomType": "BuyItemInfo",
+                "Description": "购买信息",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.BuyItemRsq": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "BuyItemRsq",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.BuyItemRsq",
+          "PackageName": "OpenNGS.Shop.Data.BuyItemRsq",
+          "Description": "购买响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "BuyItemRsq",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.BuyItemRsq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Unknow",
+                "CustomType": "RESULT_TYPE",
+                "Description": "请求成功类型",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.SellItemReq": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "SellItemReq",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.SellItemReq",
+          "PackageName": "OpenNGS.Shop.Data.SellItemReq",
+          "Description": "出售请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "SellItemReq",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.SellItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "SellItem": {
+                "Name": "SellItem",
+                "Type": "Unknow",
+                "CustomType": "SellItemInfo",
+                "Description": "出售信息",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.SellItemRsq": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "SellItemRsq",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.SellItemRsq",
+          "PackageName": "OpenNGS.Shop.Data.SellItemRsq",
+          "Description": "出售响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "SellItemRsq",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.SellItemRsq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Unknow",
+                "CustomType": "RESULT_TYPE",
+                "Description": "请求成功类型",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.GetShopInfoReq": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "GetShopInfoReq",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.GetShopInfoReq",
+          "PackageName": "OpenNGS.Shop.Data.GetShopInfoReq",
+          "Description": "拉取商店请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetShopInfoReq",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.GetShopInfoReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ShopId": {
+                "Name": "ShopId",
+                "Type": "Uint32",
+                "Description": "要拉取的商店ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.GetShopInfoRsq": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "GetShopInfoRsq",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.GetShopInfoRsq",
+          "PackageName": "OpenNGS.Shop.Data.GetShopInfoRsq",
+          "Description": "拉去商店响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetShopInfoRsq",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.GetShopInfoRsq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ShopId": {
+                "Name": "ShopId",
+                "Type": "Uint32",
+                "Description": "要拉取的商店ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "result": {
+                "Name": "result",
+                "Type": "Unknow",
+                "CustomType": "RESULT_TYPE",
+                "Description": "请求成功类型",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ShelfId": {
+                "Name": "ShelfId",
+                "Type": "Uint32",
+                "Description": "要拉取的货架ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Data.ShopSell": {
+          "RawPackage": "OpenNGS.Shop.Data",
+          "Methods": {},
+          "Name": "ShopSell",
+          "Package": "OpenNGS.Shop.Data",
+          "Fullname": "OpenNGS.Shop.Data.ShopSell",
+          "PackageName": "OpenNGS.Shop.Data.ShopSell",
+          "Description": "商店收购表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ShopSell",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Data",
+            "Fullname": "OpenNGS.Shop.Data.ShopSell",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ShopID": {
+                "Name": "ShopID",
+                "Type": "Uint32",
+                "Description": "商店Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "该商店收购的道具",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SellPriceItem": {
+                "Name": "SellPriceItem",
+                "Type": "Uint32",
+                "Description": "出售物品后获得的道具ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SellPriceCount": {
+                "Name": "SellPriceCount",
+                "Type": "Uint32",
+                "Description": "出售物品后获得的道具数量",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Shop.Common",
+        "OpenNGS.Setting.Common"
+      ]
+    },
+    "OpenNGS.Shop.Common": {
+      "Name": "OpenNGS.Shop.Common",
+      "ModelPackage": "OpenNGS.Shop.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Shop.Common.GOOD_TAG_TYPE": {
+          "RawPackage": "OpenNGS.Shop.Common",
+          "Methods": {},
+          "Name": "GOOD_TAG_TYPE",
+          "Package": "OpenNGS.Shop.Common",
+          "Fullname": "OpenNGS.Shop.Common.GOOD_TAG_TYPE",
+          "PackageName": "OpenNGS.Shop.Common.GOOD_TAG_TYPE",
+          "Description": "货架条件类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "GOOD_TAG_TYPE",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Common",
+            "Fullname": "OpenNGS.Shop.Common.GOOD_TAG_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "GOOD_TAG_TYPE_NONE": {
+                "Name": "GOOD_TAG_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "GOOD_TAG_TYPE_NEW": {
+                "Name": "GOOD_TAG_TYPE_NEW",
+                "Type": "Uint32",
+                "Description": "新品",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Common.SHELF_STATE_TYPE": {
+          "RawPackage": "OpenNGS.Shop.Common",
+          "Methods": {},
+          "Name": "SHELF_STATE_TYPE",
+          "Package": "OpenNGS.Shop.Common",
+          "Fullname": "OpenNGS.Shop.Common.SHELF_STATE_TYPE",
+          "PackageName": "OpenNGS.Shop.Common.SHELF_STATE_TYPE",
+          "Description": "货架状态类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "SHELF_STATE_TYPE",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Common",
+            "Fullname": "OpenNGS.Shop.Common.SHELF_STATE_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "SHELF_STATE_TYPE_SELL": {
+                "Name": "SHELF_STATE_TYPE_SELL",
+                "Type": "Uint32",
+                "Description": "售卖",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHELF_STATE_TYPE_OFF__SHELF": {
+                "Name": "SHELF_STATE_TYPE_OFF__SHELF",
+                "Type": "Uint32",
+                "Description": "下架",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Common.SHELF_CONDITION_TYPE": {
+          "RawPackage": "OpenNGS.Shop.Common",
+          "Methods": {},
+          "Name": "SHELF_CONDITION_TYPE",
+          "Package": "OpenNGS.Shop.Common",
+          "Fullname": "OpenNGS.Shop.Common.SHELF_CONDITION_TYPE",
+          "PackageName": "OpenNGS.Shop.Common.SHELF_CONDITION_TYPE",
+          "Description": "货物标签类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "SHELF_CONDITION_TYPE",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Common",
+            "Fullname": "OpenNGS.Shop.Common.SHELF_CONDITION_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "SHELF_CONDITION_TYPE_NONE": {
+                "Name": "SHELF_CONDITION_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无条件",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHELF_CONDITION_TYPE_TASK": {
+                "Name": "SHELF_CONDITION_TYPE_TASK",
+                "Type": "Uint32",
+                "Description": "任务",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHELF_CONDITION_TYPE_CONDITION": {
+                "Name": "SHELF_CONDITION_TYPE_CONDITION",
+                "Type": "Uint32",
+                "Description": "条件",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        },
+        "OpenNGS.Shop.Common.SHOP_RESULT_TYPE": {
+          "RawPackage": "OpenNGS.Shop.Common",
+          "Methods": {},
+          "Name": "SHOP_RESULT_TYPE",
+          "Package": "OpenNGS.Shop.Common",
+          "Fullname": "OpenNGS.Shop.Common.SHOP_RESULT_TYPE",
+          "PackageName": "OpenNGS.Shop.Common.SHOP_RESULT_TYPE",
+          "Description": "商店处理结果",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "SHOP_RESULT_TYPE",
+            "Package": "OpenNGS.Shop",
+            "Namespcae": "OpenNGS.Shop.Common",
+            "Fullname": "OpenNGS.Shop.Common.SHOP_RESULT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Shop.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "SHOP_RESULT_TYPE_NONE": {
+                "Name": "SHOP_RESULT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHOP_RESULT_TYPE_SUCCESS": {
+                "Name": "SHOP_RESULT_TYPE_SUCCESS",
+                "Type": "Uint32",
+                "Description": "成功",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHOP_RESULT_TYPE_ERROR_ITEM": {
+                "Name": "SHOP_RESULT_TYPE_ERROR_ITEM",
+                "Type": "Uint32",
+                "Description": "物品信息错误",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHOP_RESULT_TYPE_NO_ITEM": {
+                "Name": "SHOP_RESULT_TYPE_NO_ITEM",
+                "Type": "Uint32",
+                "Description": "没有该物品",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SHOP_RESULT_TYPE_NO_SELL": {
+                "Name": "SHOP_RESULT_TYPE_NO_SELL",
+                "Type": "Uint32",
+                "Description": "不收购该商品",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Shop"
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Shop",
+  "PackageFile": "Packages/OpenNGS.Shop.json"
+}

@@ -1,0 +1,204 @@
+﻿{
+  "Packages": {
+    "Zerium.Data.Enums": {
+      "Name": "Zerium.Data.Enums",
+      "ModelPackage": "Zerium.Data.Enums",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "Zerium.Data.Enums.MONSTER_TYPE": {
+          "RawPackage": "Zerium.Data.Enums",
+          "Methods": {},
+          "Name": "MONSTER_TYPE",
+          "Package": "Zerium.Data.Enums",
+          "Fullname": "Zerium.Data.Enums.MONSTER_TYPE",
+          "PackageName": "Zerium.Data.Enums.MONSTER_TYPE",
+          "Description": "货架条件类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "MONSTER_TYPE",
+            "Package": "Zerium.Data",
+            "Namespcae": "Zerium.Data.Enums",
+            "Fullname": "Zerium.Data.Enums.MONSTER_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\Zerium.Data.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "MONSTER_TYPE_NONE": {
+                "Name": "MONSTER_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MONSTER_TYPE_ONE": {
+                "Name": "MONSTER_TYPE_ONE",
+                "Type": "Uint32",
+                "Description": "怪物类型1",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MONSTER_TYPE_TWO": {
+                "Name": "MONSTER_TYPE_TWO",
+                "Type": "Uint32",
+                "Description": "怪物类型2",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Zerium.Data"
+        }
+      },
+      "References": []
+    },
+    "Zerium.Data.TESTDATA": {
+      "Name": "Zerium.Data.TESTDATA",
+      "ModelPackage": "Zerium.Data.TESTDATA",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "Zerium.Data.TESTDATA.ZeriumData": {
+          "RawPackage": "Zerium.Data.TESTDATA",
+          "Methods": {},
+          "Name": "ZeriumData",
+          "Package": "Zerium.Data.TESTDATA",
+          "Fullname": "Zerium.Data.TESTDATA.ZeriumData",
+          "PackageName": "Zerium.Data.TESTDATA.ZeriumData",
+          "Description": "商店信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ZeriumData",
+            "Package": "Zerium.Data",
+            "Namespcae": "Zerium.Data.TESTDATA",
+            "Fullname": "Zerium.Data.TESTDATA.ZeriumData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Zerium.Data.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "商店Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "MonsterTyp": {
+                "Name": "MonsterTyp",
+                "Type": "Unknow",
+                "CustomType": "MONSTER_TYPE",
+                "Description": "怪物类型",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "String",
+                "Description": "数据名称",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "OpenTime": {
+                "Name": "OpenTime",
+                "Type": "String",
+                "Description": "固定开放时间",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Duration": {
+                "Name": "Duration",
+                "Type": "Uint32",
+                "Description": "开放持续时间",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Zerium.Data"
+        },
+        "Zerium.Data.TESTDATA.MonsterData": {
+          "RawPackage": "Zerium.Data.TESTDATA",
+          "Methods": {},
+          "Name": "MonsterData",
+          "Package": "Zerium.Data.TESTDATA",
+          "Fullname": "Zerium.Data.TESTDATA.MonsterData",
+          "PackageName": "Zerium.Data.TESTDATA.MonsterData",
+          "Description": "商店信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "MonsterData",
+            "Package": "Zerium.Data",
+            "Namespcae": "Zerium.Data.TESTDATA",
+            "Fullname": "Zerium.Data.TESTDATA.MonsterData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Zerium.Data.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "怪物ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "String",
+                "Description": "怪物名",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MonsterDesc": {
+                "Name": "MonsterDesc",
+                "Type": "String",
+                "Description": "怪物描述",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Zerium.Data"
+        }
+      },
+      "References": [
+        "Zerium.Data.Enums"
+      ]
+    }
+  },
+  "Name": "Zerium.Data",
+  "PackageFile": "Packages/Zerium.Data.json"
+}

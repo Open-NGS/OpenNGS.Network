@@ -1,0 +1,181 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Map.Common": {
+      "Name": "OpenNGS.Map.Common",
+      "ModelPackage": "OpenNGS.Map.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Map.Common.AREA_TYPE": {
+          "RawPackage": "OpenNGS.Map.Common",
+          "Methods": {},
+          "Name": "AREA_TYPE",
+          "Package": "OpenNGS.Map.Common",
+          "Fullname": "OpenNGS.Map.Common.AREA_TYPE",
+          "PackageName": "OpenNGS.Map.Common.AREA_TYPE",
+          "Description": "区域类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "AREA_TYPE",
+            "Package": "OpenNGS.Map",
+            "Namespcae": "OpenNGS.Map.Common",
+            "Fullname": "OpenNGS.Map.Common.AREA_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Map.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "AREA_TYPE_SAFETY": {
+                "Name": "AREA_TYPE_SAFETY",
+                "Type": "Uint32",
+                "Description": "安全区",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "AREA_TYPE_NON_SAFETY": {
+                "Name": "AREA_TYPE_NON_SAFETY",
+                "Type": "Uint32",
+                "Description": "非安全区",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Map"
+        }
+      },
+      "References": []
+    },
+    "OpenNGS.Map.Data": {
+      "Name": "OpenNGS.Map.Data",
+      "ModelPackage": "OpenNGS.Map.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Map.Data.WorldMap": {
+          "RawPackage": "OpenNGS.Map.Data",
+          "Methods": {},
+          "Name": "WorldMap",
+          "Package": "OpenNGS.Map.Data",
+          "Fullname": "OpenNGS.Map.Data.WorldMap",
+          "PackageName": "OpenNGS.Map.Data.WorldMap",
+          "Description": "世界地图",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "WorldMap",
+            "Package": "OpenNGS.Map",
+            "Namespcae": "OpenNGS.Map.Data",
+            "Fullname": "OpenNGS.Map.Data.WorldMap",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Map.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "地点ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "地点名称",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "AreaType": {
+                "Name": "AreaType",
+                "Type": "Unknow",
+                "CustomType": "AREA_TYPE",
+                "Description": "区域类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Cost": {
+                "Name": "Cost",
+                "Type": "Uint32",
+                "Description": "到达该点的消耗",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "IconPath": {
+                "Name": "IconPath",
+                "Type": "String",
+                "Description": "地点图片资源",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "简介",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Row": {
+                "Name": "Row",
+                "Type": "Uint32",
+                "Description": "图标在地图上行像素点",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Col": {
+                "Name": "Col",
+                "Type": "Uint32",
+                "Description": "图标在地图上列像素点",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "NearMapID": {
+                "Name": "NearMapID",
+                "Type": "Uint32",
+                "Description": "该地点邻近的地点ID",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Map"
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Map.Common"
+      ]
+    }
+  },
+  "Name": "OpenNGS.Map",
+  "PackageFile": "Packages/OpenNGS.Map.json"
+}

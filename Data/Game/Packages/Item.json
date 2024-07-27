@@ -1,0 +1,5593 @@
+﻿{
+  "Packages": {
+    "Item.DB": {
+      "Name": "Item.DB",
+      "PackageType": "Message",
+      "Models": {},
+      "References": []
+    },
+    "Item.Service": {
+      "Name": "Item.Service",
+      "ModelPackage": "Item.Service",
+      "PackageType": "Message",
+      "Scope": "CS;SS",
+      "Models": {
+        "Item.Service.GetItemsReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "GetItemsReq",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.GetItemsReq",
+          "PackageName": "Item.Service.GetItemsReq",
+          "Description": "获取玩家道具列表req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetItemsReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.GetItemsReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "ITEM_CATEGORY",
+                "Description": "一级分类（填0不生效）",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Type": {
+                "Name": "Type",
+                "Type": "Unknow",
+                "CustomType": "ITEM_TYPE",
+                "Description": "二级分类（填0不生效）",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Kind": {
+                "Name": "Kind",
+                "Type": "Unknow",
+                "CustomType": "ITEM_KIND",
+                "Description": "三级分类（填0不生效）",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.GetItemsRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "GetItemsRsp",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.GetItemsRsp",
+          "PackageName": "Item.Service.GetItemsRsp",
+          "Description": "获取玩家道具列表rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetItemsRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.GetItemsRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.UseItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "UseItemReq",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.UseItemReq",
+          "PackageName": "Item.Service.UseItemReq",
+          "Description": "使用道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "UseItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.UseItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemData": {
+                "Name": "itemData",
+                "Type": "Unknow",
+                "CustomType": "ItemData",
+                "Description": "所使用道具信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.UseItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "UseItemRsp",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.UseItemRsp",
+          "PackageName": "Item.Service.UseItemRsp",
+          "Description": "使用道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "UseItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.UseItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemList": {
+                "Name": "itemList",
+                "Type": "Unknow",
+                "CustomType": "ItemList",
+                "Description": "玩家今日抽取该盲盒次数",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.PlaceItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "PlaceItemReq",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.PlaceItemReq",
+          "PackageName": "Item.Service.PlaceItemReq",
+          "Description": "放置道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "PlaceItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.PlaceItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemData": {
+                "Name": "itemData",
+                "Type": "Unknow",
+                "CustomType": "ItemData",
+                "Description": "所使用道具信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemPlaceExpType": {
+                "Name": "itemPlaceExpType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_PLACE_EXPIRATION",
+                "Description": "道具放置类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.PlaceItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "PlaceItemRsp",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.PlaceItemRsp",
+          "PackageName": "Item.Service.PlaceItemRsp",
+          "Description": "放置道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "PlaceItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.PlaceItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.ReplaceItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "ReplaceItemReq",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.ReplaceItemReq",
+          "PackageName": "Item.Service.ReplaceItemReq",
+          "Description": "重置指定道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ReplaceItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.ReplaceItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemData": {
+                "Name": "itemData",
+                "Type": "Unknow",
+                "CustomType": "ItemData",
+                "Description": "所使用道具信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemPlaceExpType": {
+                "Name": "itemPlaceExpType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_PLACE_EXPIRATION",
+                "Description": "道具放置类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.ReplaceItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "ReplaceItemRsp",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.ReplaceItemRsp",
+          "PackageName": "Item.Service.ReplaceItemRsp",
+          "Description": "重置指定道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ReplaceItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.ReplaceItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.ReplaceItemsReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "ReplaceItemsReq",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.ReplaceItemsReq",
+          "PackageName": "Item.Service.ReplaceItemsReq",
+          "Description": "重置所有道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ReplaceItemsReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.ReplaceItemsReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.ReplaceItemsRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "ReplaceItemsRsp",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.ReplaceItemsRsp",
+          "PackageName": "Item.Service.ReplaceItemsRsp",
+          "Description": "重置所有道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ReplaceItemsRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.ReplaceItemsRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "Item.Service.ItemService": {
+          "RawPackage": "Item.Service",
+          "Methods": {
+            "GetItems": {
+              "MethodName": "GetItems",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "GetItemsReq",
+                  "Package": "Item.Service",
+                  "Fullname": "Item.Service.GetItemsReq",
+                  "PackageName": "Item.Service.GetItemsReq",
+                  "Description": "获取玩家道具列表req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetItemsReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.GetItemsReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "Category": {
+                        "Name": "Category",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_CATEGORY",
+                        "Description": "一级分类（填0不生效）",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "Type": {
+                        "Name": "Type",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_TYPE",
+                        "Description": "二级分类（填0不生效）",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "Kind": {
+                        "Name": "Kind",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_KIND",
+                        "Description": "三级分类（填0不生效）",
+                        "Tag": 4,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "GetItemsRsp",
+                "Package": "Item.Service",
+                "Fullname": "Item.Service.GetItemsRsp",
+                "PackageName": "Item.Service.GetItemsRsp",
+                "Description": "获取玩家道具列表rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetItemsRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.GetItemsRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "获取玩家道具列表",
+              "Scope": "All"
+            },
+            "UseItem": {
+              "MethodName": "UseItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "UseItemReq",
+                  "Package": "Item.Service",
+                  "Fullname": "Item.Service.UseItemReq",
+                  "PackageName": "Item.Service.UseItemReq",
+                  "Description": "使用道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "UseItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.UseItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemData": {
+                        "Name": "itemData",
+                        "Type": "Unknow",
+                        "CustomType": "ItemData",
+                        "Description": "所使用道具信息",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "UseItemRsp",
+                "Package": "Item.Service",
+                "Fullname": "Item.Service.UseItemRsp",
+                "PackageName": "Item.Service.UseItemRsp",
+                "Description": "使用道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "UseItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.UseItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    },
+                    "itemList": {
+                      "Name": "itemList",
+                      "Type": "Unknow",
+                      "CustomType": "ItemList",
+                      "Description": "玩家今日抽取该盲盒次数",
+                      "Tag": 2,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRepeated": true
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "使用道具",
+              "Scope": "All"
+            },
+            "PlaceItem": {
+              "MethodName": "PlaceItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "PlaceItemReq",
+                  "Package": "Item.Service",
+                  "Fullname": "Item.Service.PlaceItemReq",
+                  "PackageName": "Item.Service.PlaceItemReq",
+                  "Description": "放置道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "PlaceItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.PlaceItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemData": {
+                        "Name": "itemData",
+                        "Type": "Unknow",
+                        "CustomType": "ItemData",
+                        "Description": "所使用道具信息",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemPlaceExpType": {
+                        "Name": "itemPlaceExpType",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_PLACE_EXPIRATION",
+                        "Description": "道具放置类型",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "PlaceItemRsp",
+                "Package": "Item.Service",
+                "Fullname": "Item.Service.PlaceItemRsp",
+                "PackageName": "Item.Service.PlaceItemRsp",
+                "Description": "放置道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "PlaceItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.PlaceItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "放置道具",
+              "Scope": "All"
+            },
+            "ReplaceItem": {
+              "MethodName": "ReplaceItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "ReplaceItemReq",
+                  "Package": "Item.Service",
+                  "Fullname": "Item.Service.ReplaceItemReq",
+                  "PackageName": "Item.Service.ReplaceItemReq",
+                  "Description": "重置指定道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "ReplaceItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.ReplaceItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemData": {
+                        "Name": "itemData",
+                        "Type": "Unknow",
+                        "CustomType": "ItemData",
+                        "Description": "所使用道具信息",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemPlaceExpType": {
+                        "Name": "itemPlaceExpType",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_PLACE_EXPIRATION",
+                        "Description": "道具放置类型",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "ReplaceItemRsp",
+                "Package": "Item.Service",
+                "Fullname": "Item.Service.ReplaceItemRsp",
+                "PackageName": "Item.Service.ReplaceItemRsp",
+                "Description": "重置指定道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "ReplaceItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.ReplaceItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "重置指定道具",
+              "Scope": "All"
+            },
+            "ReplaceItems": {
+              "MethodName": "ReplaceItems",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "ReplaceItemsReq",
+                  "Package": "Item.Service",
+                  "Fullname": "Item.Service.ReplaceItemsReq",
+                  "PackageName": "Item.Service.ReplaceItemsReq",
+                  "Description": "重置所有道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "ReplaceItemsReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.ReplaceItemsReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "ReplaceItemsRsp",
+                "Package": "Item.Service",
+                "Fullname": "Item.Service.ReplaceItemsRsp",
+                "PackageName": "Item.Service.ReplaceItemsRsp",
+                "Description": "重置所有道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "ReplaceItemsRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.ReplaceItemsRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "重置所有道具",
+              "Scope": "All"
+            }
+          },
+          "Name": "ItemService",
+          "Package": "Item.Service",
+          "Fullname": "Item.Service.ItemService",
+          "PackageName": "Item.Service.ItemService",
+          "Description": "道具服务",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Service",
+          "ModelPackage": "Item"
+        }
+      },
+      "References": [
+        "OpenNGS.Item.Common"
+      ]
+    },
+    "Item.Data": {
+      "Name": "Item.Data",
+      "PackageType": "Message",
+      "Models": {},
+      "References": []
+    },
+    "Item.Common": {
+      "Name": "Item.Common",
+      "PackageType": "Message",
+      "Models": {},
+      "References": []
+    },
+    "OpenNGS.Item.Common": {
+      "Name": "OpenNGS.Item.Common",
+      "ModelPackage": "Item.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Item.Common.ITEM_CATEGORY": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_CATEGORY",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_CATEGORY",
+          "PackageName": "Item.Common.ITEM_CATEGORY",
+          "Description": "道具类型（道具一级分类）",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_CATEGORY",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_CATEGORY",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_CATEGORY_NONE": {
+                "Name": "ITEM_CATEGORY_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_ITEM": {
+                "Name": "ITEM_CATEGORY_ITEM",
+                "Type": "Uint32",
+                "Description": "道具",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_RESOURCE": {
+                "Name": "ITEM_CATEGORY_RESOURCE",
+                "Type": "Uint32",
+                "Description": "资源",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_PACKAGE": {
+                "Name": "ITEM_CATEGORY_PACKAGE",
+                "Type": "Uint32",
+                "Description": "道具包",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_BAG": {
+                "Name": "ITEM_CATEGORY_BAG",
+                "Type": "Uint32",
+                "Description": "背包",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_CARD": {
+                "Name": "ITEM_CATEGORY_CARD",
+                "Type": "Uint32",
+                "Description": "卡牌",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_AVATAR": {
+                "Name": "ITEM_CATEGORY_AVATAR",
+                "Type": "Uint32",
+                "Description": "Avatar",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_THEME": {
+                "Name": "ITEM_CATEGORY_THEME",
+                "Type": "Uint32",
+                "Description": "主题",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_CATEGORY_PET": {
+                "Name": "ITEM_CATEGORY_PET",
+                "Type": "Uint32",
+                "Description": "宠物",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_TYPE",
+          "PackageName": "Item.Common.ITEM_TYPE",
+          "Description": "道具类型（道具二级分类）",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_TYPE_NONE": {
+                "Name": "ITEM_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_TYPE_EQUIP": {
+                "Name": "ITEM_TYPE_EQUIP",
+                "Type": "Uint32",
+                "Description": "装备",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_TYPE_CRAFT": {
+                "Name": "ITEM_TYPE_CRAFT",
+                "Type": "Uint32",
+                "Description": "打造材料",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_TYPE_RESOURCE": {
+                "Name": "ITEM_TYPE_RESOURCE",
+                "Type": "Uint32",
+                "Description": "资源",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_TYPE_CONSUMABLE": {
+                "Name": "ITEM_TYPE_CONSUMABLE",
+                "Type": "Uint32",
+                "Description": "消耗品",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_KIND": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_KIND",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_KIND",
+          "PackageName": "Item.Common.ITEM_KIND",
+          "Description": "道具种类（道具三级分类）",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_KIND",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_KIND",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_KIND_NONE": {
+                "Name": "ITEM_KIND_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_UPPER_CLOTHES": {
+                "Name": "ITEM_KIND_UPPER_CLOTHES",
+                "Type": "Uint32",
+                "Description": "上装",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_LOWER_CLOTHES": {
+                "Name": "ITEM_KIND_LOWER_CLOTHES",
+                "Type": "Uint32",
+                "Description": "下装",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_WEAPON": {
+                "Name": "ITEM_KIND_EQUIP_WEAPON",
+                "Type": "Uint32",
+                "Description": "武器",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_HEAD": {
+                "Name": "ITEM_KIND_EQUIP_HEAD",
+                "Type": "Uint32",
+                "Description": "头部",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_BODY": {
+                "Name": "ITEM_KIND_EQUIP_BODY",
+                "Type": "Uint32",
+                "Description": "身体",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_ARM": {
+                "Name": "ITEM_KIND_EQUIP_ARM",
+                "Type": "Uint32",
+                "Description": "手臂",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_LEG": {
+                "Name": "ITEM_KIND_EQUIP_LEG",
+                "Type": "Uint32",
+                "Description": "腿部",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_BACK": {
+                "Name": "ITEM_KIND_EQUIP_BACK",
+                "Type": "Uint32",
+                "Description": "背部",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_MATERIAL_BLUEPRINT": {
+                "Name": "ITEM_KIND_MATERIAL_BLUEPRINT",
+                "Type": "Uint32",
+                "Description": "图纸",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_MATERIAL_STUFF": {
+                "Name": "ITEM_KIND_MATERIAL_STUFF",
+                "Type": "Uint32",
+                "Description": "材料",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_MATERIAL_STONE": {
+                "Name": "ITEM_KIND_MATERIAL_STONE",
+                "Type": "Uint32",
+                "Description": "幸运石",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_KIND_EQUIP_RELIC": {
+                "Name": "ITEM_KIND_EQUIP_RELIC",
+                "Type": "Uint32",
+                "Description": "遗物",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_EXPIRY_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_EXPIRY_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_EXPIRY_TYPE",
+          "PackageName": "Item.Common.ITEM_EXPIRY_TYPE",
+          "Description": "道具过期类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_EXPIRY_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_EXPIRY_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_EXPIRY_TYPE_NONE": {
+                "Name": "ITEM_EXPIRY_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "不过期",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_EXPIRY_TYPE_VALID_TIME": {
+                "Name": "ITEM_EXPIRY_TYPE_VALID_TIME",
+                "Type": "Uint32",
+                "Description": "持续时间（Unix秒级时间戳）",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_EXPIRY_TYPE_EXPIRY_TIME": {
+                "Name": "ITEM_EXPIRY_TYPE_EXPIRY_TIME",
+                "Type": "Uint32",
+                "Description": "到期时间点（Unix秒级时间戳）",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_USAGE_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_USAGE_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_USAGE_TYPE",
+          "PackageName": "Item.Common.ITEM_USAGE_TYPE",
+          "Description": "道具使用类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_USAGE_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_USAGE_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_USAGE_TYPE_NONE": {
+                "Name": "ITEM_USAGE_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "不可使用",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_USAGE_TYPE_USABLE": {
+                "Name": "ITEM_USAGE_TYPE_USABLE",
+                "Type": "Uint32",
+                "Description": "可使用",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_USAGE_TYPE_ONE_TIME": {
+                "Name": "ITEM_USAGE_TYPE_ONE_TIME",
+                "Type": "Uint32",
+                "Description": "一次性，使用后自动删除",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_PACK_CATEGORY": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_PACK_CATEGORY",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_PACK_CATEGORY",
+          "PackageName": "Item.Common.ITEM_PACK_CATEGORY",
+          "Description": "道具包类别",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_PACK_CATEGORY",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_PACK_CATEGORY",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_PACK_CATEGORY_NORMAL": {
+                "Name": "ITEM_PACK_CATEGORY_NORMAL",
+                "Type": "Uint32",
+                "Description": "普通道具包",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_PACK_CATEGORY_RANDOM": {
+                "Name": "ITEM_PACK_CATEGORY_RANDOM",
+                "Type": "Uint32",
+                "Description": "随机道具包",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_PACK_RANDOM_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_PACK_RANDOM_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_PACK_RANDOM_TYPE",
+          "PackageName": "Item.Common.ITEM_PACK_RANDOM_TYPE",
+          "Description": "道具包随机类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_PACK_RANDOM_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_PACK_RANDOM_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_PACK_RANDOM_NORMAL": {
+                "Name": "ITEM_PACK_RANDOM_NORMAL",
+                "Type": "Uint32",
+                "Description": "真随机",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_PACK_RANDOM_PRD": {
+                "Name": "ITEM_PACK_RANDOM_PRD",
+                "Type": "Uint32",
+                "Description": "伪随机概率递增",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_USE_TIME_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_USE_TIME_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_USE_TIME_TYPE",
+          "PackageName": "Item.Common.ITEM_USE_TIME_TYPE",
+          "Description": "道具使用次数类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_USE_TIME_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_USE_TIME_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_USE_TIME_TYPE_SINGLE": {
+                "Name": "ITEM_USE_TIME_TYPE_SINGLE",
+                "Type": "Uint32",
+                "Description": "单次",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_USE_TIME_TYPE_MULTIPLE": {
+                "Name": "ITEM_USE_TIME_TYPE_MULTIPLE",
+                "Type": "Uint32",
+                "Description": "连续多次",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_ATTRIBUTE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_ATTRIBUTE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_ATTRIBUTE",
+          "PackageName": "Item.Common.ITEM_ATTRIBUTE",
+          "Description": "道具属性",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_ATTRIBUTE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_ATTRIBUTE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_ATTRIBUTE_EXP_TIME": {
+                "Name": "ITEM_ATTRIBUTE_EXP_TIME",
+                "Type": "Uint32",
+                "Description": "道具过时时间",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_ATTRIBUTE_GET_TIME": {
+                "Name": "ITEM_ATTRIBUTE_GET_TIME",
+                "Type": "Uint32",
+                "Description": "道具获取时间",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_ATTRIBUTE_PLACE_ETERNAL_CNT": {
+                "Name": "ITEM_ATTRIBUTE_PLACE_ETERNAL_CNT",
+                "Type": "Uint32",
+                "Description": "永久放置数量",
+                "Tag": 100,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_ATTRIBUTE_PLACE_TEMP_CNT": {
+                "Name": "ITEM_ATTRIBUTE_PLACE_TEMP_CNT",
+                "Type": "Uint32",
+                "Description": "暂时放置数量",
+                "Tag": 101,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_RARITY_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_RARITY_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_RARITY_TYPE",
+          "PackageName": "Item.Common.ITEM_RARITY_TYPE",
+          "Description": "道具稀有度",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_RARITY_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_RARITY_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_RARITY_TYPE_NONE": {
+                "Name": "ITEM_RARITY_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_RARITY_TYPE_WORN": {
+                "Name": "ITEM_RARITY_TYPE_WORN",
+                "Type": "Uint32",
+                "Description": "破损",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_RARITY_TYPE_NORMAL": {
+                "Name": "ITEM_RARITY_TYPE_NORMAL",
+                "Type": "Uint32",
+                "Description": "普通",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_RARITY_TYPE_RARE": {
+                "Name": "ITEM_RARITY_TYPE_RARE",
+                "Type": "Uint32",
+                "Description": "稀有",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_RARITY_TYPE_EPIC": {
+                "Name": "ITEM_RARITY_TYPE_EPIC",
+                "Type": "Uint32",
+                "Description": "史诗",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_RARITY_TYPE_LEGENDARY": {
+                "Name": "ITEM_RARITY_TYPE_LEGENDARY",
+                "Type": "Uint32",
+                "Description": "传奇",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_PLACE_EXPIRATION": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_PLACE_EXPIRATION",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_PLACE_EXPIRATION",
+          "PackageName": "Item.Common.ITEM_PLACE_EXPIRATION",
+          "Description": "道具放置生命周期",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_PLACE_EXPIRATION",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_PLACE_EXPIRATION",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_PLACE_EXPIRATION_ETERNAL": {
+                "Name": "ITEM_PLACE_EXPIRATION_ETERNAL",
+                "Type": "Uint32",
+                "Description": "永久放置",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_PLACE_EXPIRATION_TEMP": {
+                "Name": "ITEM_PLACE_EXPIRATION_TEMP",
+                "Type": "Uint32",
+                "Description": "暂时放置",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_PLACE_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_PLACE_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_PLACE_TYPE",
+          "PackageName": "Item.Common.ITEM_PLACE_TYPE",
+          "Description": "道具放置类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_PLACE_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_PLACE_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_PLACE_TYPE_FORBIDDEN": {
+                "Name": "ITEM_PLACE_TYPE_FORBIDDEN",
+                "Type": "Uint32",
+                "Description": "不可放置",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_PLACE_TYPE_PLACEABLE": {
+                "Name": "ITEM_PLACE_TYPE_PLACEABLE",
+                "Type": "Uint32",
+                "Description": "可放置",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ITEM_VISIBILITY_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ITEM_VISIBILITY_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ITEM_VISIBILITY_TYPE",
+          "PackageName": "Item.Common.ITEM_VISIBILITY_TYPE",
+          "Description": "是否背包中可见",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ITEM_VISIBILITY_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ITEM_VISIBILITY_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ITEM_INVISIBLE": {
+                "Name": "ITEM_INVISIBLE",
+                "Type": "Uint32",
+                "Description": "背包中不可见",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ITEM_VISIBLE": {
+                "Name": "ITEM_VISIBLE",
+                "Type": "Uint32",
+                "Description": "背包中可见",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ItemData": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ItemData",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ItemData",
+          "PackageName": "Item.Common.ItemData",
+          "Description": "道具信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemData",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ItemData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Guid": {
+                "Name": "Guid",
+                "Type": "Uint32",
+                "Description": "道具GuidID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "道具ID：代表某类道具",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Count": {
+                "Name": "Count",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Attributes": {
+                "Name": "Attributes",
+                "Type": "AttributesSingle",
+                "Description": "道具特殊属性",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ItemList": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ItemList",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ItemList",
+          "PackageName": "Item.Common.ItemList",
+          "Description": "道具列表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemList",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ItemList",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Items": {
+                "Name": "Items",
+                "Type": "Unknow",
+                "CustomType": "ItemData",
+                "Description": "道具列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.ItemSet": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "ItemSet",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.ItemSet",
+          "PackageName": "Item.Common.ItemSet",
+          "Description": "道具列表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemSet",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.ItemSet",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Sets": {
+                "Name": "Sets",
+                "Type": "Map",
+                "CustomType": "map<int64, ItemList>",
+                "Description": "道具集",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.NUMBER_FORMAT": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "NUMBER_FORMAT",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.NUMBER_FORMAT",
+          "PackageName": "Item.Common.NUMBER_FORMAT",
+          "Description": "数字类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "NUMBER_FORMAT",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.NUMBER_FORMAT",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "NUMBER_FORMAT_NONE": {
+                "Name": "NUMBER_FORMAT_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "NUMBER_FORMAT_INTEGER": {
+                "Name": "NUMBER_FORMAT_INTEGER",
+                "Type": "Uint32",
+                "Description": "整数",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "NUMBER_FORMAT_DECIMAL": {
+                "Name": "NUMBER_FORMAT_DECIMAL",
+                "Type": "Uint32",
+                "Description": "小数",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "NUMBER_FORMAT_PERCENTAGE": {
+                "Name": "NUMBER_FORMAT_PERCENTAGE",
+                "Type": "Uint32",
+                "Description": "百分比",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Common.EQUIP_RESULT_TYPE": {
+          "RawPackage": "Item.Common",
+          "Methods": {},
+          "Name": "EQUIP_RESULT_TYPE",
+          "Package": "OpenNGS.Item.Common",
+          "Fullname": "OpenNGS.Item.Common.EQUIP_RESULT_TYPE",
+          "PackageName": "Item.Common.EQUIP_RESULT_TYPE",
+          "Description": "装备穿脱结果",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "EQUIP_RESULT_TYPE",
+            "Package": "Item",
+            "Namespcae": "Item.Common",
+            "Fullname": "Item.Common.EQUIP_RESULT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "EQUIP_RESULT_TYPE_NONE": {
+                "Name": "EQUIP_RESULT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "EQUIP_RESULT_TYPE_SUCCESS": {
+                "Name": "EQUIP_RESULT_TYPE_SUCCESS",
+                "Type": "Uint32",
+                "Description": "装备成功",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "EQUIP_RESULT_TYPE_ERROR": {
+                "Name": "EQUIP_RESULT_TYPE_ERROR",
+                "Type": "Uint32",
+                "Description": "装备失败",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        }
+      },
+      "References": [
+        "OpenNGS.Core"
+      ]
+    },
+    "OpenNGS.Item.DB": {
+      "Name": "OpenNGS.Item.DB",
+      "ModelPackage": "Item.DB",
+      "PackageType": "Database",
+      "Scope": "DB",
+      "Models": {
+        "OpenNGS.Item.DB.ItemRecord": {
+          "RawPackage": "Item.DB",
+          "Methods": {},
+          "Name": "ItemRecord",
+          "Package": "OpenNGS.Item.DB",
+          "Fullname": "OpenNGS.Item.DB.ItemRecord",
+          "PackageName": "Item.DB.ItemRecord",
+          "Description": "玩家道具列表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "DB",
+          "PK": "mapid, uin",
+          "Index": "index(mapid)",
+          "ModelType": "Database",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemRecord",
+            "Package": "Item",
+            "Namespcae": "Item.DB",
+            "Fullname": "Item.DB.ItemRecord",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "mapid": {
+                "Name": "mapid",
+                "Type": "Uint32",
+                "Description": "拉取索引",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家id",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "items": {
+                "Name": "items",
+                "Type": "Unknow",
+                "CustomType": "ItemSet",
+                "Description": "玩家道具",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        }
+      },
+      "References": [
+        "OpenNGS.Item.Common"
+      ]
+    },
+    "OpenNGS.Item.Data": {
+      "Name": "OpenNGS.Item.Data",
+      "ModelPackage": "Item.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Item.Data.Item": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "Item",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.Item",
+          "PackageName": "Item.Data.Item",
+          "Description": "道具表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Item",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.Item",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "Text",
+                "CustomType": "NGSText",
+                "Description": "名称",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "ITEM_CATEGORY",
+                "Description": "道具类别（一级分类）",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "Text",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 4,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "prefab": {
+                "Name": "prefab",
+                "Type": "String",
+                "Description": "预制体位置",
+                "Tag": 5,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Icon": {
+                "Name": "Icon",
+                "Type": "String",
+                "Description": "图标",
+                "Tag": 6,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemType": {
+                "Name": "ItemType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_TYPE",
+                "Description": "道具类型（二级分类）",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LimitMax": {
+                "Name": "LimitMax",
+                "Type": "Uint32",
+                "Description": "可拥有的极限值，超过会丢弃",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "StackMax": {
+                "Name": "StackMax",
+                "Type": "Uint32",
+                "Description": "最大堆叠数量：道具数量超过限制时会自动拆分。用于背包。",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExpiryType": {
+                "Name": "ExpiryType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_EXPIRY_TYPE",
+                "Description": "过期类型（若非永久则需配置ExpTime or ExpDuration）",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "UsageType": {
+                "Name": "UsageType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_USAGE_TYPE",
+                "Description": "使用类型",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExpTime": {
+                "Name": "ExpTime",
+                "Type": "Uint64",
+                "Description": "过期时间点（与ExpDuration互斥）",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExpDuration": {
+                "Name": "ExpDuration",
+                "Type": "Uint64",
+                "Description": "保质期（与ExpTime互斥）",
+                "Tag": 13,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Rarity": {
+                "Name": "Rarity",
+                "Type": "Unknow",
+                "CustomType": "ITEM_RARITY_TYPE",
+                "Description": "道具稀有度",
+                "Tag": 14,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PlaceType": {
+                "Name": "PlaceType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_PLACE_TYPE",
+                "Description": "道具放置类型",
+                "Tag": 15,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Kind": {
+                "Name": "Kind",
+                "Type": "Unknow",
+                "CustomType": "ITEM_KIND",
+                "Description": "道具种类（三级分类）",
+                "Tag": 16,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Visibility": {
+                "Name": "Visibility",
+                "Type": "Unknow",
+                "CustomType": "ITEM_VISIBILITY_TYPE",
+                "Description": "是否背包中显示",
+                "Tag": 17,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Display_Scale": {
+                "Name": "Display_Scale",
+                "Type": "Float",
+                "Description": "展示用Scale",
+                "Tag": 18,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Display_LocalPosition": {
+                "Name": "Display_LocalPosition",
+                "Type": "String",
+                "Description": "展示用坐标轴平移位置",
+                "Tag": 19,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Display_LocalRotation": {
+                "Name": "Display_LocalRotation",
+                "Type": "String",
+                "Description": "展示用旋转轴",
+                "Tag": 20,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Display_Scale2": {
+                "Name": "Display_Scale2",
+                "Type": "Float",
+                "Description": "展示用Scale（礼包）",
+                "Tag": 21,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Display_LocalPosition2": {
+                "Name": "Display_LocalPosition2",
+                "Type": "String",
+                "Description": "展示用坐标轴平移位置（礼包）",
+                "Tag": 22,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Display_LocalRotation2": {
+                "Name": "Display_LocalRotation2",
+                "Type": "String",
+                "Description": "展示用旋转轴（礼包）",
+                "Tag": 23,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemPack": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemPack",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemPack",
+          "PackageName": "Item.Data.ItemPack",
+          "Description": "道具包表（id为道具表子集）",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemPack",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemPack",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "ITEM_PACK_CATEGORY",
+                "Description": "类别",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "RandomType": {
+                "Name": "RandomType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_PACK_RANDOM_TYPE",
+                "Description": "随机类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Initial": {
+                "Name": "Initial",
+                "Type": "Uint32",
+                "Description": "1为默认道具包，初始就会出现在对应的默认道具包组中，默认道具包所属的道具包组必须为默认道具包组，0为非默认道具",
+                "Tag": 4,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemPackGroup": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemPackGroup",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemPackGroup",
+          "PackageName": "Item.Data.ItemPackGroup",
+          "Description": "道具包产出组表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemPackGroup",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemPackGroup",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemPackId": {
+                "Name": "ItemPackId",
+                "Type": "Uint32",
+                "Description": "道具包ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "GroupId": {
+                "Name": "GroupId",
+                "Type": "Uint32",
+                "Description": "道具包内组ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Weight": {
+                "Name": "Weight",
+                "Type": "Uint32",
+                "Description": "权重",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemPackProb": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemPackProb",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemPackProb",
+          "PackageName": "Item.Data.ItemPackProb",
+          "Description": "道具包概率表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemPackProb",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemPackProb",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "道具包ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemPackId": {
+                "Name": "ItemPackId",
+                "Type": "Uint32",
+                "Description": "道具包ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "GroupId": {
+                "Name": "GroupId",
+                "Type": "Uint32",
+                "Description": "道具包内组ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemId": {
+                "Name": "ItemId",
+                "Type": "Uint32",
+                "Description": "道具ID",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemCount": {
+                "Name": "ItemCount",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Probability": {
+                "Name": "Probability",
+                "Type": "Uint32",
+                "Description": "概率(万分比)",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Rare": {
+                "Name": "Rare",
+                "Type": "Uint32",
+                "Description": "品质",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemCategory": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemCategory",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemCategory",
+          "PackageName": "Item.Data.ItemCategory",
+          "Description": "道具一级分类表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemCategory",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemCategory",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "Text",
+                "CustomType": "NGSText",
+                "Description": "名称",
+                "Tag": 2,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "ITEM_CATEGORY",
+                "Description": "类别",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemTypeMapping": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemTypeMapping",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemTypeMapping",
+          "PackageName": "Item.Data.ItemTypeMapping",
+          "Description": "道具二级分类表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemTypeMapping",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemTypeMapping",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "Text",
+                "CustomType": "NGSText",
+                "Description": "名称",
+                "Tag": 2,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemType": {
+                "Name": "ItemType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_TYPE",
+                "Description": "ITEM_TYPE",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "ITEM_CATEGORY",
+                "Description": "类别",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Icon": {
+                "Name": "Icon",
+                "Type": "String",
+                "Description": "图标",
+                "Tag": 5,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemKindMapping": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemKindMapping",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemKindMapping",
+          "PackageName": "Item.Data.ItemKindMapping",
+          "Description": "道具三级分类表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemKindMapping",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemKindMapping",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "Id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "Text",
+                "CustomType": "NGSText",
+                "Description": "名称",
+                "Tag": 2,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemKind": {
+                "Name": "ItemKind",
+                "Type": "Unknow",
+                "CustomType": "ITEM_KIND",
+                "Description": "ITEM_KIND",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemType": {
+                "Name": "ItemType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_TYPE",
+                "Description": "ITEM_TYPE",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.MakeDesign": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "MakeDesign",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.MakeDesign",
+          "PackageName": "Item.Data.MakeDesign",
+          "Description": "图纸",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "MakeDesign",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.MakeDesign",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "图纸ID（道具表）",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "TargetItemID": {
+                "Name": "TargetItemID",
+                "Type": "Uint32",
+                "Description": "目标物品ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MaterialCount": {
+                "Name": "MaterialCount",
+                "Type": "Uint32",
+                "Description": "数量",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "BackPercent": {
+                "Name": "BackPercent",
+                "Type": "Float",
+                "Description": "锻造失败返还材料比例",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.DisassembleEquipIno": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "DisassembleEquipIno",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.DisassembleEquipIno",
+          "PackageName": "Item.Data.DisassembleEquipIno",
+          "Description": "分解返回材料信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DisassembleEquipIno",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.DisassembleEquipIno",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "装备ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "MaterialID": {
+                "Name": "MaterialID",
+                "Type": "Uint32",
+                "Description": "返回材料ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              },
+              "MaterialNum": {
+                "Name": "MaterialNum",
+                "Type": "Uint32",
+                "Description": "返回材料数量",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.EquipStats": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "EquipStats",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.EquipStats",
+          "PackageName": "Item.Data.EquipStats",
+          "Description": "装备属性",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "EquipStats",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.EquipStats",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "装备属性ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "HP": {
+                "Name": "HP",
+                "Type": "Uint32",
+                "Description": "生命值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "HP_NF": {
+                "Name": "HP_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "生命值",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ATK": {
+                "Name": "ATK",
+                "Type": "Uint32",
+                "Description": "攻击力",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ATK_NF": {
+                "Name": "ATK_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "攻击力",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ATKAddition": {
+                "Name": "ATKAddition",
+                "Type": "Uint32",
+                "Description": "攻击力加成百分比",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ATKAddition_NF": {
+                "Name": "ATKAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "攻击力加成百分比",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "HealthRegeneration": {
+                "Name": "HealthRegeneration",
+                "Type": "Uint32",
+                "Description": "生命值回复量",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "HealthRegeneration_NF": {
+                "Name": "HealthRegeneration_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "生命值回复量",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "HealingAddition": {
+                "Name": "HealingAddition",
+                "Type": "Uint32",
+                "Description": "治疗加成",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "HealingAddition_NF": {
+                "Name": "HealingAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "治疗加成",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LifeTheftProbability": {
+                "Name": "LifeTheftProbability",
+                "Type": "Uint32",
+                "Description": "生命窃取几率",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LifeTheftProbability_NF": {
+                "Name": "LifeTheftProbability_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "生命窃取几率",
+                "Tag": 13,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LifeSteal": {
+                "Name": "LifeSteal",
+                "Type": "Uint32",
+                "Description": "生命窃取值",
+                "Tag": 14,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "LifeSteal_NF": {
+                "Name": "LifeSteal_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "生命窃取值",
+                "Tag": 15,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Defense": {
+                "Name": "Defense",
+                "Type": "Uint32",
+                "Description": "防御力",
+                "Tag": 16,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Defense_NF": {
+                "Name": "Defense_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "防御力",
+                "Tag": 17,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "DefenseAddition": {
+                "Name": "DefenseAddition",
+                "Type": "Uint32",
+                "Description": "防御力加成百分比",
+                "Tag": 18,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "DefenseAddition_NF": {
+                "Name": "DefenseAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "防御力加成百分比",
+                "Tag": 19,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Speed": {
+                "Name": "Speed",
+                "Type": "Uint32",
+                "Description": "移动速度",
+                "Tag": 20,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Speed_NF": {
+                "Name": "Speed_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "移动速度",
+                "Tag": 21,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SpeedAddition": {
+                "Name": "SpeedAddition",
+                "Type": "Uint32",
+                "Description": "移动速度加成百分比",
+                "Tag": 22,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SpeedAddition_NF": {
+                "Name": "SpeedAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "移动速度加成百分比",
+                "Tag": 23,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PenetratingPower": {
+                "Name": "PenetratingPower",
+                "Type": "Uint32",
+                "Description": "穿透力",
+                "Tag": 24,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PenetratingPower_NF": {
+                "Name": "PenetratingPower_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "穿透力",
+                "Tag": 25,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillCD": {
+                "Name": "SkillCD",
+                "Type": "Uint32",
+                "Description": "技能CD",
+                "Tag": 26,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillCD_NF": {
+                "Name": "SkillCD_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "技能CD",
+                "Tag": 27,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PickRange": {
+                "Name": "PickRange",
+                "Type": "Uint32",
+                "Description": "拾取范围",
+                "Tag": 28,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PickRange_NF": {
+                "Name": "PickRange_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "拾取范围",
+                "Tag": 29,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PickRangeAddition": {
+                "Name": "PickRangeAddition",
+                "Type": "Uint32",
+                "Description": "拾取范围加成百分比",
+                "Tag": 30,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "PickRangeAddition_NF": {
+                "Name": "PickRangeAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "拾取范围加成百分比",
+                "Tag": 31,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillDuration": {
+                "Name": "SkillDuration",
+                "Type": "Uint32",
+                "Description": "技能持续时间",
+                "Tag": 32,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillDuration_NF": {
+                "Name": "SkillDuration_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "技能持续时间",
+                "Tag": 33,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillDurationAddition": {
+                "Name": "SkillDurationAddition",
+                "Type": "Uint32",
+                "Description": "技能持续时间加成百分比",
+                "Tag": 34,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillDurationAddition_NF": {
+                "Name": "SkillDurationAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "技能持续时间加成百分比",
+                "Tag": 35,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillTime": {
+                "Name": "SkillTime",
+                "Type": "Uint32",
+                "Description": "技能冷却时间缩短",
+                "Tag": 36,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillTime_NF": {
+                "Name": "SkillTime_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "技能冷却时间缩短",
+                "Tag": 37,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillTimeAddition": {
+                "Name": "SkillTimeAddition",
+                "Type": "Uint32",
+                "Description": "技能冷却时间缩短百分比",
+                "Tag": 38,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SkillTimeAddition_NF": {
+                "Name": "SkillTimeAddition_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "技能冷却时间缩短百分比",
+                "Tag": 39,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "CriticalHitRate": {
+                "Name": "CriticalHitRate",
+                "Type": "Uint32",
+                "Description": "暴击率",
+                "Tag": 40,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "CriticalHitRate_NF": {
+                "Name": "CriticalHitRate_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "暴击率",
+                "Tag": 41,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "CriticalHitDamage": {
+                "Name": "CriticalHitDamage",
+                "Type": "Uint32",
+                "Description": "暴击伤害",
+                "Tag": 42,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "CriticalHitDamage_NF": {
+                "Name": "CriticalHitDamage_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "暴击伤害",
+                "Tag": 43,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MoneyRate": {
+                "Name": "MoneyRate",
+                "Type": "Uint32",
+                "Description": "金钱倍率",
+                "Tag": 44,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MoneyRate_NF": {
+                "Name": "MoneyRate_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "金钱倍率",
+                "Tag": 45,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExperienceValueMultiplier": {
+                "Name": "ExperienceValueMultiplier",
+                "Type": "Uint32",
+                "Description": "经验值倍率",
+                "Tag": 46,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExperienceValueMultiplier_NF": {
+                "Name": "ExperienceValueMultiplier_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "经验值倍率",
+                "Tag": 47,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "AvoidanceProbability": {
+                "Name": "AvoidanceProbability",
+                "Type": "Uint32",
+                "Description": "躲避几率",
+                "Tag": 48,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "AvoidanceProbability_NF": {
+                "Name": "AvoidanceProbability_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "躲避几率",
+                "Tag": 49,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MagazineCapacity": {
+                "Name": "MagazineCapacity",
+                "Type": "Uint32",
+                "Description": "弹夹容量",
+                "Tag": 50,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "MagazineCapacity_NF": {
+                "Name": "MagazineCapacity_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "弹夹容量",
+                "Tag": 51,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ChangingVelocity": {
+                "Name": "ChangingVelocity",
+                "Type": "Uint32",
+                "Description": "换弹速度",
+                "Tag": 52,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ChangingVelocity_NF": {
+                "Name": "ChangingVelocity_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "换弹速度",
+                "Tag": 53,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExperienceValuePickingRange": {
+                "Name": "ExperienceValuePickingRange",
+                "Type": "Uint32",
+                "Description": "经验值拾取范围",
+                "Tag": 54,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ExperienceValuePickingRange_NF": {
+                "Name": "ExperienceValuePickingRange_NF",
+                "Type": "Unknow",
+                "CustomType": "NUMBER_FORMAT",
+                "Description": "经验值拾取范围",
+                "Tag": 55,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.LuckyStone": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "LuckyStone",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.LuckyStone",
+          "PackageName": "Item.Data.LuckyStone",
+          "Description": "幸运石信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "LuckyStone",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.LuckyStone",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "幸运石ID(道具表)",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "UpProbability": {
+                "Name": "UpProbability",
+                "Type": "Float",
+                "Description": "增加概率",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "StackMaxNum": {
+                "Name": "StackMaxNum",
+                "Type": "Uint32",
+                "Description": "最大添加数",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemSaveData": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemSaveData",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemSaveData",
+          "PackageName": "Item.Data.ItemSaveData",
+          "Description": "道具存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemSaveData",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemSaveData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "GUID": {
+                "Name": "GUID",
+                "Type": "Uint32",
+                "Description": "唯一ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "道具ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Durability": {
+                "Name": "Durability",
+                "Type": "Uint32",
+                "Description": "道具耐久",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Count": {
+                "Name": "Count",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Quality": {
+                "Name": "Quality",
+                "Type": "Uint32",
+                "Description": "道具品质",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ItemContainer": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ItemContainer",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ItemContainer",
+          "PackageName": "Item.Data.ItemContainer",
+          "Description": "道具的游戏数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ItemContainer",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ItemContainer",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "stashDict": {
+                "Name": "stashDict",
+                "Type": "Unknow",
+                "CustomType": "stashs",
+                "Description": "仓库道具数据列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              },
+              "equipDict": {
+                "Name": "equipDict",
+                "Type": "Unknow",
+                "CustomType": "equips",
+                "Description": "装备数据字典",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              },
+              "bagDict": {
+                "Name": "bagDict",
+                "Type": "Unknow",
+                "CustomType": "bags",
+                "Description": "背包数据列表",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              },
+              "stashCapacity": {
+                "Name": "stashCapacity",
+                "Type": "Uint32",
+                "Description": "仓库容量",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "bagCapacity": {
+                "Name": "bagCapacity",
+                "Type": "Uint32",
+                "Description": "背包容量",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.equips": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "equips",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.equips",
+          "PackageName": "Item.Data.equips",
+          "Description": "装备的游戏数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "equips",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.equips",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "index": {
+                "Name": "index",
+                "Type": "Uint32",
+                "Description": "装备索引",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "equip": {
+                "Name": "equip",
+                "Type": "Unknow",
+                "CustomType": "ItemSaveData",
+                "Description": "装备数据",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.ComposeCostInfo": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "ComposeCostInfo",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.ComposeCostInfo",
+          "PackageName": "Item.Data.ComposeCostInfo",
+          "Description": "装备合成",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ComposeCostInfo",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.ComposeCostInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Kind": {
+                "Name": "Kind",
+                "Type": "Unknow",
+                "CustomType": "ITEM_KIND",
+                "Description": "种类",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Quality": {
+                "Name": "Quality",
+                "Type": "Unknow",
+                "CustomType": "ITEM_RARITY_TYPE",
+                "Description": "品质",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ConsumeCost": {
+                "Name": "ConsumeCost",
+                "Type": "Uint32",
+                "Description": "合成所需价值",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Cost": {
+                "Name": "Cost",
+                "Type": "Uint32",
+                "Description": "作为材料产生价值",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.stashs": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "stashs",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.stashs",
+          "PackageName": "Item.Data.stashs",
+          "Description": "仓库的游戏数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "stashs",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.stashs",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "index": {
+                "Name": "index",
+                "Type": "Uint32",
+                "Description": "仓库索引",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "stashItem": {
+                "Name": "stashItem",
+                "Type": "Unknow",
+                "CustomType": "ItemSaveData",
+                "Description": "仓库数据",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Data.bags": {
+          "RawPackage": "Item.Data",
+          "Methods": {},
+          "Name": "bags",
+          "Package": "OpenNGS.Item.Data",
+          "Fullname": "OpenNGS.Item.Data.bags",
+          "PackageName": "Item.Data.bags",
+          "Description": "背包的游戏数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "bags",
+            "Package": "Item",
+            "Namespcae": "Item.Data",
+            "Fullname": "Item.Data.bags",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "index": {
+                "Name": "index",
+                "Type": "Uint32",
+                "Description": "背包索引",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "bagItem": {
+                "Name": "bagItem",
+                "Type": "Unknow",
+                "CustomType": "ItemSaveData",
+                "Description": "背包数据",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Item.Common"
+      ]
+    },
+    "OpenNGS.Item.Service": {
+      "Name": "OpenNGS.Item.Service",
+      "ModelPackage": "Item.Service",
+      "PackageType": "Message",
+      "Scope": "SS",
+      "Models": {
+        "OpenNGS.Item.Service.GetItemsReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "GetItemsReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.GetItemsReq",
+          "PackageName": "Item.Service.GetItemsReq",
+          "Description": "获取玩家道具列表req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetItemsReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.GetItemsReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "ITEM_CATEGORY",
+                "Description": "一级分类（填0不生效）",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Type": {
+                "Name": "Type",
+                "Type": "Unknow",
+                "CustomType": "ITEM_TYPE",
+                "Description": "二级分类（填0不生效）",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Kind": {
+                "Name": "Kind",
+                "Type": "Unknow",
+                "CustomType": "ITEM_KIND",
+                "Description": "三级分类（填0不生效）",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.GetItemsRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "GetItemsRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.GetItemsRsp",
+          "PackageName": "Item.Service.GetItemsRsp",
+          "Description": "获取玩家道具列表rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetItemsRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.GetItemsRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.UseItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "UseItemReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.UseItemReq",
+          "PackageName": "Item.Service.UseItemReq",
+          "Description": "使用道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "UseItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.UseItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemData": {
+                "Name": "itemData",
+                "Type": "Unknow",
+                "CustomType": "ItemData",
+                "Description": "所使用道具信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.UseItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "UseItemRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.UseItemRsp",
+          "PackageName": "Item.Service.UseItemRsp",
+          "Description": "使用道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "UseItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.UseItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemList": {
+                "Name": "itemList",
+                "Type": "Unknow",
+                "CustomType": "ItemList",
+                "Description": "玩家今日抽取该盲盒次数",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.PlaceItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "PlaceItemReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.PlaceItemReq",
+          "PackageName": "Item.Service.PlaceItemReq",
+          "Description": "放置道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "PlaceItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.PlaceItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemData": {
+                "Name": "itemData",
+                "Type": "Unknow",
+                "CustomType": "ItemData",
+                "Description": "所使用道具信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemPlaceExpType": {
+                "Name": "itemPlaceExpType",
+                "Type": "Unknow",
+                "CustomType": "ITEM_PLACE_EXPIRATION",
+                "Description": "道具放置类型",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.PlaceItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "PlaceItemRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.PlaceItemRsp",
+          "PackageName": "Item.Service.PlaceItemRsp",
+          "Description": "放置道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "PlaceItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.PlaceItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.ReplaceItemsReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "ReplaceItemsReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.ReplaceItemsReq",
+          "PackageName": "Item.Service.ReplaceItemsReq",
+          "Description": "重置所有道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ReplaceItemsReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.ReplaceItemsReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.ReplaceItemsRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "ReplaceItemsRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.ReplaceItemsRsp",
+          "PackageName": "Item.Service.ReplaceItemsRsp",
+          "Description": "重置所有道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ReplaceItemsRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.ReplaceItemsRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.AddItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "AddItemReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.AddItemReq",
+          "PackageName": "Item.Service.AddItemReq",
+          "Description": "添加道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.AddItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemId": {
+                "Name": "itemId",
+                "Type": "Uint32",
+                "Description": "道具ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "count": {
+                "Name": "count",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.AddItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "AddItemRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.AddItemRsp",
+          "PackageName": "Item.Service.AddItemRsp",
+          "Description": "添加道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.AddItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.IdCountPair": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "IdCountPair",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.IdCountPair",
+          "PackageName": "Item.Service.IdCountPair",
+          "Description": "道具id&数量",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "IdCountPair",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.IdCountPair",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "itemId": {
+                "Name": "itemId",
+                "Type": "Uint32",
+                "Description": "道具ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "count": {
+                "Name": "count",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.AddItemsReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "AddItemsReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.AddItemsReq",
+          "PackageName": "Item.Service.AddItemsReq",
+          "Description": "批量添加道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddItemsReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.AddItemsReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "玩家ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "items": {
+                "Name": "items",
+                "Type": "Unknow",
+                "CustomType": "IdCountPair",
+                "Description": "道具ID&数量",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRepeated": true
+              },
+              "CloseNotifyStatus": {
+                "Name": "CloseNotifyStatus",
+                "Type": "Bool",
+                "Description": "不开启通知系统",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.AddItemsRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "AddItemsRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.AddItemsRsp",
+          "PackageName": "Item.Service.AddItemsRsp",
+          "Description": "批量添加道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddItemsRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.AddItemsRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.DeleteItemReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "DeleteItemReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.DeleteItemReq",
+          "PackageName": "Item.Service.DeleteItemReq",
+          "Description": "扣除道具req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DeleteItemReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.DeleteItemReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemId": {
+                "Name": "itemId",
+                "Type": "Uint32",
+                "Description": "玩家ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "count": {
+                "Name": "count",
+                "Type": "Uint32",
+                "Description": "删除数量",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemUid": {
+                "Name": "itemUid",
+                "Type": "Uint64",
+                "Description": "道具uid",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.DeleteItemRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "DeleteItemRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.DeleteItemRsp",
+          "PackageName": "Item.Service.DeleteItemRsp",
+          "Description": "扣除道具rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DeleteItemRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.DeleteItemRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.GetItemDataReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "GetItemDataReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.GetItemDataReq",
+          "PackageName": "Item.Service.GetItemDataReq",
+          "Description": "获取玩家指定道具信息req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetItemDataReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.GetItemDataReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemId": {
+                "Name": "itemId",
+                "Type": "Uint32",
+                "Description": "玩家ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "itemUid": {
+                "Name": "itemUid",
+                "Type": "Uint64",
+                "Description": "道具uid",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.GetItemDataRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "GetItemDataRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.GetItemDataRsp",
+          "PackageName": "Item.Service.GetItemDataRsp",
+          "Description": "获取玩家指定道具信息rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetItemDataRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.GetItemDataRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.UnpackReq": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "UnpackReq",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.UnpackReq",
+          "PackageName": "Item.Service.UnpackReq",
+          "Description": "获取道具包产出结果req",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "UnpackReq",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.UnpackReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "packs": {
+                "Name": "packs",
+                "Type": "Unknow",
+                "CustomType": "IdCountPair",
+                "Description": "待开道具包",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.UnpackRsp": {
+          "RawPackage": "Item.Service",
+          "Methods": {},
+          "Name": "UnpackRsp",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.UnpackRsp",
+          "PackageName": "Item.Service.UnpackRsp",
+          "Description": "获取道具包产出结果rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "UnpackRsp",
+            "Package": "Item",
+            "Namespcae": "Item.Service",
+            "Fullname": "Item.Service.UnpackRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "items": {
+                "Name": "items",
+                "Type": "Unknow",
+                "CustomType": "IdCountPair",
+                "Description": "道具包产出",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "Item"
+        },
+        "OpenNGS.Item.Service.NiItemService": {
+          "RawPackage": "Item.Service",
+          "Methods": {
+            "GetItemList": {
+              "MethodName": "GetItemList",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "GetItemsReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.GetItemsReq",
+                  "PackageName": "Item.Service.GetItemsReq",
+                  "Description": "获取玩家道具列表req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetItemsReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.GetItemsReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "Category": {
+                        "Name": "Category",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_CATEGORY",
+                        "Description": "一级分类（填0不生效）",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "Type": {
+                        "Name": "Type",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_TYPE",
+                        "Description": "二级分类（填0不生效）",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "Kind": {
+                        "Name": "Kind",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_KIND",
+                        "Description": "三级分类（填0不生效）",
+                        "Tag": 4,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "GetItemsRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.GetItemsRsp",
+                "PackageName": "Item.Service.GetItemsRsp",
+                "Description": "获取玩家道具列表rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetItemsRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.GetItemsRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "获取玩家道具列表",
+              "Scope": "All"
+            },
+            "AddItem": {
+              "MethodName": "AddItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "AddItemReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.AddItemReq",
+                  "PackageName": "Item.Service.AddItemReq",
+                  "Description": "添加道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "AddItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.AddItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemId": {
+                        "Name": "itemId",
+                        "Type": "Uint32",
+                        "Description": "道具ID",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "count": {
+                        "Name": "count",
+                        "Type": "Uint32",
+                        "Description": "道具数量",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "AddItemRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.AddItemRsp",
+                "PackageName": "Item.Service.AddItemRsp",
+                "Description": "添加道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "AddItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.AddItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "添加道具",
+              "Scope": "All"
+            },
+            "AddItems": {
+              "MethodName": "AddItems",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "AddItemsReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.AddItemsReq",
+                  "PackageName": "Item.Service.AddItemsReq",
+                  "Description": "批量添加道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "AddItemsReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.AddItemsReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "items": {
+                        "Name": "items",
+                        "Type": "Unknow",
+                        "CustomType": "IdCountPair",
+                        "Description": "道具ID&数量",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": 10,
+                        "IsRepeated": true
+                      },
+                      "CloseNotifyStatus": {
+                        "Name": "CloseNotifyStatus",
+                        "Type": "Bool",
+                        "Description": "不开启通知系统",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "AddItemsRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.AddItemsRsp",
+                "PackageName": "Item.Service.AddItemsRsp",
+                "Description": "批量添加道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "AddItemsRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.AddItemsRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "批量添加道具",
+              "Scope": "All"
+            },
+            "DeleteItem": {
+              "MethodName": "DeleteItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "DeleteItemReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.DeleteItemReq",
+                  "PackageName": "Item.Service.DeleteItemReq",
+                  "Description": "扣除道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "DeleteItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.DeleteItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "response result",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemId": {
+                        "Name": "itemId",
+                        "Type": "Uint32",
+                        "Description": "玩家ID",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "count": {
+                        "Name": "count",
+                        "Type": "Uint32",
+                        "Description": "删除数量",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemUid": {
+                        "Name": "itemUid",
+                        "Type": "Uint64",
+                        "Description": "道具uid",
+                        "Tag": 4,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "DeleteItemRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.DeleteItemRsp",
+                "PackageName": "Item.Service.DeleteItemRsp",
+                "Description": "扣除道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "DeleteItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.DeleteItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "扣除道具",
+              "Scope": "All"
+            },
+            "GetItemData": {
+              "MethodName": "GetItemData",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "GetItemDataReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.GetItemDataReq",
+                  "PackageName": "Item.Service.GetItemDataReq",
+                  "Description": "获取玩家指定道具信息req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetItemDataReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.GetItemDataReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "response result",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemId": {
+                        "Name": "itemId",
+                        "Type": "Uint32",
+                        "Description": "玩家ID",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemUid": {
+                        "Name": "itemUid",
+                        "Type": "Uint64",
+                        "Description": "道具uid",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "GetItemDataRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.GetItemDataRsp",
+                "PackageName": "Item.Service.GetItemDataRsp",
+                "Description": "获取玩家指定道具信息rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetItemDataRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.GetItemDataRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "获取玩家特定类型道具信息",
+              "Scope": "All"
+            },
+            "UseItem": {
+              "MethodName": "UseItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "UseItemReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.UseItemReq",
+                  "PackageName": "Item.Service.UseItemReq",
+                  "Description": "使用道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "UseItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.UseItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemData": {
+                        "Name": "itemData",
+                        "Type": "Unknow",
+                        "CustomType": "ItemData",
+                        "Description": "所使用道具信息",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "UseItemRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.UseItemRsp",
+                "PackageName": "Item.Service.UseItemRsp",
+                "Description": "使用道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "UseItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.UseItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    },
+                    "itemList": {
+                      "Name": "itemList",
+                      "Type": "Unknow",
+                      "CustomType": "ItemList",
+                      "Description": "玩家今日抽取该盲盒次数",
+                      "Tag": 2,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRepeated": true
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "使用道具",
+              "Scope": "All"
+            },
+            "PlaceItem": {
+              "MethodName": "PlaceItem",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "PlaceItemReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.PlaceItemReq",
+                  "PackageName": "Item.Service.PlaceItemReq",
+                  "Description": "放置道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "PlaceItemReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.PlaceItemReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemData": {
+                        "Name": "itemData",
+                        "Type": "Unknow",
+                        "CustomType": "ItemData",
+                        "Description": "所使用道具信息",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      },
+                      "itemPlaceExpType": {
+                        "Name": "itemPlaceExpType",
+                        "Type": "Unknow",
+                        "CustomType": "ITEM_PLACE_EXPIRATION",
+                        "Description": "道具放置类型",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "PlaceItemRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.PlaceItemRsp",
+                "PackageName": "Item.Service.PlaceItemRsp",
+                "Description": "放置道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "PlaceItemRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.PlaceItemRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "放置道具",
+              "Scope": "All"
+            },
+            "ReplaceItems": {
+              "MethodName": "ReplaceItems",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "ReplaceItemsReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.ReplaceItemsReq",
+                  "PackageName": "Item.Service.ReplaceItemsReq",
+                  "Description": "重置所有道具req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "ReplaceItemsReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.ReplaceItemsReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "玩家ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRepeated": false
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "ReplaceItemsRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.ReplaceItemsRsp",
+                "PackageName": "Item.Service.ReplaceItemsRsp",
+                "Description": "重置所有道具rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "ReplaceItemsRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.ReplaceItemsRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "重置所有道具",
+              "Scope": "All"
+            },
+            "Unpack": {
+              "MethodName": "Unpack",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "Item.Service",
+                  "Methods": {},
+                  "Name": "UnpackReq",
+                  "Package": "OpenNGS.Item.Service",
+                  "Fullname": "OpenNGS.Item.Service.UnpackReq",
+                  "PackageName": "Item.Service.UnpackReq",
+                  "Description": "获取道具包产出结果req",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "UnpackReq",
+                    "Package": "Item",
+                    "Namespcae": "Item.Service",
+                    "Fullname": "Item.Service.UnpackReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "packs": {
+                        "Name": "packs",
+                        "Type": "Unknow",
+                        "CustomType": "IdCountPair",
+                        "Description": "待开道具包",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": 10,
+                        "IsRepeated": true
+                      }
+                    }
+                  },
+                  "ModelPackage": "Item"
+                }
+              ],
+              "Return": {
+                "RawPackage": "Item.Service",
+                "Methods": {},
+                "Name": "UnpackRsp",
+                "Package": "OpenNGS.Item.Service",
+                "Fullname": "OpenNGS.Item.Service.UnpackRsp",
+                "PackageName": "Item.Service.UnpackRsp",
+                "Description": "获取道具包产出结果rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "UnpackRsp",
+                  "Package": "Item",
+                  "Namespcae": "Item.Service",
+                  "Fullname": "Item.Service.UnpackRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\Item.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRepeated": false
+                    },
+                    "items": {
+                      "Name": "items",
+                      "Type": "Unknow",
+                      "CustomType": "IdCountPair",
+                      "Description": "道具包产出",
+                      "Tag": 2,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRepeated": true
+                    }
+                  }
+                },
+                "ModelPackage": "Item"
+              },
+              "Description": "获取道具包产出结果",
+              "Scope": "All"
+            }
+          },
+          "Name": "NiItemService",
+          "Package": "OpenNGS.Item.Service",
+          "Fullname": "OpenNGS.Item.Service.NiItemService",
+          "PackageName": "Item.Service.NiItemService",
+          "Description": "Ni道具服务",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "SS",
+          "ModelType": "None",
+          "Type": "Service",
+          "ModelPackage": "Item"
+        }
+      },
+      "References": [
+        "OpenNGS.Item.Common"
+      ]
+    }
+  },
+  "Name": "Item",
+  "PackageFile": "Packages/Item.json"
+}

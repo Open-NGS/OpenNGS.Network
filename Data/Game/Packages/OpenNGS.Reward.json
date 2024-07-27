@@ -1,0 +1,432 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Reward.Data": {
+      "Name": "OpenNGS.Reward.Data",
+      "ModelPackage": "OpenNGS.Reward.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Reward.Data.Reward": {
+          "RawPackage": "OpenNGS.Reward.Data",
+          "Methods": {},
+          "Name": "Reward",
+          "Package": "OpenNGS.Reward.Data",
+          "Fullname": "OpenNGS.Reward.Data.Reward",
+          "PackageName": "OpenNGS.Reward.Data.Reward",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Reward",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Data",
+            "Fullname": "OpenNGS.Reward.Data.Reward",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "奖励名称",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Desc": {
+                "Name": "Desc",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "奖励描述",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Condition": {
+                "Name": "Condition",
+                "Type": "Uint32",
+                "Description": "领取奖励的限制性条件",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        },
+        "OpenNGS.Reward.Data.RewardContent": {
+          "RawPackage": "OpenNGS.Reward.Data",
+          "Methods": {},
+          "Name": "RewardContent",
+          "Package": "OpenNGS.Reward.Data",
+          "Fullname": "OpenNGS.Reward.Data.RewardContent",
+          "PackageName": "OpenNGS.Reward.Data.RewardContent",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RewardContent",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Data",
+            "Fullname": "OpenNGS.Reward.Data.RewardContent",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Decs": {
+                "Name": "Decs",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "奖励物品ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemCount": {
+                "Name": "ItemCount",
+                "Type": "Uint32",
+                "Description": "奖励物品数量",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Condition": {
+                "Name": "Condition",
+                "Type": "Uint32",
+                "Description": "进一步的领取规则条件",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        },
+        "OpenNGS.Reward.Data.RewardCondition": {
+          "RawPackage": "OpenNGS.Reward.Data",
+          "Methods": {},
+          "Name": "RewardCondition",
+          "Package": "OpenNGS.Reward.Data",
+          "Fullname": "OpenNGS.Reward.Data.RewardCondition",
+          "PackageName": "OpenNGS.Reward.Data.RewardCondition",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RewardCondition",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Data",
+            "Fullname": "OpenNGS.Reward.Data.RewardCondition",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "条件ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ZoneId": {
+                "Name": "ZoneId",
+                "Type": "Uint32",
+                "Description": "区Id",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ServerId": {
+                "Name": "ServerId",
+                "Type": "Uint32",
+                "Description": "服Id",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "SeasonId": {
+                "Name": "SeasonId",
+                "Type": "Uint32",
+                "Description": "赛季Id",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ObtainCountLimit": {
+                "Name": "ObtainCountLimit",
+                "Type": "Uint32",
+                "Description": "最大领取次数",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ValidTime": {
+                "Name": "ValidTime",
+                "Type": "Uint32",
+                "Description": "有效时间",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        },
+        "OpenNGS.Reward.Data.RewardData": {
+          "RawPackage": "OpenNGS.Reward.Data",
+          "Methods": {},
+          "Name": "RewardData",
+          "Package": "OpenNGS.Reward.Data",
+          "Fullname": "OpenNGS.Reward.Data.RewardData",
+          "PackageName": "OpenNGS.Reward.Data.RewardData",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RewardData",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Data",
+            "Fullname": "OpenNGS.Reward.Data.RewardData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "道具ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "ItemCount": {
+                "Name": "ItemCount",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "Status": {
+                "Name": "Status",
+                "Type": "Unknow",
+                "CustomType": "REWARDSTAT_TYPE",
+                "Description": "奖励状态",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        },
+        "OpenNGS.Reward.Data.RewardSaveData": {
+          "RawPackage": "OpenNGS.Reward.Data",
+          "Methods": {},
+          "Name": "RewardSaveData",
+          "Package": "OpenNGS.Reward.Data",
+          "Fullname": "OpenNGS.Reward.Data.RewardSaveData",
+          "PackageName": "OpenNGS.Reward.Data.RewardSaveData",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RewardSaveData",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Data",
+            "Fullname": "OpenNGS.Reward.Data.RewardSaveData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Id": {
+                "Name": "Id",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "ReceiveCount": {
+                "Name": "ReceiveCount",
+                "Type": "Uint32",
+                "Description": "领取次数",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        },
+        "OpenNGS.Reward.Data.RewardContainer": {
+          "RawPackage": "OpenNGS.Reward.Data",
+          "Methods": {},
+          "Name": "RewardContainer",
+          "Package": "OpenNGS.Reward.Data",
+          "Fullname": "OpenNGS.Reward.Data.RewardContainer",
+          "PackageName": "OpenNGS.Reward.Data.RewardContainer",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RewardContainer",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Data",
+            "Fullname": "OpenNGS.Reward.Data.RewardContainer",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "rewardDict": {
+                "Name": "rewardDict",
+                "Type": "Unknow",
+                "CustomType": "RewardSaveData",
+                "Description": "奖励数据字典",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRepeated": true
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Reward.Common"
+      ]
+    },
+    "OpenNGS.Reward.Common": {
+      "Name": "OpenNGS.Reward.Common",
+      "ModelPackage": "OpenNGS.Reward.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Reward.Common.REWARDSTAT_TYPE": {
+          "RawPackage": "OpenNGS.Reward.Common",
+          "Methods": {},
+          "Name": "REWARDSTAT_TYPE",
+          "Package": "OpenNGS.Reward.Common",
+          "Fullname": "OpenNGS.Reward.Common.REWARDSTAT_TYPE",
+          "PackageName": "OpenNGS.Reward.Common.REWARDSTAT_TYPE",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "REWARDSTAT_TYPE",
+            "Package": "OpenNGS.Reward",
+            "Namespcae": "OpenNGS.Reward.Common",
+            "Fullname": "OpenNGS.Reward.Common.REWARDSTAT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Reward.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "REWARDSTAT_TYPE_NONE": {
+                "Name": "REWARDSTAT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "REWARDSTAT_TYPE_AVAILABLE": {
+                "Name": "REWARDSTAT_TYPE_AVAILABLE",
+                "Type": "Uint32",
+                "Description": "可使用",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "REWARDSTAT_TYPE_UNAVAILABLE": {
+                "Name": "REWARDSTAT_TYPE_UNAVAILABLE",
+                "Type": "Uint32",
+                "Description": "不可使用",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Reward"
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Reward",
+  "PackageFile": "Packages/OpenNGS.Reward.json"
+}

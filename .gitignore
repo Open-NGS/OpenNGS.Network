@@ -1,0 +1,12 @@
+/Client/Library
+/Client/Logs
+/Client/Temp
+/Client/UserSettings
+/Client/.vs
+/Client/.plastic
+/Client/Log.txt
+/Client/obj
+/Client/save_data
+*.csproj
+*.csproj
+Client/Client.sln

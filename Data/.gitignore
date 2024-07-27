@@ -1,0 +1,3 @@
+# Ingore Files
+Code/Server/*.pb.h
+Code/Server/*.pb.cc

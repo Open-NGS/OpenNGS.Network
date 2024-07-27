@@ -1,0 +1,192 @@
+﻿{
+  "Configutations": {
+    "ClientData": {
+      "Name": "ClientData",
+      "Scope": "Client",
+      "DataConfig": {
+        "DataMode": "EXCEL",
+        "TargetFormat": "Binary",
+        "DataOutput": "Game/Client/Data"
+      },
+      "Language": "C#",
+      "ProtoPath": "Game/Client/Proto",
+      "CodeOutput": "Game/Client/Code",
+      "ReserveText": false,
+      "GenerateList": true,
+      "ListSuffix": "Array",
+      "LowercaseFilename": false,
+      "FirstFieldAsKey": false
+    },
+    "ServerData": {
+      "Name": "ServerData",
+      "Scope": "Server",
+      "DataConfig": {
+        "DataMode": "EXCEL",
+        "TargetFormat": "None"
+      },
+      "Language": "C#",
+      "ProtoPath": "Game/Server/Proto",
+      "CodeOutput": "Game/Server/Code",
+      "ReserveText": false,
+      "GenerateList": true,
+      "ListSuffix": "Array",
+      "LowercaseFilename": true,
+      "FirstFieldAsKey": false
+    },
+    "ClientService": {
+      "Name": "ClientService",
+      "Scope": "CS",
+      "DataConfig": {
+        "DataMode": "EXCEL",
+        "TargetFormat": "None"
+      },
+      "Language": "C#",
+      "ProtoPath": "Game/Client/Service",
+      "CodeOutput": "Game/Client/Service/Code",
+      "ReserveText": false,
+      "GenerateList": true,
+      "ListSuffix": "Array",
+      "LowercaseFilename": false,
+      "FirstFieldAsKey": false
+    },
+    "ServerService": {
+      "Name": "ServerService",
+      "Scope": "SS",
+      "DataConfig": {
+        "DataMode": "EXCEL",
+        "TargetFormat": "None"
+      },
+      "Language": "C#",
+      "ProtoPath": "Game/Server/Service",
+      "CodeOutput": "Game/Server/Service/Code",
+      "ReserveText": false,
+      "GenerateList": true,
+      "ListSuffix": "Array",
+      "LowercaseFilename": true,
+      "FirstFieldAsKey": false
+    },
+    "ServerDB": {
+      "Name": "Server",
+      "Scope": "DB",
+      "DataConfig": {
+        "DataMode": "EXCEL",
+        "TargetFormat": "None"
+      },
+      "Language": "C++",
+      "ProtoPath": "Game/Server/DB",
+      "ReserveText": false,
+      "GenerateList": true,
+      "ListSuffix": "Array",
+      "LowercaseFilename": true,
+      "FirstFieldAsKey": false
+    },
+    "Server": {
+      "Name": "Server",
+      "Scope": "Server",
+      "DataConfig": {
+        "DataMode": "EXCEL",
+        "TargetFormat": "None"
+      },
+      "Language": "C++",
+      "ProtoPath": "Game/Server/Proto",
+      "CodeOutput": "Game/Server/Code",
+      "ReserveText": false,
+      "GenerateList": true,
+      "ListSuffix": "Array",
+      "LowercaseFilename": true,
+      "FirstFieldAsKey": false
+    }
+  },
+  "DataTables": {},
+  "Models": [
+    "Packages/OpenNGS.json",
+    "Packages/OpenNGS.Character.json",
+    "Packages/OpenNGS.Dialog.json",
+    "Packages/Item.json",
+    "Packages/OpenNGS.Shop.json",
+    "Packages/OpenNGS.Setting.json",
+    "Packages/OpenNGS.Statistic.json",
+    "Packages/OpenNGS.Suit.json",
+    "Packages/Achievement.json",
+    "Packages/OpenNGS.UI.json",
+    "Packages/OpenNGS.Map.json",
+    "Packages/OpenNGS.Make.json",
+    "Packages/OpenNGS.Rank.json",
+    "Packages/OpenNGS.Exchange.json",
+    "Packages/Zerium.Data.json",
+    "Packages/OpenNGS.NPC.json",
+    "Packages/OpenNGS.Technology.json",
+    "Packages/Const.json",
+    "Packages/Dynamic.json",
+    "Packages/OpenNGS.Enemy.json",
+    "Packages/OpenNGS.Levels.json",
+    "Packages/OpenNGS.Avator.json",
+    "Packages/OpenNGS.Message.json",
+    "Packages/OpenNGS.Reward.json",
+    "Packages/OpenNGS.Quest.json"
+  ],
+  "Localization": {
+    "LocalizationFile": "Game/Localization/Localization.xlsx",
+    "CSVExportFile": "Game/Localization/StringTable.csv",
+    "JsonExportFile": "Game/Localization/Localization.json"
+  },
+  "ProjectVersion": 1,
+  "Settings": {
+    "Languages": {
+      "C#": {
+        "Name": "C#",
+        "CodegenTool": ".\\Tools\\protogen\\protogen.exe",
+        "Commandline": "{proto} --csharp_out={output} +names=original +langver=4 +services=erpc"
+      },
+      "C++": {
+        "Name": "C++",
+        "CodegenTool": ".\\Tools\\protoc.exe",
+        "Commandline": "{proto} --cpp_out={output}"
+      }
+    },
+    "ProtoVersion": 3,
+    "Scopes": {
+      "ModelScopes": [
+        "Client",
+        "Server"
+      ],
+      "ServiceScopes": [
+        "ClientAPI",
+        "ServerAPI",
+        "AdminAPI"
+      ]
+    },
+    "DataSourcePath": "Game/Tables",
+    "ServiceProtocolType": "ERPC",
+    "ManageMode": "Builtin",
+    "AttributeValueType": "Single",
+    "AttributeMultiples": 0
+  },
+  "ModelDefines": [
+    "Entities/OpenNGS/OpenNGS.xlsx",
+    "Entities/OpenNGS/OpenNGS.Character.xlsx",
+    "Entities/OpenNGS/OpenNGS.Dialog.xlsx",
+    "Entities/OpenNGS/Item.xlsx",
+    "Entities/OpenNGS/OpenNGS.Shop.xlsx",
+    "Entities/OpenNGS/OpenNGS.Setting.xlsx",
+    "Entities/OpenNGS/OpenNGS.Statistic.xlsx",
+    "Entities/OpenNGS/OpenNGS.Suit.xlsx",
+    "Entities/OpenNGS/Achievement.xlsx",
+    "Entities/OpenNGS/OpenNGS.UI.xlsx",
+    "Entities/OpenNGS/OpenNGS.Map.xlsx",
+    "Entities/OpenNGS/OpenNGS.Make.xlsx",
+    "Entities/OpenNGS/OpenNGS.Rank.xlsx",
+    "Entities/OpenNGS/OpenNGS.Exchange.xlsx",
+    "Entities/Zerium.Data.xlsx",
+    "Entities/OpenNGS/OpenNGS.NPC.xlsx",
+    "Entities/OpenNGS/OpenNGS.Technology.xlsx",
+    "Entities/OpenNGS/Const.xlsx",
+    "Entities/Dynamic.xlsx",
+    "Entities/OpenNGS/OpenNGS.Enemy.xlsx",
+    "Entities/OpenNGS/OpenNGS.Levels.xlsx",
+    "Entities/OpenNGS/OpenNGS.Avator.xlsx",
+    "Entities/OpenNGS/OpenNGS.Message.xlsx",
+    "Entities/OpenNGS/OpenNGS.Reward.xlsx",
+    "Entities/OpenNGS/OpenNGS.Quest.xlsx"
+  ]
+}

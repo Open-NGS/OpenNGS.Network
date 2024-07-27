@@ -1,0 +1,53 @@
+
+)UI_LOGIN *Preb_LoginView2Login@H
+9UI_NPC_INTERACTION *Preb_NPCPanel2PlayerGround@H
+CUI_CHARACTER角色系统 *Preb_CharacterUI2CharacterUI@H
+7UI_STORE商城系统 *Preb_StoreUI2StoreUI@H
+2UI_DIALOGUE *Preb_DialogueUI2
+DialogueUI@H
+/
+UI_ACCOUNT *Preb_AccountUI2	AccountUI@H
+GUI_ACHIEVEMENT成就系统 *Preb_Achievement2AchievementUI@H
+GUI_HANDBOOKMENU图鉴系统 *Preb_HandBook_Menu2
+HandBookUI@H
+>	UI_HANDBOOK图鉴系统 *Preb_HandBook2
+HandBookUI@H
+8
+	UI_RECORD战绩系统 *Preb_Record2RecordUI@H
+$UI_MENU *	Preb_Menu2MenuUI@H
+8UI_NPC_PAGE *Preb_MainCity_NPCPage2
+MainCityUI@H
+8UI_MAP_PAGE *Preb_MainCity_MapPage2
+MainCityUI@H
+<UI_LEVEL_PAGE *Preb_MainCity_LevelPage2
+MainCityUI@H
+8
+UI_SETTING *Preb_GameSetting2SettingUIPrefabs@H
+9UI_RANK	排行榜 *Preb_UI_Rank2RankUIPrefabs@H
+FUI_TECHNOLOGY科研系统 *Preb_TechnologyUI2TechnologyUI@H
+EUI_EQUIPBUILD装备系统 *Preb_EquipBuild2EquipSystemUI@H
+8UI_KEYSWITCH *Preb_KeySwitch2SettingUIPrefabs@H
+@UI_INVITATIONTIPS *Preb_InvitationTips2SettingUIPrefabsH
+<UI_DIALOGUEBUBBLE *Preb_DialogueBubble2
+DialogueUI@H
+3UI_CONFIRMMSG *Preb_ConfirmMsg2	MessageUI@H
+6UI_RETURNMATMSG *Preb_MaterialMsg2	MessageUI@H
+5UI_TIPS弹窗系统 *	Preb_Tips2	MessageUI@H
+2UI_LEVELEND *Preb_LevelEndPanel2LevelUI@H
+,	UI_BATTLE *preb_BattleUI2BattleUI@H
+TUI_CONSTRUCTION构筑(抽卡)系统 *Preb_ConstructionUI2ConstructionUI@H
+<UI_BATTLE_PAUSE *Preb_BattlePauseUI2BattlePauseUI@H
+/
+UI_ABOUTUS *Preb_AboutUsUI2	AboutUsUI@H
+?UI_SETTLEACCOUNT *Preb_SettleAccount2SettleAccountUI@H
+0UI_MAINPANEL *Preb_UIMainPanel2MainUI@H
+. UI_INITGAME *Preb_InitGame2VideoCom@H
+#!
+UI_GMPANEL *Preb_GM2GMUI@H
+7"UI_LEVELTITLES *Preb_LevelTitles2LevelTitlesUIH
+5#UI_STASH仓库 *Preb_StashUI2CharacterUI@H
+7$UI_FIGHTINGBAG *Preb_FightingBag2CharacterUI@H
+C%UI_CHARACTERATTPLANE *Preb_CharacterAttPlane2CharacterUI@H
+/&UI_EQUIPMSG *Preb_EquipMsg2	MessageUI@H
+J'UI_LEVELTUTORIAL关卡指引 *Preb_TutorialUI2LevelTutorialUI@H
+K(UI_BATTLE_ARROW战斗箭头指引 *Preb_BattleArrowUI2BattleUI@H

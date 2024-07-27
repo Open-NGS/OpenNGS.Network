@@ -1,0 +1,174 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Exchange.Data": {
+      "Name": "OpenNGS.Exchange.Data",
+      "ModelPackage": "OpenNGS.Exchange.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Exchange.Data.SourceItem": {
+          "RawPackage": "OpenNGS.Exchange.Data",
+          "Methods": {},
+          "Name": "SourceItem",
+          "Package": "OpenNGS.Exchange.Data",
+          "Fullname": "OpenNGS.Exchange.Data.SourceItem",
+          "PackageName": "OpenNGS.Exchange.Data.SourceItem",
+          "Description": "来源物品",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "SourceItem",
+            "Package": "OpenNGS.Exchange",
+            "Namespcae": "OpenNGS.Exchange.Data",
+            "Fullname": "OpenNGS.Exchange.Data.SourceItem",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Exchange.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "GUID": {
+                "Name": "GUID",
+                "Type": "Uint32",
+                "Description": "唯一ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Count": {
+                "Name": "Count",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Exchange"
+        },
+        "OpenNGS.Exchange.Data.TargetItem": {
+          "RawPackage": "OpenNGS.Exchange.Data",
+          "Methods": {},
+          "Name": "TargetItem",
+          "Package": "OpenNGS.Exchange.Data",
+          "Fullname": "OpenNGS.Exchange.Data.TargetItem",
+          "PackageName": "OpenNGS.Exchange.Data.TargetItem",
+          "Description": "目标物品",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "TargetItem",
+            "Package": "OpenNGS.Exchange",
+            "Namespcae": "OpenNGS.Exchange.Data",
+            "Fullname": "OpenNGS.Exchange.Data.TargetItem",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Exchange.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "目标的道具ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRepeated": false
+              },
+              "Count": {
+                "Name": "Count",
+                "Type": "Uint32",
+                "Description": "道具数量",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Exchange"
+        }
+      },
+      "References": []
+    },
+    "OpenNGS.Exchange.Common": {
+      "Name": "OpenNGS.Exchange.Common",
+      "ModelPackage": "OpenNGS.Exchange.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Exchange.Common.EXCHANGE_RESULT_TYPE": {
+          "RawPackage": "OpenNGS.Exchange.Common",
+          "Methods": {},
+          "Name": "EXCHANGE_RESULT_TYPE",
+          "Package": "OpenNGS.Exchange.Common",
+          "Fullname": "OpenNGS.Exchange.Common.EXCHANGE_RESULT_TYPE",
+          "PackageName": "OpenNGS.Exchange.Common.EXCHANGE_RESULT_TYPE",
+          "Description": "交易结果类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "EXCHANGE_RESULT_TYPE",
+            "Package": "OpenNGS.Exchange",
+            "Namespcae": "OpenNGS.Exchange.Common",
+            "Fullname": "OpenNGS.Exchange.Common.EXCHANGE_RESULT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Exchange.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "EXCHANGE_RESULT_TYPE_NONE": {
+                "Name": "EXCHANGE_RESULT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "EXCHANGE_RESULT_TYPE_SUCCESS": {
+                "Name": "EXCHANGE_RESULT_TYPE_SUCCESS",
+                "Type": "Uint32",
+                "Description": "交易成功",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "EXCHANGE_RESULT_TYPE_NOENOUGH": {
+                "Name": "EXCHANGE_RESULT_TYPE_NOENOUGH",
+                "Type": "Uint32",
+                "Description": "道具数量不足",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              },
+              "EXCHANGE_RESULT_TYPE_NOITEM": {
+                "Name": "EXCHANGE_RESULT_TYPE_NOITEM",
+                "Type": "Uint32",
+                "Description": "道具不存在",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRepeated": false
+              }
+            }
+          },
+          "ModelPackage": "OpenNGS.Exchange"
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Exchange",
+  "PackageFile": "Packages/OpenNGS.Exchange.json"
+}
