@@ -1,5 +1,6 @@
 {
 	"name": "com.openngs.ui",
+	"displayName": "OpenNGS UI",
 	"version": "0.1.0",
 	"description": "OpenNGS UI package",
 	"main": "index.js",
