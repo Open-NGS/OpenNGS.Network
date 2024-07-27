@@ -1,5 +1,6 @@
 {
 	"name": "com.openngs.platform",
+	"displayName": "OpenNGS Platform",
 	"version": "0.1.0",
 	"description": "OpenNGS platform package",
 	"main": "index.js",

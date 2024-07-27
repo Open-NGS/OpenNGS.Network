@@ -1,5 +1,6 @@
 {
 	"name": "com.openngs.data",
+	"displayName": "OpenNGS Data",
 	"version": "0.1.0",
 	"description": "OpenNGS Data package",
 	"main": "index.js",

@@ -1,5 +1,6 @@
 {
 	"name": "com.openngs.protobuf",
+	"displayName": "OpenNGS Protobuf",
 	"version": "0.1.0",
 	"description": "OpenNGS protobuf package",
 	"main": "index.js",
