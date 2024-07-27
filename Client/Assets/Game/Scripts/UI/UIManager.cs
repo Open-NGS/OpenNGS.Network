@@ -96,7 +96,8 @@ namespace OpenNGS.UI
 
         public OpenNGS.UI.Data.UIConfig GetConfig(string id)
         {
-            return ZeriumStaticData.UICfg.GetItem(id);
+            //return ZeriumStaticData.UICfg.GetItem(id);
+            return null;
         }
 
         private void OnViewClosed(string id)

@@ -1,5 +1,65 @@
 {
   "dependencies": {
+    "com.openngs.core": {
+      "version": "file:openngs.core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.data": {
+      "version": "file:openngs.data",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.di": {
+      "version": "file:openngs.di",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.erpc": {
+      "version": "file:openngs.erpc",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.game": {
+      "version": "file:openngs.game",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.game.systems": {
+      "version": "file:openngs.game.systems",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.network": {
+      "version": "file:openngs.network",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.platform": {
+      "version": "file:openngs.platform",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.protobuf": {
+      "version": "file:openngs.protobuf",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.ui": {
+      "version": "file:openngs.ui",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,
