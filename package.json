@@ -6,7 +6,11 @@
 	"scripts": {
 		"test" : "script-content"
 	},
-	"author": "kane",
+	"author": {
+		"name": "EE GAMES",
+		"email": "rayeliu@tencent.com",
+		"url": "https://www.openngs.com"
+	},
 	"license": "AGPL",
 	"keywords": [
 		"unity3d",
