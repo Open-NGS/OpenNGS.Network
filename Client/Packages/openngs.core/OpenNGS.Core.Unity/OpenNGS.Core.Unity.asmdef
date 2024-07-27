@@ -1,0 +1,16 @@
+{
+    "name": "OpenNGS.Core.Unity",
+    "rootNamespace": "",
+    "references": [
+        "OpenNGS.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
