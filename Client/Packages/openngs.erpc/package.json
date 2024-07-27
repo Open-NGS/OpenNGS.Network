@@ -1,7 +1,7 @@
 {
   "name": "com.openngs.erpc",
   "displayName": "OpenNGS ERPC",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "unity": "2020.3",
   "unityRelease": "14f1",
   "description": "OpenNGS ERPC package",
@@ -18,9 +18,9 @@
     ]
   },
   "keywords": [
-    "ni",
-    "framework",
-    "game"
+    "openngs",
+    "game",
+    "rpc"
   ],
   "author": {
     "name": "EE GAMES",
@@ -31,6 +31,11 @@
   "upmCi": {
     "footprint": "d92124a58053bcabf61fdc2cf454da49e4ff876f"
   },
+  "dependencies": {
+    "com.openngs.network": "0.2.0",
+    "com.openngs.protobuf": "0.2.0"
+  },
+  "documentationUrl": "https://docs.openngs.com",
   "repository": {
     "url": "https://git.eegames.net/OpenNGS/UnityPackages/com.openngs.erpc.git",
     "type": "git"
