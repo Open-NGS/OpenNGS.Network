@@ -1,0 +1,25 @@
+{
+    "name": "OpenNGS.Game",
+    "rootNamespace": "",
+    "references": [
+        "protobuf-net",
+        "OpenNGS.Core",
+        "OpenNGS.Core.Unity",
+        "OpenNGS.Data",
+        "OpenNGS.DI",
+        "OpenNGS.ERPC",
+        "OpenNGS.Network",
+        "OpenNGS.Platform",
+        "Platform.GCloud",
+        "OpenNGS.EEGamesSDK"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
