@@ -1,7 +1,7 @@
 {
 	"name": "com.openngs.game.systems",
 	"displayName": "OpenNGS Game Systems",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "OpenNGS game systems package",
 	"main": "index.js",
 	"scripts": {
@@ -15,6 +15,8 @@
 	"license": "AGPL",
 	"keywords": [
 		"unity3d",
-		"unity3d-npm"
+		"unity3d-npm",
+		"openngs",
+    	"game"
 	]
 }
