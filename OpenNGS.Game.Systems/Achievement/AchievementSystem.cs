@@ -13,13 +13,11 @@ namespace OpenNGS.Systems
     {
         //private ISaveSystem m_saveSys;
         //private SaveFileData_Achievement m_saveAchi;
-        private IStatSystem m_statSys;
         private bool m_bStatDirty = false;
         private IExchangeSystem m_exchangeSys;
         protected override void OnCreate()
         {
             //m_saveSys = App.GetService<ISaveSystem>();
-            m_statSys = App.GetService<IStatSystem>();
             m_exchangeSys = App.GetService<IExchangeSystem>();
             base.OnCreate();
 
@@ -48,7 +46,6 @@ namespace OpenNGS.Systems
 
             //    }
             //}
-            //m_statSys.Subscribe((int)StatEventNotify.StatEventNotify_Update,_statUpdate);
         }
         private void _statUpdate()
         {
@@ -152,7 +149,6 @@ namespace OpenNGS.Systems
         protected override void OnClear() 
         {
             UpdateAchievementIfNeed();
-            m_statSys.Unsubscribe(0, _statUpdate);
             base.OnClear();
         }
     }

@@ -127,7 +127,7 @@ namespace OpenNGS.Systems
             }
             if (result.Result.ItemList == null)
             {
-                result.Result.ItemList = new List<ItemSaveState>();
+                //result.Result.ItemList = new List<ItemSaveState>();
             }
             OpenNGS.Item.Data.Item ItemInfo = NGSStaticData.items.GetItem(nItemID);
             if (ItemInfo == null)
@@ -274,7 +274,7 @@ namespace OpenNGS.Systems
             uint nDstCol = _changeItemData.DstCol;
             uint nDstGrid = _changeItemData.DstGrid;
             AddItemRsp result = new AddItemRsp();
-            result.Result.ItemList = new List<ItemSaveState>();
+            //result.Result.ItemList = new List<ItemSaveState>();
             var itemStateSrc = GetItemDatasByColIdx(nSrcCol).FirstOrDefault(i => i.Grid == nSrcGrid);
             var itemStateDst = GetItemDatasByColIdx(nDstCol).FirstOrDefault(i => i.Grid == nDstGrid);
             if (nSrcCol == nDstCol && nSrcGrid == nDstGrid)
@@ -331,7 +331,7 @@ namespace OpenNGS.Systems
         public AddItemRsp SortItems(uint nCol)
         {
             AddItemRsp result = new AddItemRsp();
-            result.Result.ItemList = new List<ItemSaveState>();
+            //result.Result.ItemList = new List<ItemSaveState>();
             List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
             if (itemSaveDatas == null)
             {
