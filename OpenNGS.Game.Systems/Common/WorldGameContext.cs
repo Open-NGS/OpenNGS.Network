@@ -31,6 +31,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IRewardSystem), new RewardSystem()));
         services.Add(new ServiceDescriptor(typeof(IQuestSystem), new QuestSystem()));
         services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
     }
 
     protected override void OnInit()

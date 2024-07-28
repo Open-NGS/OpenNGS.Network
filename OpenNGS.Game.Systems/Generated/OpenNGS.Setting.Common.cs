@@ -40,6 +40,23 @@ namespace OpenNGS.Setting.Common
         ADUIO_TYPE_MUSIC = 2,
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public enum UserSetting_Type
+    {
+        MusicSwitch = 0,
+        MusicVolume = 1,
+        SoundSwitch = 2,
+        SoundVolume = 3,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public enum UserSetting_StorageType
+    {
+        Local = 0,
+        Remote = 1,
+        All = 2,
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021

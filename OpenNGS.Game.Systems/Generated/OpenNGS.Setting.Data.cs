@@ -652,6 +652,364 @@ namespace OpenNGS.Setting.Data
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingValueState : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingValueState()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint UserSettingType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public int Value { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint Scope { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingValueStateArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingValueStateArray()
+        {
+            items = new global::System.Collections.Generic.List<UserSettingValueState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<UserSettingValueState> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingUIGroupInfo : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingUIGroupInfo()
+        {
+            CategoryName = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string CategoryName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Visible { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingUIGroupInfoArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingUIGroupInfoArray()
+        {
+            items = new global::System.Collections.Generic.List<UserSettingUIGroupInfo>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<UserSettingUIGroupInfo> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingSection : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingSection()
+        {
+            Title = "";
+            Tips = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint GroupID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Show { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Title { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Tips { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingSectionArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingSectionArray()
+        {
+            items = new global::System.Collections.Generic.List<UserSettingSection>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<UserSettingSection> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingUI : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingUI()
+        {
+            RowLabel = "";
+            Component = "";
+            Tips = "";
+            Desc = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public int UserSettingType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Value { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
+        public uint[] Values { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint Locate { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public uint DefaultValue { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7)]
+        public uint MinValue { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint MaxValue { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9)]
+        public uint MulValue { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10)]
+        public uint ComponentType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11)]
+        public uint OptionID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(12)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string RowLabel { get; set; }
+
+        [global::ProtoBuf.ProtoMember(13)]
+        public uint SectionID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(14)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Component { get; set; }
+
+        [global::ProtoBuf.ProtoMember(15)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Tips { get; set; }
+
+        [global::ProtoBuf.ProtoMember(16)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Desc { get; set; }
+
+        [global::ProtoBuf.ProtoMember(17)]
+        public uint Show { get; set; }
+
+        [global::ProtoBuf.ProtoMember(18)]
+        public uint ShowLabel { get; set; }
+
+        [global::ProtoBuf.ProtoMember(19)]
+        public uint Width { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingUIArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingUIArray()
+        {
+            items = new global::System.Collections.Generic.List<UserSettingUI>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<UserSettingUI> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SettingOption : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SettingOption()
+        {
+            Title = "";
+            Tips = "";
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint IDX { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Title { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint Value { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Tips { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SettingOptionArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SettingOptionArray()
+        {
+            items = new global::System.Collections.Generic.List<SettingOption>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<SettingOption> items { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingContainer : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingContainer()
+        {
+            ValueState = new global::System.Collections.Generic.List<UserSettingValueState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<UserSettingValueState> ValueState { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserSettingContainerArray : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public UserSettingContainerArray()
+        {
+            items = new global::System.Collections.Generic.List<UserSettingContainer>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<UserSettingContainer> items { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021
