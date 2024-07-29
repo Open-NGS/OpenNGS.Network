@@ -47,6 +47,12 @@ namespace OpenNGS.Setting.Common
         MusicVolume = 1,
         SoundSwitch = 2,
         SoundVolume = 3,
+        VerticalSync = 4,
+        ResolutionRatio = 5,
+        Forward = 6,
+        Backward = 7,
+        TrunLeft = 8,
+        TrunRight = 9,
     }
 
     [global::ProtoBuf.ProtoContract()]
