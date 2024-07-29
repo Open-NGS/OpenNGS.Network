@@ -932,7 +932,7 @@ namespace OpenNGS.Item.Data
         public global::OpenNGS.Item.Common.ItemResultType ItemResultValue { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ItemSaveState> ItemList { get; private set; }
+        public global::System.Collections.Generic.List<ItemSaveState> ItemList { get; set; }
 
     }
 

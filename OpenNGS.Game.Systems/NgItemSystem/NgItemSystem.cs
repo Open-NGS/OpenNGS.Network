@@ -121,14 +121,7 @@ namespace OpenNGS.Systems
             uint nCounts = _req.Counts;
             uint nColIdx = _req.ColIdx;
             AddItemRsp result = new AddItemRsp();
-            if (result.Result == null)
-            {
-                result.Result = new ItemResult();
-            }
-            if (result.Result.ItemList == null)
-            {
-                //result.Result.ItemList = new List<ItemSaveState>();
-            }
+            result.Result = new ItemResult();
             OpenNGS.Item.Data.Item ItemInfo = NGSStaticData.items.GetItem(nItemID);
             if (ItemInfo == null)
             {
@@ -228,6 +221,7 @@ namespace OpenNGS.Systems
             uint nGrid = _req.Grid;
             uint nCounts = _req.Counts;
             AddItemRsp result = new AddItemRsp();
+            result.Result = new ItemResult();
             var column = GetItemColumnByColIdx(nColIdx);
             if (column == null)
             {
@@ -274,7 +268,7 @@ namespace OpenNGS.Systems
             uint nDstCol = _changeItemData.DstCol;
             uint nDstGrid = _changeItemData.DstGrid;
             AddItemRsp result = new AddItemRsp();
-            //result.Result.ItemList = new List<ItemSaveState>();
+            result.Result = new ItemResult();
             var itemStateSrc = GetItemDatasByColIdx(nSrcCol).FirstOrDefault(i => i.Grid == nSrcGrid);
             var itemStateDst = GetItemDatasByColIdx(nDstCol).FirstOrDefault(i => i.Grid == nDstGrid);
             if (nSrcCol == nDstCol && nSrcGrid == nDstGrid)
@@ -331,7 +325,7 @@ namespace OpenNGS.Systems
         public AddItemRsp SortItems(uint nCol)
         {
             AddItemRsp result = new AddItemRsp();
-            //result.Result.ItemList = new List<ItemSaveState>();
+            result.Result = new ItemResult();
             List<ItemSaveState> itemSaveDatas = GetItemDatasByColIdx(nCol);
             if (itemSaveDatas == null)
             {
@@ -383,6 +377,7 @@ namespace OpenNGS.Systems
         public AddItemRsp AddItems(AddReq _req)
         {
             AddItemRsp addItemRsp = new AddItemRsp();
+            addItemRsp.Result = new ItemResult();
             return addItemRsp;
         }
 
@@ -394,6 +389,7 @@ namespace OpenNGS.Systems
         public AddItemRsp RemoveItemByID(RemoveItemsByIDsReq _req)
         {
             AddItemRsp addItemRsp = new AddItemRsp();
+            addItemRsp.Result = new ItemResult();
             return addItemRsp;
         }
 
@@ -405,6 +401,7 @@ namespace OpenNGS.Systems
         public AddItemRsp RemoveItemByGrid(RemoveItemsByGridsReq _req)
         {
             AddItemRsp addItemRsp = new AddItemRsp();
+            addItemRsp.Result = new ItemResult();
             return addItemRsp;
         }
     }
