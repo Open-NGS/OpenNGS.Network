@@ -14,11 +14,11 @@ namespace OpenNGS.Systems
         //private ISaveSystem m_saveSys;
         //private SaveFileData_Achievement m_saveAchi;
         private bool m_bStatDirty = false;
-        private IExchangeSystem m_exchangeSys;
+        //private IExchangeSystem m_exchangeSys;
         protected override void OnCreate()
         {
             //m_saveSys = App.GetService<ISaveSystem>();
-            m_exchangeSys = App.GetService<IExchangeSystem>();
+            //m_exchangeSys = App.GetService<IExchangeSystem>();
             base.OnCreate();
 
             //ISaveInfo saveInfo = m_saveSys.GetFileData("ACHIEVEMENT");
