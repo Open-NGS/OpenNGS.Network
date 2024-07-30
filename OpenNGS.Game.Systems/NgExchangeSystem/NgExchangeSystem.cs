@@ -96,9 +96,14 @@ namespace OpenNGS.Systems
             AddItemRsp _addRsp = null;
             if (_removeReq.RemoveList.Count > 0)
             {
-                m_NgItemSys.RemoveItemByGrid(_removeReq);
+                AddItemRsp addItemRsp = m_NgItemSys.RemoveItemByGrid(_removeReq);
+                if (addItemRsp.Result.ItemResultValue != Item.Common.ItemResultType.ItemResultType_Success)
+                {
+                    NgDebug.LogError(addItemRsp.Result.ItemResultValue);
+                }
             }
-            if(_addReq.AddList.Count > 0)
+
+            if (_addReq.AddList.Count > 0)
             {
                 _addRsp = m_NgItemSys.AddItems(_addReq);
             }

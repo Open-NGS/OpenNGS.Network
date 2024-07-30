@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Systems;
+using UnityEditor.TerrainTools;
 
 
 namespace OpenNGS.Systems
@@ -378,6 +379,22 @@ namespace OpenNGS.Systems
         {
             AddItemRsp addItemRsp = new AddItemRsp();
             addItemRsp.Result = new ItemResult();
+            addItemRsp.Result.ItemResultValue = ItemResultType.ItemResultType_Success;
+
+            foreach (AddItemReq addItemReq in _req.AddList)
+            {
+                AddItemRsp addResult = AddItemsByID(addItemReq);
+                if (addResult.Result.ItemResultValue != ItemResultType.ItemResultType_Success)
+                {
+                    addItemRsp.Result.ItemResultValue = addResult.Result.ItemResultValue;
+                    addItemRsp.Result.ItemList.AddRange(addResult.Result.ItemList); 
+                }
+                else
+                {
+                    addItemRsp.Result.ItemList.AddRange(addResult.Result.ItemList);
+                }
+            }
+
             return addItemRsp;
         }
 
@@ -402,6 +419,19 @@ namespace OpenNGS.Systems
         {
             AddItemRsp addItemRsp = new AddItemRsp();
             addItemRsp.Result = new ItemResult();
+            addItemRsp.Result.ItemResultValue = ItemResultType.ItemResultType_Success;
+
+            foreach (RemoveItemReq removeItemReq in _req.RemoveList)
+            {
+                AddItemRsp removeResult = RemoveItemsByGrid(removeItemReq);
+                if (removeResult.Result.ItemResultValue != ItemResultType.ItemResultType_Success)
+                {
+                    addItemRsp.Result.ItemResultValue = removeResult.Result.ItemResultValue;
+                    addItemRsp.Result.ItemList.AddRange(removeResult.Result.ItemList);
+                    return addItemRsp;
+                }
+                addItemRsp.Result.ItemList.AddRange(removeResult.Result.ItemList);
+            }
             return addItemRsp;
         }
     }
