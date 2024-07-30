@@ -32,7 +32,7 @@ namespace OpenNGS.Suit.Data
         public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
         public EQUIP_SUIP_TYPE SuitType { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
         public uint[] ConsistEquipID { get; set; }
     }
     //套装Buff加成

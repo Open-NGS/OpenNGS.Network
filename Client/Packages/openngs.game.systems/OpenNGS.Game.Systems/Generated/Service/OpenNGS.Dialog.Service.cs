@@ -46,7 +46,7 @@ namespace OpenNGS.Dialog.Service
         
         partial void OnConstructor();
 
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        [global::ProtoBuf.ProtoMember(1, IsPacked = true, IsRequired = true)]
         public uint[] SelectChoiceIDs { get; set; }
     }
 

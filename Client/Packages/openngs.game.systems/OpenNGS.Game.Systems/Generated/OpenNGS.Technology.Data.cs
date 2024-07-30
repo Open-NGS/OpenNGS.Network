@@ -47,11 +47,11 @@ namespace OpenNGS.Technology.Data
         public bool Locked { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
         public bool Activated { get; set; }
-        [global::ProtoBuf.ProtoMember(10)]
+        [global::ProtoBuf.ProtoMember(10, IsPacked = true)]
         public uint[] ChildNodes { get; set; }
-        [global::ProtoBuf.ProtoMember(11)]
+        [global::ProtoBuf.ProtoMember(11, IsPacked = true)]
         public uint[] ParentNode { get; set; }
-        [global::ProtoBuf.ProtoMember(12)]
+        [global::ProtoBuf.ProtoMember(12, IsPacked = true)]
         public float[] CreatePos { get; set; }
         [global::ProtoBuf.ProtoMember(13)]
         public uint TreeIndex { get; set; }

@@ -10,6 +10,8 @@ public interface IEquipSystem
     public List<OpenNGS.Item.Data.ItemSaveData> GetItemInfoByKind(OpenNGS.Item.Common.ITEM_KIND iTEM_KIND);
     //制作装备
     public bool MakeEquip(Dictionary<ITEM_KIND, ItemData> keyValuePairs);
+    //分解装备
+    public void DisassembleEquip(ItemData item);
 
 
 }

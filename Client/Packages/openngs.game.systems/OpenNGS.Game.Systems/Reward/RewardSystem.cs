@@ -1,5 +1,6 @@
 using OpenNGS;
 using OpenNGS.Common;
+using OpenNGS.Item.Service;
 using OpenNGS.Reward.Data;
 using OpenNGS.Systems;
 using System.Collections.Generic;
@@ -7,12 +8,12 @@ using Systems;
 
 public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
 {
-    IItemSystem m_itemSys;
+    INgItemSystem m_itemSys;
 
     protected override void OnCreate()
     {
         base.OnCreate();
-        m_itemSys = App.GetService<IItemSystem>();
+        m_itemSys = App.GetService<INgItemSystem>();
     }
 
     RewardContainer rewardContainer;
@@ -92,7 +93,11 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
                 List<RewardContent> rewardList = NGSStaticData.rewardContent.GetItems(rewardId);
                 foreach (RewardContent item in rewardList)
                 {
-                    m_itemSys.AddItemsByID(item.ItemID, item.ItemCount);
+                    AddItemReq req = new AddItemReq();
+                    req.ColIdx = 1;
+                    req.ItemID = item.ItemID;
+                    req.Counts = item.ItemCount;
+                    m_itemSys.AddItemsByID(req);
                 }
                 RewardSaveData data = rewardContainer.GetRewardById(rewardId);
                 if (data != null)
@@ -125,7 +130,7 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
 
     protected override void OnClear()
     {
-        m_itemSys = null;
+        //m_itemSys = null;
         rewardContainer = null;
         base.OnClear();
     }

@@ -35,7 +35,7 @@ namespace OpenNGS.Message.Data
         public NOTIFY_TYPE Type { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public NGSText MessageID { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
         public int[] Pos { get; set; }
     }
     //信息配置表

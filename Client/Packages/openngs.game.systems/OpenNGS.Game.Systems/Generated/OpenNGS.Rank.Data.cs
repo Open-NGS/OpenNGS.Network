@@ -34,7 +34,7 @@ namespace OpenNGS.Rank.Data
         public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
         public string Name { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
         public uint[] Equips { get; set; }
     }
     //单条排行榜信息

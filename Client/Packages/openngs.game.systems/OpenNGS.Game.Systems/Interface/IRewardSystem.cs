@@ -1,5 +1,4 @@
 ﻿using OpenNGS.Common;
-using OpenNGS.Item.Data;
 using OpenNGS.Reward.Data;
 using System.Collections.Generic;
 

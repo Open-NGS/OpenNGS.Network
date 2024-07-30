@@ -67,7 +67,7 @@ namespace OpenNGS.Levels.Data
         public ENEMY_INITTRIGGER EnemyInitTrigger { get; set; }
         [global::ProtoBuf.ProtoMember(7)]
         public uint EnemyNum { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
+        [global::ProtoBuf.ProtoMember(8, IsPacked = true)]
         public uint[] AreaPos { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
         public uint MinDistance { get; set; }

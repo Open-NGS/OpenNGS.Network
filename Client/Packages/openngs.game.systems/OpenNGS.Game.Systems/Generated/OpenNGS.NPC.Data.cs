@@ -41,9 +41,9 @@ namespace OpenNGS.NPC.Data
         public string PrefabName { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
         public string Package { get; set; }
-        [global::ProtoBuf.ProtoMember(6)]
+        [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
         public uint[] UIID { get; set; }
-        [global::ProtoBuf.ProtoMember(7)]
+        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
         public uint[] DialogIDs { get; set; }
     }
 

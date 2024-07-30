@@ -10,16 +10,16 @@ namespace OpenNGS.Systems
 {
     public class ShopSystem : GameSubSystem<ShopSystem>, IShopSystem
     {
-        public Action<BuyItemRsq> OnBuyItem;
-        public Action<SellItemRsq> OnSellItem;
-        public Action<GetShopInfoRsq> OnGetShopInfo;
-        private IExchangeSystem m_exchangeSys = null;
-        private IItemSystem m_itemSys = null;
+        //public Action<BuyItemRsq> OnBuyItem;
+        //public Action<SellItemRsq> OnSellItem;
+        //public Action<GetShopInfoRsq> OnGetShopInfo;
+        //private IExchangeSystem m_exchangeSys = null;
+        //private IItemSystem m_itemSys = null;
         //private ISaveSystem m_saveSys = null;
         protected override void OnCreate()
         {
-            m_exchangeSys = App.GetService<IExchangeSystem>();
-            m_itemSys = App.GetService<IItemSystem>();
+            //m_exchangeSys = App.GetService<IExchangeSystem>();
+            //m_itemSys = App.GetService<IItemSystem>();
             //m_saveSys = App.GetService<ISaveSystem>();
             base.OnCreate();
         }
@@ -30,112 +30,127 @@ namespace OpenNGS.Systems
             return "com.openngs.system.shop";
         }
 
-        /// <summary>
-        /// 获取当前页面内的商品列表
-        /// </summary>
-        public Dictionary<uint, Good> GetGoodsInfo(uint currentShopId, uint shelfId)
-        {
-            Shelf shelf = NGSStaticData.shelfs.GetItem(currentShopId, shelfId);
-
-            if (shelf == null)
-                return null;
-
-            Dictionary<uint, Good> result = NGSStaticData.goods.GetItems(shelfId);
-            return result;
-        }
-
-        /// <summary>
-        /// 检查商店内是否有该商品
-        /// </summary>
-        private bool CheckShopItem(uint shopId, uint shelfId, uint shopItemId)
-        {
-            Shelf shelf = NGSStaticData.shelfs.GetItem(shopId, shelfId);
-
-            if(shelf == null)
-                return false; 
-
-            Good shopItemInfo = NGSStaticData.goods.GetItem(shelfId, shopItemId);
-
-            if(shopItemInfo == null)
-                return false;
-
-            return true;
-        }
-
         public SHOP_RESULT_TYPE BuyItem(BuyItemInfo item)
         {
-            if (item == null) 
-                return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
-
-            //根据shopItemID获取商品信息
-            if (!CheckShopItem(item.ShopId, item.ShelfId, item.ShopItemId)) 
-                return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
-
-            Good good = NGSStaticData.goods.GetItem(item.ShelfId, item.ShopItemId);
-
-            List<SourceItem> sourceItems = new List<SourceItem>();
-            List<TargetItem> targetItems = new List<TargetItem>();
-
-            uint id = m_itemSys.GetGuidByItemID(good.CurrencyId);
-            SourceItem sourceItem = new SourceItem();
-            sourceItem.GUID = id;
-            sourceItem.Count = good.CurrencyCounts * item.ShopItemCount;
-            sourceItems.Add(sourceItem);
-
-            TargetItem targetItem = new TargetItem();
-            targetItem.ItemID = good.ItemId;
-            targetItem.Count = item.ShopItemCount;
-            targetItems.Add(targetItem);
-
-            switch (m_exchangeSys.ExchangeItem(sourceItems, targetItems))
-            {
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
-                    return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
-                    return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
-            }
-
-            //m_saveSys.SaveFile();
-
-            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
+            throw new NotImplementedException();
         }
 
         public SHOP_RESULT_TYPE SellItem(SellItemInfo item)
         {
-            if (item == null) 
-                return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
-
-            ShopSell sellitem = NGSStaticData.sells.GetItem(item.ShopId, item.ItemId);
-
-            if (sellitem == null)
-                return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
-
-            List<SourceItem> sourceItems = new List<SourceItem>();
-            List<TargetItem> targetItems = new List<TargetItem>();
-
-            SourceItem sourceItem = new SourceItem();
-            sourceItem.GUID = item.GUID;
-            sourceItem.Count = item.ShopItemCount;
-            sourceItems.Add(sourceItem);
-
-            uint id = m_itemSys.GetGuidByItemID(sellitem.SellPriceItem);
-            TargetItem targetItem = new TargetItem();
-            targetItem.ItemID = id;
-            targetItem.Count = sellitem.SellPriceCount * item.ShopItemCount;
-            targetItems.Add(targetItem);
-
-            switch (m_exchangeSys.ExchangeItem(sourceItems, targetItems))
-            {
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
-                    return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
-                    return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
-            }
-
-            //m_saveSys.SaveFile();
-
-            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
+            throw new NotImplementedException();
         }
+
+        public Dictionary<uint, Good> GetGoodsInfo(uint currentShopId, uint shelfId)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 获取当前页面内的商品列表
+        /// </summary>
+        //public Dictionary<uint, Good> GetGoodsInfo(uint currentShopId, uint shelfId)
+        //{
+        //    Shelf shelf = NGSStaticData.shelfs.GetItem(currentShopId, shelfId);
+
+        //    if (shelf == null)
+        //        return null;
+
+        //    Dictionary<uint, Good> result = NGSStaticData.goods.GetItems(shelfId);
+        //    return result;
+        //}
+
+        /// <summary>
+        /// 检查商店内是否有该商品
+        /// </summary>
+        //private bool CheckShopItem(uint shopId, uint shelfId, uint shopItemId)
+        //{
+        //    Shelf shelf = NGSStaticData.shelfs.GetItem(shopId, shelfId);
+
+        //    if(shelf == null)
+        //        return false; 
+
+        //    Good shopItemInfo = NGSStaticData.goods.GetItem(shelfId, shopItemId);
+
+        //    if(shopItemInfo == null)
+        //        return false;
+
+        //    return true;
+        //}
+
+        //public SHOP_RESULT_TYPE BuyItem(BuyItemInfo item)
+        //{
+        //    if (item == null) 
+        //        return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
+
+        //    //根据shopItemID获取商品信息
+        //    if (!CheckShopItem(item.ShopId, item.ShelfId, item.ShopItemId)) 
+        //        return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
+
+        //    Good good = NGSStaticData.goods.GetItem(item.ShelfId, item.ShopItemId);
+
+        //    List<SourceItem> sourceItems = new List<SourceItem>();
+        //    List<TargetItem> targetItems = new List<TargetItem>();
+
+        //    uint id = m_itemSys.GetGuidByItemID(good.CurrencyId);
+        //    SourceItem sourceItem = new SourceItem();
+        //    sourceItem.GUID = id;
+        //    sourceItem.Count = good.CurrencyCounts * item.ShopItemCount;
+        //    sourceItems.Add(sourceItem);
+
+        //    TargetItem targetItem = new TargetItem();
+        //    targetItem.ItemID = good.ItemId;
+        //    targetItem.Count = item.ShopItemCount;
+        //    targetItems.Add(targetItem);
+
+        //    switch (m_exchangeSys.ExchangeItem(sourceItems, targetItems))
+        //    {
+        //        case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
+        //            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
+        //        case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
+        //            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_ERROR_ITEM;
+        //    }
+
+        //    //m_saveSys.SaveFile();
+
+        //    return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
+        //}
+
+        //public SHOP_RESULT_TYPE SellItem(SellItemInfo item)
+        //{
+        //    if (item == null) 
+        //        return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
+
+        //    ShopSell sellitem = NGSStaticData.sells.GetItem(item.ShopId, item.ItemId);
+
+        //    if (sellitem == null)
+        //        return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
+
+        //    List<SourceItem> sourceItems = new List<SourceItem>();
+        //    List<TargetItem> targetItems = new List<TargetItem>();
+
+        //    SourceItem sourceItem = new SourceItem();
+        //    sourceItem.GUID = item.GUID;
+        //    sourceItem.Count = item.ShopItemCount;
+        //    sourceItems.Add(sourceItem);
+
+        //    uint id = m_itemSys.GetGuidByItemID(sellitem.SellPriceItem);
+        //    TargetItem targetItem = new TargetItem();
+        //    targetItem.ItemID = id;
+        //    targetItem.Count = sellitem.SellPriceCount * item.ShopItemCount;
+        //    targetItems.Add(targetItem);
+
+        //    switch (m_exchangeSys.ExchangeItem(sourceItems, targetItems))
+        //    {
+        //        case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
+        //            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_ITEM;
+        //        case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
+        //            return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_NO_SELL;
+        //    }
+
+        //    //m_saveSys.SaveFile();
+
+        //    return SHOP_RESULT_TYPE.SHOP_RESULT_TYPE_SUCCESS;
+        //}
 
         #region C2S
         //public async void RequestRank(uint nLevelID, OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE _typ)
