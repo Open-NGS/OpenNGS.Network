@@ -279,7 +279,6 @@ models:
 - Packages/OpenNGS.Message.json
 - Packages/OpenNGS.Reward.json
 - Packages/OpenNGS.Quest.json
-- Packages/Dynamic.json
 localization:
   localizationFile: ''
   cSVExportFile: ''
@@ -308,7 +307,6 @@ repository:
   - Entities/OpenNGS/OpenNGS.Message.xlsx
   - Entities/OpenNGS/OpenNGS.Reward.xlsx
   - Entities/OpenNGS/OpenNGS.Quest.xlsx
-  - Entities/Dynamic.xlsx
 projectVersion: 2
 settings:
   protoVersion: 3

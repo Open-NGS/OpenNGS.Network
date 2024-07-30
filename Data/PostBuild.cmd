@@ -10,24 +10,24 @@ echo Parameter: %~1
 
 :CLIENT
 @rem 删除旧生成文件
-del /s /q ..\..\client\packages\openngs.ui\Runtime\UI\Generated\*
+del /s /q ..\client\packages\openngs.ui\Runtime\UI\Generated\*
 @rem 拷贝OpenNGS.UI相关的文件
 xcopy build\Client\Code\OpenNGS.UI*.* ..\client\packages\openngs.ui\Runtime\UI\Generated\ /r /y /q
 @rem 删除本次的UI相关文件，避免拷贝到下面 OpenNGS.Game仓库中
 del /s /q build\Client\Code\OpenNGS.UI*.*
 
 @rem 拷贝core相关的结构
-del /s /q ..\..\client\packages\openngs.game\OpenNGS.Game\OpenNGS\*
+del /s /q ..\client\packages\openngs.game\OpenNGS.Game\OpenNGS\*
 xcopy build\Client\Code\OpenNGS.core*.* ..\client\packages\openngs.game\OpenNGS.Game\Data\ /r /y /q
 del /s /q build\Client\Code\OpenNGS.core*.*
 
 @rem 拷贝system相关的结构
-del /s /q ..\..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\*common*.cs
-REM del /s /q ..\..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\*data*.cs
+del /s /q ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\*common*.cs
+REM del /s /q ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\*data*.cs
 xcopy build\Client\Code\*common*.cs ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\* /r /y /q
 xcopy build\Client\Code\*data*.cs ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\* /r /y /q
 
-del /s /q ..\..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\Service\*service*.cs
+del /s /q ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\Service\*service*.cs
 xcopy build\Client\Code\*service*.cs ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\Service\* /r /y /q
 
 @rem 拷贝数据
@@ -36,10 +36,10 @@ xcopy Localization\Localization.json ..\Client\Assets\StreamingAssets\Localizati
 
 
 @rem service的需要再确认怎么拷贝
-REM del ..\..\client\packages\openngs.game\OpenNGS.Game\OpenNGS\*.Service.cs
-REM xcopy Client\Service\Code\*Service.cs ..\..\client\packages\openngs.game\OpenNGS.Game\Protocol\Services\ /r /y /q
-REM xcopy Client\Service\Code\*Client.cs ..\..\client\packages\openngs.game\OpenNGS.Game\Protocol\ServicesClient\ /r /y /q
-REM xcopy Client\Service\Code\*Common.cs ..\..\client\packages\openngs.game\OpenNGS.Game\OpenNGS\ /r /y /q
+REM del ..\client\packages\openngs.game\OpenNGS.Game\OpenNGS\*.Service.cs
+REM xcopy Client\Service\Code\*Service.cs ..\client\packages\openngs.game\OpenNGS.Game\Protocol\Services\ /r /y /q
+REM xcopy Client\Service\Code\*Client.cs ..\client\packages\openngs.game\OpenNGS.Game\Protocol\ServicesClient\ /r /y /q
+REM xcopy Client\Service\Code\*Common.cs ..\client\packages\openngs.game\OpenNGS.Game\OpenNGS\ /r /y /q
 
 IF "%~1"=="-s" goto SERVER
 goto END
