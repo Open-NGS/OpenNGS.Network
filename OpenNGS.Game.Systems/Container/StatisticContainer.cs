@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace OpenNGS.Statistic.Data
+namespace OpenNGS.Statistic.Common
 {
     public partial class StatisticContainer
     {

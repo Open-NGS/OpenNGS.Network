@@ -58,26 +58,6 @@ namespace OpenNGS.Statistic.Data
         [global::ProtoBuf.ProtoMember(13)]
         public bool Global { get; set; }
     }
-    //统计系统的游戏数据
-    [global::ProtoBuf.ProtoContract()]
-    public partial class StatisticContainer : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public StatisticContainer()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        [global::ProtoBuf.ProtoMap]
-        public global::System.Collections.Generic.Dictionary<ulong, StatValue> StatisticSaveData  { get;set;  }
-    }
 
 }
 #pragma warning restore 0612, 0618, 1591, 3021
