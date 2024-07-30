@@ -11,7 +11,7 @@ echo Post Processes...
 cd %root%
 
 echo Start Post Processes...
-call Game\PostBuild.cmd %~1
+call PostBuild.cmd %~1
 echo Post Processes Done
 goto END
 

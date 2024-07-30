@@ -10,3 +10,5 @@
 *.csproj
 *.csproj
 Client/Client.sln
+Data/build
+Data/.Cache

@@ -1,0 +1,686 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Quest.Common": {
+      "Name": "OpenNGS.Quest.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Quest.Common.QUEST_CATEGORY": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QUEST_CATEGORY",
+          "Package": "OpenNGS.Quest.Common",
+          "Fullname": "OpenNGS.Quest.Common.QUEST_CATEGORY",
+          "PackageName": "OpenNGS.Quest.QUEST_CATEGORY",
+          "Description": "任务分类",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "QUEST_CATEGORY",
+            "Package": "OpenNGS.Quest.Common",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Common.QUEST_CATEGORY",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QUEST_CATEGORY_CHAPTER": {
+                "Name": "QUEST_CATEGORY_CHAPTER",
+                "Type": "Uint32",
+                "Description": "章节任务",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_CATEGORY_SIDE": {
+                "Name": "QUEST_CATEGORY_SIDE",
+                "Type": "Uint32",
+                "Description": "支线任务",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_CATEGORY_DAILY": {
+                "Name": "QUEST_CATEGORY_DAILY",
+                "Type": "Uint32",
+                "Description": "每日任务",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_CATEGORY_GUILD": {
+                "Name": "QUEST_CATEGORY_GUILD",
+                "Type": "Uint32",
+                "Description": "公会任务",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_CATEGORY_GLOBAL": {
+                "Name": "QUEST_CATEGORY_GLOBAL",
+                "Type": "Uint32",
+                "Description": "全局任务",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Common.QUEST_STATUS": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QUEST_STATUS",
+          "Package": "OpenNGS.Quest.Common",
+          "Fullname": "OpenNGS.Quest.Common.QUEST_STATUS",
+          "PackageName": "OpenNGS.Quest.QUEST_STATUS",
+          "Description": "任务状态",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "QUEST_STATUS",
+            "Package": "OpenNGS.Quest.Common",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Common.QUEST_STATUS",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QUEST_STATUS_NONE": {
+                "Name": "QUEST_STATUS_NONE",
+                "Type": "Uint32",
+                "Description": "无效状态",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_STATUS_AVAILABLE": {
+                "Name": "QUEST_STATUS_AVAILABLE",
+                "Type": "Uint32",
+                "Description": "任务可接取",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_STATUS_IN_PROGRESS": {
+                "Name": "QUEST_STATUS_IN_PROGRESS",
+                "Type": "Uint32",
+                "Description": "任务进行中",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_STATUS_COMPLETED": {
+                "Name": "QUEST_STATUS_COMPLETED",
+                "Type": "Uint32",
+                "Description": "任务已完成",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_STATUS_FAILED": {
+                "Name": "QUEST_STATUS_FAILED",
+                "Type": "Uint32",
+                "Description": "任务失败",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Common.QUEST_PICK_RULE": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QUEST_PICK_RULE",
+          "Package": "OpenNGS.Quest.Common",
+          "Fullname": "OpenNGS.Quest.Common.QUEST_PICK_RULE",
+          "PackageName": "OpenNGS.Quest.QUEST_PICK_RULE",
+          "Description": "任务接取规则",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "QUEST_PICK_RULE",
+            "Package": "OpenNGS.Quest.Common",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Common.QUEST_PICK_RULE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QUEST_PICK_RULE_NONE": {
+                "Name": "QUEST_PICK_RULE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_PICK_RULE_RANDOM": {
+                "Name": "QUEST_PICK_RULE_RANDOM",
+                "Type": "Uint32",
+                "Description": "权重随机接取",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_PICK_RULE_ORDER": {
+                "Name": "QUEST_PICK_RULE_ORDER",
+                "Type": "Uint32",
+                "Description": "顺序接取",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QUEST_PICK_RULE_ALL": {
+                "Name": "QUEST_PICK_RULE_ALL",
+                "Type": "Uint32",
+                "Description": "可以接取所有任务",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    },
+    "OpenNGS.Quest.Data": {
+      "Name": "OpenNGS.Quest.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Quest.Data.QuestGroup": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QuestGroup",
+          "Package": "OpenNGS.Quest.Data",
+          "Fullname": "OpenNGS.Quest.Data.QuestGroup",
+          "PackageName": "OpenNGS.Quest.QuestGroup",
+          "Description": "任务组",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "QuestGroup",
+            "Package": "OpenNGS.Quest.Data",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Data.QuestGroup",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QuestGroupID": {
+                "Name": "QuestGroupID",
+                "Type": "Uint32",
+                "Description": "任务组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Quests": {
+                "Name": "Quests",
+                "Type": "Uint32",
+                "Description": "任务列表",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              },
+              "Tile": {
+                "Name": "Tile",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "标题",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Category": {
+                "Name": "Category",
+                "Type": "Unknow",
+                "CustomType": "QUEST_CATEGORY",
+                "Description": "分组类型",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RelyOnGroupID": {
+                "Name": "RelyOnGroupID",
+                "Type": "Uint32",
+                "Description": "前置依赖任务组ID",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "NextQuestGroupID": {
+                "Name": "NextQuestGroupID",
+                "Type": "Uint32",
+                "Description": "下一个任务",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "QuestPickRule": {
+                "Name": "QuestPickRule",
+                "Type": "Unknow",
+                "CustomType": "QUEST_PICK_RULE",
+                "Description": "接取任务规则",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "PickNum": {
+                "Name": "PickNum",
+                "Type": "Uint32",
+                "Description": "随机顺序类型时控制数量",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RewardID": {
+                "Name": "RewardID",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IsBan": {
+                "Name": "IsBan",
+                "Type": "Bool",
+                "Description": "废弃",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Data.Quest": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "Quest",
+          "Package": "OpenNGS.Quest.Data",
+          "Fullname": "OpenNGS.Quest.Data.Quest",
+          "PackageName": "OpenNGS.Quest.Quest",
+          "Description": "任务信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Quest",
+            "Package": "OpenNGS.Quest.Data",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Data.Quest",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QuestID": {
+                "Name": "QuestID",
+                "Type": "Uint32",
+                "Description": "任务ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "名字",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DialogID": {
+                "Name": "DialogID",
+                "Type": "Uint32",
+                "Description": "对话ID",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Weight": {
+                "Name": "Weight",
+                "Type": "Uint32",
+                "Description": "任务的随机接取权重",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IsQuestHead": {
+                "Name": "IsQuestHead",
+                "Type": "Bool",
+                "Description": "是否起始任务",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "NextQuestID": {
+                "Name": "NextQuestID",
+                "Type": "Uint32",
+                "Description": "下一个任务",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "isHidden": {
+                "Name": "isHidden",
+                "Type": "Bool",
+                "Description": "是否为隐藏任务",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Status": {
+                "Name": "Status",
+                "Type": "Unknow",
+                "CustomType": "QUEST_STATUS",
+                "Description": "任务状态",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RewardID": {
+                "Name": "RewardID",
+                "Type": "Uint32",
+                "Description": "奖励系统ID",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IsBan": {
+                "Name": "IsBan",
+                "Type": "Bool",
+                "Description": "废弃",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Data.QuestContainer": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QuestContainer",
+          "Package": "OpenNGS.Quest.Data",
+          "Fullname": "OpenNGS.Quest.Data.QuestContainer",
+          "PackageName": "OpenNGS.Quest.QuestContainer",
+          "Description": "任务的存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "QuestContainer",
+            "Package": "OpenNGS.Quest.Data",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Data.QuestContainer",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QuestList": {
+                "Name": "QuestList",
+                "Type": "Unknow",
+                "CustomType": "QuestGroupData",
+                "Description": "任务数据列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Data.QuestData": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QuestData",
+          "Package": "OpenNGS.Quest.Data",
+          "Fullname": "OpenNGS.Quest.Data.QuestData",
+          "PackageName": "OpenNGS.Quest.QuestData",
+          "Description": "任务存档",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "QuestData",
+            "Package": "OpenNGS.Quest.Data",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Data.QuestData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QuestID": {
+                "Name": "QuestID",
+                "Type": "Uint32",
+                "Description": "任务ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Status": {
+                "Name": "Status",
+                "Type": "Unknow",
+                "CustomType": "QUEST_STATUS",
+                "Description": "任务状态",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Data.QuestGroupData": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "QuestGroupData",
+          "Package": "OpenNGS.Quest.Data",
+          "Fullname": "OpenNGS.Quest.Data.QuestGroupData",
+          "PackageName": "OpenNGS.Quest.QuestGroupData",
+          "Description": "任务组存档",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "QuestGroupData",
+            "Package": "OpenNGS.Quest.Data",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Data.QuestGroupData",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "QuestGroupID": {
+                "Name": "QuestGroupID",
+                "Type": "Uint32",
+                "Description": "任务组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Quests": {
+                "Name": "Quests",
+                "Type": "Unknow",
+                "CustomType": "QuestData",
+                "Description": "任务组任务集合",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Quest.Common"
+      ]
+    }
+  },
+  "Name": "OpenNGS.Quest",
+  "PackageFile": "Packages/OpenNGS.Quest.json"
+}

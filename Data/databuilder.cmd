@@ -1,7 +1,7 @@
 @echo off
 set root=%~dp0
 
-.\Tools\ngsdata\net8.0\ngsdata.exe -b data -p Game\Data.project -v
+"%NGS_BIN%\ngs.exe" -b data -p ngs-game.ngproj -v
 
 :END
 echo DataBuilder Done

@@ -1,0 +1,1154 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Achievement.DB": {
+      "Name": "OpenNGS.Achievement.DB",
+      "PackageType": "Database",
+      "Scope": "DB",
+      "Models": {
+        "OpenNGS.Achievement.DB.AchievementInfoRecord": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "AchievementInfoRecord",
+          "Package": "OpenNGS.Achievement.DB",
+          "Fullname": "OpenNGS.Achievement.DB.AchievementInfoRecord",
+          "PackageName": "OpenNGS.Achievement.AchievementInfoRecord",
+          "Description": "玩家成就数据库表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "DB",
+          "PK": "uin, id",
+          "Index": "index(uin)",
+          "ModelType": "Database",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AchievementInfoRecord",
+            "Package": "OpenNGS.Achievement.DB",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.DB.AchievementInfoRecord",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "所有者ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "id": {
+                "Name": "id",
+                "Type": "Uint32",
+                "Description": "成就id",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "value": {
+                "Name": "value",
+                "Type": "Uint32",
+                "Description": "成就值",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "status": {
+                "Name": "status",
+                "Type": "Unknow",
+                "CustomType": "ACHIEVEMENT_STATUS",
+                "Description": "成就状态",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Achievement.Common"
+      ]
+    },
+    "OpenNGS.Achievement.Service": {
+      "Name": "OpenNGS.Achievement.Service",
+      "PackageType": "Message",
+      "Scope": "CS;SS",
+      "Models": {
+        "OpenNGS.Achievement.Service.GetAchievementRewardReq": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "GetAchievementRewardReq",
+          "Package": "OpenNGS.Achievement.Service",
+          "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardReq",
+          "PackageName": "OpenNGS.Achievement.GetAchievementRewardReq",
+          "Description": "领取成就奖励请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetAchievementRewardReq",
+            "Package": "OpenNGS.Achievement.Service",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "UIN",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "tid": {
+                "Name": "tid",
+                "Type": "Uint32",
+                "Description": "要获取奖励的表格ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Service.GetAchievementRewardRsp": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "GetAchievementRewardRsp",
+          "Package": "OpenNGS.Achievement.Service",
+          "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardRsp",
+          "PackageName": "OpenNGS.Achievement.GetAchievementRewardRsp",
+          "Description": "领取成就奖励响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetAchievementRewardRsp",
+            "Package": "OpenNGS.Achievement.Service",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "achi": {
+                "Name": "achi",
+                "Type": "Unknow",
+                "CustomType": "AchievementInfo",
+                "Description": "玩家成就信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Service.AchievementDataChangedReq": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "AchievementDataChangedReq",
+          "Package": "OpenNGS.Achievement.Service",
+          "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedReq",
+          "PackageName": "OpenNGS.Achievement.AchievementDataChangedReq",
+          "Description": "成就值改变请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AchievementDataChangedReq",
+            "Package": "OpenNGS.Achievement.Service",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "UIN",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "tid": {
+                "Name": "tid",
+                "Type": "Uint32",
+                "Description": "成就的id",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "value": {
+                "Name": "value",
+                "Type": "Uint64",
+                "Description": "更新的最新值",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Service.AchievementDataChangedRsp": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "AchievementDataChangedRsp",
+          "Package": "OpenNGS.Achievement.Service",
+          "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedRsp",
+          "PackageName": "OpenNGS.Achievement.AchievementDataChangedRsp",
+          "Description": "成就值改变响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AchievementDataChangedRsp",
+            "Package": "OpenNGS.Achievement.Service",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Service.NiAchievementService": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {
+            "GetAchievementReward": {
+              "MethodName": "GetAchievementReward",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Achievement",
+                  "Methods": {},
+                  "Name": "GetAchievementRewardReq",
+                  "Package": "OpenNGS.Achievement.Service",
+                  "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardReq",
+                  "PackageName": "OpenNGS.Achievement.GetAchievementRewardReq",
+                  "Description": "领取成就奖励请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetAchievementRewardReq",
+                    "Package": "OpenNGS.Achievement.Service",
+                    "RawPackage": "OpenNGS.Achievement",
+                    "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "UIN",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      },
+                      "tid": {
+                        "Name": "tid",
+                        "Type": "Uint32",
+                        "Description": "要获取奖励的表格ID",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Achievement",
+                "Methods": {},
+                "Name": "GetAchievementRewardRsp",
+                "Package": "OpenNGS.Achievement.Service",
+                "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardRsp",
+                "PackageName": "OpenNGS.Achievement.GetAchievementRewardRsp",
+                "Description": "领取成就奖励响应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetAchievementRewardRsp",
+                  "Package": "OpenNGS.Achievement.Service",
+                  "RawPackage": "OpenNGS.Achievement",
+                  "Fullname": "OpenNGS.Achievement.Service.GetAchievementRewardRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRequired": true,
+                      "IsRepeated": false,
+                      "IsOptional": false
+                    },
+                    "achi": {
+                      "Name": "achi",
+                      "Type": "Unknow",
+                      "CustomType": "AchievementInfo",
+                      "Description": "玩家成就信息",
+                      "Tag": 2,
+                      "Scope": "All",
+                      "Attributes": "None",
+                      "IsRequired": false,
+                      "IsRepeated": false,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "获取成就奖励",
+              "Scope": "All"
+            },
+            "AchievementDataChanged": {
+              "MethodName": "AchievementDataChanged",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Achievement",
+                  "Methods": {},
+                  "Name": "AchievementDataChangedReq",
+                  "Package": "OpenNGS.Achievement.Service",
+                  "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedReq",
+                  "PackageName": "OpenNGS.Achievement.AchievementDataChangedReq",
+                  "Description": "成就值改变请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "AchievementDataChangedReq",
+                    "Package": "OpenNGS.Achievement.Service",
+                    "RawPackage": "OpenNGS.Achievement",
+                    "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "UIN",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      },
+                      "tid": {
+                        "Name": "tid",
+                        "Type": "Uint32",
+                        "Description": "成就的id",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      },
+                      "value": {
+                        "Name": "value",
+                        "Type": "Uint64",
+                        "Description": "更新的最新值",
+                        "Tag": 3,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Achievement",
+                "Methods": {},
+                "Name": "AchievementDataChangedRsp",
+                "Package": "OpenNGS.Achievement.Service",
+                "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedRsp",
+                "PackageName": "OpenNGS.Achievement.AchievementDataChangedRsp",
+                "Description": "成就值改变响应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "AchievementDataChangedRsp",
+                  "Package": "OpenNGS.Achievement.Service",
+                  "RawPackage": "OpenNGS.Achievement",
+                  "Fullname": "OpenNGS.Achievement.Service.AchievementDataChangedRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRequired": true,
+                      "IsRepeated": false,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "统计值更新",
+              "Scope": "All"
+            }
+          },
+          "Name": "NiAchievementService",
+          "Package": "OpenNGS.Achievement.Service",
+          "Fullname": "OpenNGS.Achievement.Service.NiAchievementService",
+          "PackageName": "OpenNGS.Achievement.NiAchievementService",
+          "Description": "玩家成就服务(to server)",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Service"
+        }
+      },
+      "References": [
+        "OpenNGS.Achievement.Common"
+      ]
+    },
+    "Achievement.Service": {
+      "Name": "Achievement.Service",
+      "PackageType": "Message",
+      "Scope": "CS;SS",
+      "Models": {
+        "Achievement.Service.GetAchievementListReq": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "GetAchievementListReq",
+          "Package": "Achievement.Service",
+          "Fullname": "Achievement.Service.GetAchievementListReq",
+          "PackageName": "OpenNGS.Achievement.GetAchievementListReq",
+          "Description": "C端获取成就列表请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetAchievementListReq",
+            "Package": "Achievement.Service",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "Achievement.Service.GetAchievementListReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uin": {
+                "Name": "uin",
+                "Type": "Uint64",
+                "Description": "UIN",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Achievement.Service.GetAchievementListRsp": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "GetAchievementListRsp",
+          "Package": "Achievement.Service",
+          "Fullname": "Achievement.Service.GetAchievementListRsp",
+          "PackageName": "OpenNGS.Achievement.GetAchievementListRsp",
+          "Description": "C端获取成就列表响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetAchievementListRsp",
+            "Package": "Achievement.Service",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "Achievement.Service.GetAchievementListRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "result": {
+                "Name": "result",
+                "Type": "Int32",
+                "Description": "response result",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "achieveinfos": {
+                "Name": "achieveinfos",
+                "Type": "Unknow",
+                "CustomType": "AchievementInfo",
+                "Description": "玩家成就信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Achievement.Service.AchievementService": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {
+            "GetAchievementList": {
+              "MethodName": "GetAchievementList",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Achievement",
+                  "Methods": {},
+                  "Name": "GetAchievementListReq",
+                  "Package": "Achievement.Service",
+                  "Fullname": "Achievement.Service.GetAchievementListReq",
+                  "PackageName": "OpenNGS.Achievement.GetAchievementListReq",
+                  "Description": "C端获取成就列表请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetAchievementListReq",
+                    "Package": "Achievement.Service",
+                    "RawPackage": "OpenNGS.Achievement",
+                    "Fullname": "Achievement.Service.GetAchievementListReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uin": {
+                        "Name": "uin",
+                        "Type": "Uint64",
+                        "Description": "UIN",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Achievement",
+                "Methods": {},
+                "Name": "GetAchievementListRsp",
+                "Package": "Achievement.Service",
+                "Fullname": "Achievement.Service.GetAchievementListRsp",
+                "PackageName": "OpenNGS.Achievement.GetAchievementListRsp",
+                "Description": "C端获取成就列表响应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetAchievementListRsp",
+                  "Package": "Achievement.Service",
+                  "RawPackage": "OpenNGS.Achievement",
+                  "Fullname": "Achievement.Service.GetAchievementListRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "result": {
+                      "Name": "result",
+                      "Type": "Int32",
+                      "Description": "response result",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRequired": true,
+                      "IsRepeated": false,
+                      "IsOptional": false
+                    },
+                    "achieveinfos": {
+                      "Name": "achieveinfos",
+                      "Type": "Unknow",
+                      "CustomType": "AchievementInfo",
+                      "Description": "玩家成就信息",
+                      "Tag": 2,
+                      "Scope": "All",
+                      "Attributes": "Repeated",
+                      "IsRequired": false,
+                      "IsRepeated": true,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "获取成就列表",
+              "Scope": "All"
+            }
+          },
+          "Name": "AchievementService",
+          "Package": "Achievement.Service",
+          "Fullname": "Achievement.Service.AchievementService",
+          "PackageName": "OpenNGS.Achievement.AchievementService",
+          "Description": "玩家成就服务(to client)",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Service"
+        }
+      },
+      "References": [
+        "OpenNGS.Achievement.Common"
+      ]
+    },
+    "OpenNGS.Achievement.Data": {
+      "Name": "OpenNGS.Achievement.Data",
+      "PackageType": "Message",
+      "Scope": "Client;Server",
+      "Models": {
+        "OpenNGS.Achievement.Data.Achievement": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "Achievement",
+          "Package": "OpenNGS.Achievement.Data",
+          "Fullname": "OpenNGS.Achievement.Data.Achievement",
+          "PackageName": "OpenNGS.Achievement.Achievement",
+          "Description": "玩家成就配置结构",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Achievement",
+            "Package": "OpenNGS.Achievement.Data",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Data.Achievement",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "分组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "StatID": {
+                "Name": "StatID",
+                "Type": "Uint32",
+                "Description": "统计规则ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "StatValue": {
+                "Name": "StatValue",
+                "Type": "Uint32",
+                "Description": "统计数值",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IsHide": {
+                "Name": "IsHide",
+                "Type": "Uint32",
+                "Description": "隐藏成就",
+                "Tag": 4,
+                "Scope": "Client;Server",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "SubAchievement": {
+                "Name": "SubAchievement",
+                "Type": "Uint32",
+                "Description": "子成就",
+                "Tag": 5,
+                "Scope": "Client;Server",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              },
+              "SubSameOwner": {
+                "Name": "SubSameOwner",
+                "Type": "Uint32",
+                "Description": "子成就需要相同所有者",
+                "Tag": 6,
+                "Scope": "Client;Server",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "名字",
+                "Tag": 7,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 8,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "AwardGroupID": {
+                "Name": "AwardGroupID",
+                "Type": "Uint32",
+                "Description": "奖励组ID",
+                "Tag": 9,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IconPath": {
+                "Name": "IconPath",
+                "Type": "String",
+                "Description": "成就Icon路径",
+                "Tag": 10,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Data.AchievementAward": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "AchievementAward",
+          "Package": "OpenNGS.Achievement.Data",
+          "Fullname": "OpenNGS.Achievement.Data.AchievementAward",
+          "PackageName": "OpenNGS.Achievement.AchievementAward",
+          "Description": "奖励数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client;Server",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AchievementAward",
+            "Package": "OpenNGS.Achievement.Data",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Data.AchievementAward",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "物品ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Counts": {
+                "Name": "Counts",
+                "Type": "Uint32",
+                "Description": "物品数量 ",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Core"
+      ]
+    },
+    "OpenNGS.Achievement.Common": {
+      "Name": "OpenNGS.Achievement.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Achievement.Common.ACHIEVEMENT_STATUS": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "ACHIEVEMENT_STATUS",
+          "Package": "OpenNGS.Achievement.Common",
+          "Fullname": "OpenNGS.Achievement.Common.ACHIEVEMENT_STATUS",
+          "PackageName": "OpenNGS.Achievement.ACHIEVEMENT_STATUS",
+          "Description": "成就状态",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "Index": "None",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ACHIEVEMENT_STATUS",
+            "Package": "OpenNGS.Achievement.Common",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Common.ACHIEVEMENT_STATUS",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ACHIEVEMENT_STATUS_NONE": {
+                "Name": "ACHIEVEMENT_STATUS_NONE",
+                "Type": "Uint32",
+                "Description": "空",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_STATUS_STATING": {
+                "Name": "ACHIEVEMENT_STATUS_STATING",
+                "Type": "Uint32",
+                "Description": "统计中",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_STATUS_PENDING": {
+                "Name": "ACHIEVEMENT_STATUS_PENDING",
+                "Type": "Uint32",
+                "Description": "待领取",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_STATUS_DONE": {
+                "Name": "ACHIEVEMENT_STATUS_DONE",
+                "Type": "Uint32",
+                "Description": "已完成",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Common.AchievementInfo": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "AchievementInfo",
+          "Package": "OpenNGS.Achievement.Common",
+          "Fullname": "OpenNGS.Achievement.Common.AchievementInfo",
+          "PackageName": "OpenNGS.Achievement.AchievementInfo",
+          "Description": "玩家成就",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AchievementInfo",
+            "Package": "OpenNGS.Achievement.Common",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Common.AchievementInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "成就id",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "value": {
+                "Name": "value",
+                "Type": "Uint32",
+                "Description": "成就数值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "status": {
+                "Name": "status",
+                "Type": "Unknow",
+                "CustomType": "ACHIEVEMENT_STATUS",
+                "Description": "成就状态",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Achievement.Common.ACHIEVEMENT_RESULT": {
+          "RawPackage": "OpenNGS.Achievement",
+          "Methods": {},
+          "Name": "ACHIEVEMENT_RESULT",
+          "Package": "OpenNGS.Achievement.Common",
+          "Fullname": "OpenNGS.Achievement.Common.ACHIEVEMENT_RESULT",
+          "PackageName": "OpenNGS.Achievement.ACHIEVEMENT_RESULT",
+          "Description": "成就系统结果",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "Index": "None",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ACHIEVEMENT_RESULT",
+            "Package": "OpenNGS.Achievement.Common",
+            "RawPackage": "OpenNGS.Achievement",
+            "Fullname": "OpenNGS.Achievement.Common.ACHIEVEMENT_RESULT",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Achievement.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ACHIEVEMENT_RESULT_NONE": {
+                "Name": "ACHIEVEMENT_RESULT_NONE",
+                "Type": "Uint32",
+                "Description": "空",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_RESULT_ACHI_NOT_EXIST": {
+                "Name": "ACHIEVEMENT_RESULT_ACHI_NOT_EXIST",
+                "Type": "Uint32",
+                "Description": "成就不存在",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_RESULT_AWARD_HAS_GOT": {
+                "Name": "ACHIEVEMENT_RESULT_AWARD_HAS_GOT",
+                "Type": "Uint32",
+                "Description": "奖励已经领取",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_RESULT_AWARD_SUCCESS": {
+                "Name": "ACHIEVEMENT_RESULT_AWARD_SUCCESS",
+                "Type": "Uint32",
+                "Description": "领取成功",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_RESULT_AWARD_NOCOUNTS": {
+                "Name": "ACHIEVEMENT_RESULT_AWARD_NOCOUNTS",
+                "Type": "Uint32",
+                "Description": "数量不对",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ACHIEVEMENT_RESULT_AWARD_ERROR_ITEMS": {
+                "Name": "ACHIEVEMENT_RESULT_AWARD_ERROR_ITEMS",
+                "Type": "Uint32",
+                "Description": "错误物品",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Achievement",
+  "PackageFile": "Packages/OpenNGS.Achievement.json"
+}

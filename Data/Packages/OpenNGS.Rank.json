@@ -1,0 +1,411 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Rank.Data": {
+      "Name": "OpenNGS.Rank.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Rank.Data.CharacterInfo": {
+          "RawPackage": "OpenNGS.Rank",
+          "Methods": {},
+          "Name": "CharacterInfo",
+          "Package": "OpenNGS.Rank.Data",
+          "Fullname": "OpenNGS.Rank.Data.CharacterInfo",
+          "PackageName": "OpenNGS.Rank.CharacterInfo",
+          "Description": "角色信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "CharacterInfo",
+            "Package": "OpenNGS.Rank.Data",
+            "RawPackage": "OpenNGS.Rank",
+            "Fullname": "OpenNGS.Rank.Data.CharacterInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Rank.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "角色ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "String",
+                "Description": "角色名字",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Equips": {
+                "Name": "Equips",
+                "Type": "Uint32",
+                "Description": "装备的装备列表",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Rank.Data.RankInfo": {
+          "RawPackage": "OpenNGS.Rank",
+          "Methods": {},
+          "Name": "RankInfo",
+          "Package": "OpenNGS.Rank.Data",
+          "Fullname": "OpenNGS.Rank.Data.RankInfo",
+          "PackageName": "OpenNGS.Rank.RankInfo",
+          "Description": "单条排行榜信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RankInfo",
+            "Package": "OpenNGS.Rank.Data",
+            "RawPackage": "OpenNGS.Rank",
+            "Fullname": "OpenNGS.Rank.Data.RankInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Rank.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "index": {
+                "Name": "index",
+                "Type": "Uint32",
+                "Description": "排名",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Character": {
+                "Name": "Character",
+                "Type": "Unknow",
+                "CustomType": "CharacterInfo",
+                "Description": "角色信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Time": {
+                "Name": "Time",
+                "Type": "Uint64",
+                "Description": "通关时间",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Rank.Data.GetRankReq": {
+          "RawPackage": "OpenNGS.Rank",
+          "Methods": {},
+          "Name": "GetRankReq",
+          "Package": "OpenNGS.Rank.Data",
+          "Fullname": "OpenNGS.Rank.Data.GetRankReq",
+          "PackageName": "OpenNGS.Rank.GetRankReq",
+          "Description": "获取排行榜请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetRankReq",
+            "Package": "OpenNGS.Rank.Data",
+            "RawPackage": "OpenNGS.Rank",
+            "Fullname": "OpenNGS.Rank.Data.GetRankReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Rank.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "关卡ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RankType": {
+                "Name": "RankType",
+                "Type": "Unknow",
+                "CustomType": "RANK_DIFFICULT_TYPE",
+                "Description": "关卡难度",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Index": {
+                "Name": "Index",
+                "Type": "Uint32",
+                "Description": "客户端最新的索引",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Rank.Data.GetRankRsq": {
+          "RawPackage": "OpenNGS.Rank",
+          "Methods": {},
+          "Name": "GetRankRsq",
+          "Package": "OpenNGS.Rank.Data",
+          "Fullname": "OpenNGS.Rank.Data.GetRankRsq",
+          "PackageName": "OpenNGS.Rank.GetRankRsq",
+          "Description": "排行榜请求响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetRankRsq",
+            "Package": "OpenNGS.Rank.Data",
+            "RawPackage": "OpenNGS.Rank",
+            "Fullname": "OpenNGS.Rank.Data.GetRankRsq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Rank.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Result": {
+                "Name": "Result",
+                "Type": "Unknow",
+                "CustomType": "RESULT_TYPE",
+                "Description": "请求结果",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "关卡ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RankType": {
+                "Name": "RankType",
+                "Type": "Unknow",
+                "CustomType": "RANK_DIFFICULT_TYPE",
+                "Description": "关卡难度",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Index": {
+                "Name": "Index",
+                "Type": "Uint32",
+                "Description": "服务端返回的最新索引",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RankInfo": {
+                "Name": "RankInfo",
+                "Type": "Unknow",
+                "CustomType": "RankInfo",
+                "Description": "排名信息",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Rank.Common",
+        "OpenNGS.Setting.Common"
+      ]
+    },
+    "OpenNGS.Rank.Common": {
+      "Name": "OpenNGS.Rank.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Rank.Common.RESULT_TYPE": {
+          "RawPackage": "OpenNGS.Rank",
+          "Methods": {},
+          "Name": "RESULT_TYPE",
+          "Package": "OpenNGS.Rank.Common",
+          "Fullname": "OpenNGS.Rank.Common.RESULT_TYPE",
+          "PackageName": "OpenNGS.Rank.RESULT_TYPE",
+          "Description": "请求成功类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "RESULT_TYPE",
+            "Package": "OpenNGS.Rank.Common",
+            "RawPackage": "OpenNGS.Rank",
+            "Fullname": "OpenNGS.Rank.Common.RESULT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Rank.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "RESULT_TYPE_NONE": {
+                "Name": "RESULT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RESULT_TYPE_SUCCESS": {
+                "Name": "RESULT_TYPE_SUCCESS",
+                "Type": "Uint32",
+                "Description": "成功",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RESULT_TYPE_FAILED": {
+                "Name": "RESULT_TYPE_FAILED",
+                "Type": "Uint32",
+                "Description": "失败",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE": {
+          "RawPackage": "OpenNGS.Rank",
+          "Methods": {},
+          "Name": "RANK_DIFFICULT_TYPE",
+          "Package": "OpenNGS.Rank.Common",
+          "Fullname": "OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE",
+          "PackageName": "OpenNGS.Rank.RANK_DIFFICULT_TYPE",
+          "Description": "关卡难度类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "RANK_DIFFICULT_TYPE",
+            "Package": "OpenNGS.Rank.Common",
+            "RawPackage": "OpenNGS.Rank",
+            "Fullname": "OpenNGS.Rank.Common.RANK_DIFFICULT_TYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Rank.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "RANK_DIFFICULT_TYPE_NONE": {
+                "Name": "RANK_DIFFICULT_TYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RANK_DIFFICULT_TYPE_NORMAL": {
+                "Name": "RANK_DIFFICULT_TYPE_NORMAL",
+                "Type": "Uint32",
+                "Description": "普通",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RANK_DIFFICULT_TYPE_HARD": {
+                "Name": "RANK_DIFFICULT_TYPE_HARD",
+                "Type": "Uint32",
+                "Description": "困难",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RANK_DIFFICULT_TYPE_MAX": {
+                "Name": "RANK_DIFFICULT_TYPE_MAX",
+                "Type": "Uint32",
+                "Description": "请将该字段至于该表的最后位",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Rank",
+  "PackageFile": "Packages/OpenNGS.Rank.json"
+}

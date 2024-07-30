@@ -1,0 +1,327 @@
+﻿targets:
+  Client:
+    name: Client
+    scope: Client
+    dataConfig:
+      dataMode: Builtin
+      sourcePath: 
+      targetFormat: Binary
+      reserveText: false
+      enable: true
+      outputPath: Data
+      lowercaseFilename: false
+    codeConfig:
+      language: ng-csharp
+      enable: true
+      outputPath: Code
+      lowercaseFilename: false
+    protocol: 
+    model:
+      generateList: false
+      listSuffix: 
+      lowercaseFilename: false
+      firstFieldAsKey: false
+  ServerData:
+    name: ServerData
+    scope: Server
+    dataConfig:
+      dataMode: Builtin
+      sourcePath: 
+      targetFormat: Json
+      reserveText: false
+      enable: true
+      outputPath: Data
+      lowercaseFilename: false
+    codeConfig:
+      language: ng-csharp
+      enable: true
+      outputPath: Code
+      lowercaseFilename: false
+    protocol: 
+    model:
+      generateList: false
+      listSuffix: 
+      lowercaseFilename: false
+      firstFieldAsKey: false
+  ClientService:
+    name: ClientService
+    scope: CS
+    dataConfig:
+      dataMode: Builtin
+      sourcePath: 
+      targetFormat: None
+      reserveText: false
+      enable: true
+      outputPath: ''
+      lowercaseFilename: false
+    codeConfig:
+      language: ng-csharp
+      enable: true
+      outputPath: Code
+      lowercaseFilename: false
+    protocol: 
+    model:
+      generateList: false
+      listSuffix: 
+      lowercaseFilename: false
+      firstFieldAsKey: false
+  Server:
+    name: Server
+    scope: Server
+    dataConfig:
+      dataMode: Builtin
+      sourcePath: 
+      targetFormat: Binary
+      reserveText: false
+      enable: true
+      outputPath: Data
+      lowercaseFilename: false
+    codeConfig:
+      language: ng-csharp
+      enable: true
+      outputPath: Generated
+      lowercaseFilename: false
+    protocol: 
+    model:
+      generateList: false
+      listSuffix: 
+      lowercaseFilename: false
+      firstFieldAsKey: false
+localization:
+  localizationFile: Localization/Localization.xlsx
+  cSVExportFile: Localization/StringTable.csv
+  jsonExportFile: Localization/Localization.json
+dataTables:
+  Achievement:
+    tableName: Achievement
+    modelName: OpenNGS.Achievement.Data.Achievement
+    sourceFile: Tables\Achievement.xlsx
+    targetFile: 
+  AchievementAward:
+    tableName: AchievementAward
+    modelName: OpenNGS.Achievement.Data.AchievementAward
+    sourceFile: Tables\Achievement.xlsx
+    targetFile: 
+  CharacterDisplayInfo:
+    tableName: CharacterDisplayInfo
+    modelName: OpenNGS.Avator.Data.CharacterDisplayInfo
+    sourceFile: Tables\Avator.xlsx
+    targetFile: 
+  DialogList:
+    tableName: DialogList
+    modelName: OpenNGS.Dialog.Data.DialogList
+    sourceFile: Tables\DialogTalk.xlsx
+    targetFile: 
+  DialogTalk:
+    tableName: DialogTalk
+    modelName: OpenNGS.Dialog.Data.DialogTalk
+    sourceFile: Tables\DialogTalk.xlsx
+    targetFile: 
+  DialogChoice:
+    tableName: DialogChoice
+    modelName: OpenNGS.Dialog.Data.DialogChoice
+    sourceFile: Tables\DialogTalk.xlsx
+    targetFile: 
+  EnemyInfo:
+    tableName: EnemyInfo
+    modelName: OpenNGS.Enemy.Data.EnemyInfo
+    sourceFile: Tables\Enemy.xlsx
+    targetFile: 
+  Item:
+    tableName: Item
+    modelName: OpenNGS.Item.Data.Item
+    sourceFile: Tables\Items.xlsx
+    targetFile: 
+  WorldMap:
+    tableName: WorldMap
+    modelName: OpenNGS.Map.Data.WorldMap
+    sourceFile: Tables\MapDefine.xlsx
+    targetFile: 
+  NGSLevelInfo:
+    tableName: NGSLevelInfo
+    modelName: OpenNGS.Levels.Data.NGSLevelInfo
+    sourceFile: Tables\NGSLevels.xlsx
+    targetFile: 
+  LevelEnemyInfo:
+    tableName: LevelEnemyInfo
+    modelName: OpenNGS.Levels.Data.LevelEnemyInfo
+    sourceFile: Tables\NGSLevels.xlsx
+    targetFile: 
+  NPCData:
+    tableName: NPCData
+    modelName: OpenNGS.NPC.Data.NPCData
+    sourceFile: Tables\NPC.xlsx
+    targetFile: 
+  GameSettingLabel:
+    tableName: GameSettingLabel
+    modelName: OpenNGS.Setting.Data.GameSettingLabel
+    sourceFile: Tables\Setting.xlsx
+    targetFile: 
+  KeyControlSettingInfo:
+    tableName: KeyControlSettingInfo
+    modelName: OpenNGS.Setting.Data.KeyControlSettingInfo
+    sourceFile: Tables\Setting.xlsx
+    targetFile: 
+  Language:
+    tableName: Language
+    modelName: OpenNGS.Setting.Data.Language
+    sourceFile: Tables\Setting.xlsx
+    targetFile: 
+  AudioSettingInfo:
+    tableName: AudioSettingInfo
+    modelName: OpenNGS.Setting.Data.AudioSettingInfo
+    sourceFile: Tables\Setting.xlsx
+    targetFile: 
+  VerticalSynchronization:
+    tableName: VerticalSynchronization
+    modelName: OpenNGS.Setting.Data.VerticalSynchronization
+    sourceFile: Tables\Setting.xlsx
+    targetFile: 
+  ResolutionRatios:
+    tableName: ResolutionRatios
+    modelName: OpenNGS.Setting.Data.ResolutionRatios
+    sourceFile: Tables\Setting.xlsx
+    targetFile: 
+  Shop:
+    tableName: Shop
+    modelName: OpenNGS.Shop.Data.Shop
+    sourceFile: Tables\Shop.xlsx
+    targetFile: 
+  Shelf:
+    tableName: Shelf
+    modelName: OpenNGS.Shop.Data.Shelf
+    sourceFile: Tables\Shop.xlsx
+    targetFile: 
+  Good:
+    tableName: Good
+    modelName: OpenNGS.Shop.Data.Good
+    sourceFile: Tables\Shop.xlsx
+    targetFile: 
+  ShopSell:
+    tableName: ShopSell
+    modelName: OpenNGS.Shop.Data.ShopSell
+    sourceFile: Tables\Shop.xlsx
+    targetFile: 
+  StatData:
+    tableName: StatData
+    modelName: OpenNGS.Statistic.Data.StatData
+    sourceFile: Tables\Statistics.xlsx
+    targetFile: 
+  SuitData:
+    tableName: SuitData
+    modelName: OpenNGS.Suit.Data.SuitData
+    sourceFile: Tables\Suit.xlsx
+    targetFile: 
+  NodeData:
+    tableName: NodeData
+    modelName: OpenNGS.Technology.Data.NodeData
+    sourceFile: Tables\Technology.xlsx
+    targetFile: 
+  UIConfig:
+    tableName: UIConfig
+    modelName: OpenNGS.UI.Data.UIConfig
+    sourceFile: Tables\UI.xlsx
+    targetFile: 
+  Notification:
+    tableName: Notification
+    modelName: OpenNGS.Message.Data.Notification
+    sourceFile: Tables\Message.xlsx
+    targetFile: 
+  Message:
+    tableName: Message
+    modelName: OpenNGS.Message.Data.Message
+    sourceFile: Tables\Message.xlsx
+    targetFile: 
+  Reward:
+    tableName: Reward
+    modelName: OpenNGS.Reward.Data.Reward
+    sourceFile: Tables\Reward.xlsx
+    targetFile: 
+  RewardContent:
+    tableName: RewardContent
+    modelName: OpenNGS.Reward.Data.RewardContent
+    sourceFile: Tables\Reward.xlsx
+    targetFile: 
+  RewardCondition:
+    tableName: RewardCondition
+    modelName: OpenNGS.Reward.Data.RewardCondition
+    sourceFile: Tables\Reward.xlsx
+    targetFile: 
+  QuestGroup:
+    tableName: QuestGroup
+    modelName: OpenNGS.Quest.Data.QuestGroup
+    sourceFile: Tables\Quest.xlsx
+    targetFile: 
+  Quest:
+    tableName: Quest
+    modelName: OpenNGS.Quest.Data.Quest
+    sourceFile: Tables\Quest.xlsx
+    targetFile: 
+models:
+- Packages/OpenNGS.json
+- Packages/OpenNGS.Character.json
+- Packages/OpenNGS.Dialog.json
+- Packages/OpenNGS.Item.json
+- Packages/OpenNGS.Shop.json
+- Packages/OpenNGS.Setting.json
+- Packages/OpenNGS.Statistic.json
+- Packages/OpenNGS.Suit.json
+- Packages/OpenNGS.Achievement.json
+- Packages/OpenNGS.UI.json
+- Packages/OpenNGS.Map.json
+- Packages/OpenNGS.Rank.json
+- Packages/OpenNGS.Exchange.json
+- Packages/OpenNGS.NPC.json
+- Packages/OpenNGS.Technology.json
+- Packages/OpenNGS.Enemy.json
+- Packages/OpenNGS.Levels.json
+- Packages/OpenNGS.Avator.json
+- Packages/OpenNGS.Message.json
+- Packages/OpenNGS.Reward.json
+- Packages/OpenNGS.Quest.json
+localization:
+  localizationFile: ''
+  cSVExportFile: ''
+  jsonExportFile: ''
+repository:
+  repositoryType: Local
+  local:
+  - Entities/OpenNGS/OpenNGS.xlsx
+  - Entities/OpenNGS/OpenNGS.Character.xlsx
+  - Entities/OpenNGS/OpenNGS.Dialog.xlsx
+  - Entities/OpenNGS/OpenNGS.Item.xlsx
+  - Entities/OpenNGS/OpenNGS.Shop.xlsx
+  - Entities/OpenNGS/OpenNGS.Setting.xlsx
+  - Entities/OpenNGS/OpenNGS.Statistic.xlsx
+  - Entities/OpenNGS/OpenNGS.Suit.xlsx
+  - Entities/OpenNGS/OpenNGS.Achievement.xlsx
+  - Entities/OpenNGS/OpenNGS.UI.xlsx
+  - Entities/OpenNGS/OpenNGS.Map.xlsx
+  - Entities/OpenNGS/OpenNGS.Make.xlsx
+  - Entities/OpenNGS/OpenNGS.Rank.xlsx
+  - Entities/OpenNGS/OpenNGS.Exchange.xlsx
+  - Entities/OpenNGS/OpenNGS.NPC.xlsx
+  - Entities/OpenNGS/OpenNGS.Technology.xlsx
+  - Entities/Dynamic.xlsx
+  - Entities/OpenNGS/OpenNGS.Enemy.xlsx
+  - Entities/OpenNGS/OpenNGS.Levels.xlsx
+  - Entities/OpenNGS/OpenNGS.Avator.xlsx
+  - Entities/OpenNGS/OpenNGS.Message.xlsx
+  - Entities/OpenNGS/OpenNGS.Reward.xlsx
+  - Entities/OpenNGS/OpenNGS.Quest.xlsx
+projectVersion: 2
+settings:
+  protoVersion: 3
+  scopes:
+    modelScopes:
+    - Client
+    - Server
+    serviceScopes:
+    - ClientAPI
+    - ServerAPI
+    - AdminAPI
+  dataSourcePath: Tables
+  serviceProtocolType: ERPC
+  manageMode: Builtin
+  attributeValueType: Single
+  attributeMultiples: 0

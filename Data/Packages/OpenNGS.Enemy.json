@@ -1,0 +1,61 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Enemy.Data": {
+      "Name": "OpenNGS.Enemy.Data",
+      "PackageType": "Message",
+      "Scope": "Client",
+      "Models": {
+        "OpenNGS.Enemy.Data.EnemyInfo": {
+          "RawPackage": "OpenNGS.Enemy",
+          "Methods": {},
+          "Name": "EnemyInfo",
+          "Package": "OpenNGS.Enemy.Data",
+          "Fullname": "OpenNGS.Enemy.Data.EnemyInfo",
+          "PackageName": "OpenNGS.Enemy.EnemyInfo",
+          "Description": "敌人信息配置表",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "EnemyInfo",
+            "Package": "OpenNGS.Enemy.Data",
+            "RawPackage": "OpenNGS.Enemy",
+            "Fullname": "OpenNGS.Enemy.Data.EnemyInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Enemy.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "敌人ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "EnemyName": {
+                "Name": "EnemyName",
+                "Type": "String",
+                "Description": "敌人姓名",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Enemy",
+  "PackageFile": "Packages/OpenNGS.Enemy.json"
+}

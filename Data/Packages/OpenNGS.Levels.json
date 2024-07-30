@@ -1,0 +1,371 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Levels.Data": {
+      "Name": "OpenNGS.Levels.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Levels.Data.NGSLevelInfo": {
+          "RawPackage": "OpenNGS.Levels",
+          "Methods": {},
+          "Name": "NGSLevelInfo",
+          "Package": "OpenNGS.Levels.Data",
+          "Fullname": "OpenNGS.Levels.Data.NGSLevelInfo",
+          "PackageName": "OpenNGS.Levels.NGSLevelInfo",
+          "Description": "场景信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "NGSLevelInfo",
+            "Package": "OpenNGS.Levels.Data",
+            "RawPackage": "OpenNGS.Levels",
+            "Fullname": "OpenNGS.Levels.Data.NGSLevelInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Levels.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "场景ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "LoadScene": {
+                "Name": "LoadScene",
+                "Type": "String",
+                "Description": "加载场景（unity)",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "SceneName": {
+                "Name": "SceneName",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "场景名",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "SceneDescription": {
+                "Name": "SceneDescription",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "场景描述",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Levels.Data.LevelEnemyInfo": {
+          "RawPackage": "OpenNGS.Levels",
+          "Methods": {},
+          "Name": "LevelEnemyInfo",
+          "Package": "OpenNGS.Levels.Data",
+          "Fullname": "OpenNGS.Levels.Data.LevelEnemyInfo",
+          "PackageName": "OpenNGS.Levels.LevelEnemyInfo",
+          "Description": "敌人生成信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "LevelEnemyInfo",
+            "Package": "OpenNGS.Levels.Data",
+            "RawPackage": "OpenNGS.Levels",
+            "Fullname": "OpenNGS.Levels.Data.LevelEnemyInfo",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Levels.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "关卡ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "RuleID": {
+                "Name": "RuleID",
+                "Type": "Uint32",
+                "Description": "规则ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "EnemyID": {
+                "Name": "EnemyID",
+                "Type": "Uint32",
+                "Description": "敌人ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "EnemyInitType": {
+                "Name": "EnemyInitType",
+                "Type": "Unknow",
+                "CustomType": "ENEMY_INITTYPE",
+                "Description": "敌人生成方式",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "EnemyInitTrigger": {
+                "Name": "EnemyInitTrigger",
+                "Type": "Unknow",
+                "CustomType": "ENEMY_INITTRIGGER",
+                "Description": "游戏中敌人生成条件",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "EnemyNum": {
+                "Name": "EnemyNum",
+                "Type": "Uint32",
+                "Description": "场景中该敌人的最大数量",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "AreaPos": {
+                "Name": "AreaPos",
+                "Type": "Uint32",
+                "Description": "生成坐标",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              },
+              "MinDistance": {
+                "Name": "MinDistance",
+                "Type": "Uint32",
+                "Description": "生成最小距离",
+                "Tag": 9,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "MaxDistance": {
+                "Name": "MaxDistance",
+                "Type": "Uint32",
+                "Description": "生成最大距离",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "InitBeginTime": {
+                "Name": "InitBeginTime",
+                "Type": "Uint32",
+                "Description": "生成开始时间(秒)",
+                "Tag": 11,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "InitFinishTime": {
+                "Name": "InitFinishTime",
+                "Type": "Uint32",
+                "Description": "生成结束时间（秒）",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "SpecificEnemyID": {
+                "Name": "SpecificEnemyID",
+                "Type": "Uint32",
+                "Description": "特定敌人ID",
+                "Tag": 13,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Core",
+        "OpenNGS.Levels.Common"
+      ]
+    },
+    "OpenNGS.Levels.Common": {
+      "Name": "OpenNGS.Levels.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Levels.Common.ENEMY_INITTYPE": {
+          "RawPackage": "OpenNGS.Levels",
+          "Methods": {},
+          "Name": "ENEMY_INITTYPE",
+          "Package": "OpenNGS.Levels.Common",
+          "Fullname": "OpenNGS.Levels.Common.ENEMY_INITTYPE",
+          "PackageName": "OpenNGS.Levels.ENEMY_INITTYPE",
+          "Description": "敌人生成方式",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ENEMY_INITTYPE",
+            "Package": "OpenNGS.Levels.Common",
+            "RawPackage": "OpenNGS.Levels",
+            "Fullname": "OpenNGS.Levels.Common.ENEMY_INITTYPE",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Levels.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ENEMY_INITTYPE_NONE": {
+                "Name": "ENEMY_INITTYPE_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ENEMY_INITTYPE_ROUND": {
+                "Name": "ENEMY_INITTYPE_ROUND",
+                "Type": "Uint32",
+                "Description": "在角色周围生成",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ENEMY_INITTYPE_AREA": {
+                "Name": "ENEMY_INITTYPE_AREA",
+                "Type": "Uint32",
+                "Description": "在特定区域生成",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Levels.Common.ENEMY_INITTRIGGER": {
+          "RawPackage": "OpenNGS.Levels",
+          "Methods": {},
+          "Name": "ENEMY_INITTRIGGER",
+          "Package": "OpenNGS.Levels.Common",
+          "Fullname": "OpenNGS.Levels.Common.ENEMY_INITTRIGGER",
+          "PackageName": "OpenNGS.Levels.ENEMY_INITTRIGGER",
+          "Description": "游戏中敌人生成条件",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "ENEMY_INITTRIGGER",
+            "Package": "OpenNGS.Levels.Common",
+            "RawPackage": "OpenNGS.Levels",
+            "Fullname": "OpenNGS.Levels.Common.ENEMY_INITTRIGGER",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Levels.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ENEMY_INITTRIGGER_NONE": {
+                "Name": "ENEMY_INITTRIGGER_NONE",
+                "Type": "Uint32",
+                "Description": "无",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ENEMY_INITTRIGGER_CONSTANT": {
+                "Name": "ENEMY_INITTRIGGER_CONSTANT",
+                "Type": "Uint32",
+                "Description": "经过间隔时间后生成",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ENEMY_INITTRIGGER_ENEMY": {
+                "Name": "ENEMY_INITTRIGGER_ENEMY",
+                "Type": "Uint32",
+                "Description": "特定敌人死亡后生成",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.Levels",
+  "PackageFile": "Packages/OpenNGS.Levels.json"
+}

@@ -1,0 +1,10 @@
+﻿{
+  "TargetWorkspaces": {
+    "ClientData": "",
+    "ServerData": "",
+    "ClientService": "",
+    "Server": "",
+    "Client": ""
+  },
+  "PackageDirectory": {}
+}
