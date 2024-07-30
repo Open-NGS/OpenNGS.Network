@@ -894,7 +894,7 @@
       "References": [
         "OpenNGS.Core",
         "OpenNGS.Shop.Common",
-        "OpenNGS.Setting.Common"
+        "OpenNGS.Common"
       ]
     },
     "OpenNGS.Shop.Common": {

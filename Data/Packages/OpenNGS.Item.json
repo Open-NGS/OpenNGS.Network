@@ -4033,8 +4033,8 @@
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Item.xlsx",
             "Tag": 0,
             "Properties": {
-              "ItemResult": {
-                "Name": "ItemResult",
+              "result": {
+                "Name": "result",
                 "Type": "Unknow",
                 "CustomType": "ItemResultType",
                 "Description": "返回结果",
@@ -4045,8 +4045,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "ItemList": {
-                "Name": "ItemList",
+              "Items": {
+                "Name": "Items",
                 "Type": "Unknow",
                 "CustomType": "ItemSaveState",
                 "Description": "存放的数据列表",

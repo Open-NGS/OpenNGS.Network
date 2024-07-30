@@ -1384,6 +1384,7 @@
       },
       "References": [
         "OpenNGS.Core",
+        "OpenNGS.Common",
         "OpenNGS.Setting.Common"
       ]
     },
@@ -1488,64 +1489,6 @@
                 "Type": "Uint32",
                 "Description": "日本语",
                 "Tag": 3,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Setting.Common.RESULT_TYPE": {
-          "RawPackage": "OpenNGS.Setting",
-          "Methods": {},
-          "Name": "RESULT_TYPE",
-          "Package": "OpenNGS.Setting.Common",
-          "Fullname": "OpenNGS.Setting.Common.RESULT_TYPE",
-          "PackageName": "OpenNGS.Setting.RESULT_TYPE",
-          "Description": "结果类型",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "None",
-          "Type": "Enum",
-          "Entity": {
-            "Name": "RESULT_TYPE",
-            "Package": "OpenNGS.Setting.Common",
-            "RawPackage": "OpenNGS.Setting",
-            "Fullname": "OpenNGS.Setting.Common.RESULT_TYPE",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Setting.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "RESULT_TYPE_NONE": {
-                "Name": "RESULT_TYPE_NONE",
-                "Type": "Uint32",
-                "Description": "无",
-                "Tag": 0,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "RESULT_TYPE_SUCCESS": {
-                "Name": "RESULT_TYPE_SUCCESS",
-                "Type": "Uint32",
-                "Description": "成功",
-                "Tag": 1,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "RESULT_TYPE_FAILED": {
-                "Name": "RESULT_TYPE_FAILED",
-                "Type": "Uint32",
-                "Description": "失败",
-                "Tag": 2,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,

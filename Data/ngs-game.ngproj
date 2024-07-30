@@ -286,7 +286,8 @@
     "Packages/OpenNGS.Avator.json",
     "Packages/OpenNGS.Message.json",
     "Packages/OpenNGS.Reward.json",
-    "Packages/OpenNGS.Quest.json"
+    "Packages/OpenNGS.Quest.json",
+    "Packages/Dynamic.json"
   ],
   "Repository": {
     "RepositoryType": 0,
@@ -311,7 +312,8 @@
       "Entities/OpenNGS/OpenNGS.Avator.xlsx",
       "Entities/OpenNGS/OpenNGS.Message.xlsx",
       "Entities/OpenNGS/OpenNGS.Reward.xlsx",
-      "Entities/OpenNGS/OpenNGS.Quest.xlsx"
+      "Entities/OpenNGS/OpenNGS.Quest.xlsx",
+      "Entities/Dynamic.xlsx"
     ]
   },
   "ProjectVersion": 2,

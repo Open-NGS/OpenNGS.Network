@@ -1,0 +1,365 @@
+﻿{
+  "Packages": {
+    "Common": {
+      "Name": "Common",
+      "PackageType": "Message",
+      "Models": {},
+      "References": []
+    },
+    "Dynamic.Data": {
+      "Name": "Dynamic.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "Dynamic.Data.RankSaveData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "RankSaveData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.RankSaveData",
+          "PackageName": "Dynamic.RankSaveData",
+          "Description": "排行榜存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RankSaveData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.RankSaveData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Index": {
+                "Name": "Index",
+                "Type": "Uint32",
+                "Description": "排名",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Character": {
+                "Name": "Character",
+                "Type": "Unknow",
+                "CustomType": "OpenNGS.Character.Common.CharacterInfo",
+                "Description": "角色信息",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ClearTime": {
+                "Name": "ClearTime",
+                "Type": "Uint32",
+                "Description": "通关时间",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Dynamic.Data.DialogSaveData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "DialogSaveData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.DialogSaveData",
+          "PackageName": "Dynamic.DialogSaveData",
+          "Description": "对话存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DialogSaveData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.DialogSaveData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "DialogID": {
+                "Name": "DialogID",
+                "Type": "Uint32",
+                "Description": "对话ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Dynamic.Data.VerticalSynchronizationData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "VerticalSynchronizationData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.VerticalSynchronizationData",
+          "PackageName": "Dynamic.VerticalSynchronizationData",
+          "Description": "垂直同步存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "VerticalSynchronizationData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.VerticalSynchronizationData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "FramesName": {
+                "Name": "FramesName",
+                "Type": "String",
+                "Description": "垂直同步",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "state": {
+                "Name": "state",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Dynamic.Data.AudioSettinData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "AudioSettinData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.AudioSettinData",
+          "PackageName": "Dynamic.AudioSettinData",
+          "Description": "音频设置存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AudioSettinData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.AudioSettinData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "AduioName": {
+                "Name": "AduioName",
+                "Type": "String",
+                "Description": "音频类型",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Value": {
+                "Name": "Value",
+                "Type": "Uint32",
+                "Description": "数值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Switch": {
+                "Name": "Switch",
+                "Type": "Bool",
+                "Description": "开关",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Dynamic.Data.KeyControlSettingData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "KeyControlSettingData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.KeyControlSettingData",
+          "PackageName": "Dynamic.KeyControlSettingData",
+          "Description": "键值设置存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "KeyControlSettingData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.KeyControlSettingData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "KeyName": {
+                "Name": "KeyName",
+                "Type": "String",
+                "Description": "按键类型",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Key": {
+                "Name": "Key",
+                "Type": "String",
+                "Description": "键值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Dynamic.Data.LanguageData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "LanguageData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.LanguageData",
+          "PackageName": "Dynamic.LanguageData",
+          "Description": "语言设置存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "LanguageData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.LanguageData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "languageName": {
+                "Name": "languageName",
+                "Type": "String",
+                "Description": "语言",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Default": {
+                "Name": "Default",
+                "Type": "Bool",
+                "Description": "状态",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "Dynamic.Data.ResolutionRatiosData": {
+          "RawPackage": "Dynamic",
+          "Methods": {},
+          "Name": "ResolutionRatiosData",
+          "Package": "Dynamic.Data",
+          "Fullname": "Dynamic.Data.ResolutionRatiosData",
+          "PackageName": "Dynamic.ResolutionRatiosData",
+          "Description": "分辨率设置存档数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "ResolutionRatiosData",
+            "Package": "Dynamic.Data",
+            "RawPackage": "Dynamic",
+            "Fullname": "Dynamic.Data.ResolutionRatiosData",
+            "Type": 0,
+            "Description": "Data\\Entities\\Dynamic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ResName": {
+                "Name": "ResName",
+                "Type": "String",
+                "Description": "分辨率",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ResType": {
+                "Name": "ResType",
+                "Type": "Unknow",
+                "CustomType": "RESOLUTIONRATION_TYPE",
+                "Description": "分辨率值",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Character.Common",
+        "OpenNGS.Setting.Common"
+      ]
+    }
+  },
+  "Name": "Dynamic",
+  "PackageFile": "Packages/Dynamic.json"
+}
