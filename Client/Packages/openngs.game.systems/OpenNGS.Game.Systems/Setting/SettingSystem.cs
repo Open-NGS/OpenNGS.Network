@@ -100,7 +100,7 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     // «Î«ÛœÏ”¶
     public void OnSettingRsp(GetSettingRsq rsp)
     {
-        if (rsp.Result == OpenNGS.Setting.Common.RESULT_TYPE.RESULT_TYPE_SUCCESS)
+        if (rsp.Result == OpenNGS.Common.RESULT_TYPE.RESULT_TYPE_SUCCESS)
         {
             OnGetSetting = rsp;
         }

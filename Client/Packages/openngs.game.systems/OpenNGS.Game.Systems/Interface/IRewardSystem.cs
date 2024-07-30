@@ -1,5 +1,5 @@
-﻿using OpenNGS.Item.Data;
-using OpenNGS.Rank.Common;
+﻿using OpenNGS.Common;
+using OpenNGS.Item.Data;
 using OpenNGS.Reward.Data;
 using System.Collections.Generic;
 

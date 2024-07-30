@@ -6,23 +6,23 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
-using OpenNGS.Character.Common;
-using OpenNGS.Setting.Common;
+using OpenNGS.Item.Common;
+using OpenNGS.Item.Data;
 
 
-namespace Dynamic.Data 
+namespace OpenNGS.Item.Service 
 {
 
-    //排行榜存档数据
+    //添加道具req
     [global::ProtoBuf.ProtoContract()]
-    public partial class RankSaveData : global::ProtoBuf.IExtensible
+    public partial class AddItemReq : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public RankSaveData()
+        public AddItemReq()
         {
         	OnConstructor();
         }
@@ -30,22 +30,22 @@ namespace Dynamic.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint Index { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public OpenNGS.Character.Common.CharacterInfo Character { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint ClearTime { get; set; }
+        public uint ItemID { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public uint Counts { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsRequired = true)]
+        public uint ColIdx { get; set; }
     }
-    //对话存档数据
+    //添加道具rsp
     [global::ProtoBuf.ProtoContract()]
-    public partial class DialogSaveData : global::ProtoBuf.IExtensible
+    public partial class AddItemRsp : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public DialogSaveData()
+        public AddItemRsp()
         {
         	OnConstructor();
         }
@@ -53,120 +53,138 @@ namespace Dynamic.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint DialogID { get; set; }
+        public ItemResult Result { get; set; }
     }
-    //垂直同步存档数据
+    //删除道具rep
     [global::ProtoBuf.ProtoContract()]
-    public partial class VerticalSynchronizationData : global::ProtoBuf.IExtensible
+    public partial class RemoveItemReq : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public VerticalSynchronizationData()
+        public RemoveItemReq()
         {
-            FramesName = "";
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public string FramesName { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public bool state { get; set; }
+        public uint ColIdx { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public uint Grid { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsRequired = true)]
+        public uint Counts { get; set; }
     }
-    //音频设置存档数据
+    //通过Id删除道具
     [global::ProtoBuf.ProtoContract()]
-    public partial class AudioSettinData : global::ProtoBuf.IExtensible
+    public partial class RemoveItemByIDReq : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public AudioSettinData()
+        public RemoveItemByIDReq()
         {
-            AduioName = "";
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public string AduioName { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint Value { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public bool Switch { get; set; }
+        public uint ColIdx { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public uint ItemID { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsRequired = true)]
+        public uint Counts { get; set; }
     }
-    //键值设置存档数据
+    //添加道具listrsp
     [global::ProtoBuf.ProtoContract()]
-    public partial class KeyControlSettingData : global::ProtoBuf.IExtensible
+    public partial class AddReq : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public KeyControlSettingData()
+        public AddReq()
         {
-            KeyName = "";
-            Key = "";
+            AddList = new global::System.Collections.Generic.List<AddItemReq>();
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public string KeyName { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public string Key { get; set; }
+        public global::System.Collections.Generic.List<AddItemReq> AddList { get;set;  }
     }
-    //语言设置存档数据
+    //删除道具listrep
     [global::ProtoBuf.ProtoContract()]
-    public partial class LanguageData : global::ProtoBuf.IExtensible
+    public partial class RemoveItemsByGridsReq : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public LanguageData()
+        public RemoveItemsByGridsReq()
         {
-            languageName = "";
+            RemoveList = new global::System.Collections.Generic.List<RemoveItemReq>();
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public string languageName { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public bool Default { get; set; }
+        public global::System.Collections.Generic.List<RemoveItemReq> RemoveList { get;set;  }
     }
-    //分辨率设置存档数据
+    //通过IDs删除道具listrep
     [global::ProtoBuf.ProtoContract()]
-    public partial class ResolutionRatiosData : global::ProtoBuf.IExtensible
+    public partial class RemoveItemsByIDsReq : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ResolutionRatiosData()
+        public RemoveItemsByIDsReq()
         {
-            ResName = "";
+            RemoveList = new global::System.Collections.Generic.List<RemoveItemByIDReq>();
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public string ResName { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public RESOLUTIONRATION_TYPE ResType { get; set; }
+        public global::System.Collections.Generic.List<RemoveItemByIDReq> RemoveList { get;set;  }
+    }
+    //改变道具rep
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ChangeItemData : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ChangeItemData()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint SrcCol { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public uint SrcGrid { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsRequired = true)]
+        public uint DstCol { get; set; }
+        [global::ProtoBuf.ProtoMember(4, IsRequired = true)]
+        public uint DstGrid { get; set; }
     }
 
 }
