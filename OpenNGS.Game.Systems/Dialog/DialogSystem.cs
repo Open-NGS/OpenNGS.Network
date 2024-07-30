@@ -86,7 +86,7 @@ namespace OpenNGS.Systems
         public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType()
         {
             DialogList dialog = NGSStaticData.Dialogue.GetItem(m_nDialogID);
-            return dialog.DialogType;
+            return (DIALOG_TYPE)dialog.Type;
         }
         private void DisplayDialog()
         {
@@ -112,10 +112,10 @@ namespace OpenNGS.Systems
         }
         private bool IsOptionAvailable(DialogChoice Choice)
         {
-            if (Choice.DialogChoiceCondition == DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_NONE)
-            {
-                return true;
-            }
+            //if (Choice.DialogChoiceCondition == DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_NONE)
+            //{
+            //    return true;
+            //}
             if (_choiceEvaluator == null)
             {
                 throw new InvalidOperationException("DialogChoiceEvaluator not set.");

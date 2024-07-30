@@ -8,19 +8,19 @@
 #pragma warning disable 0612, 0618, 1591, 3021
 
 
-namespace OpenNGS.Exchange.Data 
+namespace OpenNGS.Dialog.Service 
 {
 
-    //来源物品
+    //加载对话返回值
     [global::ProtoBuf.ProtoContract()]
-    public partial class SourceItem : global::ProtoBuf.IExtensible
+    public partial class LoadDialogRsp : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public SourceItem()
+        public LoadDialogRsp()
         {
         	OnConstructor();
         }
@@ -28,20 +28,18 @@ namespace OpenNGS.Exchange.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint GUID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint Count { get; set; }
+        public uint DialogTalkID { get; set; }
     }
-    //目标物品
+    //选中选项
     [global::ProtoBuf.ProtoContract()]
-    public partial class TargetItem : global::ProtoBuf.IExtensible
+    public partial class ChoiceRep : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public TargetItem()
+        public ChoiceRep()
         {
         	OnConstructor();
         }
@@ -49,9 +47,7 @@ namespace OpenNGS.Exchange.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ItemID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint Count { get; set; }
+        public uint[] SelectChoiceIDs { get; set; }
     }
 
 }
