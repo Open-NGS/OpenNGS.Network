@@ -28,7 +28,7 @@ xcopy build\Client\Code\*common*.cs ..\client\packages\openngs.game.systems\Open
 xcopy build\Client\Code\*data*.cs ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\* /r /y /q
 
 del /s /q ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\Service\*service*.cs
-xcopy build\Client\Code\*service*.cs ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\Service\* /r /y /q
+xcopy build\ClientService\Code\*service*.cs ..\client\packages\openngs.game.systems\OpenNGS.Game.Systems\Generated\Service\* /r /y /q
 
 @rem 拷贝数据
 xcopy build\Client\Data\* ..\Client\Assets\StreamingAssets\data\ /r /y /q

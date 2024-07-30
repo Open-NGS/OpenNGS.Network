@@ -273,7 +273,7 @@
     "OpenNGS.Exchange.Service": {
       "Name": "OpenNGS.Exchange.Service",
       "PackageType": "Message",
-      "Scope": "All",
+      "Scope": "CS",
       "Models": {
         "OpenNGS.Exchange.Service.GridSrcState": {
           "RawPackage": "OpenNGS.Exchange",
@@ -285,7 +285,7 @@
           "Description": "来源物品",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -343,7 +343,7 @@
           "Description": "来源物品",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -401,7 +401,7 @@
           "Description": "目标物品",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -459,7 +459,7 @@
           "Description": "通过格子ID的交易请求",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -508,7 +508,7 @@
           "Description": "通过道具ID的交易请求",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -557,7 +557,7 @@
           "Description": "交易响应",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {

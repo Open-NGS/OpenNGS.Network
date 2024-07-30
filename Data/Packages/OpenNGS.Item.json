@@ -74,7 +74,7 @@
     "OpenNGS.Item.Service": {
       "Name": "OpenNGS.Item.Service",
       "PackageType": "Message",
-      "Scope": "SS;CS;Client",
+      "Scope": "SS;CS;",
       "Models": {
         "OpenNGS.Item.Service.GetItemsReq": {
           "RawPackage": "OpenNGS.Item",
@@ -458,7 +458,7 @@
           "Description": "添加道具req",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -516,7 +516,7 @@
           "Description": "添加道具rsp",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -553,7 +553,7 @@
           "Description": "删除道具rep",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -611,7 +611,7 @@
           "Description": "通过Id删除道具",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -669,7 +669,7 @@
           "Description": "添加道具listrsp",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -705,7 +705,7 @@
           "Description": "删除道具listrep",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -741,7 +741,7 @@
           "Description": "通过IDs删除道具listrep",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -777,7 +777,7 @@
           "Description": "改变道具rep",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "CS;Client",
+          "Scope": "CS;",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -1391,7 +1391,7 @@
                   "Description": "添加道具req",
                   "Tag": 0,
                   "Flag": 0,
-                  "Scope": "CS;Client",
+                  "Scope": "CS;",
                   "ModelType": "None",
                   "Type": "Struct",
                   "Entity": {
@@ -1450,7 +1450,7 @@
                 "Description": "添加道具rsp",
                 "Tag": 0,
                 "Flag": 0,
-                "Scope": "CS;Client",
+                "Scope": "CS;",
                 "ModelType": "None",
                 "Type": "Struct",
                 "Entity": {

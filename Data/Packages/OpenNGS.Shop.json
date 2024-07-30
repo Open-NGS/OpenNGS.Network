@@ -1242,7 +1242,7 @@
     "OpenNGS.Shop.Service": {
       "Name": "OpenNGS.Shop.Service",
       "PackageType": "Message",
-      "Scope": "All",
+      "Scope": "CS",
       "Models": {
         "OpenNGS.Shop.Service.ShopReq": {
           "RawPackage": "OpenNGS.Shop",
@@ -1254,7 +1254,7 @@
           "Description": "获取商店信息的请求",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -1290,7 +1290,7 @@
           "Description": "获取商店信息的响应",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -1350,7 +1350,7 @@
           "Description": "货架状态",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -1420,7 +1420,7 @@
           "Description": "货物状态",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -1467,7 +1467,7 @@
           "Description": "购买信息",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
@@ -1547,7 +1547,7 @@
           "Description": "购买响应",
           "Tag": 0,
           "Flag": 0,
-          "Scope": "All",
+          "Scope": "CS",
           "ModelType": "None",
           "Type": "Struct",
           "Entity": {
