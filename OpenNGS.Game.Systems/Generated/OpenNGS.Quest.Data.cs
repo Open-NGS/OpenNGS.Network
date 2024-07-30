@@ -31,7 +31,7 @@ namespace OpenNGS.Quest.Data
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint QuestGroupID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
+        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
         public uint[] Quests { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public NGSText Tile { get; set; }

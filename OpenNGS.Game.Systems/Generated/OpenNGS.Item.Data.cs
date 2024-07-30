@@ -517,16 +517,16 @@ namespace OpenNGS.Item.Data
         }
         public ItemResult()
         {
-            Items = new global::System.Collections.Generic.List<ItemSaveState>();
+            ItemList = new global::System.Collections.Generic.List<ItemSaveState>();
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public ItemResultType result { get; set; }
+        public ItemResultType ItemResultTyp { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ItemSaveState> Items { get;set;  }
+        public global::System.Collections.Generic.List<ItemSaveState> ItemList { get;set;  }
     }
     //装备的游戏数据
     [global::ProtoBuf.ProtoContract()]

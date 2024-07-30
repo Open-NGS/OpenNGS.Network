@@ -4,6 +4,8 @@ using OpenNGS.Technology.Data;
 using OpenNGS.Exchange.Common;
 using OpenNGS.Technology.Common;
 using Systems;
+using OpenNGS.Item.Service;
+using OpenNGS.Exchange.Service;
 
 
 namespace OpenNGS.Systems
@@ -15,14 +17,14 @@ namespace OpenNGS.Systems
         public List<SourceItem> sourceItems = new List<SourceItem>();
         public List<TargetItem> targetItems = new List<TargetItem>();
 
-        private IExchangeSystem m_exchangeSyetem = null;
-        private IItemSystem m_itemSystem = null;
+        private INgExchangeSystem m_exchangeSyetem = null;
+        private INgItemSystem m_itemSystem = null;
 
         protected override void OnCreate()
         {
             base.OnCreate();
-            m_itemSystem = App.GetService<IItemSystem>();
-            m_exchangeSyetem = App.GetService<IExchangeSystem>();
+            m_itemSystem = App.GetService<INgItemSystem>();
+            m_exchangeSyetem = App.GetService<INgExchangeSystem>();
 
         }
 
@@ -42,7 +44,8 @@ namespace OpenNGS.Systems
 
         public uint GetTechnologyDots(uint technologyDotID)
         {
-            return m_itemSystem.GetItemCountByGuidID(technologyDotID);
+            //return m_itemSystem.GetItemCountByGuidID(technologyDotID);
+            return 1;
         }
 
         public Dictionary<uint, NodeData> InitNodes(List<uint> rootNodeIDs)
@@ -128,22 +131,36 @@ namespace OpenNGS.Systems
 
             NodeData tNode = NGSStaticData.technologyNodes.GetItem(technologyNodeID);
 
-            //暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
-            uint id = m_itemSystem.GetGuidByItemID(currencyID);
-            technologyDots.GUID = id;//科技点数对应ItemID
-            technologyDots.Count = tNode.CostItemCount;//升级科技点需要的科技点数
-            sourceItems.Add(technologyDots);
-            technologyNode.ItemID = tNode.ID;//科技点
-            technologyNode.Count = 1;//升级科技点
-            targetItems.Add(technologyNode);
-            //科技点数不足
-            switch(m_exchangeSyetem.ExchangeItem(sourceItems, targetItems))
+            ////暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
+            //uint id = m_itemSystem.GetGuidByItemID(currencyID);
+            //technologyDots.GUID = id;//科技点数对应ItemID
+            //technologyDots.Count = tNode.CostItemCount;//升级科技点需要的科技点数
+            //sourceItems.Add(technologyDots);
+            //technologyNode.ItemID = tNode.ID;//科技点
+            //technologyNode.Count = 1;//升级科技点
+            //targetItems.Add(technologyNode);
+            ////科技点数不足
+            //switch(m_exchangeSyetem.ExchangeItem(sourceItems, targetItems))
+            //{
+            //    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE:
+            //        return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NONE;
+            //    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
+            //        return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
+            //    case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
+            //        return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_ERROR_UPGRADE;
+            //}
+
+            ExchangeByItemIDReq request = new ExchangeByItemIDReq();
+            ItemSrcState source = new ItemSrcState();
+            source.ItemID = currencyID;
+            source.Counts = tNode.CostItemCount;
+            request.Source.Add(source);
+            ExchangeRsp reult = m_exchangeSyetem.ExchangeItemByID(request);
+            switch (reult.result)
             {
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NONE:
-                    return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NONE;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOENOUGH:
+                case ExchangeResultType.Failed_NotEnough:
                     return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
-                case EXCHANGE_RESULT_TYPE.EXCHANGE_RESULT_TYPE_NOITEM:
+                case ExchangeResultType.Error_NotExist_Source:
                     return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_ERROR_UPGRADE;
             }
 
@@ -187,7 +204,11 @@ namespace OpenNGS.Systems
             {
                 return TECHNOLOGY_RESULT_TYPE.TECHNOLOGY_RESULT_TYPE_NO_COUNT;
             }
-            m_itemSystem.AddItemsByID(currencyID, costSum);
+            AddItemReq req = new AddItemReq();
+            req.ColIdx = 1;
+            req.ItemID = currencyID;
+            req.Counts = costSum;
+            m_itemSystem.AddItemsByID(req);
 
             //调整玩家属性
             //xxx();

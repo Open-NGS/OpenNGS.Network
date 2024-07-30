@@ -1,5 +1,3 @@
-using OpenNGS.Collections.Generic;
-using OpenNGS.Dialog.Common;
 using OpenNGS.Dialog.Data;
 using System;
 using System.Collections.Generic;
@@ -83,11 +81,12 @@ namespace OpenNGS.Systems
             }
             DisplayDialog();
         }
-        public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType()
-        {
-            DialogList dialog = NGSStaticData.Dialogue.GetItem(m_nDialogID);
-            return (DIALOG_TYPE)dialog.Type;
-        }
+        //public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType()
+        //{
+        //    //DialogList dialog = NGSStaticData.Dialogue.GetItem(m_nDialogID);
+        //    return DIALOG_TYPE.DIALOG_TYPE_NORMAL;
+
+        //}
         private void DisplayDialog()
         {
             if (CurrentIndex < DialogTalks.Count)
@@ -110,21 +109,22 @@ namespace OpenNGS.Systems
             CurrentIndex++;
             DisplayDialog();
         }
-        private bool IsOptionAvailable(DialogChoice Choice)
-        {
-            //if (Choice.DialogChoiceCondition == DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_NONE)
-            //{
-            //    return true;
-            //}
-            if (_choiceEvaluator == null)
-            {
-                throw new InvalidOperationException("DialogChoiceEvaluator not set.");
-            }
-            else
-            {
-                return _choiceEvaluator.EvaluateCondition(Choice);
-            }
-        }
+        //private bool IsOptionAvailable(DialogChoice Choice)
+        //{
+        //    if (Choice.DialogChoiceCondition == DIALOG_CHOICE_CONDITION_TYPE.DIALOG_CHOICE_CONDITION_TYPE_NONE)
+        //    {
+        //        return true;
+        //    }
+        //    if (_choiceEvaluator == null)
+        //    {
+        //        throw new InvalidOperationException("DialogChoiceEvaluator not set.");
+        //    }
+        //    else
+        //    {
+        //        return _choiceEvaluator.EvaluateCondition(Choice);
+        //    }
+        //    return true;
+        //}
 
         public uint GetCurrentDialogID()
         {
@@ -137,10 +137,11 @@ namespace OpenNGS.Systems
             foreach (uint optionid in options)
             {
                 DialogChoice choice = NGSStaticData.Choice.GetItem(optionid);
-                if (IsOptionAvailable(choice))
-                {
-                    Choices.Add(choice);
-                }
+                Choices.Add(choice);
+                //if (IsOptionAvailable(choice))
+                //{
+                //    Choices.Add(choice);
+                //}
             }
         }
         public void SelectChoice(DialogChoice choice)

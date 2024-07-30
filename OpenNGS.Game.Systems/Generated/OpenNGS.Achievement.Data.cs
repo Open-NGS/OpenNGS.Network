@@ -37,7 +37,7 @@ namespace OpenNGS.Achievement.Data
         public uint StatValue { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
         public uint IsHide { get; set; }
-        [global::ProtoBuf.ProtoMember(5)]
+        [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
         public uint[] SubAchievement { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
         public uint SubSameOwner { get; set; }

@@ -96,27 +96,23 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
     }
     #endregion
 
-    #region S2C
-    // 请求响应
-    public void OnSettingRsp(GetSettingRsq rsp)
-    {
-        if (rsp.Result == OpenNGS.Common.RESULT_TYPE.RESULT_TYPE_SUCCESS)
-        {
-            OnGetSetting = rsp;
-        }
+    //#region S2C
+    //// 请求响应
+    //public void OnSettingRsp(GetSettingRsq rsp)
+    //{
+    //    if (rsp.Result == OpenNGS.Setting.Common.RESULT_TYPE.RESULT_TYPE_SUCCESS)
+    //    {
+    //        OnGetSetting = rsp;
+    //    }
 
-        else
-        {
-            //Debug.LogError(""+rsp.Result);
-        }
-    }
-    #endregion
+    //    else
+    //    {
+    //        //Debug.LogError(""+rsp.Result);
+    //    }
+    //}
+    //#endregion
 
     // 上传数据
-    public void SendGameSetting(SaveFileData_Setting settingData)
-    {
-
-    }
     public override string GetSystemName()
     {
         return "com.openngs.system.GameSetting";

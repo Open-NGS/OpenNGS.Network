@@ -10,6 +10,9 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Shop.Data.Shop, uint> shops = new Table<OpenNGS.Shop.Data.Shop, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.Shelf,uint, uint> shelfs = new Table<OpenNGS.Shop.Data.Shelf, uint, uint>((item) => { return item.ShopId; }, (item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.Good, uint, uint> goods = new Table<OpenNGS.Shop.Data.Good, uint, uint>((item) => { return item.ShelfId; }, (item) => { return item.ID; }, false);
+        public static Table<OpenNGS.Shop.Data.Shelf, uint> shelfDatas = new Table<OpenNGS.Shop.Data.Shelf, uint>((item) => { return item.ID; }, false);
+        public static Table<OpenNGS.Shop.Data.Good, uint> goodDatas = new Table<OpenNGS.Shop.Data.Good, uint>((item) => { return item.ID; }, false);
+
         public static Table<OpenNGS.Technology.Data.NodeData, uint> technologyNodes = new Table<Technology.Data.NodeData, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Item.Data.Item,uint> items = new Table<Item.Data.Item, uint>((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Item.Data.EquipStats, uint> equipStats = new Table<Item.Data.EquipStats, uint>((item) => { return item.ID; }, false);
@@ -35,11 +38,13 @@ namespace OpenNGS.Systems
         public static ListTableBase<OpenNGS.Achievement.Data.AchievementAward, uint> s_achiAward = new ListTableBase<Achievement.Data.AchievementAward, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Levels.Data.LevelEnemyInfo, uint, uint> levelEnemyInfo = new Table<Levels.Data.LevelEnemyInfo, uint, uint>((item) => { return item.ID; }, (item) => { return item.RuleID; }, false);
         public static ListTableBase<OpenNGS.Levels.Data.LevelEnemyInfo,uint> levelEnemyInfos=new ListTableBase<Levels.Data.LevelEnemyInfo, uint>((item) => { return item.ID; }, false);
+        //public static Table<OpenNGS.Item.Data.DisassembleEquipIno,uint> disassembleEquipIno =new Table<Item.Data.DisassembleEquipIno, uint> ((item) => { return item.ID; }, false);
+        //public static Table<OpenNGS.Item.Data.LuckyStone, uint> LuckyStone = new Table<Item.Data.LuckyStone, uint> ((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Reward.Data.Reward, uint> reward = new Table<Reward.Data.Reward, uint> ((item) => { return item.Id; }, false);
         public static ListTableBase<OpenNGS.Reward.Data.RewardContent, uint> rewardContent = new ListTableBase<Reward.Data.RewardContent, uint> ((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Reward.Data.RewardCondition, uint> rewardCondition = new Table<Reward.Data.RewardCondition, uint> ((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Statistic.Data.StatData, uint> statisticItems = new Table<OpenNGS.Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
-
+        public static Table<OpenNGS.Setting.Data.UserSettingValueState, uint> settingValueState = new Table<Setting.Data.UserSettingValueState, uint>((item) => { return item.ID; }, false);
         public static void Init() { }
     }
 }

@@ -9,7 +9,6 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
 {
-    IStatSystem stat;
     List<OpenNGS.Levels.Data.NGSLevelInfo> levelStages = NGSStaticData.levelInfo.Items;
     List<StatData> stats = NGSStaticData.s_statDatas.Items;
 
@@ -19,7 +18,6 @@ public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
 
     protected override void OnCreate()
     {
-        stat = App.GetService<IStatSystem>();
         base.OnCreate();
     }
 
@@ -34,8 +32,6 @@ public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
                 if (levelStages[i].ID == stats[j].ObjCategory && stats[j].Id > 2)
                 {
                     ulong data;
-                    stat.GetStatValueByID(stats[j].Id, out data);
-                    SingleData.Add(stats[j], data);
                 }
             }
         }
@@ -51,8 +47,6 @@ public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
             if (stats[i].ObjCategory == 0)
             {
                 ulong data;
-                stat.GetStatValueByID(stats[i].Id, out data);
-                OverallData.Add(stats[i],data);
             }
         }
         return OverallData;

@@ -31,7 +31,7 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint DialogID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
+        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
         public uint[] DialogTalkIDs { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public uint DisplayType { get; set; }
@@ -69,7 +69,7 @@ namespace OpenNGS.Dialog.Data
         public NGSText Content { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
         public bool IsEnd { get; set; }
-        [global::ProtoBuf.ProtoMember(7)]
+        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
         public uint[] ChoiceIDs { get; set; }
         [global::ProtoBuf.ProtoMember(8)]
         public uint ChoiceCount { get; set; }

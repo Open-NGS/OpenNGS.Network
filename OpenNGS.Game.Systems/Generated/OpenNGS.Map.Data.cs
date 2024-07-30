@@ -46,7 +46,7 @@ namespace OpenNGS.Map.Data
         public uint Row { get; set; }
         [global::ProtoBuf.ProtoMember(8)]
         public uint Col { get; set; }
-        [global::ProtoBuf.ProtoMember(9)]
+        [global::ProtoBuf.ProtoMember(9, IsPacked = true)]
         public uint[] NearMapID { get; set; }
     }
 

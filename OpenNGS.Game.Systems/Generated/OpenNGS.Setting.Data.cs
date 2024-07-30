@@ -436,7 +436,7 @@ namespace OpenNGS.Setting.Data
         public int UserSettingType { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public uint Value { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
         public uint[] Values { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
         public uint Locate { get; set; }

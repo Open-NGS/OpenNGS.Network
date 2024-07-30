@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OpenNGS.Dialog.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenNGS.Systems
 {
@@ -11,7 +7,7 @@ namespace OpenNGS.Systems
     {
         DialogTalk CurrentDialog { get; set; }
         List<DialogChoice> Choices { get; set; }
-        public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType();
+        //public OpenNGS.Dialog.Common.DIALOG_TYPE GetDialogType();
         public void LoadDialogs(uint dialogId);
         public void SelectChoice(DialogChoice option);
         public void NextDialog();
