@@ -668,43 +668,6 @@
               }
             }
           }
-        },
-        "OpenNGS.Statistic.Data.StatisticContainer": {
-          "RawPackage": "OpenNGS.Statistic",
-          "Methods": {},
-          "Name": "StatisticContainer",
-          "Package": "OpenNGS.Statistic.Data",
-          "Fullname": "OpenNGS.Statistic.Data.StatisticContainer",
-          "PackageName": "OpenNGS.Statistic.StatisticContainer",
-          "Description": "统计系统的游戏数据",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "Client",
-          "ModelType": "Table",
-          "Type": "Struct",
-          "Entity": {
-            "Name": "StatisticContainer",
-            "Package": "OpenNGS.Statistic.Data",
-            "RawPackage": "OpenNGS.Statistic",
-            "Fullname": "OpenNGS.Statistic.Data.StatisticContainer",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Statistic.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "StatisticSaveData": {
-                "Name": "StatisticSaveData",
-                "Type": "Map",
-                "CustomType": "map<uint64,StatValue>",
-                "Description": "统计项数据表",
-                "Tag": 1,
-                "Scope": "Client",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              }
-            }
-          }
         }
       },
       "References": [
@@ -1322,6 +1285,43 @@
                 "Description": "关卡通过时长",
                 "Tag": 19,
                 "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Statistic.Common.StatisticContainer": {
+          "RawPackage": "OpenNGS.Statistic",
+          "Methods": {},
+          "Name": "StatisticContainer",
+          "Package": "OpenNGS.Statistic.Common",
+          "Fullname": "OpenNGS.Statistic.Common.StatisticContainer",
+          "PackageName": "OpenNGS.Statistic.StatisticContainer",
+          "Description": "统计系统的游戏数据",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "StatisticContainer",
+            "Package": "OpenNGS.Statistic.Common",
+            "RawPackage": "OpenNGS.Statistic",
+            "Fullname": "OpenNGS.Statistic.Common.StatisticContainer",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Statistic.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "StatisticSaveData": {
+                "Name": "StatisticSaveData",
+                "Type": "Map",
+                "CustomType": "map<uint64,StatValue>",
+                "Description": "统计项数据表",
+                "Tag": 1,
+                "Scope": "Client",
                 "Attributes": "None",
                 "IsRequired": false,
                 "IsRepeated": false,
