@@ -25,7 +25,7 @@ public class NgSettingSystem : GameSubSystem<NgSettingSystem>,INgSettingSystem
     {
         return settingContainer.GetSetting(settingType);
     }
-    public void AddItemContainer(UserSettingContainer Container)
+    public void AddSettingContainer(UserSettingContainer Container)
     {
         if (Container != null)
         {
@@ -33,8 +33,7 @@ public class NgSettingSystem : GameSubSystem<NgSettingSystem>,INgSettingSystem
         }
         else
         {
-            List<UserSettingValueState> states = NGSStaticData.settingValueState.Items;
-            settingContainer = new UserSettingContainer(states);
+            settingContainer = new UserSettingContainer();
         }
     }
     public override string GetSystemName()

@@ -13,9 +13,9 @@ public class SettingService : Singleton<SettingService>,INgSettingSystem
         ngSettingSystem.AddActionOnSettingChange(ac);
     }
 
-    public void AddItemContainer(UserSettingContainer container)
+    public void AddSettingContainer(UserSettingContainer container)
     {
-        ngSettingSystem.AddItemContainer(container);
+        ngSettingSystem.AddSettingContainer(container);
     }
 
     public void ChangeSetting(int settingType, int value)
