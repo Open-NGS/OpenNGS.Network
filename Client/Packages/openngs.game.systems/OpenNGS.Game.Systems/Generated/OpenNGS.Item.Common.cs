@@ -51,11 +51,11 @@ namespace OpenNGS.Item.Common
         ITEM_KIND_EQUIP_ARM = 6, // 手臂
         ITEM_KIND_EQUIP_LEG = 7, // 腿部
         ITEM_KIND_EQUIP_BACK = 8, // 背部
-        ITEM_KIND_MATERIAL_BLUEPRINT = 9, // 图纸
-        ITEM_KIND_MATERIAL_STUFF = 10, // 材料
-        ITEM_KIND_MATERIAL_STONE = 11, // 幸运石
-        ITEM_KIND_EQUIP_RELIC = 12, // 遗物
-        ITEM_KIND_EQUIP_SHOES = 13, // 鞋子
+        ITEM_KIND_EQUIP_SHOES = 9, // 鞋子
+        ITEM_KIND_MATERIAL_BLUEPRINT = 10, // 图纸
+        ITEM_KIND_MATERIAL_STUFF = 11, // 材料
+        ITEM_KIND_MATERIAL_STONE = 12, // 幸运石
+        ITEM_KIND_EQUIP_RELIC = 13, // 遗物
     }
 
     //道具过期类型
