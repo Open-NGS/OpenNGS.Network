@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingService : Singleton<SettingService>,INgSettingSystem
+public class SettingService : Singleton<SettingService>
 {
     INgSettingSystem ngSettingSystem = App.GetService<NgSettingSystem>();
     public void AddActionOnSettingChange(Action<int, int> ac)
