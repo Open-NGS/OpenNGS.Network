@@ -213,10 +213,10 @@ namespace OpenNGS.Exchange.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<GridSrcState> Source { get; private set; }
+        public global::System.Collections.Generic.List<GridSrcState> Source { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<TargetState> Target { get; private set; }
+        public global::System.Collections.Generic.List<TargetState> Target { get; set; }
 
     }
 
