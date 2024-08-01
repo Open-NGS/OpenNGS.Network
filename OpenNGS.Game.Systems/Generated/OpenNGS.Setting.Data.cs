@@ -9,25 +9,26 @@
 using OpenNGS.Core;
 using OpenNGS.Common;
 using OpenNGS.Setting.Common;
+using RESULT_TYPE = OpenNGS.Setting.Common.RESULT_TYPE;
 
 
-namespace OpenNGS.Setting.Data 
+namespace OpenNGS.Setting.Data
 {
 
     //设置标签
     [global::ProtoBuf.ProtoContract()]
     public partial class GameSettingLabel : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public GameSettingLabel()
         {
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -40,17 +41,17 @@ namespace OpenNGS.Setting.Data
     //设置响应
     [global::ProtoBuf.ProtoContract()]
     public partial class GetSettingRsq : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public GetSettingRsq()
         {
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -69,17 +70,17 @@ namespace OpenNGS.Setting.Data
     //画面
     [global::ProtoBuf.ProtoContract()]
     public partial class VerticalSynchronization : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public VerticalSynchronization()
         {
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -92,17 +93,17 @@ namespace OpenNGS.Setting.Data
     //音频
     [global::ProtoBuf.ProtoContract()]
     public partial class AudioSettingInfo : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public AudioSettingInfo()
         {
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -119,18 +120,18 @@ namespace OpenNGS.Setting.Data
     //按键
     [global::ProtoBuf.ProtoContract()]
     public partial class KeyControlSettingInfo : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public KeyControlSettingInfo()
         {
             Key = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -143,17 +144,17 @@ namespace OpenNGS.Setting.Data
     //语言
     [global::ProtoBuf.ProtoContract()]
     public partial class Language : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public Language()
         {
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -168,18 +169,18 @@ namespace OpenNGS.Setting.Data
     //分辨率
     [global::ProtoBuf.ProtoContract()]
     public partial class ResolutionRatios : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public ResolutionRatios()
         {
             ResValue = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -192,27 +193,27 @@ namespace OpenNGS.Setting.Data
     //设置存档数据
     [global::ProtoBuf.ProtoContract()]
     public partial class SettingContainer : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public SettingContainer()
         {
             Audio = new global::System.Collections.Generic.List<AudioSettingData>();
             KeyControl = new global::System.Collections.Generic.List<KeyControlSettingData>();
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public VerticalSynchronizationData Vertical { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<AudioSettingData> Audio { get;set;  }
+        public global::System.Collections.Generic.List<AudioSettingData> Audio { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public global::System.Collections.Generic.List<KeyControlSettingData> KeyControl { get;set;  }
+        public global::System.Collections.Generic.List<KeyControlSettingData> KeyControl { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
         public LanguageData Language { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
@@ -221,18 +222,18 @@ namespace OpenNGS.Setting.Data
     //画面存档结构
     [global::ProtoBuf.ProtoContract()]
     public partial class VerticalSynchronizationData : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public VerticalSynchronizationData()
         {
             VerName = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -243,19 +244,19 @@ namespace OpenNGS.Setting.Data
     //音频存档结构
     [global::ProtoBuf.ProtoContract()]
     public partial class AudioSettingData : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public AudioSettingData()
         {
             AudioName = "";
             Value = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -268,19 +269,19 @@ namespace OpenNGS.Setting.Data
     //控制存档结构
     [global::ProtoBuf.ProtoContract()]
     public partial class KeyControlSettingData : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public KeyControlSettingData()
         {
             KeyName = "";
             KeyValue = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -291,18 +292,18 @@ namespace OpenNGS.Setting.Data
     //语言存档结构
     [global::ProtoBuf.ProtoContract()]
     public partial class LanguageData : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public LanguageData()
         {
             LanName = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -313,18 +314,18 @@ namespace OpenNGS.Setting.Data
     //分辨率存档结构
     [global::ProtoBuf.ProtoContract()]
     public partial class ResolutionRatiosData : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public ResolutionRatiosData()
         {
             ResName = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -335,17 +336,17 @@ namespace OpenNGS.Setting.Data
     //设置项数据存储结构
     [global::ProtoBuf.ProtoContract()]
     public partial class UserSettingValueState : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public UserSettingValueState()
         {
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -360,18 +361,18 @@ namespace OpenNGS.Setting.Data
     //设置的分组信息
     [global::ProtoBuf.ProtoContract()]
     public partial class UserSettingUIGroupInfo : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public UserSettingUIGroupInfo()
         {
             CategoryName = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -384,19 +385,19 @@ namespace OpenNGS.Setting.Data
     //设置的分组行信息
     [global::ProtoBuf.ProtoContract()]
     public partial class UserSettingSection : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public UserSettingSection()
         {
             Title = "";
             Tips = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -413,11 +414,11 @@ namespace OpenNGS.Setting.Data
     //用户设置UI
     [global::ProtoBuf.ProtoContract()]
     public partial class UserSettingUI : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public UserSettingUI()
         {
@@ -425,9 +426,9 @@ namespace OpenNGS.Setting.Data
             Component = "";
             Tips = "";
             Desc = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -472,19 +473,19 @@ namespace OpenNGS.Setting.Data
     //设置选项数据
     [global::ProtoBuf.ProtoContract()]
     public partial class SettingOption : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public SettingOption()
         {
             Title = "";
             Tips = "";
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
@@ -501,22 +502,22 @@ namespace OpenNGS.Setting.Data
     //用户设置存档数据
     [global::ProtoBuf.ProtoContract()]
     public partial class UserSettingContainer : global::ProtoBuf.IExtensible
-{
+    {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
         public UserSettingContainer()
         {
             ValueState = new global::System.Collections.Generic.List<UserSettingValueState>();
-        	OnConstructor();
+            OnConstructor();
         }
-        
+
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<UserSettingValueState> ValueState { get;set;  }
+        public global::System.Collections.Generic.List<UserSettingValueState> ValueState { get; set; }
     }
 
 }

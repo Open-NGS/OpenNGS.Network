@@ -1,7 +1,7 @@
 using OpenNGS;
 using OpenNGS.Common;
-using OpenNGS.Item.Service;
 using OpenNGS.Reward.Data;
+using OpenNGS.Item.Service;
 using OpenNGS.Systems;
 using System.Collections.Generic;
 using Systems;
