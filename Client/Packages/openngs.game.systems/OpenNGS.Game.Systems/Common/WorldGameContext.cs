@@ -33,6 +33,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(INgShopSystem), new NgShopSystem()));
         services.Add(new ServiceDescriptor(typeof(INgDialogSystem), new NgDialogSystem()));
         services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgBlindBoxSystem), new NgSettingSystem()));
     }
 
     protected override void OnInit()

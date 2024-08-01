@@ -7,24 +7,28 @@ using UnityEngine;
 
 public class SettingLocalAPI : Singleton<SettingLocalAPI>,ISettingClientAPI
 {
-    INgSettingSystem ngSettingSystem = App.GetService<NgSettingSystem>();
+    INgSettingSystem m_NgSettingSystem;
+    public void Init()
+    {
+        m_NgSettingSystem = App.GetService<INgSettingSystem>();
+    }
     public void AddActionOnSettingChange(Action<int, int> ac)
     {
-        ngSettingSystem.AddActionOnSettingChange(ac);
+        m_NgSettingSystem.AddActionOnSettingChange(ac);
     }
 
     public void AddSettingContainer(UserSettingContainer container)
     {
-        ngSettingSystem.AddSettingContainer(container);
+        m_NgSettingSystem.AddSettingContainer(container);
     }
 
     public void ChangeSetting(int settingType, int value)
     {
-        ngSettingSystem.ChangeSetting(settingType, value);
+        m_NgSettingSystem.ChangeSetting(settingType, value);
     }
 
     public UserSettingValueState GetSetting(int settingType)
     {
-        return ngSettingSystem.GetSetting(settingType);
+        return m_NgSettingSystem.GetSetting(settingType);
     }
 }

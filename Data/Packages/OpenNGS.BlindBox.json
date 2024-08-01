@@ -1,0 +1,513 @@
+﻿{
+  "Packages": {
+    "OpenNGS.BlindBox.Common": {
+      "Name": "OpenNGS.BlindBox.Common",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.BlindBox.Common.Drop_ExcuteType": {
+          "RawPackage": "OpenNGS.BlindBox",
+          "Methods": {},
+          "Name": "Drop_ExcuteType",
+          "Package": "OpenNGS.BlindBox.Common",
+          "Fullname": "OpenNGS.BlindBox.Common.Drop_ExcuteType",
+          "PackageName": "OpenNGS.BlindBox.Drop_ExcuteType",
+          "Description": "掉落执行类型",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "None",
+          "Type": "Enum",
+          "Entity": {
+            "Name": "Drop_ExcuteType",
+            "Package": "OpenNGS.BlindBox.Common",
+            "RawPackage": "OpenNGS.BlindBox",
+            "Fullname": "OpenNGS.BlindBox.Common.Drop_ExcuteType",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.BlindBox.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "Drop_ExcuteType_None": {
+                "Name": "Drop_ExcuteType_None",
+                "Type": "Uint32",
+                "Description": "不执行",
+                "Tag": 0,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Drop_ExcuteType_All": {
+                "Name": "Drop_ExcuteType_All",
+                "Type": "Uint32",
+                "Description": "全部执行，一次性执行所有规则",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Drop_ExcuteType_Order": {
+                "Name": "Drop_ExcuteType_Order",
+                "Type": "Uint32",
+                "Description": "按顺序执行掉落，一次一条规则",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Drop_ExcuteType_Random": {
+                "Name": "Drop_ExcuteType_Random",
+                "Type": "Uint32",
+                "Description": "随机执行掉落，一次一条规则",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    },
+    "OpenNGS.BlindBox.Data": {
+      "Name": "OpenNGS.BlindBox.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.BlindBox.Data.EntityDrop": {
+          "RawPackage": "OpenNGS.BlindBox",
+          "Methods": {},
+          "Name": "EntityDrop",
+          "Package": "OpenNGS.BlindBox.Data",
+          "Fullname": "OpenNGS.BlindBox.Data.EntityDrop",
+          "PackageName": "OpenNGS.BlindBox.EntityDrop",
+          "Description": "实体掉落",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "EntityDrop",
+            "Package": "OpenNGS.BlindBox.Data",
+            "RawPackage": "OpenNGS.BlindBox",
+            "Fullname": "OpenNGS.BlindBox.Data.EntityDrop",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.BlindBox.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "EntityID": {
+                "Name": "EntityID",
+                "Type": "Uint32",
+                "Description": "实体ID/关卡ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Drop": {
+                "Name": "Drop",
+                "Type": "Uint32",
+                "Description": "掉落ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.BlindBox.Data.DropLimits": {
+          "RawPackage": "OpenNGS.BlindBox",
+          "Methods": {},
+          "Name": "DropLimits",
+          "Package": "OpenNGS.BlindBox.Data",
+          "Fullname": "OpenNGS.BlindBox.Data.DropLimits",
+          "PackageName": "OpenNGS.BlindBox.DropLimits",
+          "Description": "掉落限制",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DropLimits",
+            "Package": "OpenNGS.BlindBox.Data",
+            "RawPackage": "OpenNGS.BlindBox",
+            "Fullname": "OpenNGS.BlindBox.Data.DropLimits",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.BlindBox.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ItemID": {
+                "Name": "ItemID",
+                "Type": "Uint32",
+                "Description": "物品ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "String",
+                "Description": "物品名",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "LevelLimit": {
+                "Name": "LevelLimit",
+                "Type": "Uint32",
+                "Description": "关卡限制",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.BlindBox.Data.Drop": {
+          "RawPackage": "OpenNGS.BlindBox",
+          "Methods": {},
+          "Name": "Drop",
+          "Package": "OpenNGS.BlindBox.Data",
+          "Fullname": "OpenNGS.BlindBox.Data.Drop",
+          "PackageName": "OpenNGS.BlindBox.Drop",
+          "Description": "掉落行为",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Drop",
+            "Package": "OpenNGS.BlindBox.Data",
+            "RawPackage": "OpenNGS.BlindBox",
+            "Fullname": "OpenNGS.BlindBox.Data.Drop",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.BlindBox.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "DropID": {
+                "Name": "DropID",
+                "Type": "Uint32",
+                "Description": "掉落ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "String",
+                "Description": "名字",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DropRuleIDs": {
+                "Name": "DropRuleIDs",
+                "Type": "Uint32",
+                "Description": "掉落规则ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "Repeated",
+                "IsRequired": false,
+                "IsRepeated": true,
+                "IsOptional": false
+              },
+              "RuleDropType": {
+                "Name": "RuleDropType",
+                "Type": "Uint32",
+                "Description": "规则执行类型",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Repeatable": {
+                "Name": "Repeatable",
+                "Type": "Bool",
+                "Description": "是否可以重复随机",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Loop": {
+                "Name": "Loop",
+                "Type": "Bool",
+                "Description": "掉落是否可循环",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "MaxDropNum": {
+                "Name": "MaxDropNum",
+                "Type": "Uint32",
+                "Description": "最大掉落数量",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.BlindBox.Data.DropRule": {
+          "RawPackage": "OpenNGS.BlindBox",
+          "Methods": {},
+          "Name": "DropRule",
+          "Package": "OpenNGS.BlindBox.Data",
+          "Fullname": "OpenNGS.BlindBox.Data.DropRule",
+          "PackageName": "OpenNGS.BlindBox.DropRule",
+          "Description": "掉落规则",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DropRule",
+            "Package": "OpenNGS.BlindBox.Data",
+            "RawPackage": "OpenNGS.BlindBox",
+            "Fullname": "OpenNGS.BlindBox.Data.DropRule",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.BlindBox.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "DropRuleID": {
+                "Name": "DropRuleID",
+                "Type": "Uint32",
+                "Description": "掉落ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "String",
+                "Description": "掉落规则名字",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DropGroupID": {
+                "Name": "DropGroupID",
+                "Type": "Uint32",
+                "Description": "掉落组ID",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Probability": {
+                "Name": "Probability",
+                "Type": "Float",
+                "Description": "概率",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Multiple": {
+                "Name": "Multiple",
+                "Type": "Uint32",
+                "Description": "道具数量翻倍效果",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ScaleMin": {
+                "Name": "ScaleMin",
+                "Type": "Uint32",
+                "Description": "翻倍比例下限",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ScaleMax": {
+                "Name": "ScaleMax",
+                "Type": "Uint32",
+                "Description": "翻倍比例上限",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.BlindBox.Data.DropGroup": {
+          "RawPackage": "OpenNGS.BlindBox",
+          "Methods": {},
+          "Name": "DropGroup",
+          "Package": "OpenNGS.BlindBox.Data",
+          "Fullname": "OpenNGS.BlindBox.Data.DropGroup",
+          "PackageName": "OpenNGS.BlindBox.DropGroup",
+          "Description": "掉落组",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DropGroup",
+            "Package": "OpenNGS.BlindBox.Data",
+            "RawPackage": "OpenNGS.BlindBox",
+            "Fullname": "OpenNGS.BlindBox.Data.DropGroup",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.BlindBox.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "DropGroupID": {
+                "Name": "DropGroupID",
+                "Type": "Uint32",
+                "Description": "掉落组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DropItemID": {
+                "Name": "DropItemID",
+                "Type": "Uint32",
+                "Description": "掉落物品ID",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Weight": {
+                "Name": "Weight",
+                "Type": "Uint32",
+                "Description": "权重",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "WeightInc": {
+                "Name": "WeightInc",
+                "Type": "Int32",
+                "Description": "权重改变",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ItemCountMin": {
+                "Name": "ItemCountMin",
+                "Type": "Uint32",
+                "Description": "掉落数量随机下限",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ItemCountMax": {
+                "Name": "ItemCountMax",
+                "Type": "Uint32",
+                "Description": "掉落数量随机上限",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DropItemName": {
+                "Name": "DropItemName",
+                "Type": "String",
+                "Description": "掉落组名",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Desc": {
+                "Name": "Desc",
+                "Type": "String",
+                "Description": "掉落组描述",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": []
+    }
+  },
+  "Name": "OpenNGS.BlindBox",
+  "PackageFile": "Packages/OpenNGS.BlindBox.json"
+}
