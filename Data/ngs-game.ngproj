@@ -58,7 +58,7 @@
         "mode": "Builtin"
       },
       "CodeConfig": {
-        "Language": "ng-csharp",
+        "Language": "pbnet-csharp",
         "Enable": true,
         "OutputPath": "Code",
         "LowercaseFilename": false

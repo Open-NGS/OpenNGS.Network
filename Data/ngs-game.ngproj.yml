@@ -55,7 +55,7 @@
       outputPath: ''
       lowercaseFilename: false
     codeConfig:
-      language: ng-csharp
+      language: pbnet-csharp
       enable: true
       outputPath: Code
       lowercaseFilename: false
