@@ -8,7 +8,6 @@
 #pragma warning disable 0612, 0618, 1591, 3021
 using OpenNGS.Core;
 using OpenNGS.Shop.Common;
-using OpenNGS.Common;
 
 
 namespace OpenNGS.Shop.Data 
@@ -299,7 +298,7 @@ namespace OpenNGS.Shop.Data
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint ShopId { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public RESULT_TYPE result { get; set; }
+        public SHOP_RESULT_TYPE result { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public uint ShelfId { get; set; }
     }
