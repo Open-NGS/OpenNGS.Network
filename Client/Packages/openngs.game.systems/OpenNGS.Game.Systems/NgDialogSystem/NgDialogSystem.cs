@@ -9,7 +9,7 @@ namespace OpenNGS.Systems
     {
         private List<DialogTalk> DialogTalks = new List<DialogTalk>();
         //private List<DialogChoice> Choices = new List<DialogChoice>();
-        //private List<object> History = new List<object>();
+        private List<uint> History = new List<uint>();
         private uint CurrentTalkID;
         private int CurrentIndex;
 
@@ -37,7 +37,7 @@ namespace OpenNGS.Systems
         {
             LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
             DialogTalks.Clear();
-            //History.Clear();
+            History.Clear();
             CurrentIndex = 0;
             uint[] dialogDataIds = NGSStaticData.Dialogue.GetItem(dialogId).DialogTalkIDs;
             foreach (uint dialogDataId in dialogDataIds)
@@ -105,7 +105,7 @@ namespace OpenNGS.Systems
             {
                 DialogTalk _talk = DialogTalks[CurrentIndex];
                 CurrentTalkID = DialogTalks[CurrentIndex].DialogTalkID;
-                //History.Add(DialogTalks[CurrentIndex]);
+                History.Add(DialogTalks[CurrentIndex].DialogTalkID);
                 //Choices.Clear();
                 //if (CurrentTalkID.ChoiceIDs != null)
                 //{
@@ -122,31 +122,9 @@ namespace OpenNGS.Systems
 
 
         // 获取对话历史
-        public List<object> GetHistory()
+        public List<uint> GetHistory()
         {
-            //return History;
-            return null;
+            return History;
         }
-
-        //public void DisplayHistory()
-        //{
-        //    DialogSystem dialogSystem = // 获取DialogSystem实例
-        //    List<object> history = dialogSystem.GetHistory();
-
-        //    foreach (var entry in history)
-        //    {
-        //        if (entry is DialogChoice choice)
-        //        {
-        //            Color choiceColor = choice.IsSelected ? Color.red : Color.white;
-        //            Debug.Log($"Choice: {choice.Text} (Color: {choiceColor})");
-        //        }
-        //        else if (entry is DialogTalk dialog)
-        //        {
-        //            Debug.Log($"Dialog: {dialog.Text}");
-        //        }
-        //    }
-        //}
-
-
     }
 }
