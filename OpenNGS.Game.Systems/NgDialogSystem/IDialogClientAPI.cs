@@ -1,10 +1,11 @@
-using OpenNGS.Dialog.Data;
 using OpenNGS.Dialog.Service;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace OpenNGS.Systems
 {
-    public interface INgDialogSystem
+    public interface IDialogClientAPI
     {
         public uint GetDialogDisplayType(uint dialogId);
         public LoadDialogRsp LoadDialogs(uint dialogId);
@@ -12,5 +13,4 @@ namespace OpenNGS.Systems
         public LoadDialogRsp NextDialog();
         public List<uint> GetHistory();
     }
-
 }
