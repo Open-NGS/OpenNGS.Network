@@ -18,7 +18,10 @@ public class NgSettingSystem : GameSubSystem<NgSettingSystem>,INgSettingSystem
     public void ChangeSetting(int settingType, int value)
     {
         settingContainer.ChangeSetting(settingType, value);
-        OnSettingChange.Invoke(settingType, value);
+        if (OnSettingChange != null)
+        {
+            OnSettingChange.Invoke(settingType, value);
+        }
     }
 
     public UserSettingValueState GetSetting(int settingType)

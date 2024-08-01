@@ -1687,6 +1687,17 @@
                 "IsRequired": false,
                 "IsRepeated": false,
                 "IsOptional": false
+              },
+              "Language": {
+                "Name": "Language",
+                "Type": "Uint32",
+                "Description": "语言",
+                "Tag": 10,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
               }
             }
           }
