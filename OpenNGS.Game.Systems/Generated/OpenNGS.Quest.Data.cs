@@ -38,13 +38,13 @@ namespace OpenNGS.Quest.Data
         [global::ProtoBuf.ProtoMember(4)]
         public NGSText Description { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
-        public QUEST_CATEGORY Category { get; set; }
+        public uint Category { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
         public uint RelyOnGroupID { get; set; }
         [global::ProtoBuf.ProtoMember(7)]
         public uint NextQuestGroupID { get; set; }
         [global::ProtoBuf.ProtoMember(8)]
-        public QUEST_PICK_RULE QuestPickRule { get; set; }
+        public Quest_PickRule QuestPickRule { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
         public uint PickNum { get; set; }
         [global::ProtoBuf.ProtoMember(10)]
@@ -85,7 +85,7 @@ namespace OpenNGS.Quest.Data
         [global::ProtoBuf.ProtoMember(8)]
         public bool isHidden { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
-        public QUEST_STATUS Status { get; set; }
+        public Quest_Status Status { get; set; }
         [global::ProtoBuf.ProtoMember(10)]
         public uint RewardID { get; set; }
         [global::ProtoBuf.ProtoMember(11)]
@@ -102,14 +102,14 @@ namespace OpenNGS.Quest.Data
         }
         public QuestContainer()
         {
-            QuestList = new global::System.Collections.Generic.List<QuestGroupData>();
+            QuestGroupList = new global::System.Collections.Generic.List<QuestGroupData>();
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<QuestGroupData> QuestList { get;set;  }
+        public global::System.Collections.Generic.List<QuestGroupData> QuestGroupList { get;set;  }
     }
     //任务存档
     [global::ProtoBuf.ProtoContract()]
@@ -130,7 +130,7 @@ namespace OpenNGS.Quest.Data
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint QuestID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public QUEST_STATUS Status { get; set; }
+        public Quest_Status Status { get; set; }
     }
     //任务组存档
     [global::ProtoBuf.ProtoContract()]
@@ -143,7 +143,7 @@ namespace OpenNGS.Quest.Data
         }
         public QuestGroupData()
         {
-            Quests = new global::System.Collections.Generic.List<QuestData>();
+            QuestDataList = new global::System.Collections.Generic.List<QuestData>();
         	OnConstructor();
         }
         
@@ -152,7 +152,7 @@ namespace OpenNGS.Quest.Data
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint QuestGroupID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<QuestData> Quests { get;set;  }
+        public global::System.Collections.Generic.List<QuestData> QuestDataList { get;set;  }
     }
 
 }
