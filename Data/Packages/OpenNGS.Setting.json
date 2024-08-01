@@ -89,8 +89,7 @@
             "Properties": {
               "Result": {
                 "Name": "Result",
-                "Type": "Unknow",
-                "CustomType": "RESULT_TYPE",
+                "Type": "Uint32",
                 "Description": "请求结果",
                 "Tag": 1,
                 "Scope": "All",
@@ -1384,7 +1383,6 @@
       },
       "References": [
         "OpenNGS.Core",
-        "OpenNGS.Common",
         "OpenNGS.Setting.Common"
       ]
     },

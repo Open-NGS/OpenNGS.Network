@@ -7,7 +7,6 @@
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
 using OpenNGS.Core;
-using OpenNGS.Common;
 using OpenNGS.Setting.Common;
 
 
@@ -54,7 +53,7 @@ namespace OpenNGS.Setting.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public RESULT_TYPE Result { get; set; }
+        public uint Result { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
         public VerticalSynchronization Vertical { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
