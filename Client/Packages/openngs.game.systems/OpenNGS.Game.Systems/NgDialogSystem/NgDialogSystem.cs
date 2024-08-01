@@ -27,11 +27,6 @@ namespace OpenNGS.Systems
         {
             return "com.openngs.system.dialog";
         }
-        public uint GetDialogDisplayType(uint dialogId)
-        {
-            return NGSStaticData.Dialogue.GetItem(dialogId).DisplayType;
-        }
-
         // º”‘ÿ∂‘ª∞
         public LoadDialogRsp LoadDialogs(uint dialogId)
         {
