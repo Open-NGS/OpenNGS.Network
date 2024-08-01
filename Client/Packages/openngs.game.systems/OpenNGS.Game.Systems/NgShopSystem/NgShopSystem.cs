@@ -1,7 +1,8 @@
-using OpenNGS.Exchange.Service;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Shop.Data;
-using OpenNGS.Shop.Service;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using Systems;
 
 namespace OpenNGS.Systems

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Client/Packages/openngs.game.systems/OpenNGS.Game.Systems/NgBlindBoxSystem.meta
+guid: ff379c9832199874c81b442c8c652107
+========
 guid: caaf7d8f0ca5c954dae1038e365264c7
+>>>>>>>> f98242036611e45d0931a8c1f1a4562b854dbdb8:Client/Packages/openngs.game.systems/OpenNGS.Game.Systems/NgDialogSystem.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

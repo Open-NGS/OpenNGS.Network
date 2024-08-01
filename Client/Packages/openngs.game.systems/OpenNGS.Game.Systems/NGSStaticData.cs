@@ -45,6 +45,12 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Reward.Data.RewardCondition, uint> rewardCondition = new Table<Reward.Data.RewardCondition, uint> ((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Statistic.Data.StatData, uint> statisticItems = new Table<OpenNGS.Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Setting.Data.UserSettingValueState, uint> settingValueState = new Table<Setting.Data.UserSettingValueState, uint>((item) => { return item.ID; }, false);
+        //盲盒系统使用
+        public static Table<OpenNGS.BlindBox.Data.EntityDrop, uint> entitydrop = new Table<OpenNGS.BlindBox.Data.EntityDrop, uint>((item) => { return item.EntityID; }, false);
+        public static Table<OpenNGS.BlindBox.Data.DropLimits, uint> droplimit = new Table<OpenNGS.BlindBox.Data.DropLimits, uint>((item) => { return item.ItemID; }, false);
+        public static Table<OpenNGS.BlindBox.Data.Drop, uint> drops = new Table<OpenNGS.BlindBox.Data.Drop, uint>((item) => { return item.DropID; }, false);
+        public static Table<OpenNGS.BlindBox.Data.DropRule, uint> droprules = new Table<OpenNGS.BlindBox.Data.DropRule, uint>((item) => { return item.DropRuleID; }, false);
+        public static ListTableBase<OpenNGS.BlindBox.Data.DropGroup, uint> dropgroups = new ListTableBase<OpenNGS.BlindBox.Data.DropGroup, uint>((item) => { return item.DropGroupID; }, false);
         public static void Init() { }
     }
 }

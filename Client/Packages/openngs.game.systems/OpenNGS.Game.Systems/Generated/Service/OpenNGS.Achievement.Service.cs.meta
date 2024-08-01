@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 3718456a170f516489a5d1815a734669
+<<<<<<<< HEAD:Client/Packages/openngs.game.systems/OpenNGS.Game.Systems/Generated/OpenNGS.BlindBox.Common.cs.meta
+guid: b73a4f3d3c652604a94c90afa2c86612
+========
+guid: af9a4119f56a01a4997738e06c5cfd65
+>>>>>>>> f98242036611e45d0931a8c1f1a4562b854dbdb8:Client/Packages/openngs.game.systems/OpenNGS.Game.Systems/Generated/Service/OpenNGS.Achievement.Service.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

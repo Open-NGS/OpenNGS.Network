@@ -47,26 +47,26 @@ public class SettingSystem : GameSubSystem<SettingSystem>, ISettingSystem
 
     public void SetVertical(OpenNGS.Setting.Data.VerticalSynchronizationData state)
     {
-        _container.SetVertical(state);
+        //_container.SetVertical(state);
     }
 
     public void SetAudio(AudioSettingData audio)
     {
-        _container.SetAudio(audio);
+        //_container.SetAudio(audio);
     }
     public void SetKeyControl(OpenNGS.Setting.Data.KeyControlSettingData keyControl)
     {
-        _container.SetKeyControl(keyControl);
+        //_container.SetKeyControl(keyControl);
     }
 
     public void SetLanguage(OpenNGS.Setting.Data.LanguageData language)
     {
-        _container.SetLanguage(language);
+        //_container.SetLanguage(language);
     }
 
     public void SetResolution(OpenNGS.Setting.Data.ResolutionRatiosData resolution)
     {
-        _container.SetResolutionRatios(resolution);
+        //_container.SetResolutionRatios(resolution);
     }
 
 

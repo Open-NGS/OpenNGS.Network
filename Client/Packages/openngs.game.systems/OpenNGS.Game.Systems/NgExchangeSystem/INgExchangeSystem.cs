@@ -1,4 +1,4 @@
-using OpenNGS.Exchange.Service;
+using OpenNGS.Exchange.Data;
 
 namespace OpenNGS.Systems
 {

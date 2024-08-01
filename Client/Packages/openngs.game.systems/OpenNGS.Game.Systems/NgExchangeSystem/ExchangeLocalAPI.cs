@@ -1,5 +1,5 @@
 using OpenNGS;
-using OpenNGS.Exchange.Service;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Systems;
 
 public class ExchangeLocalAPI : Singleton<ExchangeLocalAPI>, IExchangeClientAPI

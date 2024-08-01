@@ -1,5 +1,6 @@
 using OpenNGS;
-using OpenNGS.Shop.Service;
+using OpenNGS.Shop.Data;
+
 /// <summary>
 /// 放在游戏测的内容
 /// </summary>

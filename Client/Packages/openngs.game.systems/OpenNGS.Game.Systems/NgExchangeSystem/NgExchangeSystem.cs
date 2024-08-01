@@ -1,8 +1,9 @@
+using System.Collections.Generic;
+using OpenNGS.Exchange.Data;
 using OpenNGS.Exchange.Common;
 using Systems;
 using OpenNGS.Item.Service;
 using OpenNGS.Item.Data;
-using OpenNGS.Exchange.Service;
 
 namespace OpenNGS.Systems
 { 
@@ -96,9 +97,9 @@ namespace OpenNGS.Systems
             if (_removeReq.RemoveList.Count > 0)
             {
                 AddItemRsp addItemRsp = m_NgItemSys.RemoveItemByGrid(_removeReq);
-                if (addItemRsp.Result.ItemResultTyp != Item.Common.ItemResultType.ItemResultType_Success)
+                if (addItemRsp.Result.ItemResultValue != Item.Common.ItemResultType.ItemResultType_Success)
                 {
-                    NgDebug.LogError(addItemRsp.Result.ItemResultTyp);
+                    NgDebug.LogError(addItemRsp.Result.ItemResultValue);
                 }
             }
 
