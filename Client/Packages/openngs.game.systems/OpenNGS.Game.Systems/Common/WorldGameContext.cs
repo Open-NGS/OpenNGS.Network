@@ -25,7 +25,6 @@ public class WorldGameContext : GameContext
         //services.Add(new ServiceDescriptor(typeof(IAchievementSystem), new AchievementSystem()));
         services.Add(new ServiceDescriptor(typeof(INotificationSystem), new NotificationSystem()));
         services.Add(new ServiceDescriptor(typeof(IRewardSystem), new RewardSystem()));
-        services.Add(new ServiceDescriptor(typeof(IQuestSystem), new QuestSystem()));
         services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
 
         services.Add(new ServiceDescriptor(typeof(INgItemSystem), new NgItemSystem()));
@@ -34,6 +33,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(INgDialogSystem), new NgDialogSystem()));
         services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
         services.Add(new ServiceDescriptor(typeof(INgBlindBoxSystem), new NgSettingSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgQuestSystem), new NgQuestSystem()));
     }
 
     protected override void OnInit()

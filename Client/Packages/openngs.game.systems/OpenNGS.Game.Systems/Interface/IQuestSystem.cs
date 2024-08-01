@@ -8,7 +8,7 @@ namespace OpenNGS.Systems
 
         public void AddQuestGroup(uint questGroupID);
         public void RemoveQuestGroup(uint questGroupID);
-        public void UpdateQuest(uint questGroupID, uint questID, OpenNGS.Quest.Common.QUEST_STATUS status);
+        public void UpdateQuest(uint questGroupID, uint questID, OpenNGS.Quest.Common.Quest_Status status);
         public QuestGroupData GetQuestGroupById(uint questGroupID);
         public QuestData GetQuestById(uint questGroupID, uint questID);
         public List<QuestGroup> GetActiveQuestGroups();

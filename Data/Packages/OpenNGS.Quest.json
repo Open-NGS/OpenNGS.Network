@@ -5,93 +5,13 @@
       "PackageType": "Message",
       "Scope": "All",
       "Models": {
-        "OpenNGS.Quest.Common.QUEST_CATEGORY": {
+        "OpenNGS.Quest.Common.Quest_Status": {
           "RawPackage": "OpenNGS.Quest",
           "Methods": {},
-          "Name": "QUEST_CATEGORY",
+          "Name": "Quest_Status",
           "Package": "OpenNGS.Quest.Common",
-          "Fullname": "OpenNGS.Quest.Common.QUEST_CATEGORY",
-          "PackageName": "OpenNGS.Quest.QUEST_CATEGORY",
-          "Description": "任务分类",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "None",
-          "Type": "Enum",
-          "Entity": {
-            "Name": "QUEST_CATEGORY",
-            "Package": "OpenNGS.Quest.Common",
-            "RawPackage": "OpenNGS.Quest",
-            "Fullname": "OpenNGS.Quest.Common.QUEST_CATEGORY",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "QUEST_CATEGORY_CHAPTER": {
-                "Name": "QUEST_CATEGORY_CHAPTER",
-                "Type": "Uint32",
-                "Description": "章节任务",
-                "Tag": 0,
-                "Scope": "All",
-                "Attributes": "Required",
-                "IsRequired": true,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "QUEST_CATEGORY_SIDE": {
-                "Name": "QUEST_CATEGORY_SIDE",
-                "Type": "Uint32",
-                "Description": "支线任务",
-                "Tag": 1,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "QUEST_CATEGORY_DAILY": {
-                "Name": "QUEST_CATEGORY_DAILY",
-                "Type": "Uint32",
-                "Description": "每日任务",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "QUEST_CATEGORY_GUILD": {
-                "Name": "QUEST_CATEGORY_GUILD",
-                "Type": "Uint32",
-                "Description": "公会任务",
-                "Tag": 3,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "QUEST_CATEGORY_GLOBAL": {
-                "Name": "QUEST_CATEGORY_GLOBAL",
-                "Type": "Uint32",
-                "Description": "全局任务",
-                "Tag": 4,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Quest.Common.QUEST_STATUS": {
-          "RawPackage": "OpenNGS.Quest",
-          "Methods": {},
-          "Name": "QUEST_STATUS",
-          "Package": "OpenNGS.Quest.Common",
-          "Fullname": "OpenNGS.Quest.Common.QUEST_STATUS",
-          "PackageName": "OpenNGS.Quest.QUEST_STATUS",
+          "Fullname": "OpenNGS.Quest.Common.Quest_Status",
+          "PackageName": "OpenNGS.Quest.Quest_Status",
           "Description": "任务状态",
           "Tag": 0,
           "Flag": 0,
@@ -99,16 +19,16 @@
           "ModelType": "None",
           "Type": "Enum",
           "Entity": {
-            "Name": "QUEST_STATUS",
+            "Name": "Quest_Status",
             "Package": "OpenNGS.Quest.Common",
             "RawPackage": "OpenNGS.Quest",
-            "Fullname": "OpenNGS.Quest.Common.QUEST_STATUS",
+            "Fullname": "OpenNGS.Quest.Common.Quest_Status",
             "Type": 0,
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
             "Tag": 0,
             "Properties": {
-              "QUEST_STATUS_NONE": {
-                "Name": "QUEST_STATUS_NONE",
+              "Status_None": {
+                "Name": "Status_None",
                 "Type": "Uint32",
                 "Description": "无效状态",
                 "Tag": 0,
@@ -118,8 +38,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_STATUS_AVAILABLE": {
-                "Name": "QUEST_STATUS_AVAILABLE",
+              "Status_Available": {
+                "Name": "Status_Available",
                 "Type": "Uint32",
                 "Description": "任务可接取",
                 "Tag": 1,
@@ -129,8 +49,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_STATUS_IN_PROGRESS": {
-                "Name": "QUEST_STATUS_IN_PROGRESS",
+              "Status_Progress": {
+                "Name": "Status_Progress",
                 "Type": "Uint32",
                 "Description": "任务进行中",
                 "Tag": 2,
@@ -140,8 +60,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_STATUS_COMPLETED": {
-                "Name": "QUEST_STATUS_COMPLETED",
+              "Status_Completed": {
+                "Name": "Status_Completed",
                 "Type": "Uint32",
                 "Description": "任务已完成",
                 "Tag": 3,
@@ -151,8 +71,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_STATUS_FAILED": {
-                "Name": "QUEST_STATUS_FAILED",
+              "Status_Failed": {
+                "Name": "Status_Failed",
                 "Type": "Uint32",
                 "Description": "任务失败",
                 "Tag": 4,
@@ -165,13 +85,13 @@
             }
           }
         },
-        "OpenNGS.Quest.Common.QUEST_PICK_RULE": {
+        "OpenNGS.Quest.Common.Quest_PickRule": {
           "RawPackage": "OpenNGS.Quest",
           "Methods": {},
-          "Name": "QUEST_PICK_RULE",
+          "Name": "Quest_PickRule",
           "Package": "OpenNGS.Quest.Common",
-          "Fullname": "OpenNGS.Quest.Common.QUEST_PICK_RULE",
-          "PackageName": "OpenNGS.Quest.QUEST_PICK_RULE",
+          "Fullname": "OpenNGS.Quest.Common.Quest_PickRule",
+          "PackageName": "OpenNGS.Quest.Quest_PickRule",
           "Description": "任务接取规则",
           "Tag": 0,
           "Flag": 0,
@@ -179,16 +99,16 @@
           "ModelType": "None",
           "Type": "Enum",
           "Entity": {
-            "Name": "QUEST_PICK_RULE",
+            "Name": "Quest_PickRule",
             "Package": "OpenNGS.Quest.Common",
             "RawPackage": "OpenNGS.Quest",
-            "Fullname": "OpenNGS.Quest.Common.QUEST_PICK_RULE",
+            "Fullname": "OpenNGS.Quest.Common.Quest_PickRule",
             "Type": 0,
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
             "Tag": 0,
             "Properties": {
-              "QUEST_PICK_RULE_NONE": {
-                "Name": "QUEST_PICK_RULE_NONE",
+              "PickRule_None": {
+                "Name": "PickRule_None",
                 "Type": "Uint32",
                 "Description": "无",
                 "Tag": 0,
@@ -198,8 +118,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_PICK_RULE_RANDOM": {
-                "Name": "QUEST_PICK_RULE_RANDOM",
+              "PickRule_Random": {
+                "Name": "PickRule_Random",
                 "Type": "Uint32",
                 "Description": "权重随机接取",
                 "Tag": 1,
@@ -209,8 +129,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_PICK_RULE_ORDER": {
-                "Name": "QUEST_PICK_RULE_ORDER",
+              "PickRule_Order": {
+                "Name": "PickRule_Order",
                 "Type": "Uint32",
                 "Description": "顺序接取",
                 "Tag": 2,
@@ -220,8 +140,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QUEST_PICK_RULE_ALL": {
-                "Name": "QUEST_PICK_RULE_ALL",
+              "PickRule_All": {
+                "Name": "PickRule_All",
                 "Type": "Uint32",
                 "Description": "可以接取所有任务",
                 "Tag": 3,
@@ -312,8 +232,7 @@
               },
               "Category": {
                 "Name": "Category",
-                "Type": "Unknow",
-                "CustomType": "QUEST_CATEGORY",
+                "Type": "Uint32",
                 "Description": "分组类型",
                 "Tag": 5,
                 "Scope": "All",
@@ -347,7 +266,7 @@
               "QuestPickRule": {
                 "Name": "QuestPickRule",
                 "Type": "Unknow",
-                "CustomType": "QUEST_PICK_RULE",
+                "CustomType": "Quest_PickRule",
                 "Description": "接取任务规则",
                 "Tag": 8,
                 "Scope": "All",
@@ -507,7 +426,7 @@
               "Status": {
                 "Name": "Status",
                 "Type": "Unknow",
-                "CustomType": "QUEST_STATUS",
+                "CustomType": "Quest_Status",
                 "Description": "任务状态",
                 "Tag": 9,
                 "Scope": "All",
@@ -563,8 +482,8 @@
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
             "Tag": 0,
             "Properties": {
-              "QuestList": {
-                "Name": "QuestList",
+              "QuestGroupList": {
+                "Name": "QuestGroupList",
                 "Type": "Unknow",
                 "CustomType": "QuestGroupData",
                 "Description": "任务数据列表",
@@ -614,7 +533,7 @@
               "Status": {
                 "Name": "Status",
                 "Type": "Unknow",
-                "CustomType": "QUEST_STATUS",
+                "CustomType": "Quest_Status",
                 "Description": "任务状态",
                 "Tag": 2,
                 "Scope": "All",
@@ -659,8 +578,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "Quests": {
-                "Name": "Quests",
+              "QuestDataList": {
+                "Name": "QuestDataList",
                 "Type": "Unknow",
                 "CustomType": "QuestData",
                 "Description": "任务组任务集合",
