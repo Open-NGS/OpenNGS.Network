@@ -798,7 +798,7 @@
               "result": {
                 "Name": "result",
                 "Type": "Unknow",
-                "CustomType": "RESULT_TYPE",
+                "CustomType": "SHOP_RESULT_TYPE",
                 "Description": "请求成功类型",
                 "Tag": 2,
                 "Scope": "All",
@@ -893,8 +893,7 @@
       },
       "References": [
         "OpenNGS.Core",
-        "OpenNGS.Shop.Common",
-        "OpenNGS.Common"
+        "OpenNGS.Shop.Common"
       ]
     },
     "OpenNGS.Shop.Common": {
