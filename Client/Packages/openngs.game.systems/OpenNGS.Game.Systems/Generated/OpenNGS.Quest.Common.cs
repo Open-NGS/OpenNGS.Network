@@ -11,36 +11,25 @@
 namespace OpenNGS.Quest.Common 
 {
 
-    //任务分类
-    [global::ProtoBuf.ProtoContract()]
-    public enum QUEST_CATEGORY
-    {
-        QUEST_CATEGORY_CHAPTER = 0, // 章节任务
-        QUEST_CATEGORY_SIDE = 1, // 支线任务
-        QUEST_CATEGORY_DAILY = 2, // 每日任务
-        QUEST_CATEGORY_GUILD = 3, // 公会任务
-        QUEST_CATEGORY_GLOBAL = 4, // 全局任务
-    }
-
     //任务状态
     [global::ProtoBuf.ProtoContract()]
-    public enum QUEST_STATUS
+    public enum Quest_Status
     {
-        QUEST_STATUS_NONE = 0, // 无效状态
-        QUEST_STATUS_AVAILABLE = 1, // 任务可接取
-        QUEST_STATUS_IN_PROGRESS = 2, // 任务进行中
-        QUEST_STATUS_COMPLETED = 3, // 任务已完成
-        QUEST_STATUS_FAILED = 4, // 任务失败
+        Status_None = 0, // 无效状态
+        Status_Available = 1, // 任务可接取
+        Status_Progress = 2, // 任务进行中
+        Status_Completed = 3, // 任务已完成
+        Status_Failed = 4, // 任务失败
     }
 
     //任务接取规则
     [global::ProtoBuf.ProtoContract()]
-    public enum QUEST_PICK_RULE
+    public enum Quest_PickRule
     {
-        QUEST_PICK_RULE_NONE = 0, // 无
-        QUEST_PICK_RULE_RANDOM = 1, // 权重随机接取
-        QUEST_PICK_RULE_ORDER = 2, // 顺序接取
-        QUEST_PICK_RULE_ALL = 3, // 可以接取所有任务
+        PickRule_None = 0, // 无
+        PickRule_Random = 1, // 权重随机接取
+        PickRule_Order = 2, // 顺序接取
+        PickRule_All = 3, // 可以接取所有任务
     }
 
 
