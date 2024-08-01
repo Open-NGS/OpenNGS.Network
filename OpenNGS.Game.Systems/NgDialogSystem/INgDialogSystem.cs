@@ -6,7 +6,6 @@ namespace OpenNGS.Systems
 {
     public interface INgDialogSystem
     {
-        public uint GetDialogDisplayType(uint dialogId);
         public LoadDialogRsp LoadDialogs(uint dialogId);
         public LoadDialogRsp SelectChoice(ChoiceRep _choiceRep);
         public LoadDialogRsp NextDialog();
