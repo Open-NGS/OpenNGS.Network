@@ -5,6 +5,7 @@ using OpenNGS.Exchange.Common;
 using OpenNGS.Technology.Common;
 using Systems;
 using OpenNGS.Item.Service;
+using OpenNGS.Exchange.Service;
 
 
 namespace OpenNGS.Systems
