@@ -1,4 +1,4 @@
-using OpenNGS.Shop.Data;
+using OpenNGS.Shop.Service;
 
 namespace OpenNGS.Systems
 {
