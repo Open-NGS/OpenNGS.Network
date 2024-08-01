@@ -1,5 +1,5 @@
 using OpenNGS;
-using OpenNGS.Shop.Data;
+using OpenNGS.Shop.Service;
 using OpenNGS.Systems;
 
 public class ShopService : Singleton<ShopService>
