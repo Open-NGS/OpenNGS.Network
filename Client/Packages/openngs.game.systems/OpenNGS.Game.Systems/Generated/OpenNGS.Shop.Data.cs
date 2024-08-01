@@ -221,7 +221,7 @@ namespace OpenNGS.Shop.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public RESULT_TYPE result { get; set; }
+        public SHOP_RESULT_TYPE result { get; set; }
     }
     //出售请求
     [global::ProtoBuf.ProtoContract()]
@@ -259,7 +259,7 @@ namespace OpenNGS.Shop.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public RESULT_TYPE result { get; set; }
+        public SHOP_RESULT_TYPE result { get; set; }
     }
     //拉取商店请求
     [global::ProtoBuf.ProtoContract()]
@@ -327,162 +327,6 @@ namespace OpenNGS.Shop.Data
         public uint SellPriceItem { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
         public uint SellPriceCount { get; set; }
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ShopReq : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ShopReq()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ShopId { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ShopRsp : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ShopRsp()
-        {
-            Shelfs = new global::System.Collections.Generic.List<ShelfState>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Shop.Common.ShopResultType result { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<ShelfState> Shelfs { get; private set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public ulong EndTime { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ShelfState : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ShelfState()
-        {
-            Goods = new global::System.Collections.Generic.List<GoodState>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ShelfId { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public ulong RefreshTime { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public int Left { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public global::System.Collections.Generic.List<GoodState> Goods { get; private set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class GoodState : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public GoodState()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint GoodID { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public int Left { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class BuyReq : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public BuyReq()
-        {
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint ShopId { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint ShelfId { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint GoodId { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint GoodCounts { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint ColIdex { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class BuyRsp : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public BuyRsp()
-        {
-            LstItemData = new global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemSaveState>();
-            OnConstructor();
-        }
-
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::OpenNGS.Shop.Common.ShopResultType result { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<global::OpenNGS.Item.Data.ItemSaveState> LstItemData { get; private set; }
-
     }
 
 }

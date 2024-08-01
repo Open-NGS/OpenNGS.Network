@@ -640,7 +640,7 @@
               "result": {
                 "Name": "result",
                 "Type": "Unknow",
-                "CustomType": "RESULT_TYPE",
+                "CustomType": "SHOP_RESULT_TYPE",
                 "Description": "请求成功类型",
                 "Tag": 1,
                 "Scope": "All",
@@ -714,7 +714,7 @@
               "result": {
                 "Name": "result",
                 "Type": "Unknow",
-                "CustomType": "RESULT_TYPE",
+                "CustomType": "SHOP_RESULT_TYPE",
                 "Description": "请求成功类型",
                 "Tag": 1,
                 "Scope": "All",
