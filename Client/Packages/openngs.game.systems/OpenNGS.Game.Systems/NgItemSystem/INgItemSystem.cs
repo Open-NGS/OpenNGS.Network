@@ -2,6 +2,7 @@ using OpenNGS.Item.Data;
 using System.Collections.Generic;
 using OpenNGS.Item.Service;
 using OpenNGS.Item.Common;
+using OpenNGS.Exchange.Service;
 
 namespace OpenNGS.Systems
 {
@@ -15,7 +16,8 @@ namespace OpenNGS.Systems
         void AddItemContainer(ItemContainer Container);
 
         //交易系统需要
-        public ItemResultType CanAddItems(AddReq _req);
+        public ItemResultType CanAddItemsByGrid(ExchangeByGridIDReq request);
+        public ItemResultType CanAddItemsByItemID(ExchangeByItemIDReq request);
         public AddItemRsp AddItems(AddReq _req);
         public ItemResultType CanRemoveItemsByID(RemoveItemsByIDsReq _req);
         public AddItemRsp RemoveItemsByID(RemoveItemsByIDsReq _req);

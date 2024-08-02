@@ -1,3 +1,4 @@
+using OpenNGS.Exchange.Service;
 using OpenNGS.Item.Common;
 using OpenNGS.Item.Data;
 using OpenNGS.Item.Service;
@@ -385,13 +386,52 @@ namespace OpenNGS.Systems
         }
 
 
-        public ItemResultType CanAddItems(AddReq _req)
+        public ItemResultType CanAddItemsByGrid(ExchangeByGridIDReq request)
         {
-            foreach (AddItemReq removeItemReq in _req.AddList)
+            AddReq _addReq = new AddReq();
+            foreach (TargetState trg in request.Target)
+            {
+                AddItemReq _req = new AddItemReq();
+                _req.ColIdx = trg.Col;
+                _req.ItemID = trg.ItemID;
+                _req.Counts = trg.Counts;
+                _addReq.AddList.Add(_req);
+            }
+            foreach (AddItemReq removeItemReq in _addReq.AddList)
             {
                 int capacity = GetItemDatasByColIdx(removeItemReq.ColIdx).Capacity;
                 int num = GetItemDatasByColIdx(removeItemReq.ColIdx).Count;
-                if (num + 1 < capacity)
+                if (num + request.Target.Count- request.Source.Count < capacity)
+                {
+                    return ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid;
+                }
+                else
+                {
+                    var itemStateSrc = NGSStaticData.items.GetItem(removeItemReq.ItemID);
+                    if (itemStateSrc == null)
+                    {
+                        return ItemResultType.ItemResultType_AddItemFail_NotExist;
+                    }
+                }
+            }
+            return ItemResultType.ItemResultType_Success;
+        }
+        public ItemResultType CanAddItemsByItemID(ExchangeByItemIDReq request)
+        {
+            AddReq _addReq = new AddReq();
+            foreach (TargetState trg in request.Target)
+            {
+                AddItemReq _req = new AddItemReq();
+                _req.ColIdx = trg.Col;
+                _req.ItemID = trg.ItemID;
+                _req.Counts = trg.Counts;
+                _addReq.AddList.Add(_req);
+            }
+            foreach (AddItemReq removeItemReq in _addReq.AddList)
+            {
+                int capacity = GetItemDatasByColIdx(removeItemReq.ColIdx).Capacity;
+                int num = GetItemDatasByColIdx(removeItemReq.ColIdx).Count;
+                if (num + request.Target.Count - request.Source.Count < capacity)
                 {
                     return ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid;
                 }

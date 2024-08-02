@@ -67,9 +67,9 @@ namespace OpenNGS.Systems
                 _addReq.AddList.Add(_req);
             }
 
-            if(_addReq.AddList.Count > 0)
+            if(request.Target.Count > 0)
             {
-                switch (m_NgItemSys.CanAddItems(_addReq))
+                switch (m_NgItemSys.CanAddItemsByGrid(request))
                 {
                     case Item.Common.ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid:
                         _resultType = ExchangeResultType.Failed_OverLimitNum;
@@ -166,7 +166,7 @@ namespace OpenNGS.Systems
 
             if (_addReq.AddList.Count > 0)
             {
-                switch (m_NgItemSys.CanAddItems(_addReq))
+                switch (m_NgItemSys.CanAddItemsByItemID(request))
                 {
                     case Item.Common.ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid:
                         _resultType = ExchangeResultType.Failed_OverLimitNum;
