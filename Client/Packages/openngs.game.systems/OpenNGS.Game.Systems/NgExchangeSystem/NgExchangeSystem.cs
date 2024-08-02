@@ -140,9 +140,6 @@ namespace OpenNGS.Systems
                     case Item.Common.ItemResultType.ItemResultType_RemoveItemFail_GridNotExist:
                         _resultType = ExchangeResultType.Error_NotExist_Source;
                         break;
-                    case Item.Common.ItemResultType.ItemResultType_SortItemFail_NotExist:
-                        _resultType = ExchangeResultType.Error_NotDefine_Target;
-                        break;
                     case Item.Common.ItemResultType.ItemResultType_RemoveItemFail_NotEnoughNum:
                         _resultType = ExchangeResultType.Failed_NotEnough;
                         break;
