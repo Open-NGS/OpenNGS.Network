@@ -71,7 +71,7 @@ namespace OpenNGS.Systems
             return "NgShop";
         }
 
-        public BuyRsp BugItem(BuyReq request)
+        public BuyRsp BuyItem(BuyReq request)
         {
             BuyRsp response = new BuyRsp();
             response.result = Shop.Common.ShopResultType.Success;
