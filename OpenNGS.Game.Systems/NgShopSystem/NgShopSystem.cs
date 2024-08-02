@@ -1,4 +1,7 @@
+using OpenNGS.Common;
+using OpenNGS.Exchange.Common;
 using OpenNGS.Exchange.Service;
+using OpenNGS.Shop.Common;
 using OpenNGS.Shop.Data;
 using OpenNGS.Shop.Service;
 using System.Collections.Generic;
@@ -130,7 +133,7 @@ namespace OpenNGS.Systems
         private void DoExchange(BuyRsp response, BuyReq request)
         {
             Good _good = NGSStaticData.goodDatas.GetItem(request.GoodId);
-            if( _good == null )
+            if (_good == null)
             {
                 response.result = Shop.Common.ShopResultType.Error_DataInfo;
                 return;
@@ -148,10 +151,20 @@ namespace OpenNGS.Systems
             trg.ItemID = _good.ItemId;
             trg.Counts = request.GoodCounts;
             _exchangeReq.Target.Add(trg);
-
-            m_exchangeSys.ExchangeItemByID(_exchangeReq);
+            ExchangeRsp exchangeRsp = m_exchangeSys.ExchangeItemByID(_exchangeReq);
+            if (exchangeRsp.result == ExchangeResultType.Error_NotDefine_Target || exchangeRsp.result == ExchangeResultType.Error_NotExist_Source)
+            {
+                response.result = ShopResultType.Error_DataInfo;
+            }
+            else if (exchangeRsp.result == ExchangeResultType.Failed_OverLimitNum)
+            {
+                response.result = ShopResultType.Failed_ItemOverLimit;
+            }
+            else if (exchangeRsp.result == ExchangeResultType.Failed_NotEnough)
+            {
+                response.result = ShopResultType.Failed_NotEnough_Gold;
+            }
         }
-
         public ShopRsp GetShopState(ShopReq request)
         {
             ShopRsp _response = new ShopRsp();
