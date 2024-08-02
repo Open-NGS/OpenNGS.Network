@@ -97,7 +97,7 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
                     req.ColIdx = 1;
                     req.ItemID = item.ItemID;
                     req.Counts = item.ItemCount;
-                    m_itemSys.AddItemsByID(req);
+                    m_itemSys.AddItemByID(req);
                 }
                 RewardSaveData data = rewardContainer.GetRewardById(rewardId);
                 if (data != null)

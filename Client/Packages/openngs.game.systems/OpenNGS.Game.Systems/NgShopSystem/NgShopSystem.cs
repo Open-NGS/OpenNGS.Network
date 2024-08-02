@@ -9,6 +9,7 @@ namespace OpenNGS.Systems
     public class NgShopSystem : GameSubSystem<NgShopSystem>, INgShopSystem
     {
         INgExchangeSystem m_exchangeSys;
+        INgItemSystem m_itemSys;
 
         //商店ID，货架动态信息
         private Dictionary<uint, List<ShelfState>> shopMap;
@@ -16,6 +17,7 @@ namespace OpenNGS.Systems
         protected override void OnCreate()
         {
             m_exchangeSys = App.GetService<INgExchangeSystem>();
+            m_itemSys = App.GetService<INgItemSystem>();
             shopMap = new Dictionary<uint, List<ShelfState>>();
             InitShopSystem();
             base.OnCreate();
@@ -136,7 +138,7 @@ namespace OpenNGS.Systems
 
             ExchangeByItemIDReq _exchangeReq = new ExchangeByItemIDReq();
             ItemSrcState src = new ItemSrcState();
-            src.Col = request.ColIdex;
+            src.Col = m_itemSys.GetCurrencyColById(_good.CurrencyId);
             src.ItemID = _good.CurrencyId;
             src.Counts = _good.CurrencyCounts * request.GoodCounts;
             _exchangeReq.Source.Add(src);

@@ -39,13 +39,10 @@ namespace OpenNGS.Systems
 
             if(_removeReq.RemoveList.Count > 0)
             {
-                switch (m_NgItemSys.CanRemoveItemByGrid(_removeReq))
+                switch (m_NgItemSys.CanRemoveItemsByGrid(_removeReq))
                 {
                     case Item.Common.ItemResultType.ItemResultType_RemoveItemFail_GridNotExist:
                         _resultType = ExchangeResultType.Error_NotExist_Source;
-                        break;
-                    case Item.Common.ItemResultType.ItemResultType_SortItemFail_NotExist:
-                        _resultType = ExchangeResultType.Error_NotDefine_Target;
                         break;
                     case Item.Common.ItemResultType.ItemResultType_RemoveItemFail_NotEnoughNum:
                         _resultType = ExchangeResultType.Failed_NotEnough;
@@ -58,7 +55,6 @@ namespace OpenNGS.Systems
                 response.result = _resultType;
                 return response;
             }
-
             //检查目标物体是否可以添加
 
             AddReq _addReq = new AddReq();
@@ -73,7 +69,7 @@ namespace OpenNGS.Systems
 
             if(_addReq.AddList.Count > 0)
             {
-                switch (m_NgItemSys.CanAddItem(_addReq))
+                switch (m_NgItemSys.CanAddItems(_addReq))
                 {
                     case Item.Common.ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid:
                         _resultType = ExchangeResultType.Failed_OverLimitNum;
@@ -95,7 +91,7 @@ namespace OpenNGS.Systems
             AddItemRsp _addRsp = null;
             if (_removeReq.RemoveList.Count > 0)
             {
-                AddItemRsp addItemRsp = m_NgItemSys.RemoveItemByGrid(_removeReq);
+                AddItemRsp addItemRsp = m_NgItemSys.RemoveItemsByGrid(_removeReq);
                 if (addItemRsp.Result.ItemResultTyp != Item.Common.ItemResultType.ItemResultType_Success)
                 {
                     NgDebug.LogError(addItemRsp.Result.ItemResultTyp);
@@ -139,7 +135,7 @@ namespace OpenNGS.Systems
 
             if (_removeReq.RemoveList.Count > 0)
             {
-                switch (m_NgItemSys.CanRemoveItemByID(_removeReq))
+                switch (m_NgItemSys.CanRemoveItemsByID(_removeReq))
                 {
                     case Item.Common.ItemResultType.ItemResultType_RemoveItemFail_GridNotExist:
                         _resultType = ExchangeResultType.Error_NotExist_Source;
@@ -173,7 +169,7 @@ namespace OpenNGS.Systems
 
             if (_addReq.AddList.Count > 0)
             {
-                switch (m_NgItemSys.CanAddItem(_addReq))
+                switch (m_NgItemSys.CanAddItems(_addReq))
                 {
                     case Item.Common.ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid:
                         _resultType = ExchangeResultType.Failed_OverLimitNum;
@@ -195,7 +191,7 @@ namespace OpenNGS.Systems
             AddItemRsp _addRsp = null;
             if (_removeReq.RemoveList.Count > 0)
             {
-                m_NgItemSys.RemoveItemByID(_removeReq);
+                m_NgItemSys.RemoveItemsByID(_removeReq);
             }
             if (_addReq.AddList.Count > 0)
             {
