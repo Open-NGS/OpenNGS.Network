@@ -431,7 +431,7 @@ namespace OpenNGS.Systems
             {
                 int capacity = GetItemDatasByColIdx(removeItemReq.ColIdx).Capacity;
                 int num = GetItemDatasByColIdx(removeItemReq.ColIdx).Count;
-                if (num + request.Target.Count - request.Source.Count < capacity)
+                if (num + request.Target.Count - request.Source.Count > capacity)
                 {
                     return ItemResultType.ItemResultType_AddItemFail_NotEnoughGrid;
                 }
