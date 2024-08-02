@@ -208,7 +208,7 @@ namespace OpenNGS.Systems
             req.ColIdx = 1;
             req.ItemID = currencyID;
             req.Counts = costSum;
-            m_itemSystem.AddItemsByID(req);
+            m_itemSystem.AddItemByID(req);
 
             //调整玩家属性
             //xxx();
