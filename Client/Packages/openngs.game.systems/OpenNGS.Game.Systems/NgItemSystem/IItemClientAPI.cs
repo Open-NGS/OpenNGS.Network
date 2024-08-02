@@ -7,8 +7,8 @@ namespace OpenNGS.Systems
 {
     public interface IItemClientAPI
     {
-        public AddItemRsp AddItemsByID(AddItemReq _req);
-        public AddItemRsp RemoveItemsByGrid(RemoveItemReq _req);
+        public AddItemRsp AddItemByID(AddItemReq _req);
+        public AddItemRsp RemoveItemByGrid(RemoveItemReq _req);
         //public uint GetItemCountByGuid(uint nColIdx, uint nGuid);
         public AddItemRsp ExchangeGrid(ChangeItemData _changeItemData);
         public AddItemRsp SortItems(uint nCol);
@@ -16,12 +16,13 @@ namespace OpenNGS.Systems
         void AddItemContainer(ItemContainer Container);
 
         //交易系统需要
-        public ItemResultType CanAddItem(AddReq _req);
+        public ItemResultType CanAddItems(AddReq _req);
         public AddItemRsp AddItems(AddReq _req);
-        public ItemResultType CanRemoveItemByID(RemoveItemsByIDsReq _req);
-        public AddItemRsp RemoveItemByID(RemoveItemsByIDsReq _req);
-        public ItemResultType CanRemoveItemByGrid(RemoveItemsByGridsReq _req);
-        public AddItemRsp RemoveItemByGrid(RemoveItemsByGridsReq _req);
+        public ItemResultType CanRemoveItemsByID(RemoveItemsByIDsReq _req);
+        public AddItemRsp RemoveItemsByID(RemoveItemsByIDsReq _req);
+        public ItemResultType CanRemoveItemsByGrid(RemoveItemsByGridsReq _req);
+        public AddItemRsp RemoveItemsByGrid(RemoveItemsByGridsReq _req);
+        public uint GetCurrencyColById(uint itemID);
     }
 
 }
