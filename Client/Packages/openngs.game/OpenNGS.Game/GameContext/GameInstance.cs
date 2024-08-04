@@ -25,6 +25,8 @@ public class GameInstance : OpenNGS.Singleton<GameInstance>
     {
         Debug.Log("GameInstance:Initialize() - Start");
 
+        OpenNGS.Globalization.Culture.SetUserDefaultCulture(System.Globalization.CultureInfo.InvariantCulture);
+
 #if UNITY_EDITOR
         FileSystem.Init(null, new UnityPathProvider());
 
