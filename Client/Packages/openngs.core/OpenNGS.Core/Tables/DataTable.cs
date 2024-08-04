@@ -59,9 +59,16 @@ namespace OpenNGS.Tables
                 }
 
             }
-            
-            this.Items = DataTable.Serializer.Deserialize<List<ITEM>>(data);
-            this.Prepare();
+
+            try
+            {
+                this.Items = DataTable.Serializer.Deserialize<List<ITEM>>(data);
+                this.Prepare();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("[DataTable:Load]" + filename + " Error:" + ex.ToString());
+            }
             this.loaded = true;
 #if DEBUG_LOG && PROFILER
             OpenNGS.Profiling.ProfilerLog.End("Tables.Load", filename);
