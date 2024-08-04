@@ -6,6 +6,12 @@ namespace OpenNGS.Core
 {
     public partial class AttributesInt32 : global::ProtoBuf.IExtensible, INumerable
     {
+        partial void OnConstructor()
+        {
+            if (this.Values == null)
+                this.Values = new System.Collections.Generic.Dictionary<long, int>();
+        }
+
         public void Set(long type, int value)
         {
             this.Values[type] = value;
@@ -46,6 +52,11 @@ namespace OpenNGS.Core
 
     public partial class AttributesInt64 : global::ProtoBuf.IExtensible, INumerable
     {
+        partial void OnConstructor()
+        {
+            if (this.Values == null)
+                this.Values = new System.Collections.Generic.Dictionary<long, long>();
+        }
         public void Set(long type, long value)
         {
             this.Values[type] = value;
@@ -86,6 +97,11 @@ namespace OpenNGS.Core
 
     public partial class AttributesSingle : global::ProtoBuf.IExtensible, INumerable
     {
+        partial void OnConstructor()
+        {
+            if (this.Values == null)
+                this.Values = new System.Collections.Generic.Dictionary<long, float>();
+        }
         public void Set(long type, float value)
         {
             this.Values[type] = value;
