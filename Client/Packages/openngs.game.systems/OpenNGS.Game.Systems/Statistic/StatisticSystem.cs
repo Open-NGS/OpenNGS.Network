@@ -37,9 +37,9 @@ namespace OpenNGS.Systems
                 m_Container = new StatisticContainer();
             }
 
-            for(int nIdx = 0; nIdx < NGSStaticData.statisticItems.Items.Count; nIdx++)
+            for(int nIdx = 0; nIdx < NGSStaticData.s_statDatas.Items.Count; nIdx++)
             {
-                StatData _statDataInfo = NGSStaticData.statisticItems.Items[nIdx];
+                StatData _statDataInfo = NGSStaticData.s_statDatas.Items[nIdx];
                 if(this.Items.ContainsKey(_statDataInfo.Id) == false)
                 {
                     var item = new StatisticItem(_statDataInfo);

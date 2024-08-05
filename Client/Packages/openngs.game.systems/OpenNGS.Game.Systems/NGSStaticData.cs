@@ -43,7 +43,6 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Reward.Data.Reward, uint> reward = new Table<Reward.Data.Reward, uint> ((item) => { return item.Id; }, false);
         public static ListTableBase<OpenNGS.Reward.Data.RewardContent, uint> rewardContent = new ListTableBase<Reward.Data.RewardContent, uint> ((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Reward.Data.RewardCondition, uint> rewardCondition = new Table<Reward.Data.RewardCondition, uint> ((item) => { return item.Id; }, false);
-        public static Table<OpenNGS.Statistic.Data.StatData, uint> statisticItems = new Table<OpenNGS.Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Setting.Data.UserSettingValueState, uint> settingValueState = new Table<Setting.Data.UserSettingValueState, uint>((item) => { return item.ID; }, false);
         //盲盒系统使用
         public static Table<OpenNGS.BlindBox.Data.EntityDrop, uint> entitydrop = new Table<OpenNGS.BlindBox.Data.EntityDrop, uint>((item) => { return item.EntityID; }, false);
