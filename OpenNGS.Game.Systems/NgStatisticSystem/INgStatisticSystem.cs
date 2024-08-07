@@ -1,12 +1,11 @@
-using OpenNGS.Item.Data;
 using OpenNGS.Statistic.Common;
-using OpenNGS.Statistic.Data;
+using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 namespace OpenNGS.Systems
 {
-    public interface IStatisticSystem
+    public interface INgStatisticSystem
     {
         void AddStatContainer(StatisticContainer Container);
         void StatByStatisticID(uint statId, double val);
@@ -15,10 +14,10 @@ namespace OpenNGS.Systems
         int GetStatInt(uint id);
         double GetStat(uint id);
         void ResetStat(uint id);
-        void RegisterEventHandler(IStatisticEvent item);
+        void RegisterEventHandler(INgStatisticEvent item);
     }
 
-    public interface IStatisticEvent
+    public interface INgStatisticEvent
     {
         uint StatID { get; }
         void OnStatValueChange(uint statId, ulong value);

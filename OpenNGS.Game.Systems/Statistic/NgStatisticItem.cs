@@ -1,6 +1,6 @@
-﻿using OpenNGS.Statistic.Common;
+using OpenNGS.Statistic.Common;
 using OpenNGS.Statistic.Data;
-class StatisticItem
+class NgStatisticItem
 {
     public StatData Config;
 
@@ -10,7 +10,7 @@ class StatisticItem
 
     public ulong Value = 0;
 
-    public StatisticItem(StatData config)
+    public NgStatisticItem(StatData config)
     {
         this.Config = config;
     }
