@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public interface IRecordSystem
 {
     // 单局
-    public Dictionary<StatData, ulong> SingleRecor();
-    // 全局
-    public Dictionary<StatData, ulong> OverallRecor();
+    //public Dictionary<StatData, ulong> SingleRecor();
+    //// 全局
+    //public Dictionary<StatData, ulong> OverallRecor();
 }

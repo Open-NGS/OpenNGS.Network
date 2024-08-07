@@ -66,19 +66,19 @@ public class MakeSystem : GameSubSystem<MakeSystem>, IMakeSystem
     // 图纸
     public void MakeDesign(OpenNGS.Item.Common.ItemData itemInfo)
     {
-        SourceItem sourcesMakeBook = new SourceItem();
-        sourcesMakeBook.GUID = itemInfo.Guid;
-        sourcesMakeBook.Count = itemInfo.Count;
-        this.sourcesList.Add(sourcesMakeBook);
+        //SourceItem sourcesMakeBook = new SourceItem();
+        //sourcesMakeBook.GUID = itemInfo.Guid;
+        //sourcesMakeBook.Count = itemInfo.Count;
+        //this.sourcesList.Add(sourcesMakeBook);
 
-        makeMaterial = NGSStaticData.MakeItems.GetItem(itemInfo.ItemID);// 图纸
-        OpenNGS.Item.Data.Item Target = NGSStaticData.items.GetItem(makeMaterial.TargetItemID);
+        //makeMaterial = NGSStaticData.MakeItems.GetItem(itemInfo.ItemID);// 图纸
+        //OpenNGS.Item.Data.Item Target = NGSStaticData.items.GetItem(makeMaterial.TargetItemID);
 
-        // 目标物品
-        TargetItem target = new TargetItem();
-        target.ItemID = Target.Id;
-        target.Count = 1;
-        targetsList.Add(target);
+        //// 目标物品
+        //TargetItem target = new TargetItem();
+        //target.ItemID = Target.Id;
+        //target.Count = 1;
+        //targetsList.Add(target);
     }
 
     // 幸运石
