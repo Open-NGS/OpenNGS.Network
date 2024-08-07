@@ -1,23 +1,26 @@
 using OpenNGS;
+using OpenNGS.ERPC;
 using OpenNGS.Item.Data;
 using OpenNGS.SaveData;
 using OpenNGS.Statistic.Common;
 using OpenNGS.Statistic.Data;
+using OpenNGS.Statistic.Service;
 using OpenNGS.Systems;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Systems;
 
 namespace OpenNGS.Systems
 {
-    class StatisticSystem : GameSubSystem<StatisticSystem>, IStatisticSystem
+    class NgStatisticSystem : GameSubSystem<NgStatisticSystem>, INgStatisticSystem
     {
         private Dictionary<int, double> globalStatistics;  //全局
         //private Dictionary<int, double> gameStatistics = new Dictionary<int, double>();    //局内
-        private Dictionary<uint, StatisticItem> Items = new Dictionary<uint, StatisticItem>();
+        private Dictionary<uint, NgStatisticItem> Items = new Dictionary<uint, NgStatisticItem>();
 
         private bool loaded = false;
         private StatisticContainer m_Container = null;
-        public void RegisterEventHandler(IStatisticEvent item)
+        public void RegisterEventHandler(INgStatisticEvent item)
         {
             if (item.StatID == 0) return;
             var stat = this.GetItem(item.StatID);
@@ -37,12 +40,12 @@ namespace OpenNGS.Systems
                 m_Container = new StatisticContainer();
             }
 
-            for(int nIdx = 0; nIdx < NGSStaticData.s_statDatas.Items.Count; nIdx++)
+            for (int nIdx = 0; nIdx < NGSStaticData.s_statDatas.Items.Count; nIdx++)
             {
                 StatData _statDataInfo = NGSStaticData.s_statDatas.Items[nIdx];
-                if(this.Items.ContainsKey(_statDataInfo.Id) == false)
+                if (this.Items.ContainsKey(_statDataInfo.Id) == false)
                 {
-                    var item = new StatisticItem(_statDataInfo);
+                    var item = new NgStatisticItem(_statDataInfo);
                     this.Items.Add(_statDataInfo.Id, item);
                     if (m_Container.StatisticSaveData.ContainsKey(_statDataInfo.Id) == true)
                     {
@@ -64,7 +67,7 @@ namespace OpenNGS.Systems
             this.Items.Clear();
             //foreach (var kv in AchievementConfig.GetInstance().GetStatistics())
             //{
-            //    var item =  new StatisticItem(kv.Value);
+            //    var item =  new NgStatisticItem(kv.Value);
             //    item.OnValueChanged += OnStatValueChanged;
             //    this.Items.Add(kv.Key, item);
             //}
@@ -72,7 +75,7 @@ namespace OpenNGS.Systems
 
         private void OnStatValueChanged(uint statId, ulong value)
         {
-            if(m_Container != null)
+            if (m_Container != null)
             {
                 m_Container.SetStat(statId, value);
             }
@@ -92,7 +95,7 @@ namespace OpenNGS.Systems
             //    this.globalStatistics = SaveDataManager.Instance.Current.Statistics;
             //    foreach (var kv in this.globalStatistics)
             //    {
-            //        StatisticItem item = null;
+            //        NgStatisticItem item = null;
             //        if (this.Items.TryGetValue(kv.Key, out item))
             //        {
             //            item.Set(kv.Value);
@@ -105,7 +108,7 @@ namespace OpenNGS.Systems
         public void StatByStatisticID(uint statId, double val)
         {
             StatData _statData = NGSStaticData.s_statDatas.GetItem(statId);
-            if(_statData != null)
+            if (_statData != null)
             {
                 Stat(_statData.StatEvent, _statData.ObjCategory, _statData.ObjType, _statData.ObjSubType, _statData.ObjID, val);
             }
@@ -142,10 +145,10 @@ namespace OpenNGS.Systems
             return item.Value;
         }
 
-        private StatisticItem GetItem(uint id)
+        private NgStatisticItem GetItem(uint id)
         {
             if (id == 0) return null;
-            StatisticItem item;
+            NgStatisticItem item;
             this.Items.TryGetValue(id, out item);
             return item;
         }
@@ -160,7 +163,7 @@ namespace OpenNGS.Systems
         //    //this.gameStatistics.Clear();
         //    foreach (var kv in this.Items)
         //    {
-        //        StatisticItem item = kv.Value;
+        //        NgStatisticItem item = kv.Value;
         //        if (!item.Config.Global)
         //        {
         //            item.Value = 0;

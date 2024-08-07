@@ -24,7 +24,7 @@ public class WorldGameContext : GameContext
         //services.Add(new ServiceDescriptor(typeof(IAchievementSystem), new AchievementSystem()));
         services.Add(new ServiceDescriptor(typeof(INotificationSystem), new NotificationSystem()));
         services.Add(new ServiceDescriptor(typeof(IRewardSystem), new RewardSystem()));
-        services.Add(new ServiceDescriptor(typeof(IStatisticSystem), new StatisticSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgStatisticSystem), new NgStatisticSystem()));
 
         services.Add(new ServiceDescriptor(typeof(INgItemSystem), new NgItemSystem()));
         services.Add(new ServiceDescriptor(typeof(INgExchangeSystem), new NgExchangeSystem()));
