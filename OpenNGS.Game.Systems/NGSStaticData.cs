@@ -15,7 +15,6 @@ namespace OpenNGS.Systems
 
         public static Table<OpenNGS.Technology.Data.NodeData, uint> technologyNodes = new Table<Technology.Data.NodeData, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Item.Data.Item,uint> items = new Table<Item.Data.Item, uint>((item) => { return item.Id; }, false);
-        public static Table<OpenNGS.Item.Data.EquipStats, uint> equipStats = new Table<Item.Data.EquipStats, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Dialog.Data.DialogTalk, uint> DialogTalk = new Table<OpenNGS.Dialog.Data.DialogTalk, uint>((item) => { return item.DialogTalkID;}, false);
         public static Table<OpenNGS.Dialog.Data.DialogList, uint> Dialogue = new Table<OpenNGS.Dialog.Data.DialogList, uint>((item) => { return item.DialogID; }, false);
         public static Table<OpenNGS.Dialog.Data.DialogChoice, uint> Choice = new Table<OpenNGS.Dialog.Data.DialogChoice, uint>((item) => { return item.DialogChoiceID; }, false);
@@ -29,12 +28,12 @@ namespace OpenNGS.Systems
         //public static Table<OpenNGS.Make.Data.ItemInfo, uint> items = new Table<OpenNGS.Make.Data.ItemInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.MakeInfo, uint> makes = new Table<OpenNGS.Make.Data.MakeInfo, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Shop.Data.ShopSell, uint, uint> sells = new Table<OpenNGS.Shop.Data.ShopSell, uint, uint>((item) => { return item.ShopID; }, (item) => { return item.ItemID; }, false);
-        public static Table<OpenNGS.Statistic.Data.StatData,uint> s_statDatas = new Table<Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
         public static Table<OpenNGS.Achievement.Data.Achievement, uint> s_achiDatas = new Table<Achievement.Data.Achievement, uint>((item) => { return item.ID; }, false);
-        public static Table<OpenNGS.Item.Data.MakeDesign, uint> MakeItems = new Table<Item.Data.MakeDesign, uint>((item) => { return item.ID; }, false);
-        public static Table<OpenNGS.Item.Data.ComposeCostInfo, uint> ComposeInfo = new Table<Item.Data.ComposeCostInfo, uint>((item) => { return item.ID; }, false);
-        public static Dictionary<uint,OpenNGS.Item.Data.ComposeCostInfo> ComposeInfos = SettingTable<OpenNGS.Item.Data.ComposeCostInfo,uint>.map;
-        public static Table<OpenNGS.Item.Data.ComposeCostInfo, uint, uint> composeCostInfo = new Table<Item.Data.ComposeCostInfo, uint, uint>((item) => { return (uint)item.Kind; }, (item) => { return (uint)item.Quality; }, false);
+        //public static Table<OpenNGS.Item.Data.MakeDesign, uint> MakeItems = new Table<Item.Data.MakeDesign, uint>((item) => { return item.ID; }, false);
+        //public static Table<OpenNGS.Item.Data.ComposeCostInfo, uint> ComposeInfo = new Table<Item.Data.ComposeCostInfo, uint>((item) => { return item.ID; }, false);
+        //public static Dictionary<uint,OpenNGS.Item.Data.ComposeCostInfo> ComposeInfos = SettingTable<OpenNGS.Item.Data.ComposeCostInfo,uint>.map;
+        //public static Table<OpenNGS.Item.Data.ComposeCostInfo, uint, uint> composeCostInfo = new Table<Item.Data.ComposeCostInfo, uint, uint>((item) => { return (uint)item.Kind; }, (item) => { return (uint)item.Quality; }, false);
+        public static Table<OpenNGS.Statistic.Data.StatData, uint> s_statDatas = new Table<Statistic.Data.StatData, uint>((item) => { return item.Id; }, false);
         public static ListTableBase<OpenNGS.Achievement.Data.AchievementAward, uint> s_achiAward = new ListTableBase<Achievement.Data.AchievementAward, uint>((item) => { return item.ID; }, false);
         public static Table<OpenNGS.Levels.Data.LevelEnemyInfo, uint, uint> levelEnemyInfo = new Table<Levels.Data.LevelEnemyInfo, uint, uint>((item) => { return item.ID; }, (item) => { return item.RuleID; }, false);
         public static ListTableBase<OpenNGS.Levels.Data.LevelEnemyInfo,uint> levelEnemyInfos=new ListTableBase<Levels.Data.LevelEnemyInfo, uint>((item) => { return item.ID; }, false);
