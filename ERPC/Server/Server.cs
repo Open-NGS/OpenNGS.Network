@@ -48,8 +48,9 @@ namespace OpenNGS.ERPC
                         if (rspTask.Status == TaskStatus.RanToCompletion)
                         {
                             RspMsg rspMsg = rspTask.Result;
-                            System.IO.MemoryStream ms = new System.IO.MemoryStream(rspProto.Body);
+                            System.IO.MemoryStream ms = new System.IO.MemoryStream();
                             ProtoSerializer.Serialize(ms, rspMsg);
+                            rspProto.Body = ms.ToArray();
                             context.Status = new Status(0);
                         }
                         else if (rspTask.Status == TaskStatus.Faulted)
