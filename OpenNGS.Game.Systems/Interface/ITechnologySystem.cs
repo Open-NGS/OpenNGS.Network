@@ -28,6 +28,6 @@ namespace OpenNGS.Systems
         public void AddTechContainer(TechContainer container);
 
         public List<TechNodeSaveData> GetAllActivedNodes();
-        public TechNodeSaveData GetTechSaveDataByTechID(uint techID);
+        public void SetTechSaveData(TechNodeSaveData data);
     }
 }

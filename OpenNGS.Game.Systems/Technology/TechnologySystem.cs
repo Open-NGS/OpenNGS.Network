@@ -240,9 +240,9 @@ namespace OpenNGS.Systems
             return result;
         }
 
-        public TechNodeSaveData GetTechSaveDataByTechID(uint techID)
+        public void SetTechSaveData(TechNodeSaveData data)
         {
-            return TechContainer.GetTechNodeById(techID);
+            TechContainer.SetTechNode(data);
         }
     }
 }
