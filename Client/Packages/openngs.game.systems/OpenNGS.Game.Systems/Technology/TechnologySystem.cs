@@ -239,5 +239,10 @@ namespace OpenNGS.Systems
             }
             return result;
         }
+
+        public TechNodeSaveData GetTechSaveDataByTechID(uint techID)
+        {
+            return TechContainer.GetTechNodeById(techID);
+        }
     }
 }
