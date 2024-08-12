@@ -19,10 +19,13 @@ namespace OpenNGS.Technology.Data
         }
         public void SetTechNode(TechNodeSaveData data)
         {
-            TechNodeSaveData savedata = GetTechNodeById(data.ID);
+            TechNodeSaveData savedata = techDict.Find(i => i.ID == data.ID);
             if (savedata != null)
             {
-                savedata = data;
+                savedata.ID = data.ID;
+                savedata.Level = data.Level;
+                savedata.Locked = data.Locked;
+                savedata.Activated = data.Activated;
             }
             else
             {
@@ -32,7 +35,7 @@ namespace OpenNGS.Technology.Data
         }
         public TechNodeSaveData GetTechNodeById(uint techId)
         {
-            return techDict.FirstOrDefault(i => i.ID == techId);
+            return techDict.Find(i => i.ID == techId);
         }
 
     }
