@@ -73,14 +73,16 @@ namespace OpenNGS.Systems
                         nodeData.Locked = data_tmp.Locked;
                         nodeData.Activated = data_tmp.Activated;
                     }
-                    //存入数据
-                    data_tmp = new TechNodeSaveData();
-                    data_tmp.ID = nodeData.ID;
-                    data_tmp.Level = nodeData.Level;
-                    data_tmp.Locked = nodeData.Locked;
-                    data_tmp.Activated = nodeData.Activated;
-                    TechContainer.SetTechNode(data_tmp);
-
+                    else
+                    {
+                        //存入数据
+                        data_tmp = new TechNodeSaveData();
+                        data_tmp.ID = nodeData.ID;
+                        data_tmp.Level = nodeData.Level;
+                        data_tmp.Locked = nodeData.Locked;
+                        data_tmp.Activated = nodeData.Activated;
+                        TechContainer.SetTechNode(data_tmp);
+                    }
                     technologyNodes[nodeData.ID] = nodeData;
                     if (nodeData.ChildNodes == null)
                     {
