@@ -4280,6 +4280,28 @@
                 "IsRequired": false,
                 "IsRepeated": false,
                 "IsOptional": false
+              },
+              "Level": {
+                "Name": "Level",
+                "Type": "Uint32",
+                "Description": "道具等级",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "PromotionLevel": {
+                "Name": "PromotionLevel",
+                "Type": "Uint32",
+                "Description": "道具升阶等级",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
               }
             }
           }
