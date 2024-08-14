@@ -14,17 +14,17 @@ using OpenNGS.Exchange.Common;
 public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
     //装备背包（未装备）列表
-    List<OpenNGS.Item.Data.ItemSaveData> EquipInventory;
+    List<OpenNGS.Item.Data.ItemSaveState> EquipInventory;
     //材料列表
-    List<OpenNGS.Item.Data.ItemSaveData> CraftInventory;
+    List<OpenNGS.Item.Data.ItemSaveState> CraftInventory;
     //图纸列表
-    List<OpenNGS.Item.Data.ItemSaveData> BlueprintList;
+    List<OpenNGS.Item.Data.ItemSaveState> BlueprintList;
     //材料列表
-    List<OpenNGS.Item.Data.ItemSaveData> CraftList;
+    List<OpenNGS.Item.Data.ItemSaveState> CraftList;
     //幸运石列表
-    List<OpenNGS.Item.Data.ItemSaveData> LuckyStoneList;
+    List<OpenNGS.Item.Data.ItemSaveState> LuckyStoneList;
     //装备(可装备)列表
-    List<OpenNGS.Item.Data.ItemSaveData> EquipItems = new List<OpenNGS.Item.Data.ItemSaveData>();
+    List<OpenNGS.Item.Data.ItemSaveState> EquipItems = new List<OpenNGS.Item.Data.ItemSaveState>();
     //传给交易系统
     List<SourceItem> sourcesList = new List<SourceItem>();
     List<TargetItem> targetsList = new List<TargetItem>();
@@ -169,12 +169,12 @@ public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
         return "com.openngs.system.EquipSystem";
     }
 
-    public List<ItemSaveData> GetItemInfoByType(ITEM_TYPE iTEM_TYPE)
+    public List<ItemSaveState> GetItemInfoByType(ITEM_TYPE iTEM_TYPE)
     {
         throw new System.NotImplementedException();
     }
 
-    public List<ItemSaveData> GetItemInfoByKind(ITEM_KIND iTEM_KIND)
+    public List<ItemSaveState> GetItemInfoByKind(ITEM_KIND iTEM_KIND)
     {
         throw new System.NotImplementedException();
     }

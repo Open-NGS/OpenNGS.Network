@@ -105,10 +105,10 @@ namespace OpenNGS.Exchange.Service
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<GridSrcState> Source { get; set; }
+        public global::System.Collections.Generic.List<GridSrcState> Source { get; private set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<TargetState> Target { get; set; }
+        public global::System.Collections.Generic.List<TargetState> Target { get; private set; }
 
     }
 
