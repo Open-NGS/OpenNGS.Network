@@ -1,7 +1,6 @@
 using System;
 using OpenNGS.IO;
 using OpenNGS.Serialization;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -271,7 +270,7 @@ namespace OpenNGS.Tables
             return default(KEY);
         }
 
-        public ITEM GetItem(KEY pk,int index)
+        public ITEM GetItem(KEY pk, int index)
         {
             ITEM item = default(ITEM);
             List<ITEM> list = GetItems(pk);
@@ -287,6 +286,82 @@ namespace OpenNGS.Tables
             List<ITEM> items = null;
             this.Map.TryGetValue(pk, out items);
             return items;
+        }
+    }
+
+
+    public class DataCollectionTable<ITEM, PK, SK> : TableBase<DataTable<ITEM, PK, SK>, ITEM>, IDataTable
+    {
+        public Dictionary<PK, Dictionary<SK, List<ITEM>>> Map = new Dictionary<PK, Dictionary<SK, List<ITEM>>>();
+        public delegate PK PKeyGetter(ITEM item);
+        public delegate SK SKeyGetter(ITEM item);
+
+        PKeyGetter pkGetter;
+        SKeyGetter skGetter;
+
+        public DataCollectionTable<ITEM, PK, SK> SetKeyGetter(PKeyGetter pkgetter, SKeyGetter skgetter)
+        {
+            pkGetter = pkgetter;
+            skGetter = skgetter;
+            return this;
+        }
+
+        protected override void Prepare()
+        {
+            foreach (var item in this.Items)
+            {
+                try
+                {
+                    this.AddItem(item);
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        private void AddItem(ITEM item)
+        {
+            Dictionary<SK, List<ITEM>> submap = null;
+            PK key1 = GetPKey(item);
+            if (!this.Map.TryGetValue(key1, out submap))
+            {
+                submap = new Dictionary<SK, List<ITEM>>();
+                this.Map[key1] = submap;
+            }
+            SK _key2 = GetSKey(item);
+            List<ITEM> _lst = null;
+            if (!submap.TryGetValue(_key2, out _lst) )
+            {
+                _lst = new List<ITEM>();
+                submap[_key2] = _lst;
+            }
+            _lst.Add(item);
+        }
+
+        private SK GetSKey(ITEM item)
+        {
+            if (this.skGetter != null)
+                return this.skGetter(item);
+            return default(SK);
+        }
+        private PK GetPKey(ITEM item)
+        {
+            if (this.pkGetter != null)
+                return this.pkGetter(item);
+            return default(PK);
+        }
+
+        public List<ITEM> GetItems(PK pk, SK sk)
+        {
+            Dictionary<SK, List<ITEM>> _subMap = null;
+            List<ITEM> _lstResult = null;
+            if ( this.Map.TryGetValue(pk, out _subMap) )
+            {
+                _subMap.TryGetValue(sk, out _lstResult);
+            }
+            return _lstResult;
         }
     }
 }
