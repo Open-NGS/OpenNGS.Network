@@ -430,9 +430,6 @@ namespace OpenNGS.Item.Data
         public ItemContainer()
         {
             Col = new global::System.Collections.Generic.List<ItemColumn>();
-            stashDict = new global::System.Collections.Generic.List<stashs>();
-            equipDict = new global::System.Collections.Generic.List<equips>();
-            bagDict = new global::System.Collections.Generic.List<bags>();
         	OnConstructor();
         }
         
@@ -440,16 +437,6 @@ namespace OpenNGS.Item.Data
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<ItemColumn> Col { get;set;  }
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<stashs> stashDict { get;set;  }
-        [global::ProtoBuf.ProtoMember(3)]
-        public global::System.Collections.Generic.List<equips> equipDict { get;set;  }
-        [global::ProtoBuf.ProtoMember(4)]
-        public global::System.Collections.Generic.List<bags> bagDict { get;set;  }
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint stashCapacity { get; set; }
-        [global::ProtoBuf.ProtoMember(6)]
-        public uint bagCapacity { get; set; }
     }
     //道具存档数据
     [global::ProtoBuf.ProtoContract()]
@@ -481,6 +468,10 @@ namespace OpenNGS.Item.Data
         public uint ColIdx { get; set; }
         [global::ProtoBuf.ProtoMember(7)]
         public uint Grid { get; set; }
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint Level { get; set; }
+        [global::ProtoBuf.ProtoMember(9)]
+        public uint PromotionLevel { get; set; }
     }
     //栏位信息
     [global::ProtoBuf.ProtoContract()]
@@ -527,96 +518,6 @@ namespace OpenNGS.Item.Data
         public ItemResultType ItemResultTyp { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<ItemSaveState> ItemList { get;set;  }
-    }
-    //装备的游戏数据
-    [global::ProtoBuf.ProtoContract()]
-    public partial class equips : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public equips()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint index { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public ItemSaveData equip { get; set; }
-    }
-    //仓库的游戏数据
-    [global::ProtoBuf.ProtoContract()]
-    public partial class stashs : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public stashs()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint index { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public ItemSaveData stashItem { get; set; }
-    }
-    //背包的游戏数据
-    [global::ProtoBuf.ProtoContract()]
-    public partial class bags : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public bags()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public uint index { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public ItemSaveData bagItem { get; set; }
-    }
-    //道具存档数据
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ItemSaveData : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ItemSaveData()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint GUID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint ItemID { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint Durability { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint Count { get; set; }
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint Quality { get; set; }
     }
 
 }

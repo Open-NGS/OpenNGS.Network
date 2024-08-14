@@ -3788,64 +3788,6 @@
                 "IsRequired": false,
                 "IsRepeated": true,
                 "IsOptional": false
-              },
-              "stashDict": {
-                "Name": "stashDict",
-                "Type": "Unknow",
-                "CustomType": "stashs",
-                "Description": "仓库道具数据列表",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "Repeated",
-                "IsRequired": false,
-                "IsRepeated": true,
-                "IsOptional": false
-              },
-              "equipDict": {
-                "Name": "equipDict",
-                "Type": "Unknow",
-                "CustomType": "equips",
-                "Description": "装备数据字典",
-                "Tag": 3,
-                "Scope": "All",
-                "Attributes": "Repeated",
-                "IsRequired": false,
-                "IsRepeated": true,
-                "IsOptional": false
-              },
-              "bagDict": {
-                "Name": "bagDict",
-                "Type": "Unknow",
-                "CustomType": "bags",
-                "Description": "背包数据列表",
-                "Tag": 4,
-                "Scope": "All",
-                "Attributes": "Repeated",
-                "IsRequired": false,
-                "IsRepeated": true,
-                "IsOptional": false
-              },
-              "stashCapacity": {
-                "Name": "stashCapacity",
-                "Type": "Uint32",
-                "Description": "仓库容量",
-                "Tag": 5,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "bagCapacity": {
-                "Name": "bagCapacity",
-                "Type": "Uint32",
-                "Description": "背包容量",
-                "Tag": 6,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
               }
             }
           }
@@ -3943,6 +3885,28 @@
                 "Type": "Uint32",
                 "Description": "索引",
                 "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Level": {
+                "Name": "Level",
+                "Type": "Uint32",
+                "Description": "道具等级",
+                "Tag": 8,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "PromotionLevel": {
+                "Name": "PromotionLevel",
+                "Type": "Uint32",
+                "Description": "道具升阶等级",
+                "Tag": 9,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -4055,252 +4019,6 @@
                 "Attributes": "Repeated",
                 "IsRequired": false,
                 "IsRepeated": true,
-                "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Item.Data.equips": {
-          "RawPackage": "OpenNGS.Item",
-          "Methods": {},
-          "Name": "equips",
-          "Package": "OpenNGS.Item.Data",
-          "Fullname": "OpenNGS.Item.Data.equips",
-          "PackageName": "OpenNGS.Item.equips",
-          "Description": "装备的游戏数据",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "Table",
-          "Type": "Struct",
-          "Entity": {
-            "Name": "equips",
-            "Package": "OpenNGS.Item.Data",
-            "RawPackage": "OpenNGS.Item",
-            "Fullname": "OpenNGS.Item.Data.equips",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Item.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "index": {
-                "Name": "index",
-                "Type": "Uint32",
-                "Description": "装备索引",
-                "Tag": 1,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "equip": {
-                "Name": "equip",
-                "Type": "Unknow",
-                "CustomType": "ItemSaveData",
-                "Description": "装备数据",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Item.Data.stashs": {
-          "RawPackage": "OpenNGS.Item",
-          "Methods": {},
-          "Name": "stashs",
-          "Package": "OpenNGS.Item.Data",
-          "Fullname": "OpenNGS.Item.Data.stashs",
-          "PackageName": "OpenNGS.Item.stashs",
-          "Description": "仓库的游戏数据",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "Table",
-          "Type": "Struct",
-          "Entity": {
-            "Name": "stashs",
-            "Package": "OpenNGS.Item.Data",
-            "RawPackage": "OpenNGS.Item",
-            "Fullname": "OpenNGS.Item.Data.stashs",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Item.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "index": {
-                "Name": "index",
-                "Type": "Uint32",
-                "Description": "仓库索引",
-                "Tag": 1,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "stashItem": {
-                "Name": "stashItem",
-                "Type": "Unknow",
-                "CustomType": "ItemSaveData",
-                "Description": "仓库数据",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Item.Data.bags": {
-          "RawPackage": "OpenNGS.Item",
-          "Methods": {},
-          "Name": "bags",
-          "Package": "OpenNGS.Item.Data",
-          "Fullname": "OpenNGS.Item.Data.bags",
-          "PackageName": "OpenNGS.Item.bags",
-          "Description": "背包的游戏数据",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "Table",
-          "Type": "Struct",
-          "Entity": {
-            "Name": "bags",
-            "Package": "OpenNGS.Item.Data",
-            "RawPackage": "OpenNGS.Item",
-            "Fullname": "OpenNGS.Item.Data.bags",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Item.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "index": {
-                "Name": "index",
-                "Type": "Uint32",
-                "Description": "背包索引",
-                "Tag": 1,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "bagItem": {
-                "Name": "bagItem",
-                "Type": "Unknow",
-                "CustomType": "ItemSaveData",
-                "Description": "背包数据",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Item.Data.ItemSaveData": {
-          "RawPackage": "OpenNGS.Item",
-          "Methods": {},
-          "Name": "ItemSaveData",
-          "Package": "OpenNGS.Item.Data",
-          "Fullname": "OpenNGS.Item.Data.ItemSaveData",
-          "PackageName": "OpenNGS.Item.ItemSaveData",
-          "Description": "道具存档数据",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "Table",
-          "Type": "Struct",
-          "Entity": {
-            "Name": "ItemSaveData",
-            "Package": "OpenNGS.Item.Data",
-            "RawPackage": "OpenNGS.Item",
-            "Fullname": "OpenNGS.Item.Data.ItemSaveData",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Item.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "GUID": {
-                "Name": "GUID",
-                "Type": "Uint32",
-                "Description": "唯一ID",
-                "Tag": 1,
-                "Scope": "All",
-                "Attributes": "Required",
-                "IsRequired": true,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "ItemID": {
-                "Name": "ItemID",
-                "Type": "Uint32",
-                "Description": "道具ID",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Durability": {
-                "Name": "Durability",
-                "Type": "Uint32",
-                "Description": "道具耐久",
-                "Tag": 3,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Count": {
-                "Name": "Count",
-                "Type": "Uint32",
-                "Description": "道具数量",
-                "Tag": 4,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Quality": {
-                "Name": "Quality",
-                "Type": "Uint32",
-                "Description": "道具品质",
-                "Tag": 5,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Level": {
-                "Name": "Level",
-                "Type": "Uint32",
-                "Description": "道具等级",
-                "Tag": 6,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "PromotionLevel": {
-                "Name": "PromotionLevel",
-                "Type": "Uint32",
-                "Description": "道具升阶等级",
-                "Tag": 7,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
                 "IsOptional": false
               }
             }
