@@ -269,7 +269,7 @@ namespace OpenNGS.Tables
                 this.Map[key1] = submap;
             }
             Dictionary<TK,ITEM> submap2 = null;
-            if(!submap.ContainsKey(key2))
+            if(!submap.TryGetValue(key2,out submap2))
             {
                 submap2 = new Dictionary<TK, ITEM>();
                 submap[key2] = submap2;
