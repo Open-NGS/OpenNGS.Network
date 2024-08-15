@@ -468,10 +468,6 @@ namespace OpenNGS.Item.Data
         public uint ColIdx { get; set; }
         [global::ProtoBuf.ProtoMember(7)]
         public uint Grid { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
-        public uint Level { get; set; }
-        [global::ProtoBuf.ProtoMember(9)]
-        public uint PromotionLevel { get; set; }
     }
     //栏位信息
     [global::ProtoBuf.ProtoContract()]
