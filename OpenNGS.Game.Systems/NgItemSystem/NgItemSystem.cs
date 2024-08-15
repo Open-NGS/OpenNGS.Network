@@ -399,7 +399,7 @@ namespace OpenNGS.Systems
             }
             foreach (AddItemReq removeItemReq in _addReq.AddList)
             {
-                int capacity = GetItemDatasByColIdx(removeItemReq.ColIdx).Capacity;
+                uint capacity = GetItemColumnByColIdx(removeItemReq.ColIdx).Capacity;
                 int num = GetItemDatasByColIdx(removeItemReq.ColIdx).Count;
                 if (num + request.Target.Count- request.Source.Count > capacity)
                 {
