@@ -222,6 +222,107 @@ namespace OpenNGS.Tables
         }
     }
 
+    public class DataTable<ITEM,PK,SK,TK> : TableBase<DataTable<ITEM, PK, SK,TK>, ITEM>, IDataTable
+    {
+        public Dictionary<PK, Dictionary<SK, Dictionary<TK,ITEM>>> Map = new Dictionary<PK, Dictionary<SK, Dictionary<TK, ITEM>>>();
+
+        public delegate PK PKeyGetter(ITEM item);
+        public delegate SK SKeyGetter(ITEM item);
+        public delegate TK TKeyGetter(ITEM item);
+
+        PKeyGetter pkGetter;
+        SKeyGetter skGetter;
+        TKeyGetter tkGetter;
+
+        public DataTable<ITEM, PK, SK,TK> SetKeyGetter(PKeyGetter pkgetter, SKeyGetter skgetter,TKeyGetter tkgetter)
+        {
+            pkGetter = pkgetter;
+            skGetter = skgetter;
+            tkGetter = tkgetter;
+            return this;
+        }
+
+        protected override void Prepare()
+        {
+            foreach (var item in this.Items)
+            {
+                try
+                {
+                    this.AddItem(item);
+                }
+                catch (System.Exception ex)
+                {
+                    throw new Exception(string.Format("{0}:{1}.{2}.{3} \nPrepare Exceotion:\n{4}", this.Name, GetPKey(item), GetSKey(item),
+                    GetTKey(item), ex));
+                }
+            }
+        }
+
+        private void AddItem(ITEM item)
+        {
+            Dictionary<SK, Dictionary<TK, ITEM>> submap = null;
+            PK key1 = GetPKey(item);
+            SK key2 = GetSKey(item);
+            if (!this.Map.TryGetValue(key1, out submap))
+            {
+                submap = new Dictionary<SK, Dictionary<TK, ITEM>>();
+                this.Map[key1] = submap;
+            }
+            Dictionary<TK,ITEM> submap2 = null;
+            if(!submap.ContainsKey(key2))
+            {
+                submap2 = new Dictionary<TK, ITEM>();
+                submap[key2] = submap2;
+            }
+            submap2[GetTKey(item)] = item;
+            submap.Add(key2, submap2);
+        }
+
+        private PK GetPKey(ITEM item)
+        {
+            if (this.pkGetter != null)
+                return this.pkGetter(item);
+            return default(PK);
+        }
+
+        private SK GetSKey(ITEM item)
+        {
+            if (this.skGetter != null)
+                return this.skGetter(item);
+            return default(SK);
+        }
+
+        private TK GetTKey(ITEM item)
+        {
+            if (this.tkGetter != null)
+                return this.tkGetter(item);
+            return default(TK);
+        }
+
+        public ITEM GetItem(PK pk, SK sk,TK tk)
+        {
+            ITEM item = default(ITEM);
+            Dictionary<SK, Dictionary<TK, ITEM>> submap = GetItems(pk);
+            Dictionary<TK, ITEM> submap2 = null;
+            if (submap != null)
+            {
+                submap.TryGetValue(sk, out submap2);
+            }
+            if(submap2 != null)
+            {
+                submap2.TryGetValue(tk, out item);
+            }
+            return item;
+        }
+
+        public Dictionary<SK, Dictionary<TK, ITEM>> GetItems(PK pk)
+        {
+            Dictionary<SK, Dictionary<TK, ITEM>> items = null;
+            this.Map.TryGetValue(pk, out items);
+            return items;
+        }
+    }
+
 
     public class DataCollectionTable<ITEM, KEY> : TableBase<DataTable<ITEM, KEY>, ITEM>, IDataTable
     {
