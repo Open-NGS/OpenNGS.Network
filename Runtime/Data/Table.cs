@@ -98,4 +98,20 @@ namespace OpenNGS
         }
     }
 
+    public class Table<ITEM,PK,SK,TK> :DataTable<ITEM,PK,SK,TK>, ITable
+    {
+        public bool IsSeasonTable { get; private set; }
+
+        public Table(DataTable<ITEM, PK, SK,TK>.PKeyGetter pkgetter, DataTable<ITEM, PK, SK,TK>.SKeyGetter skgetter, DataTable<ITEM, PK, SK, TK>.TKeyGetter tkgetter, bool season)
+        {
+            this.IsSeasonTable = season;
+            base.SetKeyGetter(pkgetter, skgetter,tkgetter);
+            DataManager.Instance.AddTable(this);
+        }
+
+        public void Load()
+        {
+            base.Load(DataManager.Instance.GetDataFile(Name, IsSeasonTable));
+        }
+    }
 }
