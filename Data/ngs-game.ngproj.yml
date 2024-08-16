@@ -252,6 +252,21 @@ dataTables:
     modelName: OpenNGS.Quest.Data.QuestGroup
     sourceFile: Tables\Quest.xlsx
     targetFile: 
+  Drop:
+    tableName: Drop
+    modelName: OpenNGS.BlindBox.Data.Drop
+    sourceFile: Tables\BlindBox.xlsx
+    targetFile: 
+  DropRule:
+    tableName: DropRule
+    modelName: OpenNGS.BlindBox.Data.DropRule
+    sourceFile: Tables\BlindBox.xlsx
+    targetFile: 
+  DropGroup:
+    tableName: DropGroup
+    modelName: OpenNGS.BlindBox.Data.DropGroup
+    sourceFile: Tables\BlindBox.xlsx
+    targetFile: 
   Quest:
     tableName: Quest
     modelName: OpenNGS.Quest.Data.Quest

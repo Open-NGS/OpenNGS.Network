@@ -274,8 +274,9 @@ namespace OpenNGS.Tables
                 submap2 = new Dictionary<TK, ITEM>();
                 submap[key2] = submap2;
             }
-            submap2[GetTKey(item)] = item;
-            submap.Add(key2, submap2);
+            TK _tk = GetTKey(item);
+            submap2[_tk] = item;
+            //submap.Add(key2, submap2);
         }
 
         private PK GetPKey(ITEM item)

@@ -259,6 +259,21 @@
       "ModelName": "OpenNGS.Quest.Data.QuestGroup",
       "SourceFile": "Tables\\Quest.xlsx"
     },
+    "Drop": {
+      "TableName": "Drop",
+      "ModelName": "OpenNGS.BlindBox.Data.Drop",
+      "SourceFile": "Tables\\BlindBox.xlsx"
+    },
+    "DropRule": {
+      "TableName": "DropRule",
+      "ModelName": "OpenNGS.BlindBox.Data.DropRule",
+      "SourceFile": "Tables\\BlindBox.xlsx"
+    },
+    "DropGroup": {
+      "TableName": "DropGroup",
+      "ModelName": "OpenNGS.BlindBox.Data.DropGroup",
+      "SourceFile": "Tables\\BlindBox.xlsx"
+    },
     "Quest": {
       "TableName": "Quest",
       "ModelName": "OpenNGS.Quest.Data.Quest",
