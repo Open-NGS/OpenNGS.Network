@@ -11,49 +11,6 @@
 namespace OpenNGS.Setting.Common 
 {
 
-    //分辨率
-    [global::ProtoBuf.ProtoContract()]
-    public enum RESOLUTIONRATION_TYPE
-    {
-        RESOLUTIONRATION_TYPE_PROGRESSIVE = 0, // 1920*1080
-    }
-
-    //语言
-    [global::ProtoBuf.ProtoContract()]
-    public enum LANGUAGE_TYPE
-    {
-        LANGUAGE_TYPE_ZH = 0, // 简体中文
-        LANGUAGE_TYPE_HK = 1, // 繁体中文
-        LANGUAGE_TYPE_US = 2, // ENGLISH
-        LANGUAGE_TYPE_JM = 3, // 日本语
-    }
-
-    //音频类型
-    [global::ProtoBuf.ProtoContract()]
-    public enum ADUIO_TYPE
-    {
-        ADUIO_TYPE_OVERALLAudio = 0, // 整体音效
-        ADUIO_TYPE_SOUND = 1, // 音效
-        ADUIO_TYPE_MUSIC = 2, // 音乐
-    }
-
-    //设置类型
-    [global::ProtoBuf.ProtoContract()]
-    public enum UserSetting_Type
-    {
-        MusicSwitch = 0, // 音乐开关
-        MusicVolume = 1, // 音乐音量
-        SoundSwitch = 2, // 音效开关
-        SoundVolume = 3, // 音效音量
-        VerticalSync = 4, // 垂直同步
-        ResolutionRatio = 5, // 分辨率
-        Forward = 6, // 前行键位
-        Backward = 7, // 后退键位
-        TrunLeft = 8, // 左转键位
-        TrunRight = 9, // 右转键位
-        Language = 10, // 语言
-    }
-
     //设置存储位置类型
     [global::ProtoBuf.ProtoContract()]
     public enum UserSetting_StorageType
