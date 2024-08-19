@@ -152,36 +152,6 @@ dataTables:
     modelName: OpenNGS.NPC.Data.NPCData
     sourceFile: Tables\NPC.xlsx
     targetFile: 
-  GameSettingLabel:
-    tableName: GameSettingLabel
-    modelName: OpenNGS.Setting.Data.GameSettingLabel
-    sourceFile: Tables\Setting.xlsx
-    targetFile: 
-  KeyControlSettingInfo:
-    tableName: KeyControlSettingInfo
-    modelName: OpenNGS.Setting.Data.KeyControlSettingInfo
-    sourceFile: Tables\Setting.xlsx
-    targetFile: 
-  Language:
-    tableName: Language
-    modelName: OpenNGS.Setting.Data.Language
-    sourceFile: Tables\Setting.xlsx
-    targetFile: 
-  AudioSettingInfo:
-    tableName: AudioSettingInfo
-    modelName: OpenNGS.Setting.Data.AudioSettingInfo
-    sourceFile: Tables\Setting.xlsx
-    targetFile: 
-  VerticalSynchronization:
-    tableName: VerticalSynchronization
-    modelName: OpenNGS.Setting.Data.VerticalSynchronization
-    sourceFile: Tables\Setting.xlsx
-    targetFile: 
-  ResolutionRatios:
-    tableName: ResolutionRatios
-    modelName: OpenNGS.Setting.Data.ResolutionRatios
-    sourceFile: Tables\Setting.xlsx
-    targetFile: 
   Shop:
     tableName: Shop
     modelName: OpenNGS.Shop.Data.Shop

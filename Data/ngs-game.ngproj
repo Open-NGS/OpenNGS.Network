@@ -159,36 +159,6 @@
       "ModelName": "OpenNGS.NPC.Data.NPCData",
       "SourceFile": "Tables\\NPC.xlsx"
     },
-    "GameSettingLabel": {
-      "TableName": "GameSettingLabel",
-      "ModelName": "OpenNGS.Setting.Data.GameSettingLabel",
-      "SourceFile": "Tables\\Setting.xlsx"
-    },
-    "KeyControlSettingInfo": {
-      "TableName": "KeyControlSettingInfo",
-      "ModelName": "OpenNGS.Setting.Data.KeyControlSettingInfo",
-      "SourceFile": "Tables\\Setting.xlsx"
-    },
-    "Language": {
-      "TableName": "Language",
-      "ModelName": "OpenNGS.Setting.Data.Language",
-      "SourceFile": "Tables\\Setting.xlsx"
-    },
-    "AudioSettingInfo": {
-      "TableName": "AudioSettingInfo",
-      "ModelName": "OpenNGS.Setting.Data.AudioSettingInfo",
-      "SourceFile": "Tables\\Setting.xlsx"
-    },
-    "VerticalSynchronization": {
-      "TableName": "VerticalSynchronization",
-      "ModelName": "OpenNGS.Setting.Data.VerticalSynchronization",
-      "SourceFile": "Tables\\Setting.xlsx"
-    },
-    "ResolutionRatios": {
-      "TableName": "ResolutionRatios",
-      "ModelName": "OpenNGS.Setting.Data.ResolutionRatios",
-      "SourceFile": "Tables\\Setting.xlsx"
-    },
     "Shop": {
       "TableName": "Shop",
       "ModelName": "OpenNGS.Shop.Data.Shop",
