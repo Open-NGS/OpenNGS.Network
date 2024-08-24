@@ -27,6 +27,18 @@ git subtree split --prefix Client/Packages/openngs.platform.eegames -b packages/
 ```
 git subtree push --prefix Client/Packages/openngs.platform.eegames https://git.eegames.net/openngs/client/openngs.platform.eegames.git main
 ```
+4. 清理过程操作
+```
+git rm -rf Client/Packages/openngs.platform.eegames
+git commit #提交删除记录
+git branch -D packages/openngs.platform.eegames
+```
+
+5. 重新添加子树
+```
+git subtree add --prefix Client/Packages/openngs.platform.eegames https://git.eegames.net/openngs/client/openngs.platform.eegames.git main
+```
+
 
 
 
