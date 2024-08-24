@@ -1,0 +1,22 @@
+{
+	"name": "com.openngs.platform.supersdk",
+	"displayName": "OpenNGS Platform SuperSDK",
+	"version": "0.2.0",
+	"description": "OpenNGS platform SuperSDK package",
+	"main": "index.js",
+	"scripts": {
+		"test" : "script-content"
+	},
+	"author": {
+		"name": "EE GAMES",
+		"email": "ray@eegames.com",
+		"url": "https://www.openngs.com"
+	},
+	"license": "AGPL",
+	"keywords": [
+		"unity3d",
+		"unity3d-npm",
+		"openngs",
+    	"game"
+	]
+}
