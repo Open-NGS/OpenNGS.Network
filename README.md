@@ -16,12 +16,20 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ## 如何拆分新的 Package 并创建子仓库
 
+1. 拆分子树
+
 ```
-cd existing_repo
-git remote add origin https://git.eegames.net/openngs/client/openngs.git
-git branch -M main
-git push -uf origin main
+git subtree split --prefix Client/Packages/openngs.platform.eegames -b packages/openngs.platform.eegames
 ```
+
+2. 创建一个空的未初始化的 GIT 远程仓库   https://git.eegames.net/openngs/client/openngs.platform.eegames.git
+3. 推送子树到远程仓库
+```
+git subtree push --prefix Client/Packages/openngs.platform.eegames https://git.eegames.net/openngs/client/openngs.platform.eegames.git main
+```
+
+
+
 
 ## Integrate with your tools
 
