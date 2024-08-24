@@ -2,7 +2,6 @@
     "name": "OpenNGS.SaveData",
     "rootNamespace": "",
     "references": [
-        "Protobuf",
         "protobuf-net",
         "OpenNGS.Core",
         "OpenNGS.Security"
