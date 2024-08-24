@@ -1,7 +1,7 @@
 {
 	"name": "com.openngs.savedata",
 	"displayName": "OpenNGS SaveData",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "OpenNGS SaveData package",
 	"author": {
 		"name": "EE GAMES",
@@ -16,7 +16,7 @@
     	"game"
 	],
 	"dependencies": {
-        "com.openngs.core": "0.2.0"
+        "com.openngs.core": "0.3.0"
     },
 	"documentationUrl": "https://docs.openngs.com",
 	"repository": {

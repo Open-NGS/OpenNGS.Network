@@ -4,7 +4,8 @@
     "references": [
         "Protobuf",
         "protobuf-net",
-        "OpenNGS.Core"
+        "OpenNGS.Core",
+        "OpenNGS.Security"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
