@@ -16,6 +16,12 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ## 如何拆分新的 Package 并创建子仓库
 
+### 快捷指令
+
+```
+pkgsplit.cmd Client/Packages/openngs.build https://git.eegames.net/openngs/client/openngs.build.git main
+```
+
 ### 简单操作
 1. 创建一个空的未初始化的 GIT 远程仓库   https://git.eegames.net/openngs/client/openngs.platform.eegames.git
 2. 推送子树到远程仓库

@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.openngs.build": {
+      "version": "file:openngs.build",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.openngs.core": {
       "version": "file:openngs.core",
       "depth": 0,
