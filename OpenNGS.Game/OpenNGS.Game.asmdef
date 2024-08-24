@@ -11,7 +11,8 @@
         "OpenNGS.Network",
         "OpenNGS.Platform",
         "Platform.GCloud",
-        "OpenNGS.EEGamesSDK"
+        "OpenNGS.Assets",
+        "OpenNGS.Platform.EEGAMES"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
