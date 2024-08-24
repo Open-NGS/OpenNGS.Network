@@ -1,6 +1,6 @@
 {
-	"name": "com.openngs.game.systems",
-	"displayName": "OpenNGS Game Systems",
+	"name": "com.openngs.gamesystems",
+	"displayName": "OpenNGS GameSystems",
 	"version": "0.2.0",
 	"description": "OpenNGS game systems package",
 	"main": "index.js",
