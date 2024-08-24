@@ -1,8 +1,8 @@
 {
-	"name": "com.openngs.data",
-	"displayName": "OpenNGS Data",
+	"name": "com.openngs.savedata",
+	"displayName": "OpenNGS SaveData",
 	"version": "0.2.0",
-	"description": "OpenNGS Data package",
+	"description": "OpenNGS SaveData package",
 	"author": {
 		"name": "EE GAMES",
 		"email": "ray@eegames.com",
@@ -16,13 +16,11 @@
     	"game"
 	],
 	"dependencies": {
-        "com.openngs.core": "0.2.0",
-		"com.openngs.protobuf": "0.2.0",
-		"com.openngs.erpc": "0.2.0"
+        "com.openngs.core": "0.2.0"
     },
 	"documentationUrl": "https://docs.openngs.com",
 	"repository": {
-	  "url": "https://git.eegames.net/OpenNGS/UnityPackages/com.openngs.core.git",
+	  "url": "https://git.eegames.net/OpenNGS/UnityPackages/com.openngs.savedata.git",
 	  "type": "git"
 	}
 }

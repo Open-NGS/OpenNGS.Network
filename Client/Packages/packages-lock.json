@@ -64,6 +64,14 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.openngs.savedata": {
+      "version": "file:openngs.savedata",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.openngs.core": "0.2.0"
+      }
+    },
     "com.openngs.ui": {
       "version": "file:openngs.ui",
       "depth": 0,
