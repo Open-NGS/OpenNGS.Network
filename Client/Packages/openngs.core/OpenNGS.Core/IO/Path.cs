@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OpenNGS.IO
 {
-    class Path
+    public class Path
     {
 
         public static readonly char AltDirectorySeparatorChar = '/';

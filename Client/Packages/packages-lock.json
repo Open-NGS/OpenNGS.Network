@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.openngs.assets": {
+      "version": "file:openngs.assets",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.openngs.core": "0.3.0",
+        "com.openngs.security": "0.3.0"
+      }
+    },
     "com.openngs.build": {
       "version": "file:openngs.build",
       "depth": 0,
@@ -12,12 +21,18 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.openngs.core.unity": {
+      "version": "file:openngs.core.unity",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.openngs.data": {
       "version": "file:openngs.data",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.openngs.core": "0.2.0",
+        "com.openngs.core": "0.3.0",
         "com.openngs.protobuf": "0.2.0",
         "com.openngs.erpc": "0.2.0"
       }
@@ -93,15 +108,21 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.openngs.core": "0.2.0"
+        "com.openngs.core": "0.3.0"
       }
+    },
+    "com.openngs.security": {
+      "version": "file:openngs.security",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.openngs.ui": {
       "version": "file:openngs.ui",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.openngs.core": "0.2.0",
+        "com.openngs.core": "0.3.0",
         "com.openngs.protobuf": "0.2.0"
       }
     },

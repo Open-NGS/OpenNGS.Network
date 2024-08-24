@@ -1,7 +1,7 @@
 {
 	"name": "com.openngs.game",
 	"displayName": "OpenNGS Game",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "OpenNGS game package",
 	"main": "index.js",
 	"scripts": {

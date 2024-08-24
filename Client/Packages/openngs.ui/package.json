@@ -1,7 +1,7 @@
 {
 	"name": "com.openngs.ui",
 	"displayName": "OpenNGS UI",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "OpenNGS UI package",
 	"main": "index.js",
 	"scripts": {
@@ -13,7 +13,7 @@
 		"url": "https://www.openngs.com"
 	},
 	"dependencies": {
-		"com.openngs.core": "0.2.0",
+		"com.openngs.core": "0.3.0",
 		"com.openngs.protobuf": "0.2.0"
 	},
 	"license": "AGPL",
