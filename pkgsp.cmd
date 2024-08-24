@@ -3,7 +3,7 @@
 
 IF "%~1" == "" GOTO :HELP
 
-call pkgsplit.cmd Client/Packages/%~1% https://git.eegames.net/openngs/client/%~1%.git main
+call pkgsplit.cmd Client/Packages/%1 https://git.eegames.net/openngs/client/%1.git main
 
 GOTO :END
 
