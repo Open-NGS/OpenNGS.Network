@@ -1,5 +1,5 @@
 {
-    "name": "OpenNGSGame.Systems",
+    "name": "OpenNGS.GameSystems",
     "rootNamespace": "",
     "references": [
         "OpenNGS.Game",
@@ -9,7 +9,8 @@
         "OpenNGS.UI",
         "OpenNGS.DI",
         "OpenNGS.Events",
-        "OpenNGS.Data"
+        "OpenNGS.Data",
+        "OpenNGS.SaveData"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
