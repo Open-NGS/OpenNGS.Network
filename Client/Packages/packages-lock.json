@@ -37,7 +37,7 @@
       "source": "embedded",
       "dependencies": {}
     },
-    "com.openngs.game.systems": {
+    "com.openngs.gamesystems": {
       "version": "file:openngs.game.systems",
       "depth": 0,
       "source": "embedded",
@@ -54,6 +54,24 @@
     },
     "com.openngs.platform": {
       "version": "file:openngs.platform",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.platform.eegames": {
+      "version": "file:openngs.platform.eegames",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.platform.gcloud": {
+      "version": "file:openngs.platform.gcloud",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.openngs.platform.supersdk": {
+      "version": "file:openngs.platform.supersdk",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

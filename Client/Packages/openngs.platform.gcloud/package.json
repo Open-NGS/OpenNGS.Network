@@ -1,8 +1,8 @@
 {
-	"name": "com.openngs.gamesystems",
-	"displayName": "OpenNGS GameSystems",
+	"name": "com.openngs.platform.gcloud",
+	"displayName": "OpenNGS Platform GCloud",
 	"version": "0.2.0",
-	"description": "OpenNGS game systems package",
+	"description": "OpenNGS platform GCloud package",
 	"main": "index.js",
 	"scripts": {
 		"test" : "script-content"

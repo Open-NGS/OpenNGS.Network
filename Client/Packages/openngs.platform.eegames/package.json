@@ -1,8 +1,8 @@
 {
-	"name": "com.openngs.gamesystems",
-	"displayName": "OpenNGS GameSystems",
+	"name": "com.openngs.platform.eegames",
+	"displayName": "OpenNGS Platform EEGAMES",
 	"version": "0.2.0",
-	"description": "OpenNGS game systems package",
+	"description": "OpenNGS platform EEGAMES package",
 	"main": "index.js",
 	"scripts": {
 		"test" : "script-content"
