@@ -39,6 +39,10 @@ namespace OpenNGS.Systems
             {
                 m_Container = new StatisticContainer();
             }
+            if(m_Container.StatisticSaveData == null)
+            {
+                m_Container.StatisticSaveData = new Dictionary<ulong, StatValue>();
+            }
 
             for (int nIdx = 0; nIdx < NGSStaticData.s_statDatas.Items.Count; nIdx++)
             {
