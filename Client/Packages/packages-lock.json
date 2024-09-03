@@ -103,6 +103,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.openngs.render-piplines": {
+      "version": "file:openngs.render-piplines",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.openngs.savedata": {
       "version": "file:openngs.savedata",
       "depth": 0,
