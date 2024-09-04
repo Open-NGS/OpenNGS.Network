@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Codice.Client.BaseCommands.BranchExplorer;
 using OpenNGS.Crypto;
 using OpenNGS.IO;
 using OpenNGS.SaveData;
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace OpenNGS.SaveData.Storage
 {
-    class SaveDataStorage<T> : ILocalSaveData<T> where T : ISaveEntity, new()
+    class SaveDataStorage : ILocalSaveData
     {
 
         enum SaveDataType
@@ -26,13 +27,22 @@ namespace OpenNGS.SaveData.Storage
 
         save_data/
             + {userId}/
-                game_save_data
-                    + indexies.dat
+                [settings] (留给系统的设置模块默认使用的存储区)
+                    + main.nsd
+                    + {savefile}
+
+                autosave/ （自动保存机制默认位置）
+                    + main.nsd  // 摘要信息
+                    + gamedata.nsd // 实际游戏数据
+
+                game_save_data/
+                    + main.nsd
+
                     + autosave.dat
                     + 0/data0           current data.
                         data1           update before save data0.
                         data2           update when load success.
-                setting_save_data
+                setting_save_data/
                     + indexies.dat
                     + autosave.dat
                     + 0/data0           current data.
@@ -45,7 +55,6 @@ namespace OpenNGS.SaveData.Storage
         /// Save data max capacity
         /// </summary>
         public int Capacity { get; private set; }
-        public int Version { get; private set; }
 
         /// <summary>
         /// Save data root path
@@ -53,129 +62,92 @@ namespace OpenNGS.SaveData.Storage
         public string RootPath { get; set; }
 
         private IFileSystem fsSave;
-        private string IndexName = "indexies.dat";
+
+        private string ManifestName = "main.nsd";
 
         private string mountName = "SaveData";
 
         private long magic = 0x5685432132698754 | 0x6654219875421325;
 
-        public void Init(IFileSystem fs, int capacity, int version, bool isSetting)
+        public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
         {
             fsSave = fs;
             this.Capacity = capacity;
-            this.Version = version;
-
-            if (!isSetting)
-            {
-                this.RootPath = "save_data/game_save_data";
-            }
-            else
-            {
-                this.RootPath = "save_data/setting_save_data";
-            }
-
+            this.RootPath = "save_data/";
         }
 
         /// <summary>
         /// Load Indexies
         /// </summary>
         /// <returns></returns>
-        public void LoadIndex(Action<IndexiesData<T>> onIndexiesLoaded)
+        public void LoadIndex(Action onIndexiesLoaded)
         {
-            string path = this.RootPath + "/" + this.IndexName;
+            string path = this.RootPath + "/";
             byte[] data = null;
 
             fsSave.Mount(mountName, true);
-            if (fsSave.FileExists(path))
+
+            if (!fsSave.DirectoryExists(path))
             {
-                data = fsSave.Read(path);
+                Debug.Log(path + " not found");
+                onIndexiesLoaded();
+                return;
             }
-            fsSave.Unmount();
-            IndexiesData<T> indexies = null;
-            if (data == null)
+            Debug.Log("LoadIndex at " + path);
+
+            var all = Directory.GetFiles(path, ManifestName, SearchOption.AllDirectories);
+            foreach (var savefile in all)
             {
-                indexies = RebuildIndexied();
-            }
-            else
-            {
-                try
+                SaveData item = SaveDataManager.Instance.NewSaveData();
+                item.DirName = System.IO.Path.GetDirectoryName(savefile); 
+
+                if (fsSave.FileExists(savefile))
                 {
-                    using(MemoryStream ms = new MemoryStream(data))
+                    data = fsSave.Read(savefile);
+                    try
                     {
-                        indexies = Serializer.Deserialize<IndexiesData<T>>(ms);
+                        using (MemoryStream ms = new MemoryStream(data))
+                        {
+                            item.Read(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogErrorFormat("SaveDataStorate.LoadIndex Error: Index Invalid. \r\n{0}", ex.ToString());
                     }
                 }
-                catch(Exception ex)
-                {
-                    Debug.LogErrorFormat("SaveDataStorate.LoadIndex Error: Index Invalid. \r\n{0}", ex.ToString());
-                    indexies = null;
-                }
-                if (indexies == null)
-                    indexies = RebuildIndexied();
-            }
-            onIndexiesLoaded(indexies);
-        }
-
-
-        private IndexiesData<T> RebuildIndexied()
-        {
-            IndexiesData<T> indexies = IndexiesData<T>.Create(this.Capacity,this.Version);
-            indexies.Slots.Clear();
-            return indexies;
-        }
-
-        public void SaveIndex(IndexiesData<T> index)
-        {
-            string path = this.RootPath + "/" + this.IndexName;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                byte[] data = null;
-                Serializer.Serialize<IndexiesData<T>>(ms,index);
-                data = ms.ToArray();
-                if (data == null)
-                {
-                    return;
-                }
-                fsSave.Mount(mountName, false);
-                bool result = fsSave.Write(path, data);
-                fsSave.Unmount();
 
             }
-            return;
+            fsSave.Unmount();
+            onIndexiesLoaded();
         }
 
-        public void LoadData(int index, string name, Action<SaveDataResult, SaveData<T>> onSaveDataLoaded)
+
+        public void LoadData(SaveData saveData, string name, Action<SaveDataResult, SaveData> onSaveDataLoaded)
         {
             // Load local save data
-            SaveData<T> saveData;
-            SaveDataResult result = LoadLocalSaveData(index, name, out saveData);
+            SaveDataResult result = LoadLocalSaveData(name, saveData);
             if (onSaveDataLoaded != null)
                 onSaveDataLoaded(result, saveData);
             // Cloud Save Data support later
 
         }
 
-        public void SaveData(int index, string name, SaveData<T> saveData, Action<SaveDataResult> onDataSaved)
+        public void SaveData(SaveData saveData, string name, Action<SaveDataResult> onDataSaved)
         {
             // Load local save data
-            SaveDataResult result = SaveLocalSaveData(index, name, saveData);
+            SaveDataResult result = SaveLocalSaveData(name, saveData);
             if (onDataSaved != null)
                 onDataSaved(result);
             // Cloud Save Data support later
 
         }
 
-        private SaveDataResult SaveLocalSaveData(int index, string name, SaveData<T> saveData)
+        private SaveDataResult SaveLocalSaveData(string name, SaveData saveData)
         {
             SaveDataResult result = SaveDataResult.InvalidData;
-            string slotPath = this.RootPath + "/" + index;
+            string slotPath = OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName);
             string baseName = slotPath + "/" + name;
-#if !UNITY_SWITCH
-            string rawFile = baseName + (int)SaveDataType.Raw;
-            string cacheFile = baseName + (int)SaveDataType.Cache;
-            string backupFile = baseName + (int)SaveDataType.Backup;
-            string tempFile = baseName + (int)SaveDataType.Temp;
-#endif
 
 #if UNITY_SWITCH
             // Nintendo Switch Guideline 0080
@@ -192,15 +164,16 @@ namespace OpenNGS.SaveData.Storage
                 fsSave.CreateDirectory(slotPath);
             }
 
-#if UNITY_SWITCH
-            result = this.WriteSaveData(baseName, saveData);
-#else
-            result = this.WriteSaveData(tempFile, saveData);
-            if (result == SaveDataResult.Success)
+            result = this.WriteMeta(this.RootPath, saveData);
+            if (result != SaveDataResult.Success)
             {
-                fsSave.Copy(tempFile, rawFile);
-                fsSave.Move(tempFile, cacheFile);
+                return result;
             }
+
+#if UNITY_SWITCH
+            result = this.WriteSaveData(slotPath, saveData);
+#else
+            result = this.WriteSaveData(slotPath, saveData);
 #endif
 
             fsSave.Unmount();
@@ -211,74 +184,29 @@ namespace OpenNGS.SaveData.Storage
             return result;
         }
 
-        public void Close()
+        public void Terminate()
         {
 
         }
 
-        private SaveDataResult LoadLocalSaveData(int index, string name,out SaveData<T> saveData)
+        private SaveDataResult LoadLocalSaveData(string name,SaveData saveData)
         {
-            string baseName = this.RootPath + "/" + index + "/" + name;
-#if !UNITY_SWITCH
-            string rawFile = baseName + (int)SaveDataType.Raw;
-            string cacheFile = baseName + (int)SaveDataType.Cache;
-            string backupFile = baseName + (int)SaveDataType.Backup;
-#endif
-            saveData = null;
+
+            string slotPath = OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName);
 
             fsSave.Mount(mountName, false);
-#if UNITY_SWITCH
+
             SaveDataResult result = SaveDataResult.NotFound;
-            bool baseExist = fsSave.FileExists(baseName);
+            bool baseExist = fsSave.DirectoryExists(slotPath);
             if (baseExist)
             {
-                result = ReadSaveData(baseName, out saveData);
+                result = ReadSaveData(slotPath, saveData);
             }
-#else
-            bool rawExist = fsSave.FileExists(rawFile);
-            bool cacheExist = fsSave.FileExists(cacheFile);
-            bool backupExist = fsSave.FileExists(backupFile);
-
-            if (!rawExist && !cacheExist && !backupExist)
-            {
-                return SaveDataResult.NotFound;
-            }
-
-            SaveDataResult result = SaveDataResult.NotFound;
-            if (rawExist)
-            {
-                result = ReadSaveData(rawFile, out saveData);
-                if (result == SaveDataResult.Success)
-                {
-                    fsSave.Copy(rawFile, backupFile);
-                    return result;
-                }
-            }
-            if (cacheExist)
-            {
-                result = ReadSaveData(cacheFile, out saveData);
-                if (result == SaveDataResult.Success)
-                {
-                    fsSave.Copy(cacheFile, rawFile);
-                    return SaveDataResult.Recovered;
-                }
-            }
-            if (backupExist)
-            {
-                result = ReadSaveData(backupFile, out saveData);
-                if (result == SaveDataResult.Success)
-                {
-                    fsSave.Copy(backupFile, rawFile);
-                    return SaveDataResult.Recovered;
-                }
-            }
-#endif
             fsSave.Unmount();
             return result;
         }
 
-
-        private SaveDataResult ReadSaveData(string name, out SaveData<T> saveData)
+        private SaveDataResult ReadMeta(string name, out SaveData saveData)
         {
             saveData = null;
             byte[] data = fsSave.Read(name);
@@ -296,18 +224,26 @@ namespace OpenNGS.SaveData.Storage
 #endif
             using (MemoryStream ms = new MemoryStream(buff))
             {
-                saveData = Serializer.Deserialize<SaveData<T>>(ms);
-                if (saveData == null)
-                {
-                    return SaveDataResult.InvalidData;
-                }
+                saveData.Read(ms);
             }
             return SaveDataResult.Success;
         }
 
-        public void DeleteData(int index, string name, Action<SaveDataResult> onDataDelete)
+
+        private SaveDataResult ReadSaveData(string filename, SaveData saveData)
         {
-            string baseName = this.RootPath + "/" + index + "/" + name;
+            foreach (var sf in saveData.Files)
+            {
+                var result = sf.Read(fsSave, filename);
+                if (result != SaveDataResult.Success && result != SaveDataResult.Recovered)
+                    return result;
+            }
+            return SaveDataResult.Success;
+        }
+
+        public void DeleteData(string name, Action<SaveDataResult> onDataDelete)
+        {
+            string baseName = this.RootPath + "/" + name + "/" + name;
 #if !UNITY_SWITCH
             string rawFile = baseName + (int)SaveDataType.Raw;
             string cacheFile = baseName + (int)SaveDataType.Cache;
@@ -339,31 +275,37 @@ namespace OpenNGS.SaveData.Storage
                 onDataDelete(result);
         }
 
-        private SaveDataResult WriteSaveData(string name, SaveData<T> saveData)
+
+        private SaveDataResult WriteMeta(string folder, SaveData saveData)
         {
+
             byte[] data;
             using (MemoryStream ds = new MemoryStream())
             {
-                Serializer.Serialize<SaveData<T>>(ds, saveData);
-                data = ds.GetBuffer();
+                saveData.Write(ds);
+                ds.Flush();
+                data = ds.ToArray();
                 if (data == null)
                 {
                     return SaveDataResult.InvalidData;
                 }
             }
             byte[] buff = data;
-#if UNITY_STANDALONE
-            string key = magic.ToString("X8");
-            buff = AES.Encrypt(data, key, key);
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(buff.Length + 4);
-            ms.Write(BitConverter.GetBytes(buff.Length), 0, 4);
-            ms.Write(buff, 0, buff.Length);
-            ms.Flush();
-            buff = ms.ToArray();
-#endif
-            if (!fsSave.Write(name, buff))
+            if (!fsSave.Write(OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName, ManifestName), buff))
             {
                 return SaveDataResult.IOError;
+            }
+            return SaveDataResult.Success;
+        }
+
+        private SaveDataResult WriteSaveData(string folder, SaveData saveData)
+        {
+            foreach(var sf in saveData.Files)
+            {
+                if(!sf.Write(fsSave, folder))
+                {
+                    return SaveDataResult.IOError;
+                }
             }
             return SaveDataResult.Success;
         }
