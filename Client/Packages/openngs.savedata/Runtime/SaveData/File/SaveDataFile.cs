@@ -1,12 +1,4 @@
-﻿using Codice.CM.Client.Differences;
-using OpenNGS.Configs;
-using OpenNGS.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.WSA;
+﻿using OpenNGS.IO;
 
 namespace OpenNGS.SaveData.File
 {

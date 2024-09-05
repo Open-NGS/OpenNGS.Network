@@ -11,11 +11,11 @@ using UnityEngine;
 
 namespace OpenNGS.SaveData
 {
-    internal class SaveDataManager<T> : SaveDataManager where T : SaveData, new()
+    public class SaveDataManager<T> : SaveDataManager where T : SaveData, new()
     {
         public static new SaveDataManager<T> Instance;
 
-        public virtual T Current
+        public new T Current
         {
             get
             {
@@ -126,6 +126,18 @@ namespace OpenNGS.SaveData
             Instance.storage.Init(fs, capacity, mode);
             Instance.LoadIndex();
         }
+
+        static public SaveDataManager Create<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        {
+            var manager = new SaveDataManager<T>();
+            manager.mInited = true;
+            manager.SaveDataMode = mode;
+            manager.Capacity = capacity;
+            manager.storage.Init(fs, capacity, mode);
+            manager.LoadIndex();
+            return manager;
+        }
+
 
 
         public void LoadIndex()

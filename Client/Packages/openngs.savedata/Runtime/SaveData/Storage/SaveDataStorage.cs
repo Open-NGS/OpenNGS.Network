@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using Codice.Client.BaseCommands.BranchExplorer;
 using OpenNGS.Crypto;
 using OpenNGS.IO;
 using OpenNGS.SaveData;
