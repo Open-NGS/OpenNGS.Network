@@ -6,16 +6,16 @@ using System.Text;
 
 namespace OpenNGS.SaveData.Storage
 {
-    interface ILocalSaveData<T> where T : ISaveEntity, new()
+    interface ILocalSaveData
     {
-        int Version { get; }
-        void Init(IFileSystem fs, int capacity, int version, bool isSetting);
-        void LoadIndex(Action<IndexiesData<T>> onIndexiesLoaded);
-        void SaveIndex(IndexiesData<T> indexies);
-        void LoadData(int index, string name, Action<SaveDataResult, SaveData<T>> onSaveDataLoaded);
-        void SaveData(int index, string name, SaveData<T> saveData, Action<SaveDataResult> onDataSaved);
-        void DeleteData(int index, string name, Action<SaveDataResult> onDataDeleted);
-        void Close();
-        void Update();
+        void Init(IFileSystem fs, int capacity, SaveDataMode mode);
+        void Update(); 
+        void Terminate();
+
+        void LoadIndex(Action onIndexiesLoaded);
+        void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onSaveDataLoaded);
+        void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved);
+        void DeleteData(string name, Action<SaveDataResult> onDataDeleted);
+
     }
 }

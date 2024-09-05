@@ -1,51 +1,43 @@
 ﻿using OpenNGS.IO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-//using static UnityEditor.Experimental.GraphView.Port;
 
 namespace OpenNGS.SaveData.Storage
 {
-    class SaveDataAPI<T> : ILocalSaveData<T> where T : ISaveEntity, new()
+    class SaveDataAPI : ILocalSaveData
     {
 
-        ISaveDataAPI<T> memory = null;
+        ISaveDataAPI memory = null;
 
-        public int Version { get;private set; }
-
-        public void Init(IFileSystem fs, int capacity, int version, bool isSetting)
+        public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
         {
-            this.Version = version;
-#if UNITY_PS4
-            memory = new PlayStationSaveDataAPI();
+#if UNITY_PLAYSTATION
+            if(memory == null)
+            {
+                throw new Exception("PlayStation SaveData uninitialized.");
+            }
 #endif
-            memory.Init(fs,capacity, version);
+            memory.Init(fs,capacity, mode);
         }
 
-        public void LoadIndex(Action<IndexiesData<T>> onIndexiesLoaded)
+        public void LoadIndex(Action onIndexiesLoaded)
         {
             memory.LoadIndex(onIndexiesLoaded);
         }
 
-        public void SaveIndex(IndexiesData<T> indexies)
+        public void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onSaveDataLoaded)
         {
-            
+            memory.LoadData(saveData, onSaveDataLoaded);
         }
 
-        public void LoadData(int index, string name, Action<SaveDataResult, SaveData<T>> onSaveDataLoaded)
+        public void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved)
         {
-            memory.LoadData(index, name, onSaveDataLoaded);
+            memory.SaveData(saveData, onDataSaved);
         }
 
-        public void SaveData(int index, string name, SaveData<T> saveData, Action<SaveDataResult> onDataSaved)
+        public void DeleteData(string name, Action<SaveDataResult> onDataDeleted)
         {
-            memory.SaveData(index, name, saveData, onDataSaved);
-        }
-
-        public void DeleteData(int index, string name, Action<SaveDataResult> onDataDeleted)
-        {
-            memory.DeleteData(index, name, onDataDeleted);
+            memory.DeleteData(name, onDataDeleted);
         }
 
         public void Update()
@@ -53,7 +45,7 @@ namespace OpenNGS.SaveData.Storage
             memory.Update();
         }
 
-        public void Close()
+        public void Terminate()
         {
             memory.Close();
         }

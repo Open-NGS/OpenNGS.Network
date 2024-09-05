@@ -1,119 +1,130 @@
-﻿using OpenNGS.IO;
+﻿using OpenNGS.Configs;
+using OpenNGS.IO;
 using OpenNGS.SaveData.Storage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 
 namespace OpenNGS.SaveData
 {
-    public class SaveDataManager<T> : Singleton<SaveDataManager<T>> where T : ISaveEntity, new()
+    internal class SaveDataManager<T> : SaveDataManager where T : SaveData, new()
     {
-        public delegate void SaveDataEvent();
+        public static new SaveDataManager<T> Instance;
+
+        public virtual T Current
+        {
+            get
+            {
+                return (T)this.activeData;
+            }
+        }
+
+        protected override void OnCreateSaveData(out SaveData save)
+        {
+            save = new T();
+        }
+
+
+        public new T NewSaveData(bool save)
+        {
+            T data = base.NewSaveData(save) as T;
+            return data;
+        }
+    }
+
+
+
+    public class SaveDataManager
+    {
+        public delegate void SaveDataEvent(SaveDataResult result);
 
         public event SaveDataEvent OnBeforeSave;
         public event SaveDataEvent OnSaved;
         public event SaveDataEvent OnLoaded;
 
-        public bool LoadReady { get; private set; }
+        public bool LoadReady { get; protected set; }
 
-        public T Current
+        public static SaveDataManager Instance;
+
+        public SaveData Current
         {
             get
             {
-                if (this.activeData == null) return default(T);
-                return this.activeData.Data;
-            }
-        }
-
-        public SaveData<T> Active
-        {
-            get
-            {
-                if (this.activeData == null) return null;
                 return this.activeData;
             }
         }
 
-        private string mainSaveName = "data";
-
-
-        private int activeIndex = -1;
-
-        public int ActiveIndex
+        public SaveData GetActiveSaveData()
         {
-            get
-            {
-                return this.activeIndex;
-            }
-            set
-            {
-                this.activeIndex = value;
-                if (this.Index != null)
-                {
-                    this.Index.Current = value;
-                }
-                if (Index.Slots.ContainsKey(this.activeIndex) == true)
-                {
-                    this.activeData = this.GetSaveData(this.activeIndex);
-                }
-            }
+            if (this.activeData == null) return null;
+            return this.activeData;
         }
 
         public int Count
         {
             get
             {
-                if (this.Index == null) return 0;
-                return this.Index.Slots.Count;
+                if (this.m_slots == null) return 0;
+                return this.m_slots.Count;
             }
         }
 
-
-        ILocalSaveData<T> storage;
-        IndexiesData<T> Index = null;
-        SaveData<T> activeData = null;
+        ILocalSaveData storage;
+        protected SaveData activeData = null;
         int lastSaveTime;
+
+
+        public SaveDataMode SaveDataMode { get; private set; }
+
         /// <summary>
         /// Save Data max capacity
         /// </summary>
         public int Capacity { get; private set; }
 
+        private List<SaveData> m_slots = new List<SaveData>();
 
-        public Dictionary<int, SaveSlot<T>> Slots
+        /// <summary>
+        /// 存档列表
+        /// </summary>
+        public List<SaveData> Slots
         {
             get
             {
-                if (Index == null) return null;
-                return Index.Slots;
+                return m_slots;
             }
         }
+
+        public bool Encrypt { get; internal set; }
 
         private bool mInited = false;
 
 
         public SaveDataManager()
         {
-#if UNITY_PS4 && !UNITY_EDITOR
+#if (UNITY_PS4|| UNITY_PS5) && !UNITY_EDITOR
             storage = new SaveDataAPI();
 #else
-            storage = new SaveDataStorage<T>();
+            storage = new SaveDataStorage();
 #endif
         }
 
-        public void Init(IFileSystem fs, int capacity, int version, bool isSetting)
+        static public void Initialize<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
-            if (mInited)
+            if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            mInited = true;
+            Instance = new SaveDataManager<T>();
 
-            this.Capacity = capacity;
-            storage.Init(fs, capacity, version, isSetting);
-            LoadIndex();
+            Instance.mInited = true;
+            Instance.SaveDataMode = mode;
+            Instance.Capacity = capacity;
+            Instance.storage.Init(fs, capacity, mode);
+            Instance.LoadIndex();
         }
 
 
@@ -121,61 +132,53 @@ namespace OpenNGS.SaveData
         {
             storage.LoadIndex(OnIndexiesLoaded);
         }
-
-        void OnIndexiesLoaded(IndexiesData<T> indexies)
+        void OnIndexiesLoaded()
         {
-            if (indexies != null)
-            {
-                this.Index = indexies;
-                if(storage.Version != this.Index.Version && this.Index.Migrate(storage.Version))
-                {
-                    this.Save();
-                }
-                this.activeIndex = this.FindValidIndex();
-                if(Index.Slots.ContainsKey(this.activeIndex) == true)
-                {
-                    this.activeData = this.GetSaveData(this.activeIndex);
-                }
-            }
+            this.activeData = this.GetSaveData(0);
         }
 
-        void OnIndexiesSaved()
-        {
-
-        }
-
-
-
+        /// <summary>
+        /// 读取默认活动存档
+        /// </summary>
         public void Load()
         {
-#if DEBUG_LOG
-            Debug.LogFormat("SaveData >> LoadData:[{0}]Name:{1} start", this.activeIndex, this.mainSaveName);
-#endif
-            LoadReady = false;
-            LoadData(this.activeIndex, this.mainSaveName, OnDataLoaded);
+            if (this.activeData == null)
+            {
+                this.OnDataSaved(SaveDataResult.NotFound);
+                return;
+            }
+            Load(this.activeData);
         }
 
-        void OnDataLoaded(SaveDataResult result, SaveData<T> saveData)
+        public void Load(SaveData savedata)
         {
 #if DEBUG_LOG
-            Debug.LogFormat("SaveData >> OnDataLoaded:[{0}]Name:{1} - {2}", this.activeIndex, this.mainSaveName, result);
+            Debug.LogFormat("SaveData >> LoadData:[{0}] start", savedata.DirName);
+#endif
+            LoadReady = false;
+            LoadData(savedata, OnDataLoaded);
+        }
+
+        void OnDataLoaded(SaveDataResult result, SaveData saveData)
+        {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> OnDataLoaded:[{0}] {1}", saveData.DirName, result);
 #endif
             if (result == SaveDataResult.Success || result == SaveDataResult.Recovered)
             {
-                this.Index.Slots[this.activeIndex].SaveData = saveData;
             }
-            this.Index.Slots[this.activeIndex].Status = result;
-            this.activeData = this.GetSaveData(this.activeIndex);
+            saveData.Status = result;
+            this.activeData = saveData;
 
             if (this.activeData == null)
             {
                 Debug.LogFormat("SaveData >> OnDataLoaded:{0}", result);
             }
             LoadReady = true;
-            this.activeData.Migrate(this.Index.Version);
+            this.activeData.Migrate(saveData.Version);
             if (this.Current != null && this.OnLoaded != null)
             {
-                this.OnLoaded();
+                this.OnLoaded(result);
             }
         }
 
@@ -187,36 +190,40 @@ namespace OpenNGS.SaveData
                 this.OnDataSaved(SaveDataResult.NotFound);
                 return;
             }
-            this.lastSaveTime = Time.Timestamp;
-            this.activeData.Time = lastSaveTime;
-            this.activeData.Totaltime = Time.TotalGameTime;
-            this.Slots[this.ActiveIndex].Detail = this.activeData.MetaData;
-            this.Slots[this.ActiveIndex].Time = lastSaveTime;
 
-            if (this.OnBeforeSave != null) this.OnBeforeSave();
-#if DEBUG_LOG
-            Debug.LogFormat("SaveData >> SaveData:[{0}]Name:{1} start", this.activeIndex, this.mainSaveName);
-#endif
-            this.SaveData(this.activeIndex, this.mainSaveName, this.activeData, OnDataSaved);
+            this.Save(activeData);
         }
 
-        public void SaveIndex()
+        public void Save(SaveData savedata)
         {
-            storage.SaveIndex(this.Index);
+            if (!this.m_slots.Contains(savedata)) { 
+                this.m_slots.Add(savedata);
+            }
+            if (this.activeData != savedata)
+            { 
+                this.activeData = savedata;
+            }
+            this.lastSaveTime = Time.Timestamp;
+
+            savedata.Time = lastSaveTime;
+            savedata.Totaltime = Time.TotalGameTime;
+
+            if (this.OnBeforeSave != null) this.OnBeforeSave(SaveDataResult.Success);
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> SaveData:[{0}] start", savedata.DirName);
+#endif
+            this.SaveData(savedata, OnDataSaved);
         }
+
         void OnDataSaved(SaveDataResult result)
         {
 #if DEBUG_LOG
-            Debug.LogFormat("SaveData >> OnDataSaved:[{0}]Name:{1} - {2}", this.activeIndex, this.mainSaveName, result);
+            Debug.LogFormat("SaveData >> OnDataSaved:[{0}]:{1}", this.activeData.DirName, result);
 #endif
-            if (result == SaveDataResult.Success)
-            {
-                storage.SaveIndex(this.Index);
-            }
             LoadReady = true;
             if (this.OnSaved != null)
             {
-                this.OnSaved();
+                this.OnSaved(result);
             }
         }
 
@@ -227,21 +234,14 @@ namespace OpenNGS.SaveData
 #endif
             if (index < 0 || index >= this.Capacity)
                 throw new IndexOutOfRangeException();
-            this.activeIndex = index;
-            this.DeleteData(index, this.mainSaveName, OnDataDeleted);
+            this.DeleteData(index, OnDataDeleted);
         }
 
         void OnDataDeleted(SaveDataResult result)
         {
 #if DEBUG_LOG
-            Debug.LogFormat("SaveData >> OnDataDeleted:{0} - {1}", this.activeIndex, result);
+            Debug.LogFormat("SaveData >> OnDataDeleted:{0}", result);
 #endif
-            if (result == SaveDataResult.Success)
-            {
-                this.Index.Delete(this.ActiveIndex);
-                this.ActiveIndex = this.FindValidIndex();
-                storage.SaveIndex(this.Index);
-            }
         }
 
         public bool Exists(int index)
@@ -249,49 +249,73 @@ namespace OpenNGS.SaveData
             if (index < 0 || index >= this.Capacity)
                 throw new IndexOutOfRangeException();
 
-            if (this.Slots == null)
+            if (this.m_slots == null)
                 return false;
-            return Slots.ContainsKey(index);
+            var data = this.m_slots[index];
+            if (data != null && data.Status == SaveDataResult.Success)
+                return true;
+            return false;
         }
 
-        public SaveSlot<T> GetSlot(int index)
+        public SaveData GetSaveData(int index)
         {
-            if (index < 0 || index >= this.Capacity)
-                throw new IndexOutOfRangeException();
-
-            if (this.Slots == null)
+            if (index < 0 || index >= this.Capacity || index >= this.m_slots.Count)
                 return null;
 
-            SaveSlot<T> slot = null;
-            this.Slots.TryGetValue(index, out slot);
-            return slot;
+            if (this.m_slots == null || this.m_slots.Count == 0)
+                return null;
+
+            return this.m_slots[index];
         }
 
-        public void NewSaveData(bool save)
+        public virtual SaveData NewSaveData(bool save)
         {
-            if (this.ActiveIndex < 0 || this.ActiveIndex >= this.Capacity)
-                throw new IndexOutOfRangeException();
+            if (this.Count >= this.Capacity)
+                throw new ArgumentOutOfRangeException();
 
             Time.ResetGameTime(0);
-            this.Index.New(this.ActiveIndex);
-            this.activeData = this.GetSaveData(this.ActiveIndex);
-            if (save) this.Save();
+            this.activeData = this.NewSaveData();
+            if (save) 
+                this.Save();
             else
                 LoadReady = true;
 
             if (this.OnLoaded != null)
             {
-                this.OnLoaded();
+                this.OnLoaded(SaveDataResult.Success);
             }
+            return this.activeData;
         }
+        internal SaveData NewSaveData()
+        {
+            OnCreateSaveData(out SaveData savedata);
+            AddSaveData(savedata);
+            return savedata;
+        }
+
+        protected virtual void OnCreateSaveData(out SaveData save)
+        {
+            save = new SaveData();
+        }
+
+
+        private void AddSaveData(SaveData data)
+        {
+            if (this.m_slots == null)
+                this.m_slots = new List<SaveData>();
+
+            if (!this.m_slots.Contains(data))
+                this.m_slots.Add(data);
+        }
+
 
 
         /// <summary>
         /// Shutdown SaveData System
         /// </summary>
-        public void Close()
+        public void Terminate()
         {
-            storage.Close();
+            storage.Terminate();
         }
 
         public void Update()
@@ -299,17 +323,7 @@ namespace OpenNGS.SaveData
             storage.Update();
         }
 
-        private SaveData<T> GetSaveData(int index)
-        {
-            if (Index == null) return null;
 
-            SaveSlot<T> idx;
-            if (!this.Slots.TryGetValue(index, out idx))
-            {
-                return null;
-            }
-            return Index.Slots[index].SaveData;
-        }
 
         public void AutoSave()
         {
@@ -319,48 +333,27 @@ namespace OpenNGS.SaveData
             }
         }
 
-
-
-
-        private int FindValidIndex()
+        private void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onDataLoaded)
         {
-            if (Index.Slots.Count == 0) return 0;
-            int activeIdx = -1;
-            foreach (var kv in Index.Slots)
-            {
-                if (kv.Value.Index == Index.Current)
-                {
-                    activeIdx = kv.Key;
-                    break;
-                }
-            }
-            if (activeIdx == -1)
-                activeIdx = Index.Slots.Keys.ElementAt(0);
-            return activeIdx;
+            if (string.IsNullOrEmpty(saveData.DirName))
+                throw new ArgumentNullException("saveData.DirName");
+
+            storage.LoadData(saveData, onDataLoaded);
         }
 
-        private void LoadData(int index, string name, Action<SaveDataResult, SaveData<T>> onDataLoaded)
+        private void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved)
         {
-            if (index < 0 || index >= this.Capacity)
-                throw new IndexOutOfRangeException();
+            if (string.IsNullOrEmpty(saveData.DirName))
+                throw new ArgumentNullException("saveData.DirName");
 
-            storage.LoadData(index, name, onDataLoaded);
+            storage.SaveData(saveData, onDataSaved);
         }
 
-        private void SaveData(int index, string name, SaveData<T> saveData, Action<SaveDataResult> onDataSaved)
+        private void DeleteData(int index, Action<SaveDataResult> onDataDeleted)
         {
-            if (index < 0 || index >= this.Capacity)
+            if (index < 0 || index >= this.Capacity || index >= this.m_slots.Count)
                 throw new IndexOutOfRangeException();
-
-            storage.SaveData(index, name, saveData, onDataSaved);
-        }
-
-        private void DeleteData(int index, string name, Action<SaveDataResult> onDataDeleted)
-        {
-            if (index < 0 || index >= this.Capacity)
-                throw new IndexOutOfRangeException();
-
-            storage.DeleteData(index, name, onDataDeleted);
+            storage.DeleteData(this.m_slots[index].DirName, onDataDeleted);
         }
 
         internal IEnumerator WaitReady()
