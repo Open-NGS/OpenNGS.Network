@@ -99,6 +99,7 @@ namespace OpenNGS.SaveData
         }
 
         public bool Encrypt { get; internal set; }
+        internal string Name { get; private set; }
 
         private bool mInited = false;
 
@@ -112,27 +113,22 @@ namespace OpenNGS.SaveData
 #endif
         }
 
-        static public void Initialize<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public void Initialize<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
             if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            Instance = new SaveDataManager<T>();
-
-            Instance.mInited = true;
-            Instance.SaveDataMode = mode;
-            Instance.Capacity = capacity;
-            Instance.storage.Init(fs, capacity, mode);
-            Instance.LoadIndex();
+            Instance = Create<T>(name, fs, capacity, mode);
         }
 
-        static public SaveDataManager<T> Create<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public SaveDataManager<T> Create<T>(string name,IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
             var manager = new SaveDataManager<T>();
             manager.mInited = true;
             manager.SaveDataMode = mode;
             manager.Capacity = capacity;
+            manager.Name = name;
             manager.storage.Init(fs, capacity, mode);
             manager.LoadIndex();
             return manager;

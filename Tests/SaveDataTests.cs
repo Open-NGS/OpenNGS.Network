@@ -91,7 +91,7 @@ public class SaveDataTests
     {
         PosixFileSystem fileSystem = new PosixFileSystem();
 
-        SaveDataManager.Initialize<SaveDataGame>(fileSystem, 1, SaveDataMode.Single); // 初始化存档引擎
+        SaveDataManager.Initialize<SaveDataGame>("savedata",fileSystem, 1, SaveDataMode.Single); // 初始化存档引擎
 
         // 通过列表获取存档
         List<SaveData> list = SaveDataManager.Instance.Slots;
