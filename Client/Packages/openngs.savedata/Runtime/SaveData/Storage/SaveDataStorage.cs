@@ -59,11 +59,17 @@ namespace OpenNGS.SaveData.Storage
 
         private IFileSystem fsSave;
 
-        private string ManifestName = "main.nsd";
-
         private string mountName = "SaveData";
 
         private long magic = 0x5685432132698754 | 0x6654219875421325;
+
+        
+        private SaveDataManager sm;
+
+        internal SaveDataStorage(SaveDataManager sm)
+        {
+            this.sm = sm;
+        }
 
         public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
         {
@@ -91,11 +97,11 @@ namespace OpenNGS.SaveData.Storage
             }
             Debug.Log("LoadIndex at " + path);
 
-            var all = Directory.GetFiles(path, ManifestName, SearchOption.AllDirectories);
+            var all = Directory.GetFiles(path, sm.Name, SearchOption.AllDirectories);
             foreach (var savefile in all)
             {
-                SaveData item = SaveDataManager.Instance.NewSaveData();
-                item.DirName = System.IO.Path.GetDirectoryName(savefile); 
+                SaveData item = sm.NewSaveData();
+                item.DirName = Directory.GetParent(savefile).Name; 
 
                 if (fsSave.FileExists(savefile))
                 {
@@ -286,7 +292,7 @@ namespace OpenNGS.SaveData.Storage
                 }
             }
             byte[] buff = data;
-            if (!fsSave.Write(OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName, ManifestName), buff))
+            if (!fsSave.Write(OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName, sm.Name), buff))
             {
                 return SaveDataResult.IOError;
             }

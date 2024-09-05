@@ -34,6 +34,15 @@ namespace OpenNGS.SaveData
             T data = base.NewSaveData(save) as T;
             return data;
         }
+        static public void Initialize(string name, IFileSystem fs, int capacity, SaveDataMode mode)
+        {
+            if (Instance != null && Instance.mInited)
+            {
+                return;
+            }
+            Instance = Create<T>(name, fs, capacity, mode);
+        }
+
     }
 
 
@@ -99,40 +108,36 @@ namespace OpenNGS.SaveData
         }
 
         public bool Encrypt { get; internal set; }
+        internal string Name { get; private set; }
 
-        private bool mInited = false;
+        protected bool mInited = false;
 
 
         public SaveDataManager()
         {
 #if (UNITY_PS4|| UNITY_PS5) && !UNITY_EDITOR
-            storage = new SaveDataAPI();
+            storage = new SaveDataAPI(this);
 #else
-            storage = new SaveDataStorage();
+            storage = new SaveDataStorage(this);
 #endif
         }
 
-        static public void Initialize<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public void Initialize<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
             if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            Instance = new SaveDataManager<T>();
-
-            Instance.mInited = true;
-            Instance.SaveDataMode = mode;
-            Instance.Capacity = capacity;
-            Instance.storage.Init(fs, capacity, mode);
-            Instance.LoadIndex();
+            Instance = Create<T>(name, fs, capacity, mode);
         }
 
-        static public SaveDataManager Create<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public SaveDataManager<T> Create<T>(string name,IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
             var manager = new SaveDataManager<T>();
             manager.mInited = true;
             manager.SaveDataMode = mode;
             manager.Capacity = capacity;
+            manager.Name = name;
             manager.storage.Init(fs, capacity, mode);
             manager.LoadIndex();
             return manager;
@@ -264,7 +269,7 @@ namespace OpenNGS.SaveData
             if (this.m_slots == null)
                 return false;
             var data = this.m_slots[index];
-            if (data != null && data.Status == SaveDataResult.Success)
+            if (data != null)
                 return true;
             return false;
         }
