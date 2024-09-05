@@ -34,6 +34,15 @@ namespace OpenNGS.SaveData
             T data = base.NewSaveData(save) as T;
             return data;
         }
+        static public void Initialize(string name, IFileSystem fs, int capacity, SaveDataMode mode)
+        {
+            if (Instance != null && Instance.mInited)
+            {
+                return;
+            }
+            Instance = Create<T>(name, fs, capacity, mode);
+        }
+
     }
 
 
@@ -101,7 +110,7 @@ namespace OpenNGS.SaveData
         public bool Encrypt { get; internal set; }
         internal string Name { get; private set; }
 
-        private bool mInited = false;
+        protected bool mInited = false;
 
 
         public SaveDataManager()
