@@ -131,14 +131,14 @@ namespace OpenNGS.SaveData.PS5
         private Action<SaveDataResult> SaveDataSavedHandler;
         private Action<SaveDataResult> SaveDataDeleteHandler;
 
-        public void LoadData(SaveData saveData, string name, Action<SaveDataResult, SaveData> onSaveDataLoaded)
+        public void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onSaveDataLoaded)
         {
             //this.Slots[index].fileName = name;
             this.SaveDataLoadedHandler = onSaveDataLoaded;
             //Unity.SaveData.PS5.SaveLoad.LoadGame(this.Slots[index], false);
         }
 
-        public void SaveData(SaveData saveData, string name, Action<SaveDataResult> onDataSaved)
+        public void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved)
         {
             // this.Slots[index].title = saveData.Title;
             // this.Slots[index].subTitle = saveData.SubTitle;
