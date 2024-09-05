@@ -127,7 +127,7 @@ namespace OpenNGS.SaveData
             Instance.LoadIndex();
         }
 
-        static public SaveDataManager Create<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public SaveDataManager<T> Create<T>(IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
             var manager = new SaveDataManager<T>();
             manager.mInited = true;
