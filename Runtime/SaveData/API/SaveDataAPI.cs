@@ -9,6 +9,11 @@ namespace OpenNGS.SaveData.Storage
 
         ISaveDataAPI memory = null;
 
+        public SaveDataAPI(SaveDataManager sm)
+        {
+
+        }
+
         public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
         {
 #if UNITY_PLAYSTATION

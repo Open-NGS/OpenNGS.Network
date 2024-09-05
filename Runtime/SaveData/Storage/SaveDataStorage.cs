@@ -101,7 +101,7 @@ namespace OpenNGS.SaveData.Storage
             foreach (var savefile in all)
             {
                 SaveData item = sm.NewSaveData();
-                item.DirName = System.IO.Path.GetDirectoryName(savefile); 
+                item.DirName = Directory.GetParent(savefile).Name; 
 
                 if (fsSave.FileExists(savefile))
                 {

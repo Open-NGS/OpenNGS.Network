@@ -269,7 +269,7 @@ namespace OpenNGS.SaveData
             if (this.m_slots == null)
                 return false;
             var data = this.m_slots[index];
-            if (data != null && data.Status == SaveDataResult.Success)
+            if (data != null)
                 return true;
             return false;
         }
