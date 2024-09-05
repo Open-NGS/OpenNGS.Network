@@ -25,14 +25,14 @@ namespace OpenNGS.SaveData.Storage
             memory.LoadIndex(onIndexiesLoaded);
         }
 
-        public void LoadData(SaveData saveData, string name, Action<SaveDataResult, SaveData> onSaveDataLoaded)
+        public void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onSaveDataLoaded)
         {
-            memory.LoadData(saveData, name, onSaveDataLoaded);
+            memory.LoadData(saveData, onSaveDataLoaded);
         }
 
-        public void SaveData(SaveData saveData, string name, Action<SaveDataResult> onDataSaved)
+        public void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved)
         {
-            memory.SaveData(saveData, name, onDataSaved);
+            memory.SaveData(saveData, onDataSaved);
         }
 
         public void DeleteData(string name, Action<SaveDataResult> onDataDeleted)

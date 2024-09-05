@@ -12,8 +12,8 @@ namespace OpenNGS.SaveData.Storage
         void Update();
         void Close();
         void LoadIndex(Action onIndexiesLoaded);
-        void LoadData(SaveData saveData, string name, Action<SaveDataResult, SaveData> onSaveDataLoaded);
-        void SaveData(SaveData saveData, string name, Action<SaveDataResult> onDataSaved);
+        void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onSaveDataLoaded);
+        void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved);
         void DeleteData(string name, Action<SaveDataResult> onDataDeleted);
     }
 }

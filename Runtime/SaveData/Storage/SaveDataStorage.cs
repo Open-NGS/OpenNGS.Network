@@ -123,31 +123,30 @@ namespace OpenNGS.SaveData.Storage
         }
 
 
-        public void LoadData(SaveData saveData, string name, Action<SaveDataResult, SaveData> onSaveDataLoaded)
+        public void LoadData(SaveData saveData, Action<SaveDataResult, SaveData> onSaveDataLoaded)
         {
             // Load local save data
-            SaveDataResult result = LoadLocalSaveData(name, saveData);
+            SaveDataResult result = LoadLocalSaveData(saveData);
             if (onSaveDataLoaded != null)
                 onSaveDataLoaded(result, saveData);
             // Cloud Save Data support later
 
         }
 
-        public void SaveData(SaveData saveData, string name, Action<SaveDataResult> onDataSaved)
+        public void SaveData(SaveData saveData, Action<SaveDataResult> onDataSaved)
         {
             // Load local save data
-            SaveDataResult result = SaveLocalSaveData(name, saveData);
+            SaveDataResult result = SaveLocalSaveData(saveData);
             if (onDataSaved != null)
                 onDataSaved(result);
             // Cloud Save Data support later
 
         }
 
-        private SaveDataResult SaveLocalSaveData(string name, SaveData saveData)
+        private SaveDataResult SaveLocalSaveData(SaveData saveData)
         {
             SaveDataResult result = SaveDataResult.InvalidData;
             string slotPath = OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName);
-            string baseName = slotPath + "/" + name;
 
 #if UNITY_SWITCH
             // Nintendo Switch Guideline 0080
@@ -189,7 +188,7 @@ namespace OpenNGS.SaveData.Storage
 
         }
 
-        private SaveDataResult LoadLocalSaveData(string name,SaveData saveData)
+        private SaveDataResult LoadLocalSaveData(SaveData saveData)
         {
 
             string slotPath = OpenNGS.IO.Path.Combine(this.RootPath, saveData.DirName);
