@@ -20,7 +20,7 @@ namespace OpenNGS.SaveData.File
         internal bool Write(IFileSystem fsSave, string folder)
         {
             byte[] data = this.GetData();
-            if (SaveDataManager.Instance.Encrypt)
+            //if (SaveDataManager.Instance.Encrypt)
             {
 /*              string key = savedata.Magic.ToString("X8");
                 buff = AES.Encrypt(data, key, key);

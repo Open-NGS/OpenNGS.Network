@@ -65,6 +65,14 @@ namespace OpenNGS.SaveData.Storage
 
         private long magic = 0x5685432132698754 | 0x6654219875421325;
 
+        
+        private SaveDataManager sm;
+
+        internal SaveDataStorage(SaveDataManager sm)
+        {
+            this.sm = sm;
+        }
+
         public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
         {
             fsSave = fs;
@@ -94,7 +102,7 @@ namespace OpenNGS.SaveData.Storage
             var all = Directory.GetFiles(path, ManifestName, SearchOption.AllDirectories);
             foreach (var savefile in all)
             {
-                SaveData item = SaveDataManager.Instance.NewSaveData();
+                SaveData item = sm.NewSaveData();
                 item.DirName = System.IO.Path.GetDirectoryName(savefile); 
 
                 if (fsSave.FileExists(savefile))

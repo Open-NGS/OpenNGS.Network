@@ -106,9 +106,9 @@ namespace OpenNGS.SaveData
         public SaveDataManager()
         {
 #if (UNITY_PS4|| UNITY_PS5) && !UNITY_EDITOR
-            storage = new SaveDataAPI();
+            storage = new SaveDataAPI(this);
 #else
-            storage = new SaveDataStorage();
+            storage = new SaveDataStorage(this);
 #endif
         }
 
