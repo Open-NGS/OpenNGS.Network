@@ -74,10 +74,10 @@ namespace OpenNGS.SaveData
         /// 当前写入时间
         /// </summary>
         [global::ProtoBuf.ProtoMember(7)]
-        public int Time { get; internal set; }
+        public int Time { get; set; }
 
         [global::ProtoBuf.ProtoMember(8)]
-        public int Totaltime { get; internal set; }
+        public uint Totaltime { get; set; }
 
         [global::ProtoBuf.ProtoMember(9)]
         public Dictionary<string, string> MetaData { get; internal set; }
@@ -89,6 +89,9 @@ namespace OpenNGS.SaveData
         public long UserID { get; set; }
 
         public string DirName { get; set; }
+
+        public ulong TotalSize { get; set; }
+        public ulong FreeSize { get; set; }
 
         public SaveDataResult Status { get; set; }
 
