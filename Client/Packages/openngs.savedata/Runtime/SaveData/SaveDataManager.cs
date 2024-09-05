@@ -206,7 +206,7 @@ namespace OpenNGS.SaveData
             this.lastSaveTime = Time.Timestamp;
 
             savedata.Time = lastSaveTime;
-            savedata.Totaltime = Time.TotalGameTime;
+            savedata.Totaltime = (uint)Time.TotalGameTime;
 
             if (this.OnBeforeSave != null) this.OnBeforeSave(SaveDataResult.Success);
 #if DEBUG_LOG
