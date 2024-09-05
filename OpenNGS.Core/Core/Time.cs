@@ -85,5 +85,11 @@ namespace OpenNGS
             DateTime time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
             return time;
         }
+
+        public static int GetTimestamp(DateTime time)
+        {
+            TimeSpan ts = time - new DateTime(1970, 1, 1);
+            return (int)ts.TotalSeconds;
+        }
     }
 }
