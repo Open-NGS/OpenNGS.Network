@@ -12,7 +12,7 @@ namespace OpenNGS.IO
         public static readonly char DirectorySeparatorChar = '\\';
 
 
-        public static string Combine(string path1, string path2)
+        public static string Combine(string path1, string path2, string path3 = null)
         {
             if (path1 == null || path2 == null)
             {
@@ -33,9 +33,20 @@ namespace OpenNGS.IO
             char c = path1[path1.Length - 1];
             if (c != System.IO.Path.DirectorySeparatorChar && c != System.IO.Path.AltDirectorySeparatorChar && c != System.IO.Path.VolumeSeparatorChar)
             {
-                return path1 + System.IO.Path.AltDirectorySeparatorChar + path2;
+                path1 = path1 + System.IO.Path.AltDirectorySeparatorChar + path2;
             }
-            return path1 + path2;
+            else
+                path1 = path1 + path2;
+
+            if (path3 != null && path3.Length > 0)
+            {
+                c = path1[path1.Length - 1];
+                if (c != System.IO.Path.DirectorySeparatorChar && c != System.IO.Path.AltDirectorySeparatorChar && c != System.IO.Path.VolumeSeparatorChar)
+                {
+                    return path1 + System.IO.Path.AltDirectorySeparatorChar + path3;
+                }
+            }
+            return path1 + path3;
         }
     }
 }
