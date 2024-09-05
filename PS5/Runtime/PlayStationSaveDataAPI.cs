@@ -8,6 +8,13 @@ using Unity.SaveData.PS5.Initialization;
 using UnityEngine;
 using OpenNGS.SaveData.Storage;
 using OpenNGS.IO;
+using OpenNGS;
+
+using Unity.SaveData.PS5.Core;
+using Unity.SaveData.PS5.Search;
+using static Unity.SaveData.PS5.Search.Searching;
+using static UnityEngine.PS5.PS5Input;
+using UnityEngine.PS5;
 
 namespace OpenNGS.SaveData.PS5
 {
@@ -19,13 +26,24 @@ namespace OpenNGS.SaveData.PS5
 
         List<SaveData> indexies = new List<SaveData>();
 
-        List<Unity.SaveData.PS5.Info.SaveDataParams> Slots = new List<Unity.SaveData.PS5.Info.SaveDataParams>();
+        Dictionary<string, SearchSaveDataItem> Slots = new Dictionary<string, SearchSaveDataItem>();
+
+        private int UserID;
 
         public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
         {
             this.Capacity = capacity;
             this.Slots.Clear();
             Unity.SaveData.PS5.Main.OnAsyncEvent += OnSaveDataEvent;
+
+
+            // Set 3D Text to whoever's using the pad
+#if UNITY_2017_2_OR_NEWER
+            UserID = PS5Input.RefreshUsersDetails(0).userId;
+#else
+            UserID = PS5Input.PadRefreshUsersDetails(0).userId;
+#endif
+
 
             try
             {
@@ -42,12 +60,15 @@ namespace OpenNGS.SaveData.PS5
                 {
                     Debug.LogError("SaveData not initialized ");
                 }
-                for (int i = 0; i < this.Capacity; i++)
-                {
-                    Unity.SaveData.PS5.Info.SaveDataParams slot = new Unity.SaveData.PS5.Info.SaveDataParams();
-                    this.InitSlotParams(i, slot);
-                    this.Slots.Add(slot);
-                }
+                //if (mode == SaveDataMode.FixedSlot)
+                //{//
+                //    for (int i = 0; i < this.Capacity; i++)
+                //    {
+                //        Unity.SaveData.PS5.Info.SaveDataParams slot = new Unity.SaveData.PS5.Info.SaveDataParams();
+                //        this.InitSlotParams(i, slot);
+                //        this.Slots.Add(slot);
+                //    }
+                //}
             }
             catch (SaveDataException e)
             {
@@ -62,9 +83,16 @@ namespace OpenNGS.SaveData.PS5
 #endif
         }
 
-        private void OnSaveDataEvent(SaveDataCallbackEvent npEvent)
+        private void OnSaveDataEvent(SaveDataCallbackEvent callbackEvent)
         {
-
+            switch (callbackEvent.ApiCalled)
+            {
+                case FunctionTypes.DirNameSearch: // 目录搜索结果事件
+                    {
+                        OnDirNameSearchReponse(callbackEvent.Response as Searching.DirNameSearchResponse);
+                    }
+                    break;
+            }
         }
 
         public void Update()
@@ -78,52 +106,89 @@ namespace OpenNGS.SaveData.PS5
         }
 
 
-        private void  InitSlotParams(int id, Unity.SaveData.PS5.Info.SaveDataParams slot)
+        private void AddSlot(SearchSaveDataItem slot, bool hasParam, bool hasInfo)
         {
-            slot.UserParam = 0;//.userId = 0;  // by passing a userId of 0 we use the default user that started the title
-            //slot.titleId = null; // by passing null we use the game's title id from the publishing settings
-            //slot.dirName = "savedata" + id;
-            //slot.fileName = "savedata";
-            slot.Title = "CROWN TRICK";
-            //slot.newTitle = "[newTitle]PS4 AutoSaveData";
-            slot.SubTitle = "[SubTitle]CrownTrick SaveData";
-            slot.Detail = "[detail]The autosave file for the Save Game test project ";
-            //slot.searchPath = "savedata%%";
-            //slot.noSpaceSysMsg = Unity.SaveData.PS5.SaveLoad.DialogSysmsgType.NOSPACE_CONTINUABLE;
-            //slot.iconPath = GetIconPath();
+            Debug.Log("AddSlot : " + slot.DirName.Data);
+
+            this.Slots.TryAdd(slot.DirName.Data,slot);
+            var sd = SaveDataManager.Instance.NewSaveData(false);
+            sd.DirName = slot.DirName.Data;
+            if (hasParam)
+            {
+                sd.Title = slot.Params.Title;
+                sd.SubTitle = slot.Params.SubTitle;
+                sd.Detail = slot.Params.Detail;
+                sd.Time = Time.GetTimestamp(slot.Params.Time);
+                sd.Totaltime = slot.Params.UserParam;
+            }
+            if (hasInfo)
+            {
+                sd.TotalSize = slot.Info.Blocks;
+                sd.FreeSize = slot.Info.FreeBlocks;
+            }
         }
+
 
         public void LoadIndex(Action onIndexiesLoaded)
         {
             this.indexies.Clear();
 
-            for(int i=0;i<this.Capacity;i++)
-            {
-                //SaveLoad.SaveGameSlotDetails details;
-                //uint result = SaveLoad.GetDetails(this.Slots[i], out details);
-                //if(result ==0)
-                //{
-                //    Debug.LogFormat("Slot:{0} Title:{1} dirName:{2} fileName:{3} iconPath:{4} titleId:{5}", i, this.Slots[i].title, this.Slots[i].dirName, this.Slots[i].fileName, this.Slots[i].iconPath, this.Slots[i].titleId);
-                //    SaveSlot slot = new SaveSlot();
-                //    slot.Index = i;
-                //    slot.Name = details.title;
-                //    slot.Detail = details.detail;
-                //    slot.Status = SaveDataResult.Success;
 
-                //    TimeSpan ts = new DateTime((long)details.rtcTicktime * 10, DateTimeKind.Local) - new DateTime(1970, 1, 1);
-                //    slot.Time = (int)ts.TotalSeconds;
-                //    this.indexies.Slots.Add(i, slot);
-                //}
-                //else if (result == 0x809f0008)
-                //{
-                //    Debug.LogFormat("SaveData DOES NOT exist");
-                //}
-                //else
-                //{
-                //    Debug.LogFormat("SaveData Exists returned 0x{0:X} ", result);
-                //}
+            try
+            {
+                Searching.DirNameSearchRequest request = new Searching.DirNameSearchRequest();
+
+                request.UserId = this.UserID;
+                request.Async = false; // 同步/异步
+                request.Key = Searching.SearchSortKey.Time;
+                request.Order = Searching.SearchSortOrder.Ascending;
+                request.IncludeBlockInfo = true;
+                request.IncludeParams = true;
+                request.MaxDirNameCount = this.Capacity >= 0 ? (uint)this.Capacity : Searching.DirNameSearchRequest.DIR_NAME_MAXSIZE;
+
+                Searching.DirNameSearchResponse response = new Searching.DirNameSearchResponse();
+
+                int requestId = Searching.DirNameSearch(request, response);
+
+                if (!request.Async)
+                    OnDirNameSearchReponse(response);
+
+                Debug.Log("DirNameSearch Async : Request Id = " + requestId);
+            }
+            catch (SaveDataException e)
+            {
+                Debug.LogError("Exception : " + e.ExtendedMessage);
             }
             onIndexiesLoaded();
+        }
+
+        public void OnDirNameSearchReponse(Searching.DirNameSearchResponse response)
+        {
+            indexies.Clear();//.ClearAllNames();
+
+            Slots.Clear();
+
+            if (response != null)
+            {
+                bool hasParams = response.HasParams;
+                bool hasInfo = response.HasInfo;
+
+                var saveDataItems = response.SaveDataItems;
+
+                Debug.Log("Search Found " + saveDataItems.Length + " saves");
+
+                if (saveDataItems.Length == 0)
+                {
+                    Debug.Log("Search didn't find any saves for this user.");
+                }
+
+                for (int i = 0; i < saveDataItems.Length; i++)
+                {
+                    var dirName = saveDataItems[i].DirName;
+
+                    this.AddSlot(saveDataItems[i], hasParams, hasInfo);
+                }
+            }
         }
 
 
