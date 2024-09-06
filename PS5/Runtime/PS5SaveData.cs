@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenNGS.SaveData.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,11 @@ namespace OpenNGS.SaveData.PS5
     public static class PS5SaveData
     {
         static internal SaveDataStorageType Mode { get;private set; }
-        public static void Init(SaveDataStorageType mdoe)
+        public static ISaveDataAPI Create(SaveDataStorageType mdoe)
         {
             Mode = mdoe;
+            ISaveDataAPI saveDataAPI = new PlayStationSaveDataAPI();
+            return saveDataAPI;
         }
     }
 }
