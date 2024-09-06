@@ -71,7 +71,7 @@ namespace OpenNGS.SaveData.Storage
             this.sm = sm;
         }
 
-        public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
+        public void Init(IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api)
         {
             fsSave = fs;
             this.Capacity = capacity;

@@ -34,18 +34,21 @@ namespace OpenNGS.SaveData
             T data = base.NewSaveData(save) as T;
             return data;
         }
+
         static public void Initialize(string name, IFileSystem fs, int capacity, SaveDataMode mode)
+        {
+            Initialize(name, fs, capacity, mode, null);
+        }
+
+        static public void Initialize(string name, IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api)
         {
             if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            Instance = Create<T>(name, fs, capacity, mode);
+            Instance = Create<T>(name, fs, capacity, mode, api);
         }
-
     }
-
-
 
     public class SaveDataManager
     {
@@ -83,6 +86,7 @@ namespace OpenNGS.SaveData
         }
 
         ILocalSaveData storage;
+        internal ISaveDataAPI SaveAPI { get; private set; }
         protected SaveData activeData = null;
         int lastSaveTime;
 
@@ -115,7 +119,7 @@ namespace OpenNGS.SaveData
 
         public SaveDataManager()
         {
-#if (UNITY_PS4|| UNITY_PS5) && !UNITY_EDITOR
+#if (UNITY_PS4 || UNITY_PS5 || UNITY_PLAYSTATION) && !UNITY_EDITOR
             storage = new SaveDataAPI(this);
 #else
             storage = new SaveDataStorage(this);
@@ -124,26 +128,28 @@ namespace OpenNGS.SaveData
 
         static public void Initialize<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
+            Initialize<T>(name, fs, capacity, mode, null);
+        }
+        static public void Initialize<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api) where T : SaveData, new()
+        {
             if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            Instance = Create<T>(name, fs, capacity, mode);
+            Instance = Create<T>(name, fs, capacity, mode,api);
         }
 
-        static public SaveDataManager<T> Create<T>(string name,IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public SaveDataManager<T> Create<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api) where T : SaveData, new()
         {
             var manager = new SaveDataManager<T>();
             manager.mInited = true;
             manager.SaveDataMode = mode;
             manager.Capacity = capacity;
             manager.Name = name;
-            manager.storage.Init(fs, capacity, mode);
+            manager.storage.Init(fs, capacity, mode, api);
             manager.LoadIndex();
             return manager;
         }
-
-
 
         public void LoadIndex()
         {
@@ -380,5 +386,6 @@ namespace OpenNGS.SaveData
                 yield return new WaitForEndOfFrame();
             }
         }
+
     }
 }
