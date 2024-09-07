@@ -219,6 +219,9 @@ namespace OpenNGS.SaveData
 
         public void Save(SaveData savedata)
         {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> OnDataLoaded:[{0}]", savedata.DirName);
+#endif
             if (!this.m_slots.Contains(savedata)) { 
                 this.m_slots.Add(savedata);
             }
@@ -232,10 +235,10 @@ namespace OpenNGS.SaveData
             savedata.Totaltime = (uint)Time.TotalGameTime;
 
             if (this.OnBeforeSave != null) this.OnBeforeSave(SaveDataResult.Success);
-#if DEBUG_LOG
-            Debug.LogFormat("SaveData >> SaveData:[{0}] start", savedata.DirName);
-#endif
             this.SaveData(savedata, OnDataSaved);
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> SaveData:[{0}] end", savedata.DirName);
+#endif
         }
 
         void OnDataSaved(SaveDataResult result)
@@ -293,6 +296,9 @@ namespace OpenNGS.SaveData
 
         public virtual SaveData NewSaveData(bool save)
         {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> NewSaveData:[{0}] start", save);
+#endif
             if (this.Count >= this.Capacity)
                 throw new ArgumentOutOfRangeException();
 
@@ -307,6 +313,9 @@ namespace OpenNGS.SaveData
             {
                 this.OnLoaded(SaveDataResult.Success);
             }
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> NewSaveData:[{0}] end", save);
+#endif
             return this.activeData;
         }
         internal SaveData NewSaveData()
@@ -324,6 +333,9 @@ namespace OpenNGS.SaveData
 
         private void AddSaveData(SaveData data)
         {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> AddSaveData:[{0}]", data.DirName);
+#endif
             if (this.m_slots == null)
                 this.m_slots = new List<SaveData>();
 

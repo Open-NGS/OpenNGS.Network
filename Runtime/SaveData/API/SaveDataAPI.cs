@@ -8,10 +8,11 @@ namespace OpenNGS.SaveData.Storage
     {
 
         ISaveDataAPI memory = null;
+        SaveDataManager sm;
 
         public SaveDataAPI(SaveDataManager sm)
         {
-
+            this.sm = sm;
         }
 
         public void Init(IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api)
@@ -21,7 +22,7 @@ namespace OpenNGS.SaveData.Storage
             {
                 throw new Exception("PlayStation SaveData uninitialized.");
             }
-            memory.Init(fs,capacity, mode);
+            memory.Init(sm, fs, capacity, mode);
         }
 
         public void LoadIndex(Action onIndexiesLoaded)
