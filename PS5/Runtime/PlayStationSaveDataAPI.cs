@@ -29,10 +29,12 @@ namespace OpenNGS.SaveData.PS5
         Dictionary<string, SearchSaveDataItem> Slots = new Dictionary<string, SearchSaveDataItem>();
 
         private int UserID;
+        private SaveDataManager sm;
 
-        public void Init(IFileSystem fs, int capacity, SaveDataMode mode)
+        public void Init(SaveDataManager sm, IFileSystem fs, int capacity, SaveDataMode mode)
         {
             this.Capacity = capacity;
+            this.sm = sm;
             this.Slots.Clear();
             Unity.SaveData.PS5.Main.OnAsyncEvent += OnSaveDataEvent;
 
@@ -111,7 +113,7 @@ namespace OpenNGS.SaveData.PS5
             Debug.Log("AddSlot : " + slot.DirName.Data);
 
             this.Slots.TryAdd(slot.DirName.Data,slot);
-            var sd = SaveDataManager.Instance.NewSaveData(false);
+            var sd = sm.NewSaveData(false);
             sd.DirName = slot.DirName.Data;
             if (hasParam)
             {
