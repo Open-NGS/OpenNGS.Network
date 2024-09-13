@@ -244,7 +244,7 @@ namespace OpenNGS.SaveData.Storage
 
         public void DeleteData(string name, Action<SaveDataResult> onDataDelete)
         {
-            string baseName = this.RootPath + "/" + name + "/" + name;
+            string baseName = this.RootPath + "/" + name + "/" + sm.Name;
 #if !UNITY_SWITCH
             string rawFile = baseName + (int)SaveDataType.Raw;
             string cacheFile = baseName + (int)SaveDataType.Cache;
@@ -258,6 +258,10 @@ namespace OpenNGS.SaveData.Storage
                 if (fsSave.Delete(baseName)) result = SaveDataResult.Success;
             }
 #else
+            if (fsSave.FileExists(baseName))
+            {
+                if (fsSave.Delete(baseName)) result = SaveDataResult.Success;
+            }
             if (fsSave.FileExists(rawFile))
             {
                 if (fsSave.Delete(rawFile)) result = SaveDataResult.Success;
