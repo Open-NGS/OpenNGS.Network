@@ -34,18 +34,21 @@ namespace OpenNGS.SaveData
             T data = base.NewSaveData(save) as T;
             return data;
         }
+
         static public void Initialize(string name, IFileSystem fs, int capacity, SaveDataMode mode)
+        {
+            Initialize(name, fs, capacity, mode, null);
+        }
+
+        static public void Initialize(string name, IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api)
         {
             if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            Instance = Create<T>(name, fs, capacity, mode);
+            Instance = Create<T>(name, fs, capacity, mode, api);
         }
-
     }
-
-
 
     public class SaveDataManager
     {
@@ -83,6 +86,7 @@ namespace OpenNGS.SaveData
         }
 
         ILocalSaveData storage;
+        internal ISaveDataAPI SaveAPI { get; private set; }
         protected SaveData activeData = null;
         int lastSaveTime;
 
@@ -115,7 +119,7 @@ namespace OpenNGS.SaveData
 
         public SaveDataManager()
         {
-#if (UNITY_PS4|| UNITY_PS5) && !UNITY_EDITOR
+#if (UNITY_PS4 || UNITY_PS5 || UNITY_PLAYSTATION) && !UNITY_EDITOR
             storage = new SaveDataAPI(this);
 #else
             storage = new SaveDataStorage(this);
@@ -124,26 +128,28 @@ namespace OpenNGS.SaveData
 
         static public void Initialize<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
         {
+            Initialize<T>(name, fs, capacity, mode, null);
+        }
+        static public void Initialize<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api) where T : SaveData, new()
+        {
             if (Instance != null && Instance.mInited)
             {
                 return;
             }
-            Instance = Create<T>(name, fs, capacity, mode);
+            Instance = Create<T>(name, fs, capacity, mode,api);
         }
 
-        static public SaveDataManager<T> Create<T>(string name,IFileSystem fs, int capacity, SaveDataMode mode) where T : SaveData, new()
+        static public SaveDataManager<T> Create<T>(string name, IFileSystem fs, int capacity, SaveDataMode mode, ISaveDataAPI api) where T : SaveData, new()
         {
             var manager = new SaveDataManager<T>();
             manager.mInited = true;
             manager.SaveDataMode = mode;
             manager.Capacity = capacity;
             manager.Name = name;
-            manager.storage.Init(fs, capacity, mode);
+            manager.storage.Init(fs, capacity, mode, api);
             manager.LoadIndex();
             return manager;
         }
-
-
 
         public void LoadIndex()
         {
@@ -213,6 +219,9 @@ namespace OpenNGS.SaveData
 
         public void Save(SaveData savedata)
         {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> OnDataLoaded:[{0}]", savedata.DirName);
+#endif
             if (!this.m_slots.Contains(savedata)) { 
                 this.m_slots.Add(savedata);
             }
@@ -226,10 +235,10 @@ namespace OpenNGS.SaveData
             savedata.Totaltime = (uint)Time.TotalGameTime;
 
             if (this.OnBeforeSave != null) this.OnBeforeSave(SaveDataResult.Success);
-#if DEBUG_LOG
-            Debug.LogFormat("SaveData >> SaveData:[{0}] start", savedata.DirName);
-#endif
             this.SaveData(savedata, OnDataSaved);
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> SaveData:[{0}] end", savedata.DirName);
+#endif
         }
 
         void OnDataSaved(SaveDataResult result)
@@ -287,6 +296,9 @@ namespace OpenNGS.SaveData
 
         public virtual SaveData NewSaveData(bool save)
         {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> NewSaveData:[{0}] start", save);
+#endif
             if (this.Count >= this.Capacity)
                 throw new ArgumentOutOfRangeException();
 
@@ -301,6 +313,9 @@ namespace OpenNGS.SaveData
             {
                 this.OnLoaded(SaveDataResult.Success);
             }
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> NewSaveData:[{0}] end", save);
+#endif
             return this.activeData;
         }
         internal SaveData NewSaveData()
@@ -318,6 +333,9 @@ namespace OpenNGS.SaveData
 
         private void AddSaveData(SaveData data)
         {
+#if DEBUG_LOG
+            Debug.LogFormat("SaveData >> AddSaveData:[{0}]", data.DirName);
+#endif
             if (this.m_slots == null)
                 this.m_slots = new List<SaveData>();
 
@@ -380,5 +398,6 @@ namespace OpenNGS.SaveData
                 yield return new WaitForEndOfFrame();
             }
         }
+
     }
 }

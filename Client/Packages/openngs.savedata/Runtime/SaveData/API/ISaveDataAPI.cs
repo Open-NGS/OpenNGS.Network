@@ -8,7 +8,7 @@ namespace OpenNGS.SaveData.Storage
 {
     public interface ISaveDataAPI
     {
-        void Init(IFileSystem fs, int capacity, SaveDataMode mode);
+        void Init(SaveDataManager sm, IFileSystem fs, int capacity, SaveDataMode mode);
         void Update();
         void Close();
         void LoadIndex(Action onIndexiesLoaded);
