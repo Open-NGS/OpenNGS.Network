@@ -456,6 +456,28 @@
                 "IsRequired": false,
                 "IsRepeated": false,
                 "IsOptional": false
+              },
+              "Value": {
+                "Name": "Value",
+                "Type": "Uint32",
+                "Description": "完成数量",
+                "Tag": 12,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "StatID": {
+                "Name": "StatID",
+                "Type": "Uint32",
+                "Description": "统计规则ID",
+                "Tag": 13,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
               }
             }
           }
