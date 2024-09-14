@@ -90,6 +90,10 @@ namespace OpenNGS.Quest.Data
         public uint RewardID { get; set; }
         [global::ProtoBuf.ProtoMember(11)]
         public bool IsBan { get; set; }
+        [global::ProtoBuf.ProtoMember(12)]
+        public uint Value { get; set; }
+        [global::ProtoBuf.ProtoMember(13)]
+        public uint StatID { get; set; }
     }
     //任务的存档数据
     [global::ProtoBuf.ProtoContract()]
