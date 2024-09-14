@@ -30,10 +30,9 @@ public class CallProcedureTemplate : MonoBehaviour
     private async void TextExample()
     {
         //List<OpenNGS.Statistic.Data.StatData> _item = NGSStaticData.teststatic.GetItems(1,1);
+        Task<AddStatRsp> _task = StatisticClientSystem.Instance.AddStat(new AddStatReq(), m_clientContext);
+        AddStatRsp result = await _task;
         int a = 0;
-        //Task<AddStatRsp> _task = StatisticClientSystem.Instance.AddStat(new AddStatReq(), m_clientContext);
-        //AddStatRsp result = await _task;
-        //int a = 0;
     }
 
 }

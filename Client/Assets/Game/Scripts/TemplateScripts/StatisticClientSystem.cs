@@ -10,7 +10,7 @@ public class StatisticClientSystem : Singleton<StatisticClientSystem>, INiStatis
 {
     public Task<AddStatRsp> AddStat(AddStatReq value, ClientContext context = null)
     {
-        return StatisticService.Instance.AddStat(new AddStatReq(), context);
+        return StatisticService.Instance.AddStat(value, context);
     }
 
     public Task<GetStatDataRsp> GetStatData(GetStatDataReq value, ClientContext context = null)
