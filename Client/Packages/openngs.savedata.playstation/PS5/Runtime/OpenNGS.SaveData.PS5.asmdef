@@ -7,7 +7,6 @@
         "Unity.SaveData.PS5.Runtime"
     ],
     "includePlatforms": [
-        "Editor",
         "PS5"
     ],
     "excludePlatforms": [],
