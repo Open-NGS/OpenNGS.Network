@@ -1290,8 +1290,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "STAT_EVENT_KILL_NORMALENEMY_COUNTS": {
-                "Name": "STAT_EVENT_KILL_NORMALENEMY_COUNTS",
+              "STAT_EVENT_KILL_ENEMYNORMAL_COUNTS": {
+                "Name": "STAT_EVENT_KILL_ENEMYNORMAL_COUNTS",
                 "Type": "Uint32",
                 "Description": "击杀普通怪数量",
                 "Tag": 20,
@@ -1301,8 +1301,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "STAT_EVENT_KILL_ELITEENEMY_COUNTS": {
-                "Name": "STAT_EVENT_KILL_ELITEENEMY_COUNTS",
+              "STAT_EVENT_KILL_ENEMYELITE_COUNTS": {
+                "Name": "STAT_EVENT_KILL_ENEMYELITE_COUNTS",
                 "Type": "Uint32",
                 "Description": "击杀精英怪数量",
                 "Tag": 21,
@@ -1312,8 +1312,8 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "STAT_EVENT_KILL_BOSSENEMY_COUNTS": {
-                "Name": "STAT_EVENT_KILL_BOSSENEMY_COUNTS",
+              "STAT_EVENT_KILL_ENEMYBOSS_COUNTS": {
+                "Name": "STAT_EVENT_KILL_ENEMYBOSS_COUNTS",
                 "Type": "Uint32",
                 "Description": "击杀BOSS数量",
                 "Tag": 22,

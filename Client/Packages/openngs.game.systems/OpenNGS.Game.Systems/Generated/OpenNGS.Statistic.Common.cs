@@ -117,6 +117,9 @@ namespace OpenNGS.Statistic.Common
         STAT_EVENT_LEVEL_SURVIVE_TIME = 17, // 关卡存活时间
         STAT_EVENT_LEVEL_KILL_ENEMY = 18, // 关卡击杀
         STAT_EVENT_LEVEL_PASS_TIME = 19, // 关卡通过时长
+        STAT_EVENT_KILL_ENEMYNORMAL_COUNTS = 20, // 击杀普通怪数量
+        STAT_EVENT_KILL_ENEMYELITE_COUNTS = 21, // 击杀精英怪数量
+        STAT_EVENT_KILL_ENEMYBOSS_COUNTS = 22, // 击杀BOSS数量
     }
 
     //统计系统的游戏数据
