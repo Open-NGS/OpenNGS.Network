@@ -172,6 +172,12 @@ namespace OpenNGS.Systems
                 questContainer = new QuestContainer();
             }
         }
+
+        public bool IsExistQuestData(uint questGroupID, uint questID)
+        {
+            return questContainer.GetQuestById(questGroupID, questID) != null;
+        }
+
         protected override void OnClear()
         {
             questContainer = null;
