@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Neptune.GameData;
-using static PlasticGui.WorkspaceWindow.Diff.GetRestorePathData;
 
 namespace Neptune
 {

@@ -7,7 +7,7 @@ public class StatisticService : Singleton<StatisticService>, INiStatisticService
 {
     public Task<AddStatRsp> AddStat(AddStatReq value, ClientContext context = null)
     {
-        return StatisticLocalApi.instance.AddStat(value, context);
+        return StatisticLocalApi.Instance.AddStat(value, context);
     }
 
     public Task<GetStatDataRsp> GetStatData(GetStatDataReq value, ClientContext context = null)

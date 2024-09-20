@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Neptune.GameData;
-using log4net.Core;
 
 namespace Neptune
 {
