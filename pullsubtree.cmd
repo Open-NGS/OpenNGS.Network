@@ -15,4 +15,4 @@ git subtree pull --prefix Client/Packages/openngs.platform https://git.eegames.n
 git subtree pull --prefix Client/Packages/openngs.platform.eegames https://git.eegames.net/openngs/client/openngs.platform.eegames.git main
 git subtree pull --prefix Client/Packages/openngs.platform.gcloud https://git.eegames.net/openngs/client/openngs.platform.gcloud.git main
 git subtree pull --prefix Client/Packages/openngs.platform.supersdk https://git.eegames.net/openngs/client/openngs.platform.supersdk.git main
-git subtree pull --prefix Client/Packages/openngs.battle https://git.eegames.net/openngs/client/openngs.battle.git main
+git subtree pull --prefix Client/Packages/openngs.battle https://git.eegames.net/openngs/battle/openngs.battle.git main
