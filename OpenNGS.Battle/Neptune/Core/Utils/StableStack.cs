@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// 同时支持后进先出访问特性和随机删除能力的栈，在栈中删除任何元素时，不影响栈中其他元素的存储位置

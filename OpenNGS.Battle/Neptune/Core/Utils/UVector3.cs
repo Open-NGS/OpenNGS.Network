@@ -192,6 +192,17 @@ public struct UVector3
         this.deltaY = 0;
         this.deltaZ = 0;
     }
+
+    public UVector3(UVector2 v, int z)
+    {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = z;
+        this.deltaX = 0;
+        this.deltaY = 0;
+        this.deltaZ = 0;
+    }
+
     ///// <summary>
     /////   <para>Linearly interpolates between two vectors.</para>
     ///// </summary>
@@ -522,6 +533,28 @@ public struct UVector3
     public static bool operator !=(UVector3 lhs, UVector3 rhs)
     {
         return lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z;
+    }
+
+    public void Round()
+    {
+        if (this.deltaX > HALF_FACTOR)
+            this.x++;
+        else if (this.deltaX < -HALF_FACTOR)
+            this.x--;
+
+        if (this.deltaY > HALF_FACTOR)
+            this.y++;
+        else if (this.deltaY < -HALF_FACTOR)
+            this.y--;
+
+        if (this.deltaZ > HALF_FACTOR)
+            this.z++;
+        else if (this.deltaZ < -HALF_FACTOR)
+            this.z--;
+
+        this.deltaX = 0;
+        this.deltaY = 0;
+        this.deltaZ = 0;
     }
 
 

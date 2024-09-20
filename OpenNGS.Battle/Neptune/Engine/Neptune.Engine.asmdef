@@ -1,0 +1,19 @@
+{
+    "name": "Neptune.Engine",
+    "rootNamespace": "",
+    "references": [
+        "protobuf-net",
+        "Neptune.Core",
+        "OpenNGS.Core",
+        "OpenNGS.Game"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

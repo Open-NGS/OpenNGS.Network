@@ -23,8 +23,8 @@ namespace Util
             long next_seed = RandSeed(moder);
             float ret = (float)((double)next_seed / (double)moder);
 
-            if (Logger.EnableBattleLog)
-                Logger.LogCombat("Rand:" + ret);
+            //if (Logger.EnableBattleLog)
+            //    Logger.LogCombat("Rand:" + ret);
 
             return ret;
         }
@@ -44,8 +44,8 @@ namespace Util
         {
             uint next_seed = RandSeed(moder);
             uint ret = (max * next_seed) / moder;
-            if (Logger.EnableBattleLog)
-                Logger.LogCombat("RandRange:" + ret);
+            //if (Logger.EnableBattleLog)
+            //    Logger.LogCombat("RandRange:" + ret);
             return ret;
         }
 
@@ -60,8 +60,8 @@ namespace Util
             random_seed = (uint)seed;
             random_seed = random_seed % moder;
 
-            if (Logger.EnableBattleLog)
-                Logger.LogCombat("random seed: " + random_seed);
+            //if (Logger.EnableBattleLog)
+            //    Logger.LogCombat("random seed: " + random_seed);
         }
     }
 }

@@ -5,13 +5,15 @@ using System.Text;
 // 
 // Asset Bundle Management Module V1.0 - mailto:Ray@RayMix.net
 // 
-
-/// <summary>
-/// AssetBundleLoadMode
-/// </summary>
-public enum AssetBundleLoadMode
+namespace Neptune.Assets
 {
-    LoadFromFile,
-    LoadFromFileAsync,
-    LoadFromWWW
+    /// <summary>
+    /// AssetBundleLoadMode
+    /// </summary>
+    public enum AssetBundleLoadMode
+    {
+        LoadFromFile,
+        LoadFromFileAsync,
+        LoadFromWWW
+    }
 }
