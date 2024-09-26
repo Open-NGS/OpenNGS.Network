@@ -40,7 +40,8 @@
               },
               "EnemyName": {
                 "Name": "EnemyName",
-                "Type": "String",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
                 "Description": "敌人姓名",
                 "Tag": 2,
                 "Scope": "All",
@@ -53,9 +54,12 @@
           }
         }
       },
-      "References": []
+      "References": [
+        "OpenNGS.Core"
+      ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Enemy",
   "PackageFile": "Packages/OpenNGS.Enemy.json"
 }
