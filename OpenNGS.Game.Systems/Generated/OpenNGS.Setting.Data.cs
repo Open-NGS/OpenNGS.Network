@@ -6,6 +6,7 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
+using OpenNGS.Core;
 
 
 namespace OpenNGS.Setting.Data 
@@ -47,7 +48,6 @@ namespace OpenNGS.Setting.Data
         }
         public UserSettingUIGroupInfo()
         {
-            CategoryName = "";
         	OnConstructor();
         }
         
@@ -56,7 +56,7 @@ namespace OpenNGS.Setting.Data
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public string CategoryName { get; set; }
+        public NGSText CategoryName { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public uint Visible { get; set; }
     }
@@ -103,7 +103,6 @@ namespace OpenNGS.Setting.Data
             RowLabel = "";
             Component = "";
             Tips = "";
-            Desc = "";
         	OnConstructor();
         }
         
@@ -140,7 +139,7 @@ namespace OpenNGS.Setting.Data
         [global::ProtoBuf.ProtoMember(15)]
         public string Tips { get; set; }
         [global::ProtoBuf.ProtoMember(16)]
-        public string Desc { get; set; }
+        public NGSText Desc { get; set; }
         [global::ProtoBuf.ProtoMember(17)]
         public uint Show { get; set; }
         [global::ProtoBuf.ProtoMember(18)]
@@ -159,7 +158,6 @@ namespace OpenNGS.Setting.Data
         }
         public SettingOption()
         {
-            Title = "";
             Tips = "";
         	OnConstructor();
         }
@@ -171,7 +169,7 @@ namespace OpenNGS.Setting.Data
         [global::ProtoBuf.ProtoMember(2)]
         public uint IDX { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public string Title { get; set; }
+        public NGSText Title { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
         public uint Value { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
