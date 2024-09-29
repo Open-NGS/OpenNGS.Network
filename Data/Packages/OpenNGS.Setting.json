@@ -109,7 +109,8 @@
               },
               "CategoryName": {
                 "Name": "CategoryName",
-                "Type": "String",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
                 "Description": "分类名称",
                 "Tag": 2,
                 "Scope": "Client",
@@ -401,7 +402,8 @@
               },
               "Desc": {
                 "Name": "Desc",
-                "Type": "String",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
                 "Description": "组件描述信息",
                 "Tag": 16,
                 "Scope": "Client",
@@ -492,7 +494,8 @@
               },
               "Title": {
                 "Name": "Title",
-                "Type": "String",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
                 "Description": "显示值",
                 "Tag": 3,
                 "Scope": "All",
@@ -564,7 +567,9 @@
           }
         }
       },
-      "References": []
+      "References": [
+        "OpenNGS.Core"
+      ]
     },
     "OpenNGS.Setting.Common": {
       "Name": "OpenNGS.Setting.Common",
@@ -633,6 +638,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Setting",
   "PackageFile": "Packages/OpenNGS.Setting.json"
 }
