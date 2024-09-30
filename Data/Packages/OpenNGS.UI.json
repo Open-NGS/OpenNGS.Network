@@ -230,7 +230,8 @@
               },
               "SystemName": {
                 "Name": "SystemName",
-                "Type": "String",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
                 "Description": "系统名称",
                 "Tag": 3,
                 "Scope": "All",
@@ -323,10 +324,12 @@
         }
       },
       "References": [
+        "OpenNGS.Core",
         "OpenNGS.UI.Common"
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.UI",
   "PackageFile": "Packages/OpenNGS.UI.json"
 }

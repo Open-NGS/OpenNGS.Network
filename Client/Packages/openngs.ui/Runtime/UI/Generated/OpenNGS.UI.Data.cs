@@ -6,6 +6,7 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
+using OpenNGS.Core;
 using OpenNGS.UI.Common;
 
 
@@ -24,7 +25,6 @@ namespace OpenNGS.UI.Data
         public UIConfig()
         {
             IdOfUI = "";
-            SystemName = "";
             Component = "";
             Package = "";
             Dependences = new global::System.Collections.Generic.List<string>();
@@ -38,7 +38,7 @@ namespace OpenNGS.UI.Data
         [global::ProtoBuf.ProtoMember(2)]
         public string IdOfUI { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public string SystemName { get; set; }
+        public NGSText SystemName { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
         public UI_SYSTEM Type { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
