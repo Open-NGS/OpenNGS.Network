@@ -2,9 +2,10 @@
     "name": "OpenNGS.UI",
     "rootNamespace": "",
     "references": [
-        "protobuf-net",
         "OpenNGS.Core",
-        "OpenNGS.Assets"
+        "protobuf-net",
+        "OpenNGS.Assets",
+        "OpenNGS.Game"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
