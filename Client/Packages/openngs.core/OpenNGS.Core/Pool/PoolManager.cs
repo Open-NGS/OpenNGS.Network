@@ -54,7 +54,9 @@ namespace OpenNGS.Pool
         protected static int initSize = 10;
         public static T New<T>() where T : IPoolObject, new()
         {
-            //OpenNGS.Profiling.Profiler.BeginSample("ObjectPool.New");
+#if UNITY_EDITOR
+            OpenNGS.Profiling.Profiler.BeginSample("ObjectPool.New");
+#endif
             ObjectPool<IPoolObject> pool;
             T obj = default(T);
 
@@ -74,8 +76,9 @@ namespace OpenNGS.Pool
                 pool.Use(obj);
             }
             obj.Initialize();
-
+#if UNITY_EDITOR
             OpenNGS.Profiling.Profiler.EndSample();
+#endif
             return obj;
         }
 
