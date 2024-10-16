@@ -2,7 +2,7 @@ using OpenNGS.Core;
 
 public interface IEnemySpawner
 {
-    public void SpawnEnemy(uint enemyID, NGSVector3 pos);
+    public void SpawnEnemy(uint enemyID, NGSVector3 pos, NGSVector3 dior);
 }
 public interface IEnemySpawnSystem
 {

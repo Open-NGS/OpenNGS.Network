@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using Systems;
 
 public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSystem
@@ -139,8 +140,8 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
                 SpawnPosition.X = spawnPosX;
                 SpawnPosition.Y = 0;
                 SpawnPosition.Z = spawnPosZ;
-
-                m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
+                NGSVector3 _dir = new NGSVector3();
+                m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition, _dir);
             }
             else
             {
@@ -161,7 +162,8 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
             SpawnPosition.X = enemyInfo.AreaPos[0];
             SpawnPosition.Y = enemyInfo.AreaPos[1];
             SpawnPosition.Z = enemyInfo.AreaPos[2];
-            m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
+            NGSVector3 _dir = new NGSVector3();
+            m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition, _dir);
         }
     }
     //Ëæ»úÕý¸º
