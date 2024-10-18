@@ -82,9 +82,10 @@ namespace OpenNGS.Tables
             return item;
         }
 
-        public void Unload()
+        public virtual void Unload()
         {
-
+            this.Items.Clear();
+            this.loaded = false;
         }
     }
 
@@ -142,6 +143,12 @@ namespace OpenNGS.Tables
             ITEM item = default(ITEM);
             map.TryGetValue(key, out item);
             return item;
+        }
+
+        public override void Unload()
+        {
+            map.Clear();
+            base.Unload();
         }
     }
 
@@ -219,6 +226,12 @@ namespace OpenNGS.Tables
             Dictionary<SK, ITEM> items = null;
             this.Map.TryGetValue(pk, out items);
             return items;
+        }
+
+        public override void Unload()
+        {
+            Map.Clear();
+            base.Unload();
         }
     }
 
@@ -322,6 +335,12 @@ namespace OpenNGS.Tables
             this.Map.TryGetValue(pk, out items);
             return items;
         }
+
+        public override void Unload()
+        {
+            Map.Clear();
+            base.Unload();
+        }
     }
 
 
@@ -388,6 +407,12 @@ namespace OpenNGS.Tables
             List<ITEM> items = null;
             this.Map.TryGetValue(pk, out items);
             return items;
+        }
+
+        public override void Unload()
+        {
+            Map.Clear();
+            base.Unload();
         }
     }
 
@@ -464,6 +489,12 @@ namespace OpenNGS.Tables
                 _subMap.TryGetValue(sk, out _lstResult);
             }
             return _lstResult;
+        }
+
+        public override void Unload()
+        {
+            Map.Clear();
+            base.Unload();
         }
     }
 }
