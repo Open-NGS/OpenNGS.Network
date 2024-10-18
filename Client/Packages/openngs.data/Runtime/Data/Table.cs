@@ -27,6 +27,12 @@ namespace OpenNGS
         {
             base.Load(DataManager.Instance.GetDataFile(Name, IsSeasonTable));
         }
+
+        public void ReLoad()
+        {
+            Unload();
+            Load();
+        }
     }
 
     public class SettingTable<ITEM, KEY> : DataTable<ITEM, KEY>, ITable
@@ -96,6 +102,12 @@ namespace OpenNGS
         {
             base.Load(DataManager.Instance.GetDataFile(Name, IsSeasonTable));
         }
+
+        public void ReLoad()
+        {
+            Unload();
+            Load();
+        }
     }
 
     public class Table<ITEM,PK,SK,TK> :DataTable<ITEM,PK,SK,TK>, ITable
@@ -112,6 +124,12 @@ namespace OpenNGS
         public void Load()
         {
             base.Load(DataManager.Instance.GetDataFile(Name, IsSeasonTable));
+        }
+
+        public void ReLoad()
+        {
+            Unload();
+            Load();
         }
     }
 }
