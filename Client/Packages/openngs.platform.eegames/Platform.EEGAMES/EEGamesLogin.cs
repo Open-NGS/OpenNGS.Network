@@ -1,23 +1,40 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+
 namespace OpenNGS.Platform
 {
+    public class PlatformConsts
+    {
+        public const string INTL_HOST = "test.intlgame.com";    //TEST
+        //public const string INTL_HOST = "sg.intlgame.com";  //Release(SG)
+        //public const string INTL_HOST = "jp.intlgame.com";  //Release(JP)
+        //public const string INTL_HOST = "us.intlgame.com";  //Release(US)
+
+        public const string INTL_GAME_ID = "29023";   // INTL SDK 的GameID
+        public const string INTL_SIGKEY = "f0ba9cb2bbb049d2d45818d6408fc93c";
+
+    }
     public class EEGamesLogin
     {
-        //public static void GetOpenId(PlatformLoginRet ret, UnityAction<PlatformLoginRet> callback)
-        //{
-        //    Debug.LogFormat("GetOpenId:uid:{0}", ret.OpenId);
-        //    string api_path = api_openid_path + string.Format("?channelid={0}&gameid={1}&os={2}&sdk_version=2.0&seq=&source=0&ts={3}", channelid, PlatformConsts.INTL_GAME_ID, OS, TimeUtil.Timestamp);
-        //    string reqString = "{\"uid\":\"" + ret.OpenId + "\"}";
-        //    string verifyString = api_path + reqString + PlatformConsts.INTL_SIGKEY;
-        //    string sig = Hash.ComputeMd5HashString(verifyString);
-        //    Debug.LogFormat("verifyString{0}", verifyString);
-        //    string url = "https://" + PlatformConsts.INTL_HOST + api_path + "&sig=" + sig;
-        //    PlatformCallback.Instance.StartCoroutine(WebRequest(url, reqString, ret, callback));
-        //}
+        private const string api_openid_path = "/v2/profile/openid";
+        private const string api_login_path = "/api/login";
+        private const string url_login = "http://192.168.10.101:7228";
+        private const string tokein_sample = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJZCI6IjliZDM4MzVjLWEwMzUtNGYxMy05NDRkLTg0Y2Q5OTIyNjdkNCIsIlVzZXJJZCI6IjMiLCJuYmYiOjE3MjkyMzA2OTcsImV4cCI6MTcyOTIzMjQ5NywiaXNzIjoiRWVnYW1lcyIsImF1ZCI6IkVlZ2FtZXMifQ.wjExy6bcrZzs9_z_c7siIfvHHICBVZwUm1iFd6cW1Bo";
+
+
+        public static void GetOpenId(PlatformLoginRet ret, UnityAction<PlatformLoginRet> callback)
+        {
+            Debug.LogFormat("GetOpenId:uid:{0}", ret.OpenId);
+            //string api_path = api_openid_path + string.Format("?channelid={0}&gameid={1}&os={2}&sdk_version=2.0&seq=&source=0&ts={3}", channelid, PlatformConsts.INTL_GAME_ID, OS, TimeUtil.Timestamp);
+            //string reqString = "{\"uid\":\"" + ret.OpenId + "\"}";
+            //string verifyString = api_path + reqString + PlatformConsts.INTL_SIGKEY;
+            //string sig = Hash.ComputeMd5HashString(verifyString);
+            //Debug.LogFormat("verifyString{0}", verifyString);
+            //string url = "https://" + PlatformConsts.INTL_HOST + api_path + "&sig=" + sig;
+            //PlatformCallback.Instance.StartCoroutine(WebRequest(url, reqString, ret, callback));
+        }
 
         // 1 打开网页
         // 2 输入登录信息
