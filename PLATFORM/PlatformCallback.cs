@@ -26,8 +26,7 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>,  ICallBackManag
 public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProvider, ISingleton
 #endif
 {
-
-    private IThirdpartyCallBack midasCallback;
+    private IThirdpartyCallBack thirdCallBack;
     public void OnCreate()
     {
         Debug.Log("OpenNGSPlatform::OnCreate");
@@ -37,13 +36,12 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
         Midas.UnityPay.MidasPayService.Instance.InitializeThirtpartyProvider(this);
 #endif
     }
-
-    void Awake()
+    private void Awake()
     {
         Debug.Log("OpenNGSPlatform::Awake");
     }
 
-	public void CallBack(string msg)
+    public void CallBack(string msg)
 	{
         Debug.Log("OpenNGSPlatform::CallBack:" + msg);
 #if SUPERSDK && UNITY_ANDROID
@@ -83,7 +81,7 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
     public void Init(IThirdpartyCallBack callback)
 	{
         Debug.Log("OpenNGSPlatform::Init ThirdpartyCallBack");
-        midasCallback = callback;
+        thirdCallBack = callback;
 	}
 
 #if SUPERSDK
@@ -341,5 +339,11 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
                 break;
         }
     }
+#else
+    public void OnCallBack(PlatformLoginRet _ret)
+    {
+        OnSuperSDKLoginRet(_ret);
+    }
+
 #endif
 }
