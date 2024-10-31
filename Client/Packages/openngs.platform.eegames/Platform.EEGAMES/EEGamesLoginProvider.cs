@@ -22,10 +22,25 @@ namespace OpenNGS.Platform.EEGames
             return null;
         }
     }
+    public class EEGamesCallBack : IThirdpartyCallBack
+    {
+        public void OnCallBack(string moduleName, string funcName, string result)
+        {
+        }
+
+        public void OnException(int code, string msg)
+        {
+        }
+    }
     public class EEGamesLoginProvider : ILoginProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.LOGIN;
-
+        private EEGamesCallBack m_callBack;
+        public EEGamesLoginProvider()
+        {
+            m_callBack = new EEGamesCallBack();
+            PlatformCallback.Instance.Init(m_callBack);
+        }
         public void AutoLogin()
         {
             throw new System.NotImplementedException();
@@ -36,39 +51,28 @@ namespace OpenNGS.Platform.EEGames
             throw new System.NotImplementedException();
         }
 
-        private void _callBack(PlatformLoginRet _ret)
+        private void _callBackLogin(PlatformLoginRet _ret)
         {
-
+            PlatformCallback.Instance.OnCallBack(_ret);
         }
 
-        private const string api_login_path = "/api/login";
-        private const string url_login = "http://192.168.10.101:7228";
-        //private const string url_login = "https://git.eegames.net/";
-        private const string tokein_sample = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJZCI6IjliZDM4MzVjLWEwMzUtNGYxMy05NDRkLTg0Y2Q5OTIyNjdkNCIsIlVzZXJJZCI6IjMiLCJuYmYiOjE3MjkyMzA2OTcsImV4cCI6MTcyOTIzMjQ5NywiaXNzIjoiRWVnYW1lcyIsImF1ZCI6IkVlZ2FtZXMifQ.wjExy6bcrZzs9_z_c7siIfvHHICBVZwUm1iFd6cW1Bo";
+        private const string api_login_path = "/api/auth/login";
+        private const string url_login = "http://api.eegames.com/services/platform/auth";
         public void Login(string channel, string permissions = "", string subChannel = "", string extraJson = "")
         {
-            //string strUrl = "https://auth.eegames.com/login/oauth/authorize?response_type=code&scope=openid%20profile%20email%20phone&redirect_uri=http:%2F%2Fplatform-api.openngs.com%2Fapi%2Feauth%2Fcallback&client_id=1c35349a39b34aa7b144&state=%2F";
-            //Application.OpenURL(strUrl);
-            //PlatformLoginRet _ret = new PlatformLoginRet();
-            //PlatformCallback.Instance.StartCoroutine(WebRequest(strUrl,
-            //    "", _ret, _callBack));
-            string strUrl = url_login;
-            //string url = url_login + api_login_path + "&channel=" + 0 + "&verification=" + 0 + "&data="+ tokein_sample;
             string url = url_login + api_login_path;
             PlatformLoginRet _ret = new PlatformLoginRet();
             PlatformCallback.Instance.StartCoroutine(WebPost(url,
-                "", _ret, _callBack));
+                extraJson, _ret, _callBackLogin));
         }
 
         private IEnumerator WebPost(string uri, string data, PlatformLoginRet ret, UnityAction<PlatformLoginRet> callback)
         {
-            string jsonString = "{\"channel\":0,\"verification\":0,\"data\":\"" + tokein_sample + "\"}";
-
             // 创建 UnityWebRequest 对象
             UnityWebRequest webRequest = new UnityWebRequest(uri, "POST");
 
             // 将 JSON 字符串转换为 byte[]
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonString);
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(data);
 
             // 设置请求体
             webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -90,6 +94,8 @@ namespace OpenNGS.Platform.EEGames
             else
             {
                 string returnJson = webRequest.downloadHandler.text;
+                ret.ThirdMsg = returnJson;
+                ret.RetCode = PlatformError.SUCCESS;
                 // 域名没有定，现在用本地
                 //get api/user 
                 Debug.Log("WebRequest Ret:" + returnJson);
