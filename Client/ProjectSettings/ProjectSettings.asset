@@ -807,7 +807,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: Enable_NewNetworkModule
+    Standalone: Enable_NewNetworkModule;STEAMWORKS_NET
   additionalCompilerArguments:
     Standalone: []
   platformArchitecture: {}
