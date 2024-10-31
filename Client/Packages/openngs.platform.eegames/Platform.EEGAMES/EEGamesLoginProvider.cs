@@ -101,6 +101,10 @@ namespace OpenNGS.Platform.EEGames
                 Debug.Log("WebRequest Ret:" + returnJson);
                 //object _obj = JsonConvert.DeserializeObject(returnJson);
                 Dictionary<string, string> dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(returnJson);
+                if(dictionary.TryGetValue("data", out string strVal))
+                {
+                    ret.Token = strVal;
+                }
                 //Dictionary<string, string> resultData = JsonUtil.LoadJson<Dictionary<string, string>>(returnJson);
                 //ret.RetCode = (int)resultData["ret"];
                 //ret.RetMsg = resultData["msg"].ToString();
