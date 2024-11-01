@@ -64,6 +64,7 @@ namespace OpenNGS.Platform.EEGames
             PlatformLoginRet _ret = new PlatformLoginRet();
             PlatformCallback.Instance.StartCoroutine(WebPost(url,
                 extraJson, _ret, _callBackLogin));
+
         }
 
         private IEnumerator WebPost(string uri, string data, PlatformLoginRet ret, UnityAction<PlatformLoginRet> callback)
