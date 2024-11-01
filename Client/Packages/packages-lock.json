@@ -85,6 +85,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.openngs.platform.eegames": {
+      "version": "file:openngs.platform.eegames",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.openngs.platform.gcloud": {
       "version": "file:openngs.platform.gcloud",
       "depth": 0,
