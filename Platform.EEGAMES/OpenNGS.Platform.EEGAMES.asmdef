@@ -2,7 +2,8 @@
     "name": "OpenNGS.Platform.EEGAMES",
     "rootNamespace": "",
     "references": [
-        "OpenNGS.Platform"
+        "OpenNGS.Platform",
+        "OpenNGS.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
