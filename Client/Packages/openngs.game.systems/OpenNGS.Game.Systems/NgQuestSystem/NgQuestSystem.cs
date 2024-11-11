@@ -4,6 +4,8 @@ using Systems;
 using OpenNGS.Quest.Common;
 using QuestGroup = OpenNGS.Quest.Data.QuestGroup;
 using System.Linq;
+using System;
+using OpenNGS.Data;
 
 namespace OpenNGS.Systems
 {
@@ -59,40 +61,79 @@ namespace OpenNGS.Systems
         private void AddRandomQuests(QuestGroup questGroup, uint pickNum)
         {
             QuestGroupData questGroupData = new QuestGroupData { QuestGroupID = questGroup.QuestGroupID };
-            var availableQuests = questGroup.Quests
-            .Select(questID => new
+            Dictionary<uint, float> weights = new Dictionary<uint, float>();
+            foreach(uint questID in questGroup.Quests)
             {
-                Quest = NGSStaticData.Quest.GetItem(questID),
-                Weight = NGSStaticData.Quest.GetItem(questID)?.Weight ?? 0,
-                questData = questContainer.GetQuestById(questGroup.QuestGroupID, questID)
-            })
-            .Where(q => q.Quest != null && !q.Quest.IsBan)
-            .ToList();
-
-            var randomQuests = new List<QuestData>();
-            var random = new System.Random();
-            var totalWeight = availableQuests.Sum(q => q.Weight);
-            for (int i = 0; i < pickNum; i++)
-            {
-                double randomValue = random.NextDouble() * totalWeight;
-                double weightSum = 0;
-
-                foreach (var questWithWeight in availableQuests)
+                OpenNGS.Quest.Data.Quest quest = NGSStaticData.Quest.GetItem(questID);
+                if (quest != null && !quest.IsBan)
                 {
-                    weightSum += questWithWeight.Weight;
-                    if (weightSum >= randomValue)
+                    weights.Add(questID, quest.Weight);
+                }
+            }
+            var totalWeight = weights.Values.Sum();
+            var selectedQuests = ExcuteRandom(pickNum, weights, totalWeight);
+
+            foreach (var questID in selectedQuests)
+            {
+                var questData = new QuestData { QuestID = questID, Status = Quest_Status.Status_Available };
+                questGroupData.QuestDataList.Add(questData);
+            }
+            questContainer.AddQuestGroup(questGroupData);
+
+        }
+        private List<uint> ExcuteRandom(uint optionCount, Dictionary<uint, float> weightDic, float toatlWeight)
+        {
+            Random random = new Random();
+            List<uint> result = new List<uint>();
+            List<uint> droped = new List<uint>();
+            float curWeight = toatlWeight;
+            Dictionary<uint, uint> poolSlectCount = new Dictionary<uint, uint>();
+            for (int i = 0; i < optionCount; i++)
+            {
+                if (curWeight <= 0)
+                {
+                    break;
+                }
+                float curNum = (float)NextDouble(random, 0, curWeight);
+                foreach (KeyValuePair<uint, float> weight in weightDic)
+                {
+                    if (droped.Contains(weight.Key))
                     {
-                        randomQuests.Add(questWithWeight.questData);
-                        availableQuests.Remove(questWithWeight);
+                        curNum -= 0;
+                    }
+                    else
+                    {
+                        curNum -= weight.Value;
+                    }
+                    if (curNum < 0)
+                    {
+                        result.Add(weight.Key);
+                        droped.Add(weight.Key);
+                        curWeight -= weight.Value;
                         break;
                     }
                 }
             }
-            foreach (var quest in randomQuests)
+            return result;
+        }
+        private double NextDouble(Random ran, float minValue, float maxValue)
+        {
+            double randNum = ran.NextDouble() * (maxValue - minValue) + minValue;
+            return randNum;
+        }
+
+        public List<uint> GetQuest(uint QuestGroupID, Quest_Status status)
+        {
+            var questGroup = questContainer.QuestGroupList
+                .FirstOrDefault(qg => qg.QuestGroupID == QuestGroupID);
+            if (questGroup != null)
             {
-                questGroupData.QuestDataList.Add(new QuestData { QuestID = quest.QuestID, Status = Quest_Status.Status_Available });
+                return questGroup.QuestDataList
+                    .Where(q => q.Status == status)
+                    .Select(q => q.QuestID)
+                    .ToList();
             }
-            questContainer.AddQuestGroup(questGroupData);
+            return new List<uint>();
         }
 
         private void AddAllQuests(QuestGroup questGroup)
@@ -123,35 +164,6 @@ namespace OpenNGS.Systems
             QuestData quest = questContainer.GetQuestById(questGroupID, questID);
             questContainer.UpdateQuest(quest, status);
         }
-
-        //public void AddQuest(uint questID)
-        //{
-        //    if (questContainer.QuestGroupList.Any(qg => qg.QuestDataList.Any(q => q.QuestID == questID)))
-        //    {
-        //        return;
-        //    }
-        //    QuestData questData = new QuestData { QuestID = questID, Status = Quest_Status.Status_Available };
-        //    QuestGroupData defaultGroup = questContainer.QuestGroupList.FirstOrDefault();
-        //    if (defaultGroup == null)
-        //    {
-        //        defaultGroup = new QuestGroupData { QuestGroupID = 0 };
-        //        questContainer.AddQuestGroup(defaultGroup);
-        //    }
-        //    defaultGroup.QuestDataList.Add(questData);
-        //}
-
-        //public void FinishQuest(uint questID)
-        //{
-        //    var questGroup = questContainer.QuestGroupList.FirstOrDefault(qg => qg.QuestDataList.Any(q => q.QuestID == questID));
-        //    if (questGroup != null)
-        //    {
-        //        var quest = questGroup.QuestDataList.FirstOrDefault(q => q.QuestID == questID);
-        //        if (quest != null)
-        //        {
-        //            quest.Status = Quest_Status.Status_Completed;
-        //        }
-        //    }
-        //}
 
         public List<uint> GetQuestGroup(Quest_Status status)
         {
