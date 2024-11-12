@@ -184,6 +184,10 @@ namespace OpenNGS.Systems
                 questContainer = new QuestContainer();
             }
         }
+        public bool IsExistQuestGroup(uint questGroupID)
+        {
+            return questContainer.QuestGroupList.Any(qg => qg.QuestGroupID == questGroupID);
+        }
 
         public bool IsExistQuestData(uint questGroupID, uint questID)
         {
@@ -195,5 +199,6 @@ namespace OpenNGS.Systems
             questContainer = null;
             base.OnClear();
         }
+
     }
 }
