@@ -38,22 +38,11 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "Status_Available": {
-                "Name": "Status_Available",
+              "Status_Accepted": {
+                "Name": "Status_Accepted",
                 "Type": "Uint32",
-                "Description": "任务可接取",
+                "Description": "已接取",
                 "Tag": 1,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Status_Progress": {
-                "Name": "Status_Progress",
-                "Type": "Uint32",
-                "Description": "任务进行中",
-                "Tag": 2,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -64,7 +53,7 @@
                 "Name": "Status_Completed",
                 "Type": "Uint32",
                 "Description": "任务已完成",
-                "Tag": 3,
+                "Tag": 2,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -75,7 +64,7 @@
                 "Name": "Status_Failed",
                 "Type": "Uint32",
                 "Description": "任务失败",
-                "Tag": 4,
+                "Tag": 3,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -195,23 +184,12 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "Quests": {
-                "Name": "Quests",
-                "Type": "Uint32",
-                "Description": "任务列表",
-                "Tag": 2,
-                "Scope": "All",
-                "Attributes": "Repeated",
-                "IsRequired": false,
-                "IsRepeated": true,
-                "IsOptional": false
-              },
               "Tile": {
                 "Name": "Tile",
                 "Type": "NGSText",
                 "CustomType": "NGSText",
                 "Description": "标题",
-                "Tag": 3,
+                "Tag": 2,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -223,7 +201,7 @@
                 "Type": "NGSText",
                 "CustomType": "NGSText",
                 "Description": "描述",
-                "Tag": 4,
+                "Tag": 3,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -234,6 +212,17 @@
                 "Name": "Category",
                 "Type": "Uint32",
                 "Description": "分组类型",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IsQuestHead": {
+                "Name": "IsQuestHead",
+                "Type": "Uint32",
+                "Description": "是否为起始任务组",
                 "Tag": 5,
                 "Scope": "All",
                 "Attributes": "None",
@@ -333,11 +322,22 @@
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
             "Tag": 0,
             "Properties": {
+              "GroupID": {
+                "Name": "GroupID",
+                "Type": "Uint32",
+                "Description": "任务组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
               "QuestID": {
                 "Name": "QuestID",
                 "Type": "Uint32",
                 "Description": "任务ID",
-                "Tag": 1,
+                "Tag": 2,
                 "Scope": "All",
                 "Attributes": "Required",
                 "IsRequired": true,
@@ -349,7 +349,7 @@
                 "Type": "NGSText",
                 "CustomType": "NGSText",
                 "Description": "名字",
-                "Tag": 2,
+                "Tag": 3,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -361,7 +361,7 @@
                 "Type": "NGSText",
                 "CustomType": "NGSText",
                 "Description": "描述",
-                "Tag": 3,
+                "Tag": 4,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -372,7 +372,7 @@
                 "Name": "DialogID",
                 "Type": "Uint32",
                 "Description": "对话ID",
-                "Tag": 4,
+                "Tag": 5,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -383,17 +383,6 @@
                 "Name": "Weight",
                 "Type": "Uint32",
                 "Description": "任务的随机接取权重",
-                "Tag": 5,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "IsQuestHead": {
-                "Name": "IsQuestHead",
-                "Type": "Bool",
-                "Description": "是否起始任务",
                 "Tag": 6,
                 "Scope": "All",
                 "Attributes": "None",
@@ -401,11 +390,22 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "NextQuestID": {
-                "Name": "NextQuestID",
+              "StatID": {
+                "Name": "StatID",
                 "Type": "Uint32",
-                "Description": "下一个任务",
+                "Description": "统计规则ID",
                 "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Value": {
+                "Name": "Value",
+                "Type": "Uint32",
+                "Description": "完成数量",
+                "Tag": 8,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -416,18 +416,6 @@
                 "Name": "isHidden",
                 "Type": "Bool",
                 "Description": "是否为隐藏任务",
-                "Tag": 8,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Status": {
-                "Name": "Status",
-                "Type": "Unknow",
-                "CustomType": "Quest_Status",
-                "Description": "任务状态",
                 "Tag": 9,
                 "Scope": "All",
                 "Attributes": "None",
@@ -451,28 +439,6 @@
                 "Type": "Bool",
                 "Description": "废弃",
                 "Tag": 11,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "Value": {
-                "Name": "Value",
-                "Type": "Uint32",
-                "Description": "完成数量",
-                "Tag": 12,
-                "Scope": "All",
-                "Attributes": "None",
-                "IsRequired": false,
-                "IsRepeated": false,
-                "IsOptional": false
-              },
-              "StatID": {
-                "Name": "StatID",
-                "Type": "Uint32",
-                "Description": "统计规则ID",
-                "Tag": 13,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
@@ -504,10 +470,10 @@
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
             "Tag": 0,
             "Properties": {
-              "QuestGroupList": {
-                "Name": "QuestGroupList",
+              "QuestList": {
+                "Name": "QuestList",
                 "Type": "Unknow",
-                "CustomType": "QuestGroupData",
+                "CustomType": "QuestData",
                 "Description": "任务数据列表",
                 "Tag": 1,
                 "Scope": "All",
@@ -526,7 +492,7 @@
           "Package": "OpenNGS.Quest.Data",
           "Fullname": "OpenNGS.Quest.Data.QuestData",
           "PackageName": "OpenNGS.Quest.QuestData",
-          "Description": "任务存档",
+          "Description": "任务实例",
           "Tag": 0,
           "Flag": 0,
           "Scope": "All",
@@ -541,10 +507,10 @@
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
             "Tag": 0,
             "Properties": {
-              "QuestID": {
-                "Name": "QuestID",
+              "Uid": {
+                "Name": "Uid",
                 "Type": "Uint32",
-                "Description": "任务ID",
+                "Description": "任务唯一ID",
                 "Tag": 1,
                 "Scope": "All",
                 "Attributes": "Required",
@@ -552,64 +518,70 @@
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "Status": {
-                "Name": "Status",
-                "Type": "Unknow",
-                "CustomType": "Quest_Status",
-                "Description": "任务状态",
+              "GroupID": {
+                "Name": "GroupID",
+                "Type": "Uint32",
+                "Description": "任务组ID",
                 "Tag": 2,
                 "Scope": "All",
                 "Attributes": "None",
                 "IsRequired": false,
                 "IsRepeated": false,
                 "IsOptional": false
-              }
-            }
-          }
-        },
-        "OpenNGS.Quest.Data.QuestGroupData": {
-          "RawPackage": "OpenNGS.Quest",
-          "Methods": {},
-          "Name": "QuestGroupData",
-          "Package": "OpenNGS.Quest.Data",
-          "Fullname": "OpenNGS.Quest.Data.QuestGroupData",
-          "PackageName": "OpenNGS.Quest.QuestGroupData",
-          "Description": "任务组存档",
-          "Tag": 0,
-          "Flag": 0,
-          "Scope": "All",
-          "ModelType": "Table",
-          "Type": "Struct",
-          "Entity": {
-            "Name": "QuestGroupData",
-            "Package": "OpenNGS.Quest.Data",
-            "RawPackage": "OpenNGS.Quest",
-            "Fullname": "OpenNGS.Quest.Data.QuestGroupData",
-            "Type": 0,
-            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
-            "Tag": 0,
-            "Properties": {
-              "QuestGroupID": {
-                "Name": "QuestGroupID",
+              },
+              "QuestID": {
+                "Name": "QuestID",
                 "Type": "Uint32",
-                "Description": "任务组ID",
-                "Tag": 1,
+                "Description": "任务ID",
+                "Tag": 3,
                 "Scope": "All",
-                "Attributes": "Required",
-                "IsRequired": true,
+                "Attributes": "None",
+                "IsRequired": false,
                 "IsRepeated": false,
                 "IsOptional": false
               },
-              "QuestDataList": {
-                "Name": "QuestDataList",
-                "Type": "Unknow",
-                "CustomType": "QuestData",
-                "Description": "任务组任务集合",
-                "Tag": 2,
+              "StatID": {
+                "Name": "StatID",
+                "Type": "Uint32",
+                "Description": "统计ID",
+                "Tag": 4,
                 "Scope": "All",
-                "Attributes": "Repeated",
+                "Attributes": "None",
                 "IsRequired": false,
-                "IsRepeated": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "CurVal": {
+                "Name": "CurVal",
+                "Type": "Uint32",
+                "Description": "当前进度",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "AcceptTime": {
+                "Name": "AcceptTime",
+                "Type": "Uint64",
+                "Description": "接取时间",
+                "Tag": 6,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Status": {
+                "Name": "Status",
+                "Type": "Uint32",
+                "Description": "任务状态",
+                "Tag": 7,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
                 "IsOptional": false
               }
             }
@@ -620,8 +592,806 @@
         "OpenNGS.Core",
         "OpenNGS.Quest.Common"
       ]
+    },
+    "OpenNGS.Quest.Service": {
+      "Name": "OpenNGS.Quest.Service",
+      "PackageType": "Message",
+      "Scope": "CS;SS",
+      "Models": {
+        "OpenNGS.Quest.Service.GetQuestListReq": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "GetQuestListReq",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.GetQuestListReq",
+          "PackageName": "OpenNGS.Quest.GetQuestListReq",
+          "Description": "获得任务列表请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetQuestListReq",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.GetQuestListReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "category": {
+                "Name": "category",
+                "Type": "Uint32",
+                "Description": "分组类型",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.GetQuestListRsp": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "GetQuestListRsp",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.GetQuestListRsp",
+          "PackageName": "OpenNGS.Quest.GetQuestListRsp",
+          "Description": "获得任务列表响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetQuestListRsp",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.GetQuestListRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "quests": {
+                "Name": "quests",
+                "Type": "Unknow",
+                "CustomType": "QuestData",
+                "Description": "任务列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRequired": true,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.GetQuestRewardReq": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "GetQuestRewardReq",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.GetQuestRewardReq",
+          "PackageName": "OpenNGS.Quest.GetQuestRewardReq",
+          "Description": "获得任务奖励请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetQuestRewardReq",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.GetQuestRewardReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uid": {
+                "Name": "uid",
+                "Type": "Uint32",
+                "Description": "任务唯一ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.GetQuestRewardRsp": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "GetQuestRewardRsp",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.GetQuestRewardRsp",
+          "PackageName": "OpenNGS.Quest.GetQuestRewardRsp",
+          "Description": "获得任务奖励响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetQuestRewardRsp",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.GetQuestRewardRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "rewardID": {
+                "Name": "rewardID",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.GetQuestGroupRewardReq": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "GetQuestGroupRewardReq",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardReq",
+          "PackageName": "OpenNGS.Quest.GetQuestGroupRewardReq",
+          "Description": "获得任务组奖励请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetQuestGroupRewardReq",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "groupID": {
+                "Name": "groupID",
+                "Type": "Uint32",
+                "Description": "任务组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.GetQuestGroupRewardRsp": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "GetQuestGroupRewardRsp",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardRsp",
+          "PackageName": "OpenNGS.Quest.GetQuestGroupRewardRsp",
+          "Description": "获得任务组奖励相应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetQuestGroupRewardRsp",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "rewardID": {
+                "Name": "rewardID",
+                "Type": "Uint32",
+                "Description": "奖励ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.AddQuestRep": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "AddQuestRep",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.AddQuestRep",
+          "PackageName": "OpenNGS.Quest.AddQuestRep",
+          "Description": "添加任务请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddQuestRep",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.AddQuestRep",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "groupID": {
+                "Name": "groupID",
+                "Type": "Uint32",
+                "Description": "任务组ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.AddQuestRsp": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "AddQuestRsp",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.AddQuestRsp",
+          "PackageName": "OpenNGS.Quest.AddQuestRsp",
+          "Description": "添加任务响应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddQuestRsp",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.AddQuestRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "quests": {
+                "Name": "quests",
+                "Type": "Unknow",
+                "CustomType": "QuestData",
+                "Description": "任务列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRequired": true,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.RemoveQuestRep": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "RemoveQuestRep",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.RemoveQuestRep",
+          "PackageName": "OpenNGS.Quest.RemoveQuestRep",
+          "Description": "移除任务请求",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RemoveQuestRep",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.RemoveQuestRep",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "uid": {
+                "Name": "uid",
+                "Type": "Uint32",
+                "Description": "任务列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.RemoveQuestRsp": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {},
+          "Name": "RemoveQuestRsp",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.RemoveQuestRsp",
+          "PackageName": "OpenNGS.Quest.RemoveQuestRsp",
+          "Description": "移除任务相应",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "RemoveQuestRsp",
+            "Package": "OpenNGS.Quest.Service",
+            "RawPackage": "OpenNGS.Quest",
+            "Fullname": "OpenNGS.Quest.Service.RemoveQuestRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "quests": {
+                "Name": "quests",
+                "Type": "Unknow",
+                "CustomType": "QuestData",
+                "Description": "任务列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRequired": true,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Quest.Service.NiQuestService": {
+          "RawPackage": "OpenNGS.Quest",
+          "Methods": {
+            "GetQuestList": {
+              "MethodName": "GetQuestList",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Quest",
+                  "Methods": {},
+                  "Name": "GetQuestListReq",
+                  "Package": "OpenNGS.Quest.Service",
+                  "Fullname": "OpenNGS.Quest.Service.GetQuestListReq",
+                  "PackageName": "OpenNGS.Quest.GetQuestListReq",
+                  "Description": "获得任务列表请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetQuestListReq",
+                    "Package": "OpenNGS.Quest.Service",
+                    "RawPackage": "OpenNGS.Quest",
+                    "Fullname": "OpenNGS.Quest.Service.GetQuestListReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "category": {
+                        "Name": "category",
+                        "Type": "Uint32",
+                        "Description": "分组类型",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Quest",
+                "Methods": {},
+                "Name": "GetQuestListRsp",
+                "Package": "OpenNGS.Quest.Service",
+                "Fullname": "OpenNGS.Quest.Service.GetQuestListRsp",
+                "PackageName": "OpenNGS.Quest.GetQuestListRsp",
+                "Description": "获得任务列表响应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetQuestListRsp",
+                  "Package": "OpenNGS.Quest.Service",
+                  "RawPackage": "OpenNGS.Quest",
+                  "Fullname": "OpenNGS.Quest.Service.GetQuestListRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "quests": {
+                      "Name": "quests",
+                      "Type": "Unknow",
+                      "CustomType": "QuestData",
+                      "Description": "任务列表",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRequired": true,
+                      "IsRepeated": true,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "获得任务列表",
+              "Scope": "All"
+            },
+            "GetQuestReward": {
+              "MethodName": "GetQuestReward",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Quest",
+                  "Methods": {},
+                  "Name": "GetQuestRewardReq",
+                  "Package": "OpenNGS.Quest.Service",
+                  "Fullname": "OpenNGS.Quest.Service.GetQuestRewardReq",
+                  "PackageName": "OpenNGS.Quest.GetQuestRewardReq",
+                  "Description": "获得任务奖励请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetQuestRewardReq",
+                    "Package": "OpenNGS.Quest.Service",
+                    "RawPackage": "OpenNGS.Quest",
+                    "Fullname": "OpenNGS.Quest.Service.GetQuestRewardReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uid": {
+                        "Name": "uid",
+                        "Type": "Uint32",
+                        "Description": "任务唯一ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Quest",
+                "Methods": {},
+                "Name": "GetQuestRewardRsp",
+                "Package": "OpenNGS.Quest.Service",
+                "Fullname": "OpenNGS.Quest.Service.GetQuestRewardRsp",
+                "PackageName": "OpenNGS.Quest.GetQuestRewardRsp",
+                "Description": "获得任务奖励响应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetQuestRewardRsp",
+                  "Package": "OpenNGS.Quest.Service",
+                  "RawPackage": "OpenNGS.Quest",
+                  "Fullname": "OpenNGS.Quest.Service.GetQuestRewardRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "rewardID": {
+                      "Name": "rewardID",
+                      "Type": "Uint32",
+                      "Description": "奖励ID",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRequired": true,
+                      "IsRepeated": false,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "获得任务奖励",
+              "Scope": "All"
+            },
+            "GetQuestGroupReward": {
+              "MethodName": "GetQuestGroupReward",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Quest",
+                  "Methods": {},
+                  "Name": "GetQuestGroupRewardReq",
+                  "Package": "OpenNGS.Quest.Service",
+                  "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardReq",
+                  "PackageName": "OpenNGS.Quest.GetQuestGroupRewardReq",
+                  "Description": "获得任务组奖励请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetQuestGroupRewardReq",
+                    "Package": "OpenNGS.Quest.Service",
+                    "RawPackage": "OpenNGS.Quest",
+                    "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "groupID": {
+                        "Name": "groupID",
+                        "Type": "Uint32",
+                        "Description": "任务组ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Quest",
+                "Methods": {},
+                "Name": "GetQuestGroupRewardRsp",
+                "Package": "OpenNGS.Quest.Service",
+                "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardRsp",
+                "PackageName": "OpenNGS.Quest.GetQuestGroupRewardRsp",
+                "Description": "获得任务组奖励相应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetQuestGroupRewardRsp",
+                  "Package": "OpenNGS.Quest.Service",
+                  "RawPackage": "OpenNGS.Quest",
+                  "Fullname": "OpenNGS.Quest.Service.GetQuestGroupRewardRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "rewardID": {
+                      "Name": "rewardID",
+                      "Type": "Uint32",
+                      "Description": "奖励ID",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": "Required",
+                      "IsRequired": true,
+                      "IsRepeated": false,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "获得任务组奖励",
+              "Scope": "All"
+            },
+            "AddQuest": {
+              "MethodName": "AddQuest",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Quest",
+                  "Methods": {},
+                  "Name": "AddQuestRep",
+                  "Package": "OpenNGS.Quest.Service",
+                  "Fullname": "OpenNGS.Quest.Service.AddQuestRep",
+                  "PackageName": "OpenNGS.Quest.AddQuestRep",
+                  "Description": "添加任务请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "AddQuestRep",
+                    "Package": "OpenNGS.Quest.Service",
+                    "RawPackage": "OpenNGS.Quest",
+                    "Fullname": "OpenNGS.Quest.Service.AddQuestRep",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "groupID": {
+                        "Name": "groupID",
+                        "Type": "Uint32",
+                        "Description": "任务组ID",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Quest",
+                "Methods": {},
+                "Name": "AddQuestRsp",
+                "Package": "OpenNGS.Quest.Service",
+                "Fullname": "OpenNGS.Quest.Service.AddQuestRsp",
+                "PackageName": "OpenNGS.Quest.AddQuestRsp",
+                "Description": "添加任务响应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "AddQuestRsp",
+                  "Package": "OpenNGS.Quest.Service",
+                  "RawPackage": "OpenNGS.Quest",
+                  "Fullname": "OpenNGS.Quest.Service.AddQuestRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "quests": {
+                      "Name": "quests",
+                      "Type": "Unknow",
+                      "CustomType": "QuestData",
+                      "Description": "任务列表",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRequired": true,
+                      "IsRepeated": true,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "接取任务",
+              "Scope": "All"
+            },
+            "RemoveQuest": {
+              "MethodName": "RemoveQuest",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Quest",
+                  "Methods": {},
+                  "Name": "RemoveQuestRep",
+                  "Package": "OpenNGS.Quest.Service",
+                  "Fullname": "OpenNGS.Quest.Service.RemoveQuestRep",
+                  "PackageName": "OpenNGS.Quest.RemoveQuestRep",
+                  "Description": "移除任务请求",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "RemoveQuestRep",
+                    "Package": "OpenNGS.Quest.Service",
+                    "RawPackage": "OpenNGS.Quest",
+                    "Fullname": "OpenNGS.Quest.Service.RemoveQuestRep",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "uid": {
+                        "Name": "uid",
+                        "Type": "Uint32",
+                        "Description": "任务列表",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Quest",
+                "Methods": {},
+                "Name": "RemoveQuestRsp",
+                "Package": "OpenNGS.Quest.Service",
+                "Fullname": "OpenNGS.Quest.Service.RemoveQuestRsp",
+                "PackageName": "OpenNGS.Quest.RemoveQuestRsp",
+                "Description": "移除任务相应",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "RemoveQuestRsp",
+                  "Package": "OpenNGS.Quest.Service",
+                  "RawPackage": "OpenNGS.Quest",
+                  "Fullname": "OpenNGS.Quest.Service.RemoveQuestRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Quest.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "quests": {
+                      "Name": "quests",
+                      "Type": "Unknow",
+                      "CustomType": "QuestData",
+                      "Description": "任务列表",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRequired": true,
+                      "IsRepeated": true,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "移除任务",
+              "Scope": "All"
+            }
+          },
+          "Name": "NiQuestService",
+          "Package": "OpenNGS.Quest.Service",
+          "Fullname": "OpenNGS.Quest.Service.NiQuestService",
+          "PackageName": "OpenNGS.Quest.NiQuestService",
+          "Description": "Ni任务服务",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Service"
+        }
+      },
+      "References": [
+        "OpenNGS.Quest.Data"
+      ]
+    },
+    "OpenNGS.Quest.DB": {
+      "Name": "OpenNGS.Quest.DB",
+      "PackageType": "Message",
+      "Models": {},
+      "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Quest",
   "PackageFile": "Packages/OpenNGS.Quest.json"
 }

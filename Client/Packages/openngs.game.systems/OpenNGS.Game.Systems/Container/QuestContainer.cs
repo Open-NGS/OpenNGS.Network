@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using OpenNGS.Data;
 using OpenNGS.Quest.Common;
 using OpenNGS.Systems;
 
@@ -6,39 +8,48 @@ namespace OpenNGS.Quest.Data
 {
     public partial class QuestContainer
     {
-        public void AddQuestGroup(QuestGroupData quest)
+        public void AddQuestData(QuestData data)
         {
-            QuestGroupList.Add(quest);
+            QuestList.Add(data);
         }
-        public void RemoveQuestGroup(QuestGroupData quest)
+        public void RemoveQuestData(QuestData data)
         {
-            QuestGroupList.Remove(quest);
+            QuestList.Remove(data); 
         }
-
-        public void UpdateQuest(QuestData quest, OpenNGS.Quest.Common.Quest_Status status)
+        public List<QuestData> GetQuestDatas(uint groupID)
         {
-            quest.Status = status;
-        }
-        public QuestGroupData GetQuestGroupById(int QuestGroupID)
-        {
-            return QuestGroupList.FirstOrDefault(i => i.QuestGroupID == QuestGroupID);
-        }
-
-        public QuestData GetQuestById(uint questGroupID, uint questID)
-        {
-            QuestGroupData questGroup = QuestGroupList.FirstOrDefault(i => i.QuestGroupID == questGroupID);
-            if(questGroup != null )
+            List<QuestData> quests=new List<QuestData>();
+            foreach (QuestData data in QuestList)
             {
-                foreach (var _quest in questGroup.QuestDataList)
+                if (data.GroupID == groupID)
                 {
-                    if (_quest.QuestID == questID)
-                    {
-                        return _quest;
-                    }
+                    quests.Add(data);
+                }
+            }
+            return quests;
+        }
+        public List <QuestData> GetQuestDatasByStatus(uint status)
+        {
+            List<QuestData> quests = new List<QuestData>();
+            foreach (QuestData data in QuestList)
+            {
+                if (data.Status == status)
+                {
+                    quests.Add(data);
+                }
+            }
+            return quests;
+        }
+        public QuestData GetQuestData(uint uid)
+        {
+            foreach (QuestData data in QuestList)
+            {
+                if (data.Uid == uid)
+                {
+                    return data;
                 }
             }
             return null;
         }
-
     }
 }

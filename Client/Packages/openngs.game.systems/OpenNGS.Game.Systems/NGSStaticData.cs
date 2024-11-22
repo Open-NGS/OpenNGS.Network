@@ -21,7 +21,7 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Dialog.Data.DialogList, uint> Dialogue = new Table<OpenNGS.Dialog.Data.DialogList, uint>((item) => { return item.DialogID; }, false);
         public static Table<OpenNGS.Dialog.Data.DialogChoice, uint> Choice = new Table<OpenNGS.Dialog.Data.DialogChoice, uint>((item) => { return item.DialogChoiceID; }, false);
         public static Table<OpenNGS.Quest.Data.QuestGroup, uint> QuestGroup = new Table<OpenNGS.Quest.Data.QuestGroup, uint>((item) => { return item.QuestGroupID; }, false);
-        public static Table<OpenNGS.Quest.Data.Quest, uint> Quest = new Table<OpenNGS.Quest.Data.Quest, uint>((item) => { return item.QuestID; }, false);
+        public static Table<OpenNGS.Quest.Data.Quest, uint,uint> Quest = new Table<OpenNGS.Quest.Data.Quest, uint,uint>((item) => { return item.GroupID; }, (item) => { return item.QuestID; },false);
         public static Table<OpenNGS.Levels.Data.NGSLevelInfo,uint> levelInfo=new Table<Levels.Data.NGSLevelInfo, uint>((item) => { return item.ID; }, false);
 
         //public static Table<OpenNGS.Suit.Data.SuitData,uint> suitInfo=new Table<Suit.Data.SuitData, uint>((item) => { return item.ID; }, false);
