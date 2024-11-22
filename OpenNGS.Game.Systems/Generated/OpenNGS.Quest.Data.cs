@@ -31,14 +31,14 @@ namespace OpenNGS.Quest.Data
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint QuestGroupID { get; set; }
-        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
-        public uint[] Quests { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
+        [global::ProtoBuf.ProtoMember(2)]
         public NGSText Tile { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
+        [global::ProtoBuf.ProtoMember(3)]
         public NGSText Description { get; set; }
-        [global::ProtoBuf.ProtoMember(5)]
+        [global::ProtoBuf.ProtoMember(4)]
         public uint Category { get; set; }
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint IsQuestHead { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
         public uint RelyOnGroupID { get; set; }
         [global::ProtoBuf.ProtoMember(7)]
@@ -69,31 +69,27 @@ namespace OpenNGS.Quest.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint GroupID { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
         public uint QuestID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public NGSText Name { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public NGSText Description { get; set; }
+        public NGSText Name { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public uint DialogID { get; set; }
+        public NGSText Description { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
-        public uint Weight { get; set; }
+        public uint DialogID { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
-        public bool IsQuestHead { get; set; }
+        public uint Weight { get; set; }
         [global::ProtoBuf.ProtoMember(7)]
-        public uint NextQuestID { get; set; }
+        public uint StatID { get; set; }
         [global::ProtoBuf.ProtoMember(8)]
-        public bool isHidden { get; set; }
+        public uint Value { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
-        public Quest_Status Status { get; set; }
+        public bool isHidden { get; set; }
         [global::ProtoBuf.ProtoMember(10)]
         public uint RewardID { get; set; }
         [global::ProtoBuf.ProtoMember(11)]
         public bool IsBan { get; set; }
-        [global::ProtoBuf.ProtoMember(12)]
-        public uint Value { get; set; }
-        [global::ProtoBuf.ProtoMember(13)]
-        public uint StatID { get; set; }
     }
     //任务的存档数据
     [global::ProtoBuf.ProtoContract()]
@@ -106,16 +102,16 @@ namespace OpenNGS.Quest.Data
         }
         public QuestContainer()
         {
-            QuestGroupList = new global::System.Collections.Generic.List<QuestGroupData>();
+            QuestList = new global::System.Collections.Generic.List<QuestData>();
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<QuestGroupData> QuestGroupList { get;set;  }
+        public global::System.Collections.Generic.List<QuestData> QuestList { get;set;  }
     }
-    //任务存档
+    //任务实例
     [global::ProtoBuf.ProtoContract()]
     public partial class QuestData : global::ProtoBuf.IExtensible
 {
@@ -132,31 +128,19 @@ namespace OpenNGS.Quest.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint Uid { get; set; }
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint GroupID { get; set; }
+        [global::ProtoBuf.ProtoMember(3)]
         public uint QuestID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public Quest_Status Status { get; set; }
-    }
-    //任务组存档
-    [global::ProtoBuf.ProtoContract()]
-    public partial class QuestGroupData : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public QuestGroupData()
-        {
-            QuestDataList = new global::System.Collections.Generic.List<QuestData>();
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint QuestGroupID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<QuestData> QuestDataList { get;set;  }
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint StatID { get; set; }
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint CurVal { get; set; }
+        [global::ProtoBuf.ProtoMember(6)]
+        public ulong AcceptTime { get; set; }
+        [global::ProtoBuf.ProtoMember(7)]
+        public uint Status { get; set; }
     }
 
 }
