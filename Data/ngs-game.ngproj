@@ -298,6 +298,7 @@
       "Entities/OpenNGS/OpenNGS.Message.xlsx",
       "Entities/OpenNGS/OpenNGS.Reward.xlsx",
       "Entities/OpenNGS/OpenNGS.Quest.xlsx",
+      "Entities/OpenNGS/OpenNGS.Collection.xlsx",
       "Entities/OpenNGS/OpenNGS.BlindBox.xlsx"
     ]
   },

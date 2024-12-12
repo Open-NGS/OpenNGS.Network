@@ -1,0 +1,438 @@
+﻿{
+  "Packages": {
+    "OpenNGS.Collection.Data": {
+      "Name": "OpenNGS.Collection.Data",
+      "PackageType": "Message",
+      "Scope": "All",
+      "Models": {
+        "OpenNGS.Collection.Data.Collection": {
+          "RawPackage": "OpenNGS.Collection",
+          "Methods": {},
+          "Name": "Collection",
+          "Package": "OpenNGS.Collection.Data",
+          "Fullname": "OpenNGS.Collection.Data.Collection",
+          "PackageName": "OpenNGS.Collection.Collection",
+          "Description": "图鉴信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "Collection",
+            "Package": "OpenNGS.Collection.Data",
+            "RawPackage": "OpenNGS.Collection",
+            "Fullname": "OpenNGS.Collection.Data.Collection",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "ID": {
+                "Name": "ID",
+                "Type": "Uint32",
+                "Description": "任务ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Name": {
+                "Name": "Name",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "名字",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Description": {
+                "Name": "Description",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述",
+                "Tag": 3,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "IconPath": {
+                "Name": "IconPath",
+                "Type": "String",
+                "Description": "路径",
+                "Tag": 4,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Type": {
+                "Name": "Type",
+                "Type": "Uint32",
+                "Description": "分类",
+                "Tag": 5,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Collection.Data.CollectionContainer": {
+          "RawPackage": "OpenNGS.Collection",
+          "Methods": {},
+          "Name": "CollectionContainer",
+          "Package": "OpenNGS.Collection.Data",
+          "Fullname": "OpenNGS.Collection.Data.CollectionContainer",
+          "PackageName": "OpenNGS.Collection.CollectionContainer",
+          "Description": "图鉴存档信息",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "All",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "CollectionContainer",
+            "Package": "OpenNGS.Collection.Data",
+            "RawPackage": "OpenNGS.Collection",
+            "Fullname": "OpenNGS.Collection.Data.CollectionContainer",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "UnlockedCollectionIDs": {
+                "Name": "UnlockedCollectionIDs",
+                "Type": "Uint32",
+                "Description": "任务ID",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRequired": true,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        }
+      },
+      "References": [
+        "OpenNGS.Core"
+      ]
+    },
+    "OpenNGS.Collection.Service": {
+      "Name": "OpenNGS.Collection.Service",
+      "PackageType": "Message",
+      "Scope": "CS;SS",
+      "Models": {
+        "OpenNGS.Collection.Service.GetCollectionsReq": {
+          "RawPackage": "OpenNGS.Collection",
+          "Methods": {},
+          "Name": "GetCollectionsReq",
+          "Package": "OpenNGS.Collection.Service",
+          "Fullname": "OpenNGS.Collection.Service.GetCollectionsReq",
+          "PackageName": "OpenNGS.Collection.GetCollectionsReq",
+          "Description": "获取图鉴rep",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetCollectionsReq",
+            "Package": "OpenNGS.Collection.Service",
+            "RawPackage": "OpenNGS.Collection",
+            "Fullname": "OpenNGS.Collection.Service.GetCollectionsReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "playerID": {
+                "Name": "playerID",
+                "Type": "Uint32",
+                "Description": "玩家的唯一标识",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Collection.Service.GetCollectionsRsp": {
+          "RawPackage": "OpenNGS.Collection",
+          "Methods": {},
+          "Name": "GetCollectionsRsp",
+          "Package": "OpenNGS.Collection.Service",
+          "Fullname": "OpenNGS.Collection.Service.GetCollectionsRsp",
+          "PackageName": "OpenNGS.Collection.GetCollectionsRsp",
+          "Description": "获取图鉴rsp",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "GetCollectionsRsp",
+            "Package": "OpenNGS.Collection.Service",
+            "RawPackage": "OpenNGS.Collection",
+            "Fullname": "OpenNGS.Collection.Service.GetCollectionsRsp",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "collections ": {
+                "Name": "collections ",
+                "Type": "Uint32",
+                "Description": "玩家已解锁的图鉴列表",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": 10,
+                "IsRequired": true,
+                "IsRepeated": true,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Collection.Service.AddCollectionReq": {
+          "RawPackage": "OpenNGS.Collection",
+          "Methods": {},
+          "Name": "AddCollectionReq",
+          "Package": "OpenNGS.Collection.Service",
+          "Fullname": "OpenNGS.Collection.Service.AddCollectionReq",
+          "PackageName": "OpenNGS.Collection.AddCollectionReq",
+          "Description": "添加图鉴rep",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "AddCollectionReq",
+            "Package": "OpenNGS.Collection.Service",
+            "RawPackage": "OpenNGS.Collection",
+            "Fullname": "OpenNGS.Collection.Service.AddCollectionReq",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "playerID": {
+                "Name": "playerID",
+                "Type": "Uint32",
+                "Description": "玩家的唯一标识",
+                "Tag": 1,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "collectionID": {
+                "Name": "collectionID",
+                "Type": "Uint32",
+                "Description": "添加的图鉴id",
+                "Tag": 2,
+                "Scope": "All",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
+        },
+        "OpenNGS.Collection.Service.NiCollectionsService": {
+          "RawPackage": "OpenNGS.Collection",
+          "Methods": {
+            "AddCollection": {
+              "MethodName": "AddCollection",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Collection",
+                  "Methods": {},
+                  "Name": "AddCollectionReq",
+                  "Package": "OpenNGS.Collection.Service",
+                  "Fullname": "OpenNGS.Collection.Service.AddCollectionReq",
+                  "PackageName": "OpenNGS.Collection.AddCollectionReq",
+                  "Description": "添加图鉴rep",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "AddCollectionReq",
+                    "Package": "OpenNGS.Collection.Service",
+                    "RawPackage": "OpenNGS.Collection",
+                    "Fullname": "OpenNGS.Collection.Service.AddCollectionReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "playerID": {
+                        "Name": "playerID",
+                        "Type": "Uint32",
+                        "Description": "玩家的唯一标识",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      },
+                      "collectionID": {
+                        "Name": "collectionID",
+                        "Type": "Uint32",
+                        "Description": "添加的图鉴id",
+                        "Tag": 2,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS",
+                "Methods": {},
+                "Name": "NGSVoid",
+                "Package": "OpenNGS.Core",
+                "Fullname": "OpenNGS.Core.NGSVoid",
+                "PackageName": "OpenNGS.NGSVoid",
+                "Description": "空包",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "All",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "NGSVoid",
+                  "Package": "OpenNGS.Core",
+                  "RawPackage": "OpenNGS",
+                  "Fullname": "OpenNGS.Core.NGSVoid",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.xlsx",
+                  "Tag": 0,
+                  "Properties": {}
+                }
+              },
+              "Description": "玩家的唯一标识",
+              "Scope": "All"
+            },
+            "GetCollections": {
+              "MethodName": "GetCollections",
+              "Type": "Unknow",
+              "Inputs": [
+                {
+                  "RawPackage": "OpenNGS.Collection",
+                  "Methods": {},
+                  "Name": "GetCollectionsReq",
+                  "Package": "OpenNGS.Collection.Service",
+                  "Fullname": "OpenNGS.Collection.Service.GetCollectionsReq",
+                  "PackageName": "OpenNGS.Collection.GetCollectionsReq",
+                  "Description": "获取图鉴rep",
+                  "Tag": 0,
+                  "Flag": 0,
+                  "Scope": "CS;SS",
+                  "ModelType": "None",
+                  "Type": "Struct",
+                  "Entity": {
+                    "Name": "GetCollectionsReq",
+                    "Package": "OpenNGS.Collection.Service",
+                    "RawPackage": "OpenNGS.Collection",
+                    "Fullname": "OpenNGS.Collection.Service.GetCollectionsReq",
+                    "Type": 0,
+                    "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+                    "Tag": 0,
+                    "Properties": {
+                      "playerID": {
+                        "Name": "playerID",
+                        "Type": "Uint32",
+                        "Description": "玩家的唯一标识",
+                        "Tag": 1,
+                        "Scope": "All",
+                        "Attributes": "Required",
+                        "IsRequired": true,
+                        "IsRepeated": false,
+                        "IsOptional": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "Return": {
+                "RawPackage": "OpenNGS.Collection",
+                "Methods": {},
+                "Name": "GetCollectionsRsp",
+                "Package": "OpenNGS.Collection.Service",
+                "Fullname": "OpenNGS.Collection.Service.GetCollectionsRsp",
+                "PackageName": "OpenNGS.Collection.GetCollectionsRsp",
+                "Description": "获取图鉴rsp",
+                "Tag": 0,
+                "Flag": 0,
+                "Scope": "CS;SS",
+                "ModelType": "None",
+                "Type": "Struct",
+                "Entity": {
+                  "Name": "GetCollectionsRsp",
+                  "Package": "OpenNGS.Collection.Service",
+                  "RawPackage": "OpenNGS.Collection",
+                  "Fullname": "OpenNGS.Collection.Service.GetCollectionsRsp",
+                  "Type": 0,
+                  "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
+                  "Tag": 0,
+                  "Properties": {
+                    "collections ": {
+                      "Name": "collections ",
+                      "Type": "Uint32",
+                      "Description": "玩家已解锁的图鉴列表",
+                      "Tag": 1,
+                      "Scope": "All",
+                      "Attributes": 10,
+                      "IsRequired": true,
+                      "IsRepeated": true,
+                      "IsOptional": false
+                    }
+                  }
+                }
+              },
+              "Description": "玩家已解锁的图鉴列表",
+              "Scope": "All"
+            }
+          },
+          "Name": "NiCollectionsService",
+          "Package": "OpenNGS.Collection.Service",
+          "Fullname": "OpenNGS.Collection.Service.NiCollectionsService",
+          "PackageName": "OpenNGS.Collection.NiCollectionsService",
+          "Description": "玩家图鉴服务",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "CS;SS",
+          "ModelType": "None",
+          "Type": "Service"
+        }
+      },
+      "References": [
+        "OpenNGS.Core"
+      ]
+    }
+  },
+  "DependencyModel": false,
+  "Name": "OpenNGS.Collection",
+  "PackageFile": "Packages/OpenNGS.Collection.json"
+}
