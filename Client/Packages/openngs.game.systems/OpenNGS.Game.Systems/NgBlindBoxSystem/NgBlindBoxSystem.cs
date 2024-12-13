@@ -31,14 +31,14 @@ public class NgBlindBoxSystem : GameSubSystem<NgBlindBoxSystem>, INgBlindBoxSyst
 
     private void InitDrop(uint dropID)
     {
-        drop = BindBoxStaticData.drops.GetItem(dropID);
+        drop = BlindBoxStaticData.drops.GetItem(dropID);
         dropRules = new List<OpenNGS.BlindBox.Data.DropRule>();
         dropedItem = new Dictionary<uint, int>();
         if (drop != null)
         {
             for (int i = 0; i < drop.DropRuleIDs.Length; i++)
             {
-                dropRules.Add(BindBoxStaticData.droprules.GetItem(drop.DropRuleIDs[i]));
+                dropRules.Add(BlindBoxStaticData.droprules.GetItem(drop.DropRuleIDs[i]));
             }
         }
 
@@ -197,7 +197,7 @@ public class NgBlindBoxSystem : GameSubSystem<NgBlindBoxSystem>, INgBlindBoxSyst
         int index = 0;
         List<uint> isdropedID = new List<uint>();
         Dictionary<uint, int> dic_itemCounts = new Dictionary<uint, int>();
-        List<OpenNGS.BlindBox.Data.DropGroup> dropGroups = BindBoxStaticData.dropgroups.GetItems(GroupID);
+        List<OpenNGS.BlindBox.Data.DropGroup> dropGroups = BlindBoxStaticData.dropgroups.GetItems(GroupID);
         if (dic_weightChangeIDs.ContainsKey(nDropID) == false)
         {
             return dic_itemCounts;
