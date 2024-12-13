@@ -3,11 +3,12 @@ using OpenNGS.Collection.Data;
 using OpenNGS.Collection.Service;
 using OpenNGS.Core;
 using OpenNGS.ERPC;
+using OpenNGS.Systems;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public class NgCollectionSystem : Singleton<NgCollectionSystem>, INiCollectionsService
+public class NgCollectionSystem : Singleton<NgCollectionSystem>, INgCollectionSystem
 {
     private CollectionContainer collectionContainer = null;
     public void AddCollectionContainer(CollectionContainer Container)
