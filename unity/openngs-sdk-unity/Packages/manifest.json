@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "cn.unity.uos.launcher": "https://e.coding.net/unitychina/uos/UOSLauncher.git",
+    "cn.unity.uos.passport.core": "https://e.coding.net/unitychina/uos/PassportCore.git",
+    "cn.unity.uos.passport.login": "https://e.coding.net/unitychina/uos/PassportLoginSDK.git",
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.services.authentication": "2.7.4",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",

@@ -12,7 +12,7 @@ using System.Xml.Linq;
 namespace OpenNGS.SDK.Auth.Credentials
 {
 
-    internal struct CREDENTIAL
+    internal struct CREDENTIAL<T>
     {
         public int Flags;
 
@@ -42,12 +42,12 @@ namespace OpenNGS.SDK.Auth.Credentials
         [MarshalAs(UnmanagedType.LPWStr)]
         public string UserName;
 
-        public UserInfo User;
+        public T User;
     }
 
-    public class LocalStore
+    public class LocalStore<T>
     {
-        static Dictionary<string, CREDENTIAL> credentials = new Dictionary<string, CREDENTIAL>();
+        static Dictionary<string, CREDENTIAL<T>> credentials = new Dictionary<string, CREDENTIAL<T>>();
         const string CredentialStore = ".ngs/auth/";
         const string CredentialStoreFile = "ng.store";
 
@@ -76,7 +76,7 @@ namespace OpenNGS.SDK.Auth.Credentials
             else
             {
                 var json = File.ReadAllText(StoreFile);
-                credentials = JsonConvert.DeserializeObject<Dictionary<string, CREDENTIAL>>(json);
+                credentials = JsonConvert.DeserializeObject<Dictionary<string, CREDENTIAL<T>>>(json);
             }
         }
 
@@ -89,15 +89,16 @@ namespace OpenNGS.SDK.Auth.Credentials
 
         internal static bool CredDelete(StringBuilder target, CredentialType type, int v)
         {
-            return false;
+            credentials.Remove(target.ToString());
+            return Save();
         }
 
-        internal static bool CredRead(string target, CredentialType type, int v, out CREDENTIAL credentialPtr)
+        internal static bool CredRead(string target, CredentialType type, int v, out CREDENTIAL<T> credentialPtr)
         {
             return credentials.TryGetValue(target, out credentialPtr);
         }
 
-        internal static bool CredWrite(ref CREDENTIAL userCredential, uint v)
+        internal static bool CredWrite(ref CREDENTIAL<T> userCredential, uint v)
         {
             userCredential.LastWritten = DateTime.Now.ToFileTimeUtc();
             credentials[userCredential.TargetName] = userCredential;

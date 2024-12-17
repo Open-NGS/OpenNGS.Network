@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OpenNGS.SDK.Auth.Credentials;
+using OpenNGS.SDK.Auth.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,10 +34,10 @@ namespace OpenNGS.SDK.Auth
 
         public UserInfo user { get; set; }
 
-        Credential credential = new Credential();
+        Credential<UserInfo> credential = new Credential<UserInfo>();
         public OAuth()
         {
-            OpenNGS.SDK.Auth.Credentials.LocalStore.Init();
+            OpenNGS.SDK.Auth.Credentials.LocalStore<UserInfo>.Init();
             credential.Target = "EEGAMES/OpenNGS/eegames.com";
         }
 
