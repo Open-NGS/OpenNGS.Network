@@ -85,7 +85,7 @@ namespace OpenNGS.Localize
                     langName = "en";
                     break;
                 case SystemLanguage.Japanese:
-                    langName = "jp";
+                    langName = "ja";
                     break;
                 case SystemLanguage.ChineseTraditional:
                     langName = "zh-hant";
@@ -104,6 +104,18 @@ namespace OpenNGS.Localize
                     break;
                 case SystemLanguage.Russian:
                     langName = "ru";
+                    break;
+                case SystemLanguage.Arabic:
+                    langName = "ar";
+                    break;
+                case SystemLanguage.Korean:
+                    langName = "ko";
+                    break;
+                case SystemLanguage.Polish:
+                    langName = "pl";
+                    break;
+                case SystemLanguage.Thai:
+                    langName = "th";
                     break;
             }
             return langName;
