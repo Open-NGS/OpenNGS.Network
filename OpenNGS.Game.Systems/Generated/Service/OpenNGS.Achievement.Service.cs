@@ -6,6 +6,8 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
+using OpenNGS.Achievement.Data;
+
 namespace OpenNGS.Achievement.Service
 {
 
@@ -23,12 +25,11 @@ namespace OpenNGS.Achievement.Service
         }
 
         partial void OnConstructor();
-
         [global::ProtoBuf.ProtoMember(1)]
-        public ulong uin { get; set; }
+        public uint playerID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint tid { get; set; }
+        public uint ID { get; set; }
 
     }
 
@@ -48,48 +49,44 @@ namespace OpenNGS.Achievement.Service
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public int result { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::OpenNGS.Achievement.Common.AchievementInfo achi { get; set; }
+        public global::OpenNGS.Achievement.Common.Achievement_Result result { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class AchievementDataChangedReq : global::ProtoBuf.IExtensible
+    public partial class UpdateAchievementReq : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public AchievementDataChangedReq()
+        public UpdateAchievementReq()
         {
             OnConstructor();
         }
 
         partial void OnConstructor();
-
         [global::ProtoBuf.ProtoMember(1)]
-        public ulong uin { get; set; }
+        public uint playerID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public uint tid { get; set; }
+        public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public ulong value { get; set; }
+        public uint progress { get; set; }
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class AchievementDataChangedRsp : global::ProtoBuf.IExtensible
+    public partial class UpdateAchievementRsp : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
             return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public AchievementDataChangedRsp()
+        public UpdateAchievementRsp()
         {
             OnConstructor();
         }
@@ -97,7 +94,47 @@ namespace OpenNGS.Achievement.Service
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public int result { get; set; }
+        public global::OpenNGS.Achievement.Common.Achievement_Result result { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GetAchievementsReq : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public GetAchievementsReq()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint playerID { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GetAchievementsRsp : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public GetAchievementsRsp()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<AchievementState> achievementStates { get; set; }
 
     }
 
@@ -105,7 +142,8 @@ namespace OpenNGS.Achievement.Service
     public partial interface INiAchievementService
     {
         global::System.Threading.Tasks.Task<global::OpenNGS.Achievement.Service.GetAchievementRewardRsp> GetAchievementReward(global::OpenNGS.Achievement.Service.GetAchievementRewardReq value, global::OpenNGS.ERPC.ClientContext context = default(global::OpenNGS.ERPC.ClientContext));
-        global::System.Threading.Tasks.Task<global::OpenNGS.Achievement.Service.AchievementDataChangedRsp> AchievementDataChanged(global::OpenNGS.Achievement.Service.AchievementDataChangedReq value, global::OpenNGS.ERPC.ClientContext context = default(global::OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<global::OpenNGS.Achievement.Service.UpdateAchievementRsp> UpdateAchievement(global::OpenNGS.Achievement.Service.UpdateAchievementReq value, global::OpenNGS.ERPC.ClientContext context = default(global::OpenNGS.ERPC.ClientContext));
+        global::System.Threading.Tasks.Task<global::OpenNGS.Achievement.Service.GetAchievementsRsp> GetAchievements(global::OpenNGS.Achievement.Service.GetAchievementsReq value, global::OpenNGS.ERPC.ClientContext context = default(global::OpenNGS.ERPC.ClientContext));
     }
 
 }
