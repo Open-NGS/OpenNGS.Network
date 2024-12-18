@@ -88,7 +88,7 @@ namespace OpenNGS.Localize
                     langName = "ja";
                     break;
                 case SystemLanguage.ChineseTraditional:
-                    langName = "zh-hant";
+                    langName = "zh-Hant";
                     break;
                 case SystemLanguage.French:
                     langName = "fr";
