@@ -13,47 +13,24 @@ namespace OpenNGS.Achievement.Common
 
     //成就状态
     [global::ProtoBuf.ProtoContract()]
-    public enum ACHIEVEMENT_STATUS
+    public enum Achievement_Status
     {
-        ACHIEVEMENT_STATUS_NONE = 0, // 空
-        ACHIEVEMENT_STATUS_STATING = 1, // 统计中
-        ACHIEVEMENT_STATUS_PENDING = 2, // 待领取
-        ACHIEVEMENT_STATUS_DONE = 3, // 已完成
+        Achievement_Status_None = 0, // 空
+        Achievement_Status_Stating = 1, // 统计中
+        Achievement_Status_Pending = 2, // 待领取
+        Achievement_Status_Done = 3, // 已完成
     }
 
-    //玩家成就
-    [global::ProtoBuf.ProtoContract()]
-    public partial class AchievementInfo : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public AchievementInfo()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint value { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public ACHIEVEMENT_STATUS status { get; set; }
-    }
     //成就系统结果
     [global::ProtoBuf.ProtoContract()]
-    public enum ACHIEVEMENT_RESULT
+    public enum Achievement_Result
     {
-        ACHIEVEMENT_RESULT_NONE = 0, // 空
-        ACHIEVEMENT_RESULT_ACHI_NOT_EXIST = 1, // 成就不存在
-        ACHIEVEMENT_RESULT_AWARD_HAS_GOT = 2, // 奖励已经领取
-        ACHIEVEMENT_RESULT_AWARD_SUCCESS = 3, // 领取成功
-        ACHIEVEMENT_RESULT_AWARD_NOCOUNTS = 4, // 数量不对
-        ACHIEVEMENT_RESULT_AWARD_ERROR_ITEMS = 5, // 错误物品
+        Achievement_Result_None = 0, // 空
+        AchievementResult_Success = 1, // 成功
+        AchievementResult_Fail_NotExist = 2, // 成就不存在
+        AchievementResult_Fail_NoCounts = 3, // 数量不对
+        AchievementResult_Fail_ErrorItem = 4, // 错误物品
+        AchievementResult_Fail_HasGet = 5, // 奖励已经领取
     }
 
 
