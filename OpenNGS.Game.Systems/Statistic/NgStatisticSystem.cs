@@ -44,9 +44,9 @@ namespace OpenNGS.Systems
                 m_Container.StatisticSaveData = new Dictionary<ulong, StatValue>();
             }
 
-            for (int nIdx = 0; nIdx < NGSStaticData.s_statDatas.Items.Count; nIdx++)
+            for (int nIdx = 0; nIdx < StatisticStaticData.s_statDatas.Items.Count; nIdx++)
             {
-                StatData _statDataInfo = NGSStaticData.s_statDatas.Items[nIdx];
+                StatData _statDataInfo = StatisticStaticData.s_statDatas.Items[nIdx];
                 if (this.Items.ContainsKey(_statDataInfo.Id) == false)
                 {
                     var item = new NgStatisticItem(_statDataInfo);
@@ -111,7 +111,7 @@ namespace OpenNGS.Systems
 
         public void StatByStatisticID(uint statId, double val)
         {
-            StatData _statData = NGSStaticData.s_statDatas.GetItem(statId);
+            StatData _statData = StatisticStaticData.s_statDatas.GetItem(statId);
             if (_statData != null)
             {
                 Stat(_statData.StatEvent, _statData.ObjCategory, _statData.ObjType, _statData.ObjSubType, _statData.ObjID, val);
