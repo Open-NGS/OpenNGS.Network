@@ -56,6 +56,8 @@ namespace OpenNGS.Item.Common
         ITEM_KIND_MATERIAL_STUFF = 11, // 材料
         ITEM_KIND_MATERIAL_STONE = 12, // 幸运石
         ITEM_KIND_EQUIP_RELIC = 13, // 遗物
+        ITEM_KIND_CHIP_ATTRIBUTE = 14, // 属性芯片
+        ITEM_KIND_CHIP_SKILL = 15, // 技能芯片
     }
 
     //道具过期类型

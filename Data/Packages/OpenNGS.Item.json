@@ -4391,6 +4391,28 @@
                 "IsRequired": false,
                 "IsRepeated": false,
                 "IsOptional": false
+              },
+              "ITEM_KIND_CHIP_ATTRIBUTE": {
+                "Name": "ITEM_KIND_CHIP_ATTRIBUTE",
+                "Type": "Uint32",
+                "Description": "属性芯片",
+                "Tag": 14,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "ITEM_KIND_CHIP_SKILL": {
+                "Name": "ITEM_KIND_CHIP_SKILL",
+                "Type": "Uint32",
+                "Description": "技能芯片",
+                "Tag": 15,
+                "Scope": "All",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
               }
             }
           }
