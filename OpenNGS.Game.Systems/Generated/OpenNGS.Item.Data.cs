@@ -66,7 +66,7 @@ namespace OpenNGS.Item.Data
         [global::ProtoBuf.ProtoMember(15)]
         public ITEM_PLACE_TYPE PlaceType { get; set; }
         [global::ProtoBuf.ProtoMember(16)]
-        public ITEM_KIND Kind { get; set; }
+        public uint Kind { get; set; }
         [global::ProtoBuf.ProtoMember(17)]
         public ITEM_VISIBILITY_TYPE Visibility { get; set; }
         [global::ProtoBuf.ProtoMember(18)]
