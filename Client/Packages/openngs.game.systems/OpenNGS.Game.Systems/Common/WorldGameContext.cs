@@ -29,6 +29,7 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(INgBlindBoxSystem), new NgBlindBoxSystem()));
         services.Add(new ServiceDescriptor(typeof(INgQuestSystem), new NgQuestSystem()));
         services.Add(new ServiceDescriptor(typeof(INgCollectionSystem), new NgCollectionSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgAchievementSystem), new NgAchievementSystem()));
     }
 
     protected override void OnInit()
