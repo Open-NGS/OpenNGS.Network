@@ -117,6 +117,9 @@ namespace OpenNGS.Localize
                 case SystemLanguage.Thai:
                     langName = "th";
                     break;
+                case SystemLanguage.Vietnamese:
+                    langName = "vi";
+                    break;
             }
             return langName;
         }
