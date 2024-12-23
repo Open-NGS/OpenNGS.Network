@@ -1,0 +1,17 @@
+{
+    "name": "protobuf-net.Grpc",
+    "rootNamespace": "",
+    "references": [
+        "protobuf-net",
+        "Grpc.Net"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
