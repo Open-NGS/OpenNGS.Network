@@ -26,7 +26,7 @@ namespace OpenNGS.Achievement.Service
 
         partial void OnConstructor();
         [global::ProtoBuf.ProtoMember(1)]
-        public uint playerID { get; set; }
+        public uint PlayerID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint ID { get; set; }
@@ -68,13 +68,13 @@ namespace OpenNGS.Achievement.Service
 
         partial void OnConstructor();
         [global::ProtoBuf.ProtoMember(1)]
-        public uint playerID { get; set; }
+        public uint PlayerID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint progress { get; set; }
+        public uint Progress { get; set; }
 
     }
 
@@ -114,7 +114,7 @@ namespace OpenNGS.Achievement.Service
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint playerID { get; set; }
+        public uint PlayerID { get; set; }
 
     }
 

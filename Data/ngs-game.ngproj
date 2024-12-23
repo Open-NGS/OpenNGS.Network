@@ -48,7 +48,7 @@
     },
     "ClientService": {
       "Name": "ClientService",
-      "Scope": "CS",
+      "Scope": "Client",
       "DataConfig": {
         "TargetFormat": "None",
         "ReserveText": false,
@@ -272,8 +272,10 @@
     "Packages/OpenNGS.Message.json",
     "Packages/OpenNGS.Reward.json",
     "Packages/OpenNGS.Quest.json",
+    "Packages/OpenNGS.Collection.json",
     "Packages/OpenNGS.BlindBox.json"
   ],
+  "DependencyModels": [],
   "Repository": {
     "RepositoryType": 0,
     "Local": [
