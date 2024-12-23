@@ -2,8 +2,7 @@
     "name": "protobuf-net.Grpc",
     "rootNamespace": "",
     "references": [
-        "protobuf-net",
-        "Grpc.Net"
+        "protobuf-net"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
