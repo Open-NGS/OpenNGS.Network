@@ -8,8 +8,6 @@ using OpenNGS;
 using Systems;
 using OpenNGS.Exchange.Data;
 using Common;
-using UnityEngine.Windows.Speech;
-using OpenNGS.Exchange.Common;
 
 public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
