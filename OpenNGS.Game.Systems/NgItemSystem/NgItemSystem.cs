@@ -123,7 +123,7 @@ namespace OpenNGS.Systems
             uint nColIdx = _req.ColIdx;
             AddItemRsp result = new AddItemRsp();
             result.Result = new ItemResult();
-            OpenNGS.Item.Data.Item ItemInfo = NGSStaticData.items.GetItem(nItemID);
+            OpenNGS.Item.Data.Item ItemInfo = ItemStaticData.items.GetItem(nItemID);
             if (ItemInfo == null)
             {
                 result.Result.ItemResultTyp = ItemResultType.ItemResultType_AddItemFail_NotExist;
@@ -350,15 +350,15 @@ namespace OpenNGS.Systems
                 return result;
             }
 
-            itemSaveDatas = itemSaveDatas.OrderBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind).ToList();
-            foreach (var group in itemSaveDatas.GroupBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind))
+            itemSaveDatas = itemSaveDatas.OrderBy(i => ItemStaticData.items.GetItem(i.ItemID).Kind).ToList();
+            foreach (var group in itemSaveDatas.GroupBy(i => ItemStaticData.items.GetItem(i.ItemID).Kind))
             {
-                itemSaveDatas.RemoveAll(i => NGSStaticData.items.GetItem(i.ItemID).Kind == group.Key);
-                itemSaveDatas.AddRange(group.OrderByDescending(i => NGSStaticData.items.GetItem(i.ItemID).Rarity));
+                itemSaveDatas.RemoveAll(i => ItemStaticData.items.GetItem(i.ItemID).Kind == group.Key);
+                itemSaveDatas.AddRange(group.OrderByDescending(i => ItemStaticData.items.GetItem(i.ItemID).Rarity));
             }
-            foreach (var group in itemSaveDatas.GroupBy(i => NGSStaticData.items.GetItem(i.ItemID).Kind))
+            foreach (var group in itemSaveDatas.GroupBy(i => ItemStaticData.items.GetItem(i.ItemID).Kind))
             {
-                itemSaveDatas.RemoveAll(i => NGSStaticData.items.GetItem(i.ItemID).Kind == group.Key);
+                itemSaveDatas.RemoveAll(i => ItemStaticData.items.GetItem(i.ItemID).Kind == group.Key);
                 itemSaveDatas.AddRange(group.OrderBy(i => i.ItemID));
             }
 
@@ -407,7 +407,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    var itemStateSrc = NGSStaticData.items.GetItem(removeItemReq.ItemID);
+                    var itemStateSrc = ItemStaticData.items.GetItem(removeItemReq.ItemID);
                     if (itemStateSrc == null)
                     {
                         return ItemResultType.ItemResultType_AddItemFail_NotExist;
@@ -437,7 +437,7 @@ namespace OpenNGS.Systems
                 }
                 else
                 {
-                    var itemStateSrc = NGSStaticData.items.GetItem(removeItemReq.ItemID);
+                    var itemStateSrc = ItemStaticData.items.GetItem(removeItemReq.ItemID);
                     if (itemStateSrc == null)
                     {
                         return ItemResultType.ItemResultType_AddItemFail_NotExist;
