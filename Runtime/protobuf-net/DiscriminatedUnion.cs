@@ -5,9 +5,9 @@ namespace ProtoBuf
 {
     /// <summary>Represent multiple types as a union; this is used as part of OneOf -
     /// note that it is the caller's responsbility to only read/write the value as the same type</summary>
+    [StructLayout(LayoutKind.Auto)]
     public readonly partial struct DiscriminatedUnionObject
     {
-
         /// <summary>The value typed as Object</summary>
         public readonly object Object;
 
@@ -36,13 +36,6 @@ namespace ProtoBuf
     [StructLayout(LayoutKind.Explicit)]
     public readonly partial struct DiscriminatedUnion64
     {
-#if !FEAT_SAFE
-		unsafe static DiscriminatedUnion64()
-        {
-            if (sizeof(DateTime) > 8) throw new InvalidOperationException(nameof(DateTime) + " was unexpectedly too big for " + nameof(DiscriminatedUnion64));
-            if (sizeof(TimeSpan) > 8) throw new InvalidOperationException(nameof(TimeSpan) + " was unexpectedly too big for " + nameof(DiscriminatedUnion64));
-        }
-#endif
 		[FieldOffset(0)] private readonly int _discriminator;  // note that we can't pack further because Object needs x8 alignment/padding on x64
 
         /// <summary>The value typed as Int64</summary>
@@ -105,15 +98,6 @@ namespace ProtoBuf
     [StructLayout(LayoutKind.Explicit)]
     public readonly partial struct DiscriminatedUnion128Object
     {
-#if !FEAT_SAFE
-		unsafe static DiscriminatedUnion128Object()
-        {
-            if (sizeof(DateTime) > 16) throw new InvalidOperationException(nameof(DateTime) + " was unexpectedly too big for " + nameof(DiscriminatedUnion128Object));
-            if (sizeof(TimeSpan) > 16) throw new InvalidOperationException(nameof(TimeSpan) + " was unexpectedly too big for " + nameof(DiscriminatedUnion128Object));
-            if (sizeof(Guid) > 16) throw new InvalidOperationException(nameof(Guid) + " was unexpectedly too big for " + nameof(DiscriminatedUnion128Object));
-        }
-#endif
-
 		[FieldOffset(0)] private readonly int _discriminator;  // note that we can't pack further because Object needs x8 alignment/padding on x64
 
         /// <summary>The value typed as Int64</summary>
@@ -162,7 +146,7 @@ namespace ProtoBuf
         /// <summary>Create a new discriminated union value</summary>
         public DiscriminatedUnion128Object(int discriminator, bool value) : this(discriminator) { Boolean = value; }
         /// <summary>Create a new discriminated union value</summary>
-        public DiscriminatedUnion128Object(int discriminator, object value) : this(value != null ? discriminator : 0) { Object = value; }
+        public DiscriminatedUnion128Object(int discriminator, object value) : this(value is not null ? discriminator : 0) { Object = value; }
         /// <summary>Create a new discriminated union value</summary>
         public DiscriminatedUnion128Object(int discriminator, DateTime? value) : this(value.HasValue ? discriminator: 0) { DateTime = value.GetValueOrDefault(); }
         /// <summary>Create a new discriminated union value</summary>
@@ -184,14 +168,6 @@ namespace ProtoBuf
     [StructLayout(LayoutKind.Explicit)]
     public readonly partial struct DiscriminatedUnion128
     {
-#if !FEAT_SAFE
-        unsafe static DiscriminatedUnion128()
-        {
-            if (sizeof(DateTime) > 16) throw new InvalidOperationException(nameof(DateTime) + " was unexpectedly too big for " + nameof(DiscriminatedUnion128));
-            if (sizeof(TimeSpan) > 16) throw new InvalidOperationException(nameof(TimeSpan) + " was unexpectedly too big for " + nameof(DiscriminatedUnion128));
-            if (sizeof(Guid) > 16) throw new InvalidOperationException(nameof(Guid) + " was unexpectedly too big for " + nameof(DiscriminatedUnion128));
-        }
-#endif
         [FieldOffset(0)] private readonly int _discriminator;  // note that we can't pack further because Object needs x8 alignment/padding on x64
 
         /// <summary>The value typed as Int64</summary>
@@ -258,13 +234,6 @@ namespace ProtoBuf
     [StructLayout(LayoutKind.Explicit)]
     public readonly partial struct DiscriminatedUnion64Object
     {
-#if !FEAT_SAFE
-        unsafe static DiscriminatedUnion64Object()
-        {
-            if (sizeof(DateTime) > 8) throw new InvalidOperationException(nameof(DateTime) + " was unexpectedly too big for " + nameof(DiscriminatedUnion64Object));
-            if (sizeof(TimeSpan) > 8) throw new InvalidOperationException(nameof(TimeSpan) + " was unexpectedly too big for " + nameof(DiscriminatedUnion64Object));
-        }
-#endif
         [FieldOffset(0)] private readonly int _discriminator;  // note that we can't pack further because Object needs x8 alignment/padding on x64
 
         /// <summary>The value typed as Int64</summary>
@@ -311,7 +280,7 @@ namespace ProtoBuf
         /// <summary>Create a new discriminated union value</summary>
         public DiscriminatedUnion64Object(int discriminator, bool value) : this(discriminator) { Boolean = value; }
         /// <summary>Create a new discriminated union value</summary>
-        public DiscriminatedUnion64Object(int discriminator, object value) : this(value != null ? discriminator : 0) { Object = value; }
+        public DiscriminatedUnion64Object(int discriminator, object value) : this(value is not null ? discriminator : 0) { Object = value; }
         /// <summary>Create a new discriminated union value</summary>
         public DiscriminatedUnion64Object(int discriminator, DateTime? value) : this(value.HasValue ? discriminator: 0) { DateTime = value.GetValueOrDefault(); }
         /// <summary>Create a new discriminated union value</summary>
@@ -403,7 +372,7 @@ namespace ProtoBuf
         /// <summary>Create a new discriminated union value</summary>
         public DiscriminatedUnion32Object(int discriminator, bool value) : this(discriminator) { Boolean = value; }
         /// <summary>Create a new discriminated union value</summary>
-        public DiscriminatedUnion32Object(int discriminator, object value) : this(value != null ? discriminator : 0) { Object = value; }
+        public DiscriminatedUnion32Object(int discriminator, object value) : this(value is not null ? discriminator : 0) { Object = value; }
 
         /// <summary>Reset a value if the specified discriminator is assigned</summary>
         public static void Reset(ref DiscriminatedUnion32Object value, int discriminator)
