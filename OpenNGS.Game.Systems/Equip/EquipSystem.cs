@@ -1,15 +1,8 @@
 using OpenNGS.Item.Data;
-using OpenNGS.Systems;
-using System.Collections;
 using System.Collections.Generic;
-using OpenNGS.Suit.Data;
 using OpenNGS.Item.Common;
-using OpenNGS;
 using Systems;
 using OpenNGS.Exchange.Data;
-using Common;
-using UnityEngine.Windows.Speech;
-using OpenNGS.Exchange.Common;
 
 public class EquipSystem : GameSubSystem<EquipSystem>, IEquipSystem
 {
