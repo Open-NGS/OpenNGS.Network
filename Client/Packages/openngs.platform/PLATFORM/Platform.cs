@@ -40,6 +40,10 @@ namespace OpenNGS.Platform
             return (IDirProvider)Modules[(int)PLATFORM_MODULE.DIR];
         }
 
+        internal static IReportProvider GetReport()
+        {
+            return (IReportProvider)Modules[(int)PLATFORM_MODULE.REPORT];
+        }
         internal static IPushProvider GetPush()
         {
             return (IPushProvider)Modules[(int)PLATFORM_MODULE.PUSH];
