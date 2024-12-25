@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
-namespace OpenNGS.Platform
+namespace OpenNGS.Platform.EEGames
 {
     public class PlatformConsts
     {
