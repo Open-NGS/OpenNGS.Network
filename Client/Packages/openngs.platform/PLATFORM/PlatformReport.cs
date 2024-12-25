@@ -25,7 +25,8 @@ namespace OpenNGS.Platform
 				client_ip = "";
 				opid = "";
 				opgameid = "";
-				server_id = "";
+				uniqueid = "";
+                server_id = "";
 				server_type = "";
 				account = "";
 				account_register_time = "";
@@ -72,9 +73,14 @@ namespace OpenNGS.Platform
 			{
 				get { return extraMap["opgameid"].ToString(); }
 				set { extraMap["opgameid"] = value; }
-			}
+            }
+            public string uniqueid
+            {
+                get { return extraMap["uniqueid"].ToString(); }
+                set { extraMap["uniqueid"] = value; }
+            }
 
-			public string server_id
+            public string server_id
 			{
 				get { return extraMap["server_id"].ToString(); }
 				set { extraMap["server_id"] = value; }
