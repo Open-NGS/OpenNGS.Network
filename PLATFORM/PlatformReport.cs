@@ -8,7 +8,12 @@ namespace OpenNGS.Platform
 {
 	public class PlatformReport
 	{
-		static ExtraInfo s_extraInfo = new ExtraInfo();
+        internal static void OnReportRet(PlatformReportRet ret)
+		{
+
+		}
+
+        static ExtraInfo s_extraInfo = new ExtraInfo();
 		public class ExtraInfo
 		{
 			public Dictionary<String, Object> extraMap = new Dictionary<String, Object>();
@@ -226,10 +231,14 @@ namespace OpenNGS.Platform
 
 		public static void Report(string eventId, ExtraInfo extraInfo)
 		{
-#if SUPERSDK
-			SuperSDKReport.Report(eventId, extraInfo);
-#endif
-		}
+            if (!Platform.IsSupported(PLATFORM_MODULE.REPORT))
+                return;
+            IReportProvider _reportProvider = Platform.GetReport();
+            if (_reportProvider != null)
+            {
+				_reportProvider.Report(eventId, extraInfo);
+            }
+        }
 
 		public static void Report(PlatformReportEvent eventType, ExtraInfo extraInfo, bool isKeyLoadingStep)
 		{
@@ -271,5 +280,9 @@ namespace OpenNGS.Platform
 			SuperSDKReport.Track(reportEvent, eventValue);
 		}
 #endif
+    }
+    public class PlatformReportRet : PlatformBaseRet
+    {
+
     }
 }
