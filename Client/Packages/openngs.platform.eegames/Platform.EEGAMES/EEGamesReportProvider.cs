@@ -59,7 +59,7 @@ namespace OpenNGS.Platform.EEGames
                 ret.ThirdMsg = returnJson;
                 ret.RetCode = PlatformError.SUCCESS;
                 Debug.Log("WebRequest Ret:" + returnJson);
-                Dictionary<string, string> dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(returnJson);
+                //Dictionary<string, string> dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(returnJson);
                 //if (dictionary.TryGetValue("data", out string strVal))
                 //{
                 //    ret.Token = strVal;
