@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static OpenNGS.Platform.PlatformReport;
 
 public class UILogin : MonoBehaviour
 {
@@ -49,10 +50,19 @@ public class UILogin : MonoBehaviour
         m_sdkProvider = new EEGamesSDKProvider();
         Platform.Init(m_sdkProvider);
         PlatformLogin.LoginRetEvent += OnLoginResult;
-        PlatformLogin.Login("Channel","","", strResult);
+        PlatformLogin.Login("Channel", "", "", strResult);
     }
     public void OnLoginResult(PlatformLoginRet _ret)
     {
 
+    }
+    [ContextMenu("Report")]
+    public void Report()
+    {
+        GameInstance.Instance.Init();
+        m_sdkProvider = new EEGamesSDKProvider();
+        Platform.Init(m_sdkProvider);
+        ExtraInfo _extraInf = new ExtraInfo();
+        PlatformReport.Report("testevent", _extraInf);
     }
 }
