@@ -29,6 +29,16 @@ namespace OpenNGS.Systems
                 stat.OnValueChanged += item.OnStatValueChange;
             }
         }
+        public void RemoveEventHandler(INgStatisticEvent item)
+        {
+            if (item.StatID == 0) return;
+            var stat = this.GetItem(item.StatID);
+            if (stat != null)
+            {
+                stat.OnValueChanged -= item.OnStatValueChange;
+            }
+        }
+
         public void AddStatContainer(StatisticContainer Container)
         {
             if (Container != null)
@@ -201,5 +211,7 @@ namespace OpenNGS.Systems
             m_Container = null;
             base.OnClear();
         }
+
+
     }
 }
