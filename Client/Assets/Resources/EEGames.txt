@@ -1,0 +1,2 @@
+appid=iboN4V3anKRnsKwgudonW0ESxGwJLNUz2rhN
+secret=YDwqSQ5Be0oGIpQJ6sPBlHLHveRTfC5p

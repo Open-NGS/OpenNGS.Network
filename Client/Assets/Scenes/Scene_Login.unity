@@ -505,6 +505,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630219824}
   m_CullTransparentMesh: 1
+--- !u!1 &655496321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 655496323}
+  - component: {fileID: 655496322}
+  m_Layer: 0
+  m_Name: PlatformCallback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &655496322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655496321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da15dac161590d469b4c0ef4f793196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &655496323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655496321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856873540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1479,7 @@ GameObject:
   - component: {fileID: 1668501417}
   - component: {fileID: 1668501416}
   - component: {fileID: 1668501420}
+  - component: {fileID: 1668501421}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1539,8 +1584,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserName: 
   Password: 
-  EmailAddress: 
-  PhoneNumber: 
+  EmailAddress: kanegu@eegame
+  PhoneNumber: 13311788813
+  VerifyCode: 647813
+--- !u!114 &1668501421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668501415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681a0b02a1837c443b6c0e96f4afbabb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UserName: 
+  Password: 
+  EmailAddress: kanegu@eegames.com
+  PhoneNumber: 13311788813
   VerifyCode: 
 --- !u!1 &1674962332
 GameObject:
@@ -2118,3 +2180,4 @@ SceneRoots:
   - {fileID: 1167620962}
   - {fileID: 1668501419}
   - {fileID: 1159409315}
+  - {fileID: 655496323}
