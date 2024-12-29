@@ -30,8 +30,8 @@ public class AuthcationDemo : MonoBehaviour
         
         AuthcationService.Instance.LoginResultCallback += (result) =>
         {
-            ResultCode _res = (ResultCode)result;
-            if (_res != ResultCode.RESULT_OK)
+            SDKResultCode _res = (SDKResultCode)result;
+            if (_res != SDKResultCode.RESULT_OK)
             {
                 Debug.Log($"µÇÂ¼´íÎó {_res}");
             }
