@@ -135,7 +135,7 @@ namespace OpenNGS.Platform.EEGames
                     //Debug.Log($"ÒÑ×Ô¶¯µÇÂ¼ {AuthcationService.Instance.User.Nickname}");
                     m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_AUTOLOGIN;
                     m_LoginResult.Token = AuthcationService.Instance.Token;
-                    m_LoginResult.RetCode = (int)ResultCode.RESULT_OK;
+                    m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
                     _callBackLogin(m_LoginResult);
                 }
                 else
@@ -196,7 +196,7 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
                         m_LoginResult.Token = AuthcationService.Instance.Token;
                         m_LoginResult.UserName = result.Nickname;
-                        m_LoginResult.RetCode = (int)ResultCode.RESULT_OK;
+                        m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
                         _callBackLogin(m_LoginResult);
                     };
 
@@ -221,7 +221,7 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
                         m_LoginResult.Token = AuthcationService.Instance.Token;
                         m_LoginResult.UserName = result.Nickname;
-                        m_LoginResult.RetCode = (int)ResultCode.RESULT_OK;
+                        m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
                         _callBackLogin(m_LoginResult);
                     };
 
