@@ -1599,8 +1599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681a0b02a1837c443b6c0e96f4afbabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserName: 
-  Password: 
+  UserName: kanegu
+  Password: WelcomeKaren2024
   EmailAddress: kanegu@eegames.com
   PhoneNumber: 13311788813
   VerifyCode: 
