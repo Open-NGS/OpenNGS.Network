@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
 using OpenNGS.Platform;
+using OpenNGS.SDK.Core.Initiallization;
+using OpenNGS.SDK.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,16 +9,84 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using OpenNGS.SDK.Auth;
+using OpenNGS.SDK.Auth.Models;
+using OpenNGS.SDK.Log;
+using System.Net.Mail;
+using static UnityEngine.Networking.UnityWebRequest;
 
 namespace OpenNGS.Platform.EEGames
 {
+    public class EEGamesLoginData
+    {
+        public string UserName;
+        public string Password;
+        public string Account;
+        public string VerifyCode;
+        public VerificationType VerifyTyp;
+        public bool RequestVerifyCode;
+        public EEGamesLoginData()
+        {
+
+        }
+    }
     public class EEGamesSDKProvider : ISDKProvider
     {
+        private EEGamesLoginProvider m_loginProvider = null;
         public IModuleProvider CreateProvider(PLATFORM_MODULE module)
         {
             if(module == PLATFORM_MODULE.LOGIN)
             {
-                return new EEGamesLoginProvider();
+                TextAsset textAsset = Resources.Load<TextAsset>("EEGames");
+
+                string appid = "";
+                string secret = "";
+                if (textAsset != null)
+                {
+                    // 将文本内容按行分割
+                    string[] lines = textAsset.text.Split('\n');
+
+                    // 创建一个字典来存储键值对
+                    Dictionary<string, string> configDict = new Dictionary<string, string>();
+
+                    foreach (string line in lines)
+                    {
+                        // 按等号分割每行
+                        string[] parts = line.Split('=');
+                        if (parts.Length == 2)
+                        {
+                            // 去除空白字符并添加到字典中
+                            configDict[parts[0].Trim()] = parts[1].Trim();
+                        }
+                    }
+
+                    // 从字典中获取appid和secret
+                    if (configDict.ContainsKey("appid"))
+                    {
+                        appid = configDict["appid"];
+                    }
+
+                    if (configDict.ContainsKey("secret"))
+                    {
+                        secret = configDict["secret"];
+                    }
+
+                    // 打印读取到的值
+                    Debug.Log("AppID: " + appid);
+                    Debug.Log("Secret: " + secret);
+                }
+                else
+                {
+                    Debug.LogError("Config file not found!");
+                }
+
+                m_loginProvider = new EEGamesLoginProvider();
+                m_loginProvider.InitLoginProvider(appid, secret);
+                return m_loginProvider;
+            }
+            else if( module == PLATFORM_MODULE.REPORT)
+            {
+                return new EEGamesReportProvider();
             }
             else if( module == PLATFORM_MODULE.REPORT)
             {
@@ -39,19 +109,48 @@ namespace OpenNGS.Platform.EEGames
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.LOGIN;
         private EEGamesCallBack m_callBack;
+        private PlatformLoginRet m_LoginResult = null;
         public EEGamesLoginProvider()
         {
+            m_LoginResult = new PlatformLoginRet();
             m_callBack = new EEGamesCallBack();
             PlatformCallback.Instance.Init(m_callBack);
         }
+        public void InitLoginProvider(string strAppId, string AppSecret)
+        {
+            OpenNGSPlatformServices.Initialize(new InitializationOptions()
+            {
+                //AppId = "iboN4V3anKRnsKwgudonW0ESxGwJLNUz2rhN",
+                //AppSecret = "YDwqSQ5Be0oGIpQJ6sPBlHLHveRTfC5p"
+                AppId = strAppId,
+                AppSecret = AppSecret
+            }, new SDKLogger());
+        }
         public void AutoLogin()
         {
-            throw new System.NotImplementedException();
+            AuthcationService.Instance.AutoLoginCallback += (result) =>
+            {
+                if (result)
+                {
+                    //Debug.Log($"已自动登录 {AuthcationService.Instance.User.Nickname}");
+                    m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_AUTOLOGIN;
+                    m_LoginResult.Token = AuthcationService.Instance.Token;
+                    m_LoginResult.RetCode = (int)ResultCode.RESULT_OK;
+                    _callBackLogin(m_LoginResult);
+                }
+                else
+                {
+                    Debug.Log("未登录，正在登陆....");
+                    //AuthcationService.Instance.LoginByUsernamePassword(UserName, Password);
+                }
+            };
+
+            AuthcationService.Instance.AutoLogin();
         }
 
         public PlatformLoginRet GetLoginRet()
         {
-            throw new System.NotImplementedException();
+            return m_LoginResult;
         }
 
         private void _callBackLogin(PlatformLoginRet _ret)
@@ -59,107 +158,93 @@ namespace OpenNGS.Platform.EEGames
             PlatformCallback.Instance.OnCallBack(_ret);
         }
 
-        private const string api_login_path = "/api/auth/login";
-        private const string url_login = "http://api.eegames.com/services/platform/auth";
+        private void _getVerifyCode(int nResultCode)
+        {
+            SDKLog.Info($"[RequestVerifyCodeEmail] code:[{nResultCode}]");
+            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_VERIFY_CODE;
+        }
         public void Login(string channel, string permissions = "", string subChannel = "", string extraJson = "")
         {
-            string url = url_login + api_login_path;
-            PlatformLoginRet _ret = new PlatformLoginRet();
-            PlatformCallback.Instance.StartCoroutine(WebPost(url,
-                extraJson, _ret, _callBackLogin));
-
-        }
-
-        private IEnumerator WebPost(string uri, string data, PlatformLoginRet ret, UnityAction<PlatformLoginRet> callback)
-        {
-            // 创建 UnityWebRequest 对象
-            UnityWebRequest webRequest = new UnityWebRequest(uri, "POST");
-
-            // 将 JSON 字符串转换为 byte[]
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(data);
-
-            // 设置请求体
-            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            // 设置请求头
-            webRequest.SetRequestHeader("Content-Type", "application/json");
-            webRequest.downloadHandler = new DownloadHandlerBuffer();
-
-            // 发送请求
-            yield return webRequest.SendWebRequest();
-
-            Debug.Log("[WebRequest]responseCode:" + webRequest.responseCode);
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError 
-                || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            EEGamesLoginData _loginData = JsonConvert.DeserializeObject<EEGamesLoginData>(extraJson);
+            if(string.IsNullOrEmpty( _loginData.VerifyCode) == true)
             {
-                Debug.Log(webRequest.error);
-                ret.RetCode = PlatformError.NETWORK_ERROR;
-                ret.RetMsg = webRequest.error;
-            }
-            else
-            {
-                string returnJson = webRequest.downloadHandler.text;
-                ret.ThirdMsg = returnJson;
-                ret.RetCode = PlatformError.SUCCESS;
-                // 域名没有定，现在用本地
-                //get api/user 
-                Debug.Log("WebRequest Ret:" + returnJson);
-                //object _obj = JsonConvert.DeserializeObject(returnJson);
-                Dictionary<string, string> dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(returnJson);
-                if(dictionary.TryGetValue("data", out string strVal))
+                // 请求验证码
+                if(_loginData.RequestVerifyCode == true)
                 {
-                    ret.Token = strVal;
-                }
-                //Dictionary<string, string> resultData = JsonUtil.LoadJson<Dictionary<string, string>>(returnJson);
-                //ret.RetCode = (int)resultData["ret"];
-                //ret.RetMsg = resultData["msg"].ToString();
-                //if (ret.RetCode == PlatformError.SUCCESS)
-                //{
-                //    ret.OpenId = resultData["openid"].ToString();
-                //}
-                int a = 0;
-            }
-            if (callback != null)
-                callback(ret);
-        }
-
-        private IEnumerator WebRequest(string url, string data, PlatformLoginRet ret, UnityAction<PlatformLoginRet> callback)
-        {
-            Debug.LogFormat("[WebRequest]url:{0} data:[{1}]", url, data);
-            using (UnityWebRequest www = UnityWebRequest.Get(url))
-            {
-                www.SetRequestHeader("Content-Type", "application/json");
-                www.SetRequestHeader("Accept", "application/json");
-                www.method = UnityWebRequest.kHttpVerbPOST;
-                yield return www.SendWebRequest();
-                Debug.Log("[WebRequest]responseCode:" + www.responseCode);
-                if (www.isNetworkError || www.isHttpError)
-                {
-                    Debug.Log(www.error);
-                    ret.RetCode = PlatformError.NETWORK_ERROR;
-                    ret.RetMsg = www.error;
+                    if (_loginData.VerifyTyp == VerificationType.Phone)
+                    {
+                        AuthcationService.Instance.VerificationCodeCallback += (result) =>
+                        {
+                            _getVerifyCode(result);
+                        };
+                        AuthcationService.Instance.SendVerificationCode(VerificationType.Phone, _loginData.Account);
+                    }
+                    else if (_loginData.VerifyTyp == VerificationType.Email)
+                    {
+                        AuthcationService.Instance.VerificationCodeCallback += (result) =>
+                        {
+                            _getVerifyCode(result);
+                        };
+                        AuthcationService.Instance.SendVerificationCode(VerificationType.Email, _loginData.Account);
+                    }
                 }
                 else
                 {
-                    string returnJson = www.downloadHandler.text;
-                    // 域名没有定，现在用本地
-                    //get api/user 
-                    Debug.Log("WebRequest Ret:" + returnJson);
-                    //var resultData = JsonMapper.ToObject(returnJson);
-                    //ret.RetCode = (int)resultData["ret"];
-                    //ret.RetMsg = resultData["msg"].ToString();
-                    //if (ret.RetCode == PlatformError.SUCCESS)
-                    //{
-                    //    ret.OpenId = resultData["openid"].ToString();
-                    //}
+                    AuthcationService.Instance.LoginCallback += (result) =>
+                    {
+                        SDKLog.Info($"[账号密码登录成功] 用户:[{result.Nickname}]");
+                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+                        m_LoginResult.Token = AuthcationService.Instance.Token;
+                        m_LoginResult.UserName = result.Nickname;
+                        m_LoginResult.RetCode = (int)ResultCode.RESULT_OK;
+                        _callBackLogin(m_LoginResult);
+                    };
+
+                    AuthcationService.Instance.LoginResultCallback += (result) =>
+                    {
+                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+                        m_LoginResult.RetCode = result;
+                        _callBackLogin(m_LoginResult);
+                    };
+
+                    AuthcationService.Instance.LoginByUsernamePassword(_loginData.UserName, _loginData.Password);
                 }
-                if (callback != null)
-                    callback(ret);
+            }
+            else
+            {
+                if ( _loginData.VerifyTyp == VerificationType.Phone || _loginData.VerifyTyp == VerificationType.Email)
+                {
+                    AuthcationService.Instance.LoginCallback += (result) =>
+                    {
+                        SDKLog.Info($"[LoginCallback] 用户[{result.Nickname}] 登录成功 code:[{result}]");
+
+                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+                        m_LoginResult.Token = AuthcationService.Instance.Token;
+                        m_LoginResult.UserName = result.Nickname;
+                        m_LoginResult.RetCode = (int)ResultCode.RESULT_OK;
+                        _callBackLogin(m_LoginResult);
+                    };
+
+                    AuthcationService.Instance.LoginResultCallback += (result) =>
+                    {
+                        SDKLog.Info($"[LoginCallback] 登录错误 code:[{result}]");
+
+                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+                        m_LoginResult.RetCode = result;
+                        _callBackLogin(m_LoginResult);
+                    };
+
+                    AuthcationService.Instance.LoginOrRegisterByVerificationCode(
+                        _loginData.VerifyTyp,
+                        _loginData.Account,
+                        _loginData.VerifyCode);
+                }
             }
         }
 
         public void Logout(string channel = "")
         {
-            throw new System.NotImplementedException();
+            AuthcationService.Instance.Logout();
         }
 
         public void SwitchUser(bool useLaunchUser)
@@ -167,5 +252,39 @@ namespace OpenNGS.Platform.EEGames
             throw new System.NotImplementedException();
         }
     }
+
+    public class SDKLogger : OpenNGS.SDK.Log.ILogger
+    {
+        public void Log(object message)
+        {
+            Debug.Log(message);
+        }
+
+        public void LogFormat(string message, params object[] args)
+        {
+            Debug.LogFormat(message, args);
+        }
+
+        public void Error(object message)
+        {
+            Debug.LogError(message);
+        }
+
+        public void ErrorFormat(string message, params object[] args)
+        {
+            Debug.LogErrorFormat(message, args);
+        }
+
+        public void Warning(object message)
+        {
+            Debug.LogWarning(message);
+        }
+
+        public void WarningFormat(string message, params object[] args)
+        {
+            Debug.LogWarningFormat(message, args);
+        }
+    }
+
 }
 
