@@ -88,6 +88,10 @@ namespace OpenNGS.Platform.EEGames
             {
                 return new EEGamesReportProvider();
             }
+            else if( module == PLATFORM_MODULE.REPORT)
+            {
+                return new EEGamesReportProvider();
+            }
             return null;
         }
     }
