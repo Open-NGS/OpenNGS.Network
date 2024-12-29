@@ -1,3 +1,4 @@
+using OpenNGS.BlindBox.Data;
 using OpenNGS.Systems;
 using System;
 using System.Collections;
@@ -38,7 +39,15 @@ public class NgBlindBoxSystem : GameSubSystem<NgBlindBoxSystem>, INgBlindBoxSyst
         {
             for (int i = 0; i < drop.DropRuleIDs.Length; i++)
             {
-                dropRules.Add(BlindBoxStaticData.droprules.GetItem(drop.DropRuleIDs[i]));
+                DropRule _rule = BlindBoxStaticData.droprules.GetItem(drop.DropRuleIDs[i]);
+                if(_rule != null)
+                {
+                    dropRules.Add(_rule);
+                }
+                else
+                {
+                    NgDebug.LogError(string.Format("DropRule ²»´æÔÚ!!!!! ID=[{0}]", drop.DropRuleIDs[i]));
+                }
             }
         }
 
@@ -94,7 +103,11 @@ public class NgBlindBoxSystem : GameSubSystem<NgBlindBoxSystem>, INgBlindBoxSyst
         Random rd = new Random();
         foreach (var rule in dropRules)
         {
-            if (rd.Next(0, 10) < rule.Probability * 10)
+            if(rule == null)
+            {
+                NgDebug.Log("");
+            }
+            else if (rd.Next(0, 10) < rule.Probability * 10)
             {
                 Dictionary<uint, int> count = GetCountByWeight(nDropID, rule.DropGroupID, rule.Multiple, drop.MaxDropNum, executeCount);
                 foreach (var item in count)
