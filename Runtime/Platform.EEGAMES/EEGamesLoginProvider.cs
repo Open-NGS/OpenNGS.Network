@@ -141,6 +141,7 @@ namespace OpenNGS.Platform.EEGames
                     m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_AUTOLOGIN;
                     m_LoginResult.Token = AuthcationService.Instance.Token;
                     m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                    m_LoginResult.UserName = AuthcationService.Instance.User.Nickname;
                     _callBackLogin(m_LoginResult);
                 }
                 else
