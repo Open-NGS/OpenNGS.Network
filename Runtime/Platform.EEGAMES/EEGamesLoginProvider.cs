@@ -256,6 +256,12 @@ namespace OpenNGS.Platform.EEGames
 
         public void Logout(string channel = "")
         {
+            AuthcationService.Instance.LogoutCallback += (result) =>
+            {
+                m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGOUT;
+                m_LoginResult.RetCode = result;
+                _callBackLogin(m_LoginResult);
+            };
             AuthcationService.Instance.Logout();
         }
 
