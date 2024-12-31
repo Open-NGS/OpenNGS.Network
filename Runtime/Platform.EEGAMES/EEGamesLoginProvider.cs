@@ -231,6 +231,10 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.Token = AuthcationService.Instance.Token;
                         m_LoginResult.UserName = result.Nickname;
                         m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                        if(AuthcationService.Instance.User.NewUser == true)
+                        {
+                            m_LoginResult.FirstLogin = true;
+                        }
                         _callBackLogin(m_LoginResult);
                     };
 
