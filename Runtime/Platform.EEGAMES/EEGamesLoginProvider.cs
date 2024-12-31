@@ -233,7 +233,7 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
                         if(AuthcationService.Instance.User.NewUser == true)
                         {
-                            m_LoginResult.FirstLogin = true;
+                            m_LoginResult.FirstLogin = 1;
                         }
                         _callBackLogin(m_LoginResult);
                     };
