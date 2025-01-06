@@ -1592,6 +1592,7 @@
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Shop",
   "PackageFile": "Packages/OpenNGS.Shop.json"
 }

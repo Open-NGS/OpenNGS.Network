@@ -172,6 +172,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Suit",
   "PackageFile": "Packages/OpenNGS.Suit.json"
 }

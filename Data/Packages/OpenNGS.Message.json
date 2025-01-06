@@ -255,6 +255,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Message",
   "PackageFile": "Packages/OpenNGS.Message.json"
 }

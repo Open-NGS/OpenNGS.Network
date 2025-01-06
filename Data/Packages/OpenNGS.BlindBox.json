@@ -508,6 +508,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.BlindBox",
   "PackageFile": "Packages/OpenNGS.BlindBox.json"
 }

@@ -603,6 +603,7 @@
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Exchange",
   "PackageFile": "Packages/OpenNGS.Exchange.json"
 }

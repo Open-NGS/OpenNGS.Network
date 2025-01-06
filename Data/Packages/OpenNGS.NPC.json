@@ -114,6 +114,7 @@
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.NPC",
   "PackageFile": "Packages/OpenNGS.NPC.json"
 }

@@ -1367,6 +1367,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Statistic",
   "PackageFile": "Packages/OpenNGS.Statistic.json"
 }

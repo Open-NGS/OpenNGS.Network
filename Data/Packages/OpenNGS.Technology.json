@@ -386,6 +386,7 @@
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Technology",
   "PackageFile": "Packages/OpenNGS.Technology.json"
 }

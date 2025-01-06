@@ -194,6 +194,7 @@
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Map",
   "PackageFile": "Packages/OpenNGS.Map.json"
 }

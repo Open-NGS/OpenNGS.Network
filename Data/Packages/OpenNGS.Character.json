@@ -1782,6 +1782,7 @@
       ]
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Character",
   "PackageFile": "Packages/OpenNGS.Character.json"
 }

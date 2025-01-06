@@ -468,6 +468,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Reward",
   "PackageFile": "Packages/OpenNGS.Reward.json"
 }

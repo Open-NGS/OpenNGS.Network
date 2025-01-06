@@ -6,144 +6,164 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
-using OpenNGS.Core;
-using OpenNGS.Shop.Common;
 
 
-namespace OpenNGS.Shop.Data 
+namespace OpenNGS.Core 
 {
 
-    //商店信息
+    //文本
     [global::ProtoBuf.ProtoContract()]
-    public partial class Shop : global::ProtoBuf.IExtensible
+    public partial class NGSText : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public Shop()
+        public NGSText()
         {
-            OpenTime = "";
+            Key = "";
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public NGSText Name { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public string OpenTime { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint Duration { get; set; }
+        public string Key { get; set; }
     }
-    //商店信息
+    //属性集
     [global::ProtoBuf.ProtoContract()]
-    public partial class Shelf : global::ProtoBuf.IExtensible
+    public partial class AttributesInt32 : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public Shelf()
+        public AttributesInt32()
         {
-            ConditionParam = "";
-            Bg = "";
-            RefreshTime = "";
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ID { get; set; }
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, int> Values  { get;set;  }
+    }
+    //属性集
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributesInt64 : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributesInt64()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, long> Values  { get;set;  }
+    }
+    //属性集
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributesSingle : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributesSingle()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, float> Values  { get;set;  }
+    }
+    //属性集
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AttributesDouble : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AttributesDouble()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        [global::ProtoBuf.ProtoMap]
+        public global::System.Collections.Generic.Dictionary<long, double> Values  { get;set;  }
+    }
+    //属性定义
+    [global::ProtoBuf.ProtoContract()]
+    public partial class Attribute : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public Attribute()
+        {
+            Name = "";
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint Id { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public uint ShopId { get; set; }
+        public string Name { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public SHELF_CONDITION_TYPE Condition { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public string ConditionParam { get; set; }
-        [global::ProtoBuf.ProtoMember(5)]
         public NGSText Title { get; set; }
-        [global::ProtoBuf.ProtoMember(6)]
-        public NGSText Desc { get; set; }
-        [global::ProtoBuf.ProtoMember(7)]
-        public string Bg { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
-        public SHELF_STATE_TYPE State { get; set; }
-        [global::ProtoBuf.ProtoMember(9)]
-        public uint RefreshCount { get; set; }
-        [global::ProtoBuf.ProtoMember(10)]
-        public uint RefreshCurrency { get; set; }
-        [global::ProtoBuf.ProtoMember(11)]
-        public uint RefreshCost { get; set; }
-        [global::ProtoBuf.ProtoMember(12)]
-        public string RefreshTime { get; set; }
-        [global::ProtoBuf.ProtoMember(13)]
-        public uint GoodCount { get; set; }
-    }
-    //商店信息
-    [global::ProtoBuf.ProtoContract()]
-    public partial class Good : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public Good()
-        {
-            Icon = "";
-            DiscountInfo = "";
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public NGSText Name { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public NGSText Desc { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public string Icon { get; set; }
-        [global::ProtoBuf.ProtoMember(5)]
-        public uint ItemId { get; set; }
-        [global::ProtoBuf.ProtoMember(6)]
-        public uint ItemNum { get; set; }
-        [global::ProtoBuf.ProtoMember(7)]
-        public uint ShelfId { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
-        public uint CurrencyId { get; set; }
-        [global::ProtoBuf.ProtoMember(9)]
-        public uint CurrencyCounts { get; set; }
-        [global::ProtoBuf.ProtoMember(10)]
-        public uint DiscountPrice { get; set; }
-        [global::ProtoBuf.ProtoMember(11)]
-        public string DiscountInfo { get; set; }
-        [global::ProtoBuf.ProtoMember(12)]
-        public uint Weight { get; set; }
-        [global::ProtoBuf.ProtoMember(13)]
-        public uint Limit { get; set; }
-        [global::ProtoBuf.ProtoMember(14)]
-        public uint Quality { get; set; }
-        [global::ProtoBuf.ProtoMember(15)]
-        public GOOD_TAG_TYPE Tag { get; set; }
+        public NGSText Description { get; set; }
     }
-    //购买信息
+    //空包
     [global::ProtoBuf.ProtoContract()]
-    public partial class BuyItemInfo : global::ProtoBuf.IExtensible
+    public partial class NGSVoid : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public BuyItemInfo()
+        public NGSVoid()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+    }
+    //Vector2
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NGSVector2 : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public NGSVector2()
         {
         	OnConstructor();
         }
@@ -151,181 +171,105 @@ namespace OpenNGS.Shop.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ShopId { get; set; }
+        public float X { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public float Y { get; set; }
+    }
+    //Vector3
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NGSVector3 : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public NGSVector3()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public float X { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public float Y { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsRequired = true)]
+        public float Z { get; set; }
+    }
+    //Vector4
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NGSVector4 : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public NGSVector4()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public float X { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public float Y { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsRequired = true)]
+        public float Z { get; set; }
+        [global::ProtoBuf.ProtoMember(4, IsRequired = true)]
+        public float W { get; set; }
+    }
+    //消息队列的消息定义
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NGSMessage : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public NGSMessage()
+        {
+            topic_name = "";
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public string topic_name { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public uint ShelfId { get; set; }
+        public ulong producer_id { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public uint ShopItemId { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint ShopItemCount { get; set; }
+        public ulong message_id { get; set; }
+        [global::ProtoBuf.ProtoMember(4, IsRequired = true)]
+        public byte[] payload { get; set; }
     }
-    //出售信息
+    //通用协议返回
     [global::ProtoBuf.ProtoContract()]
-    public partial class SellItemInfo : global::ProtoBuf.IExtensible
+    public partial class NGSResult : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public SellItemInfo()
+        public NGSResult()
         {
+            Message = "";
         	OnConstructor();
         }
         
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ShopId { get; set; }
+        public int Result { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public uint ItemId { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint ShopItemCount { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint GUID { get; set; }
-    }
-    //购买请求
-    [global::ProtoBuf.ProtoContract()]
-    public partial class BuyItemReq : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public BuyItemReq()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public BuyItemInfo BuyItem { get; set; }
-    }
-    //购买响应
-    [global::ProtoBuf.ProtoContract()]
-    public partial class BuyItemRsq : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public BuyItemRsq()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public SHOP_RESULT_TYPE result { get; set; }
-    }
-    //出售请求
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SellItemReq : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public SellItemReq()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public SellItemInfo SellItem { get; set; }
-    }
-    //出售响应
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SellItemRsq : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public SellItemRsq()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public SHOP_RESULT_TYPE result { get; set; }
-    }
-    //拉取商店请求
-    [global::ProtoBuf.ProtoContract()]
-    public partial class GetShopInfoReq : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public GetShopInfoReq()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ShopId { get; set; }
-    }
-    //拉去商店响应
-    [global::ProtoBuf.ProtoContract()]
-    public partial class GetShopInfoRsq : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public GetShopInfoRsq()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ShopId { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public SHOP_RESULT_TYPE result { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint ShelfId { get; set; }
-    }
-    //商店收购表
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ShopSell : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public ShopSell()
-        {
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ShopID { get; set; }
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint ItemID { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint SellPriceItem { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint SellPriceCount { get; set; }
+        public string Message { get; set; }
     }
 
 }

@@ -366,6 +366,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Levels",
   "PackageFile": "Packages/OpenNGS.Levels.json"
 }

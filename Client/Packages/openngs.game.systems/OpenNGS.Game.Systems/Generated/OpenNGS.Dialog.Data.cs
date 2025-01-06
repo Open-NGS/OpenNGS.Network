@@ -102,6 +102,8 @@ namespace OpenNGS.Dialog.Data
         public uint QuestGroupID { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
         public bool IsSelected { get; set; }
+        [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
+        public uint[] Effects { get; set; }
     }
 
 }

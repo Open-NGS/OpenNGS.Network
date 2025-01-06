@@ -348,6 +348,7 @@
       "References": []
     }
   },
+  "DependencyModel": false,
   "Name": "OpenNGS.Rank",
   "PackageFile": "Packages/OpenNGS.Rank.json"
 }

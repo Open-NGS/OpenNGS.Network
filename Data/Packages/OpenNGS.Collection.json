@@ -191,8 +191,8 @@
             "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
             "Tag": 0,
             "Properties": {
-              "collections ": {
-                "Name": "collections ",
+              "collections": {
+                "Name": "collections",
                 "Type": "Uint32",
                 "Description": "玩家已解锁的图鉴列表",
                 "Tag": 1,
@@ -397,8 +397,8 @@
                   "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Collection.xlsx",
                   "Tag": 0,
                   "Properties": {
-                    "collections ": {
-                      "Name": "collections ",
+                    "collections": {
+                      "Name": "collections",
                       "Type": "Uint32",
                       "Description": "玩家已解锁的图鉴列表",
                       "Tag": 1,
