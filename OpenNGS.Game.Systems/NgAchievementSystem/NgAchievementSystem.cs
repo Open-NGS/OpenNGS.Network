@@ -51,25 +51,25 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
             .Find(a => a.ID == value.ID);
         if (achievementState != null)
         {
-            if(achievementState.status == Achievement_Status.Achievement_Status_Pending)
+            if(achievementState.Status == Achievement_Status.Achievement_Status_Pending)
             {
-                achievementState.status = Achievement_Status.Achievement_Status_Done;
+                achievementState.Status = Achievement_Status.Achievement_Status_Done;
                 Achievement parentAchievement = AchievementStaticData.achievement.GetItem(value.ID);
                 foreach (var subID in parentAchievement.SubAchievement)
                 {
                     var subState = achievementStates.Find(a => a.ID == subID);
-                    if (subState == null || subState.status == Achievement_Status.Achievement_Status_Stating)
+                    if (subState == null || subState.Status == Achievement_Status.Achievement_Status_Stating)
                     {
-                        subState.status = Achievement_Status.Achievement_Status_Done;
+                        subState.Status = Achievement_Status.Achievement_Status_Done;
                     }
                 }
                 rsp.result = Achievement_Result.AchievementResult_Success;
             }
-            else if (achievementState.status == Achievement_Status.Achievement_Status_Stating)
+            else if (achievementState.Status == Achievement_Status.Achievement_Status_Stating)
             {
                 rsp.result = Achievement_Result.Achievement_Result_None;
             }
-            else if (achievementState.status == Achievement_Status.Achievement_Status_Done)
+            else if (achievementState.Status == Achievement_Status.Achievement_Status_Done)
             {
                 rsp.result = Achievement_Result.AchievementResult_Fail_HasGet;
             }
@@ -105,13 +105,13 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
                 PlayerID = value.PlayerID,
                 ID = value.ID,
                 Progress = value.Progress,
-                status = Achievement_Status.Achievement_Status_Stating,
+                Status = Achievement_Status.Achievement_Status_Stating,
             };
             achievementStates.Add(achievementState);
         }
         if (achievementState.Progress >= achievement.StatValue)
         {
-            achievementState.status = Achievement_Status.Achievement_Status_Pending;
+            achievementState.Status = Achievement_Status.Achievement_Status_Pending;
             //时间
 
             CheckAndUpdateParentAchievements(value.ID, value.PlayerID);
@@ -140,7 +140,7 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
                     PlayerID = player,
                     ID = parentID,
                     Progress = 0,
-                    status = Achievement_Status.Achievement_Status_Stating,
+                    Status = Achievement_Status.Achievement_Status_Stating,
                 };
                 achievementStates.Add(parentState);
             }
@@ -149,7 +149,7 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
             foreach (var subID in parentAchievement.SubAchievement)
             {
                 var subState = achievementStates.Find(a => a.ID == subID);
-                if (subState == null || subState.status == Achievement_Status.Achievement_Status_Stating)
+                if (subState == null || subState.Status == Achievement_Status.Achievement_Status_Stating)
                 {
                     allSubAchievementsCompleted = false;
                     break;
@@ -157,7 +157,7 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
             }
             if (allSubAchievementsCompleted)
             {
-                parentState.status = Achievement_Status.Achievement_Status_Done;
+                parentState.Status = Achievement_Status.Achievement_Status_Done;
                 //时间
 
             }

@@ -97,7 +97,7 @@ namespace OpenNGS.Achievement.Data
         [global::ProtoBuf.ProtoMember(3)]
         public uint Progress { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public Achievement_Status status { get; set; }
+        public Achievement_Status Status { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
         public uint UnlockTime { get; set; }
     }
