@@ -470,6 +470,142 @@
               }
             }
           }
+        },
+        "OpenNGS.Dialog.Data.DialogEffect": {
+          "RawPackage": "OpenNGS.Dialog",
+          "Methods": {},
+          "Name": "DialogEffect",
+          "Package": "OpenNGS.Dialog.Data",
+          "Fullname": "OpenNGS.Dialog.Data.DialogEffect",
+          "PackageName": "OpenNGS.Dialog.DialogEffect",
+          "Description": "对话效果",
+          "Tag": 0,
+          "Flag": 0,
+          "Scope": "Client",
+          "ModelType": "Table",
+          "Type": "Struct",
+          "Entity": {
+            "Name": "DialogEffect",
+            "Package": "OpenNGS.Dialog.Data",
+            "RawPackage": "OpenNGS.Dialog",
+            "Fullname": "OpenNGS.Dialog.Data.DialogEffect",
+            "Type": 0,
+            "Description": "Data\\Entities\\OpenNGS\\OpenNGS.Dialog.xlsx",
+            "Tag": 0,
+            "Properties": {
+              "EffectID": {
+                "Name": "EffectID",
+                "Type": "Uint32",
+                "Description": "效果ID",
+                "Tag": 1,
+                "Scope": "Client",
+                "Attributes": "Required",
+                "IsRequired": true,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Function": {
+                "Name": "Function",
+                "Type": "Uint32",
+                "Description": "接口类型",
+                "Tag": 2,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DescInfo": {
+                "Name": "DescInfo",
+                "Type": "NGSText",
+                "CustomType": "NGSText",
+                "Description": "描述信息",
+                "Tag": 3,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "DescID": {
+                "Name": "DescID",
+                "Type": "Uint32",
+                "Description": "描述ID",
+                "Tag": 4,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Param1Type": {
+                "Name": "Param1Type",
+                "Type": "Uint32",
+                "Description": "参数类型1",
+                "Tag": 5,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Param1": {
+                "Name": "Param1",
+                "Type": "Uint32",
+                "Description": "参数1",
+                "Tag": 6,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Param1b": {
+                "Name": "Param1b",
+                "Type": "Uint32",
+                "Description": "参数附加1",
+                "Tag": 7,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Param2Type": {
+                "Name": "Param2Type",
+                "Type": "Uint32",
+                "Description": "参数类型2",
+                "Tag": 8,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Param2": {
+                "Name": "Param2",
+                "Type": "Uint32",
+                "Description": "参数2",
+                "Tag": 9,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              },
+              "Param2b": {
+                "Name": "Param2b",
+                "Type": "Uint32",
+                "Description": "参数附加2",
+                "Tag": 10,
+                "Scope": "Client",
+                "Attributes": "None",
+                "IsRequired": false,
+                "IsRepeated": false,
+                "IsOptional": false
+              }
+            }
+          }
         }
       },
       "References": [
