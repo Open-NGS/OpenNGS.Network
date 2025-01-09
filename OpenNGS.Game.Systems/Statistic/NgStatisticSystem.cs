@@ -41,6 +41,9 @@ namespace OpenNGS.Systems
 
         public void AddStatContainer(StatisticContainer Container)
         {
+            // 每次加载存档时，将之前存储的数据先清空，避免新开档时没有正确恢复
+            Init();
+
             if (Container != null)
             {
                 m_Container = Container;
