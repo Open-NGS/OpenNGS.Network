@@ -2,7 +2,8 @@
     "name": "Neptune.Core",
     "rootNamespace": "",
     "references": [
-        "OpenNGS.Core"
+        "OpenNGS.Core",
+        "OpenNGS.Assets"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

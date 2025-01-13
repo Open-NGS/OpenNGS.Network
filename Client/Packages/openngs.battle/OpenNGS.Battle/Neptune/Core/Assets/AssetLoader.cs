@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using OpenNGS.Assets;
 
 namespace Neptune.Assets
 {
@@ -144,22 +144,23 @@ namespace Neptune.Assets
                 }
             }
 #endif
-            AssetLoadAction<T> action = new AssetLoadAction<T>(onLoaded, autoDestroy);
-            LoadBundle(resource, action.OnLoadBundle, localized);
+            //AssetLoadAction<T> action = new AssetLoadAction<T>(onLoaded, autoDestroy);
+            LoadBundle(resource);
         }
 
-        public void UnLoadBundle(string bundlename)
-        {
-            AssetBundleManager.Instance.UnloadBundle(bundlename);
-        }
+        //public void UnLoadBundle(string bundlename)
+        //{
+        //    OpenNGS.Assets.AssetBundleManager.Instance.Unload(bundlename);
+        //}
 
-        public void LoadBundle(string bundlename, UnityAction<AssetBundleInfo> onloaded, bool localized = false)
+        public void LoadBundle(string bundlename)
         {
             if (RawMode)
             {
                 return;
             }
-            AssetBundleManager.Instance.LoadBundle(bundlename, onloaded, localized);
+            AssetBundleManager.Instance.LoadBundle(bundlename);
+            //AssetBundleManager.Instance.LoadBundle(bundlename, onloaded, localized);
         }
 
         public static void Load<T>(string resource, UnityAction<T> onLoaded, bool autoDestroy = true, bool localized = false) where T : Object
@@ -186,19 +187,19 @@ namespace Neptune.Assets
                 Debug.LogError("Load: asset is null :" + resource + ". \n");
             return obj;
         }
-        public static void Load(string resource, UnityAction<string> onLoaded)
-        {
-            AssetBundleManager.Instance.LoadText(resource, onLoaded);
-        }
-        public static void Load(string resource, UnityAction<byte[]> onLoaded)
-        {
-            AssetBundleManager.Instance.LoadBytes(resource, onLoaded);
-        }
+        //public static void Load(string resource, UnityAction<string> onLoaded)
+        //{
+        //    AssetBundleManager.Instance.LoadText(resource, onLoaded);
+        //}
+        //public static void Load(string resource, UnityAction<byte[]> onLoaded)
+        //{
+        //    AssetBundleManager.Instance.LoadBytes(resource, onLoaded);
+        //}
 
-        public static void LoadTexture(string resource, UnityAction<Texture2D> onLoaded)
-        {
-            AssetBundleManager.Instance.LoadTexture(resource, onLoaded);
-        }
+        //public static void LoadTexture(string resource, UnityAction<Texture2D> onLoaded)
+        //{
+        //    AssetBundleManager.Instance.LoadTexture(resource, onLoaded);
+        //}
 
         public static void DestroyLoadedAssetObject(GameObject obj)
         {

@@ -143,7 +143,7 @@ public abstract class DataGetterBase
 #if ENABLE_BSON
         AssetLoader.Load(name, onLoadBSON);
 #else
-        AssetLoader.Load(name, onLoadJSON); 
+        //AssetLoader.Load(name, onLoadJSON); 
 #endif
 
 #endif

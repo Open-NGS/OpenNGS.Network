@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using OpenNGS.Assets;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Neptune.Assets
@@ -51,36 +52,36 @@ namespace Neptune.Assets
                     this.onLoadBundle(bundleInfo);
                 }
             }
-            else if (type == AssetBundleType.Text)
-            {
-                if (bundleInfo != null)
-                {
-                    onLoadText(bundleInfo.text);
-                    bundleInfo.Unload();
-                }
-                else
-                    onLoadText(null);
-            }
-            else if (type == AssetBundleType.Bytes)
-            {
-                if (bundleInfo != null)
-                {
-                    onLoadBytes(bundleInfo.bytes);
-                    bundleInfo.Unload();
-                }
-                else
-                    onLoadBytes(null);
-            }
-            else if (type == AssetBundleType.Texture)
-            {
-                if (bundleInfo == null || bundleInfo.texture == null)
-                {
-                    onLoadTexture(null);
-                    return;
-                }
-                onLoadTexture(bundleInfo.texture);
-                bundleInfo.Unload();
-            }
+            //else if (type == AssetBundleType.Text)
+            //{
+            //    if (bundleInfo != null)
+            //    {
+            //        onLoadText(bundleInfo.text);
+            //        bundleInfo.Unload();
+            //    }
+            //    else
+            //        onLoadText(null);
+            //}
+            //else if (type == AssetBundleType.Bytes)
+            //{
+            //    if (bundleInfo != null)
+            //    {
+            //        onLoadBytes(bundleInfo.bytes);
+            //        bundleInfo.Unload();
+            //    }
+            //    else
+            //        onLoadBytes(null);
+            //}
+            //else if (type == AssetBundleType.Texture)
+            //{
+            //    if (bundleInfo == null || bundleInfo.texture == null)
+            //    {
+            //        onLoadTexture(null);
+            //        return;
+            //    }
+            //    onLoadTexture(bundleInfo.texture);
+            //    bundleInfo.Unload();
+            //}
         }
     }
 }

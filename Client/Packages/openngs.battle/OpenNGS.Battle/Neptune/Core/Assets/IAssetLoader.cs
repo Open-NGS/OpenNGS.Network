@@ -2,6 +2,8 @@
 // Asset Bundle Management Module V1.0 - mailto:Ray@RayMix.net
 // 
 
+using OpenNGS.Assets;
+
 namespace Neptune.Assets
 { /// <summary>
   /// IAssetLoader
