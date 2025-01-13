@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
+using Neptune.Datas;
+
+
+namespace Neptune
+{
+    /// <summary>
+    /// IEffectJoint Interface
+    /// </summary>
+    public interface IEffectAgent : IAgent
+    {
+        /// <summary>
+        /// 获取 Controller
+        /// </summary>
+        IEffectController Controller
+        {
+            get;
+        }
+    }
+
+}
