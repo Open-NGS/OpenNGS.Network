@@ -1,17 +1,14 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEditorInternal;
 using System.IO;
 using Neptune.Datas;
 using Newtonsoft.Json;
 using Object = UnityEngine.Object;
 using Neptune;
-
+#if UNITY_EDITOR
 public class AnimationTool : EditorWindow
 {
     static Dictionary<string, Dictionary<string, Dictionary<float, AniEventData>>> AnimAtkFrames = new Dictionary<string, Dictionary<string, Dictionary<float, AniEventData>>>();
@@ -890,3 +887,4 @@ public static class TransformExtend
         return transform.name.StartsWith("bone", StringComparison.CurrentCultureIgnoreCase) || transform.name.StartsWith("bip", StringComparison.CurrentCultureIgnoreCase) || transform.name.StartsWith("dummy", StringComparison.CurrentCultureIgnoreCase);
     }
 }
+#endif
