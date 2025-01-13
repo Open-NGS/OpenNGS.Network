@@ -1,5 +1,7 @@
+using OpenNGS;
 using OpenNGS.IO;
 using OpenNGS.Localize;
+using OpenNGS.Systems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +11,12 @@ using System.Text;
 using UnityEngine;
 using static UnityEngine.Rendering.ReloadAttribute;
 
+public static class TestStatisticData
+{
+    public static Table<OpenNGS.UI.Data.UIConfig, string> s_uiCfg = new Table<OpenNGS.UI.Data.UIConfig, string>((item) => { return item.IdOfUI; }, false);
+
+    public static void Init() { }
+}
 // TODO
 // 这部分之后需要放入OpenNGS。
 // 还需要实现UISystem的接口。这套接口主要是为不同平台/不同UI框架来定制。
@@ -96,8 +104,8 @@ namespace OpenNGS.UI
 
         public OpenNGS.UI.Data.UIConfig GetConfig(string id)
         {
-            //return ZeriumStaticData.UICfg.GetItem(id);
-            return null;
+            return TestStatisticData.s_uiCfg.GetItem(id);
+            //return null;
         }
 
         private void OnViewClosed(string id)
