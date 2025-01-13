@@ -1,7 +1,0 @@
-﻿<linker>
-    <assembly fullname="BattleEngine">
-        <type fullname="Config" preserve="all"/>
-        <type fullname="ProxyData" preserve="all"/>
-        <type fullname="GameData.*" preserve="all"/>
-    </assembly>
-</linker>
