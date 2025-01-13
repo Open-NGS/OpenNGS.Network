@@ -1,12 +1,12 @@
 using System;
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using TMPro;
-using UnityEditor.PackageManager;
+//using TMPro;
+//using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.TextCore;
+//using UnityEngine.TextCore;
 public class unique_chars : MonoBehaviour
 {
     void Start()

@@ -43,49 +43,7 @@ class AssetProcessor : AssetPostprocessor
         BuildTool.assetBundleBuildInfo.Clear();
         AssetDatabase.StartAssetEditing();
 
-        SetupAssetBundleFolder(BuildPath + "/Camera", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/Characters", BundleMode.Single);
-        //SetupAssetBundleFolder(BuildPath + "/Data", BundleMode.Clear);
-        SetupAssetBundleFolder(BuildPath + "/FX", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/Materials", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/UI/Combat", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/Levels/LevelScripts", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/Levels/LevelInteract", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/Items/DropItems", BundleMode.Single);
-        SetupAssetBundleFolder(BuildPath + "/UI/ScriptObj", BundleMode.Single);
-
-
         SetupAssetBundleFolder(BuildPath + "/UI/View", BundleMode.Folder);
-        SetupAssetBundleFolder(BuildPath + "/Units", BundleMode.Single);
-
-        SetAssetBundle(BuildPath + "/UI/Icon/Avator.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/Buff.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/Construction.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/Equip.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/Item.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/KeyBinding.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/Technology.spriteatlas", BundleMode.Single, true);
-        SetAssetBundle(BuildPath + "/UI/Icon/Technology.spriteatlas", BundleMode.Single, true);
-
-
-
-        //SetupAssetBundleFolder(BuildPath + "/Objects/Interactives", BundleMode.Folder);
-        //SetupAssetBundleFolder(BuildPath + "/Objects/SceneTransition", BundleMode.Folder);
-
-        //SetupAssetBundleFolder(BuildPath + "/UI/Atlas", BundleMode.Single);
-        //SetupAssetBundleFolder(BuildPath + "/UI/Fonts", BundleMode.Folder);
-        //SetupAssetBundleFolder(BuildPath + "/Audio", BundleMode.Single);
-        //SetupAssetBundleFolder(BuildPath + "/Theme", BundleMode.Single);
-        //SetupAssetBundleFolder(BuildPath + "/Skybox", BundleMode.Single);
-        //SetupAssetBundleFolder(BuildPath + "/ProjectSettings", BundleMode.Single);
-
-        // 设置场景bundle信息
-        //SetupSceneAssetBundle("Assets/Game/Scenes/Bootstrap.unity");
-        //SetupSceneAssetBundle("Assets/Game/Scenes/City.unity");
-        //SetupSceneAssetBundle("Assets/Game/Scenes/Main.unity");
-        //SetupSceneAssetBundle("Assets/Game/Scenes/Loading.unity");
-        //SetupSceneAssetBundle("Assets/Game/Scenes/Levels/Level01.unity");
-
 
         AssetDatabase.StopAssetEditing();
         EditorUtility.ClearProgressBar();
