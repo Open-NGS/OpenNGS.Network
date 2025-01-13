@@ -7,7 +7,7 @@ using UnityEditor;
 using System.IO;
 using UnityEngine.SceneManagement;
 using Neptune;
-
+#if UNITY_EDITOR
 public class NavTool
 {
 
@@ -222,3 +222,4 @@ public class NavTool
         }
     }
 }
+#endif

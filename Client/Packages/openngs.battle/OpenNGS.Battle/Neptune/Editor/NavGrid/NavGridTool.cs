@@ -8,7 +8,7 @@ using System.IO;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
-
+#if UNITY_EDITOR
 public static class NavGridTool
 {
     private static GameObject NavGridRoot;
@@ -177,3 +177,4 @@ public static class NavGridTool
     }
 }
 
+#endif
