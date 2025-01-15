@@ -120,6 +120,9 @@ namespace OpenNGS.Localize
                 case SystemLanguage.Vietnamese:
                     langName = "vi";
                     break;
+                case SystemLanguage.Italian:
+                    langName = "it";
+                    break;
             }
             return langName;
         }
