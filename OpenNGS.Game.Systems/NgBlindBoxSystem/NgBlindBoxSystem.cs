@@ -211,47 +211,54 @@ public class NgBlindBoxSystem : GameSubSystem<NgBlindBoxSystem>, INgBlindBoxSyst
         List<uint> isdropedID = new List<uint>();
         Dictionary<uint, int> dic_itemCounts = new Dictionary<uint, int>();
         List<OpenNGS.BlindBox.Data.DropGroup> dropGroups = BlindBoxStaticData.dropgroups.GetItems(GroupID);
-        if (dic_weightChangeIDs.ContainsKey(nDropID) == false)
+        if (dropGroups != null)
         {
-            return dic_itemCounts;
-        }
-        for (int exTimes = 0; exTimes < exCount; exTimes++)
-        {
-            foreach (var dropGroup in dropGroups)
+            if (dic_weightChangeIDs.ContainsKey(nDropID) == false)
             {
-                if (isdropedID.Contains(dropGroup.DropItemID) || dic_weightChangeIDs[nDropID].Contains(dropGroup.DropItemID))
+                return dic_itemCounts;
+            }
+            for (int exTimes = 0; exTimes < exCount; exTimes++)
+            {
+                foreach (var dropGroup in dropGroups)
                 {
-                    allWeight += (uint)(dropGroup.Weight + dropGroup.WeightInc);
+                    if (isdropedID.Contains(dropGroup.DropItemID) || dic_weightChangeIDs[nDropID].Contains(dropGroup.DropItemID))
+                    {
+                        allWeight += (uint)(dropGroup.Weight + dropGroup.WeightInc);
 
+                    }
+                    else
+                    {
+                        allWeight += dropGroup.Weight;
+                    }
                 }
-                else
+                if (allWeight == 0)
                 {
-                    allWeight += dropGroup.Weight;
+                    break;
                 }
+                int randomNum = rd.Next(0, (int)allWeight);
+                for (int i = 0; i < dropGroups.Count; i++)
+                {
+                    if (isdropedID.Contains(dropGroups[i].DropItemID) || dic_weightChangeIDs[nDropID].Contains(dropGroups[i].DropItemID))
+                    {
+                        randomNum -= ((int)dropGroups[i].Weight + dropGroups[i].WeightInc);
+                    }
+                    else
+                    {
+                        randomNum -= (int)dropGroups[i].Weight;
+                    }
+                    if (randomNum < 0)
+                    {
+                        index = i; break;
+                    }
+                }
+                dic_itemCounts[dropGroups[index].DropItemID] = (int)RandomCount(dropGroups[index], Multiple, MaxNum);
+                isdropedID.Add(dropGroups[index].DropItemID);
+                allWeight = 0;
             }
-            if (allWeight == 0)
-            {
-                break;
-            }
-            int randomNum = rd.Next(0, (int)allWeight);
-            for (int i = 0; i < dropGroups.Count; i++)
-            {
-                if (isdropedID.Contains(dropGroups[i].DropItemID) || dic_weightChangeIDs[nDropID].Contains(dropGroups[i].DropItemID))
-                {
-                    randomNum -= ((int)dropGroups[i].Weight + dropGroups[i].WeightInc);
-                }
-                else
-                {
-                    randomNum -= (int)dropGroups[i].Weight;
-                }
-                if (randomNum < 0)
-                {
-                    index = i; break;
-                }
-            }
-            dic_itemCounts[dropGroups[index].DropItemID] = (int)RandomCount(dropGroups[index], Multiple, MaxNum);
-            isdropedID.Add(dropGroups[index].DropItemID);
-            allWeight = 0;
+        }
+        else
+        {
+            NgDebug.LogError(string.Format("DropGroup ²»´æÔÚ!!!!! ID=[{0}]", GroupID));
         }
 
         return dic_itemCounts;
