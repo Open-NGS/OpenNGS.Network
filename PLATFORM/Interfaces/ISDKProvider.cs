@@ -9,10 +9,15 @@ namespace OpenNGS.Platform
     public interface IModuleProvider
     {
         PLATFORM_MODULE Module { get; }
+
+        void Start();
+        void Stop();
     }
 
     public interface ISDKProvider
     {
         IModuleProvider CreateProvider(PLATFORM_MODULE module);
+
+        void Initialize();
     }
 }

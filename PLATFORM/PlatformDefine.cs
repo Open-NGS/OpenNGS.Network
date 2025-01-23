@@ -12,6 +12,8 @@ namespace OpenNGS.Platform
         PUSH = 4,
         REPORT = 5,
         SHARE = 6,
+        ACHIEVEMENT = 7,
+        UDS = 8,
         MUDULE_COUNT,
     }
 

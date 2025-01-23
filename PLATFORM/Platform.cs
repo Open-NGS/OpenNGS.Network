@@ -6,6 +6,8 @@ namespace OpenNGS.Platform
         static ISDKProvider SDKProvider;
         static IModuleProvider[] Modules = new IModuleProvider[(int)PLATFORM_MODULE.MUDULE_COUNT];
 
+        public static bool Initialized { get; set; }
+
         public static void Init(ISDKProvider provider)
         {
             SDKProvider = provider;
@@ -13,6 +15,7 @@ namespace OpenNGS.Platform
             {
                 Modules[i] = provider.CreateProvider((PLATFORM_MODULE)i);
             }
+            SDKProvider.Initialize();
         }
 
         internal static bool IsSupported(PLATFORM_MODULE module)
@@ -47,6 +50,12 @@ namespace OpenNGS.Platform
         internal static IPushProvider GetPush()
         {
             return (IPushProvider)Modules[(int)PLATFORM_MODULE.PUSH];
+
+        }
+
+        internal static IAchievementProvider GetAchievement()
+        {
+            return (IAchievementProvider)Modules[(int)PLATFORM_MODULE.ACHIEVEMENT];
 
         }
     }
