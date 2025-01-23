@@ -2,7 +2,9 @@
     "name": "OpenNGS.Platform.Steam",
     "rootNamespace": "",
     "references": [
-        "GUID:4b63a8bfa1c0be143841c224d2254a70"
+        "OpenNGS.Core",
+        "OpenNGS.Platform",
+        "com.rlabrecque.steamworks.net"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
