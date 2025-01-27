@@ -21,8 +21,9 @@ public class PS5SDKProvider : OpenNGS.Platform.ISDKProvider
         }
     }
 
-    public void Initialize()
+    public bool Initialize()
     {
         PS5SDK.Initialize();
+        return true;
     }
 }

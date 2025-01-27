@@ -11,7 +11,13 @@ public class SteamProvider : OpenNGS.Platform.ISDKProvider
 {
     public IModuleProvider CreateProvider(PLATFORM_MODULE module)
     {
-        throw new System.NotImplementedException();
+        switch (module)
+        {
+            case PLATFORM_MODULE.LOGIN: return new SteamLogin();
+            case PLATFORM_MODULE.ACHIEVEMENT: return new SteamAchievement();
+            case PLATFORM_MODULE.REMOTE_STORAGE: return new SteamRemoteStorage();
+            default: return null;
+        }
     }
 
     public void Initialize()
