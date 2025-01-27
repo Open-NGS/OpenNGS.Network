@@ -7,7 +7,7 @@ namespace OpenNGS.Platform
 {
     public class PlatformUserList : PlatformData
     {
-        public List<PlatformUser> Users { get; set; }
+        public List<PlatformUserData> Users { get; set; }
     }
     
     public class FriendData : PlatformData

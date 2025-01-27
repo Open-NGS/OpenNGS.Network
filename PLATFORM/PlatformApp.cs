@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace OpenNGS.Platform
 {
-    class PlatformTools
+    public class PlatformApp
     {
-        internal static bool IsAppInstalled(string appStr)
+        public static bool IsAppInstalled(string appStr)
         {
             return Platform.GetBase().IsAppInstalled(appStr);
+        }
+
+        public static bool IsAppSubscribed(string appId)
+        {
+            return Platform.GetBase().IsAppSubscribed(appId);
         }
     }
 }

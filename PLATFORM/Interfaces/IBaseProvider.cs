@@ -8,5 +8,6 @@ namespace OpenNGS.Platform
     {
         bool IsDebug { get; set; }
         bool IsAppInstalled(string appStr);
+        bool IsAppSubscribed(string appId);
     }
 }

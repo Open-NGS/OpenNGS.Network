@@ -18,6 +18,6 @@ namespace OpenNGS.Platform
     {
         IModuleProvider CreateProvider(PLATFORM_MODULE module);
 
-        void Initialize();
+        bool Initialize();
     }
 }

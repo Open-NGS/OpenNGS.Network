@@ -8,14 +8,17 @@ namespace OpenNGS.Platform
 
         public static bool Initialized { get; set; }
 
-        public static void Init(ISDKProvider provider)
+        public static bool Init(ISDKProvider provider)
         {
             SDKProvider = provider;
             for (int i = 0; i < (int)PLATFORM_MODULE.MUDULE_COUNT; i++)
             {
                 Modules[i] = provider.CreateProvider((PLATFORM_MODULE)i);
             }
-            SDKProvider.Initialize();
+            if (!SDKProvider.Initialize())
+                return false;
+            Initialized = true;
+            return true;
         }
 
         internal static bool IsSupported(PLATFORM_MODULE module)
@@ -50,13 +53,21 @@ namespace OpenNGS.Platform
         internal static IPushProvider GetPush()
         {
             return (IPushProvider)Modules[(int)PLATFORM_MODULE.PUSH];
-
         }
 
         internal static IAchievementProvider GetAchievement()
         {
             return (IAchievementProvider)Modules[(int)PLATFORM_MODULE.ACHIEVEMENT];
 
+        }
+        internal static IRemoteStorageProvider GetRemoteStorage()
+        {
+            return (IRemoteStorageProvider)Modules[(int)PLATFORM_MODULE.REMOTE_STORAGE];
+        }
+
+        internal static IUserProvider GetUser()
+        {
+            return (IUserProvider)Modules[(int)PLATFORM_MODULE.USER];
         }
     }
 }

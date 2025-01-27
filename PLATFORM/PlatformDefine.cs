@@ -7,13 +7,15 @@ namespace OpenNGS.Platform
     {
         BASE = 0,
         LOGIN = 1,
-        PAY = 2,
-        DIR = 3,
-        PUSH = 4,
-        REPORT = 5,
-        SHARE = 6,
-        ACHIEVEMENT = 7,
-        UDS = 8,
+        USER = 2,
+        PAY = 3,
+        DIR = 4,
+        PUSH = 5,
+        REPORT = 6,
+        SHARE = 7,
+        ACHIEVEMENT = 8,
+        UDS = 9,
+        REMOTE_STORAGE = 10,
         MUDULE_COUNT,
     }
 
