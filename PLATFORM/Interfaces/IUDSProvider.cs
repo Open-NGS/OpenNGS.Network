@@ -13,7 +13,6 @@ namespace OpenNGS.Platform
 
         void PostEvent();
         void EventToString();
-        void UnlockTrophy();
-        void UnlockTrophyProgress();
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Unity.PSN.PS5.Aysnc;
 using Unity.PSN.PS5.Sessions;
 using Unity.PSN.PS5.Users;
+using Unity.PSN.PS5.WebApi;
 using UnityEngine;
 
 #if UNITY_PS4
@@ -13,7 +14,9 @@ namespace OpenNGS.Platform.PS5
 {
     class PSUser
     {
+        public int playerId = 0;
 #if UNITY_PS5 || UNITY_PS4
+
         static PSUser()
         {
             PlatformInput.OnUserServiceEvent += OnUserServiceEvent;
@@ -25,7 +28,7 @@ namespace OpenNGS.Platform.PS5
 #endif
         {
             //User user = FindUser((int)userid);
-            Debug.Log("OnUserServiceEvent -> User state changed : " + eventtype);
+            Debug.LogFormat("[PSUser]OnUserServiceEvent -> User UserId:0x{0:X} state changed :{1}", userid, eventtype);
 
 #if UNITY_PS5
             if (eventtype == PlatformInput.UserServiceEventType.Login)
@@ -48,18 +51,93 @@ namespace OpenNGS.Platform.PS5
 
         public static void Initialize(int maxPlayer)
         {
+            Debug.LogFormat("[PSUser] Initialize({0})", maxPlayer);
+
+            Debug.LogFormat("Initial UserId:0x{0:X}  Primary UserId:0x{1:X}", UnityEngine.PS5.Utility.initialUserId, UnityEngine.PS5.Utility.primaryUserId);
+
             for (int i = 0; i < maxPlayer; i++)
             {
                 int playerId = i;
 
                 users[playerId] = new PSUser();
+                users[playerId].playerId = playerId;
             }
+        }
+        public static void CheckRegistration()
+        {
+            for (int i = 0; i < users.Length; i++)
+            {
+                if (users[i] != null)
+                {
+                    if (users[i].IsConnected == true)
+                    {
+                        if (users[i].loggedInUser.status == 1)
+                        {
+                            if (users[i].registerSequence == RegisterSequences.NotSet)
+                            {
+                                UserLoggedIn(users[i].loggedInUser.userId);
+                            }
+                            else if (users[i].registerSequence == RegisterSequences.UserAdded)
+                            {
+                                if (users[i].loggedInUser.onlineStatus == PlatformInput.OnlineStatus.SignedIn)
+                                {
+                                    SessionsManager.RegisterUserSessionEvent(users[i].loggedInUser.userId);
+                                    Debug.Log("[PSUser]SessionsManager.RegisterUserSessionEvent");
+                                    users[i].registerSequence = RegisterSequences.RegisteringUser;
+                                }
+                                else
+                                {
+                                    users[i].registerSequence = RegisterSequences.UserAddedButNoOnline;
+                                }
+                            }
+                            else if (users[i].registerSequence == RegisterSequences.RegisteringUser)
+                            {
+                                WebApiPushEvent pushEvent = SessionsManager.GetUserSessionPushEvent(users[i].loggedInUser.userId);
+
+                                // Check for registraction.
+                                if (pushEvent != null)
+                                {
+                                    users[i].registerSequence = RegisterSequences.UserRegistered;
+                                }
+                            }
+                            else if (users[i].registerSequence == RegisterSequences.UserAddedButNoOnline)
+                            {
+                                if (users[i].loggedInUser.onlineStatus == PlatformInput.OnlineStatus.SignedIn)
+                                {
+                                    SessionsManager.RegisterUserSessionEvent(users[i].loggedInUser.userId);
+                                    Debug.Log("[PSUser]SessionsManager.RegisterUserSessionEvent");
+                                    users[i].registerSequence = RegisterSequences.RegisteringUser;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (users[i].loggedInUser.status == 0)
+                        {
+                            if (users[i].registerSequence == RegisterSequences.NotSet)
+                            {
+                                UserLoggedOut(users[i].loggedInUser.userId);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public bool IsConnected
+        {
+#if UNITY_PS4 || UNITY_PS5
+            get { return PlatformInput.PadIsConnected(playerId); }
+#else
+            get { return false; }
+#endif
         }
 
         public static void UserLoggedIn(int userid)
         {
             PSUser user = FindUser((int)userid);
-
+            Debug.LogFormat("[PSUser]UserLoggedIn:UserId:0x{0:X}, User:{1}", userid, user);
             if (user != null)
             {
                 if (user.registerSequence == RegisterSequences.NotSet)
@@ -78,16 +156,24 @@ namespace OpenNGS.Platform.PS5
 
                     UserSystem.Schedule(requestOp);
 
-                    Debug.Log("User being added...");
+                    Debug.LogFormat("[PSUser]User UserId:0x{0:X} being added...", userid);
                 }
-            }
 
+                if (UnityEngine.PS5.Utility.initialUserId == userid)
+                {
+                    initialUser = user;
+                    Debug.LogFormat("[PSUser]Initial User UserId:0x{0:X}  playerId:0x{1:X} userName:{2}", initialUser.loggedInUser.userId, initialUser.playerId, initialUser.loggedInUser.userName);
+                }
+
+                if (PS5SDK.InitialUserAlwaysLoggedIn)
+                    activeUser = initialUser;
+                Debug.LogFormat("[PSUser]Active User UserId:0x{0:X}, User:{1}", PSUser.activeUser.loggedInUser.userId, PSUser.activeUser.loggedInUser.userName);
+            }
         }
 
         public static void UserLoggedOut(int userid)
         {
             PSUser user = FindUser((int)userid);
-
             if (user != null)
             {
                 if (user.registerSequence != RegisterSequences.UserLoggingOut)
@@ -108,7 +194,7 @@ namespace OpenNGS.Platform.PS5
                             {
                                 if (PS5SDK.CheckAysncRequestOK(antecedent))
                                 {
-                                    Debug.Log("User Removed");
+                                    Debug.LogFormat("[PSUser]User UserId:0x{0:X}  Removed", userid);
 
                                     registeredUser.registerSequence = RegisterSequences.NotSet;
                                 }
@@ -118,7 +204,7 @@ namespace OpenNGS.Platform.PS5
 
                     UserSystem.Schedule(requestOp);
 
-                    Debug.Log("User being removed...");
+                    Debug.LogFormat("[PSUser]User UserId:0x{0:X} being removed...", userid);
                 }
             }
         }
@@ -160,11 +246,57 @@ namespace OpenNGS.Platform.PS5
         public PlatformInput.LoggedInUser loggedInUser;
 #endif
 
+        bool hasSetupGamepad = false;
         public static PSUser activeUser;
-        public void Update()
-        {
 
+        public static PSUser initialUser;
+
+        public static void Update()
+        {
+            for (int i = 0; i < users.Length; i++)
+            {
+                if (users[i] != null)
+                {
+                    users[i].UpdateGamePad();
+                }
+            }
         }
-    }
+        public void UpdateGamePad()
+        {
+#if UNITY_PS4 || UNITY_PS5
+            if (PlatformInput.PadIsConnected(playerId))
+            {
+                if(!hasSetupGamepad)
+                    ToggleGamePad(true);
+
+
+                if (!PS5SDK.InitialUserAlwaysLoggedIn && activeUser == null)
+                {
+                    activeUser = this;
+                    Debug.LogFormat("[PSUser]Update() activeUser UserId:0x{0:X}, playerId={1}", loggedInUser.userId, activeUser.playerId);
+                }
+            }
+            else if (hasSetupGamepad)
+                ToggleGamePad(false);
 #endif
+        }
+        void ToggleGamePad(bool active)
+        {
+            Debug.LogFormat("[PSUser]ToggleGamePad({1}) activeUser UserId:0x{0:X}, playerId={1} active={2}", loggedInUser.userId, playerId, active);
+            if (active)
+            {
+                // Set 3D Text to whoever's using the pad
+#if UNITY_PS4 || UNITY_PS5
+                loggedInUser = PlatformInput.RefreshUsersDetails(playerId);
+#endif
+                hasSetupGamepad = true;
+            }
+            else
+            {
+                hasSetupGamepad = false;
+            }
+        }
+
+#endif
+    }
 }

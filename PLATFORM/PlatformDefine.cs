@@ -5,7 +5,7 @@ namespace OpenNGS.Platform
 {
     public enum PLATFORM_MODULE
     {
-        BASE = 0,
+        APP = 0,
         LOGIN = 1,
         USER = 2,
         PAY = 3,

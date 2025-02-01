@@ -8,6 +8,8 @@ public class PlatformUser
 {
     public static long GetUserID()
     {
-        return Platform.GetUser().GetUserID();
+        var m = Platform.GetUser();
+        if (m == null) return -1;
+        return m.GetUserID();
     }
 }

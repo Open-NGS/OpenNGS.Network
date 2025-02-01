@@ -14,5 +14,8 @@ namespace OpenNGS.Platform
         bool FileDelete(string fileName);
 
         string GetFileNameAndSize(int i, out object _);
+        bool FileWrite(string saveFileName, byte[] fileData, int length);
+        int GetFileSize(string fileName);
+        int FileRead(string fileName, byte[] fileData, int fileSize);
     }
 }

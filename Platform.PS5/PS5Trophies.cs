@@ -1,12 +1,9 @@
 using OpenNGS.Platform;
 using OpenNGS.Platform.PS5;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.PSN.PS5.Aysnc;
 using Unity.PSN.PS5.Trophies;
 using Unity.PSN.PS5.UDS;
 using UnityEngine;
-using static PlasticPipe.Server.MonitorStats;
 
 public class PS5Trophies : IAchievementProvider
 {
@@ -14,6 +11,7 @@ public class PS5Trophies : IAchievementProvider
 
     public void Start()
     {
+        Debug.Log("[PS5Trophies]Start");
         if (!TrophySystem.IsInitialized)
         {
             TrophySystem.StartSystemRequest request = new TrophySystem.StartSystemRequest();
@@ -21,15 +19,15 @@ public class PS5Trophies : IAchievementProvider
             {
                 if (PS5SDK.CheckAysncRequestOK(antecedent))
                 {
-                    Debug.Log("TrophySystem Started");
+                    Debug.Log("[PS5Trophies]TrophySystem Started");
                 }
             });
-
             TrophySystem.Schedule(requestOp);
         }
     }
     public void Stop()
     {
+        Debug.Log("[PS5Trophies]Stop");
         if (TrophySystem.IsInitialized)
         {
             TrophySystem.StopSystemRequest request = new TrophySystem.StopSystemRequest();
@@ -38,7 +36,7 @@ public class PS5Trophies : IAchievementProvider
             {
                 if (PS5SDK.CheckAysncRequestOK(antecedent))
                 {
-                    Debug.Log("TrophySystem Stopped");
+                    Debug.Log("[PS5Trophies]TrophySystem Stopped");
                 }
             });
 
@@ -77,9 +75,20 @@ public class PS5Trophies : IAchievementProvider
     public void Unlock(int id)
     {
         UniversalDataSystem.UnlockTrophyRequest request = new UniversalDataSystem.UnlockTrophyRequest();
+        if(PSUser.activeUser!=null)
+        {
+            request.UserId = PSUser.activeUser.loggedInUser.userId;
+        }
+        else
+        {
+            request.UserId = PSUser.initialUser.loggedInUser.userId;
+        }
 
         request.TrophyId = id;
         request.UserId = PSUser.activeUser.loggedInUser.userId;
+#if DEBUG
+        Debug.LogFormat("PlatformAchievement(PS5).Unlock:{0} for UserID:{1}", request.TrophyId, request.UserId);
+#endif
 
         var getTrophyOp = new AsyncRequest<UniversalDataSystem.UnlockTrophyRequest>(request).ContinueWith((antecedent) =>
         {
@@ -90,8 +99,7 @@ public class PS5Trophies : IAchievementProvider
         });
 
         UniversalDataSystem.Schedule(getTrophyOp);
-
-        Debug.Log("Trophy Unlocking");
+        Debug.Log("[PS5Trophies]Trophy Unlocking");
     }
 
     public void UnlockProgress(int id, long value)
@@ -113,7 +121,7 @@ public class PS5Trophies : IAchievementProvider
 
         UniversalDataSystem.Schedule(getTrophyOp);
 
-        Debug.Log("Progress Trophy Updating");
+        Debug.Log("[PS5Trophies]Progress Trophy Updating");
     }
 
     enum SampleTrophies
@@ -181,15 +189,22 @@ public class PS5Trophies : IAchievementProvider
 
     public void Unlock(string key)
     {
-        throw new System.NotSupportedException();
+#if DEBUG
+        Debug.LogFormat("PlatformAchievement(PS5).Unlock:{0}", key);
+#endif
     }
 
     public void UnlockProgress(string key, long value)
     {
-        throw new System.NotSupportedException();
+        
     }
 
     public void ResetAllAchievements()
+    {
+        
+    }
+
+    public void Update()
     {
         
     }

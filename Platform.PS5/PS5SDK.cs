@@ -10,8 +10,7 @@ namespace OpenNGS.Platform.PS5
     {
 
         static InitResult initResult;
-
-
+        internal static bool InitialUserAlwaysLoggedIn;
 
         public static bool CheckAysncRequestOK<R>(AsyncRequest<R> asyncRequest) where R : Request
         {
@@ -68,29 +67,30 @@ namespace OpenNGS.Platform.PS5
         {
             try
             {
+                Debug.Log("[PS5SDK]Initialize");
                 initResult = Main.Initialize();
 
                 // RequestCallback.OnRequestCompletion += OnCompleteion;
 
                 if (initResult.Initialized == true)
                 {
-                    Debug.Log("PSN Initialized ");
-                    Debug.Log("Plugin SDK Version : " + initResult.SceSDKVersion.ToString());
+                    Debug.Log("[PS5SDK]PSN Initialized ");
+                    Debug.Log("[PS5SDK]Plugin SDK Version : " + initResult.SceSDKVersion.ToString());
                 }
                 else
                 {
-                    Debug.Log("PSN not initialized ");
+                    Debug.Log("[PS5SDK]PSN not initialized ");
                 }
             }
             catch (PSNException e)
             {
-                Debug.LogError("Exception During Initialization : " + e.ExtendedMessage);
+                Debug.LogError("[PS5SDK]Exception During Initialization : " + e.ExtendedMessage);
             }
 #if UNITY_EDITOR
             catch (DllNotFoundException e)
             {
-                Debug.LogError("Missing DLL Expection : " + e.Message);
-                Debug.LogError("The sample APP will not run in the editor.");
+                Debug.LogError("[PS5SDK]Missing DLL Expection : " + e.Message);
+                Debug.LogError("[PS5SDK]The PlayStation SDK will not run in the editor.");
             }
 #endif
 
@@ -111,6 +111,28 @@ namespace OpenNGS.Platform.PS5
             }
 
             PSUser.Initialize(4);
+        }
+
+        internal static void Update()
+        {
+            PSUser.CheckRegistration();
+            try
+            {
+                Main.Update();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[PS5SDK]Main.Update Exception : " + e);
+            }
+            PSUser.Update();
+            //Unity.PSN.PS5.Sessions.TestJSONParsing.TestJSONNotifciations();
+            // Unity.PSN.PS5.Matchmaking.TestJSONParsing.TestJSONNotifciations();
+        }
+
+        internal static void Terminate()
+        {
+            Main.ShutDown();
+            Debug.Log("[PS5SDK]Terminated");
         }
     }
 }

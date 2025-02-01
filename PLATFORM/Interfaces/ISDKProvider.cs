@@ -12,6 +12,7 @@ namespace OpenNGS.Platform
 
         void Start();
         void Stop();
+        void Update();
     }
 
     public interface ISDKProvider
@@ -19,5 +20,7 @@ namespace OpenNGS.Platform
         IModuleProvider CreateProvider(PLATFORM_MODULE module);
 
         bool Initialize();
+        void Terminate();
+        void Update();
     }
 }

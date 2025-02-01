@@ -10,12 +10,14 @@ namespace OpenNGS.Platform
     {
         public static bool IsAppInstalled(string appStr)
         {
-            return Platform.GetBase().IsAppInstalled(appStr);
+            return Platform.GetApp().IsAppInstalled(appStr);
         }
 
         public static bool IsAppSubscribed(string appId)
         {
-            return Platform.GetBase().IsAppSubscribed(appId);
+            var m = Platform.GetApp();
+            if (m == null) return false;
+            return Platform.GetApp().IsAppSubscribed(appId);
         }
     }
 }

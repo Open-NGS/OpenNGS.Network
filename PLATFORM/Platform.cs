@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace OpenNGS.Platform
 {
     public class Platform
@@ -18,6 +20,8 @@ namespace OpenNGS.Platform
             if (!SDKProvider.Initialize())
                 return false;
             Initialized = true;
+
+            Start();
             return true;
         }
 
@@ -26,9 +30,9 @@ namespace OpenNGS.Platform
             return Modules[(int)module] != null;
         }
 
-        internal static IBaseProvider GetBase()
+        internal static IAppProvider GetApp()
         {
-            return (IBaseProvider)Modules[(int)PLATFORM_MODULE.BASE];
+            return (IAppProvider)Modules[(int)PLATFORM_MODULE.APP];
         }
 
         internal static ILoginProvider GetLogin()
@@ -68,6 +72,28 @@ namespace OpenNGS.Platform
         internal static IUserProvider GetUser()
         {
             return (IUserProvider)Modules[(int)PLATFORM_MODULE.USER];
+        }
+
+        public static void Start()
+        {
+            for (int i = 0; i < (int)PLATFORM_MODULE.MUDULE_COUNT; i++)
+            {
+                Modules[i]?.Start();
+            }
+        }
+
+        public static void Update()
+        {
+            SDKProvider.Update();
+            for (int i = 0; i < (int)PLATFORM_MODULE.MUDULE_COUNT; i++)
+            {
+                Modules[i]?.Update();
+            }
+        }
+
+        public static void Terminate()
+        {
+            SDKProvider.Terminate();
         }
     }
 }

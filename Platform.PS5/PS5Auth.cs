@@ -10,14 +10,18 @@ public class PS5Auth : IModuleProvider
 {
     public PLATFORM_MODULE Module => PLATFORM_MODULE.LOGIN;
 
+    public void Start()
+    {
+
+    }
     public void Stop()
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    void IModuleProvider.Start()
+
+    public void Update()
     {
-        throw new System.NotImplementedException();
     }
 
     public void GetAuthorizationCode()
