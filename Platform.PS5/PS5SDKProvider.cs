@@ -25,6 +25,8 @@ public class PS5SDKProvider : OpenNGS.Platform.ISDKProvider
                 return new PS5UDS();
             case PLATFORM_MODULE.ACHIEVEMENT:
                 return new PS5Trophies();
+            case PLATFORM_MODULE.ACTIVITY:
+                return new PS5Activity();
             default:
                 return null;
         }

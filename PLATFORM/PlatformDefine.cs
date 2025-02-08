@@ -13,9 +13,10 @@ namespace OpenNGS.Platform
         PUSH = 5,
         REPORT = 6,
         SHARE = 7,
-        ACHIEVEMENT = 8,
-        UDS = 9,
-        REMOTE_STORAGE = 10,
+        UDS = 8,
+        REMOTE_STORAGE = 9,
+        ACHIEVEMENT = 10,
+        ACTIVITY = 11,
         MUDULE_COUNT,
     }
 

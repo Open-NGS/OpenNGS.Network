@@ -52,7 +52,7 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
 
     private void Start()
     {
-        Debug.Log("OpenNGSPlatform::Start:");
+        Debug.Log("OpenNGSPlatform::ActivityStart:");
 #if !SUPERSDK
         //MSDKLogin.LoginRetEvent += OnMSDKLoginRet;
         //MSDKLogin.LoginBaseRetEvent += OnMSDKBaseRet;

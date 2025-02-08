@@ -59,6 +59,13 @@ namespace OpenNGS.Platform
             return (IPushProvider)Modules[(int)PLATFORM_MODULE.PUSH];
         }
 
+        internal static IActivityProvider GetActivity()
+        {
+            return (IActivityProvider)Modules[(int)PLATFORM_MODULE.ACTIVITY];
+
+        }
+
+        
         internal static IAchievementProvider GetAchievement()
         {
             return (IAchievementProvider)Modules[(int)PLATFORM_MODULE.ACHIEVEMENT];

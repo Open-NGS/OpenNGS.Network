@@ -26,7 +26,7 @@ public class PS5UDS : IUDSProvider
 
     public void Start()
     {
-        Debug.Log("[PS5UDS]Start");
+        Debug.Log("[PS5UDS]ActivityStart");
         if (!UniversalDataSystem.IsInitialized)
         {
             UniversalDataSystem.StartSystemRequest request = new UniversalDataSystem.StartSystemRequest();
@@ -63,5 +63,47 @@ public class PS5UDS : IUDSProvider
     public void Update()
     {
         
+    }
+
+    private void PostEvent(UniversalDataSystem.UDSEvent udsEvent)
+    {
+        UniversalDataSystem.PostEventRequest request = new UniversalDataSystem.PostEventRequest();
+
+        request.UserId = PSUser.activeUser.loggedInUser.userId;
+        request.CalculateEstimatedSize = true;
+        request.EventData = udsEvent;
+
+        var requestOp = new AsyncRequest<UniversalDataSystem.PostEventRequest>(request).ContinueWith((antecedent) =>
+        {
+            if (PS5SDK.CheckAysncRequestOK(antecedent))
+            {
+                Debug.Log("Event sent - Estimated size = " + antecedent.Request.EstimatedSize);
+            }
+            else
+            {
+                Debug.LogError("Event send error");
+            }
+        });
+
+        UniversalDataSystem.Schedule(requestOp);
+
+        UniversalDataSystem.EventDebugStringRequest stringRequest = new UniversalDataSystem.EventDebugStringRequest();
+
+        stringRequest.UserId = PSUser.activeUser.loggedInUser.userId;
+        stringRequest.EventData = udsEvent;
+
+        var secondRequestOp = new AsyncRequest<UniversalDataSystem.EventDebugStringRequest>(stringRequest).ContinueWith((antecedent) =>
+        {
+            if (PS5SDK.CheckAysncRequestOK(antecedent))
+            {
+                Debug.Log(antecedent.Request.Output);
+            }
+            else
+            {
+                Debug.LogError("Event string error");
+            }
+        });
+
+        UniversalDataSystem.Schedule(secondRequestOp);
     }
 }
