@@ -35,7 +35,7 @@ namespace OpenNGS.Platform.EEGames
         private EEGamesLoginProvider m_loginProvider = null;
         public IModuleProvider CreateProvider(PLATFORM_MODULE module)
         {
-            if(module == PLATFORM_MODULE.LOGIN)
+            if (module == PLATFORM_MODULE.LOGIN)
             {
                 TextAsset textAsset = Resources.Load<TextAsset>("EEGames");
 
@@ -84,11 +84,11 @@ namespace OpenNGS.Platform.EEGames
                 m_loginProvider.InitLoginProvider(appid, secret);
                 return m_loginProvider;
             }
-            else if( module == PLATFORM_MODULE.REPORT)
+            else if (module == PLATFORM_MODULE.REPORT)
             {
                 return new EEGamesReportProvider();
             }
-            else if( module == PLATFORM_MODULE.REPORT)
+            else if (module == PLATFORM_MODULE.REPORT)
             {
                 return new EEGamesReportProvider();
             }
@@ -110,6 +110,7 @@ namespace OpenNGS.Platform.EEGames
         public PLATFORM_MODULE Module => PLATFORM_MODULE.LOGIN;
         private EEGamesCallBack m_callBack;
         private PlatformLoginRet m_LoginResult = null;
+        private InitializationOptions m_initOption;
         public EEGamesLoginProvider()
         {
             m_LoginResult = new PlatformLoginRet();
@@ -118,13 +119,17 @@ namespace OpenNGS.Platform.EEGames
         }
         public void InitLoginProvider(string strAppId, string AppSecret)
         {
-            OpenNGSPlatformServices.Initialize(new InitializationOptions()
-            {
-                //AppId = "iboN4V3anKRnsKwgudonW0ESxGwJLNUz2rhN",
-                //AppSecret = "YDwqSQ5Be0oGIpQJ6sPBlHLHveRTfC5p"
-                AppId = strAppId,
-                AppSecret = AppSecret
-            }, new SDKLogger());
+            m_initOption = new InitializationOptions();
+            m_initOption.AppId = strAppId;
+            m_initOption.AppSecret = AppSecret;
+            //OpenNGSPlatformServices.Initialize(new InitializationOptions()
+            //{
+            //    //AppId = "iboN4V3anKRnsKwgudonW0ESxGwJLNUz2rhN",
+            //    //AppSecret = "YDwqSQ5Be0oGIpQJ6sPBlHLHveRTfC5p"
+            //    AppId = strAppId,
+            //    AppSecret = AppSecret
+            //}, new SDKLogger());
+            OpenNGSPlatformServices.Initialize(m_initOption, new SDKLogger());
         }
         public void AutoLogin()
         {
@@ -136,6 +141,7 @@ namespace OpenNGS.Platform.EEGames
                     m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_AUTOLOGIN;
                     m_LoginResult.Token = AuthcationService.Instance.Token;
                     m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                    m_LoginResult.UserName = AuthcationService.Instance.User.Nickname;
                     _callBackLogin(m_LoginResult);
                 }
                 else
@@ -166,10 +172,10 @@ namespace OpenNGS.Platform.EEGames
         public void Login(string channel, string permissions = "", string subChannel = "", string extraJson = "")
         {
             EEGamesLoginData _loginData = JsonConvert.DeserializeObject<EEGamesLoginData>(extraJson);
-            if(string.IsNullOrEmpty( _loginData.VerifyCode) == true)
+            if (string.IsNullOrEmpty(_loginData.VerifyCode) == true)
             {
                 // ÇëÇóÑéÖ¤Âë
-                if(_loginData.RequestVerifyCode == true)
+                if (_loginData.RequestVerifyCode == true)
                 {
                     if (_loginData.VerifyTyp == VerificationType.Phone)
                     {
@@ -202,9 +208,12 @@ namespace OpenNGS.Platform.EEGames
 
                     AuthcationService.Instance.LoginResultCallback += (result) =>
                     {
-                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
-                        m_LoginResult.RetCode = result;
-                        _callBackLogin(m_LoginResult);
+                        if (result != (int)SDKResultCode.RESULT_OK)
+                        {
+                            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+                            m_LoginResult.RetCode = result;
+                            _callBackLogin(m_LoginResult);
+                        }
                     };
 
                     AuthcationService.Instance.LoginByUsernamePassword(_loginData.UserName, _loginData.Password);
@@ -212,7 +221,7 @@ namespace OpenNGS.Platform.EEGames
             }
             else
             {
-                if ( _loginData.VerifyTyp == VerificationType.Phone || _loginData.VerifyTyp == VerificationType.Email)
+                if (_loginData.VerifyTyp == VerificationType.Phone || _loginData.VerifyTyp == VerificationType.Email)
                 {
                     AuthcationService.Instance.LoginCallback += (result) =>
                     {
@@ -222,16 +231,23 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.Token = AuthcationService.Instance.Token;
                         m_LoginResult.UserName = result.Nickname;
                         m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                        if (AuthcationService.Instance.User.NewUser == true)
+                        {
+                            m_LoginResult.FirstLogin = 1;
+                        }
                         _callBackLogin(m_LoginResult);
                     };
 
                     AuthcationService.Instance.LoginResultCallback += (result) =>
                     {
-                        SDKLog.Info($"[LoginCallback] µÇÂ¼´íÎó code:[{result}]");
+                        if (result != 0)
+                        {
+                            SDKLog.Info($"[LoginCallback] µÇÂ¼´íÎó code:[{result}]");
 
-                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
-                        m_LoginResult.RetCode = result;
-                        _callBackLogin(m_LoginResult);
+                            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+                            m_LoginResult.RetCode = result;
+                            _callBackLogin(m_LoginResult);
+                        }
                     };
 
                     AuthcationService.Instance.LoginOrRegisterByVerificationCode(
@@ -244,6 +260,12 @@ namespace OpenNGS.Platform.EEGames
 
         public void Logout(string channel = "")
         {
+            AuthcationService.Instance.LogoutCallback += (result) =>
+            {
+                m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGOUT;
+                m_LoginResult.RetCode = result;
+                _callBackLogin(m_LoginResult);
+            };
             AuthcationService.Instance.Logout();
         }
 
