@@ -3,7 +3,7 @@ using System;
 
 namespace OpenNGS.Platform
 {
-    public class PlatformUser : PlatformData
+    public class PlatformUserData : PlatformData
     {
         public string ID { get; set; }
         
@@ -17,10 +17,10 @@ namespace OpenNGS.Platform
     }
     public interface IUsersModule : IPlatfromModule
     {
-        public NRequest<PlatformUser> GetUserTicket();
+        public NRequest<PlatformUserData> GetUserTicket();
 
-        public NRequest<PlatformUser> GetUserInfo(ulong id);
+        public NRequest<PlatformUserData> GetUserInfo(ulong id);
 
-        public NRequest<PlatformUser> GetLoggedInUser();
+        public NRequest<PlatformUserData> GetLoggedInUser();
     }
 }

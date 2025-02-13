@@ -5,13 +5,18 @@ namespace OpenNGS.Platform
 {
     public enum PLATFORM_MODULE
     {
-        BASE = 0,
+        APP = 0,
         LOGIN = 1,
-        PAY = 2,
-        DIR = 3,
-        PUSH = 4,
-        REPORT = 5,
-        SHARE = 6,
+        USER = 2,
+        PAY = 3,
+        DIR = 4,
+        PUSH = 5,
+        REPORT = 6,
+        SHARE = 7,
+        UDS = 8,
+        REMOTE_STORAGE = 9,
+        ACHIEVEMENT = 10,
+        ACTIVITY = 11,
         MUDULE_COUNT,
     }
 

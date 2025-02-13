@@ -1,12 +1,14 @@
 {
-    "name": "OpenNGS.Platform.Steam",
+    "name": "OpenNGS.Platform.PS5",
     "rootNamespace": "",
     "references": [
-        "OpenNGS.Core",
         "OpenNGS.Platform",
-        "com.rlabrecque.steamworks.net"
+        "Unity.PSN.PS5.Runtime"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor",
+        "PS5"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
