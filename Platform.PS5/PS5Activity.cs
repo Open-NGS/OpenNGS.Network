@@ -1,6 +1,7 @@
 using OpenNGS.Platform;
 using OpenNGS.Platform.PS5;
 using System;
+#if UNITY_PS5
 using Unity.PSN.PS5;
 using Unity.PSN.PS5.Aysnc;
 using Unity.PSN.PS5.Trophies;
@@ -78,3 +79,4 @@ public class PS5Activity : IActivityProvider
         
     }
 }
+#endif

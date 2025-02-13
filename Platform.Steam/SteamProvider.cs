@@ -20,12 +20,22 @@ public class SteamProvider : OpenNGS.Platform.ISDKProvider
         }
     }
 
-    public void Initialize()
+    public bool Initialize()
     {
         if (!SteamAPI.Init())
         {
-            return;
+            return false;
         }
+        return true;
+    }
+
+    public void Terminate()
+    {
+       
+    }
+
+    public void Update()
+    {
     }
 }
 #endif

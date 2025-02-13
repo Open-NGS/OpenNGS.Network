@@ -1,4 +1,5 @@
-﻿using Unity.PSN.PS5.Aysnc;
+﻿#if UNITY_PS5
+using Unity.PSN.PS5.Aysnc;
 using Unity.PSN.PS5.Sessions;
 using Unity.PSN.PS5.Users;
 using Unity.PSN.PS5.WebApi;
@@ -300,3 +301,4 @@ namespace OpenNGS.Platform.PS5
 #endif
     }
 }
+#endif

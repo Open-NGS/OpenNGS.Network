@@ -1,5 +1,6 @@
 using OpenNGS.Platform;
 using OpenNGS.Platform.PS5;
+#if UNITY_PS5
 using Unity.PSN.PS5.Aysnc;
 using Unity.PSN.PS5.UDS;
 using UnityEngine;
@@ -107,3 +108,4 @@ public class PS5UDS : IUDSProvider
         UniversalDataSystem.Schedule(secondRequestOp);
     }
 }
+#endif
