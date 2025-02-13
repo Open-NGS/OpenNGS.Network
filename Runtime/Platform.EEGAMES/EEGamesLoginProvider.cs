@@ -94,6 +94,26 @@ namespace OpenNGS.Platform.EEGames
             }
             return null;
         }
+
+        IModuleProvider ISDKProvider.CreateProvider(PLATFORM_MODULE module)
+        {
+            return null;
+        }
+
+        bool ISDKProvider.Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        void ISDKProvider.Terminate()
+        {
+            throw new NotImplementedException();
+        }
+
+        void ISDKProvider.Update()
+        {
+            throw new NotImplementedException();
+        }
     }
     public class EEGamesCallBack : IThirdpartyCallBack
     {
@@ -272,6 +292,21 @@ namespace OpenNGS.Platform.EEGames
         public void SwitchUser(bool useLaunchUser)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Stop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 
