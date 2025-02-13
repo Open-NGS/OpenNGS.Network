@@ -2,6 +2,7 @@ using OpenNGS.Platform;
 using OpenNGS.Platform.PS5;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_PS5
 using Unity.PSN.PS5.Auth;
 using Unity.PSN.PS5.Aysnc;
 using UnityEngine;
@@ -53,3 +54,4 @@ public class PS5Auth : IModuleProvider
     }
 
 }
+#endif

@@ -48,17 +48,14 @@ public class SteamAchievement : IAchievementProvider
 
     public void UnlockProgress(string key, long value)
     {
-        throw new System.NotSupportedException();
     }
 
     public void Start()
     {
-        throw new System.NotImplementedException();
     }
 
     public void Stop()
     {
-        throw new System.NotImplementedException();
     }
 
     public void ResetAllAchievements()
@@ -78,6 +75,11 @@ public class SteamAchievement : IAchievementProvider
 
         bool storeResult = SteamUserStats.StoreStats();
         Debug.Log("清除所有Steam成就");
+    }
+
+    public void Update()
+    {
+        throw new System.NotImplementedException();
     }
 }
 

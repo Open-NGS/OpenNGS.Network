@@ -2,7 +2,7 @@ using OpenNGS.Platform;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+#if UNITY_PS5
 namespace OpenNGS.Platform.PS5
 {
 
@@ -35,3 +35,4 @@ namespace OpenNGS.Platform.PS5
         }
     }
 }
+#endif

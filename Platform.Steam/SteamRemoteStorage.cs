@@ -14,22 +14,38 @@ public class SteamRemoteStorage : IRemoteStorageProvider
 
     public bool FileDelete(string fileName)
     {
-        throw new System.NotImplementedException();
+        return false;
+    }
+
+    public int FileRead(string fileName, byte[] fileData, int fileSize)
+    {
+        return 0;
+    }
+
+    public bool FileWrite(string saveFileName, byte[] fileData, int length)
+    {
+        return false;
     }
 
     public int GetFileCount()
     {
-        throw new System.NotImplementedException();
+        return 0;
     }
 
-    public string GetFileNameAndSize(int i, out object _)
+    public string GetFileNameAndSize(int i, out object _obj)
     {
-        throw new System.NotImplementedException();
+        _obj = null;
+        return string.Empty;
+    }
+
+    public int GetFileSize(string fileName)
+    {
+        return 0;
     }
 
     public bool IsEnabledForApp()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     public void Start()
@@ -39,7 +55,10 @@ public class SteamRemoteStorage : IRemoteStorageProvider
 
     public void Stop()
     {
-        throw new System.NotImplementedException();
+    }
+
+    public void Update()
+    {
     }
 }
 

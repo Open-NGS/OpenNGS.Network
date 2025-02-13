@@ -3,7 +3,7 @@ using OpenNGS.Platform.PS5;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+#if UNITY_PS5
 public class PS5SDKProvider : OpenNGS.Platform.ISDKProvider
 {
 
@@ -49,3 +49,4 @@ public class PS5SDKProvider : OpenNGS.Platform.ISDKProvider
     }
 
 }
+#endif
