@@ -94,6 +94,19 @@ namespace OpenNGS.Platform.EEGames
             }
             return null;
         }
+
+        public bool Initialize()
+        {
+            return true;
+        }
+
+        public void Terminate()
+        {
+        }
+
+        public void Update()
+        {
+        }
     }
     public class EEGamesCallBack : IThirdpartyCallBack
     {
@@ -108,6 +121,9 @@ namespace OpenNGS.Platform.EEGames
     public class EEGamesLoginProvider : ILoginProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.LOGIN;
+
+        PLATFORM_MODULE IModuleProvider.Module => throw new NotImplementedException();
+
         private EEGamesCallBack m_callBack;
         private PlatformLoginRet m_LoginResult = null;
         private InitializationOptions m_initOption;
@@ -271,7 +287,26 @@ namespace OpenNGS.Platform.EEGames
 
         public void SwitchUser(bool useLaunchUser)
         {
-            throw new System.NotImplementedException();
+        }
+
+        void ILoginProvider.AutoLogin()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IModuleProvider.Start()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IModuleProvider.Stop()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IModuleProvider.Update()
+        {
+            throw new NotImplementedException();
         }
     }
 
