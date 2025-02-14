@@ -291,22 +291,22 @@ namespace OpenNGS.Platform.EEGames
 
         void ILoginProvider.AutoLogin()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void IModuleProvider.Start()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void IModuleProvider.Stop()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void IModuleProvider.Update()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 
