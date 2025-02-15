@@ -95,24 +95,17 @@ namespace OpenNGS.Platform.EEGames
             return null;
         }
 
-        IModuleProvider ISDKProvider.CreateProvider(PLATFORM_MODULE module)
+        public bool Initialize()
         {
-            return null;
+            return true;
         }
 
-        bool ISDKProvider.Initialize()
+        public void Terminate()
         {
-            throw new NotImplementedException();
         }
 
-        void ISDKProvider.Terminate()
+        public void Update()
         {
-            throw new NotImplementedException();
-        }
-
-        void ISDKProvider.Update()
-        {
-            throw new NotImplementedException();
         }
     }
     public class EEGamesCallBack : IThirdpartyCallBack
@@ -128,6 +121,9 @@ namespace OpenNGS.Platform.EEGames
     public class EEGamesLoginProvider : ILoginProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.LOGIN;
+
+        PLATFORM_MODULE IModuleProvider.Module => throw new NotImplementedException();
+
         private EEGamesCallBack m_callBack;
         private PlatformLoginRet m_LoginResult = null;
         private InitializationOptions m_initOption;
@@ -291,22 +287,26 @@ namespace OpenNGS.Platform.EEGames
 
         public void SwitchUser(bool useLaunchUser)
         {
-            throw new System.NotImplementedException();
         }
 
-        public void Start()
+        void ILoginProvider.AutoLogin()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        public void Stop()
+        void IModuleProvider.Start()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        public void Update()
+        void IModuleProvider.Stop()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+        }
+
+        void IModuleProvider.Update()
+        {
+            //throw new NotImplementedException();
         }
     }
 
