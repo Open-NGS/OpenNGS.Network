@@ -1,4 +1,17 @@
-﻿{
-	"name": "OpenNGS.Platform",
-	"references": ["GCloudSDK"]
+{
+    "name": "OpenNGS.Platform",
+    "rootNamespace": "",
+    "references": [
+        "GCloudSDK",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
