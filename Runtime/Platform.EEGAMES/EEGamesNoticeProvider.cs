@@ -19,14 +19,7 @@ public class EEGamesNoticeProvider : INoticeProvider
 
         NoticeService.Instance.PlayerNoticeErrorCallback += (result) =>
         {
-            if( result == 0)
-            {
-
-            }
-            else
-            {
-                int a = 0;
-            }
+            _callBackNotices(m_NoticeRet);
         };
 
         NoticeService.Instance.PlayerNoticeListCallback += (result) =>
