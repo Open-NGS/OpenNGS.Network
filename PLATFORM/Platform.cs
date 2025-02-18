@@ -1,4 +1,7 @@
-using System.Runtime.CompilerServices;
+using OpenNGS.SDK.Core;
+using OpenNGS.SDK.Core.Initiallization;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace OpenNGS.Platform
 {
@@ -11,8 +14,9 @@ namespace OpenNGS.Platform
 
         public static bool Initialized { get; set; }
 
-        public static bool Init(ISDKProvider provider)
+        public static bool Init(ISDKProvider provider, OpenNGS.SDK.Log.ILogger logger)
         {
+            InitOptions(logger);
             SDKProvider = provider;
             for (int i = 0; i < (int)PLATFORM_MODULE.MUDULE_COUNT; i++)
             {
@@ -25,7 +29,64 @@ namespace OpenNGS.Platform
             Start();
             return true;
         }
+        private static void InitOptions(OpenNGS.SDK.Log.ILogger logger)
+        {
+            PlatformSettingsManager.Initialize();
+            InitializationOptions options = new InitializationOptions();
+            string notice = PlatformSettingsManager.GetPlatformNoticeUrl();
+            string avator = PlatformSettingsManager.GetPlatformAvatarUrl();
+            string auth = PlatformSettingsManager.GetPlatformAuthUrl();
+            string report = PlatformSettingsManager.GetPlatformReportUrl();
+            options.UrlNotice = notice;
+            options.UrlAvator = avator;
+            options.UrlAuth = auth;
+            options.UrlReport = report;
 
+            TextAsset textAsset = Resources.Load<TextAsset>("EEGames");
+            string appid = "";
+            string secret = "";
+            if (textAsset != null)
+            {
+                // 将文本内容按行分割
+                string[] lines = textAsset.text.Split('\n');
+
+                // 创建一个字典来存储键值对
+                Dictionary<string, string> configDict = new Dictionary<string, string>();
+
+                foreach (string line in lines)
+                {
+                    // 按等号分割每行
+                    string[] parts = line.Split('=');
+                    if (parts.Length == 2)
+                    {
+                        // 去除空白字符并添加到字典中
+                        configDict[parts[0].Trim()] = parts[1].Trim();
+                    }
+                }
+
+                // 从字典中获取appid和secret
+                if (configDict.ContainsKey("appid"))
+                {
+                    appid = configDict["appid"];
+                }
+
+                if (configDict.ContainsKey("secret"))
+                {
+                    secret = configDict["secret"];
+                }
+
+                // 打印读取到的值
+                Debug.Log("AppID: " + appid);
+                Debug.Log("Secret: " + secret);
+            }
+            else
+            {
+                Debug.LogError("Config file not found!");
+            }
+            options.AppId = appid;
+            options.AppSecret = secret;
+            OpenNGSPlatformServices.Initialize(options, logger);
+        }
         internal static bool IsSupported(PLATFORM_MODULE module)
         {
             return Modules[(int)module] != null;
