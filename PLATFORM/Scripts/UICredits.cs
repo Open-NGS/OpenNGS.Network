@@ -2,12 +2,14 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class UICredits : MonoBehaviour
 {
+    public TMP_FontAsset font;
     public GameObject allContent;
     public GameObject preb_RootLayout;
     public GameObject preb_ElementLayout;
@@ -55,7 +57,7 @@ public class UICredits : MonoBehaviour
                 UICreditsElementText creditsElement = obj.GetComponent<UICreditsElementText>();
                 if (creditsElement != null)
                 {
-                    creditsElement.SetText(element.Text);
+                    creditsElement.SetText(element.Text,font);
                 }
             }
             else if (element.Type == "Image")//ͼƬ
@@ -104,7 +106,7 @@ public class UICredits : MonoBehaviour
                     UICreditsElement creditsElement = obj.GetComponent<UICreditsElement>();
                     if (creditsElement != null)
                     {
-                        creditsElement.SetTitle(element.Title);
+                        creditsElement.SetTitle(element.Title,font);
                         m_curContent = creditsElement.content;
                     }
                     foreach (OpenNGS.Credits.Element subElement in element.Content)

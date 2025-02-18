@@ -56,6 +56,11 @@ namespace OpenNGS.Platform
                         currentConfig.EEGamesReportUrl
                     );
 
+                    currentConfig.EEGamesNoticeUrl = EditorGUILayout.TextField(
+                        "EEGamesNoticeURL",
+                        currentConfig.EEGamesNoticeUrl
+                    );
+
                     settings.SetCurrentConfig(currentConfig);
                     EditorGUILayout.EndVertical();
 

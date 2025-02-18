@@ -11,6 +11,7 @@ namespace OpenNGS.Platform
         public string EEGamesAuthUrl;
         public string EEGamesAvatarUrl;
         public string EEGamesReportUrl;
+        public string EEGamesNoticeUrl;
     }
     // PlatformEnvironment.cs
     public enum PlatformEnvironment
