@@ -86,7 +86,12 @@ namespace OpenNGS.Platform.EEGames
             }
             else if (module == PLATFORM_MODULE.REPORT)
             {
-                return new EEGamesReportProvider();
+                InitializationOptions options = new InitializationOptions();
+                string url = PlatformSettingsManager.GetPlatformNoticeUrl();
+                options.UrlNotice = url;
+                SDKLogger _log = new SDKLogger();
+                OpenNGSPlatformServices.Initialize(options, _log);
+                return new EEGamesReportProvider(options);
             }
             else if(module == PLATFORM_MODULE.NOTICE)
             {
