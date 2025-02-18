@@ -99,5 +99,10 @@ namespace OpenNGS.Platform
             var config = settings.GetCurrentConfig();
             return config?.EEGamesReportUrl;
         }
+        public static string GetPlatformNoticeUrl()
+        {
+            var config = settings.GetCurrentConfig();
+            return config?.EEGamesNoticeUrl;
+        }
     }
 }
