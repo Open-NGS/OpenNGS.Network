@@ -92,6 +92,14 @@ namespace OpenNGS.Platform.EEGames
             {
                 return new EEGamesReportProvider();
             }
+            else if(module == PLATFORM_MODULE.NOTICE)
+            {
+                return new EEGamesNoticeProvider();
+            }
+            else
+            {
+                Debug.LogError("Not supported provider " + module);
+            }
             return null;
         }
 
@@ -145,7 +153,10 @@ namespace OpenNGS.Platform.EEGames
             //    AppId = strAppId,
             //    AppSecret = AppSecret
             //}, new SDKLogger());
-            OpenNGSPlatformServices.Initialize(m_initOption, new SDKLogger());
+            SDKLogger _log = new SDKLogger();
+            OpenNGSPlatformServices.Initialize(m_initOption, _log);
+            // todo这个要改回上面的
+            //OpenNGSPlatformServices.Initialize(m_initOption);
         }
         public void AutoLogin()
         {
