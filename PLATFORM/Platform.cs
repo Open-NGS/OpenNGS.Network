@@ -5,6 +5,7 @@ namespace OpenNGS.Platform
     public class Platform
     {
 
+        public delegate void OnPlatformRetEventHandler<T>(T ret);
         static ISDKProvider SDKProvider;
         static IModuleProvider[] Modules = new IModuleProvider[(int)PLATFORM_MODULE.MUDULE_COUNT];
 
@@ -38,6 +39,10 @@ namespace OpenNGS.Platform
         internal static ILoginProvider GetLogin()
         {
             return (ILoginProvider)Modules[(int)PLATFORM_MODULE.LOGIN];
+        }
+        internal static INoticeProvider GetNotice()
+        {
+            return (INoticeProvider)Modules[(int)PLATFORM_MODULE.NOTICE];
         }
 
         internal static Pay.IPayServiceProvider GetPay()

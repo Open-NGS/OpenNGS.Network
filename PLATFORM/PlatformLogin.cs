@@ -1,4 +1,5 @@
 using UnityEngine;
+using static OpenNGS.Platform.Platform;
 
 namespace OpenNGS.Platform
 {
@@ -7,7 +8,6 @@ namespace OpenNGS.Platform
 
     public class PlatformLogin
     {
-        public delegate void OnPlatformRetEventHandler<T>(T ret);
 
         /// <summary>
         /// 登出回调、应用唤醒回调

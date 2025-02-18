@@ -348,6 +348,10 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
     {
         PlatformReport.OnReportRet(_ret);
     }
+    public void OnNoticeCallBack(PlatformNoticeRet _ret)
+    {
+        PlatformNotice.OnNoticeRet(_ret);
+    }
 
 #endif
 }

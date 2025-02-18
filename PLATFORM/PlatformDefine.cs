@@ -17,6 +17,7 @@ namespace OpenNGS.Platform
         REMOTE_STORAGE = 9,
         ACHIEVEMENT = 10,
         ACTIVITY = 11,
+        NOTICE = 12,
         MUDULE_COUNT,
     }
 
