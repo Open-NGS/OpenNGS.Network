@@ -37,61 +37,11 @@ namespace OpenNGS.Platform.EEGames
         {
             if (module == PLATFORM_MODULE.LOGIN)
             {
-                TextAsset textAsset = Resources.Load<TextAsset>("EEGames");
-
-                string appid = "";
-                string secret = "";
-                if (textAsset != null)
-                {
-                    // 将文本内容按行分割
-                    string[] lines = textAsset.text.Split('\n');
-
-                    // 创建一个字典来存储键值对
-                    Dictionary<string, string> configDict = new Dictionary<string, string>();
-
-                    foreach (string line in lines)
-                    {
-                        // 按等号分割每行
-                        string[] parts = line.Split('=');
-                        if (parts.Length == 2)
-                        {
-                            // 去除空白字符并添加到字典中
-                            configDict[parts[0].Trim()] = parts[1].Trim();
-                        }
-                    }
-
-                    // 从字典中获取appid和secret
-                    if (configDict.ContainsKey("appid"))
-                    {
-                        appid = configDict["appid"];
-                    }
-
-                    if (configDict.ContainsKey("secret"))
-                    {
-                        secret = configDict["secret"];
-                    }
-
-                    // 打印读取到的值
-                    Debug.Log("AppID: " + appid);
-                    Debug.Log("Secret: " + secret);
-                }
-                else
-                {
-                    Debug.LogError("Config file not found!");
-                }
-
-                m_loginProvider = new EEGamesLoginProvider();
-                m_loginProvider.InitLoginProvider(appid, secret);
-                return m_loginProvider;
+                return new EEGamesLoginProvider();
             }
             else if (module == PLATFORM_MODULE.REPORT)
             {
-                InitializationOptions options = new InitializationOptions();
-                string url = PlatformSettingsManager.GetPlatformNoticeUrl();
-                options.UrlNotice = url;
-                SDKLogger _log = new SDKLogger();
-                OpenNGSPlatformServices.Initialize(options, _log);
-                return new EEGamesReportProvider(options);
+                return new EEGamesReportProvider(OpenNGSPlatformServices.Instance.Options);
             }
             else if(module == PLATFORM_MODULE.NOTICE)
             {
@@ -144,9 +94,9 @@ namespace OpenNGS.Platform.EEGames
         }
         public void InitLoginProvider(string strAppId, string AppSecret)
         {
-            m_initOption = new InitializationOptions();
-            m_initOption.AppId = strAppId;
-            m_initOption.AppSecret = AppSecret;
+            //m_initOption = new InitializationOptions();
+            //m_initOption.AppId = strAppId;
+            //m_initOption.AppSecret = AppSecret;
             //OpenNGSPlatformServices.Initialize(new InitializationOptions()
             //{
             //    //AppId = "iboN4V3anKRnsKwgudonW0ESxGwJLNUz2rhN",
@@ -154,8 +104,8 @@ namespace OpenNGS.Platform.EEGames
             //    AppId = strAppId,
             //    AppSecret = AppSecret
             //}, new SDKLogger());
-            SDKLogger _log = new SDKLogger();
-            OpenNGSPlatformServices.Initialize(m_initOption, _log);
+            //SDKLogger _log = new SDKLogger();
+            //OpenNGSPlatformServices.Initialize(m_initOption, _log);
             // todo这个要改回上面的
             //OpenNGSPlatformServices.Initialize(m_initOption);
         }
@@ -322,38 +272,7 @@ namespace OpenNGS.Platform.EEGames
         }
     }
 
-    public class SDKLogger : OpenNGS.SDK.Log.ILogger
-    {
-        public void Log(object message)
-        {
-            Debug.Log(message);
-        }
-
-        public void LogFormat(string message, params object[] args)
-        {
-            Debug.LogFormat(message, args);
-        }
-
-        public void Error(object message)
-        {
-            Debug.LogError(message);
-        }
-
-        public void ErrorFormat(string message, params object[] args)
-        {
-            Debug.LogErrorFormat(message, args);
-        }
-
-        public void Warning(object message)
-        {
-            Debug.LogWarning(message);
-        }
-
-        public void WarningFormat(string message, params object[] args)
-        {
-            Debug.LogWarningFormat(message, args);
-        }
-    }
+    
 
 }
 

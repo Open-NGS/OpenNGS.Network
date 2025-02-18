@@ -18,10 +18,7 @@ namespace OpenNGS.Platform.EEGames
         public PLATFORM_MODULE Module => PLATFORM_MODULE.REPORT;
         public EEGamesReportProvider(InitializationOptions options)
         {
-            if(options != null && options.UrlNotice != null)
-            {
-                urlpath = options.UrlNotice;
-            }
+            urlpath = options.UrlReport;
         }
         public void Report(string eventId, ExtraInfo extraInfo)
         {
