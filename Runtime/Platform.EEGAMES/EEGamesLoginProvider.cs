@@ -49,7 +49,7 @@ namespace OpenNGS.Platform.EEGames
             }
             else
             {
-                Debug.LogError("Not supported provider " + module);
+                //Debug.LogError("Not supported provider " + module);
             }
             return null;
         }
