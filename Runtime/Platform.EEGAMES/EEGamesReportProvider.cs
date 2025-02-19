@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using OpenNGS.SDK.Core.Initiallization;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -13,8 +14,12 @@ namespace OpenNGS.Platform.EEGames
     {
         private const string api_path = "/event";
         //private const string urlpath = "https://s.eegames.com";
-        private const string urlpath = "http://s.pre.eegames.net";
+        private string urlpath = "http://s.pre.eegames.net";
         public PLATFORM_MODULE Module => PLATFORM_MODULE.REPORT;
+        public EEGamesReportProvider(InitializationOptions options)
+        {
+            urlpath = options.UrlReport;
+        }
         public void Report(string eventId, ExtraInfo extraInfo)
         {
             string url = urlpath + api_path;
