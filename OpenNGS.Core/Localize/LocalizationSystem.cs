@@ -22,6 +22,8 @@ namespace OpenNGS.Localize
 
         private Dictionary<string, string> _localizationStrings = new Dictionary<string, string>();
 
+        private Dictionary<SystemLanguage, string> SysLanguageToIETF = null;
+
 
         private SystemLanguage _lan;
         public SystemLanguage Lan
@@ -34,6 +36,7 @@ namespace OpenNGS.Localize
         {
             Lan = lan;
             LoadLocalizationFile();
+            _initIETF();
         }
 
         private void LoadLocalizationFile()
@@ -60,6 +63,18 @@ namespace OpenNGS.Localize
             }
         }
 
+        public string GetCurrentIETF()
+        {
+            if( SysLanguageToIETF != null)
+            {
+                if(SysLanguageToIETF.ContainsKey(_lan))
+                {
+                    return SysLanguageToIETF[_lan];
+                }
+            }
+            return SysLanguageToIETF[SystemLanguage.ChineseSimplified];
+        }
+
         public string GetText(string key)
         {
             if (string.IsNullOrWhiteSpace(key)) return key;
@@ -70,6 +85,54 @@ namespace OpenNGS.Localize
                 value = string.Format("Text[{0}]",key);
             }
             return value;
+        }
+
+        private void _initIETF()
+        {
+            SysLanguageToIETF = new Dictionary<SystemLanguage, string>
+        {
+            { SystemLanguage.Japanese, "ja" },
+            { SystemLanguage.English, "en" },
+            { SystemLanguage.French, "fr" },
+            { SystemLanguage.German, "de" },
+            { SystemLanguage.Italian, "it" },
+            { SystemLanguage.Spanish, "es" },
+            { SystemLanguage.ChineseSimplified, "zh" },
+            { SystemLanguage.ChineseTraditional, "zh-Hant" },
+            { SystemLanguage.Korean, "ko" },
+            { SystemLanguage.Dutch, "nl" },
+            { SystemLanguage.Portuguese, "pt" },
+            { SystemLanguage.Russian, "ru" },
+            { SystemLanguage.Afrikaans, "af" },
+            { SystemLanguage.Arabic, "ar" },
+            { SystemLanguage.Basque, "eu" },
+            { SystemLanguage.Belarusian, "be" },
+            { SystemLanguage.Bulgarian, "bg" },
+            { SystemLanguage.Catalan, "ca" },
+            { SystemLanguage.Czech, "cs" },
+            { SystemLanguage.Danish, "da" },
+            { SystemLanguage.Estonian, "et" },
+            { SystemLanguage.Faroese, "fo" },
+            { SystemLanguage.Finnish, "fi" },
+            { SystemLanguage.Greek, "el" },
+            { SystemLanguage.Hebrew, "he" },
+            { SystemLanguage.Icelandic, "is" },
+            { SystemLanguage.Indonesian, "id" },
+            { SystemLanguage.Latvian, "lv" },
+            { SystemLanguage.Lithuanian, "lt" },
+            { SystemLanguage.Norwegian, "no" },
+            { SystemLanguage.Polish, "pl" },
+            { SystemLanguage.Romanian, "ro" },
+            { SystemLanguage.SerboCroatian, "hr" },
+            { SystemLanguage.Slovak, "sk" },
+            { SystemLanguage.Slovenian, "sl" },
+            { SystemLanguage.Swedish, "sv" },
+            { SystemLanguage.Thai, "th" },
+            { SystemLanguage.Turkish, "tr" },
+            { SystemLanguage.Ukrainian, "uk" },
+            { SystemLanguage.Vietnamese, "vi" },
+            { SystemLanguage.Hungarian, "hu" }
+        };
         }
 
         public static string GetLangName(SystemLanguage lan)
