@@ -1,7 +1,7 @@
 {
 	"name": "com.openngs.core",
 	"displayName": "OpenNGS Core",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "OpenNGS core package",
 	"author": {
 		"name": "EE GAMES",
