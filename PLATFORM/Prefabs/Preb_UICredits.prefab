@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 100
-    m_Bottom: 0
+    m_Top: 200
+    m_Bottom: 500
   m_ChildAlignment: 1
   m_Spacing: 300
   m_ChildForceExpandWidth: 0
@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d7a948e9987f04298190a46f02375b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  font: {fileID: 0}
   allContent: {fileID: 2184203000645586145}
   preb_RootLayout: {fileID: 102793850416153691, guid: 8bde5fb480f019142a4416fdfb4dffcc,
     type: 3}

@@ -1,8 +1,10 @@
 using Newtonsoft.Json;
 using OpenNGS.Credits;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -16,8 +18,10 @@ public class UICredits : MonoBehaviour
     public GameObject preb_ElementLayout;
     public GameObject preb_ElementText;
     public string folderName;
+    public Action<Sprite> getImageSprite;
     private GameObject m_curContent;
     private List<string> m_urls = new List<string>();
+    private List<OpenNGS.Credits.Element> m_rootElement = new List<OpenNGS.Credits.Element>();
     //测试使用本地文件
     public string jsonPath;
     public Sprite targetSprite;
@@ -40,6 +44,7 @@ public class UICredits : MonoBehaviour
             OpenNGS.Credits.Root root = JsonConvert.DeserializeObject<OpenNGS.Credits.Root>(jsonContent);
             if (root != null)
             {
+                m_rootElement = root.Elements;
                 foreach (OpenNGS.Credits.Element element in root.Elements)
                 {
                     CheckImageType(element);
@@ -68,12 +73,15 @@ public class UICredits : MonoBehaviour
         {
             if (element.Title != null && element.Title != "")
             {
-                string savePath = GetSavePath(element.Title);
-                if (!File.Exists(savePath))
+                if(IsURLorPath(element.Title)== "URL")
                 {
-                    if (!m_urls.Contains(element.Title))
+                    string savePath = GetSavePath(element.Title);
+                    if (!File.Exists(savePath))
                     {
-                        m_urls.Add(element.Title);
+                        if (!m_urls.Contains(element.Title))
+                        {
+                            m_urls.Add(element.Title);
+                        }
                     }
                 }
             }
@@ -87,6 +95,8 @@ public class UICredits : MonoBehaviour
         }
         
     }
+    GameObject m_curRootBlock = null;
+    private List<OpenNGS.Credits.Element> _subList = new List<OpenNGS.Credits.Element>();
     private void UpdateUI(OpenNGS.Credits.Element element)
     {
         if (element.Content == null || element.Content.Count == 0)//不需要嵌套
@@ -105,7 +115,7 @@ public class UICredits : MonoBehaviour
                 GameObject imageObject = new GameObject("DynamicImage");
                 Image image = imageObject.AddComponent<Image>();
                 imageObject.transform.SetParent(m_curContent.transform, false);
-                if (element.Title == null && targetSprite != null)
+                if (element.Title == "" && targetSprite != null)
                 {
                     image.sprite = targetSprite;
                     image.type = Image.Type.Simple; // 设置图片显示类型为简单模式
@@ -120,9 +130,16 @@ public class UICredits : MonoBehaviour
                 }
                 else
                 {
-                    if (folderName != null)
+                    if (IsURLorPath(element.Title) == "URL")
                     {
-                        LoadAndDisplayImage(GetSavePath(element.Title), image);
+                        if (folderName != null)
+                        {
+                            LoadAndDisplayImage(GetSavePath(element.Title), image);
+                        }
+                    }
+                    else if(IsURLorPath(element.Title) == "Path")
+                    {
+                        getImageSprite?.Invoke(image.sprite);
                     }
                 }
             }
@@ -137,23 +154,33 @@ public class UICredits : MonoBehaviour
                     if (element.Content.Exists((item) => item.Type == "Block") || m_curContent.Equals(allContent))//使用外部嵌套
                     {
                         obj = Instantiate(preb_RootLayout, m_curContent.transform);
+                        _subList = element.Content;
+                        m_curRootBlock = obj.GetComponent<UICreditsElement>().content;
                     }
                     else//使用内部
                     {
+                        if (m_curRootBlock != null && _subList.Contains(element))
+                        {
+                            m_curContent = m_curRootBlock;
+                        }
                         obj = Instantiate(preb_ElementLayout, m_curContent.transform);
                     }
-                    ;
                     UICreditsElement creditsElement = obj.GetComponent<UICreditsElement>();
                     if (creditsElement != null)
                     {
                         creditsElement.SetTitle(element.Title,font);
                         m_curContent = creditsElement.content;
                     }
+
                     foreach (OpenNGS.Credits.Element subElement in element.Content)
                     {
                         UpdateUI(subElement);
                     }
-                    m_curContent = allContent;
+                    if (m_rootElement.Contains(element))
+                    {
+                        m_curContent = allContent;
+                    }
+
                 }
             }
 
@@ -205,6 +232,29 @@ public class UICredits : MonoBehaviour
         string fileName = Path.GetFileName(url);
         string savePath = Path.Combine(folderPath, fileName).Replace("\\", "/");
         return savePath;
+    }
+    private string IsURLorPath(string input)
+    {
+        // 定义URL的正则表达式
+        string urlPattern = @"^(http|https)://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(:[0-9]+)?(/.*)?$";
+        Regex urlRegex = new Regex(urlPattern);
+
+        // 定义路径的正则表达式（支持Windows和Unix路径）
+        string pathPattern = @"^([a-zA-Z]:\\|/)?([a-zA-Z0-9\-_\.]+[\\/])*([a-zA-Z0-9\-_\.]+)?$";
+        Regex pathRegex = new Regex(pathPattern);
+
+        if (urlRegex.IsMatch(input))
+        {
+            return "URL";
+        }
+        else if (pathRegex.IsMatch(input))
+        {
+            return "Path";
+        }
+        else
+        {
+            return "Unknown";
+        }
     }
 }
 namespace OpenNGS.Credits
