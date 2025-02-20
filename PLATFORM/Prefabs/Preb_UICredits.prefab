@@ -57,7 +57,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_Spacing: 300
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -205,6 +205,21 @@ MonoBehaviour:
     type: 3}
   preb_ElementText: {fileID: 3060906068627642861, guid: 7d450b817f341924f997bdce5d713cfc,
     type: 3}
+  info_RootLayout:
+    preb: {fileID: 102793850416153691, guid: 8bde5fb480f019142a4416fdfb4dffcc, type: 3}
+    parentSpace: 120
+    subSpace: 120
+    titleFontSize: 64
+  info_ElementLayout:
+    preb: {fileID: 4993886725143677469, guid: 289b7d23980ae714ebe8cbd16cde6661, type: 3}
+    parentSpace: 60
+    subSpace: 60
+    titleFontSize: 48
+  info_ElementText:
+    preb: {fileID: 3060906068627642861, guid: 7d450b817f341924f997bdce5d713cfc, type: 3}
+    parentSpace: 0
+    subSpace: 0
+    titleFontSize: 36
   folderName: DownloadImages
   jsonPath: 
   targetSprite: {fileID: 0}

@@ -7,7 +7,7 @@ public class UICreditsElement : MonoBehaviour
 {
     public TextMeshProUGUI title;
     public GameObject content;
-    public void SetTitle(string content, TMP_FontAsset _font)
+    public void SetTitle(string content, TMP_FontAsset _font,float size)
     {
         if (title != null)
         {
@@ -16,6 +16,7 @@ public class UICreditsElement : MonoBehaviour
             {
                 title.font = _font;
             }
+            title.fontSize = size;
         }
     }
 }

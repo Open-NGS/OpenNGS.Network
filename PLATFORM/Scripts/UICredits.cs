@@ -10,18 +10,28 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+[Serializable]
+public class LayoutInfo
+{
+    public GameObject preb;
+    public float parentSpace;
+    public float subSpace;
+    public float titleFontSize;
+}
+
 public class UICredits : MonoBehaviour
 {
     public TMP_FontAsset font;
     public GameObject allContent;
-    public GameObject preb_RootLayout;
-    public GameObject preb_ElementLayout;
-    public GameObject preb_ElementText;
+    public LayoutInfo info_RootLayout;
+    public LayoutInfo info_ElementLayout;
+    public LayoutInfo info_ElementText;
     public string folderName;
     public Action<Image,string> getImageSprite;
     private GameObject m_curContent;
     private List<string> m_urls = new List<string>();
     private List<OpenNGS.Credits.Element> m_rootElement = new List<OpenNGS.Credits.Element>();
+
     //测试使用本地文件
     public string jsonPath;
     public Sprite targetSprite;
@@ -103,11 +113,11 @@ public class UICredits : MonoBehaviour
         {
             if (element.Type == "Text")//文字
             {
-                GameObject obj = Instantiate(preb_ElementText, m_curContent.transform);
+                GameObject obj = Instantiate(info_ElementText.preb, m_curContent.transform);
                 UICreditsElementText creditsElement = obj.GetComponent<UICreditsElementText>();
                 if (creditsElement != null)
                 {
-                    creditsElement.SetText(element.Text,font);
+                    creditsElement.SetText(element.Text, font, info_ElementText.titleFontSize);
                 }
             }
             else if (element.Type == "Image")//图片
@@ -153,9 +163,17 @@ public class UICredits : MonoBehaviour
                     GameObject obj;
                     if (element.Content.Exists((item) => item.Type == "Block") || m_curContent.Equals(allContent))//使用外部嵌套
                     {
-                        obj = Instantiate(preb_RootLayout, m_curContent.transform);
+                        obj = Instantiate(info_RootLayout.preb, m_curContent.transform);
                         _subList = element.Content;
                         m_curRootBlock = obj.GetComponent<UICreditsElement>().content;
+                        UICreditsElement creditsElement = obj.GetComponent<UICreditsElement>();
+                        if (creditsElement != null)
+                        {
+                            creditsElement.GetComponent<VerticalLayoutGroup>().spacing = info_RootLayout.parentSpace;
+                            creditsElement.content.GetComponent<VerticalLayoutGroup>().spacing = info_RootLayout.subSpace;
+                            creditsElement.SetTitle(element.Title, font, info_RootLayout.titleFontSize);
+                            m_curContent = creditsElement.content;
+                        }
                     }
                     else//使用内部
                     {
@@ -163,15 +181,16 @@ public class UICredits : MonoBehaviour
                         {
                             m_curContent = m_curRootBlock;
                         }
-                        obj = Instantiate(preb_ElementLayout, m_curContent.transform);
+                        obj = Instantiate(info_ElementLayout.preb, m_curContent.transform);
+                        UICreditsElement creditsElement = obj.GetComponent<UICreditsElement>();
+                        if (creditsElement != null)
+                        {
+                            creditsElement.GetComponent<VerticalLayoutGroup>().spacing = info_ElementLayout.parentSpace;
+                            creditsElement.content.GetComponent<VerticalLayoutGroup>().spacing = info_ElementLayout.subSpace;
+                            creditsElement.SetTitle(element.Title, font, info_ElementLayout.titleFontSize);
+                            m_curContent = creditsElement.content;
+                        }
                     }
-                    UICreditsElement creditsElement = obj.GetComponent<UICreditsElement>();
-                    if (creditsElement != null)
-                    {
-                        creditsElement.SetTitle(element.Title,font);
-                        m_curContent = creditsElement.content;
-                    }
-
                     foreach (OpenNGS.Credits.Element subElement in element.Content)
                     {
                         UpdateUI(subElement);

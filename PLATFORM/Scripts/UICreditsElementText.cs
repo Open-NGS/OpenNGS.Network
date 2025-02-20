@@ -6,7 +6,7 @@ using UnityEngine;
 public class UICreditsElementText : MonoBehaviour
 {
     public TextMeshProUGUI elementText;
-    public void SetText(string content, TMP_FontAsset _font)
+    public void SetText(string content, TMP_FontAsset _font, float size)
     {
         if (elementText != null)
         {
@@ -15,6 +15,7 @@ public class UICreditsElementText : MonoBehaviour
             {
                 elementText.font = _font;
             }
+            elementText.fontSize = size;
         }
     }
 }
