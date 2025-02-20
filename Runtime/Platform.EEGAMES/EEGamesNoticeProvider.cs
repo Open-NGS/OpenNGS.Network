@@ -26,6 +26,11 @@ public class EEGamesNoticeProvider : INoticeProvider
         {
             if (result != null)
             {
+                m_NoticeRet.noticeInfos = new List<NoticeInfo>();
+                foreach(NoticeInfo info in result)
+                {
+                    m_NoticeRet.noticeInfos.Add(info);
+                }
                 _callBackNotices(m_NoticeRet);
             }
             else
