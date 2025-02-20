@@ -18,7 +18,7 @@ public class UICredits : MonoBehaviour
     public GameObject preb_ElementLayout;
     public GameObject preb_ElementText;
     public string folderName;
-    public Action<Sprite> getImageSprite;
+    public Action<Image,string> getImageSprite;
     private GameObject m_curContent;
     private List<string> m_urls = new List<string>();
     private List<OpenNGS.Credits.Element> m_rootElement = new List<OpenNGS.Credits.Element>();
@@ -139,7 +139,7 @@ public class UICredits : MonoBehaviour
                     }
                     else if(IsURLorPath(element.Title) == "Path")
                     {
-                        getImageSprite?.Invoke(image.sprite);
+                        getImageSprite?.Invoke(image, element.Title);
                     }
                 }
             }
