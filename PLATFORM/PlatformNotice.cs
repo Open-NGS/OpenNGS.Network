@@ -30,6 +30,6 @@ namespace OpenNGS.Platform
 
     public class PlatformNoticeRet : PlatformBaseRet
     {
-
+        public List<NoticeInfo> noticeInfos;
     }
 }
