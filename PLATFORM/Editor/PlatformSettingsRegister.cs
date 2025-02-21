@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using UnityEngine;
+
 using UnityEditor;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
@@ -98,3 +100,5 @@ namespace OpenNGS.Platform
         }
     }
 }
+
+#endif
