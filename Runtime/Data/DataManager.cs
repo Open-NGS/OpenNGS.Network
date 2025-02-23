@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
 using OpenNGS.Tables;
 using System.IO;
 using OpenNGS.IO;
@@ -40,21 +38,21 @@ namespace OpenNGS
         {
             if (season)
             {
-                var filename = System.IO.Path.Combine(Application.streamingAssetsPath, DataPath, SeasonManager.Instance.CurrentSeason.ToString(), name + Ext);
+                var filename = System.IO.Path.Combine(FileSystem.StreamingAssetsPath, DataPath, SeasonManager.Instance.CurrentSeason.ToString(), name + Ext);
                 if (!FileSystem.FileExists(filename))
                 {
                     name = name.ToLower();
-                    filename = System.IO.Path.Combine(Application.streamingAssetsPath, DataPath, SeasonManager.Instance.CurrentSeason.ToString(), name + Ext);
+                    filename = System.IO.Path.Combine(FileSystem.StreamingAssetsPath, DataPath, SeasonManager.Instance.CurrentSeason.ToString(), name + Ext);
                 }
                 return filename;
             }
             else
             {
-                var filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DataPath, name + Ext);
+                var filePath = System.IO.Path.Combine(FileSystem.StreamingAssetsPath, DataPath, name + Ext);
                 if (!FileSystem.FileExists(filePath))
                 {
                     name = name.ToLower();
-                    filePath = System.IO.Path.Combine(Application.streamingAssetsPath, DataPath, name + Ext);
+                    filePath = System.IO.Path.Combine(FileSystem.StreamingAssetsPath, DataPath, name + Ext);
 
                 }
 
