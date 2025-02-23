@@ -4,16 +4,11 @@ using OpenNGS.Collection.Service;
 using OpenNGS.Core;
 using OpenNGS.ERPC;
 using OpenNGS.ERPC.Configuration;
-using OpenNGS.Statistic.Common;
-using OpenNGS.Statistic.Service;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using UnityEngine;
+
 
 public class CollectionAPIController : Singleton<CollectionAPIController>, INiCollectionsService
 {
@@ -57,7 +52,7 @@ public class CollectionAPIController : Singleton<CollectionAPIController>, INiCo
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Error adding CollectionID {req.collectionID}: {ex.Message}");
+            NgDebug.LogError($"Error adding CollectionID {req.collectionID}: {ex.Message}");
             rsp.success = false;
         }
         return rsp;
@@ -130,13 +125,13 @@ public class CollectionAPIController : Singleton<CollectionAPIController>, INiCo
                 if (!playerCollections.Contains(req.collectionID))
                 {
                     playerCollections.Add(req.collectionID);
-                    Debug.Log($"CollectionID {req.collectionID} added to local cache.");
+                    NgDebug.Log($"CollectionID {req.collectionID} added to local cache.");
                 }
             }
         }
         catch (Exception ex)
         {
-            Debug.LogError($"AddCollection failed: {ex.Message}");
+            NgDebug.LogError($"AddCollection failed: {ex.Message}");
         }
 
         return Task.FromResult(new NGSVoid());

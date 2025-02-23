@@ -1,7 +1,6 @@
 using OpenNGS;
 using OpenNGS.ERPC;
 using OpenNGS.Item.Data;
-using OpenNGS.SaveData;
 using OpenNGS.Statistic.Common;
 using OpenNGS.Statistic.Data;
 using OpenNGS.Statistic.Service;

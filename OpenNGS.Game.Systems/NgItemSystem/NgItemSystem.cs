@@ -115,7 +115,7 @@ namespace OpenNGS.Systems
         {
             if (_req == null)
             {
-                UnityEngine.Debug.LogError("AddItemReq is null in AddItemsByID call.");
+                NgDebug.LogError("AddItemReq is null in AddItemsByID call.");
                 return null;
             }
             uint nItemID = _req.ItemID;

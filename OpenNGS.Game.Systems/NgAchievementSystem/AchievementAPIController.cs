@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using UnityEngine;
 
 
 public class AchievementAPIController : Singleton<AchievementAPIController>, INiAchievementService
@@ -124,7 +123,7 @@ public class AchievementAPIController : Singleton<AchievementAPIController>, INi
         }
         catch (Exception ex)
         {
-            Debug.LogError($"AddCollection failed: {ex.Message}");
+            NgDebug.LogError($"AddCollection failed: {ex.Message}");
             return null;
         }
     }
@@ -168,7 +167,7 @@ public class AchievementAPIController : Singleton<AchievementAPIController>, INi
         }
         catch (Exception ex)
         {
-            Debug.LogError($"AddCollection failed: {ex.Message}");
+            NgDebug.LogError($"AddCollection failed: {ex.Message}");
             return null;
         }
     }

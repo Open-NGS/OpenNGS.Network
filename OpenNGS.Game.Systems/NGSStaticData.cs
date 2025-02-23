@@ -25,7 +25,9 @@ namespace OpenNGS.Systems
         public static Table<OpenNGS.Levels.Data.NGSLevelInfo,uint> levelInfo=new Table<Levels.Data.NGSLevelInfo, uint>((item) => { return item.ID; }, false);
 
         //public static Table<OpenNGS.Suit.Data.SuitData,uint> suitInfo=new Table<Suit.Data.SuitData, uint>((item) => { return item.ID; }, false);
+#if UNITY_5_3_OR_NEWER
         public static Table<OpenNGS.UI.Data.UIConfig, uint> uiConfig = new Table<UI.Data.UIConfig, uint>((item) => { return item.Id; }, false);
+#endif
         public static Table<OpenNGS.Enemy.Data.EnemyInfo, uint> enemyInfo = new Table<Enemy.Data.EnemyInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.ItemInfo, uint> items = new Table<OpenNGS.Make.Data.ItemInfo, uint>((item) => { return item.ID; }, false);
         //public static Table<OpenNGS.Make.Data.MakeInfo, uint> makes = new Table<OpenNGS.Make.Data.MakeInfo, uint>((item) => { return item.ID; }, false);
