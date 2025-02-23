@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using UnityEngine;
+
 
 namespace OpenNGS.Network
 {
@@ -16,7 +16,7 @@ namespace OpenNGS.Network
             }
             catch (InvalidOperationException e)
             {
-                Debug.LogError("Serialize protocol fail " + e.ToString());
+                NgDebug.LogError("Serialize protocol fail " + e.ToString());
             }
         }
 
@@ -34,7 +34,7 @@ namespace OpenNGS.Network
             }
             catch (InvalidOperationException e)
             {
-                Debug.LogError("Deserialize protocol fail " + e.ToString());
+                NgDebug.LogError("Deserialize protocol fail " + e.ToString());
                 return default(T);
             }
         }
@@ -47,7 +47,7 @@ namespace OpenNGS.Network
             }
             catch (InvalidOperationException e)
             {
-                Debug.LogError("Merge protocol fail " + e.ToString());
+                NgDebug.LogError("Merge protocol fail " + e.ToString());
                 return default(T);
             }
         }
