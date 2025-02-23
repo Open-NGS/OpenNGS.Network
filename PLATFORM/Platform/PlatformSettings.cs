@@ -23,7 +23,7 @@ namespace OpenNGS.Platform
 
     public class PlatformSettings : ScriptableObject
     {
-        public const string k_MyCustomSettingsPath = "Assets/Settings/PlatformSettings.asset";
+        public const string k_MyCustomSettingsPath = "Assets/Resources/Settings/PlatformSettings.asset";
 
         [SerializeField]
         private PlatformEnvironment currentEnvironment = PlatformEnvironment.Development;
@@ -64,13 +64,25 @@ namespace OpenNGS.Platform
 
         public static void Initialize()
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             // 在编辑器中直接从 Assets 文件夹加载
             settings = UnityEditor.AssetDatabase.LoadAssetAtPath<PlatformSettings>(PlatformSettings.k_MyCustomSettingsPath);
-#else
+            #else
             // 在运行时从 Resources 加载
-            settings = Resources.Load<PlatformSettings>("Settings/PlatformSettings");
-#endif
+            string resourcesPath = PlatformSettings.k_MyCustomSettingsPath;
+            if (resourcesPath.StartsWith("Assets/Resources/"))
+            {
+                // 去掉 "Assets/Resources/" 前缀
+                resourcesPath = resourcesPath.Substring("Assets/Resources/".Length);
+            }
+            // 去掉文件扩展名
+            int lastDotIndex = resourcesPath.LastIndexOf('.');
+            if (lastDotIndex != -1)
+            {
+                resourcesPath = resourcesPath.Substring(0, lastDotIndex);
+            }
+            settings = Resources.Load<PlatformSettings>(resourcesPath);
+            #endif
 
             if (settings == null)
             {
