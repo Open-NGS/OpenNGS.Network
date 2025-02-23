@@ -4,7 +4,6 @@ using System.Text;
 using Newtonsoft.Json;
 using OpenNGS.IO;
 using ProtoBuf;
-using UnityEngine;
 using File = System.IO.File;
 
 namespace OpenNGS.Serialization
@@ -36,7 +35,7 @@ namespace OpenNGS.Serialization
             }
             catch (System.Exception e)
             {
-                Debug.LogErrorFormat("ProtoLoader.Load Exception: {0}", e);
+                NgDebug.LogErrorFormat("ProtoLoader.Load Exception: {0}", e);
             }
         }
         
@@ -55,7 +54,7 @@ namespace OpenNGS.Serialization
             }
             catch (Exception e)
             {
-                Debug.LogErrorFormat("ProtoLoader.Load Exception: {0}", e);
+                NgDebug.LogErrorFormat("ProtoLoader.Load Exception: {0}", e);
             }
             return new T();
         }
@@ -69,8 +68,8 @@ namespace OpenNGS.Serialization
             var json = JsonConvert.SerializeObject(obj, settings);
             // File.WriteAllText(path, json);
             FileSystem.Write(path, System.Text.Encoding.UTF8.GetBytes(json));
-            
-            Debug.Log($"WriteJson:{path}");
+
+            NgDebug.Log($"WriteJson:{path}");
         }
         
         public static T LoadJson<T>(string path)
