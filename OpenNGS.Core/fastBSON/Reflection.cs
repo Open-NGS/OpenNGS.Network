@@ -7,7 +7,6 @@ using System.Collections;
 
 using System.Collections.Specialized;
 using OpenNGS;
-using UnityEngine;
 
 
 namespace fastBinaryJSON
@@ -109,7 +108,7 @@ namespace fastBinaryJSON
 			}
 			catch(ArgumentException e)
 			{
-				Debug.LogException(e);
+                NgDebug.LogException(e);
 			}
 
 		}

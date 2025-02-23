@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+
+#if UNITY_ANDROID
 using UnityEngine;
 using UnityEngine.Networking;
+#endif
 
 namespace OpenNGS.IO.Posix
 {
@@ -143,6 +146,8 @@ namespace OpenNGS.IO.Posix
             return System.IO.File.ReadAllText(path, encoding);
         }
     }
+
+#if UNITY_ANDROID
     class AndroidPosixFileSystem : PosixFileSystem
     {
 
@@ -215,5 +220,5 @@ namespace OpenNGS.IO.Posix
             return str;
         }
     }
-
+#endif
 }

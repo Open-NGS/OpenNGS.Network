@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Collections.Specialized;
-using UnityEngine;
 
 namespace fastBinaryJSON
 {
@@ -404,7 +403,7 @@ namespace fastBinaryJSON
 						}
 						else 
 						{
-							Debug.LogError("unknow type" + t1.ToString() + ": " + k.GetType().ToString());
+                            NgDebug.LogError("unknow type" + t1.ToString() + ": " + k.GetType().ToString());
 						}
 
 
@@ -666,7 +665,7 @@ namespace fastBinaryJSON
 					}
 					catch(ArgumentException e)
 					{
-						Debug.LogException(e);
+                        NgDebug.LogException(e);
 					}
 				}
             }

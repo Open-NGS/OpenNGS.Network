@@ -2,7 +2,6 @@ using System;
 using OpenNGS.IO;
 using OpenNGS.Serialization;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace OpenNGS.Tables
 {
@@ -50,7 +49,7 @@ namespace OpenNGS.Tables
                 data = File.ReadAllBytes(filenameNew);
 
                 if (data == null) {
-                    Debug.LogError("[DataTable:Load]can't find " + filename + " and " + filenameNew);
+                    NgDebug.LogError("[DataTable:Load]can't find " + filename + " and " + filenameNew);
 #if DEBUG_LOG && PROFILER
                     OpenNGS.Profiling.ProfilerLog.End("Tables.Load", filename);
 #endif
@@ -66,7 +65,7 @@ namespace OpenNGS.Tables
             }
             catch (Exception ex)
             {
-                Debug.LogError("[DataTable:Load]" + filename + " Error:" + ex.ToString());
+                NgDebug.LogError("[DataTable:Load]" + filename + " Error:" + ex.ToString());
             }
             this.loaded = true;
 #if DEBUG_LOG && PROFILER
