@@ -2,10 +2,7 @@ using OpenNGS;
 using OpenNGS.Collection.Service;
 using OpenNGS.Core;
 using OpenNGS.ERPC;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEngine;
 
 public class CollectionServerAPIService : Singleton<CollectionServerAPIService>, INiCollectionsService
 {

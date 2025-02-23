@@ -2,10 +2,8 @@ using OpenNGS.Achievement.Common;
 using OpenNGS.Achievement.Data;
 using OpenNGS.Achievement.Service;
 using OpenNGS.ERPC;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace OpenNGS.Systems
 {

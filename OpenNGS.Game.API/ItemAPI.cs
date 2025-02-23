@@ -1,5 +1,4 @@
-﻿using Item.RPC;
-using OpenNGS.Item.Data;
+﻿using OpenNGS.Item.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

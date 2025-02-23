@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Systems;
-using UnityEngine.Events;
 
 namespace OpenNGS.Systems
 {
