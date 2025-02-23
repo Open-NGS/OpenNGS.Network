@@ -1,8 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using OpenNGS;
 using OpenNGS.Common;
 using Networks.NetWorkModule;
+using System.Collections.Generic;
 //using GCloud.MSDK;
 
 public enum NoticeType
@@ -211,24 +210,9 @@ public abstract class INetworkAdapter
 
     public string ResVersion
     {
-        get
-        {
-            string version = PlayerPrefs.GetString(BaseConst.CONSTResVersionKey, "");
-            if (string.IsNullOrEmpty(version))
-            {
-                version = "1";
-            }
-            return version;
-        }
-        set
-        {
-            string version = PlayerPrefs.GetString(BaseConst.CONSTResVersionKey, "");
-            if (!version.Equals(value))
-            {
-                PlayerPrefs.SetString(BaseConst.CONSTResVersionKey, value);
-            }
-        }
+        get;set;
     }
+
     public virtual void StartUpdate() { }
 
     public virtual void ConfirmUpdate() { }

@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public static class TimeHelper
 {
@@ -61,11 +60,11 @@ public static class TimeHelper
 
     public static long GetTimeLeft(ulong serverEndTime)
     {
-        return (long) Mathf.Max(0, (long) serverEndTime - ServerTime);
+        return (long) Math.Max(0, (long) serverEndTime - ServerTime);
     }
     
     public static long GetTimeLeftOnServerStart(ulong serverStartTime)
     {
-        return (long) Mathf.Max(0, ServerTime - (long) serverStartTime);
+        return (long) Math.Max(0, ServerTime - (long) serverStartTime);
     }
 }

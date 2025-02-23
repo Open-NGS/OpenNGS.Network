@@ -1,13 +1,7 @@
 using OpenNGS.Configs;
 using OpenNGS.Logs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common;
-using UnityEngine;
 using OpenNGSCommon;
+using System.Collections.Generic;
 
 
 class GameConfig : AppConfig<GameConfig>, IConfig, ILogConfig

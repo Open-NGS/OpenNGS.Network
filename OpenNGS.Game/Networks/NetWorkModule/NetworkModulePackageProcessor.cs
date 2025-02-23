@@ -1,10 +1,9 @@
-using System;
-using System.IO;
-using System.Collections.Generic;
-using UnityEngine;
 using OpenNGS.Network;
-using OpenNGS.Extension;
 using protocol;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
 
 public class NetworkModulePackageProcessor
 {
@@ -103,11 +102,11 @@ public class NetworkModulePackageProcessor
             lastRequestTimeout = true;
         }
 
-        string info = string.Format("[RequestTimeout][t:{0}]op:{1},s:{2},l:{3}", timeoutType, req.body.op,
-            req.body.isSend, req.body.reqLvl);
+        string info = string.Format("[RequestTimeout][t:{0}]op:{1},s:{2}", timeoutType, req.body.op,
+            req.body.isSend);
 
         //bugly上报日志
-        Debug.LogError(info);
+        NgDebug.LogError(info);
     }
 
     public void SendRequest(SCSPkg request)
@@ -139,7 +138,7 @@ public class NetworkModulePackageProcessor
     {
         if (!Connector.IsValid())
         {
-            Debug.LogWarning("Send request gs conn is not valid");
+            NgDebug.LogWarning("Send request gs conn is not valid");
             return false;
         }
         Type pb_type = pkg.body.req.GetType();
@@ -234,7 +233,7 @@ public class NetworkModulePackageProcessor
         MsgHead head = OpenNGS.Networks.ProtoHelper.Deserialize<MsgHead>(responseStream);
         if (head == null)
         {
-            Debug.LogError("Deserialize protocol head fail");
+            NgDebug.LogError("Deserialize protocol head fail");
             return;
         }
         responseStream.SetLength(0);
@@ -251,7 +250,7 @@ public class NetworkModulePackageProcessor
             HeartbeatRsp rsp = OpenNGS.Networks.ProtoHelper.Deserialize<HeartbeatRsp>(responseStream);
             if (rsp == null)
             {
-                Debug.LogError("Deserialize protocol heartbeat body fail");
+                NgDebug.LogError("Deserialize protocol heartbeat body fail");
 
             }
             else
@@ -332,7 +331,7 @@ public class NetworkModulePackageProcessor
     public void RegGSNotifyMsg(int msgid, Type rsp_type)
     {
         if (mNetworkNotifyMsg.ContainsKey(msgid))
-            UnityEngine.Debug.LogErrorFormat("duplicate msgid:{0}", msgid);
+            NgDebug.LogErrorFormat("duplicate msgid:{0}", msgid);
         else
             mNetworkNotifyMsg[msgid] = rsp_type;
     }
@@ -415,7 +414,7 @@ public class NetworkModulePackageProcessor
         {
             if (_mIsHeartbeatTimeout)
             {
-                Debug.LogWarning("Heartbeat timeout");
+                NgDebug.LogWarning("Heartbeat timeout");
                 onHeartBeatTimeOut?.Invoke();
                 return;
             }

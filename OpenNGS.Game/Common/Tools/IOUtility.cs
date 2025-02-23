@@ -1,11 +1,11 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using OpenNGS;
+using UnityEngine;
 
 
 public static class IOUtility
@@ -19,7 +19,7 @@ public static class IOUtility
             return Application.temporaryCachePath+"/Update";
 
 #else
-            return Application.persistentDataPath+"/Update";
+            return Application.persistentDataPath +"/Update";
 #endif
         }
     }

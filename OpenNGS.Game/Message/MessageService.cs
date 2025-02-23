@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine.Events;
 
 namespace Services
 {
@@ -13,12 +12,12 @@ namespace Services
     public class MessageContext
     {
 
-        public event UnityAction<int, IProtoExtension> Handler;
+        public event Action<int, IProtoExtension> Handler;
         public MessageContext()
         {
 
         }
-        public MessageContext(UnityAction<int, IProtoExtension> callback)
+        public MessageContext(Action<int, IProtoExtension> callback)
         {
             this.Handler += callback;
         }

@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using protocol;
 using System;
-using UnityEngine.Events;
 using OpenNGS.Network;
 using OpenNGS;
 
@@ -82,7 +77,7 @@ namespace protocol
         // 请求回调
         public Services.MessageContext rspcontext;
         // 发送级别
-        public RequestLevel reqLvl = RequestLevel.NotResend;
+        //public RequestLevel reqLvl = RequestLevel.NotResend;
         // 是否已经发送
         public bool isSend;
 

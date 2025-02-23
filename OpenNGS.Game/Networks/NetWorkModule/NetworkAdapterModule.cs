@@ -1,8 +1,6 @@
 using Networks.NetWorkModule;
 using System;
 using System.Collections.Generic;
-//using GCloud.MSDK;
-using UnityEngine;
 
 public struct SNSInfo
 {
@@ -93,7 +91,7 @@ public class NetworkAdapterModule
         }
         else
         {
-            Debug.LogError("NetworkAdapter is not null!");
+            NgDebug.LogError("NetworkAdapter is not null!");
         }
     }
     public void Uninitialize()

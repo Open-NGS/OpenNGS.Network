@@ -1,4 +1,5 @@
 using System;
+using OpenNGS;
 using OpenNGSCommon;
 
 namespace Systems
@@ -85,9 +86,6 @@ namespace Systems
 
         protected virtual void OnCreate()
         {
-            var gameContext = GameInstance.Instance.GetGameContext(GetGameContextType());
-            GameMode = gameContext.GameMode;
-            gameContext.RegisterSystem(this);
         }
     }
 }

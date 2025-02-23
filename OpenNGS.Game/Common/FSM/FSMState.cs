@@ -1,7 +1,7 @@
 
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Diagnostics;
 
 namespace OpenNGS
 {
@@ -70,7 +70,7 @@ namespace OpenNGS
             // interval相同时可以添加不同retCode的toState
             if (timer.interval != 0 && timer.interval != interval)
             {
-                Debug.LogErrorFormat("FSMState AddTimer interval exit {0}", state);
+                NgDebug.LogErrorFormat("FSMState AddTimer interval exit {0}", state);
                 return false;
             }
 
@@ -91,7 +91,7 @@ namespace OpenNGS
             {
                 if (fsm.timer == null)
                 {
-                    Debug.LogErrorFormat("FSM timer is null");
+                    NgDebug.LogErrorFormat("FSM timer is null");
                     return;
                 }
 
@@ -110,7 +110,7 @@ namespace OpenNGS
             {
                 if (fsm.timer == null)
                 {
-                    Debug.LogErrorFormat("FSM timer is null");
+                    NgDebug.LogErrorFormat("FSM timer is null");
                     return;
                 }
 
@@ -169,7 +169,7 @@ namespace OpenNGS
 
         public void LogState()
         {
-            Debug.LogFormat("FSM state {0}", state);
+            NgDebug.LogFormat("FSM state {0}", state);
         }
     }
 }
