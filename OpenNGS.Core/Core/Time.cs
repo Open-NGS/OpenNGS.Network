@@ -15,7 +15,9 @@ namespace OpenNGS
         static Time()
         {
             frameCount = 0;
+#if UNITY_EDITOR
             UnityEngine.Application.onBeforeRender += OnFrame;
+#endif
             systemWatch.Start();
             gameStartTime = (float)systemWatch.Elapsed.TotalSeconds;
         }

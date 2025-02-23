@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if UNITY_5_3_OR_NEWER
 using UnityEngine;
+#endif
 using System.Threading;
 
 namespace OpenNGS.Configs
@@ -86,7 +88,7 @@ namespace OpenNGS.Configs
                 }
             }
         }
-
+#if UNITY_5_3_OR_NEWER
         public IEnumerator WaitAllComplete()
         {
             while (this.AsyncLoadQueue.Count > 0)
@@ -97,6 +99,7 @@ namespace OpenNGS.Configs
             // Debug.LogFormat("ConfigMgr:{0}:WaitAllAsyncComplete({1}/{2})", Time.realtimeSinceStartup, this.LoadedCount, this.Total);
 #endif
         }
+#endif
 
         private void BeginAsyncLoad(IData config)
         {

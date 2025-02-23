@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenNGS;
-using Debug = UnityEngine.Debug;
 
 namespace OpenNGS.Profiling
 {
