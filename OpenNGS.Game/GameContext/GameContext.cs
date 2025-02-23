@@ -1,15 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using OpenNGSCommon;
 using OpenNGS.DI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common;
 using Systems;
-using UnityEngine;
 using OpenNGS;
+using System.Collections.Generic;
 
 /// <summary>
 /// GameContext: dealing with different Levels in different game stage.
@@ -31,7 +24,7 @@ public abstract class GameContext : IApplicationContext
 
     public void Init(GameMode gameMode)
     {
-        Debug.Log($"GameContext Init : {_systems.Count}");
+        NgDebug.Log($"GameContext Init : {_systems.Count}");
 
         GameMode = gameMode;
         OnInit();
@@ -46,6 +39,7 @@ public abstract class GameContext : IApplicationContext
             {
                 IGameSubSystem _subSys = (IGameSubSystem)(builder.container[i].ImplementationInstance);
                 _subSys.Init();
+                this.RegisterSystem(_subSys);
             }
         }
     }
@@ -60,7 +54,7 @@ public abstract class GameContext : IApplicationContext
         if (system.GetSystemName() == "") return;
         if (this._systems.TryGetValue(system.GetSystemName(), out var sys))
         {
-            Debug.LogError(string.Format("System {0}[{1}] ID repetition with {2}", system.ToString(), system.GetSystemName(), sys.ToString()));
+            NgDebug.LogError(string.Format("System {0}[{1}] ID repetition with {2}", system.ToString(), system.GetSystemName(), sys.ToString()));
             return;
         }
         this._systems.Add(system.GetSystemName(), system);
@@ -113,7 +107,7 @@ public abstract class GameContext : IApplicationContext
         }
         else
         {
-            Debug.LogErrorFormat("SystemName:{0} not found for OnStatus", status.SystemName);
+            NgDebug.LogErrorFormat("SystemName:{0} not found for OnStatus", status.SystemName);
         }
     }
 

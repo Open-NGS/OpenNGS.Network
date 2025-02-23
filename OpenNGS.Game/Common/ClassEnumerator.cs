@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace InnovFramework
@@ -42,7 +40,7 @@ namespace InnovFramework
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogError("Parse Assembly error:" + e.Message);
+                NgDebug.LogError("Parse Assembly error:" + e.Message);
 
             }
         }

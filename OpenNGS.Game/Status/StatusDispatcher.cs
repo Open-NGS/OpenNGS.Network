@@ -100,7 +100,7 @@ public class StatusDispatcher
     {
         if (!m_Handlers.TryGetValue(obj.SystemName, out var action))
         {
-            UnityEngine.Debug.LogWarningFormat("Status Process not found[{0}]", obj.SystemName, obj.OpCode);
+            NgDebug.LogWarningFormat("Status Process not found[{0}]", obj.SystemName, obj.OpCode);
             return;
         }
         action?.Invoke(obj);

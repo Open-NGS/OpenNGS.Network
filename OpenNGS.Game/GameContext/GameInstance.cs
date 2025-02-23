@@ -64,7 +64,7 @@ public class GameInstance : OpenNGS.Singleton<GameInstance>
 #else
         AssetBundleManager.Instance.Init();
 #endif
-        StatusSystem.Instance.Init();
+        StatusSystem.Instance.Init(NetworkModule.Instance);
 
         //
         LocalizationSystem.Instance.Init();

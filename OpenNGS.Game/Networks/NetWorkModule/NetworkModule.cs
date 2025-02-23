@@ -1,14 +1,13 @@
-using System;
-using System.IO;
-using System.Collections.Generic;
-using UnityEngine;
 using OpenNGS;
 using OpenNGSCommon;
 using protocol;
 using Networks.NetWorkModule;
+using System;
+using UnityEngine;
+using OpenNGS.Status;
 //using GameGuide;
 
-public sealed class NetworkModule
+public sealed class NetworkModule : IStatusHandler
 {
     public static readonly NetworkModule Instance = new NetworkModule();
 
@@ -1236,6 +1235,8 @@ public sealed class NetworkModule
 
     // 尝试重连计数
     private int reconnectCounter;
+
+    public event IStatusHandler.StatusMessageHandler OnStatus;
 
     /// <summary>
     /// 重置重连计数器

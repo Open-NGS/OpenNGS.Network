@@ -15,7 +15,7 @@ namespace Rpc
         {
             ReqMeta.TryAdd("uin", UIN.ToString());
             
-            SetAction("com.openngs.xr.status_system", (byte[] val) => { StatusSystem.Instance.OnStatus(FileSerializer.Deserialize<StatusDataList>(val)); });
+            SetAction("com.openngs.status_system", (byte[] val) => { StatusSystem.Instance.OnStatus(FileSerializer.Deserialize<StatusDataList>(val)); });
         }
     }
 }

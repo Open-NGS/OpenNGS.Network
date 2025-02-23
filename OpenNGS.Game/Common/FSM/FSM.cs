@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace OpenNGS
 {
@@ -36,7 +35,7 @@ namespace OpenNGS
         {
             if (HasState(state) == true)
             {
-                Debug.LogErrorFormat("FSM AddState state exit {0}", state);
+                NgDebug.LogErrorFormat("FSM AddState state exit {0}", state);
                 return false;
             }
 
@@ -70,13 +69,13 @@ namespace OpenNGS
             // 检查状态
             if (HasState(fromState) == false)                
             {
-                Debug.LogErrorFormat("FSM addEvent state not exit {0}", fromState);
+                NgDebug.LogErrorFormat("FSM addEvent state not exit {0}", fromState);
                 return false;
             }
 
             if (HasState(toState) == false)
             {
-                Debug.LogErrorFormat("FSM addEvent state not exit {0}", toState);
+                NgDebug.LogErrorFormat("FSM addEvent state not exit {0}", toState);
                 return false;
             }
 
@@ -95,13 +94,13 @@ namespace OpenNGS
             // 检查状态
             if (HasState(fromState) == false)
             {
-                Debug.LogErrorFormat("FSM AddTimer state not exit {0}", fromState);
+                NgDebug.LogErrorFormat("FSM AddTimer state not exit {0}", fromState);
                 return false;
             }
 
             if (HasState(toState) == false)
             {
-                Debug.LogErrorFormat("FSM AddTimer state not exit {0}", toState);
+                NgDebug.LogErrorFormat("FSM AddTimer state not exit {0}", toState);
                 return false;
             }
 
@@ -118,7 +117,7 @@ namespace OpenNGS
             // 检查状态
             if (HasState(state) == false)
             {
-                Debug.LogErrorFormat("FSM Start state no exit {0}", state);
+                NgDebug.LogErrorFormat("FSM Start state no exit {0}", state);
                 return false;
             }
 
@@ -171,7 +170,7 @@ namespace OpenNGS
         {
             if (HasState(newState) == false)
             {
-                Debug.LogErrorFormat("FSM Translate state not exit {0}", newState);
+                NgDebug.LogErrorFormat("FSM Translate state not exit {0}", newState);
                 return;
             }
 			
@@ -181,7 +180,7 @@ namespace OpenNGS
             // 设置新状态
             mCurState = StateDict[newState];
 
-            Debug.LogWarning($"FSM Translate newState {newState}");
+            NgDebug.LogWarning($"FSM Translate newState {newState}");
 
             //新状态的进入事件
             mCurState?.OnEnter();

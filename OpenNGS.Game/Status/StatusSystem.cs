@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using OpenNGS.Extension;
-using OpenNGS.Network;
 using OpenNGS.Serialization;
+using OpenNGS.Status;
 using OpenNGSCommon;
-using ProtoBuf;
-using UnityEngine;
 using StatusData = OpenNGSCommon.StatusData;
 
 namespace Systems
@@ -16,10 +11,13 @@ namespace Systems
     {
         private StatusDispatcher m_Dispatcher;
 
-        public void Init()
+        private IStatusHandler statusHandler;
+
+        public void Init(IStatusHandler handler)
         {
             m_Dispatcher = new StatusDispatcher();
-            NetworkModule.Instance.onMessageHeadStatus += MessageHeadStatusHandler;
+            statusHandler = handler;
+            statusHandler.OnStatus += MessageHeadStatusHandler;
         }
 
         public bool Register(string systemName, Action<StatusData> callBack)
@@ -36,7 +34,7 @@ namespace Systems
         {
             StatusDataList temp = (StatusDataList)rsp;
             string msg = string.Empty;
-            if (NetworkModule.Instance.CheckSvrRetCode(errcode))
+            if (statusHandler.CheckSvrRetCode(errcode))
             {
                 // NgDebug.LogJson("HandleStatusResponse Success", rsp);
                 try
@@ -45,12 +43,12 @@ namespace Systems
                 }
                 catch (System.Exception e)
                 {
-                    Debug.LogErrorFormat("HandleStatusResponse Exception:{0}", e);
+                    NgDebug.LogErrorFormat("HandleStatusResponse Exception:{0}", e);
                 }
             }
             else
             {
-                Debug.LogErrorFormat("HandleStatusResponse Failed {0}", (ResultCode)errcode);
+                NgDebug.LogErrorFormat("HandleStatusResponse Failed {0}", (ResultCode)errcode);
             }
         }
         
@@ -68,7 +66,7 @@ namespace Systems
             }
             
             TimeHelper.RefreshServerTime((uint)status.timestamp);
-            Debug.Log(sb.ToString());
+            NgDebug.Log(sb.ToString());
         }
 
         public void Update()
