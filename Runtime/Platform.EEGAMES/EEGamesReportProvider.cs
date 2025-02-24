@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
 using OpenNGS.SDK.Core.Initiallization;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,6 +21,7 @@ namespace OpenNGS.Platform.EEGames
         }
         public void Report(string eventId, ExtraInfo extraInfo)
         {
+            extraInfo.extraMap["eventname"] = eventId;
             string url = urlpath + api_path;
             string strExtraInfo = JsonConvert.SerializeObject(extraInfo);
             PlatformReportRet _ret = new PlatformReportRet();
