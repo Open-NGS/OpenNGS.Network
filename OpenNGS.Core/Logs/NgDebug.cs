@@ -75,4 +75,12 @@ public class NgDebug
     {
         LogSystem.LogException(null, ex, null);
     }
+
+    public static void Assert(bool condition, string message)
+    {
+        if(!condition)
+        {
+            LogError(message);
+        }
+    }
 }
