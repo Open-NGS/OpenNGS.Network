@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace OpenNGS.Platform
         static ExtraInfo s_extraInfo = new ExtraInfo();
 		public class ExtraInfo
 		{
-			public Dictionary<String, Object> extraMap = new Dictionary<String, Object>();
+            [JsonProperty]
+            public Dictionary<String, Object> extraMap = new Dictionary<String, Object>();
 
 			public ExtraInfo()
 			{
@@ -50,169 +52,170 @@ namespace OpenNGS.Platform
 				extra_4 = "";
 				extra_5 = "";
 			}
-
-			public string channel_id
+            [JsonIgnore]
+            public string channel_id
 			{
 				get { return extraMap["channel_id"].ToString(); }
 				set { extraMap["channel_id"] = value; }
 			}
-
-			public string client_ip
+            [JsonIgnore]
+            public string client_ip
 			{
 				get { return extraMap["client_ip"].ToString(); }
 				set { extraMap["client_ip"] = value; }
 			}
-
-			public string opid
+            [JsonIgnore]
+            public string opid
 			{
 				get { return extraMap["opid"].ToString(); }
 				set { extraMap["opid"] = value; }
 			}
-
-			public string opgameid
+            [JsonIgnore]
+            public string opgameid
 			{
 				get { return extraMap["opgameid"].ToString(); }
 				set { extraMap["opgameid"] = value; }
             }
+            [JsonIgnore]
             public string uniqueid
             {
                 get { return extraMap["uniqueid"].ToString(); }
                 set { extraMap["uniqueid"] = value; }
             }
-
+            [JsonIgnore]
             public string server_id
 			{
 				get { return extraMap["server_id"].ToString(); }
 				set { extraMap["server_id"] = value; }
 			}
-
-			public string server_type
+            [JsonIgnore]
+            public string server_type
 			{
 				get { return extraMap["server_type"].ToString(); }
 				set { extraMap["server_type"] = value; }
 			}
-
-			public string account
+            [JsonIgnore]
+            public string account
 			{
 				get { return extraMap["account"].ToString(); }
 				set { extraMap["account"] = value; }
 			}
-
-			public string account_register_time
+            [JsonIgnore]
+            public string account_register_time
 			{
 				get { return extraMap["account_register_time"].ToString(); }
 				set { extraMap["account_register_time"] = value; }
 			}
-
-			public string account_first_ingame_time
+            [JsonIgnore]
+            public string account_first_ingame_time
 			{
 				get { return extraMap["account_first_ingame_time"].ToString(); }
 				set { extraMap["account_first_ingame_time"] = value; }
 			}
-
-			public string role_id
+            [JsonIgnore]
+            public string role_id
 			{
 				get { return extraMap["role_id"].ToString(); }
 				set { extraMap["role_id"] = value; }
 			}
-
-			public string role_name
+            [JsonIgnore]
+            public string role_name
 			{
 				get { return extraMap["role_name"].ToString(); }
 				set { extraMap["role_name"] = value; }
 			}
-
-			public string level
+            [JsonIgnore]
+            public string level
 			{
 				get { return extraMap["level"].ToString(); }
 				set { extraMap["level"] = value; }
 			}
-
-			public string vip_level
+            [JsonIgnore]
+            public string vip_level
 			{
 				get { return extraMap["vip_level"].ToString(); }
 				set { extraMap["vip_level"] = value; }
 			}
-
-			public string role_register_time
+            [JsonIgnore]
+            public string role_register_time
 			{
 				get { return extraMap["role_register_time"].ToString(); }
 				set { extraMap["role_register_time"] = value; }
 			}
-
-			public string role_power
+            [JsonIgnore]
+            public string role_power
 			{
 				get { return extraMap["role_power"].ToString(); }
 				set { extraMap["role_power"] = value; }
 			}
-
-			public string role_union_id
+            [JsonIgnore]
+            public string role_union_id
 			{
 				get { return extraMap["role_union_id"].ToString(); }
 				set { extraMap["role_union_id"] = value; }
 			}
-
-			public string role_paid
+            [JsonIgnore]
+            public string role_paid
 			{
 				get { return extraMap["role_paid"].ToString(); }
 				set { extraMap["role_paid"] = value; }
 			}
-
-			public string role_type
+            [JsonIgnore]
+            public string role_type
 			{
 				get { return extraMap["role_type"].ToString(); }
 				set { extraMap["role_type"] = value; }
 			}
-
-			public string ad_user
+            [JsonIgnore]
+            public string ad_user
 			{
 				get { return extraMap["ad_user"].ToString(); }
 				set { extraMap["ad_user"] = value; }
 			}
-
-			public string extra_event_id
+            [JsonIgnore]
+            public string extra_event_id
 			{
 				get { return extraMap["extra_event_id"].ToString(); }
 				set { extraMap["extra_event_id"] = value; }
 			}
-
-			public string loading_step
+            [JsonIgnore]
+            public string loading_step
 			{
 				get { return extraMap["loading_step"].ToString(); }
 				set { extraMap["loading_step"] = value; }
 			}
-
-			public string is_key_loading_step
+            [JsonIgnore]
+            public string is_key_loading_step
 			{
 				get { return extraMap["is_key_loading_step"].ToString(); }
 				set { extraMap["is_key_loading_step"] = value; }
 			}
-
-			public string extra_1
+            [JsonIgnore]
+            public string extra_1
 			{
 				get { return extraMap["extra_1"].ToString(); }
 				set { extraMap["extra_1"] = value; }
 			}
-
-			public string extra_2
+            [JsonIgnore]
+            public string extra_2
 			{
 				get { return extraMap["extra_2"].ToString(); }
 				set { extraMap["extra_2"] = value; }
 			}
-
-			public string extra_3
+            [JsonIgnore]
+            public string extra_3
 			{
 				get { return extraMap["extra_3"].ToString(); }
 				set { extraMap["extra_3"] = value; }
 			}
-
-			public string extra_4
+            [JsonIgnore]
+            public string extra_4
 			{
 				get { return extraMap["extra_4"].ToString(); }
 				set { extraMap["extra_4"] = value; }
 			}
-
-			public string extra_5
+            [JsonIgnore]
+            public string extra_5
 			{
 				get { return extraMap["extra_5"].ToString(); }
 				set { extraMap["extra_5"] = value; }
