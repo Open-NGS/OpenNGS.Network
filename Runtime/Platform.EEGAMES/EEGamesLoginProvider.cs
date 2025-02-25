@@ -43,7 +43,7 @@ namespace OpenNGS.Platform.EEGames
             {
                 return new EEGamesReportProvider(OpenNGSPlatformServices.Instance.Options);
             }
-            else if(module == PLATFORM_MODULE.NOTICE)
+            else if (module == PLATFORM_MODULE.NOTICE)
             {
                 return new EEGamesNoticeProvider();
             }
@@ -253,6 +253,7 @@ namespace OpenNGS.Platform.EEGames
 
         void ILoginProvider.AutoLogin()
         {
+            AutoLogin();
             //throw new NotImplementedException();
         }
 
@@ -272,7 +273,7 @@ namespace OpenNGS.Platform.EEGames
         }
     }
 
-    
+
 
 }
 
