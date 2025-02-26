@@ -121,6 +121,16 @@ namespace OpenNGS.Platform
 
         private string bindList;
 
+        public string userID;
+
+        [JsonProp("userid")]
+        public string UserId
+        {
+            get { return userID; }
+            set { userID = value; }
+        }
+
+
         /// <summary>
         /// 用户 ID
         /// </summary>
