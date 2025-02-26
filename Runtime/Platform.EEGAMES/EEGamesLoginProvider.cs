@@ -120,6 +120,7 @@ namespace OpenNGS.Platform.EEGames
                     m_LoginResult.Token = AuthcationService.Instance.Token;
                     m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
                     m_LoginResult.UserName = AuthcationService.Instance.User.Nickname;
+                    m_LoginResult.PictureUrl = AuthcationService.Instance.User.Avatar;
                     _callBackLogin(m_LoginResult);
                 }
                 else
@@ -181,6 +182,7 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.Token = AuthcationService.Instance.Token;
                         m_LoginResult.UserName = result.Nickname;
                         m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                        m_LoginResult.PictureUrl = result.Avatar;
                         _callBackLogin(m_LoginResult);
                     };
 
@@ -209,6 +211,7 @@ namespace OpenNGS.Platform.EEGames
                         m_LoginResult.Token = AuthcationService.Instance.Token;
                         m_LoginResult.UserName = result.Nickname;
                         m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                        m_LoginResult.PictureUrl = result.Avatar;
                         if (AuthcationService.Instance.User.NewUser == true)
                         {
                             m_LoginResult.FirstLogin = 1;
