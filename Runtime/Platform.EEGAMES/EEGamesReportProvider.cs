@@ -19,14 +19,20 @@ namespace OpenNGS.Platform.EEGames
         {
             urlpath = options.UrlReport;
         }
+        ~EEGamesReportProvider()
+        {
+            Report("ReportDecon", GetExtraInfo());
+        }
         public void Report(string eventId, ExtraInfo extraInfo)
         {
+#if !UNITY_EDITOR
             extraInfo.extraMap["eventname"] = eventId;
             string url = urlpath + api_path;
             string strExtraInfo = JsonConvert.SerializeObject(extraInfo);
             PlatformReportRet _ret = new PlatformReportRet();
             PlatformCallback.Instance.StartCoroutine(WebPost(url,
                 strExtraInfo, _ret, _callBackReport));
+#endif
         }
 
         private void _callBackReport(PlatformReportRet _ret)
