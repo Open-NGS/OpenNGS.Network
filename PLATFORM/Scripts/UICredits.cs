@@ -37,16 +37,20 @@ public class UICredits : MonoBehaviour
     public Sprite targetSprite;
     private void Start()
     {
+        Debug.Log(string.Format("credit start"));
         m_curContent = allContent;
         string jsonContent = "";
+        jsonPath = Application.streamingAssetsPath + "/" + "data." + "json";
         if (jsonPath != null && File.Exists(jsonPath))
         {
             // 读取测试文件内容
             jsonContent = File.ReadAllText(jsonPath);
+            Debug.Log("has path " + jsonPath);
         }
         else
         {
             //todo 接入SDK
+            Debug.Log("has not path " + jsonPath);
         }
 
         if (jsonContent != null)
