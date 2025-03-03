@@ -158,44 +158,66 @@ namespace OpenNGS.Platform.EEGames
                 {
                     if (_loginData.VerifyTyp == VerificationType.Phone)
                     {
-                        AuthcationService.Instance.VerificationCodeCallback += (result) =>
-                        {
-                            _getVerifyCode(result);
-                        };
+                        AuthcationService.Instance.VerificationCodeCallback -= _getVerifyCode;
+                        AuthcationService.Instance.VerificationCodeCallback += _getVerifyCode;
+
+                        //AuthcationService.Instance.VerificationCodeCallback += (result) =>
+                        //{
+                        //    _getVerifyCode(result);
+                        //};
                         AuthcationService.Instance.SendVerificationCode(VerificationType.Phone, _loginData.Account);
                     }
                     else if (_loginData.VerifyTyp == VerificationType.Email)
                     {
-                        AuthcationService.Instance.VerificationCodeCallback += (result) =>
-                        {
-                            _getVerifyCode(result);
-                        };
+                        AuthcationService.Instance.VerificationCodeCallback -= _getVerifyCode;
+                        AuthcationService.Instance.VerificationCodeCallback += _getVerifyCode;
+
+                        //AuthcationService.Instance.VerificationCodeCallback += (result) =>
+                        //{
+                        //    _getVerifyCode(result);
+                        //};
                         AuthcationService.Instance.SendVerificationCode(VerificationType.Email, _loginData.Account);
                     }
                 }
                 else
                 {
-                    AuthcationService.Instance.LoginCallback += (result) =>
-                    {
-                        SDKLog.Info($"[账号密码登录成功] 用户:[{result.Nickname}]");
-                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
-                        m_LoginResult.Token = AuthcationService.Instance.Token;
-                        m_LoginResult.UserName = result.Nickname;
-                        m_LoginResult.UserId = result.Eeid;
-                        m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
-                        m_LoginResult.PictureUrl = result.Avatar;
-                        _callBackLogin(m_LoginResult);
-                    };
+                    AuthcationService.Instance.LoginCallback -= OnLoginCallBackWithUsername;
+                    AuthcationService.Instance.LoginCallback += OnLoginCallBackWithUsername;
+                    //AuthcationService.Instance.LoginCallback += (result) =>
+                    //{
+                    //    SDKLog.Info($"[账号密码登录成功] 用户:[{result.Nickname}]");
+                    //    m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+                    //    m_LoginResult.Token = AuthcationService.Instance.Token;
+                    //    m_LoginResult.UserName = result.Nickname;
+                    //    m_LoginResult.UserId = result.Eeid;
+                    //    m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                    //    m_LoginResult.PictureUrl = result.Avatar;
+                    //    _callBackLogin(m_LoginResult);
+                    //};
 
-                    AuthcationService.Instance.LoginResultCallback += (result) =>
-                    {
-                        if (result != (int)SDKResultCode.RESULT_OK)
-                        {
-                            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
-                            m_LoginResult.RetCode = result;
-                            _callBackLogin(m_LoginResult);
-                        }
-                    };
+                    //AuthcationService.Instance.LoginCallback += (result) =>
+                    //{
+                    //    SDKLog.Info($"[账号密码登录成功] 用户:[{result.Nickname}]");
+                    //    m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+                    //    m_LoginResult.Token = AuthcationService.Instance.Token;
+                    //    m_LoginResult.UserName = result.Nickname;
+                    //    m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                    //    m_LoginResult.PictureUrl = result.Avatar;
+                    //    _callBackLogin(m_LoginResult);
+                    //};
+
+                    AuthcationService.Instance.LoginResultCallback -= OnLoginResultCallBackWithUsername;
+                    AuthcationService.Instance.LoginResultCallback += OnLoginResultCallBackWithUsername;
+
+                    //AuthcationService.Instance.LoginResultCallback += (result) =>
+                    //{
+                    //    if (result != (int)SDKResultCode.RESULT_OK)
+                    //    {
+                    //        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+                    //        m_LoginResult.RetCode = result;
+                    //        _callBackLogin(m_LoginResult);
+                    //    }
+                    //};
 
                     AuthcationService.Instance.LoginByUsernamePassword(_loginData.UserName, _loginData.Password);
                 }
@@ -204,33 +226,37 @@ namespace OpenNGS.Platform.EEGames
             {
                 if (_loginData.VerifyTyp == VerificationType.Phone || _loginData.VerifyTyp == VerificationType.Email)
                 {
-                    AuthcationService.Instance.LoginCallback += (result) =>
-                    {
-                        SDKLog.Info($"[LoginCallback] 用户[{result.Nickname}] 登录成功 code:[{result}]");
+                    AuthcationService.Instance.LoginCallback -= OnLoginCallBackWithCode;
+                    AuthcationService.Instance.LoginCallback += OnLoginCallBackWithCode;
+                    //AuthcationService.Instance.LoginCallback += (result) =>
+                    //{
+                    //    SDKLog.Info($"[LoginCallback] 用户[{result.Nickname}] 登录成功 code:[{result}]");
 
-                        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
-                        m_LoginResult.Token = AuthcationService.Instance.Token;
-                        m_LoginResult.UserName = result.Nickname;
-                        m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
-                        m_LoginResult.PictureUrl = result.Avatar;
-                        if (AuthcationService.Instance.User.NewUser == true)
-                        {
-                            m_LoginResult.FirstLogin = 1;
-                        }
-                        _callBackLogin(m_LoginResult);
-                    };
+                    //    m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+                    //    m_LoginResult.Token = AuthcationService.Instance.Token;
+                    //    m_LoginResult.UserName = result.Nickname;
+                    //    m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+                    //    m_LoginResult.PictureUrl = result.Avatar;
+                    //    if (AuthcationService.Instance.User.NewUser == true)
+                    //    {
+                    //        m_LoginResult.FirstLogin = 1;
+                    //    }
+                    //    _callBackLogin(m_LoginResult);
+                    //};
 
-                    AuthcationService.Instance.LoginResultCallback += (result) =>
-                    {
-                        if (result != 0)
-                        {
-                            SDKLog.Info($"[LoginCallback] 登录错误 code:[{result}]");
+                    AuthcationService.Instance.LoginResultCallback -= OnLoginResultCallBackWithCode;
+                    AuthcationService.Instance.LoginResultCallback += OnLoginResultCallBackWithCode;
+                    //AuthcationService.Instance.LoginResultCallback += (result) =>
+                    //{
+                    //    if (result != 0)
+                    //    {
+                    //        SDKLog.Info($"[LoginCallback] 登录错误 code:[{result}]");
 
-                            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
-                            m_LoginResult.RetCode = result;
-                            _callBackLogin(m_LoginResult);
-                        }
-                    };
+                    //        m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+                    //        m_LoginResult.RetCode = result;
+                    //        _callBackLogin(m_LoginResult);
+                    //    }
+                    //};
 
                     AuthcationService.Instance.LoginOrRegisterByVerificationCode(
                         _loginData.VerifyTyp,
@@ -240,15 +266,76 @@ namespace OpenNGS.Platform.EEGames
             }
         }
 
-        public void Logout(string channel = "")
+        private void OnLoginCallBackWithUsername(EegamesUserInfo result)
         {
-            AuthcationService.Instance.LogoutCallback += (result) =>
+            SDKLog.Info($"[账号密码登录成功] 用户:[{result.Nickname}]");
+            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
+            m_LoginResult.Token = AuthcationService.Instance.Token;
+            m_LoginResult.UserName = result.Nickname;
+            m_LoginResult.UserId = result.Eeid;
+            m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+            m_LoginResult.PictureUrl = result.Avatar;
+            _callBackLogin(m_LoginResult);
+        }
+
+        private void OnLoginResultCallBackWithUsername(int result)
+        {
+            if (result != (int)SDKResultCode.RESULT_OK)
             {
-                m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGOUT;
+                m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGIN;
                 m_LoginResult.RetCode = result;
                 _callBackLogin(m_LoginResult);
-            };
+            }
+        }
+
+        private void OnLoginCallBackWithCode(EegamesUserInfo result)
+        {
+            SDKLog.Info($"[LoginCallback] 用户[{result.Nickname}] 登录成功 code:[{result}]");
+
+            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+            m_LoginResult.Token = AuthcationService.Instance.Token;
+            m_LoginResult.UserName = result.Nickname;
+            m_LoginResult.UserId = result.Eeid;
+            m_LoginResult.RetCode = (int)SDKResultCode.RESULT_OK;
+            m_LoginResult.PictureUrl = result.Avatar;
+            if (AuthcationService.Instance.User.NewUser == true)
+            {
+                m_LoginResult.FirstLogin = 1;
+            }
+            _callBackLogin(m_LoginResult);
+        }
+
+        private void OnLoginResultCallBackWithCode(int result)
+        {
+            if (result != 0)
+            {
+                SDKLog.Info($"[LoginCallback] 登录错误 code:[{result}]");
+
+                m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_ACCOUNT_LOGIN_WITH_CODE;
+                m_LoginResult.RetCode = result;
+                _callBackLogin(m_LoginResult);
+            }
+        }
+
+        public void Logout(string channel = "")
+        {
+            AuthcationService.Instance.LogoutCallback -= OnLogout;
+            AuthcationService.Instance.LogoutCallback += OnLogout;
+
+            //AuthcationService.Instance.LogoutCallback += (result) =>
+            // {
+            //     m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGOUT;
+            //     m_LoginResult.RetCode = result;
+            //     _callBackLogin(m_LoginResult);
+            // };
             AuthcationService.Instance.Logout();
+        }
+
+        private void OnLogout(int result)
+        {
+            m_LoginResult.MethodNameId = (int)MSDKMethodNameID.MSDK_LOGIN_LOGOUT;
+            m_LoginResult.RetCode = result;
+            _callBackLogin(m_LoginResult);
         }
 
         public void SwitchUser(bool useLaunchUser)
