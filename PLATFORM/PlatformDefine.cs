@@ -18,6 +18,7 @@ namespace OpenNGS.Platform
         ACHIEVEMENT = 10,
         ACTIVITY = 11,
         NOTICE = 12,
+        CAS = 13,
         MUDULE_COUNT,
     }
 

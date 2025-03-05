@@ -97,6 +97,10 @@ namespace OpenNGS.Platform
             return (IAppProvider)Modules[(int)PLATFORM_MODULE.APP];
         }
 
+        internal static ICasProvider GetCas()
+        {
+            return (ICasProvider)Modules[(int)PLATFORM_MODULE.CAS];
+        }
         internal static ILoginProvider GetLogin()
         {
             return (ILoginProvider)Modules[(int)PLATFORM_MODULE.LOGIN];
@@ -130,8 +134,6 @@ namespace OpenNGS.Platform
             return (IActivityProvider)Modules[(int)PLATFORM_MODULE.ACTIVITY];
 
         }
-
-        
         internal static IAchievementProvider GetAchievement()
         {
             return (IAchievementProvider)Modules[(int)PLATFORM_MODULE.ACHIEVEMENT];
@@ -141,12 +143,10 @@ namespace OpenNGS.Platform
         {
             return (IRemoteStorageProvider)Modules[(int)PLATFORM_MODULE.REMOTE_STORAGE];
         }
-
         internal static IUserProvider GetUser()
         {
             return (IUserProvider)Modules[(int)PLATFORM_MODULE.USER];
         }
-
         public static void Start()
         {
             for (int i = 0; i < (int)PLATFORM_MODULE.MUDULE_COUNT; i++)
