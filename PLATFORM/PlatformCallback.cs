@@ -344,6 +344,10 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
     {
         OnSuperSDKLoginRet(_ret);
     }
+    public void OnCasCallBack(PlatformCasRet _ret)
+    {
+        PlatformCas.OnCasRet(_ret);
+    }
     public void OnReportCallBack(PlatformReportRet _ret)
     {
         PlatformReport.OnReportRet(_ret);
