@@ -3,7 +3,9 @@
     "rootNamespace": "",
     "references": [
         "OpenNGS.Platform",
-        "OpenNGS.Core"
+        "OpenNGS.Core",
+        "OpenNgs.Ads.Unity",
+        "UnityEngine.Advertisements"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

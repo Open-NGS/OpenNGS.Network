@@ -1,12 +1,7 @@
 using OpenNGS.Platform;
-using OpenNGS.SDK.Auth;
 using OpenNGS.SDK.Notice;
-using System.Collections;
 using System.Collections.Generic;
 using OpenNGS.SDK.Notice.Models;
-using UnityEngine;
-using OpenNGS.SDK.Auth.Models;
-using OpenNGS.SDK.Core;
 
 public class EEGamesNoticeProvider : INoticeProvider
 {

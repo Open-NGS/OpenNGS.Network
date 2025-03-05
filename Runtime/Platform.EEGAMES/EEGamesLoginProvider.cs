@@ -1,19 +1,12 @@
 using Newtonsoft.Json;
-using OpenNGS.Platform;
 using OpenNGS.SDK.Core.Initiallization;
 using OpenNGS.SDK.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Networking;
 using OpenNGS.SDK.Auth;
 using OpenNGS.SDK.Auth.Models;
 using OpenNGS.SDK.Log;
-using System.Net.Mail;
-using static UnityEngine.Networking.UnityWebRequest;
+using OpenNGS.Ads.Unity;
 
 namespace OpenNGS.Platform.EEGames
 {
@@ -46,6 +39,10 @@ namespace OpenNGS.Platform.EEGames
             else if (module == PLATFORM_MODULE.NOTICE)
             {
                 return new EEGamesNoticeProvider();
+            }
+            else if( module == PLATFORM_MODULE.CAS)
+            {
+                return new UnityCasProvider();
             }
             else
             {
