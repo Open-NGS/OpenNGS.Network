@@ -11,7 +11,7 @@ using Systems;
 
 namespace OpenNGS.Systems
 {
-    class NgStatisticSystem : GameSubSystem<NgStatisticSystem>, INgStatisticSystem
+    public class NgStatisticSystem : GameSubSystem<NgStatisticSystem>, INgStatisticSystem
     {
         private Dictionary<int, double> globalStatistics;  //全局
         //private Dictionary<int, double> gameStatistics = new Dictionary<int, double>();    //局内
