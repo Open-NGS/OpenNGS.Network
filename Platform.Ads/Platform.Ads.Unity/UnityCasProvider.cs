@@ -139,6 +139,12 @@ namespace OpenNGS.Ads.Unity
                 m_ret.AdUnitID = placementId;
                 _callBackCas(m_ret);
             }
+            else if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.SKIPPED))
+            {
+                m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowSkip;
+                m_ret.AdUnitID = placementId;
+                _callBackCas(m_ret);
+            }
         }
 
         public void OnUnityAdsAdLoaded(string placementId)

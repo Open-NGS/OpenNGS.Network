@@ -86,6 +86,7 @@ namespace OpenNGS.Platform
         OnAdsShowFailure,
         OnAdsShowStart,
         OnAdsShowClick,
+        OnAdsShowSkip,
         OnAdsShowComplete
     }
     public class PlatformCasRet : PlatformBaseRet
