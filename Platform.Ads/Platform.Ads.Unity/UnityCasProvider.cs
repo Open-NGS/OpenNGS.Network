@@ -133,13 +133,25 @@ namespace OpenNGS.Ads.Unity
 
         public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
         {
-            if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+            //if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+            //{
+            //    m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowComplete;
+            //    m_ret.AdUnitID = placementId;
+            //    _callBackCas(m_ret);
+            //}
+            //else if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.SKIPPED))
+            //{
+            //    m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowSkip;
+            //    m_ret.AdUnitID = placementId;
+            //    _callBackCas(m_ret);
+            //}
+            if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
                 m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowComplete;
                 m_ret.AdUnitID = placementId;
                 _callBackCas(m_ret);
             }
-            else if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.SKIPPED))
+            else if (showCompletionState.Equals(UnityAdsShowCompletionState.SKIPPED))
             {
                 m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowSkip;
                 m_ret.AdUnitID = placementId;
@@ -149,12 +161,12 @@ namespace OpenNGS.Ads.Unity
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
-            if (placementId.Equals(_adUnitId))
-            {
-                m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsAdLoaded;
-                m_ret.AdUnitID = placementId;
-                _callBackCas(m_ret);
-            }
+            //if (placementId.Equals(_adUnitId))
+            //{
+            m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsAdLoaded;
+            m_ret.AdUnitID = placementId;
+            _callBackCas(m_ret);
+            //}
         }
 
         public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
