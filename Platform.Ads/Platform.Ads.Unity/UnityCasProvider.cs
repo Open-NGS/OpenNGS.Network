@@ -1,7 +1,9 @@
 using OpenNGS.Platform;
 using UnityEngine.Advertisements;
+
 namespace OpenNGS.Ads.Unity
 {
+#if OpenNgsCas
     public class UnityCasProvider : ICasProvider, IUnityAdsInitializationListener, IUnityAdsShowListener, IUnityAdsLoadListener
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.CAS;
@@ -194,5 +196,46 @@ namespace OpenNGS.Ads.Unity
             PlatformCallback.Instance.OnCasCallBack(_ret);
         }
     }
+#else
+    public class UnityCasProvider: ICasProvider
+    {
+        public PLATFORM_MODULE Module => PLATFORM_MODULE.CAS;
 
+        public void HideBannerAd()
+        {
+        }
+
+        public void Initialize(string strGameID, bool bTestMode = false)
+        {
+        }
+
+        public void LoadAd(string strAdUnitId)
+        {
+        }
+
+        public void LoadBanner(string strAdUnitId, uint nBannerPosition)
+        {
+        }
+
+        public void ShowAd(string strAdUnitId)
+        {
+        }
+
+        public void ShowBannerAd(string strAdUnitId)
+        {
+        }
+
+        public void Start()
+        {
+        }
+
+        public void Stop()
+        {
+        }
+
+        public void Update()
+        {
+        }
+    }
+#endif
 }
