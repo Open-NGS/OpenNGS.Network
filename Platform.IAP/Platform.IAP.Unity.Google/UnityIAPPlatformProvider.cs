@@ -1,8 +1,9 @@
+
+#if OpenNgsIAP
 using UnityEngine.Purchasing;
 
 namespace OpenNGS.IAP.Unity.Google
 {
-#if OpenNgsIAP
     public class UnityIAPPlatformProvider : UnityIAPProvider
     {
         private IGooglePlayStoreExtensions m_GooglePlayStoreExtensions;

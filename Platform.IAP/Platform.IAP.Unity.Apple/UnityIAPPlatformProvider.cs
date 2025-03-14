@@ -1,8 +1,9 @@
+
+#if OpenNgsIAP
 using UnityEngine.Purchasing;
 
 namespace OpenNGS.IAP.Unity.Apple
 {
-    #if OpenNgsIAP
     public class UnityIAPPlatformProvider : UnityIAPProvider
     {
         private IAppleExtensions m_AppleExtensions;

@@ -1,3 +1,5 @@
+
+#if OpenNgsIAP
 using System.Collections.Generic;
 using OpenNGS.Platform;
 using UnityEngine.Purchasing;
@@ -6,7 +8,6 @@ using UnityEngine.Purchasing.Security;
 
 namespace OpenNGS.IAP.Unity
 {
-#if OpenNgsIAP
 
     public class UnityIAPProvider : IIAPProvider, IIAPExtension, IDetailedStoreListener
     {
