@@ -38,7 +38,6 @@ public class EEGamesNoticeProvider : INoticeProvider
 
     public void Start()
     {
-        int a = 0;
     }
 
     public void Stop()

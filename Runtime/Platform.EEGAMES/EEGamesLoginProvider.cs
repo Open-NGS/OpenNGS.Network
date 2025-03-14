@@ -6,7 +6,6 @@ using UnityEngine;
 using OpenNGS.SDK.Auth;
 using OpenNGS.SDK.Auth.Models;
 using OpenNGS.SDK.Log;
-using OpenNGS.Ads.Unity;
 
 namespace OpenNGS.Platform.EEGames
 {
@@ -21,47 +20,6 @@ namespace OpenNGS.Platform.EEGames
         public EEGamesLoginData()
         {
 
-        }
-    }
-    public class EEGamesSDKProvider : ISDKProvider
-    {
-        private EEGamesLoginProvider m_loginProvider = null;
-        public IModuleProvider CreateProvider(PLATFORM_MODULE module)
-        {
-            if (module == PLATFORM_MODULE.LOGIN)
-            {
-                return new EEGamesLoginProvider();
-            }
-            else if (module == PLATFORM_MODULE.REPORT)
-            {
-                return new EEGamesReportProvider(OpenNGSPlatformServices.Instance.Options);
-            }
-            else if (module == PLATFORM_MODULE.NOTICE)
-            {
-                return new EEGamesNoticeProvider();
-            }
-            else if( module == PLATFORM_MODULE.CAS)
-            {
-                return new UnityCasProvider();
-            }
-            else
-            {
-                //Debug.LogError("Not supported provider " + module);
-            }
-            return null;
-        }
-
-        public bool Initialize()
-        {
-            return true;
-        }
-
-        public void Terminate()
-        {
-        }
-
-        public void Update()
-        {
         }
     }
     public class EEGamesCallBack : IThirdpartyCallBack
