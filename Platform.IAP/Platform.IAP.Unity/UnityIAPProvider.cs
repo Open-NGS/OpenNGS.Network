@@ -194,8 +194,9 @@ namespace OpenNGS.IAP.Unity
             if (IsCurrentStoreSupportedByValidator())
             {
 #if !UNITY_EDITOR
-                var appleTangleData = m_UseAppleStoreKitTestCertificate ? AppleStoreKitTestTangle.Data() : AppleTangle.Data();
-                m_Validator = new CrossPlatformValidator(GooglePlayTangle.Data(), appleTangleData, Application.identifier);
+// ÔÝÊ±È¥³ý
+                //var appleTangleData = m_UseAppleStoreKitTestCertificate ? AppleStoreKitTestTangle.Data() : AppleTangle.Data();
+                //m_Validator = new CrossPlatformValidator(GooglePlayTangle.Data(), appleTangleData, Application.identifier);
 #endif
                 return true;
             }
