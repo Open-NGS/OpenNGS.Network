@@ -101,6 +101,10 @@ namespace OpenNGS.Platform
         {
             return (ICasProvider)Modules[(int)PLATFORM_MODULE.CAS];
         }
+        internal static IIAPProvider GetIAP()
+        {
+            return (IIAPProvider)Modules[(int)PLATFORM_MODULE.IAP];
+        }
         internal static ILoginProvider GetLogin()
         {
             return (ILoginProvider)Modules[(int)PLATFORM_MODULE.LOGIN];
