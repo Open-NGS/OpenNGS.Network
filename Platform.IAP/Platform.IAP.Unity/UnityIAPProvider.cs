@@ -237,5 +237,6 @@ namespace OpenNGS.IAP.Unity
         }
     }
 
-#endif
 }
+
+#endif
