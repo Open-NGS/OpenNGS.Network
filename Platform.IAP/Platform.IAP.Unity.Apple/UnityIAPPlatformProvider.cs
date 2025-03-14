@@ -18,5 +18,5 @@ namespace OpenNGS.IAP.Unity.Apple
             base.OnInitialized(controller, extensions);
         }
     }
-#endif
 }
+#endif

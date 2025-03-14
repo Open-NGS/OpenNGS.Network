@@ -18,5 +18,5 @@ namespace OpenNGS.IAP.Unity.Google
             base.OnInitialized(controller, extensions);
         }
     }
-#endif
 }
+#endif
