@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using OpenNGS.Collection.Service;
 using OpenNGS.Core;
+using static OpenNGS.DataManager;
 
 public class TempCollection : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class TempCollection : MonoBehaviour
         CollectionAPIController.Instance.Init();
         GameInstance.Instance.Init();
         NGSStaticData.Init();
-        DataManager.Instance.Init();
+        DataManager.Instance.Init(new TableSerializerJson());
     }
 
 
