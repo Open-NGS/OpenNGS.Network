@@ -148,7 +148,7 @@ namespace OpenNGS.IO.Posix
     }
 
 #if UNITY_ANDROID
-    class AndroidPosixFileSystem : PosixFileSystem
+    public class AndroidPosixFileSystem : PosixFileSystem
     {
 
         public override bool FileExists(string filename)
