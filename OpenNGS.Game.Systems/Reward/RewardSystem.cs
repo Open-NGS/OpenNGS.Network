@@ -34,7 +34,7 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
             rewardContainer = new RewardContainer();
         }
 
-        foreach(Reward reward in NGSStaticData.reward.Items)
+        foreach(Reward reward in RewardStaticData.reward.Items)
         {
             RewardSaveData item = rewardContainer.GetRewardById(reward.Id);
             if (item == null)
@@ -52,8 +52,8 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
     {
         if (rewardContainer == null) return null;
 
-        Reward reward = NGSStaticData.reward.GetItem(rewardId);
-        List<RewardContent> rewardList = NGSStaticData.rewardContent.GetItems(rewardId);
+        Reward reward = RewardStaticData.reward.GetItem(rewardId);
+        List<RewardContent> rewardList = RewardStaticData.rewardContent.GetItems(rewardId);
         List<RewardData> reslist = new List<RewardData>();
 
         if(reward != null &&  rewardList != null )
@@ -84,13 +84,13 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
         if (rewardContainer == null) return RESULT_TYPE.RESULT_TYPE_NONE;
 
         RESULT_TYPE resultType = RESULT_TYPE.RESULT_TYPE_FAILED;
-        Reward rewardItem = NGSStaticData.reward.GetItem(rewardId);
+        Reward rewardItem = RewardStaticData.reward.GetItem(rewardId);
         if (rewardItem != null)
         {
             if (CheckCondition(rewardId, rewardItem.Condition))
             {
                 resultType = RESULT_TYPE.RESULT_TYPE_SUCCESS;
-                List<RewardContent> rewardList = NGSStaticData.rewardContent.GetItems(rewardId);
+                List<RewardContent> rewardList = RewardStaticData.rewardContent.GetItems(rewardId);
                 foreach (RewardContent item in rewardList)
                 {
                     AddItemReq req = new AddItemReq();
@@ -113,7 +113,7 @@ public class RewardSystem : GameSubSystem<RewardSystem>, IRewardSystem
     private bool CheckCondition(uint rewardId, uint conditionId)
     {
         bool result = false;
-        RewardCondition condition = NGSStaticData.rewardCondition.GetItem(conditionId);
+        RewardCondition condition = RewardStaticData.rewardCondition.GetItem(conditionId);
         if (condition != null)
         {
             RewardSaveData data = rewardContainer.GetRewardById(rewardId);

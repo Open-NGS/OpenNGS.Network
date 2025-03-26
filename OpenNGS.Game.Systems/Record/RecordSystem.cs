@@ -7,7 +7,7 @@ using Systems;
 
 public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
 {
-    List<OpenNGS.Levels.Data.NGSLevelInfo> levelStages = NGSStaticData.levelInfo.Items;
+    List<OpenNGS.Levels.Data.NGSLevelInfo> levelStages = LevelStaticData.levelInfo.Items;
     //List<StatData> stats = NGSStaticData.s_statDatas.Items;
 
     //Dictionary<StatData, ulong> SingleData = new Dictionary<StatData, ulong>();

@@ -23,7 +23,7 @@ namespace OpenNGS.Systems
         }
         public List<QuestData> AddQuest(uint questGroupID)
         {
-            QuestGroup questGroup = NGSStaticData.QuestGroup.GetItem(questGroupID);
+            QuestGroup questGroup = QuestStaticData.QuestGroup.GetItem(questGroupID);
             List<QuestData> res = new List<QuestData>();
             if (questGroup != null && !questGroup.IsBan)
             {
@@ -51,7 +51,7 @@ namespace OpenNGS.Systems
         {
             List<QuestData> acceptedQuests = new List<QuestData>();
             List<QuestData> questDatas = questContainer.GetQuestDatas(questGroup.QuestGroupID);
-            Dictionary<uint, Quest.Data.Quest> questsDic = NGSStaticData.Quest.GetItems(questGroup.QuestGroupID);
+            Dictionary<uint, Quest.Data.Quest> questsDic = QuestStaticData.Quest.GetItems(questGroup.QuestGroupID);
             foreach (Quest.Data.Quest quest in questsDic.Values)
             {
                 int index = 0;
@@ -69,7 +69,7 @@ namespace OpenNGS.Systems
         private List<QuestData> AddRandomQuests(QuestGroup questGroup, uint pickNum)
         {
             List<QuestData> acceptedQuests = new List<QuestData>();
-            Dictionary<uint, Quest.Data.Quest> questsDic = NGSStaticData.Quest.GetItems(questGroup.QuestGroupID);
+            Dictionary<uint, Quest.Data.Quest> questsDic = QuestStaticData.Quest.GetItems(questGroup.QuestGroupID);
             List<QuestData> questDatas = questContainer.GetQuestDatas(questGroup.QuestGroupID);
             Dictionary<uint, float> weights = new Dictionary<uint, float>();
             foreach(Quest.Data.Quest quest in questsDic.Values)
@@ -88,7 +88,7 @@ namespace OpenNGS.Systems
 
             foreach (var questID in selectedQuests)
             {
-                Quest.Data.Quest quest=NGSStaticData.Quest.GetItem(questGroup.QuestGroupID, questID);
+                Quest.Data.Quest quest = QuestStaticData.Quest.GetItem(questGroup.QuestGroupID, questID);
                 if(quest != null)
                 {
                     QuestData questData = GenerateQuestInstance(quest);
@@ -150,7 +150,7 @@ namespace OpenNGS.Systems
         private List<QuestData> AddAllQuests(QuestGroup questGroup)
         {
             List<QuestData> acceptedQuests = new List<QuestData>();
-            Dictionary<uint,Quest.Data.Quest> questsDic = NGSStaticData.Quest.GetItems(questGroup.QuestGroupID);
+            Dictionary<uint,Quest.Data.Quest> questsDic = QuestStaticData.Quest.GetItems(questGroup.QuestGroupID);
             foreach(Quest.Data.Quest quest in questsDic.Values)
             {
                 QuestData questData=GenerateQuestInstance(quest);

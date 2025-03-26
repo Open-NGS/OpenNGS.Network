@@ -63,7 +63,7 @@ namespace OpenNGS.Systems
                     {
                         continue;
                     }
-                    NodeData nodeData = NGSStaticData.technologyNodes.GetItem(id);
+                    NodeData nodeData = TechnologyStaticData.technologyNodes.GetItem(id);
 
                     data_tmp = TechContainer.GetTechNodeById(id);
                     //查找动态数据修改该节点状态,先判断动态数据是否有这个数据
@@ -131,7 +131,7 @@ namespace OpenNGS.Systems
             SourceItem technologyDots = new SourceItem();
             TargetItem technologyNode = new TargetItem();
 
-            NodeData tNode = NGSStaticData.technologyNodes.GetItem(technologyNodeID);
+            NodeData tNode = TechnologyStaticData.technologyNodes.GetItem(technologyNodeID);
 
             ////暂时还没定科技点资源的具体数据(ID)，和其他道具一起定义
             //uint id = m_itemSystem.GetGuidByItemID(currencyID);
@@ -191,7 +191,7 @@ namespace OpenNGS.Systems
             NodeData tNode = null;
             foreach(TechNodeSaveData data in TechContainer.techDict)
             {
-                tNode = NGSStaticData.technologyNodes.GetItem(data.ID);
+                tNode = TechnologyStaticData.technologyNodes.GetItem(data.ID);
                 if (TechContainer.GetTechNodeById(data.ID).Activated)
                 {
                     costSum += tNode.CostItemCount;

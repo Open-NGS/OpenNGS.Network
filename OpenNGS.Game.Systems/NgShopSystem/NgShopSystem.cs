@@ -28,19 +28,19 @@ namespace OpenNGS.Systems
 
         private void InitShopSystem()
         {
-            foreach(Good good in NGSStaticData.goodDatas.Items)
+            foreach(Good good in ShopStaticData.goodDatas.Items)
             {
                 GoodState _goodState = new GoodState();
                 _goodState.GoodID = good.ID;
                 _goodState.Left = -1;                           //剩余购买次数 -1 = 无限次
 
                 uint _shelfID = good.ShelfId;
-                Shelf _shelf = NGSStaticData.shelfDatas.GetItem(_shelfID);
+                Shelf _shelf = ShopStaticData.shelfDatas.GetItem(_shelfID);
                 if(_shelf == null)
                 {
                     NgDebug.LogErrorFormat("Good Belong Shelf is not Defined, GoodID : [{0}], ShelfID : [{1}]", good.ID, _shelfID);
                 }
-                OpenNGS.Shop.Data.Shop _shop = NGSStaticData.shops.GetItem(_shelf.ShopId);
+                OpenNGS.Shop.Data.Shop _shop = ShopStaticData.shops.GetItem(_shelf.ShopId);
                 if(_shop == null)
                 {
                     NgDebug.LogErrorFormat("Good Belong Shelf is not Defined, ShelfID : [{0}], ShopID : [{1}]", _shelfID, _shop.ID);
@@ -132,7 +132,7 @@ namespace OpenNGS.Systems
         /// </summary>
         private void DoExchange(BuyRsp response, BuyReq request)
         {
-            Good _good = NGSStaticData.goodDatas.GetItem(request.GoodId);
+            Good _good = ShopStaticData.goodDatas.GetItem(request.GoodId);
             if (_good == null)
             {
                 response.result = Shop.Common.ShopResultType.Error_DataInfo;
@@ -168,7 +168,7 @@ namespace OpenNGS.Systems
         public ShopRsp GetShopState(ShopReq request)
         {
             ShopRsp _response = new ShopRsp();
-            OpenNGS.Shop.Data.Shop _shop = NGSStaticData.shops.GetItem(request.ShopId);
+            OpenNGS.Shop.Data.Shop _shop = ShopStaticData.shops.GetItem(request.ShopId);
             if(_shop == null)
             {
                 _response.result = Shop.Common.ShopResultType.Error_DataInfo;

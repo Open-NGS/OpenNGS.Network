@@ -34,10 +34,10 @@ namespace OpenNGS.Systems
             DialogTalks.Clear();
             History.Clear();
             CurrentIndex = 0;
-            uint[] dialogDataIds = NGSStaticData.Dialogue.GetItem(dialogId).DialogTalkIDs;
+            uint[] dialogDataIds = DialogStaticData.Dialogue.GetItem(dialogId).DialogTalkIDs;
             foreach (uint dialogDataId in dialogDataIds)
             {
-                DialogTalk dialogData = NGSStaticData.DialogTalk.GetItem(dialogDataId);
+                DialogTalk dialogData = DialogStaticData.DialogTalk.GetItem(dialogDataId);
                 DialogTalks.Add(dialogData);
             }
             DisplayDialog();
@@ -64,7 +64,7 @@ namespace OpenNGS.Systems
             DialogChoice _dialogChoice;
             foreach (uint choiceId in choices)
             {
-                _dialogChoice = NGSStaticData.Choice.GetItem(choiceId);
+                _dialogChoice = DialogStaticData.Choice.GetItem(choiceId);
                 if(_dialogChoice == null)
                 {
                     NgDebug.LogErrorFormat("Can not found DialogChoice : {0}", choiceId);
