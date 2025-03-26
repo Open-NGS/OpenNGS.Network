@@ -5,6 +5,7 @@
         "OpenNGS.Platform",
         "OpenNGS.Core",
         "OpenNgs.Ads.Unity",
+        "Platform.Share.Unity",
         "UnityEngine.Advertisements"
     ],
     "includePlatforms": [],

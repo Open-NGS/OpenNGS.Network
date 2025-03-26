@@ -1,5 +1,6 @@
 using OpenNGS.Ads.Unity;
 using OpenNGS.SDK.Core;
+using OpenNGS.Share.Unity;
 namespace OpenNGS.Platform.EEGames
 {
     public class EEGamesSDKProvider : ISDKProvider
@@ -25,6 +26,10 @@ namespace OpenNGS.Platform.EEGames
             else if (module == PLATFORM_MODULE.IAP)
             {
 
+            }
+            else if (module == PLATFORM_MODULE.SHARE)
+            {
+                return new UnityShareProvider();
             }
             else
             {
