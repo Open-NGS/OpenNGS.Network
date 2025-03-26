@@ -42,7 +42,7 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
     }
 
     public void CallBack(string msg)
-	{
+    {
         Debug.Log("OpenNGSPlatform::CallBack:" + msg);
 #if SUPERSDK && UNITY_ANDROID
 
@@ -79,10 +79,10 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
     }
 
     public void Init(IThirdpartyCallBack callback)
-	{
+    {
         Debug.Log("OpenNGSPlatform::Init ThirdpartyCallBack");
         thirdCallBack = callback;
-	}
+    }
 
 #if SUPERSDK
 
@@ -359,6 +359,11 @@ public class PlatformCallback : MonoSingleton<PlatformCallback>, IThirdpartyProv
     public void OnNoticeCallBack(PlatformNoticeRet _ret)
     {
         PlatformNotice.OnNoticeRet(_ret);
+    }
+
+    public void OnShareCallBack(PlatformShareRet _ret)
+    {
+        PlatformShare.OnShareRet(_ret);
     }
 
 #endif

@@ -105,6 +105,10 @@ namespace OpenNGS.Platform
         {
             return (IIAPProvider)Modules[(int)PLATFORM_MODULE.IAP];
         }
+        internal static IShareProvider GetShare()
+        {
+            return (IShareProvider)Modules[(int)PLATFORM_MODULE.SHARE];
+        }
         internal static ILoginProvider GetLogin()
         {
             return (ILoginProvider)Modules[(int)PLATFORM_MODULE.LOGIN];
