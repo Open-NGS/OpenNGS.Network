@@ -75,7 +75,9 @@ namespace OpenNGS.SaveData.Storage
         {
             fsSave = fs;
             this.Capacity = capacity;
-            this.RootPath = "save_data/";
+            //this.RootPath = "save_data/";
+
+            this.RootPath = OpenNGS.IO.FileSystem.DataPath + "/save_data/";
         }
 
         /// <summary>
