@@ -8,7 +8,6 @@ namespace OpenNGS.Ads.Unity
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.CAS;
 
-        private string _adUnitId;
         private PlatformCasRet m_ret;
         public void Initialize(string strGameID, bool bTestMode = false)
         {
@@ -23,8 +22,6 @@ namespace OpenNGS.Ads.Unity
         }
         public void LoadBanner(string strAdUnitId, uint nBannerPosition)
         {
-            _adUnitId = strAdUnitId;
-            // Set up options to notify the SDK of load events:
             BannerLoadOptions options = new BannerLoadOptions
             {
                 loadCallback = OnBannerLoaded,
@@ -32,9 +29,8 @@ namespace OpenNGS.Ads.Unity
             };
 
             m_ret.Init();
-            m_ret.AdUnitID = strAdUnitId;
+            m_ret.BannerAdUnitID = strAdUnitId;
             Advertisement.Banner.SetPosition((BannerPosition)nBannerPosition);
-            // Load the Ad Unit with banner content:
             Advertisement.Banner.Load(strAdUnitId, options);
         }
         void OnBannerLoaded()
@@ -49,8 +45,6 @@ namespace OpenNGS.Ads.Unity
         }
         public void ShowBannerAd(string strAdUnitId)
         {
-            _adUnitId = strAdUnitId;
-            // Set up options to notify the SDK of show events:
             BannerOptions options = new BannerOptions
             {
                 clickCallback = OnBannerClicked,
@@ -59,8 +53,6 @@ namespace OpenNGS.Ads.Unity
             };
 
             m_ret.Init();
-            m_ret.AdUnitID = strAdUnitId;
-            // Show the loaded Banner Ad Unit:
             Advertisement.Banner.Show(strAdUnitId, options);
         }
         void OnBannerClicked()
@@ -85,14 +77,12 @@ namespace OpenNGS.Ads.Unity
         public void LoadAd(string strAdUnitId)
         {
             m_ret.Init();
-            _adUnitId = strAdUnitId;
             Advertisement.Load(strAdUnitId, this);
         }
 
         public void ShowAd(string strAdUnitId)
         {
             m_ret.Init();
-            _adUnitId = strAdUnitId;
             Advertisement.Show(strAdUnitId, this);
         }
 
@@ -135,18 +125,6 @@ namespace OpenNGS.Ads.Unity
 
         public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
         {
-            //if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
-            //{
-            //    m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowComplete;
-            //    m_ret.AdUnitID = placementId;
-            //    _callBackCas(m_ret);
-            //}
-            //else if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.SKIPPED))
-            //{
-            //    m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowSkip;
-            //    m_ret.AdUnitID = placementId;
-            //    _callBackCas(m_ret);
-            //}
             if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
                 m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowComplete;
@@ -163,12 +141,9 @@ namespace OpenNGS.Ads.Unity
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
-            //if (placementId.Equals(_adUnitId))
-            //{
             m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsAdLoaded;
             m_ret.AdUnitID = placementId;
             _callBackCas(m_ret);
-            //}
         }
 
         public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
@@ -197,7 +172,7 @@ namespace OpenNGS.Ads.Unity
         }
     }
 #else
-    public class UnityCasProvider: ICasProvider
+    public class UnityCasProvider : ICasProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.CAS;
 
