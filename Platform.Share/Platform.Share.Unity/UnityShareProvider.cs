@@ -117,7 +117,7 @@ namespace OpenNGS.Share.Unity
     public class UnityShareProvider : IShareProvider
     {
         PLATFORM_MODULE IModuleProvider.Module => throw new NotImplementedException();
-        private PlatformShareRet ret;
+        private PlatformShareRet ret = new PlatformShareRet();
 
         void IShareProvider.Initialize()
         {
