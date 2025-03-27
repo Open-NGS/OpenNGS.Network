@@ -91,6 +91,7 @@ namespace OpenNGS.Platform
     }
     public class PlatformCasRet : PlatformBaseRet
     {
+        private string bannerAdUnitID;
         private string adUnitID;
         private string gameID;
         private bool testMode;
@@ -108,6 +109,12 @@ namespace OpenNGS.Platform
         {
             get { return testMode; }
             set { testMode = value; }
+        }
+        [JsonProp("bannerAdUnitID")]
+        public string BannerAdUnitID
+        {
+            get { return bannerAdUnitID; }
+            set { bannerAdUnitID = value; }
         }
         [JsonProp("adUnitID")]
         public string AdUnitID
