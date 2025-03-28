@@ -20,6 +20,12 @@ namespace OpenNGS.Ads.Unity
                 Advertisement.Initialize(strGameID, bTestMode, this);
             }
         }
+        public void SetMetaData(string strMetaCategory, string strMetaKey, string strMetaValue)
+        {
+            MetaData metaData = new MetaData(strMetaCategory);
+            metaData.Set(strMetaKey, strMetaValue);
+            Advertisement.SetMetaData(metaData);
+        }
         public void LoadBanner(string strAdUnitId, uint nBannerPosition)
         {
             BannerLoadOptions options = new BannerLoadOptions
