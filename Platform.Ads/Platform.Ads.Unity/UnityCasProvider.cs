@@ -103,6 +103,7 @@ namespace OpenNGS.Ads.Unity
 
         public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
         {
+            m_ret.AdUnitID = placementId;
             m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowFailure;
             m_ret.RetCode = (int)error;
             m_ret.RetMsg = message;
@@ -172,7 +173,7 @@ namespace OpenNGS.Ads.Unity
         }
     }
 #else
-    public class UnityCasProvider: ICasProvider
+    public class UnityCasProvider : ICasProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.CAS;
 
