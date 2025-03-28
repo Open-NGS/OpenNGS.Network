@@ -3,11 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static NativeShare;
 
 namespace OpenNGS.Share.Unity
 {
 #if OpenNgsShare
+    using static NativeShare;
     public class UnityShareProvider : IShareProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.SHARE;
@@ -121,10 +121,7 @@ namespace OpenNGS.Share.Unity
 
         void IShareProvider.Initialize()
         {
-            ret.ShareResultType = (uint)ShareResult.Unknown;
-            ret.RetCode = 0;
-            ret.RetMsg = "Œ¥∆Ù”√ OpenNgsShare ∫Í∂®“Â£°";
-            _callBackShare(ret);
+            Debug.LogError($"Not Add OpenNgsShare!");
         }
 
         void IShareProvider.SendMessage(PlatformShareInfo platformShareInfo, string channel)
@@ -140,11 +137,6 @@ namespace OpenNGS.Share.Unity
         void IShareProvider.ShowSharePlatformList(PlatformShareInfo platformShareInfo)
         {
 
-        }
-
-        private void _callBackShare(PlatformShareRet _ret)
-        {
-            PlatformCallback.Instance.OnShareCallBack(_ret);
         }
 
         void IModuleProvider.Start()
