@@ -7,5 +7,6 @@ namespace OpenNGS.Platform
         void InitializePurchasing(Dictionary<string, uint> _dictProducts);
         void Purchase(string productID);
         void Restore();
+        void GetPriceByID(string productID);
     }
 }
