@@ -229,6 +229,15 @@ namespace OpenNGS.IAP.Unity
 
         public void GetPriceByID(string productID)
         {
+            if (m_StoreController == null || m_StoreController.products == null)
+            {
+                m_ret.ProductID = productID;
+                m_ret.ResultType = (uint)PlatFormIAPResult.GetPriceFail;
+                m_ret.RetMsg = "StoreController or products is Null! Check Init!";
+                _callBackIAP(m_ret);
+                return;
+            }
+
             m_ret.ProductID = productID;
             string priceStr = "";
             foreach (var product in m_StoreController.products.all)
@@ -236,12 +245,14 @@ namespace OpenNGS.IAP.Unity
                 if (productID == product.definition.id)
                 {
                     priceStr = product.metadata.localizedPriceString;
+                    break;
                 }
             }
             // 未查询到相关ID的价格信息
             if (string.IsNullOrEmpty(priceStr))
             {
                 m_ret.ResultType = (uint)PlatFormIAPResult.GetPriceFail;
+                m_ret.RetMsg = $"Can't Find Product ID {productID}!";
             }
             else
             {
