@@ -19,7 +19,7 @@ namespace OpenNGS.Platform
         ACTIVITY = 11,
         NOTICE = 12,
         CAS = 13,
-        IAP = 13,
+        IAP = 14,
         MUDULE_COUNT,
     }
 
