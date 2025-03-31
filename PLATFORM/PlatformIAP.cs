@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Purchasing;
 using static OpenNGS.Platform.Platform;
 namespace OpenNGS.Platform
 {
@@ -74,8 +73,6 @@ namespace OpenNGS.Platform
             get { return resultType; }
             set { resultType = value; }
         }
-
-        public Product[] ProductCollectionList;
         public void Init()
         {
             productID = "";
