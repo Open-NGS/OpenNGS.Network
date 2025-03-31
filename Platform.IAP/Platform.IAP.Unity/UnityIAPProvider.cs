@@ -160,6 +160,7 @@ namespace OpenNGS.IAP.Unity
             bool bRes = InitializeValidator();
             if (bRes == true)
             {
+                m_ret.ProductCollectionList = controller.products.all;
                 m_ret.ResultType = (uint)PlatFormIAPResult.Init;
             }
             else
