@@ -36,6 +36,18 @@ namespace OpenNGS.Platform
                 _iapProvider.Purchase(strProductID);
             }
         }
+
+        public static void GetPriceByID(string strProductID)
+        {
+            if (!Platform.IsSupported(PLATFORM_MODULE.IAP))
+                return;
+            IIAPProvider _iapProvider = Platform.GetIAP();
+            if (_iapProvider != null)
+            {
+                _iapProvider.GetPriceByID(strProductID);
+            }
+        }
+
         internal static void OnIAPRet(PlatformIAPRet ret)
         {
             Debug.Log("[Platform]PlatformIAPRet:" + ret.ToJsonString());
@@ -50,7 +62,9 @@ namespace OpenNGS.Platform
         PurchaseFail,
         PurchaseProcess,
         InvalidStore,
-        Restore
+        Restore,
+        GetPrice,
+        GetPriceFail
     }
     public enum PlatFormIAPPurchaseProcessRet
     {
@@ -60,12 +74,19 @@ namespace OpenNGS.Platform
     public class PlatformIAPRet : PlatformBaseRet
     {
         private string productID;
+        private string productPrice;
         private uint resultType;
         [JsonProp("productID")]
         public string ProductID
         {
             get { return productID; }
             set { productID = value; }
+        }
+        [JsonProp("productID")]
+        public string ProductPrice
+        {
+            get { return productPrice; }
+            set { productPrice = value; }
         }
         [JsonProp("resultType")]
         public uint ResultType

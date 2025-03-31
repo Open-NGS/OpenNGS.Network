@@ -226,6 +226,31 @@ namespace OpenNGS.IAP.Unity
             }
             _callBackIAP(m_ret);
         }
+
+        public void GetPriceByID(string productID)
+        {
+            m_ret.ProductID = productID;
+            string priceStr = "";
+            foreach (var product in m_StoreController.products.all)
+            {
+                if (productID == product.definition.id)
+                {
+                    priceStr = product.metadata.localizedPriceString;
+                }
+            }
+            // 未查询到相关ID的价格信息
+            if (string.IsNullOrEmpty(priceStr))
+            {
+                m_ret.ResultType = (uint)PlatFormIAPResult.GetPriceFail;
+            }
+            else
+            {
+                m_ret.ResultType = (uint)PlatFormIAPResult.GetPrice;
+                m_ret.ProductPrice = priceStr;
+            }
+            _callBackIAP(m_ret);
+        }
+
         public void Stop()
         {
         }
