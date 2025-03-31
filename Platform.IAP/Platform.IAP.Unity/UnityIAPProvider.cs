@@ -1,5 +1,4 @@
 
-#if OpenNgsIAP
 using System.Collections.Generic;
 using OpenNGS.Platform;
 using UnityEngine.Purchasing;
@@ -8,6 +7,7 @@ using UnityEngine.Purchasing.Security;
 
 namespace OpenNGS.IAP.Unity
 {
+#if OpenNgsIAP
 
     public class UnityIAPProvider : IIAPProvider, IIAPExtension, IDetailedStoreListener
     {
@@ -273,7 +273,45 @@ namespace OpenNGS.IAP.Unity
         {
         }
     }
+#else
+    public class UnityIAPProvider : IIAPProvider
+    {
+        public PLATFORM_MODULE Module => PLATFORM_MODULE.IAP;
 
-}
+        public void GetPriceByID(string productID)
+        {
 
+        }
+
+        public void InitializePurchasing(Dictionary<string, uint> _dictProducts)
+        {
+
+        }
+
+        public void Purchase(string productID)
+        {
+
+        }
+
+        public void Restore()
+        {
+
+        }
+
+        public void Start()
+        {
+
+        }
+
+        public void Stop()
+        {
+
+        }
+
+        public void Update()
+        {
+
+        }
+    }
 #endif
+}
