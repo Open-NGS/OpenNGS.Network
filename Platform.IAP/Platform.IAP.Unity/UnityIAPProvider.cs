@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using OpenNGS.Platform;
+using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.Purchasing.Security;
@@ -195,8 +196,8 @@ namespace OpenNGS.IAP.Unity
             if (IsCurrentStoreSupportedByValidator())
             {
 #if !UNITY_EDITOR
-                var appleTangleData = m_UseAppleStoreKitTestCertificate ? AppleStoreKitTestTangle.Data() : AppleTangle.Data();
-                m_Validator = new CrossPlatformValidator(GooglePlayTangle.Data(), appleTangleData, Application.identifier);
+                var appleTangleData = m_UseAppleStoreKitTestCertificate ? UnityEngine.Purchasing.Security.AppleStoreKitTestTangle.Data() : UnityEngine.Purchasing.Security.AppleTangle.Data();
+                m_Validator = new CrossPlatformValidator(UnityEngine.Purchasing.Security.GooglePlayTangle.Data(), appleTangleData, Application.identifier);
 #endif
                 return true;
             }
