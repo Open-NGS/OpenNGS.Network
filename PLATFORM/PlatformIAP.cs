@@ -6,14 +6,14 @@ namespace OpenNGS.Platform
     public class PlatformIAP
     {
         public static event OnPlatformRetEventHandler<PlatformIAPRet> IAPRetEvent;
-        public static void Initialize(Dictionary<string, uint> _dictProducts)
+        public static void Initialize(Dictionary<string, uint> _dictProducts, bool _testMode)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.IAP))
                 return;
             IIAPProvider _iapProvider = Platform.GetIAP();
             if (_iapProvider != null)
             {
-                _iapProvider.InitializePurchasing(_dictProducts);
+                _iapProvider.InitializePurchasing(_dictProducts, _testMode);
             }
         }
         public static void Restore()
