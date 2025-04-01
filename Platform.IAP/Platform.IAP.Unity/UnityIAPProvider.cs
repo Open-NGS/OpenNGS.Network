@@ -19,8 +19,10 @@ namespace OpenNGS.IAP.Unity
         public virtual void InitializePurchasing(Dictionary<string, uint> _dictProducts)
         {
             m_ret = new PlatformIAPRet();
-
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+#if UNITY_EDITOR
+            builder.Configure<IMicrosoftConfiguration>().useMockBillingSystem = true;
+#endif
             foreach (var product in _dictProducts)
             {
                 builder.AddProduct(product.Key, (ProductType)product.Value);
