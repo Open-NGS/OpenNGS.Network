@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using OpenNGS.Platform;
+using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.Purchasing.Security;
@@ -14,13 +15,16 @@ namespace OpenNGS.IAP.Unity
         public PLATFORM_MODULE Module => PLATFORM_MODULE.IAP;
         protected PlatformIAPRet m_ret = new PlatformIAPRet();
         private IStoreController m_StoreController;
-        private bool m_UseAppleStoreKitTestCertificate;
+
+        private PlatformIAPConfig m_Config;
 
         CrossPlatformValidator m_Validator = null;
-        public virtual void InitializePurchasing(Dictionary<string, uint> _dictProducts, bool _testMode)
+        public virtual void InitializePurchasing(Dictionary<string, uint> _dictProducts, PlatformIAPConfig _config)
         {
             m_ret = new PlatformIAPRet();
-            m_UseAppleStoreKitTestCertificate = _testMode;
+
+            m_Config = _config;
+
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             foreach (var product in _dictProducts)
             {
@@ -195,8 +199,8 @@ namespace OpenNGS.IAP.Unity
             if (IsCurrentStoreSupportedByValidator())
             {
 #if !UNITY_EDITOR
-                var appleTangleData = m_UseAppleStoreKitTestCertificate ? AppleStoreKitTestTangle.Data() : AppleTangle.Data();
-                m_Validator = new CrossPlatformValidator(GooglePlayTangle.Data(), appleTangleData, Application.identifier);
+                var appleTangleData = m_Config.UseAppleStoreKitTestCertificate ? m_Config.AppleStoreKitTestTangleData : m_Config.AppleTangleData;
+                m_Validator = new CrossPlatformValidator(m_Config.GooglePlayTangleData, appleTangleData, Application.identifier);
 #endif
                 return true;
             }

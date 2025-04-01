@@ -6,14 +6,14 @@ namespace OpenNGS.Platform
     public class PlatformIAP
     {
         public static event OnPlatformRetEventHandler<PlatformIAPRet> IAPRetEvent;
-        public static void Initialize(Dictionary<string, uint> _dictProducts, bool _testMode)
+        public static void Initialize(Dictionary<string, uint> _dictProducts, PlatformIAPConfig _config)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.IAP))
                 return;
             IIAPProvider _iapProvider = Platform.GetIAP();
             if (_iapProvider != null)
             {
-                _iapProvider.InitializePurchasing(_dictProducts, _testMode);
+                _iapProvider.InitializePurchasing(_dictProducts, _config);
             }
         }
         public static void Restore()
@@ -71,6 +71,15 @@ namespace OpenNGS.Platform
         Success = 0,
         Failed
     }
+
+    public class PlatformIAPConfig
+    {
+        public bool UseAppleStoreKitTestCertificate;
+        public byte[] AppleStoreKitTestTangleData;
+        public byte[] AppleTangleData;
+        public byte[] GooglePlayTangleData;
+    }
+
     public class PlatformIAPRet : PlatformBaseRet
     {
         private string productID;
