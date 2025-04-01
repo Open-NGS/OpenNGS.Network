@@ -14,15 +14,14 @@ namespace OpenNGS.IAP.Unity
         public PLATFORM_MODULE Module => PLATFORM_MODULE.IAP;
         protected PlatformIAPRet m_ret = new PlatformIAPRet();
         private IStoreController m_StoreController;
+        private bool m_UseAppleStoreKitTestCertificate;
 
         CrossPlatformValidator m_Validator = null;
-        public virtual void InitializePurchasing(Dictionary<string, uint> _dictProducts)
+        public virtual void InitializePurchasing(Dictionary<string, uint> _dictProducts, bool _testMode)
         {
             m_ret = new PlatformIAPRet();
+            m_UseAppleStoreKitTestCertificate = _testMode;
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-#if UNITY_EDITOR
-            builder.Configure<IMicrosoftConfiguration>().useMockBillingSystem = true;
-#endif
             foreach (var product in _dictProducts)
             {
                 builder.AddProduct(product.Key, (ProductType)product.Value);
@@ -196,9 +195,8 @@ namespace OpenNGS.IAP.Unity
             if (IsCurrentStoreSupportedByValidator())
             {
 #if !UNITY_EDITOR
-// ÔÝÊ±È¥³ý
-                //var appleTangleData = m_UseAppleStoreKitTestCertificate ? AppleStoreKitTestTangle.Data() : AppleTangle.Data();
-                //m_Validator = new CrossPlatformValidator(GooglePlayTangle.Data(), appleTangleData, Application.identifier);
+                var appleTangleData = m_UseAppleStoreKitTestCertificate ? AppleStoreKitTestTangle.Data() : AppleTangle.Data();
+                m_Validator = new CrossPlatformValidator(GooglePlayTangle.Data(), appleTangleData, Application.identifier);
 #endif
                 return true;
             }
