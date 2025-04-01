@@ -131,6 +131,7 @@ namespace OpenNGS.IAP.Unity
 
             var isPurchaseValid = IsPurchaseValid(product);
 
+            m_ret.ProductID = product.definition.id;
             if (isPurchaseValid)
             {
                 //Add the purchased product to the players inventory
