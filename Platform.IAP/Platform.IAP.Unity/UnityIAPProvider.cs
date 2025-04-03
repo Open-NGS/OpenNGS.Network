@@ -288,7 +288,7 @@ namespace OpenNGS.IAP.Unity
 
         }
 
-        public void InitializePurchasing(Dictionary<string, uint> _dictProducts)
+        public void InitializePurchasing(Dictionary<string, uint> _dictProducts, PlatformIAPConfig _config)
         {
 
         }
