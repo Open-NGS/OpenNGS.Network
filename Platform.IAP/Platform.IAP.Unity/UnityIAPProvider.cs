@@ -87,6 +87,7 @@ namespace OpenNGS.IAP.Unity
                 catch (IAPSecurityException reason)
                 {
                     //Debug.Log($"Invalid receipt: {reason}");
+                    m_ret.RetMsg = reason.Message;
                     return false;
                 }
             }
