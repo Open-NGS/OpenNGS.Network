@@ -16,6 +16,12 @@ namespace OpenNGS.IAP.Unity
         protected PlatformIAPRet m_ret = new PlatformIAPRet();
         private IStoreController m_StoreController;
 
+#if UNITY_ANDROID
+        private IGooglePlayStoreExtensions m_StoreExtensions;
+#elif UNITY_IOS
+        private IAppleExtensions m_StoreExtensions;
+#endif
+
         private PlatformIAPConfig m_Config;
 
         CrossPlatformValidator m_Validator = null;
@@ -44,6 +50,19 @@ namespace OpenNGS.IAP.Unity
         public virtual void Restore()
         {
             m_ret = new PlatformIAPRet();
+
+#if UNITY_ANDROID || UNITY_IOS
+            if (m_StoreExtensions != null)
+            {
+                m_StoreExtensions.RestoreTransactions(OnRestore);
+            }
+            else
+            {
+                m_ret.ResultType = (uint)PlatFormIAPResult.RestoreFail;
+                m_ret.RetMsg = "StoreExtensions Is Null!";
+                _callBackIAP(m_ret);
+            }
+#endif
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
@@ -173,6 +192,12 @@ namespace OpenNGS.IAP.Unity
             {
                 m_ret.ResultType = (uint)PlatFormIAPResult.InvalidStore;
             }
+
+#if UNITY_ANDROID
+            m_StoreExtensions = extensions.GetExtension<IGooglePlayStoreExtensions>();
+#elif UNITY_IOS
+            m_StoreExtensions = extensions.GetExtension<IAppleExtensions>();
+#endif
             _callBackIAP(m_ret);
         }
 
