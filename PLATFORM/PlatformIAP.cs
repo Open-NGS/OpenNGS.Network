@@ -63,6 +63,7 @@ namespace OpenNGS.Platform
         PurchaseProcess,
         InvalidStore,
         Restore,
+        RestoreFail,
         GetPrice,
         GetPriceFail
     }
