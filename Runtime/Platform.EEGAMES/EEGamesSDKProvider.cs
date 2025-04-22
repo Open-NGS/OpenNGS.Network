@@ -1,5 +1,4 @@
 using OpenNGS.Ads.Unity;
-using OpenNGS.SDK.Core;
 using OpenNGS.Share.Unity;
 using OpenNGS.IAP.Unity;
 namespace OpenNGS.Platform.EEGames
@@ -14,7 +13,7 @@ namespace OpenNGS.Platform.EEGames
             }
             else if (module == PLATFORM_MODULE.REPORT)
             {
-                return new EEGamesReportProvider(OpenNGSPlatformServices.Instance.Options);
+                return new EEGamesReportProvider(Platform.InitOption);
             }
             else if (module == PLATFORM_MODULE.NOTICE)
             {
