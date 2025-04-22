@@ -7,13 +7,12 @@ namespace OpenNGS.Platform
 {
     public class Platform
     {
-
         public delegate void OnPlatformRetEventHandler<T>(T ret);
         static ISDKProvider SDKProvider;
         static IModuleProvider[] Modules = new IModuleProvider[(int)PLATFORM_MODULE.MUDULE_COUNT];
 
         public static bool Initialized { get; set; }
-
+        public static InitializationOptions InitOption = null;
         public static bool Init(ISDKProvider provider, OpenNGS.SDK.Log.ILogger logger)
         {
             InitOptions(logger);
@@ -32,15 +31,15 @@ namespace OpenNGS.Platform
         private static void InitOptions(OpenNGS.SDK.Log.ILogger logger)
         {
             PlatformSettingsManager.Initialize();
-            InitializationOptions options = new InitializationOptions();
+            InitOption = new InitializationOptions();
             string notice = PlatformSettingsManager.GetPlatformNoticeUrl();
             string avator = PlatformSettingsManager.GetPlatformAvatarUrl();
             string auth = PlatformSettingsManager.GetPlatformAuthUrl();
             string report = PlatformSettingsManager.GetPlatformReportUrl();
-            options.UrlNotice = notice;
-            options.UrlAvator = avator;
-            options.UrlAuth = auth;
-            options.UrlReport = report;
+            InitOption.UrlNotice = notice;
+            InitOption.UrlAvator = avator;
+            InitOption.UrlAuth = auth;
+            InitOption.UrlReport = report;
 
             TextAsset textAsset = Resources.Load<TextAsset>("EEGames");
             string appid = "";
@@ -83,9 +82,9 @@ namespace OpenNGS.Platform
             {
                 Debug.LogError("Config file not found!");
             }
-            options.AppId = appid;
-            options.AppSecret = secret;
-            OpenNGSPlatformServices.Initialize(options, logger);
+            InitOption.AppId = appid;
+            InitOption.AppSecret = secret;
+            OpenNGSPlatformServices.Initialize(InitOption, logger);
         }
         internal static bool IsSupported(PLATFORM_MODULE module)
         {
