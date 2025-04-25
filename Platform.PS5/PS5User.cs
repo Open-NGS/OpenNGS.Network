@@ -9,7 +9,14 @@ namespace OpenNGS.Platform.PS5
     public class PS5User : IUserProvider
     {
         public PLATFORM_MODULE Module => PLATFORM_MODULE.USER;
-
+        public ulong GetAccountID()
+        {
+            if (PSUser.activeUser == null)
+            {
+                return 0;
+            }
+            return PSUser.activeUser.loggedInUser.accountId;
+        }
         public long GetUserID()
         {
             if(PSUser.activeUser==null)

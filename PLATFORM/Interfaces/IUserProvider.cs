@@ -10,5 +10,7 @@ namespace OpenNGS.Platform
     {
 
         long GetUserID();
+
+        ulong GetAccountID();
     }
 }
