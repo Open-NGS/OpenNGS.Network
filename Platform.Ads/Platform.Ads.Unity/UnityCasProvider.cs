@@ -47,6 +47,7 @@ namespace OpenNGS.Ads.Unity
         void OnBannerError(string message)
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.BannerError;
+            m_ret.RetMsg = message;
             _callBackCas(m_ret);
         }
         public void ShowBannerAd(string strAdUnitId)
