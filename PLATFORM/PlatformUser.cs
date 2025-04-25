@@ -12,4 +12,10 @@ public class PlatformUser
         if (m == null) return -1;
         return m.GetUserID();
     }
+    public static ulong GetAccountID()
+    {
+        var m = Platform.GetUser();
+        if (m == null) return 0;
+        return m.GetAccountID();
+    }
 }

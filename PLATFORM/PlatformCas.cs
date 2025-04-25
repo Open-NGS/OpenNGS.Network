@@ -15,6 +15,16 @@ namespace OpenNGS.Platform
                 _casProvider.Initialize(strGameID, bTestMode);
             }
         }
+        public static void SetMetaData(string strMetaCategory, string strMetaKey, string strMetaValue)
+        {
+            if (!Platform.IsSupported(PLATFORM_MODULE.CAS))
+                return;
+            ICasProvider _casProvider = Platform.GetCas();
+            if (_casProvider != null)
+            {
+                _casProvider.SetMetaData(strMetaCategory, strMetaKey, strMetaValue);
+            }
+        }
         public static void LoadBanner(string strAdUnitId, uint nBannerPosition)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.CAS))
