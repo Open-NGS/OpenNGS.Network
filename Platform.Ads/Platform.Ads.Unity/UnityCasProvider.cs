@@ -93,13 +93,14 @@ namespace OpenNGS.Ads.Unity
             Advertisement.Show(strAdUnitId, this);
         }
 
-        // call back 
+        // Callback which notifies UnityAds has been successfully initialized.
         public void OnInitializationComplete()
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.InitCompleted;
             _callBackCas(m_ret);
         }
 
+        //Callback which notifies UnityAds has failed initialization with error message and error category.
         public void OnInitializationFailed(UnityAdsInitializationError error, string message)
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.InitFail;
@@ -108,6 +109,7 @@ namespace OpenNGS.Ads.Unity
             _callBackCas(m_ret);
         }
 
+        //Executes logic for an ad failing to show.
         public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
         {
             m_ret.AdUnitID = placementId;
@@ -117,6 +119,7 @@ namespace OpenNGS.Ads.Unity
             _callBackCas(m_ret);
         }
 
+        //Executes logic for an ad successfully showing.
         public void OnUnityAdsShowStart(string placementId)
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowStart;
@@ -124,6 +127,7 @@ namespace OpenNGS.Ads.Unity
             _callBackCas(m_ret);
         }
 
+        //Executes logic for a user clicking an ad while it is showing.
         public void OnUnityAdsShowClick(string placementId)
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsShowClick;
@@ -131,6 +135,7 @@ namespace OpenNGS.Ads.Unity
             _callBackCas(m_ret);
         }
 
+        //Executes logic for the ad finishing in its entirety. 
         public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
         {
             if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
@@ -147,6 +152,7 @@ namespace OpenNGS.Ads.Unity
             }
         }
 
+        //Executes logic for ad content successfully loading to a specified Placement.
         public void OnUnityAdsAdLoaded(string placementId)
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsAdLoaded;
@@ -154,6 +160,7 @@ namespace OpenNGS.Ads.Unity
             _callBackCas(m_ret);
         }
 
+        //Executes logic for ad content failing to load. 
         public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
         {
             m_ret.CasResultTyp = (uint)PlatFormCasResult.OnAdsFailedToLoad;

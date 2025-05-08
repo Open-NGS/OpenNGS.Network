@@ -84,20 +84,21 @@ namespace OpenNGS.Platform
     }
     public enum PlatFormCasResult
     {
-        InitCompleted = 0,
-        InitFail,
-        BannerLoaded,
-        BannerError,
-        BannerClicked,
-        BannerShown,
-        BannerHidden,
-        OnAdsAdLoaded,
-        OnAdsFailedToLoad,
-        OnAdsShowFailure,
-        OnAdsShowStart,
-        OnAdsShowClick,
-        OnAdsShowSkip,
-        OnAdsShowComplete
+
+        InitCompleted = 0,  // 初始化完成
+        InitFail,           // 初始化失败
+        BannerLoaded,       // 横幅广告加载成功
+        BannerError,        // 横幅广告加载失败
+        BannerClicked,      // 横幅广告被点击
+        BannerShown,        // 横幅广告显示成功
+        BannerHidden,       // 横幅广告隐藏成功
+        OnAdsAdLoaded,      // 加载成功
+        OnAdsFailedToLoad,  // 加载失败
+        OnAdsShowFailure,   // 显示失败
+        OnAdsShowStart,     // 显示成功
+        OnAdsShowClick,     // 显示中被点击
+        OnAdsShowSkip,      // 播放中被跳过
+        OnAdsShowComplete   // 完整播放完毕
     }
     public class PlatformCasRet : PlatformBaseRet
     {
