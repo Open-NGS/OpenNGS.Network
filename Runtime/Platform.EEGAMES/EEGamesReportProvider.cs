@@ -58,9 +58,11 @@ namespace OpenNGS.Platform.EEGames
 
             Debug.Log("[WebRequest]responseCode:" + webRequest.responseCode);
             if (webRequest.result == UnityWebRequest.Result.ConnectionError
-                || webRequest.result == UnityWebRequest.Result.ProtocolError)
+                || webRequest.result == UnityWebRequest.Result.ProtocolError
+                || webRequest.result == UnityWebRequest.Result.DataProcessingError)
             {
                 Debug.Log(webRequest.error);
+                NgDebug.LogException(new System.Exception(string.Format("[WebRequest]Result {0} Error {1}", webRequest.result, webRequest.error)));
                 ret.RetCode = PlatformError.NETWORK_ERROR;
                 ret.RetMsg = webRequest.error;
             }
