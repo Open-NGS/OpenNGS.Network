@@ -30,7 +30,9 @@ namespace OpenNGS.IAP.Unity
             m_ret = new PlatformIAPRet();
 
             m_Config = _config;
-
+#if UNITY_EDITOR
+            StandardPurchasingModule.Instance().useFakeStoreAlways = true;
+#endif
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             foreach (var product in _dictProducts)
             {
@@ -95,10 +97,11 @@ namespace OpenNGS.IAP.Unity
             {
                 try
                 {
+#if !UNITY_EDITOR
                     var result = m_Validator.Validate(product.receipt);
-
                     //The validator returns parsed receipts.
-                    //LogReceipts(result);
+                    LogReceipts(result);
+#endif
                     bRes = true;
                 }
 
@@ -184,6 +187,10 @@ namespace OpenNGS.IAP.Unity
         {
             m_StoreController = controller;
             bool bRes = InitializeValidator();
+#if UNITY_EDITOR
+            // Editor环境下不是Android也不是iOS，所以就不需要判断Validator是否合法
+            bRes = true;
+#endif
             if (bRes == true)
             {
                 m_ret.ResultType = (uint)PlatFormIAPResult.Init;
@@ -271,11 +278,13 @@ namespace OpenNGS.IAP.Unity
 
             m_ret.ProductID = productID;
             string priceStr = "";
+            decimal price = 0;
             foreach (var product in m_StoreController.products.all)
             {
                 if (productID == product.definition.id)
                 {
                     priceStr = product.metadata.localizedPriceString;
+                    price = product.metadata.localizedPrice;
                     break;
                 }
             }
@@ -289,6 +298,7 @@ namespace OpenNGS.IAP.Unity
             {
                 m_ret.ResultType = (uint)PlatFormIAPResult.GetPrice;
                 m_ret.ProductPrice = priceStr;
+                m_ret.Price = price;
             }
             _callBackIAP(m_ret);
         }

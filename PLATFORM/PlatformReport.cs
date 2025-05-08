@@ -54,7 +54,7 @@ namespace OpenNGS.Platform
         {
             m_BaseReportData.ad_id = adID;
             m_BaseReportData.ad_typ = adType;
-            m_BaseReportData.ad_res = nRes;
+            m_BaseReportData.res = nRes;
             m_BaseReportData.ad_casTyp = nCasTyp;
             m_BaseReportData.ad_try = bTry;
             Report(EventUserWatchAds);
@@ -76,18 +76,12 @@ namespace OpenNGS.Platform
             m_BaseReportData.share_id = index;
             Report(EventReserve);
         }
-        public void ReportUserIAPResult(string strProductID, uint revenue, uint nRes)
+        public void ReportUserIAP(string strProductID, decimal dPrice, uint nRes, uint nSuccess)
         {
-            m_BaseReportData.iap_success = nRes;
-        }
-        public void ReportUserIAP(string strProductID)
-        {
-            //todo
-            //var title = GameData.title.GetItem(PlayerManager.Instance.Lv);
-            //if (title != null)
-            //{
-            //    s_reportInfo.title_id = title.TitleID;
-            //}
+            m_BaseReportData.Revenue = dPrice;
+            m_BaseReportData.ProductID = strProductID;
+            m_BaseReportData.res = nRes;
+            m_BaseReportData.iap_success = nSuccess;
             Report(EventUserIAP);
         }
     }
@@ -100,10 +94,12 @@ namespace OpenNGS.Platform
         private uint m_level_success;
         private string m_ad_id;
         private uint m_ad_typ;
-        private uint m_ad_res;
+        private uint m_res;
         private uint m_ad_casTyp;
         private bool m_ad_try;
         private uint m_iap_success;
+        private string m_iap_product_id;
+        private decimal m_iap_price;
         private float m_online_duration;
         public BaseReportData()
         {
@@ -114,10 +110,19 @@ namespace OpenNGS.Platform
             m_level_success = 0;
             m_share_id = 0;
             m_level_id = 0;
-            m_ad_res = 0;
+            m_res = 0;
             m_iap_success = 0;
             m_online_duration = 0.0f;
-
+        }
+        public string ProductID
+        {
+            get { return m_iap_product_id; }
+            set { m_iap_product_id = value; }
+        }
+        public decimal Revenue
+        {
+            get { return m_iap_price; }
+            set { m_iap_price = value; }
         }
         public string ad_id
         {
@@ -140,10 +145,10 @@ namespace OpenNGS.Platform
             get { return m_ad_casTyp; }
             set { m_ad_casTyp = value; }
         }        
-        public uint ad_res
+        public uint res
         {
-            get { return m_ad_res; }
-            set { m_ad_res = value; }
+            get { return m_res; }
+            set { m_res = value; }
         }
         public uint iap_success
         {
