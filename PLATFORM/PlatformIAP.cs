@@ -86,6 +86,13 @@ namespace OpenNGS.Platform
         private string productID;
         private string productPrice;
         private uint resultType;
+        private decimal price;
+        [JsonProp("Price")]
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
         [JsonProp("productID")]
         public string ProductID
         {
