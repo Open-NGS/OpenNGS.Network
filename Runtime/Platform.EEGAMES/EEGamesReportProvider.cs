@@ -21,7 +21,6 @@ namespace OpenNGS.Platform.EEGames
         }
         ~EEGamesReportProvider()
         {
-            Report("ReportDecon", GetExtraInfo());
         }
         public void Report(string eventId, ExtraInfo extraInfo)
         {
