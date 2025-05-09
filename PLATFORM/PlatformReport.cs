@@ -47,11 +47,13 @@ namespace OpenNGS.Platform
         }
         public void ReportOnlineDuration(float onlineDuration)
         {
+            m_BaseReportData.InitData();
             m_BaseReportData.online_duration = onlineDuration;
             Report(EventOnlineDuration);
         }
         public void ReportCas(string adID, uint adType, uint nRes, uint nCasTyp, bool bTry)
         {
+            m_BaseReportData.InitData();
             m_BaseReportData.ad_id = adID;
             m_BaseReportData.ad_typ = adType;
             m_BaseReportData.res = nRes;
@@ -61,23 +63,27 @@ namespace OpenNGS.Platform
         }
         public void ReportLevelStart(int levelID)
         {
+            m_BaseReportData.InitData();
             m_BaseReportData.level_id = levelID;
             Report(EventLevelStart);
         }
 
         public void ReportGameEnd(int levelID, uint res)
         {
+            m_BaseReportData.InitData();
             m_BaseReportData.level_id = levelID;
             m_BaseReportData.level_success = res;
             Report(EventLevelEnd);
         }
         public void ReportShare(int index)
         {
+            m_BaseReportData.InitData();
             m_BaseReportData.share_id = index;
             Report(EventReserve);
         }
         public void ReportUserIAP(string strProductID, decimal dPrice, uint nRes, uint nSuccess)
         {
+            m_BaseReportData.InitData();
             m_BaseReportData.Revenue = dPrice;
             m_BaseReportData.ProductID = strProductID;
             m_BaseReportData.res = nRes;
@@ -102,6 +108,10 @@ namespace OpenNGS.Platform
         private decimal m_iap_price;
         private float m_online_duration;
         public BaseReportData()
+        {
+            InitData();
+        }
+        public virtual void InitData()
         {
             m_ad_id = "";
             m_ad_try = false;
