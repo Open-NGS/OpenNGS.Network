@@ -61,16 +61,18 @@ namespace OpenNGS.Platform
             m_BaseReportData.ad_try = bTry;
             Report(EventUserWatchAds);
         }
-        public void ReportLevelStart(int levelID)
+        public void ReportLevelStart(uint nLevelTyp,int levelID)
         {
             m_BaseReportData.InitData();
+            m_BaseReportData.level_typ = nLevelTyp;
             m_BaseReportData.level_id = levelID;
             Report(EventLevelStart);
         }
 
-        public void ReportGameEnd(int levelID, uint res)
+        public void ReportGameEnd(uint nLevelTyp, int levelID, uint res)
         {
             m_BaseReportData.InitData();
+            m_BaseReportData.level_typ = nLevelTyp;
             m_BaseReportData.level_id = levelID;
             m_BaseReportData.level_success = res;
             Report(EventLevelEnd);
@@ -96,6 +98,7 @@ namespace OpenNGS.Platform
     public class BaseReportData
     {
         private int m_level_id;
+        private uint m_level_typ;
         private int m_share_id;
         private uint m_level_success;
         private string m_ad_id;
@@ -120,6 +123,7 @@ namespace OpenNGS.Platform
             m_level_success = 0;
             m_share_id = 0;
             m_level_id = 0;
+            m_level_typ = 0;
             m_res = 0;
             m_iap_success = 0;
             m_online_duration = 0.0f;
@@ -180,6 +184,12 @@ namespace OpenNGS.Platform
             get { return m_level_id; }
             set { m_level_id = value; }
         }
+        public uint level_typ
+        {
+            get { return m_level_typ; }
+            set { m_level_typ = value; }
+        }
+        
         public int share_id
         {
             get { return m_share_id; }
