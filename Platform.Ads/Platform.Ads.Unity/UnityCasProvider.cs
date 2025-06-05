@@ -226,6 +226,9 @@ namespace OpenNGS.Ads.Unity
         public void Update()
         {
         }
+        public void SetMetaData(string strMetaCategory, string strMetaKey, string strMetaValue)
+        {
+        }
     }
 #endif
 }
