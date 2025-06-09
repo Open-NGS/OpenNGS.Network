@@ -5,14 +5,14 @@ namespace OpenNGS.Platform
     public class PlatformCas
     {
         public static event OnPlatformRetEventHandler<PlatformCasRet> CasRetEvent;
-        public static void Initialize(string strGameID, bool bTestMode = false)
+        public static void Initialize(string strAppKey, string strGameID, bool bTestMode = false)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.CAS))
                 return;
             ICasProvider _casProvider = Platform.GetCas();
             if (_casProvider != null)
             {
-                _casProvider.Initialize(strGameID, bTestMode);
+                _casProvider.Initialize(strAppKey, strGameID, bTestMode);
             }
         }
         public static void SetMetaData(string strMetaCategory, string strMetaKey, string strMetaValue)
@@ -45,14 +45,14 @@ namespace OpenNGS.Platform
                 _casProvider.ShowBannerAd(strAdUnitId);
             }
         }
-        public static void HideBannerAd()
+        public static void HideBannerAd(string strAdUnitID)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.CAS))
                 return;
             ICasProvider _casProvider = Platform.GetCas();
             if (_casProvider != null)
             {
-                _casProvider.HideBannerAd();
+                _casProvider.HideBannerAd(strAdUnitID);
             }
         }
         public static void LoadAd(string strAdUnitId)
@@ -98,13 +98,17 @@ namespace OpenNGS.Platform
         OnAdsShowStart,     // 显示成功
         OnAdsShowClick,     // 显示中被点击
         OnAdsShowSkip,      // 播放中被跳过
-        OnAdsShowComplete   // 完整播放完毕
+        OnAdsShowComplete,  // 完整播放完毕
+        BannerCollapsed,    // 横幅广告被Collapsed
+        BannerLeftApp,      // 横幅广告离开应用
+        BannerExpanded,     // 横幅广告被Expanded
     }
     public class PlatformCasRet : PlatformBaseRet
     {
         private string bannerAdUnitID;
         private string adUnitID;
         private string gameID;
+        private string appKey;
         private bool testMode;
         private uint casResultTyp;
         private uint casErrorTyp;
@@ -114,6 +118,12 @@ namespace OpenNGS.Platform
         {
             get { return gameID; }
             set { gameID = value; }
+        }
+        [JsonProp("appKey")]
+        public string AppKey
+        {
+            get { return appKey; }
+            set { appKey = value; }
         }
         [JsonProp("testMode")]
         public bool TestMode
