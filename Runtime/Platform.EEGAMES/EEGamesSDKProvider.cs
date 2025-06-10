@@ -21,7 +21,11 @@ namespace OpenNGS.Platform.EEGames
             }
             else if (module == PLATFORM_MODULE.CAS)
             {
+#if LevelPlayCas
+                return new LevelPlayCasProvider();
+#else
                 return new UnityCasProvider();
+#endif
             }
             else if (module == PLATFORM_MODULE.IAP)
             {

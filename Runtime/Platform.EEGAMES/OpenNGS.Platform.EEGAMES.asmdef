@@ -8,7 +8,8 @@
         "Platform.Share.Unity",
         "UnityEngine.Advertisements",
         "OpenNGS.IAP.Unity",
-        "UnityEngine.Purchasing"
+        "UnityEngine.Purchasing",
+        "OpenNGS.Ads.LevelPlay"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
