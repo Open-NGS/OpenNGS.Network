@@ -13,7 +13,11 @@ namespace OpenNGS.Core
         {
             return LocalizationSystem.Instance.GetText(text.Key);
         }
-
+        public NGSText(string strKey)
+        {
+            Key = strKey;
+            OnConstructor();
+        }
         public override string ToString()
         {
             if (Value != null)
