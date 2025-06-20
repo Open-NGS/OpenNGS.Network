@@ -95,16 +95,16 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
         Achievement achievement = AchievementStaticData.achievement.GetItem(value.ID);
         if (achievementState != null)
         {
-            achievementState.Progress = value.Progress;
+            achievementState.Progress = value.progress;
         }
         else
         {
             // 没找到对应成就，添加新的成就状态
             achievementState = new AchievementState
             {
-                PlayerID = value.PlayerID,
+                PlayerID = value.playerID,
                 ID = value.ID,
-                Progress = value.Progress,
+                Progress = value.progress,
                 Status = Achievement_Status.Achievement_Status_Stating,
             };
             achievementStates.Add(achievementState);
@@ -114,7 +114,7 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
             achievementState.Status = Achievement_Status.Achievement_Status_Pending;
             //时间
 
-            CheckAndUpdateParentAchievements(value.ID, value.PlayerID);
+            CheckAndUpdateParentAchievements(value.ID, value.playerID);
         }
         updateAchievementRsp.result = Achievement_Result.AchievementResult_Success;
         return Task.FromResult(updateAchievementRsp);
@@ -166,10 +166,7 @@ public class NgAchievementSystem : Singleton<NgAchievementSystem>, INgAchievemen
 
     public Task<GetAchievementsRsp> GetAchievements(GetAchievementsReq value, ClientContext context = null)
     {
-        var response = new GetAchievementsRsp
-        {
-            achievementStates = achievementStates
-        };
+        var response = new GetAchievementsRsp();
         return Task.FromResult(response);
     }
 }

@@ -6,8 +6,6 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
-using OpenNGS.Achievement.Data;
-
 namespace OpenNGS.Achievement.Service
 {
 
@@ -25,8 +23,9 @@ namespace OpenNGS.Achievement.Service
         }
 
         partial void OnConstructor();
+
         [global::ProtoBuf.ProtoMember(1)]
-        public uint PlayerID { get; set; }
+        public uint playerID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint ID { get; set; }
@@ -67,14 +66,15 @@ namespace OpenNGS.Achievement.Service
         }
 
         partial void OnConstructor();
+
         [global::ProtoBuf.ProtoMember(1)]
-        public uint PlayerID { get; set; }
+        public uint playerID { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
         public uint ID { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
-        public uint Progress { get; set; }
+        public uint progress { get; set; }
 
     }
 
@@ -114,7 +114,7 @@ namespace OpenNGS.Achievement.Service
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public uint PlayerID { get; set; }
+        public uint playerID { get; set; }
 
     }
 
@@ -128,13 +128,14 @@ namespace OpenNGS.Achievement.Service
         }
         public GetAchievementsRsp()
         {
+            achievementStates = new global::System.Collections.Generic.List<global::OpenNGS.Achievement.Data.AchievementState>();
             OnConstructor();
         }
 
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<AchievementState> achievementStates { get; set; }
+        public global::System.Collections.Generic.List<global::OpenNGS.Achievement.Data.AchievementState> achievementStates { get; private set; }
 
     }
 
