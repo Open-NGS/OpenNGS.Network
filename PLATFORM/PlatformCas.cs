@@ -55,24 +55,24 @@ namespace OpenNGS.Platform
                 _casProvider.HideBannerAd(strAdUnitID);
             }
         }
-        public static void LoadAd(string strAdUnitId)
+        public static void LoadAd(string strAdUnitId, PlatformAdsType _typ)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.CAS))
                 return;
             ICasProvider _casProvider = Platform.GetCas();
             if (_casProvider != null)
             {
-                _casProvider.LoadAd(strAdUnitId);
+                _casProvider.LoadAd(strAdUnitId, _typ);
             }
         }
-        public static void ShowAd(string strAdUnitId)
+        public static void ShowAd(string strAdUnitId, PlatformAdsType _typ)
         {
             if (!Platform.IsSupported(PLATFORM_MODULE.CAS))
                 return;
             ICasProvider _casProvider = Platform.GetCas();
             if (_casProvider != null)
             {
-                _casProvider.ShowAd(strAdUnitId);
+                _casProvider.ShowAd(strAdUnitId, _typ);
             }
         }
         internal static void OnCasRet(PlatformCasRet ret)
@@ -102,6 +102,14 @@ namespace OpenNGS.Platform
         BannerCollapsed,    // 横幅广告被Collapsed
         BannerLeftApp,      // 横幅广告离开应用
         BannerExpanded,     // 横幅广告被Expanded
+        OnAdsClosed,        // 广告关闭
+        OnAdsInfoChanged,   // 广告信息变更
+    }
+    public enum PlatformAdsType
+    {
+        Banner = 0,         // 横幅广告
+        Interstitial = 1,   // 插屏广告
+        Rewarded = 2,       // 激励广告
     }
     public class PlatformCasRet : PlatformBaseRet
     {
