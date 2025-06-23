@@ -29,5 +29,10 @@ namespace OpenNGS.Core
         }
 
         public string Value => this;
+        public static NGSText Text(string strKey, string value)
+        {
+            NGSText _ngText = new NGSText(strKey);
+            return _ngText;
+        }
     }
 }
