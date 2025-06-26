@@ -20,6 +20,9 @@ namespace OpenNGS.Localize
         private const string LocalizationFilePath = "Localization/{0}/Localization.json";
         private const string DefaultLocalizationFilePath = "Localization/Localization.json";
 
+        private const string LocalizationCodeFilePath = "Localization/{0}/CodeLocalization.json";
+        private const string DefaultLocalizationCodeFilePath = "Localization/CodeLocalization.json";
+
         private Dictionary<string, string> _localizationStrings = new Dictionary<string, string>();
 
         private Dictionary<SystemLanguage, string> SysLanguageToIETF = null;
@@ -47,10 +50,26 @@ namespace OpenNGS.Localize
                 file = Path.Combine(Application.streamingAssetsPath, DefaultLocalizationFilePath);
             }
 
-            // var dataAsJson = FileSystem.Read(file).ToString();
             _localizationStrings = JsonUtil.LoadJson<Dictionary<string, string>>(file);
-            // var dataAsJson = File.ReadAllText(file);
-            // _localizationStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataAsJson);
+
+            // code
+            file = Path.Combine(Application.streamingAssetsPath, string.Format(LocalizationCodeFilePath, GetLangName(Lan)));
+            if (!FileSystem.FileExists(file))
+            {
+                file = Path.Combine(Application.streamingAssetsPath, DefaultLocalizationCodeFilePath);
+            }
+            if (FileSystem.FileExists(file))
+            {
+                Dictionary<string,string> _codeString = JsonUtil.LoadJson<Dictionary<string, string>>(file);
+
+                foreach (KeyValuePair<string, string> _codePair in _codeString)
+                {
+                    if (_localizationStrings.ContainsKey(_codePair.Key) == false)
+                    {
+                        _localizationStrings.Add(_codePair.Key, _codePair.Value);
+                    }
+                }
+            }
         }
 
         public void SetLanguage(SystemLanguage language)
