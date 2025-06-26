@@ -1,22 +1,22 @@
 {
-	"name": "com.openngs.game",
-	"displayName": "OpenNGS Game",
-	"version": "0.3.0",
-	"description": "OpenNGS game package",
-	"main": "index.js",
-	"scripts": {
-		"test" : "script-content"
-	},
-	"author": {
-		"name": "EE GAMES",
-		"email": "ray@eegames.com",
-		"url": "https://www.openngs.com"
-	},
-	"license": "AGPL",
-	"keywords": [
-		"unity3d",
-		"unity3d-npm",
-		"openngs",
-    	"game"
-	]
+  "name": "com.openngs.game",
+  "displayName": "OpenNGS Game",
+  "version": "0.4.0",
+  "description": "OpenNGS game package",
+  "main": "index.js",
+  "scripts": {
+    "test": "script-content"
+  },
+  "author": {
+    "name": "EE GAMES",
+    "email": "ray@eegames.com",
+    "url": "https://www.openngs.com"
+  },
+  "license": "AGPL",
+  "keywords": [
+    "unity3d",
+    "unity3d-npm",
+    "openngs",
+    "game"
+  ]
 }
