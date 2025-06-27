@@ -32,7 +32,10 @@ namespace OpenNGS.Systems
             {
                 GoodState _goodState = new GoodState();
                 _goodState.GoodID = good.ID;
-                _goodState.Left = -1;                           //剩余购买次数 -1 = 无限次
+                if(good.Limit > 0)
+                    _goodState.Left = good.Limit;
+                else
+                    _goodState.Left = -1;                           //剩余购买次数 -1 = 无限次
 
                 uint _shelfID = good.ShelfId;
                 Shelf _shelf = NGSStaticData.shelfDatas.GetItem(_shelfID);
