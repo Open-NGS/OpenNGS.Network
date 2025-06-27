@@ -200,5 +200,20 @@ namespace OpenNGS.Systems
             base.OnClear();
         }
 
+        public List<QuestData> GetQuests(Quest_Status status)
+        {
+            List<QuestData> quests = new List<QuestData>();
+            foreach (QuestGroupData _group in questContainer.QuestGroupList)
+            {
+                foreach(QuestData _quest in _group.QuestDataList)
+                {
+                    if(status == Quest_Status.Status_None || _quest.Status == (Quest_Status)status)
+                    {
+                        quests.Add(_quest);
+                    }
+                }
+            }
+            return quests;
+        }
     }
 }

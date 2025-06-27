@@ -14,5 +14,6 @@ namespace OpenNGS.Systems
         void AddQuestContainer(QuestContainer Container);
         public bool IsExistQuestData(uint questGroupID, uint questID);
         public bool IsExistQuestGroup(uint questGroupID);
+        List<QuestData> GetQuests(Quest_Status status);
     }
 }
