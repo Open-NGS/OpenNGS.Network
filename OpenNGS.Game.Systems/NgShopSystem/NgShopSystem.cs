@@ -33,7 +33,7 @@ namespace OpenNGS.Systems
                 GoodState _goodState = new GoodState();
                 _goodState.GoodID = good.ID;
                 if(good.Limit > 0)
-                    _goodState.Left = good.Limit;
+                    _goodState.Left = (int)good.Limit;
                 else
                     _goodState.Left = -1;                           //剩余购买次数 -1 = 无限次
 
