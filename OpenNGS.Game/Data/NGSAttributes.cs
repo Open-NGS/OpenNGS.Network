@@ -141,9 +141,9 @@ namespace OpenNGS.Core
     }
 
 
-    public class AttributesSingle<T> where T : struct, Enum
+    public class AttributesSingle<T> : INumerable where T : struct, Enum
     {
-        AttributesSingle Attributes;
+        protected AttributesSingle Attributes;
 
         public AttributesSingle(AttributesSingle attributes)
         {
@@ -165,11 +165,22 @@ namespace OpenNGS.Core
             this.Attributes.Reset();
         }
 
+        public void Add(INumerable b)
+        {
+            foreach (var k in ((AttributesSingle<T>)b).Attributes.Values)
+            {
+                this.Set((int)k.Key, this.Get((int)k.Key) + k.Value);
+            }
+        }
+
+        public void Multiply(INumerable b)
+        {
+            throw new NotImplementedException();
+        }
+
         public float this[int attr]
         {
-
             get { return this.Get(attr); }
-
             set { this.Set(attr, value); }
         }
     }
