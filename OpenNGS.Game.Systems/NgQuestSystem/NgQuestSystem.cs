@@ -1,11 +1,12 @@
-using System.Collections.Generic;
-using Systems;
+using OpenNGS.Data;
 using OpenNGS.Quest.Common;
-using System.Linq;
-using System;
 using OpenNGS.Quest.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Systems;
 
-
+using QuestGroup = OpenNGS.Quest.Data.QuestGroup;
 
 namespace OpenNGS.Systems
 {
@@ -221,6 +222,18 @@ namespace OpenNGS.Systems
         {
             questContainer = null;
             base.OnClear();
+        }
+
+        public void UpdateQuest(uint groupid, uint questid, Quest_Status _status)
+        {
+            List<QuestData> quests = questContainer.GetQuestDatas(groupid);
+            foreach (QuestData _quest in quests)
+            {
+                if(_quest.QuestID == questid)
+                {
+                    _quest.Status = (uint)_status;
+                }
+            }
         }
     }
 }

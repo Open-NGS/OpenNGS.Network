@@ -11,5 +11,6 @@ namespace OpenNGS.Systems
         public List<QuestData> GetQuests(uint status);
         public List<QuestData> GetGroupQuests(uint questGroupID);
         public void AddQuestContainer(QuestContainer Container);
+        void UpdateQuest(uint groupid, uint questid, Quest_Status _status );
     }
 }
