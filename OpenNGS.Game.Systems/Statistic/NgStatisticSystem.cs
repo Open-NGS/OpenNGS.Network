@@ -1,7 +1,6 @@
 using OpenNGS;
 using OpenNGS.ERPC;
 using OpenNGS.Item.Data;
-using OpenNGS.SaveData;
 using OpenNGS.Statistic.Common;
 using OpenNGS.Statistic.Data;
 using OpenNGS.Statistic.Service;
@@ -12,7 +11,7 @@ using Systems;
 
 namespace OpenNGS.Systems
 {
-    class NgStatisticSystem : GameSubSystem<NgStatisticSystem>, INgStatisticSystem
+    public class NgStatisticSystem : GameSubSystem<NgStatisticSystem>, INgStatisticSystem
     {
         private Dictionary<int, double> globalStatistics;  //全局
         //private Dictionary<int, double> gameStatistics = new Dictionary<int, double>();    //局内
@@ -29,8 +28,21 @@ namespace OpenNGS.Systems
                 stat.OnValueChanged += item.OnStatValueChange;
             }
         }
+        public void RemoveEventHandler(INgStatisticEvent item)
+        {
+            if (item.StatID == 0) return;
+            var stat = this.GetItem(item.StatID);
+            if (stat != null)
+            {
+                stat.OnValueChanged -= item.OnStatValueChange;
+            }
+        }
+
         public void AddStatContainer(StatisticContainer Container)
         {
+            // 每次加载存档时，将之前存储的数据先清空，避免新开档时没有正确恢复
+            Init();
+
             if (Container != null)
             {
                 m_Container = Container;
@@ -44,9 +56,9 @@ namespace OpenNGS.Systems
                 m_Container.StatisticSaveData = new Dictionary<ulong, StatValue>();
             }
 
-            for (int nIdx = 0; nIdx < NGSStaticData.s_statDatas.Items.Count; nIdx++)
+            for (int nIdx = 0; nIdx < StatisticStaticData.s_statDatas.Items.Count; nIdx++)
             {
-                StatData _statDataInfo = NGSStaticData.s_statDatas.Items[nIdx];
+                StatData _statDataInfo = StatisticStaticData.s_statDatas.Items[nIdx];
                 if (this.Items.ContainsKey(_statDataInfo.Id) == false)
                 {
                     var item = new NgStatisticItem(_statDataInfo);
@@ -111,7 +123,7 @@ namespace OpenNGS.Systems
 
         public void StatByStatisticID(uint statId, double val)
         {
-            StatData _statData = NGSStaticData.s_statDatas.GetItem(statId);
+            StatData _statData = StatisticStaticData.s_statDatas.GetItem(statId);
             if (_statData != null)
             {
                 Stat(_statData.StatEvent, _statData.ObjCategory, _statData.ObjType, _statData.ObjSubType, _statData.ObjID, val);
@@ -201,5 +213,7 @@ namespace OpenNGS.Systems
             m_Container = null;
             base.OnClear();
         }
+
+
     }
 }

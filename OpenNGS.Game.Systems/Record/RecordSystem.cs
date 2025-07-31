@@ -4,12 +4,10 @@ using OpenNGS.Systems;
 using System.Collections;
 using System.Collections.Generic;
 using Systems;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-
 
 public class RecordSystem : GameSubSystem<RecordSystem>, IRecordSystem
 {
-    List<OpenNGS.Levels.Data.NGSLevelInfo> levelStages = NGSStaticData.levelInfo.Items;
+    List<OpenNGS.Levels.Data.NGSLevelInfo> levelStages = LevelStaticData.levelInfo.Items;
     //List<StatData> stats = NGSStaticData.s_statDatas.Items;
 
     //Dictionary<StatData, ulong> SingleData = new Dictionary<StatData, ulong>();

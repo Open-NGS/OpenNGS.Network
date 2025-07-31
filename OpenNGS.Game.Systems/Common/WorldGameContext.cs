@@ -7,6 +7,7 @@ public class WorldGameContext : GameContext
     //private IApplicationBuilder 
     public override void Configure(IApplicationBuilder app)
     {
+        
     }
 
     public override void ConfigureServices(IServiceCollection services)
@@ -17,7 +18,9 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(IEquipSystem), new EquipSystem()));
         services.Add(new ServiceDescriptor(typeof(ITechnologySystem), new TechnologySystem()));
         services.Add(new ServiceDescriptor(typeof(IRankSystem), new RankSystem()));
+#if UNITY_5_3_OR_NEWER
         services.Add(new ServiceDescriptor(typeof(INotificationSystem), new NotificationSystem()));
+#endif
         services.Add(new ServiceDescriptor(typeof(IRewardSystem), new RewardSystem()));
 
         services.Add(new ServiceDescriptor(typeof(INgStatisticSystem), new NgStatisticSystem()));
@@ -28,6 +31,8 @@ public class WorldGameContext : GameContext
         services.Add(new ServiceDescriptor(typeof(INgSettingSystem), new NgSettingSystem()));
         services.Add(new ServiceDescriptor(typeof(INgBlindBoxSystem), new NgBlindBoxSystem()));
         services.Add(new ServiceDescriptor(typeof(INgQuestSystem), new NgQuestSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgCollectionSystem), new NgCollectionSystem()));
+        services.Add(new ServiceDescriptor(typeof(INgAchievementSystem), new NgAchievementSystem()));
     }
 
     protected override void OnInit()

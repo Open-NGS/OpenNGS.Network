@@ -16,10 +16,9 @@ namespace OpenNGS.Quest.Common
     public enum Quest_Status
     {
         Status_None = 0, // 无效状态
-        Status_Available = 1, // 任务可接取
-        Status_Progress = 2, // 任务进行中
-        Status_Completed = 3, // 任务已完成
-        Status_Failed = 4, // 任务失败
+        Status_Accepted = 1, // 已接取
+        Status_Completed = 2, // 任务已完成
+        Status_Failed = 3, // 任务失败
     }
 
     //任务接取规则

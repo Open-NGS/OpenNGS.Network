@@ -7,6 +7,7 @@
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
 using OpenNGS.Core;
+using OpenNGS.Achievement.Common;
 
 
 namespace OpenNGS.Achievement.Data 
@@ -40,14 +41,12 @@ namespace OpenNGS.Achievement.Data
         [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
         public uint[] SubAchievement { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
-        public uint SubSameOwner { get; set; }
-        [global::ProtoBuf.ProtoMember(7)]
         public NGSText Name { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
+        [global::ProtoBuf.ProtoMember(7)]
         public NGSText Description { get; set; }
-        [global::ProtoBuf.ProtoMember(9)]
+        [global::ProtoBuf.ProtoMember(8)]
         public uint AwardGroupID { get; set; }
-        [global::ProtoBuf.ProtoMember(10)]
+        [global::ProtoBuf.ProtoMember(9)]
         public string IconPath { get; set; }
     }
     //奖励数据
@@ -70,10 +69,37 @@ namespace OpenNGS.Achievement.Data
         public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
         public NGSText Description { get; set; }
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
+        public uint[] ItemID { get; set; }
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
+        public uint[] Counts { get; set; }
+    }
+    //奖励存档数据
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AchievementState : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public AchievementState()
+        {
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint PlayerID { get; set; }
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public uint ItemID { get; set; }
+        public uint Progress { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public uint Counts { get; set; }
+        public Achievement_Status Status { get; set; }
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint UnlockTime { get; set; }
     }
 
 }

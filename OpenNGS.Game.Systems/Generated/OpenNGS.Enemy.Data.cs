@@ -6,6 +6,7 @@
 
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
+using OpenNGS.Core;
 
 
 namespace OpenNGS.Enemy.Data 
@@ -22,7 +23,6 @@ namespace OpenNGS.Enemy.Data
         }
         public EnemyInfo()
         {
-            EnemyName = "";
         	OnConstructor();
         }
         
@@ -31,7 +31,7 @@ namespace OpenNGS.Enemy.Data
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public string EnemyName { get; set; }
+        public NGSText EnemyName { get; set; }
     }
 
 }

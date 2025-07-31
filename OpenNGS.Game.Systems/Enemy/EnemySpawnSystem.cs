@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using Systems;
 
 public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSystem
@@ -41,7 +42,7 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
     {
         m_spawner = _spawner;
         m_levelID= LevelID;
-        _levelEnemyInfos=NGSStaticData.levelEnemyInfos.GetItems(m_levelID);
+        _levelEnemyInfos = LevelStaticData.levelEnemyInfos.GetItems(m_levelID);
         SortEnemyListByTime();
     }
     /// <summary>
@@ -67,7 +68,7 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
     //根据时间生成敌人
     public void InitEnemyByTime()
     {
-        currentInitEnemy = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, levelInfoTimes[initIndex]);
+        currentInitEnemy = LevelStaticData.levelEnemyInfo.GetItem(m_levelID, levelInfoTimes[initIndex]);
         if (m_currentTime >= currentInitEnemy.InitBeginTime)    
         {
             if (isInit)
@@ -139,8 +140,8 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
                 SpawnPosition.X = spawnPosX;
                 SpawnPosition.Y = 0;
                 SpawnPosition.Z = spawnPosZ;
-
-                m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
+                NGSVector3 _dir = new NGSVector3();
+                m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition, _dir);
             }
             else
             {
@@ -161,7 +162,8 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
             SpawnPosition.X = enemyInfo.AreaPos[0];
             SpawnPosition.Y = enemyInfo.AreaPos[1];
             SpawnPosition.Z = enemyInfo.AreaPos[2];
-            m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition);
+            NGSVector3 _dir = new NGSVector3();
+            m_spawner.SpawnEnemy(enemyInfo.EnemyID, SpawnPosition, _dir);
         }
     }
     //随机正负
@@ -183,7 +185,7 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
         {
             GeneratedEnemies[enemyID] = GeneratedEnemies[enemyID] - num;
             JudgeTimeAndReturnEnemyNum(enemyID);
-            LevelEnemyInfo info = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, m_enemyRuleID);
+            LevelEnemyInfo info = LevelStaticData.levelEnemyInfo.GetItem(m_levelID, m_enemyRuleID);
             //是否为普通敌人
             if (info.EnemyInitType == OpenNGS.Levels.Common.ENEMY_INITTYPE.ENEMY_INITTYPE_ROUND)
             {
@@ -228,7 +230,7 @@ public class EnemySpawnSystem : GameSubSystem<EnemySpawnSystem>, IEnemySpawnSyst
         foreach (var _ruleID in lstrule)
         {
             //根据场景ID,规则id 找对应LevelEnemyInfo
-            LevelEnemyInfo info = NGSStaticData.levelEnemyInfo.GetItem(m_levelID, _ruleID);
+            LevelEnemyInfo info = LevelStaticData.levelEnemyInfo.GetItem(m_levelID, _ruleID);
             if (info.InitBeginTime <= m_currentTime && m_currentTime < info.InitFinishTime)
             {
                 m_enemyRuleID= _ruleID; break;

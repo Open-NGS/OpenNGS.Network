@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:OpenNGS.Game.Systems/Generated/Service/OpenNGS.Achievement.Service.cs.meta
-guid: 5378d96fb760d604393cb66e477b796e
-========
-guid: 1939506288e35d44d895e50136c6e664
->>>>>>>> 90d0c05 (配置表生成代码修改):OpenNGS.Game.Systems/Generated/OpenNGS.Dialog.Common.cs.meta
+guid: 48e6439a0a9635340a43d29651c90af4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
