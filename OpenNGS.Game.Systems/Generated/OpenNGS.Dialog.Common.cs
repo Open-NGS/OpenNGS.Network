@@ -11,26 +11,25 @@
 namespace OpenNGS.Dialog.Common 
 {
 
-    //选择条件
+    //选项类型
     [global::ProtoBuf.ProtoContract()]
-    public enum DIALOG_CHOICE_CONDITION_TYPE
+    public enum DIALOG_CHOICE_TYPE
     {
-        DIALOG_CHOICE_CONDITION_TYPE_NONE = 0, // 无条件
-        DIALOG_CHOICE_CONDITION_TYPE_PLAYER_LEVEL = 1, // 玩家等级
-        DIALOG_CHOICE_CONDITION_TYPE_PLAYER_INVENTORY = 2, // 玩家背包中的物品
-        DIALOG_CHOICE_CONDITION_TYPE_PLAYER_QUEST_PROGRESS = 3, // 玩家任务进度
-        DIALOG_CHOICE_CONDITION_TYPE_TIME_OF_DAY = 4, // 游戏内的时间
-        DIALOG_CHOICE_CONDITION_TYPE_LOCATION = 5, // 玩家所在位置
-        DIALOG_CHOICE_CONDITION_TYPE_PREVIOUS_CHOICE = 6, // 之前的选择
+        None = 1, // 无
+        Cancel = 2, // 放弃
+        Confirm = 3, // 接受
+        End = 4, // 结束
+        Random = 5, // 随机
+        Result = 6, // 结算数值
     }
 
-    //对话类型
+    //结果类型
     [global::ProtoBuf.ProtoContract()]
-    public enum DIALOG_TYPE
+    public enum DIALOG_CHOICE_RESULT_TYPE
     {
-        DIALOG_TYPE_NORMAL = 0, // 普通对话
-        DIALOG_TYPE_EVENT = 1, // 事件对话
-        DIALOG_TYPE_QUEST = 2, // 任务对话
+        None = 1, // 无
+        Pending = 2, // 等待
+        Final = 3, // 结束
     }
 
 

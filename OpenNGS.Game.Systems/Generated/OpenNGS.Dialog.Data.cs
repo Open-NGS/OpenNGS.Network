@@ -7,6 +7,7 @@
 #region Designer generated code
 #pragma warning disable 0612, 0618, 1591, 3021
 using OpenNGS.Core;
+using OpenNGS.Dialog.Common;
 
 
 namespace OpenNGS.Dialog.Data 
@@ -14,16 +15,42 @@ namespace OpenNGS.Dialog.Data
 
     //对话列表
     [global::ProtoBuf.ProtoContract()]
-    public partial class DialogList : global::ProtoBuf.IExtensible
+    public partial class DialogConfig : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public DialogList()
+        public DialogConfig()
         {
-            Comments = "";
+        	OnConstructor();
+        }
+        
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint ID { get; set; }
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Delay { get; set; }
+        [global::ProtoBuf.ProtoMember(3)]
+        public bool DisableCancel { get; set; }
+        [global::ProtoBuf.ProtoMember(4)]
+        public uint DialogType { get; set; }
+    }
+    //对话信息
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DialogTalkConfig : global::ProtoBuf.IExtensible
+{
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public DialogTalkConfig()
+        {
+            AvatarLeft = "";
+            AvatarRight = "";
         	OnConstructor();
         }
         
@@ -31,61 +58,37 @@ namespace OpenNGS.Dialog.Data
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint DialogID { get; set; }
-        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
-        public uint[] DialogTalkIDs { get; set; }
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint DisplayType { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
-        public uint Type { get; set; }
-        [global::ProtoBuf.ProtoMember(5)]
-        public string Comments { get; set; }
-    }
-    //对话信息
-    [global::ProtoBuf.ProtoContract()]
-    public partial class DialogTalk : global::ProtoBuf.IExtensible
-{
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-        {
-        	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-        }
-        public DialogTalk()
-        {
-            AudioFiles = "";
-        	OnConstructor();
-        }
-        
-        partial void OnConstructor();
-
-        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint DialogTalkID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public NGSText Name { get; set; }
+        public uint TalkID { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public uint AvatarLeft { get; set; }
+        public uint End { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public uint AvatarRight { get; set; }
+        public NGSText Title { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
         public NGSText Content { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
-        public bool IsEnd { get; set; }
-        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
-        public uint[] ChoiceIDs { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
-        public uint ChoiceCount { get; set; }
+        public string AvatarLeft { get; set; }
+        [global::ProtoBuf.ProtoMember(7)]
+        public string AvatarRight { get; set; }
+        [global::ProtoBuf.ProtoMember(8, IsPacked = true)]
+        public uint[] ContentParams { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
-        public string AudioFiles { get; set; }
+        public uint ChoiceCount { get; set; }
+        [global::ProtoBuf.ProtoMember(10)]
+        public bool Random { get; set; }
+        [global::ProtoBuf.ProtoMember(11)]
+        public uint ChoiceID { get; set; }
     }
     //选项信息
     [global::ProtoBuf.ProtoContract()]
-    public partial class DialogChoice : global::ProtoBuf.IExtensible
+    public partial class DialogChoiceConfig : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public DialogChoice()
+        public DialogChoiceConfig()
         {
         	OnConstructor();
         }
@@ -93,28 +96,36 @@ namespace OpenNGS.Dialog.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint DialogChoiceID { get; set; }
+        public uint ChoiceID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public NGSText DialogChoiceContent { get; set; }
+        public uint Weight { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public uint NextDialogIndex { get; set; }
+        public NGSText Content { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public uint QuestGroupID { get; set; }
+        public uint NextTalkID { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
-        public bool IsSelected { get; set; }
-        [global::ProtoBuf.ProtoMember(6, IsPacked = true)]
+        public OpenNGS.Dialog.Common.DIALOG_CHOICE_TYPE ChoiceType { get; set; }
+        [global::ProtoBuf.ProtoMember(6)]
+        public uint ResultId { get; set; }
+        [global::ProtoBuf.ProtoMember(7)]
+        public uint ResultCount { get; set; }
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint ChoiceOption { get; set; }
+        [global::ProtoBuf.ProtoMember(9)]
+        public uint Requirements { get; set; }
+        [global::ProtoBuf.ProtoMember(10, IsPacked = true)]
         public uint[] Effects { get; set; }
     }
-    //对话效果
+    //选择结果
     [global::ProtoBuf.ProtoContract()]
-    public partial class DialogEffect : global::ProtoBuf.IExtensible
+    public partial class ChoiceResultConfig : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public DialogEffect()
+        public ChoiceResultConfig()
         {
         	OnConstructor();
         }
@@ -122,25 +133,19 @@ namespace OpenNGS.Dialog.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint EffectID { get; set; }
+        public uint ResultID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public uint Function { get; set; }
+        public NGSText ResultDesc { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public NGSText DescInfo { get; set; }
+        public NGSText ResultInfo { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public uint DescID { get; set; }
+        public uint NextTalkID { get; set; }
         [global::ProtoBuf.ProtoMember(5)]
-        public uint Param1Type { get; set; }
+        public OpenNGS.Dialog.Common.DIALOG_CHOICE_RESULT_TYPE ResultType { get; set; }
         [global::ProtoBuf.ProtoMember(6)]
-        public uint Param1 { get; set; }
-        [global::ProtoBuf.ProtoMember(7)]
-        public uint Param1b { get; set; }
-        [global::ProtoBuf.ProtoMember(8)]
-        public uint Param2Type { get; set; }
-        [global::ProtoBuf.ProtoMember(9)]
-        public uint Param2 { get; set; }
-        [global::ProtoBuf.ProtoMember(10)]
-        public uint Param2b { get; set; }
+        public uint Weight { get; set; }
+        [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
+        public uint[] Effects { get; set; }
     }
 
 }

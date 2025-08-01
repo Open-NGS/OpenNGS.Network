@@ -7,7 +7,7 @@ namespace OpenNGS.Systems
 {
     public class NgDialogSystem : GameSubSystem<NgDialogSystem>, INgDialogSystem
     {
-        private List<DialogTalk> DialogTalks = new List<DialogTalk>();
+        private List<DialogTalkConfig> DialogTalks = new List<DialogTalkConfig>();
         //private List<DialogChoice> Choices = new List<DialogChoice>();
         private List<uint> History = new List<uint>();
         private uint CurrentTalkID;
@@ -31,52 +31,29 @@ namespace OpenNGS.Systems
         public LoadDialogRsp LoadDialogs(uint dialogId)
         {
             LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
-            DialogTalks.Clear();
-            History.Clear();
-            CurrentIndex = 0;
-            uint[] dialogDataIds = DialogStaticData.Dialogue.GetItem(dialogId).DialogTalkIDs;
-            foreach (uint dialogDataId in dialogDataIds)
-            {
-                DialogTalk dialogData = DialogStaticData.DialogTalk.GetItem(dialogDataId);
-                DialogTalks.Add(dialogData);
-            }
-            DisplayDialog();
-            loadDialogRsp.DialogTalkID = CurrentTalkID;
             return loadDialogRsp;
         }
 
         // —°‘Ò—°œÓ
         public LoadDialogRsp SelectChoice(ChoiceRep _choiceRep)
         {
-            //DialogChoice choice = _choiceRep.ChoiceRepValue;
-            //LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
-            //if (Choices.Contains(choice))
+            //uint[] choices = _choiceRep.SelectChoiceIDs;
+            //DialogChoice _dialogChoice;
+            //foreach (uint choiceId in choices)
             //{
-            //    choice.IsSelected = true;
-            //    CurrentIndex = (int)choice.NextDialogIndex;
-            //    DisplayDialog();
+            //    _dialogChoice = DialogStaticData.Choice.GetItem(choiceId);
+            //    if(_dialogChoice == null)
+            //    {
+            //        NgDebug.LogErrorFormat("Can not found DialogChoice : {0}", choiceId);
+            //        continue;
+            //    }
+            //    if(_dialogChoice.NextDialogIndex != 0)
+            //    {
+            //        CurrentIndex = (int)_dialogChoice.NextDialogIndex;
+            //        break;
+            //    }
             //}
-            //loadDialogRsp.Talk = CurrentDialog;
-            //loadDialogRsp.Choice = Choices;
-            //return loadDialogRsp;
-
-            uint[] choices = _choiceRep.SelectChoiceIDs;
-            DialogChoice _dialogChoice;
-            foreach (uint choiceId in choices)
-            {
-                _dialogChoice = DialogStaticData.Choice.GetItem(choiceId);
-                if(_dialogChoice == null)
-                {
-                    NgDebug.LogErrorFormat("Can not found DialogChoice : {0}", choiceId);
-                    continue;
-                }
-                if(_dialogChoice.NextDialogIndex != 0)
-                {
-                    CurrentIndex = (int)_dialogChoice.NextDialogIndex;
-                    break;
-                }
-            }
-            DisplayDialog();
+            //DisplayDialog();
             LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
             loadDialogRsp.DialogTalkID = CurrentTalkID;
             return loadDialogRsp;
@@ -86,10 +63,6 @@ namespace OpenNGS.Systems
         public LoadDialogRsp NextDialog()
         {
             LoadDialogRsp loadDialogRsp = new LoadDialogRsp();
-            CurrentIndex++;
-            DisplayDialog();
-            loadDialogRsp.DialogTalkID = CurrentTalkID;
-            //loadDialogRsp.Choice = Choices;
             return loadDialogRsp;
         }
 
@@ -98,9 +71,9 @@ namespace OpenNGS.Systems
         {
             if (CurrentIndex < DialogTalks.Count)
             {
-                DialogTalk _talk = DialogTalks[CurrentIndex];
-                CurrentTalkID = DialogTalks[CurrentIndex].DialogTalkID;
-                History.Add(DialogTalks[CurrentIndex].DialogTalkID);
+                //DialogTalkConfig _talk = DialogTalks[CurrentIndex];
+                //CurrentTalkID = DialogTalks[CurrentIndex].TalkID;
+                //History.Add(DialogTalks[CurrentIndex].TalkID);
                 //Choices.Clear();
                 //if (CurrentTalkID.ChoiceIDs != null)
                 //{
