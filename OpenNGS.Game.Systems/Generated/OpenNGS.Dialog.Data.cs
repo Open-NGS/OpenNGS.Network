@@ -112,7 +112,7 @@ namespace OpenNGS.Dialog.Data
         [global::ProtoBuf.ProtoMember(8)]
         public uint ChoiceOption { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
-        public uint Requirements { get; set; }
+        public uint Condition { get; set; }
         [global::ProtoBuf.ProtoMember(10, IsPacked = true)]
         public uint[] Effects { get; set; }
     }
@@ -146,6 +146,8 @@ namespace OpenNGS.Dialog.Data
         public uint Weight { get; set; }
         [global::ProtoBuf.ProtoMember(7, IsPacked = true)]
         public uint[] Effects { get; set; }
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint Condition { get; set; }
     }
 
 }
