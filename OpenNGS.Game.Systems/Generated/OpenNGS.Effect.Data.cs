@@ -73,7 +73,6 @@ namespace OpenNGS.Effect.Data
         }
         public NGSEffect()
         {
-            Function = "";
         	OnConstructor();
         }
         
@@ -82,7 +81,7 @@ namespace OpenNGS.Effect.Data
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint EffectID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public string Function { get; set; }
+        public uint EffectType { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public NGSText Desc { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
