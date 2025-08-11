@@ -67,6 +67,7 @@ namespace OpenNGS.Shop.Service
         public ShelfState()
         {
             Goods = new global::System.Collections.Generic.List<GoodState>();
+            RefreshPeriod = "";
             OnConstructor();
         }
 
@@ -85,6 +86,7 @@ namespace OpenNGS.Shop.Service
         public global::System.Collections.Generic.List<GoodState> Goods { get; private set; }
 
         [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue("")]
         public string RefreshPeriod { get; set; }
 
     }
