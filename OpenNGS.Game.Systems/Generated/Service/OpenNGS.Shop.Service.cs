@@ -76,13 +76,16 @@ namespace OpenNGS.Shop.Service
         public uint ShelfId { get; set; }
 
         [global::ProtoBuf.ProtoMember(2)]
-        public ulong RefreshTime { get; set; }
+        public long RefreshTime { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]
         public int Left { get; set; }
 
         [global::ProtoBuf.ProtoMember(4)]
         public global::System.Collections.Generic.List<GoodState> Goods { get; private set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public string RefreshPeriod { get; set; }
 
     }
 

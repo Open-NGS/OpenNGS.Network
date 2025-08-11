@@ -4,7 +4,9 @@ using OpenNGS.Exchange.Service;
 using OpenNGS.Shop.Common;
 using OpenNGS.Shop.Data;
 using OpenNGS.Shop.Service;
+using System;
 using System.Collections.Generic;
+using System.Xml;
 using Systems;
 
 namespace OpenNGS.Systems
@@ -14,9 +16,11 @@ namespace OpenNGS.Systems
         INgExchangeSystem m_exchangeSys;
         INgItemSystem m_itemSys;
 
-        //商店ID，货架动态信息
         private Dictionary<uint, List<ShelfState>> shopMap;
-
+        public override string GetSystemName()
+        {
+            return "NgShop";
+        }
         protected override void OnCreate()
         {
             m_exchangeSys = App.GetService<INgExchangeSystem>();
@@ -28,108 +32,138 @@ namespace OpenNGS.Systems
 
         private void InitShopSystem()
         {
-            foreach(Good good in ShopStaticData.goodDatas.Items)
+            foreach (Good good in ShopStaticData.goodDatas.Items)
             {
-                GoodState _goodState = new GoodState();
-                _goodState.GoodID = good.ID;
-                if(good.Limit > 0)
-                    _goodState.Left = (int)good.Limit;
-                else
-                    _goodState.Left = -1;                           //剩余购买次数 -1 = 无限次
+                GoodState goodState = new GoodState { GoodID = good.ID, Left = good.Limit > 0 ? (int)good.Limit : -1 };
 
-                uint _shelfID = good.ShelfId;
-                Shelf _shelf = ShopStaticData.shelfDatas.GetItem(_shelfID);
-                if(_shelf == null)
+                uint shelfID = good.ShelfId;
+                Shelf shelf = ShopStaticData.shelfDatas.GetItem(shelfID);
+                if (shelf == null)
                 {
-                    NgDebug.LogErrorFormat("Good Belong Shelf is not Defined, GoodID : [{0}], ShelfID : [{1}]", good.ID, _shelfID);
-                }
-                OpenNGS.Shop.Data.Shop _shop = ShopStaticData.shops.GetItem(_shelf.ShopId);
-                if(_shop == null)
-                {
-                    NgDebug.LogErrorFormat("Good Belong Shelf is not Defined, ShelfID : [{0}], ShopID : [{1}]", _shelfID, _shop.ID);
+                    NgDebug.LogErrorFormat("Good Belong Shelf is not Defined, GoodID: {0}, ShelfID: {1}", good.ID, shelfID);
+                    continue;
                 }
 
-                if(shopMap.ContainsKey(_shop.ID) == false)
+                OpenNGS.Shop.Data.Shop shop = ShopStaticData.shops.GetItem(shelf.ShopId);
+                if (shop == null)
                 {
-                    ShelfState _shelfState = new ShelfState();
-                    _shelfState.ShelfId = _shelfID;             //货架Id
-                    _shelfState.RefreshTime = 0;                //下次刷新时间 0 = 不刷新
-                    _shelfState.Left = -1;                      //剩余刷新次数 -1 = 无限次
-                    shopMap[_shop.ID] = new List<ShelfState>() { _shelfState };
-                    _shelfState.Goods.Add(_goodState);
+                    NgDebug.LogErrorFormat("Shop not Defined, ShelfID: {0}, ShopID: {1}", shelfID, shelf.ShopId);
+                    continue;
                 }
-                else
+
+                if (!shopMap.TryGetValue(shop.ID, out List<ShelfState> shelfList))
                 {
-                    ShelfState _shelfState = shopMap[_shop.ID].Find(item => item.ShelfId == _shelfID);
-                    if(_shelfState == null)
+                    shelfList = new List<ShelfState>();
+                    shopMap[shop.ID] = shelfList;
+                }
+
+                ShelfState shelfState = shelfList.Find(item => item.ShelfId == shelfID);
+                if (shelfState == null)
+                {
+                    shelfState = new ShelfState
                     {
-                        _shelfState = new ShelfState();
-                        _shelfState.ShelfId = _shelfID;
-                        _shelfState.RefreshTime = 0;
-                        _shelfState.Left = -1;
-                        shopMap[_shop.ID].Add(_shelfState);
-                    }
-                    _shelfState.Goods.Add(_goodState);
+                        ShelfId = shelfID,
+                        RefreshPeriod = shelf.RefreshTime, // 存储ISO 8601字符串（如 "P1D"）
+                        Left = -1
+                    };
+                    UpdateShelfRefreshTime(shelfState); // 初始化刷新时间
+                    shelfList.Add(shelfState);
                 }
+                shelfState.Goods.Add(goodState);
             }
         }
 
-        public override string GetSystemName()
+        /// <summary>
+        /// 检查并更新货架刷新状态
+        /// </summary>
+        private bool CheckAndUpdateShelfRefresh(ShelfState shelf)
         {
-            return "NgShop";
+            if (string.IsNullOrEmpty(shelf.RefreshPeriod))
+                return false;
+
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            if (now.ToUnixTimeSeconds() < shelf.RefreshTime)
+                return false;
+
+            // 需要刷新
+            UpdateShelfRefreshTime(shelf);
+            return true;
+        }
+
+        /// <summary>
+        /// 解析ISO 8601时间段并计算下次刷新时间（基于XmlConvert）
+        /// </summary>
+        private void UpdateShelfRefreshTime(ShelfState shelf)
+        {
+            if (string.IsNullOrEmpty(shelf.RefreshPeriod))
+                return;
+
+            try
+            {
+                // 使用XmlConvert解析ISO 8601时间段（仅支持P[nD][T[nH][nM][nS]]）
+                TimeSpan refreshInterval = XmlConvert.ToTimeSpan(shelf.RefreshPeriod);
+
+                // 计算下次刷新时间（UTC时间戳）
+                DateTimeOffset nextRefresh = DateTimeOffset.UtcNow + refreshInterval;
+                shelf.RefreshTime = nextRefresh.ToUnixTimeSeconds();
+            }
+            catch (Exception ex)
+            {
+                NgDebug.LogError($"Failed to parse refresh period '{shelf.RefreshPeriod}': {ex.Message}");
+                shelf.RefreshTime = 0; // 解析失败则禁用刷新
+            }
         }
 
         public BuyRsp BuyItem(BuyReq request)
         {
-            BuyRsp response = new BuyRsp();
-            response.result = Shop.Common.ShopResultType.Success;
+            BuyRsp response = new BuyRsp { result = ShopResultType.Success };
 
-            if(shopMap.TryGetValue(request.ShopId, out List<ShelfState> shelfs))
+            if (!shopMap.TryGetValue(request.ShopId, out List<ShelfState> shelfs))
             {
-                //容错判断
-                ShelfState _shelf = shelfs.Find(item => item.ShelfId == request.ShelfId);
-                if( _shelf == null)
-                {
-                    response.result = Shop.Common.ShopResultType.Error_DataInfo;
-                    return response;
-                }
-                GoodState _good = _shelf.Goods.Find(item => item.GoodID == request.GoodId);
-                if(_good == null)
-                {
-                    response.result = Shop.Common.ShopResultType.Error_DataInfo;
-                    return response;
-                }
-
-                //判断货物的的剩余书否满足购买要求
-                if( _good.Left >= 0 )
-                {
-                    if(_good.Left < request.GoodCounts)
-                    {
-                        response.result = Shop.Common.ShopResultType.Failed_NotEnough_Good;
-                        return response;
-                    }
-                    else
-                    {
-                        DoExchange(response, request);
-                        if(response.result == Shop.Common.ShopResultType.Success)
-                        {
-                            _good.Left -= (int)request.GoodCounts;
-                        }
-                    }
-                }
-                else
-                {
-                    DoExchange(response, request);
-                }
-            }
-            else
-            {
-                response.result = Shop.Common.ShopResultType.Error_DataInfo;
+                response.result = ShopResultType.Error_DataInfo;
                 return response;
             }
+
+            ShelfState shelf = shelfs.Find(item => item.ShelfId == request.ShelfId);
+            if (shelf == null)
+            {
+                response.result = ShopResultType.Error_DataInfo;
+                return response;
+            }
+
+            // 检查是否需要刷新
+            if (CheckAndUpdateShelfRefresh(shelf))
+            {
+                // 重置商品状态
+                foreach (var good in shelf.Goods)
+                {
+                    Good originalGood = ShopStaticData.goodDatas.GetItem(good.GoodID);
+                    good.Left = originalGood?.Limit > 0 ? (int)originalGood.Limit : -1;
+                }
+            }
+
+            // 原有购买逻辑...
+            GoodState goodState = shelf.Goods.Find(item => item.GoodID == request.GoodId);
+            if (goodState == null)
+            {
+                response.result = ShopResultType.Error_DataInfo;
+                return response;
+            }
+
+            if (goodState.Left >= 0 && goodState.Left < request.GoodCounts)
+            {
+                response.result = ShopResultType.Failed_NotEnough_Good;
+                return response;
+            }
+
+            DoExchange(response, request);
+            if (response.result == ShopResultType.Success && goodState.Left > 0)
+            {
+                goodState.Left -= (int)request.GoodCounts;
+            }
+
             return response;
         }
-
         /// <summary>
         /// 执行购买逻辑
         /// </summary>
@@ -172,13 +206,13 @@ namespace OpenNGS.Systems
         {
             ShopRsp _response = new ShopRsp();
             OpenNGS.Shop.Data.Shop _shop = ShopStaticData.shops.GetItem(request.ShopId);
-            if(_shop == null)
+            if (_shop == null)
             {
                 _response.result = Shop.Common.ShopResultType.Error_DataInfo;
                 return _response;
             }
 
-            if(shopMap.TryGetValue(request.ShopId, out List<ShelfState> _shelfs))
+            if (shopMap.TryGetValue(request.ShopId, out List<ShelfState> _shelfs))
             {
                 _response.Shelfs.AddRange(_shelfs);
             }
@@ -197,6 +231,35 @@ namespace OpenNGS.Systems
             shopMap = null;
             m_exchangeSys = null;
             base.OnClear();
+        }
+
+        /// <summary>
+        /// 获取指定商品的剩余限购数量
+        /// </summary>
+        /// <param name="goodId">商品ID</param>
+        /// <param name="shelfId">货架ID</param>
+        /// <returns>剩余数量（-1表示无限）</returns>
+        public int GetGoodRemainingLimit(uint goodId, uint shelfId)
+        {
+            // 遍历所有商店
+            foreach (var shopPair in shopMap)
+            {
+                // 查找匹配的货架
+                var shelfState = shopPair.Value.Find(s => s.ShelfId == shelfId);
+                if (shelfState == null)
+                    continue;
+
+                // 查找匹配的商品
+                var goodState = shelfState.Goods.Find(g => g.GoodID == goodId);
+                if (goodState == null)
+                    continue;
+
+                // 返回剩余数量（Left = -1 表示无限）
+                return goodState.Left;
+            }
+
+            // 未找到商品或货架
+            return -1;
         }
     }
 }
