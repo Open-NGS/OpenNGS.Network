@@ -51,6 +51,7 @@ namespace OpenNGS.Systems
 
         private void InitShopSystem()
         {
+            shopMap.Clear();
             foreach (Good good in ShopStaticData.goodDatas.Items)
             {
                 GoodState goodState = new GoodState { GoodID = good.ID, Left = good.Limit > 0 ? (int)good.Limit : -1 };
@@ -298,6 +299,15 @@ namespace OpenNGS.Systems
         DateTimeOffset INgShopSystem.GetCurrentTime()
         {
             return GetCurrentTime();
+        }
+
+        public void ResetCreateTime(int nYear, int nMonth, int nDay)
+        {
+            var baseDate = new DateTime(nYear, nMonth, nDay);
+            _currentTime = baseDate.AddHours(0)
+                                 .AddMinutes(0)
+                                 .AddSeconds(0);
+            InitShopSystem();
         }
     }
 }

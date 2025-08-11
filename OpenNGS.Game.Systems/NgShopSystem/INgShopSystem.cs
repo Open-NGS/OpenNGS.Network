@@ -10,4 +10,5 @@ public interface INgShopSystem
             int? customMinutes = null, int? customSeconds = null);
     void SetCurrentTime(int days, int hours, int minutes, int seconds);
     DateTimeOffset GetCurrentTime();
+    void ResetCreateTime(int nYear, int nMonth, int nDay);
 }
