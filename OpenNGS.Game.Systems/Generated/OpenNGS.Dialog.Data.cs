@@ -76,8 +76,8 @@ namespace OpenNGS.Dialog.Data
         public uint ChoiceCount { get; set; }
         [global::ProtoBuf.ProtoMember(10)]
         public bool Random { get; set; }
-        [global::ProtoBuf.ProtoMember(11)]
-        public uint ChoiceID { get; set; }
+        [global::ProtoBuf.ProtoMember(11, IsPacked = true)]
+        public uint[] ChoiceIDs { get; set; }
     }
     //选项信息
     [global::ProtoBuf.ProtoContract()]
