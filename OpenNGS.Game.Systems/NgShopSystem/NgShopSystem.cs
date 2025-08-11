@@ -17,9 +17,28 @@ namespace OpenNGS.Systems
         INgItemSystem m_itemSys;
 
         private Dictionary<uint, List<ShelfState>> shopMap;
+        // 添加外部时间控制字段
+        private DateTimeOffset? _currentTime;
         public override string GetSystemName()
         {
             return "NgShop";
+        }
+
+        // 允许外部设置当前时间（天数、小时、分钟、秒）
+        public void SetCurrentTime(int days, int hours, int minutes, int seconds)
+        {
+            // 假设从某个固定起点开始计算（如游戏开服时间）
+            var baseDate = new DateTime(2023, 1, 1);
+            _currentTime = baseDate.AddDays(days)
+                                 .AddHours(hours)
+                                 .AddMinutes(minutes)
+                                 .AddSeconds(seconds);
+        }
+
+        // 获取当前时间（如果未设置外部时间则使用系统时间）
+        private DateTimeOffset GetCurrentTime()
+        {
+            return _currentTime ?? DateTimeOffset.UtcNow;
         }
         protected override void OnCreate()
         {
@@ -81,7 +100,8 @@ namespace OpenNGS.Systems
             if (string.IsNullOrEmpty(shelf.RefreshPeriod))
                 return false;
 
-            DateTimeOffset now = DateTimeOffset.UtcNow;
+            // 使用注入的时间而非系统时间
+            DateTimeOffset now = GetCurrentTime();
             if (now.ToUnixTimeSeconds() < shelf.RefreshTime)
                 return false;
 
@@ -100,17 +120,15 @@ namespace OpenNGS.Systems
 
             try
             {
-                // 使用XmlConvert解析ISO 8601时间段（仅支持P[nD][T[nH][nM][nS]]）
                 TimeSpan refreshInterval = XmlConvert.ToTimeSpan(shelf.RefreshPeriod);
 
-                // 计算下次刷新时间（UTC时间戳）
-                DateTimeOffset nextRefresh = DateTimeOffset.UtcNow + refreshInterval;
+                // 基于当前注入时间计算下次刷新
+                DateTimeOffset nextRefresh = GetCurrentTime() + refreshInterval;
                 shelf.RefreshTime = nextRefresh.ToUnixTimeSeconds();
             }
-            catch (Exception ex)
+            catch
             {
-                NgDebug.LogError($"Failed to parse refresh period '{shelf.RefreshPeriod}': {ex.Message}");
-                shelf.RefreshTime = 0; // 解析失败则禁用刷新
+                shelf.RefreshTime = 0;
             }
         }
 
@@ -239,27 +257,47 @@ namespace OpenNGS.Systems
         /// <param name="goodId">商品ID</param>
         /// <param name="shelfId">货架ID</param>
         /// <returns>剩余数量（-1表示无限）</returns>
-        public int GetGoodRemainingLimit(uint goodId, uint shelfId)
+        public int GetGoodRemainingLimit(uint goodId, uint shelfId,
+            int? customDays = null, int? customHours = null,
+            int? customMinutes = null, int? customSeconds = null)
         {
-            // 遍历所有商店
-            foreach (var shopPair in shopMap)
+            // 如果传入了自定义时间，则更新系统时间
+            if (customDays.HasValue || customHours.HasValue ||
+                customMinutes.HasValue || customSeconds.HasValue)
             {
-                // 查找匹配的货架
-                var shelfState = shopPair.Value.Find(s => s.ShelfId == shelfId);
-                if (shelfState == null)
-                    continue;
-
-                // 查找匹配的商品
-                var goodState = shelfState.Goods.Find(g => g.GoodID == goodId);
-                if (goodState == null)
-                    continue;
-
-                // 返回剩余数量（Left = -1 表示无限）
-                return goodState.Left;
+                SetCurrentTime(
+                    customDays ?? 0,
+                    customHours ?? 0,
+                    customMinutes ?? 0,
+                    customSeconds ?? 0
+                );
             }
 
-            // 未找到商品或货架
+            // 检查所有货架是否需要刷新
+            foreach (var shop in shopMap.Values)
+            {
+                foreach (var shelf in shop)
+                {
+                    CheckAndUpdateShelfRefresh(shelf);
+                }
+            }
+
+            // 查找商品逻辑（保持不变）
+            foreach (var shopPair in shopMap)
+            {
+                var shelfState = shopPair.Value.Find(s => s.ShelfId == shelfId);
+                if (shelfState == null) continue;
+
+                var goodState = shelfState.Goods.Find(g => g.GoodID == goodId);
+                if (goodState != null) return goodState.Left;
+            }
+
             return -1;
+        }
+
+        DateTimeOffset INgShopSystem.GetCurrentTime()
+        {
+            return GetCurrentTime();
         }
     }
 }
