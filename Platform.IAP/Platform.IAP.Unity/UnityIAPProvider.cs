@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using OpenNGS.Platform;
 using UnityEngine;
+#if OpenNgsIAP
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.Purchasing.Security;
+#endif
 
 namespace OpenNGS.IAP.Unity
 {
