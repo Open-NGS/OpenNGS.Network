@@ -330,7 +330,9 @@ namespace OpenNGS.Shop.Data
         public OpenNGS.Shop.Common.SHOP_RULE_TYPE RuleTyp { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
         public int ItemType { get; set; }
-        [global::ProtoBuf.ProtoMember(4)]
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
+        public uint[] Goods { get; set; }
+        [global::ProtoBuf.ProtoMember(5)]
         public uint Discount { get; set; }
     }
 
