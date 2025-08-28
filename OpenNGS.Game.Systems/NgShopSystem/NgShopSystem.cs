@@ -197,8 +197,8 @@ namespace OpenNGS.Systems
 
             ExchangeByItemIDReq _exchangeReq = new ExchangeByItemIDReq();
             ItemSrcState src = new ItemSrcState();
-            src.Col = m_itemSys.GetCurrencyColById(_good.BuyID);
-            src.ItemID = _good.BuyID;
+            src.Col = m_itemSys.GetCurrencyColById(_good.NeedItemID);
+            src.ItemID = _good.NeedItemID;
             src.Counts = _good.Price * request.GoodCounts;
             _exchangeReq.Source.Add(src);
 
