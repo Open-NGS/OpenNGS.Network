@@ -124,9 +124,9 @@ namespace OpenNGS.Shop.Data
         [global::ProtoBuf.ProtoMember(7)]
         public uint ShelfId { get; set; }
         [global::ProtoBuf.ProtoMember(8)]
-        public uint CurrencyId { get; set; }
+        public uint BuyID { get; set; }
         [global::ProtoBuf.ProtoMember(9)]
-        public uint CurrencyCounts { get; set; }
+        public uint Price { get; set; }
         [global::ProtoBuf.ProtoMember(10)]
         public uint DiscountPrice { get; set; }
         [global::ProtoBuf.ProtoMember(11)]
