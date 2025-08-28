@@ -38,6 +38,8 @@ namespace OpenNGS.Shop.Data
         public string OpenTime { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
         public uint Duration { get; set; }
+        [global::ProtoBuf.ProtoMember(5, IsPacked = true)]
+        public uint[] Rules { get; set; }
     }
     //商店信息
     [global::ProtoBuf.ProtoContract()]
@@ -86,6 +88,8 @@ namespace OpenNGS.Shop.Data
         public uint GoodCount { get; set; }
         [global::ProtoBuf.ProtoMember(14, IsPacked = true)]
         public uint[] Goods { get; set; }
+        [global::ProtoBuf.ProtoMember(15, IsPacked = true)]
+        public uint[] Rules { get; set; }
     }
     //商店信息
     [global::ProtoBuf.ProtoContract()]
@@ -304,16 +308,16 @@ namespace OpenNGS.Shop.Data
         [global::ProtoBuf.ProtoMember(3)]
         public uint ShelfId { get; set; }
     }
-    //商店收购表
+    //商店规则
     [global::ProtoBuf.ProtoContract()]
-    public partial class ShopSell : global::ProtoBuf.IExtensible
+    public partial class ShopRule : global::ProtoBuf.IExtensible
 {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
         {
         	return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
         }
-        public ShopSell()
+        public ShopRule()
         {
         	OnConstructor();
         }
@@ -321,13 +325,13 @@ namespace OpenNGS.Shop.Data
         partial void OnConstructor();
 
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
-        public uint ShopID { get; set; }
+        public uint ID { get; set; }
         [global::ProtoBuf.ProtoMember(2)]
-        public uint ItemID { get; set; }
+        public OpenNGS.Shop.Common.SHOP_RULE_TYPE RuleTyp { get; set; }
         [global::ProtoBuf.ProtoMember(3)]
-        public uint SellPriceItem { get; set; }
+        public int ItemType { get; set; }
         [global::ProtoBuf.ProtoMember(4)]
-        public uint SellPriceCount { get; set; }
+        public uint Discount { get; set; }
     }
 
 }

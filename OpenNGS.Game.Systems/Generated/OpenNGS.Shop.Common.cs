@@ -60,6 +60,15 @@ namespace OpenNGS.Shop.Common
         Error_DataInfo = 6, // 数据信息异常
     }
 
+    //商店规则类型
+    [global::ProtoBuf.ProtoContract()]
+    public enum SHOP_RULE_TYPE
+    {
+        None = 0, // 无
+        Buy = 1, // 购买
+        Sell = 2, // 出售
+    }
+
 
 }
 #pragma warning restore 0612, 0618, 1591, 3021
