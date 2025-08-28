@@ -21,6 +21,7 @@ public class TempCollection : MonoBehaviour
         Debug.Assert(m_clientContext != null, "ClientContext initialization failed!");
         CollectionAPIController.Instance.Init();
         GameInstance.Instance.Init();
+        NGSStaticData.Init();
         DataManager.Instance.Init(new TableSerializerJson());
     }
 
