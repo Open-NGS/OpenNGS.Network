@@ -84,6 +84,8 @@ namespace OpenNGS.Shop.Data
         public string RefreshTime { get; set; }
         [global::ProtoBuf.ProtoMember(13)]
         public uint GoodCount { get; set; }
+        [global::ProtoBuf.ProtoMember(14, IsPacked = true)]
+        public uint[] Goods { get; set; }
     }
     //商店信息
     [global::ProtoBuf.ProtoContract()]
