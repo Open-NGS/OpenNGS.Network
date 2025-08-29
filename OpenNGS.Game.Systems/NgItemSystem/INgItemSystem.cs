@@ -24,6 +24,12 @@ namespace OpenNGS.Systems
         public ItemResultType CanRemoveItemsByGrid(RemoveItemsByGridsReq _req);
         public AddItemRsp RemoveItemsByGrid(RemoveItemsByGridsReq _req);
         public uint GetCurrencyColById(uint itemID);
+
+        uint GetItemCountsByID(uint nItemID);
+        uint GetColumnByGUID(uint nGUID);
+        ItemSaveState GetItemStateByGUID(uint nGuid);
+        void SetItemColByItemTyp(uint nCol, uint nItemTyp);
+        int GetColByItemTyp(uint nItemTyp);
     }
 
 }

@@ -170,6 +170,85 @@ namespace OpenNGS.Shop.Service
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SellReq : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SellReq()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ShopID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint GUID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Counts { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SellRsp : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public SellRsp()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::OpenNGS.Shop.Common.ShopResultType Result { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShopState : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ShopState()
+        {
+            Shelves = new global::System.Collections.Generic.List<ShelfState>();
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ShopID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Discount { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint SellDiscount { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
+        public uint[] SellGoods { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public global::System.Collections.Generic.List<ShelfState> Shelves { get; private set; }
+
+    }
+
 }
 
 #pragma warning restore 0612, 0618, 1591, 3021

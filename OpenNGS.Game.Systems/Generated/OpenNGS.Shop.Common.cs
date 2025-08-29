@@ -38,17 +38,6 @@ namespace OpenNGS.Shop.Common
 
     //商店处理结果
     [global::ProtoBuf.ProtoContract()]
-    public enum SHOP_RESULT_TYPE
-    {
-        SHOP_RESULT_TYPE_NONE = 0, // 无
-        SHOP_RESULT_TYPE_SUCCESS = 1, // 成功
-        SHOP_RESULT_TYPE_ERROR_ITEM = 2, // 物品信息错误
-        SHOP_RESULT_TYPE_NO_ITEM = 3, // 没有该物品
-        SHOP_RESULT_TYPE_NO_SELL = 4, // 不收购该商品
-    }
-
-    //商店处理结果
-    [global::ProtoBuf.ProtoContract()]
     public enum ShopResultType
     {
         None = 0, // 无
@@ -57,7 +46,15 @@ namespace OpenNGS.Shop.Common
         Failed_NotSelling = 3, // 没有在售卖
         Failed_NotEnough_Good = 4, // 出售数量不足
         Failed_ItemOverLimit = 5, // 超出最大上限
-        Error_DataInfo = 6, // 数据信息异常
+        Failed_BuyOverLimit = 6, // 超出购买上限
+        Failed_InvalidShop = 7, // 商店数据异常
+        Failed_InvalidShelf = 8, // 货架数据异常
+        Failed_InvalidGood = 9, // 商品数据异常
+        Failed_InvalidRemoved = 10, // 扣除数据异常
+        Failed_InvalidAdded = 11, // 添加数据异常
+        Failed_InvalidShopStatic = 12, // 商店静态数据异常
+        Failed_ShopNotSupportSell = 13, // 商店不接收贩卖
+        Failed_ItemNotFound = 14, // 物品没有找到
     }
 
     //商店规则类型

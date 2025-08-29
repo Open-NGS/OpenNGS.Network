@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Systems;
+using static UnityEditor.Progress;
 
 
 namespace OpenNGS.Systems
@@ -20,6 +21,7 @@ namespace OpenNGS.Systems
 
         private uint guid_cache = 1;
         private Queue<uint> guid_free = new Queue<uint>();
+        private Dictionary<uint, uint> m_dicItemColumn = new Dictionary<uint, uint>();
 
         public void Init(ulong uin, bool isNewPlayer)
         {
@@ -374,6 +376,30 @@ namespace OpenNGS.Systems
             result.Result.ItemResultTyp = ItemResultType.ItemResultType_Success;
             return result;
         }
+        public uint GetColumnByGUID(uint nGUID)
+        {
+            foreach (ItemColumn Col in itemContainer.Col)
+            {
+                var itemStateSrc = Col.ItemSaveStates.FirstOrDefault(i => i.GUID == nGUID);
+                if (itemStateSrc != null)
+                {
+                    return itemStateSrc.ColIdx;
+                }
+            }
+            return 0;
+        }
+        public ItemSaveState GetItemStateByGUID(uint nGuid)
+        {
+            foreach (ItemColumn Col in itemContainer.Col)
+            {
+                var itemStateSrc = Col.ItemSaveStates.FirstOrDefault(i => i.GUID == nGuid);
+                if (itemStateSrc != null)
+                {
+                    return itemStateSrc;
+                }
+            }
+            return null;
+        }
         private List<ItemSaveState> GetItemDatasByColIdx(uint nColIdx)
         {
             List<ItemSaveState> result = new List<ItemSaveState>();
@@ -559,6 +585,30 @@ namespace OpenNGS.Systems
                 }
             }
             return 0;
+        }
+        public uint GetItemCountsByID(uint nItemID)
+        {
+            foreach (ItemColumn Col in itemContainer.Col)
+            {
+                var itemStateSrc = Col.ItemSaveStates.FirstOrDefault(i => i.ItemID == nItemID);
+                if (itemStateSrc != null)
+                {
+                    return itemStateSrc.Count;
+                }
+            }
+            return 0;
+        }
+        public void SetItemColByItemTyp(uint nCol, uint nItemTyp)
+        {
+            m_dicItemColumn[nItemTyp] = nCol;
+        }
+        public int GetColByItemTyp(uint nItemTyp)
+        {
+            if(m_dicItemColumn.ContainsKey(nItemTyp))
+            {
+                return (int)m_dicItemColumn[nItemTyp];
+            }
+            return -1;
         }
     }
 }

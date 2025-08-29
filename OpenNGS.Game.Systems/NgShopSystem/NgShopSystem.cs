@@ -1,11 +1,12 @@
-using OpenNGS.Common;
 using OpenNGS.Exchange.Common;
 using OpenNGS.Exchange.Service;
+using OpenNGS.Item.Data;
 using OpenNGS.Shop.Common;
 using OpenNGS.Shop.Data;
 using OpenNGS.Shop.Service;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using Systems;
 
@@ -13,10 +14,10 @@ namespace OpenNGS.Systems
 {
     public class NgShopSystem : GameSubSystem<NgShopSystem>, INgShopSystem
     {
+        private const uint RateValue = 1000;
         INgExchangeSystem m_exchangeSys;
         INgItemSystem m_itemSys;
-
-        private Dictionary<uint, List<ShelfState>> shopMap;
+        private Dictionary<uint, ShopState> shopMap = new Dictionary<uint, ShopState>();
         // 添加外部时间控制字段
         private DateTimeOffset? _currentTime;
         public override string GetSystemName()
@@ -44,7 +45,6 @@ namespace OpenNGS.Systems
         {
             m_exchangeSys = App.GetService<INgExchangeSystem>();
             m_itemSys = App.GetService<INgItemSystem>();
-            shopMap = new Dictionary<uint, List<ShelfState>>();
             InitShopSystem();
             base.OnCreate();
         }
@@ -52,46 +52,150 @@ namespace OpenNGS.Systems
         private void InitShopSystem()
         {
             shopMap.Clear();
-            foreach (Good good in ShopStaticData.goodDatas.Items)
+
+            // 1. 最外层循环：遍历所有商店配置
+            foreach (Shop.Data.Shop shopCfg in ShopStaticData.shops.Items)
             {
-                GoodState goodState = new GoodState { GoodID = good.ID, Left = good.Limit > 0 ? (int)good.Limit : -1 };
+                // --- 预处理商店层级的规则和折扣 ---
+                var shopAllRules = shopCfg.Rules
+                    .Select(id => ShopStaticData.shopRules.GetItem(id))
+                    .Where(r => r != null)
+                    .ToList();
 
-                uint shelfID = good.ShelfId;
-                Shelf shelf = ShopStaticData.shelfDatas.GetItem(shelfID);
-                if (shelf == null)
-                {
-                    NgDebug.LogErrorFormat("Good Belong Shelf is not Defined, GoodID: {0}, ShelfID: {1}", good.ID, shelfID);
-                    continue;
-                }
+                var shopBuyRules = shopAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Buy).ToList();
+                var shopSellRules = shopAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Sell).ToList();
 
-                OpenNGS.Shop.Data.Shop shop = ShopStaticData.shops.GetItem(shelf.ShopId);
-                if (shop == null)
-                {
-                    NgDebug.LogErrorFormat("Shop not Defined, ShelfID: {0}, ShopID: {1}", shelfID, shelf.ShopId);
-                    continue;
-                }
+                // 计算商店的购买折扣和出售折扣
+                uint shopBuyDiscount = CalculateCombinedDiscount(shopBuyRules);
+                uint shopSellDiscount = CalculateCombinedDiscount(shopSellRules);
 
-                if (!shopMap.TryGetValue(shop.ID, out List<ShelfState> shelfList))
+                // 创建ShopState实例
+                ShopState shopState = new ShopState
                 {
-                    shelfList = new List<ShelfState>();
-                    shopMap[shop.ID] = shelfList;
-                }
+                    ShopID = shopCfg.ID,
+                    Discount = shopBuyDiscount,
+                    SellDiscount = shopSellDiscount
+                };
 
-                ShelfState shelfState = shelfList.Find(item => item.ShelfId == shelfID);
-                if (shelfState == null)
+                // 用于临时存储该商店所有可贩卖的商品ID
+                var sellableGoodsInShop = new HashSet<uint>();
+
+                // 2. 第二层循环：遍历所有货架配置
+                foreach (Shelf shelfCfg in ShopStaticData.shelfs.Items)
                 {
-                    shelfState = new ShelfState
+                    if (shelfCfg.ShopId != shopCfg.ID) continue;
+
+                    // --- 预处理货架层级的规则 ---
+                    var shelfAllRules = shelfCfg.Rules
+                        .Select(id => ShopStaticData.shopRules.GetItem(id))
+                        .Where(r => r != null)
+                        .ToList();
+
+                    var shelfBuyRules = shelfAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Buy).ToList();
+                    var shelfSellRules = shelfAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Sell).ToList();
+
+                    // 创建ShelfState实例
+                    ShelfState shelfState = new ShelfState
                     {
-                        ShelfId = shelfID,
-                        RefreshPeriod = shelf.RefreshTime, // 存储ISO 8601字符串（如 "P1D"）
-                        Left = -1
+                        ShelfId = shelfCfg.ID,
+                        RefreshPeriod = shelfCfg.RefreshTime, // 复制刷新周期字符串
+                        Left = -1 // 货架层级限制，可根据需求扩展
                     };
-                    UpdateShelfRefreshTime(shelfState); // 初始化刷新时间
-                    shelfList.Add(shelfState);
+                    UpdateShelfRefreshTime(shelfState); // 初始化首次刷新时间
+
+                    // 3. 第三层循环：遍历所有商品配置
+                    foreach (Good goodCfg in ShopStaticData.goodDatas.Items)
+                    {
+                        if (goodCfg.ShelfId != shelfCfg.ID) continue;
+
+                        OpenNGS.Item.Data.Item itemInfo = ItemStaticData.items.GetItem(goodCfg.ItemId);
+                        if (itemInfo == null) continue;
+
+                        // --- 核心规则判断 ---
+
+                        // a) 判断商品是否可购买 (必须同时满足商店和货架的Buy规则)
+                        bool canBeBought = CheckGoodEligibility(goodCfg, itemInfo, shopBuyRules) &&
+                                           CheckGoodEligibility(goodCfg, itemInfo, shelfBuyRules);
+
+                        if (canBeBought)
+                        {
+                            // 如果可购买，则创建GoodState并加入货架
+                            GoodState goodState = new GoodState
+                            {
+                                GoodID = goodCfg.ID,
+                                Left = goodCfg.Limit > 0 ? (int)goodCfg.Limit : -1
+                            };
+                            shelfState.Goods.Add(goodState);
+
+                            // b) 在可购买的基础上，判断商品是否可贩卖 (必须同时满足商店和货架的Sell规则)
+                            bool canBeSold = CheckGoodEligibility(goodCfg, itemInfo, shopSellRules) &&
+                                             CheckGoodEligibility(goodCfg, itemInfo, shelfSellRules);
+
+                            if (canBeSold)
+                            {
+                                // 如果也可贩卖，将其ID加入商店的可贩卖列表
+                                sellableGoodsInShop.Add(goodCfg.ID);
+                            }
+                        }
+                    }
+
+                    // 如果该货架上有商品，则将该货架状态加入商店状态
+                    if (shelfState.Goods.Any())
+                    {
+                        shopState.Shelves.Add(shelfState);
+                    }
                 }
-                shelfState.Goods.Add(goodState);
+
+                // 在处理完一个商店的所有货架和商品后，整理并赋值可贩卖商品列表
+                shopState.SellGoods = sellableGoodsInShop.ToArray();
+
+                // 如果该商店下有任何货架（且货架上有商品），则将该商店的最终状态存入map
+                if (shopState.Shelves.Any())
+                {
+                    shopMap[shopCfg.ID] = shopState;
+                }
             }
         }
+
+        private uint CalculateCombinedDiscount(List<ShopRule> rules)
+        {
+            // 使用long防止中间计算溢出
+            long finalDiscount = 1000L;
+            if (rules != null)
+            {
+                foreach (var rule in rules)
+                {
+                    // 折扣计算公式: new_discount = (old_discount * rule_discount) / 1000
+                    finalDiscount = (finalDiscount * rule.Discount) / 1000L;
+                }
+            }
+            return (uint)finalDiscount;
+        }
+
+        private bool CheckGoodEligibility(Good good, OpenNGS.Item.Data.Item itemInfo, List<ShopRule> rules)
+        {
+            // 如果没有提供任何相关类型的规则，则视为不满足条件
+            if (rules == null || !rules.Any())
+            {
+                return false;
+            }
+
+            // 只要满足规则列表中的【任意一条】规则即可
+            foreach (var rule in rules)
+            {
+                // 检查物品类型：-1代表通用，否则必须匹配
+                bool typeMatch = rule.ItemType == -1 || rule.ItemType == (int)itemInfo.ItemType;
+                // 检查商品ID：列表为空代表通用，否则必须包含
+                bool goodIdMatch = rule.Goods == null || rule.Goods.Length == 0 || rule.Goods.Contains(good.ID);
+
+                if (typeMatch && goodIdMatch)
+                {
+                    return true; // 满足一条即可
+                }
+            }
+            return false; // 遍历完所有规则都未满足
+        }
+
 
         /// <summary>
         /// 检查并更新货架刷新状态
@@ -133,21 +237,22 @@ namespace OpenNGS.Systems
             }
         }
 
-        public BuyRsp BuyItem(BuyReq request)
+        public Shop.Service.BuyRsp BuyItem(Shop.Service.BuyReq request)
         {
-            BuyRsp response = new BuyRsp { result = ShopResultType.Success };
+            long nFinalPrice = GetFinalBuyPrice(request.ShopId, request.GoodId);
+            BuyRsp _buyRsp = new BuyRsp { result = ShopResultType.Success };
 
-            if (!shopMap.TryGetValue(request.ShopId, out List<ShelfState> shelfs))
+            if (!shopMap.TryGetValue(request.ShopId, out ShopState _shopState))
             {
-                response.result = ShopResultType.Error_DataInfo;
-                return response;
+                _buyRsp.result = ShopResultType.Failed_InvalidShop;
+                return _buyRsp;
             }
 
-            ShelfState shelf = shelfs.Find(item => item.ShelfId == request.ShelfId);
+            ShelfState shelf = _shopState.Shelves.Find(item => item.ShelfId == request.ShelfId);
             if (shelf == null)
             {
-                response.result = ShopResultType.Error_DataInfo;
-                return response;
+                _buyRsp.result = ShopResultType.Failed_InvalidShelf;
+                return _buyRsp;
             }
 
             // 检查是否需要刷新
@@ -161,83 +266,179 @@ namespace OpenNGS.Systems
                 }
             }
 
-            // 原有购买逻辑...
             GoodState goodState = shelf.Goods.Find(item => item.GoodID == request.GoodId);
             if (goodState == null)
             {
-                response.result = ShopResultType.Error_DataInfo;
-                return response;
+                _buyRsp.result = ShopResultType.Failed_InvalidGood;
+                return _buyRsp;
             }
 
-            if (goodState.Left >= 0 && goodState.Left < request.GoodCounts)
+            if (goodState.Left == 0 || (goodState.Left > 0 && request.GoodCounts > goodState.Left))
             {
-                response.result = ShopResultType.Failed_NotEnough_Good;
-                return response;
+                _buyRsp.result = ShopResultType.Failed_BuyOverLimit;
+                return _buyRsp;
             }
 
-            DoExchange(response, request);
-            if (response.result == ShopResultType.Success && goodState.Left > 0)
+            Good _good = ShopStaticData.goodDatas.GetItem(request.GoodId);
+            if (_good == null)
             {
-                goodState.Left -= (int)request.GoodCounts;
+                _buyRsp.result = Shop.Common.ShopResultType.Failed_InvalidGood;
+            }
+            else
+            {
+                uint _colRemoved = m_itemSys.GetCurrencyColById(_good.NeedItemID);
+                _buyRsp.result = DoExchange(_colRemoved, _good.NeedItemID, (uint)nFinalPrice
+                    ,request.ColIdex, _good.ItemId, _good.ItemNum * request.GoodCounts);
+
+                if (_buyRsp.result == ShopResultType.Success)
+                {
+                    if(goodState.Left > 0)
+                    {
+                        goodState.Left -= 1;
+                    }
+                }
             }
 
-            return response;
+            return _buyRsp;
         }
         /// <summary>
         /// 执行购买逻辑
         /// </summary>
-        private void DoExchange(BuyRsp response, BuyReq request)
+        private ShopResultType DoExchange(uint nCol, uint nNeedItemID, uint nCount, uint nAddCol, uint nAddItemID, uint nAddCounts)
         {
-            Good _good = ShopStaticData.goodDatas.GetItem(request.GoodId);
-            if (_good == null)
-            {
-                response.result = Shop.Common.ShopResultType.Error_DataInfo;
-                return;
-            }
-
+            ShopResultType _shopResult = ShopResultType.Success;
+            // source是 移除
             ExchangeByItemIDReq _exchangeReq = new ExchangeByItemIDReq();
             ItemSrcState src = new ItemSrcState();
-            src.Col = m_itemSys.GetCurrencyColById(_good.NeedItemID);
-            src.ItemID = _good.NeedItemID;
-            src.Counts = _good.Price * request.GoodCounts;
+            src.Col = nCol;
+            src.ItemID = nNeedItemID;
+            src.Counts = nCount;
+            _exchangeReq.Source.Add(src);
+
+            // target是 添加
+            TargetState trg = new TargetState();
+            trg.Col = nAddCol;
+            trg.ItemID = nAddItemID;
+            trg.Counts = nAddCounts;
+            _exchangeReq.Target.Add(trg);
+            ExchangeRsp exchangeRsp = null;
+            (_shopResult, exchangeRsp) = _procExchange(_exchangeReq);
+            return _shopResult;
+        }
+
+        public SellRsp SellItem(SellReq _req)
+        {
+            SellRsp _sellRsp = new SellRsp { Result = ShopResultType.Success };
+
+            ItemSaveState _itemState = m_itemSys.GetItemStateByGUID(_req.GUID);
+            if(_itemState == null)
+            {
+                _sellRsp.Result = ShopResultType.Failed_ItemNotFound;
+            }
+
+            if (!shopMap.TryGetValue(_req.ShopID, out ShopState _shopState))
+            {
+                _sellRsp.Result = ShopResultType.Failed_InvalidShop;
+                return _sellRsp;
+            }
+
+            if(_shopState.SellGoods == null)
+            {
+                _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
+                return _sellRsp;
+            }
+            (long nFinalPrice, Good _goodSell) = GetFinalSellPrice(_req.ShopID, _itemState.ItemID);
+            if(nFinalPrice > 0)
+            {
+                uint nCounts = _itemState.Count;
+                if (_req.Counts > nCounts)
+                {
+                    _sellRsp.Result = ShopResultType.Failed_NotEnough_Good;
+                }
+                else
+                {
+                    ExchangeResultType _resExchange = _DoSellExchange(_itemState, _req.Counts, _goodSell.NeedItemID, (uint)nFinalPrice * _req.Counts);
+
+                    _sellRsp.Result = _convertExchangeResultToShopResult(_resExchange);
+                }
+            }
+            else
+            {
+                _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
+            }
+            return _sellRsp;
+        }
+        private ExchangeResultType _DoSellExchange(ItemSaveState _itemState, uint nCounts, uint nItemID, uint nItemCounts)
+        {
+            ExchangeByGridIDReq _exchangeReq = new ExchangeByGridIDReq();
+            GridSrcState src = new GridSrcState();
+            src.Col = _itemState.ColIdx;
+            src.Grid = _itemState.Grid;
+            src.Counts = nCounts;
             _exchangeReq.Source.Add(src);
 
             TargetState trg = new TargetState();
-            trg.Col = request.ColIdex;
-            trg.ItemID = _good.ItemId;
-            trg.Counts = request.GoodCounts;
-            _exchangeReq.Target.Add(trg);
-            ExchangeRsp exchangeRsp = m_exchangeSys.ExchangeItemByID(_exchangeReq);
-            if (exchangeRsp.result == ExchangeResultType.Error_NotDefine_Target || exchangeRsp.result == ExchangeResultType.Error_NotExist_Source)
+            Item.Data.Item _itemInf = ItemStaticData.items.GetItem(nItemID);
+            int nCol = m_itemSys.GetColByItemTyp((uint)_itemInf.ItemType);
+            if(trg.Col < 0)
             {
-                response.result = ShopResultType.Error_DataInfo;
+                return ExchangeResultType.Error_NotExist_Source;
             }
-            else if (exchangeRsp.result == ExchangeResultType.Failed_OverLimitNum)
+            else
             {
-                response.result = ShopResultType.Failed_ItemOverLimit;
-            }
-            else if (exchangeRsp.result == ExchangeResultType.Failed_NotEnough)
-            {
-                response.result = ShopResultType.Failed_NotEnough_Gold;
+                trg.ItemID = nItemID;
+                trg.Counts = nItemCounts;
+                _exchangeReq.Target.Add(trg);
+                ExchangeRsp exchangeRsp = m_exchangeSys.ExchangeItemByGrid(_exchangeReq);
+                return exchangeRsp.result;
             }
         }
+        private ShopResultType _convertExchangeResultToShopResult(ExchangeResultType _exRes)
+        {
+            ShopResultType _shopResult = ShopResultType.Success;
+            if (_exRes == ExchangeResultType.Error_NotDefine_Target)
+            {
+                _shopResult = ShopResultType.Failed_InvalidAdded;
+            }
+            if (_exRes == ExchangeResultType.Error_NotExist_Source)
+            {
+                _shopResult = ShopResultType.Failed_InvalidRemoved;
+            }
+            else if (_exRes == ExchangeResultType.Failed_OverLimitNum)
+            {
+                _shopResult = ShopResultType.Failed_ItemOverLimit;
+            }
+            else if (_exRes == ExchangeResultType.Failed_NotEnough)
+            {
+                _shopResult = ShopResultType.Failed_NotEnough_Gold;
+            }
+            return _shopResult;
+        }
+        private (ShopResultType,ExchangeRsp) _procExchange(ExchangeByItemIDReq _exchangeReq)
+        {
+            ShopResultType _shopResult = ShopResultType.Success;
+            ExchangeRsp exchangeRsp = m_exchangeSys.ExchangeItemByID(_exchangeReq);
+            _shopResult = _convertExchangeResultToShopResult(exchangeRsp.result);
+            return (_shopResult, exchangeRsp);
+        }
+
         public ShopRsp GetShopState(ShopReq request)
         {
             ShopRsp _response = new ShopRsp();
             OpenNGS.Shop.Data.Shop _shop = ShopStaticData.shops.GetItem(request.ShopId);
             if (_shop == null)
             {
-                _response.result = Shop.Common.ShopResultType.Error_DataInfo;
+                _response.result = ShopResultType.Failed_InvalidShopStatic;
                 return _response;
             }
 
-            if (shopMap.TryGetValue(request.ShopId, out List<ShelfState> _shelfs))
+            if (shopMap.TryGetValue(request.ShopId, out ShopState _shopState))
             {
-                _response.Shelfs.AddRange(_shelfs);
+                _response.Shelfs.AddRange(_shopState.Shelves);
             }
             else
             {
-                _response.result = Shop.Common.ShopResultType.Error_DataInfo;
+                _response.result = Shop.Common.ShopResultType.Failed_InvalidShop;
                 return _response;
             }
 
@@ -277,16 +478,16 @@ namespace OpenNGS.Systems
             // 检查所有货架是否需要刷新
             foreach (var shop in shopMap.Values)
             {
-                foreach (var shelf in shop)
+                foreach (var shelf in shop.Shelves)
                 {
                     CheckAndUpdateShelfRefresh(shelf);
                 }
             }
 
             // 查找商品逻辑（保持不变）
-            foreach (var shopPair in shopMap)
+            foreach (var shopPair in shopMap.Values)
             {
-                var shelfState = shopPair.Value.Find(s => s.ShelfId == shelfId);
+                var shelfState = shopPair.Shelves.Find(s => s.ShelfId == shelfId);
                 if (shelfState == null) continue;
 
                 var goodState = shelfState.Goods.Find(g => g.GoodID == goodId);
@@ -309,5 +510,86 @@ namespace OpenNGS.Systems
                                  .AddSeconds(0);
             InitShopSystem();
         }
+        public long GetFinalBuyPrice(uint shopId, uint goodId)
+        {
+            // 1. 查找商店状态
+            if (!shopMap.TryGetValue(shopId, out ShopState shopState))
+            {
+                // NgDebug.LogError($"Shop not found: {shopId}");
+                return -1; // 商店不存在
+            }
+
+            // 2. 查找商品的基准价格
+            Shop.Data.Good good = ShopStaticData.goodDatas.GetItem(goodId);
+            if (good == null)
+            {
+                // NgDebug.LogError($"Good not found: {goodId}");
+                return -1; // 商品静态数据不存在
+            }
+
+            // 3. 校验该商品是否在该商店中可购买
+            // 遍历商店的所有货架，看是否有任何一个货架包含此商品
+            bool isPurchasable = shopState.Shelves.Any(shelf => shelf.Goods.Any(g => g.GoodID == goodId));
+            if (!isPurchasable)
+            {
+                // NgDebug.LogWarning($"Good {goodId} is not available for purchase in Shop {shopId}.");
+                return -1; // 商品在此商店不可购买
+            }
+
+            // 4. 计算最终价格
+            // 基准价格 * (商店购买折扣 / 1000.0)
+            double finalPrice = good.DiscountPrice * (shopState.Discount / 1000.0);
+
+            // 四舍五入到最近的整数
+            return (long)Math.Round(finalPrice);
+        }
+
+        /// <summary>
+        /// 计算向指定商店出售一个商品的最终价格。
+        /// </summary>
+        /// <param name="shopId">商店的ID</param>
+        /// <param name="nItemID">要出售的商品的ID</param>
+        /// <returns>计算后的最终出售价格。如果商店不存在、商品不存在或该商品在此商店不可出售，则返回 -1。</returns>
+        public (long,Good) GetFinalSellPrice(uint shopId, uint nItemID)
+        {
+            // 1. 查找商店状态
+            if (!shopMap.TryGetValue(shopId, out ShopState _shopState))
+            {
+                // NgDebug.LogError($"Shop not found: {shopId}");
+                return (-1,null); // 商店不存在
+            }
+
+            if( _shopState.SellGoods == null)
+            {
+                return (-1, null);
+            }
+
+            foreach(uint nGoodID in _shopState.SellGoods)
+            {
+                Shop.Data.Good _tmpGood = ShopStaticData.goodDatas.GetItem(nGoodID);
+                if(_tmpGood != null)
+                {
+                    if(_tmpGood.ItemId == nItemID)
+                    {
+
+                        // 4. 计算最终价格
+                        // 基准价格 * (商店出售折扣 / 1000.0)
+                        double finalPrice = _tmpGood.Price * (_shopState.SellDiscount / 1000.0);
+
+                        // 四舍五入到最近的整数
+                        return ((long)Math.Round(finalPrice), _tmpGood);
+                    }
+                }
+            }
+            return (-1, null);
+        }
+    }
+
+    // 用于记录可出售商品信息的结构体
+    public struct SellableInfo
+    {
+        public uint ShelfId { get; set; }
+        public uint GoodId { get; set; }
+        public uint ItemID { get; set; }
     }
 }
