@@ -14,12 +14,12 @@ namespace OpenNGS.Systems
 {
     public class NgShopSystem : GameSubSystem<NgShopSystem>, INgShopSystem
     {
-        private const uint RateValue = 1000;
         INgExchangeSystem m_exchangeSys;
         INgItemSystem m_itemSys;
         private Dictionary<uint, ShopState> shopMap = new Dictionary<uint, ShopState>();
         // 添加外部时间控制字段
         private DateTimeOffset? _currentTime;
+        private uint m_nExteralDiscount = 1000;
         public override string GetSystemName()
         {
             return "NgShop";
@@ -57,10 +57,19 @@ namespace OpenNGS.Systems
             foreach (Shop.Data.Shop shopCfg in ShopStaticData.shops.Items)
             {
                 // --- 预处理商店层级的规则和折扣 ---
-                var shopAllRules = shopCfg.Rules
+                List<ShopRule> shopAllRules = null;
+                if (shopCfg.Rules != null)
+                {
+                    shopAllRules = shopCfg.Rules
                     .Select(id => ShopStaticData.shopRules.GetItem(id))
                     .Where(r => r != null)
                     .ToList();
+                }
+                else
+                {
+                    shopAllRules = new List<ShopRule>();
+                }
+
 
                 var shopBuyRules = shopAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Buy).ToList();
                 var shopSellRules = shopAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Sell).ToList();
@@ -86,10 +95,18 @@ namespace OpenNGS.Systems
                     if (shelfCfg.ShopId != shopCfg.ID) continue;
 
                     // --- 预处理货架层级的规则 ---
-                    var shelfAllRules = shelfCfg.Rules
+                    List<ShopRule> shelfAllRules = null;
+                    if (shelfCfg.Rules != null)
+                    {
+                        shelfAllRules = shelfCfg.Rules
                         .Select(id => ShopStaticData.shopRules.GetItem(id))
                         .Where(r => r != null)
                         .ToList();
+                    }
+                    else
+                    {
+                        shelfAllRules = new List<ShopRule>();
+                    }
 
                     var shelfBuyRules = shelfAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Buy).ToList();
                     var shelfSellRules = shelfAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Sell).ToList();
@@ -177,7 +194,7 @@ namespace OpenNGS.Systems
             // 如果没有提供任何相关类型的规则，则视为不满足条件
             if (rules == null || !rules.Any())
             {
-                return false;
+                return true;
             }
 
             // 只要满足规则列表中的【任意一条】规则即可
@@ -286,15 +303,39 @@ namespace OpenNGS.Systems
             }
             else
             {
-                uint _colRemoved = m_itemSys.GetCurrencyColById(_good.NeedItemID);
-                _buyRsp.result = DoExchange(_colRemoved, _good.NeedItemID, (uint)nFinalPrice
-                    ,request.ColIdex, _good.ItemId, _good.ItemNum * request.GoodCounts);
-
-                if (_buyRsp.result == ShopResultType.Success)
+                OpenNGS.Item.Data.Item _addItemInf = ItemStaticData.items.GetItem(_good.ItemId);
+                OpenNGS.Item.Data.Item _removeItemInf = ItemStaticData.items.GetItem(_good.NeedItemID);
+                if (_addItemInf == null || _removeItemInf == null)
                 {
-                    if(goodState.Left > 0)
+                    _buyRsp.result = ShopResultType.Failed_InvalidShopStatic;
+                }
+                else
+                {
+                    int nAddCol = m_itemSys.GetColByItemTyp((uint)_addItemInf.ItemType);
+                    if(nAddCol >= 0)
                     {
-                        goodState.Left -= 1;
+                        int _colRemoved = m_itemSys.GetColByItemTyp((uint)_removeItemInf.ItemType);
+                        if(_colRemoved >= 0)
+                        {
+                            _buyRsp.result = DoExchange((uint)_colRemoved, _good.NeedItemID, (uint)nFinalPrice * request.GoodCounts
+                                , (uint)nAddCol, _good.ItemId, _good.ItemNum * request.GoodCounts);
+
+                            if (_buyRsp.result == ShopResultType.Success)
+                            {
+                                if (goodState.Left > 0)
+                                {
+                                    goodState.Left -= 1;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            _buyRsp.result = ShopResultType.Failed_InvalidShopStatic;
+                        }
+                    }
+                    else
+                    {
+                        _buyRsp.result = ShopResultType.Failed_InvalidShopStatic;
                     }
                 }
             }
@@ -304,15 +345,15 @@ namespace OpenNGS.Systems
         /// <summary>
         /// 执行购买逻辑
         /// </summary>
-        private ShopResultType DoExchange(uint nCol, uint nNeedItemID, uint nCount, uint nAddCol, uint nAddItemID, uint nAddCounts)
+        private ShopResultType DoExchange(uint nCol, uint nRemoveItemID, uint nRemoveCount, uint nAddCol, uint nAddItemID, uint nAddCounts)
         {
             ShopResultType _shopResult = ShopResultType.Success;
             // source是 移除
             ExchangeByItemIDReq _exchangeReq = new ExchangeByItemIDReq();
             ItemSrcState src = new ItemSrcState();
             src.Col = nCol;
-            src.ItemID = nNeedItemID;
-            src.Counts = nCount;
+            src.ItemID = nRemoveItemID;
+            src.Counts = nRemoveCount;
             _exchangeReq.Source.Add(src);
 
             // target是 添加
@@ -331,7 +372,7 @@ namespace OpenNGS.Systems
             SellRsp _sellRsp = new SellRsp { Result = ShopResultType.Success };
 
             ItemSaveState _itemState = m_itemSys.GetItemStateByGUID(_req.GUID);
-            if(_itemState == null)
+            if (_itemState == null)
             {
                 _sellRsp.Result = ShopResultType.Failed_ItemNotFound;
             }
@@ -342,13 +383,13 @@ namespace OpenNGS.Systems
                 return _sellRsp;
             }
 
-            if(_shopState.SellGoods == null)
+            if (_shopState.SellGoods == null)
             {
                 _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
                 return _sellRsp;
             }
             (long nFinalPrice, Good _goodSell) = GetFinalSellPrice(_req.ShopID, _itemState.ItemID);
-            if(nFinalPrice > 0)
+            if (nFinalPrice > 0)
             {
                 uint nCounts = _itemState.Count;
                 if (_req.Counts > nCounts)
@@ -380,12 +421,13 @@ namespace OpenNGS.Systems
             TargetState trg = new TargetState();
             Item.Data.Item _itemInf = ItemStaticData.items.GetItem(nItemID);
             int nCol = m_itemSys.GetColByItemTyp((uint)_itemInf.ItemType);
-            if(trg.Col < 0)
+            if (nCol < 0)
             {
                 return ExchangeResultType.Error_NotExist_Source;
             }
             else
             {
+                trg.Col = (uint)nCol;
                 trg.ItemID = nItemID;
                 trg.Counts = nItemCounts;
                 _exchangeReq.Target.Add(trg);
@@ -414,7 +456,7 @@ namespace OpenNGS.Systems
             }
             return _shopResult;
         }
-        private (ShopResultType,ExchangeRsp) _procExchange(ExchangeByItemIDReq _exchangeReq)
+        private (ShopResultType, ExchangeRsp) _procExchange(ExchangeByItemIDReq _exchangeReq)
         {
             ShopResultType _shopResult = ShopResultType.Success;
             ExchangeRsp exchangeRsp = m_exchangeSys.ExchangeItemByID(_exchangeReq);
@@ -538,10 +580,19 @@ namespace OpenNGS.Systems
 
             // 4. 计算最终价格
             // 基准价格 * (商店购买折扣 / 1000.0)
-            double finalPrice = good.DiscountPrice * (shopState.Discount / 1000.0);
+            double finalPrice = good.DiscountPrice * (shopState.Discount / 1000.0) * (m_nExteralDiscount / 1000.0);
 
             // 四舍五入到最近的整数
             return (long)Math.Round(finalPrice);
+        }
+
+        private uint GetExteralDiscount()
+        {
+            return m_nExteralDiscount;
+        }
+        public void SetExteralDiscount(uint nExternal)
+        {
+            m_nExteralDiscount = nExternal;
         }
 
         /// <summary>
@@ -550,26 +601,26 @@ namespace OpenNGS.Systems
         /// <param name="shopId">商店的ID</param>
         /// <param name="nItemID">要出售的商品的ID</param>
         /// <returns>计算后的最终出售价格。如果商店不存在、商品不存在或该商品在此商店不可出售，则返回 -1。</returns>
-        public (long,Good) GetFinalSellPrice(uint shopId, uint nItemID)
+        public (long, Good) GetFinalSellPrice(uint shopId, uint nItemID)
         {
             // 1. 查找商店状态
             if (!shopMap.TryGetValue(shopId, out ShopState _shopState))
             {
                 // NgDebug.LogError($"Shop not found: {shopId}");
-                return (-1,null); // 商店不存在
+                return (-1, null); // 商店不存在
             }
 
-            if( _shopState.SellGoods == null)
+            if (_shopState.SellGoods == null)
             {
                 return (-1, null);
             }
 
-            foreach(uint nGoodID in _shopState.SellGoods)
+            foreach (uint nGoodID in _shopState.SellGoods)
             {
                 Shop.Data.Good _tmpGood = ShopStaticData.goodDatas.GetItem(nGoodID);
-                if(_tmpGood != null)
+                if (_tmpGood != null)
                 {
-                    if(_tmpGood.ItemId == nItemID)
+                    if (_tmpGood.ItemId == nItemID)
                     {
 
                         // 4. 计算最终价格
