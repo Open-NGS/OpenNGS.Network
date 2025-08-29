@@ -163,6 +163,20 @@ namespace OpenNGS.Systems
                     }
                 }
 
+
+                foreach( ShopRule _rule in shopSellRules)
+                {
+                    if(_rule.Goods != null)
+                    {
+                        foreach(uint nSellGood in _rule.Goods)
+                        {
+                            if(sellableGoodsInShop.Contains(nSellGood) == false)
+                            {
+                                sellableGoodsInShop.Add(nSellGood);
+                            }
+                        }
+                    }
+                }
                 // 在处理完一个商店的所有货架和商品后，整理并赋值可贩卖商品列表
                 shopState.SellGoods = sellableGoodsInShop.ToArray();
 
