@@ -623,12 +623,4 @@ namespace OpenNGS.Systems
             return (-1, null);
         }
     }
-
-    // 用于记录可出售商品信息的结构体
-    public struct SellableInfo
-    {
-        public uint ShelfId { get; set; }
-        public uint GoodId { get; set; }
-        public uint ItemID { get; set; }
-    }
 }

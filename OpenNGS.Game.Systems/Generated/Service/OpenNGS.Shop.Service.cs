@@ -268,6 +268,9 @@ namespace OpenNGS.Shop.Service
         [global::ProtoBuf.ProtoMember(2)]
         public uint Price { get; set; }
 
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint GoodID { get; set; }
+
     }
 
 }
