@@ -14,12 +14,13 @@ namespace OpenNGS.Systems
 {
     public class NgShopSystem : GameSubSystem<NgShopSystem>, INgShopSystem
     {
+        private const long CONST_RATE = 1000L;
         INgExchangeSystem m_exchangeSys;
         INgItemSystem m_itemSys;
         private Dictionary<uint, ShopState> shopMap = new Dictionary<uint, ShopState>();
         // 添加外部时间控制字段
         private DateTimeOffset? _currentTime;
-        private uint m_nExteralDiscount = 1000;
+        private long m_nExteralDiscount = 1000L;
         public override string GetSystemName()
         {
             return "NgShop";
@@ -48,7 +49,8 @@ namespace OpenNGS.Systems
             InitShopSystem();
             base.OnCreate();
         }
-
+        private Dictionary<uint, long> m_ShopBuyDiscount = new Dictionary<uint, long>();
+        private Dictionary<uint, long> m_ShopSellDiscount = new Dictionary<uint, long>();
         private void InitShopSystem()
         {
             shopMap.Clear();
@@ -74,26 +76,15 @@ namespace OpenNGS.Systems
                 var shopBuyRules = shopAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Buy).ToList();
                 var shopSellRules = shopAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Sell).ToList();
 
-                // 计算商店的购买折扣和出售折扣
-                uint shopBuyDiscount = CalculateCombinedDiscount(shopBuyRules);
-                uint shopSellDiscount = CalculateCombinedDiscount(shopSellRules);
-
                 // 创建ShopState实例
                 ShopState shopState = new ShopState
                 {
                     ShopID = shopCfg.ID,
-                    //Discount = shopBuyDiscount,
-                    //SellDiscount = shopSellDiscount
                 };
-
-                // 用于临时存储该商店所有可贩卖的商品ID
-                var sellableGoodsInShop = new HashSet<uint>();
 
                 // 2. 第二层循环：遍历所有货架配置
                 foreach (Shelf shelfCfg in ShopStaticData.shelfs.Items)
                 {
-                    if (shelfCfg.ShopId != shopCfg.ID) continue;
-
                     // --- 预处理货架层级的规则 ---
                     List<ShopRule> shelfAllRules = null;
                     if (shelfCfg.Rules != null)
@@ -111,15 +102,19 @@ namespace OpenNGS.Systems
                     var shelfBuyRules = shelfAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Buy).ToList();
                     var shelfSellRules = shelfAllRules.Where(r => r.RuleTyp == SHOP_RULE_TYPE.Sell).ToList();
 
-                    // 创建ShelfState实例
-                    ShelfState shelfState = new ShelfState
+                    ShelfState shelfState = null;
+                    if (shelfCfg.ShopId == shopCfg.ID)
                     {
-                        ShelfId = shelfCfg.ID,
-                        RefreshPeriod = shelfCfg.RefreshTime, // 复制刷新周期字符串
-                        Left = -1 // 货架层级限制，可根据需求扩展
-                    };
-                    UpdateShelfRefreshTime(shelfState); // 初始化首次刷新时间
+                        // 创建ShelfState实例
+                        shelfState = new ShelfState
+                        {
+                            ShelfId = shelfCfg.ID,
+                            RefreshPeriod = shelfCfg.RefreshTime, // 复制刷新周期字符串
+                            Left = -1 // 货架层级限制，可根据需求扩展
+                        };
+                        UpdateShelfRefreshTime(shelfState); // 初始化首次刷新时间
 
+                    }
                     // 3. 第三层循环：遍历所有商品配置
                     foreach (Good goodCfg in ShopStaticData.goodDatas.Items)
                     {
@@ -129,56 +124,71 @@ namespace OpenNGS.Systems
                         if (itemInfo == null) continue;
 
                         // --- 核心规则判断 ---
-
-                        // a) 判断商品是否可购买 (必须同时满足商店和货架的Buy规则)
-                        bool canBeBought = CheckGoodEligibility(goodCfg, itemInfo, shopBuyRules) &&
-                                           CheckGoodEligibility(goodCfg, itemInfo, shelfBuyRules);
-
-                        if (canBeBought)
+                        if(shelfState != null)
                         {
-                            // 如果可购买，则创建GoodState并加入货架
-                            GoodState goodState = new GoodState
+                            long shopDiscount = CONST_RATE;
+                            long shelfDiscount = CONST_RATE;
+                            bool bCanBuyFromShop = true;
+                            bool bCanBuyFromShelf = true;
+                            if (shopBuyRules != null)
                             {
-                                GoodID = goodCfg.ID,
-                                Left = goodCfg.Limit > 0 ? (int)goodCfg.Limit : -1
-                            };
-                            shelfState.Goods.Add(goodState);
-
-                            // b) 在可购买的基础上，判断商品是否可贩卖 (必须同时满足商店和货架的Sell规则)
-                            bool canBeSold = CheckGoodEligibility(goodCfg, itemInfo, shopSellRules) &&
-                                             CheckGoodEligibility(goodCfg, itemInfo, shelfSellRules);
-
-                            if (canBeSold)
-                            {
-                                // 如果也可贩卖，将其ID加入商店的可贩卖列表
-                                sellableGoodsInShop.Add(goodCfg.ID);
+                                ShopRule _shopBuyRule = CheckGoodEligibility(goodCfg, shopBuyRules);
+                                if (_shopBuyRule != null)
+                                {
+                                    shopDiscount = _shopBuyRule.Discount;
+                                }
+                                else
+                                {
+                                    bCanBuyFromShop = false;
+                                }
                             }
+                            if (shelfBuyRules != null)
+                            {
+                                ShopRule _shelfSellRule = CheckGoodEligibility(goodCfg, shelfBuyRules);
+                                if (_shelfSellRule != null)
+                                {
+                                    shelfDiscount = _shelfSellRule.Discount;
+                                }
+                                else
+                                {
+                                    bCanBuyFromShelf = false;
+                                }
+                            }
+                            if(bCanBuyFromShop == true && bCanBuyFromShelf)
+                            {
+                                // 如果可购买，则创建GoodState并加入货架
+                                GoodState goodState = new GoodState
+                                {
+                                    GoodID = goodCfg.ID,
+                                    Left = goodCfg.Limit > 0 ? (int)goodCfg.Limit : -1,
+                                    Price = (uint)((goodCfg.Price * shopDiscount) / CONST_RATE * shelfDiscount / CONST_RATE * (m_nExteralDiscount / CONST_RATE) )
+                                };
+                                shelfState.Goods.Add(goodState);
+                            }
+
+                        }
+                        // b) 在可购买的基础上，判断商品是否可贩卖 (必须同时满足商店和货架的Sell规则)
+                        ShopRule _shopSellRule = CheckGoodEligibility(goodCfg, shopSellRules);
+
+                        if (_shopSellRule != null)
+                        {
+                            ShopSellItem _sellItem = new ShopSellItem();
+                            _sellItem.ItemID = goodCfg.ItemId;
+                            _sellItem.Price = (uint)((goodCfg.Price * _shopSellRule.Discount) / CONST_RATE ) ;
+                            // 如果也可贩卖，将其ID加入商店的可贩卖列表
+                            shopState.SellItems.Add(_sellItem);
                         }
                     }
 
                     // 如果该货架上有商品，则将该货架状态加入商店状态
-                    if (shelfState.Goods.Any())
+                    if(shelfState != null)
                     {
-                        shopState.Shelves.Add(shelfState);
-                    }
-                }
-
-
-                foreach( ShopRule _rule in shopSellRules)
-                {
-                    if(_rule.Goods != null)
-                    {
-                        foreach(uint nSellGood in _rule.Goods)
+                        if (shelfState.Goods.Any())
                         {
-                            if(sellableGoodsInShop.Contains(nSellGood) == false)
-                            {
-                                sellableGoodsInShop.Add(nSellGood);
-                            }
+                            shopState.Shelves.Add(shelfState);
                         }
                     }
                 }
-                // 在处理完一个商店的所有货架和商品后，整理并赋值可贩卖商品列表
-                //shopState.SellGoods = sellableGoodsInShop.ToArray();
 
                 // 如果该商店下有任何货架（且货架上有商品），则将该商店的最终状态存入map
                 if (shopState.Shelves.Any())
@@ -188,28 +198,14 @@ namespace OpenNGS.Systems
             }
         }
 
-        private uint CalculateCombinedDiscount(List<ShopRule> rules)
-        {
-            // 使用long防止中间计算溢出
-            long finalDiscount = 1000L;
-            if (rules != null)
-            {
-                foreach (var rule in rules)
-                {
-                    // 折扣计算公式: new_discount = (old_discount * rule_discount) / 1000
-                    finalDiscount = (finalDiscount * rule.Discount) / 1000L;
-                }
-            }
-            return (uint)finalDiscount;
-        }
-
-        private bool CheckGoodEligibility(Good good, OpenNGS.Item.Data.Item itemInfo, List<ShopRule> rules)
+        private ShopRule CheckGoodEligibility(Good goodCfg, List<ShopRule> rules)
         {
             // 如果没有提供任何相关类型的规则，则视为不满足条件
             if (rules == null || !rules.Any())
             {
-                return true;
+                return null;
             }
+            OpenNGS.Item.Data.Item itemInfo = ItemStaticData.items.GetItem(goodCfg.ItemId);
 
             // 只要满足规则列表中的【任意一条】规则即可
             foreach (var rule in rules)
@@ -217,14 +213,14 @@ namespace OpenNGS.Systems
                 // 检查物品类型：-1代表通用，否则必须匹配
                 bool typeMatch = rule.ItemType == -1 || rule.ItemType == (int)itemInfo.ItemType;
                 // 检查商品ID：列表为空代表通用，否则必须包含
-                bool goodIdMatch = rule.Goods == null || rule.Goods.Length == 0 || rule.Goods.Contains(good.ID);
+                bool goodIdMatch = rule.Goods == null || rule.Goods.Length == 0 || rule.Goods.Contains(goodCfg.ID);
 
                 if (typeMatch && goodIdMatch)
                 {
-                    return true; // 满足一条即可
+                    return rule; // 满足一条即可
                 }
             }
-            return false; // 遍历完所有规则都未满足
+            return null;
         }
 
 
@@ -397,11 +393,11 @@ namespace OpenNGS.Systems
                 return _sellRsp;
             }
 
-            //if (_shopState.SellGoods == null)
-            //{
-            //    _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
-            //    return _sellRsp;
-            //}
+            if (_shopState.SellItems == null)
+            {
+                _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
+                return _sellRsp;
+            }
             (long nFinalPrice, Good _goodSell) = GetFinalSellPrice(_req.ShopID, _itemState.ItemID);
             if (nFinalPrice > 0)
             {
@@ -423,6 +419,7 @@ namespace OpenNGS.Systems
             }
             return _sellRsp;
         }
+
         private ExchangeResultType _DoSellExchange(ItemSaveState _itemState, uint nCounts, uint nItemID, uint nItemCounts)
         {
             ExchangeByGridIDReq _exchangeReq = new ExchangeByGridIDReq();
@@ -585,29 +582,22 @@ namespace OpenNGS.Systems
 
             // 3. 校验该商品是否在该商店中可购买
             // 遍历商店的所有货架，看是否有任何一个货架包含此商品
-            bool isPurchasable = shopState.Shelves.Any(shelf => shelf.Goods.Any(g => g.GoodID == goodId));
-            if (!isPurchasable)
+            foreach(ShelfState _state in shopState.Shelves)
             {
-                // NgDebug.LogWarning($"Good {goodId} is not available for purchase in Shop {shopId}.");
-                return -1; // 商品在此商店不可购买
+                foreach(GoodState _goodState in _state.Goods)
+                {
+                    if(_goodState.GoodID == goodId)
+                    {
+                        return _goodState.Price;
+                    }
+                }
             }
-
-            // 4. 计算最终价格
-            // 基准价格 * (商店购买折扣 / 1000.0)
-            //double finalPrice = good.DiscountPrice * (shopState.Discount / 1000.0) * (m_nExteralDiscount / 1000.0);
-            double finalPrice = 0.0f;
-
-            // 四舍五入到最近的整数
-            return (long)Math.Round(finalPrice);
+            return 0;
         }
 
-        private uint GetExteralDiscount()
-        {
-            return m_nExteralDiscount;
-        }
         public void SetExteralDiscount(uint nExternal)
         {
-            m_nExteralDiscount = nExternal;
+            m_nExteralDiscount = (long)nExternal;
         }
 
         /// <summary>
@@ -625,28 +615,15 @@ namespace OpenNGS.Systems
                 return (-1, null); // 商店不存在
             }
 
-            //if (_shopState.SellGoods == null)
-            //{
-            //    return (-1, null);
-            //}
+            if (_shopState.SellItems == null)
+            {
+                return (-1, null);
+            }
 
-            //foreach (uint nGoodID in _shopState.SellGoods)
-            //{
-            //    Shop.Data.Good _tmpGood = ShopStaticData.goodDatas.GetItem(nGoodID);
-            //    if (_tmpGood != null)
-            //    {
-            //        if (_tmpGood.ItemId == nItemID)
-            //        {
+            foreach(ShopSellItem _SellItem in _shopState.SellItems)
+            {
 
-            //            // 4. 计算最终价格
-            //            // 基准价格 * (商店出售折扣 / 1000.0)
-            //            double finalPrice = _tmpGood.Price * (_shopState.SellDiscount / 1000.0);
-
-            //            // 四舍五入到最近的整数
-            //            return ((long)Math.Round(finalPrice), _tmpGood);
-            //        }
-            //    }
-            //}
+            }
             return (-1, null);
         }
     }
