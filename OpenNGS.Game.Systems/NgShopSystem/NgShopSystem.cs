@@ -118,7 +118,7 @@ namespace OpenNGS.Systems
                     // 3. 第三层循环：遍历所有商品配置
                     foreach (Good goodCfg in ShopStaticData.goodDatas.Items)
                     {
-                        if (goodCfg.ShelfId != shelfCfg.ID) continue;
+                        //if (goodCfg.ShelfId != shelfCfg.ID) continue;
 
                         OpenNGS.Item.Data.Item itemInfo = ItemStaticData.items.GetItem(goodCfg.ItemId);
                         if (itemInfo == null) continue;
@@ -128,9 +128,7 @@ namespace OpenNGS.Systems
                         {
                             long shopDiscount = CONST_RATE;
                             long shelfDiscount = CONST_RATE;
-                            bool bCanBuyFromShop = true;
-                            bool bCanBuyFromShelf = true;
-                            if (shopBuyRules != null)
+                            if (shopBuyRules != null && shopBuyRules.Count > 0 )
                             {
                                 ShopRule _shopBuyRule = CheckGoodEligibility(goodCfg, shopBuyRules);
                                 if (_shopBuyRule != null)
@@ -139,10 +137,9 @@ namespace OpenNGS.Systems
                                 }
                                 else
                                 {
-                                    bCanBuyFromShop = false;
                                 }
                             }
-                            if (shelfBuyRules != null)
+                            if (shelfBuyRules != null && shelfBuyRules.Count > 0)
                             {
                                 ShopRule _shelfSellRule = CheckGoodEligibility(goodCfg, shelfBuyRules);
                                 if (_shelfSellRule != null)
@@ -151,21 +148,19 @@ namespace OpenNGS.Systems
                                 }
                                 else
                                 {
-                                    bCanBuyFromShelf = false;
                                 }
                             }
-                            if(bCanBuyFromShop == true && bCanBuyFromShelf)
+                            if (goodCfg.ShelfId == shelfCfg.ID)
                             {
                                 // 如果可购买，则创建GoodState并加入货架
                                 GoodState goodState = new GoodState
                                 {
                                     GoodID = goodCfg.ID,
                                     Left = goodCfg.Limit > 0 ? (int)goodCfg.Limit : -1,
-                                    Price = (uint)((goodCfg.Price * shopDiscount) / CONST_RATE * shelfDiscount / CONST_RATE * (m_nExteralDiscount / CONST_RATE) )
+                                    Price = (uint)((goodCfg.Price * shopDiscount) / CONST_RATE * shelfDiscount / CONST_RATE * (m_nExteralDiscount / CONST_RATE))
                                 };
                                 shelfState.Goods.Add(goodState);
                             }
-
                         }
                         // b) 在可购买的基础上，判断商品是否可贩卖 (必须同时满足商店和货架的Sell规则)
                         ShopRule _shopSellRule = CheckGoodEligibility(goodCfg, shopSellRules);
@@ -488,6 +483,7 @@ namespace OpenNGS.Systems
             if (shopMap.TryGetValue(request.ShopId, out ShopState _shopState))
             {
                 _response.Shelfs.AddRange(_shopState.Shelves);
+                _response.result = ShopResultType.Success;
             }
             else
             {
