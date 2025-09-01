@@ -169,6 +169,7 @@ namespace OpenNGS.Systems
                         {
                             ShopSellItem _sellItem = new ShopSellItem();
                             _sellItem.ItemID = goodCfg.ItemId;
+                            _sellItem.GoodID = goodCfg.ID;
                             _sellItem.Price = (uint)((goodCfg.Price * _shopSellRule.Discount) / CONST_RATE ) ;
                             // 如果也可贩卖，将其ID加入商店的可贩卖列表
                             shopState.SellItems.Add(_sellItem);
@@ -618,7 +619,14 @@ namespace OpenNGS.Systems
 
             foreach(ShopSellItem _SellItem in _shopState.SellItems)
             {
-
+                if(_SellItem.ItemID == nItemID)
+                {
+                    Good _cfg = ShopStaticData.goodDatas.GetItem(_SellItem.GoodID);
+                    if(_cfg != null)
+                    {
+                        return (_SellItem.Price, _cfg);
+                    }
+                }
             }
             return (-1, null);
         }
