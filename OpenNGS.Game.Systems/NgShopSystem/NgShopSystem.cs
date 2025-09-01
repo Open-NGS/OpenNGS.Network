@@ -82,8 +82,8 @@ namespace OpenNGS.Systems
                 ShopState shopState = new ShopState
                 {
                     ShopID = shopCfg.ID,
-                    Discount = shopBuyDiscount,
-                    SellDiscount = shopSellDiscount
+                    //Discount = shopBuyDiscount,
+                    //SellDiscount = shopSellDiscount
                 };
 
                 // 用于临时存储该商店所有可贩卖的商品ID
@@ -178,7 +178,7 @@ namespace OpenNGS.Systems
                     }
                 }
                 // 在处理完一个商店的所有货架和商品后，整理并赋值可贩卖商品列表
-                shopState.SellGoods = sellableGoodsInShop.ToArray();
+                //shopState.SellGoods = sellableGoodsInShop.ToArray();
 
                 // 如果该商店下有任何货架（且货架上有商品），则将该商店的最终状态存入map
                 if (shopState.Shelves.Any())
@@ -397,11 +397,11 @@ namespace OpenNGS.Systems
                 return _sellRsp;
             }
 
-            if (_shopState.SellGoods == null)
-            {
-                _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
-                return _sellRsp;
-            }
+            //if (_shopState.SellGoods == null)
+            //{
+            //    _sellRsp.Result = ShopResultType.Failed_ShopNotSupportSell;
+            //    return _sellRsp;
+            //}
             (long nFinalPrice, Good _goodSell) = GetFinalSellPrice(_req.ShopID, _itemState.ItemID);
             if (nFinalPrice > 0)
             {
@@ -594,7 +594,8 @@ namespace OpenNGS.Systems
 
             // 4. 计算最终价格
             // 基准价格 * (商店购买折扣 / 1000.0)
-            double finalPrice = good.DiscountPrice * (shopState.Discount / 1000.0) * (m_nExteralDiscount / 1000.0);
+            //double finalPrice = good.DiscountPrice * (shopState.Discount / 1000.0) * (m_nExteralDiscount / 1000.0);
+            double finalPrice = 0.0f;
 
             // 四舍五入到最近的整数
             return (long)Math.Round(finalPrice);
@@ -624,28 +625,28 @@ namespace OpenNGS.Systems
                 return (-1, null); // 商店不存在
             }
 
-            if (_shopState.SellGoods == null)
-            {
-                return (-1, null);
-            }
+            //if (_shopState.SellGoods == null)
+            //{
+            //    return (-1, null);
+            //}
 
-            foreach (uint nGoodID in _shopState.SellGoods)
-            {
-                Shop.Data.Good _tmpGood = ShopStaticData.goodDatas.GetItem(nGoodID);
-                if (_tmpGood != null)
-                {
-                    if (_tmpGood.ItemId == nItemID)
-                    {
+            //foreach (uint nGoodID in _shopState.SellGoods)
+            //{
+            //    Shop.Data.Good _tmpGood = ShopStaticData.goodDatas.GetItem(nGoodID);
+            //    if (_tmpGood != null)
+            //    {
+            //        if (_tmpGood.ItemId == nItemID)
+            //        {
 
-                        // 4. 计算最终价格
-                        // 基准价格 * (商店出售折扣 / 1000.0)
-                        double finalPrice = _tmpGood.Price * (_shopState.SellDiscount / 1000.0);
+            //            // 4. 计算最终价格
+            //            // 基准价格 * (商店出售折扣 / 1000.0)
+            //            double finalPrice = _tmpGood.Price * (_shopState.SellDiscount / 1000.0);
 
-                        // 四舍五入到最近的整数
-                        return ((long)Math.Round(finalPrice), _tmpGood);
-                    }
-                }
-            }
+            //            // 四舍五入到最近的整数
+            //            return ((long)Math.Round(finalPrice), _tmpGood);
+            //        }
+            //    }
+            //}
             return (-1, null);
         }
     }

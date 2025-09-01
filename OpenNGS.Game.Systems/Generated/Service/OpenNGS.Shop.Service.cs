@@ -112,6 +112,9 @@ namespace OpenNGS.Shop.Service
         [global::ProtoBuf.ProtoMember(2)]
         public int Left { get; set; }
 
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint Price { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -226,6 +229,7 @@ namespace OpenNGS.Shop.Service
         }
         public ShopState()
         {
+            SellItems = new global::System.Collections.Generic.List<ShopSellItem>();
             Shelves = new global::System.Collections.Generic.List<ShelfState>();
             OnConstructor();
         }
@@ -235,17 +239,34 @@ namespace OpenNGS.Shop.Service
         [global::ProtoBuf.ProtoMember(1)]
         public uint ShopID { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2)]
-        public uint Discount { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3)]
-        public uint SellDiscount { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
-        public uint[] SellGoods { get; set; }
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::System.Collections.Generic.List<ShopSellItem> SellItems { get; private set; }
 
         [global::ProtoBuf.ProtoMember(5)]
         public global::System.Collections.Generic.List<ShelfState> Shelves { get; private set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShopSellItem : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+        {
+            return global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+        }
+        public ShopSellItem()
+        {
+            OnConstructor();
+        }
+
+        partial void OnConstructor();
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint ItemID { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint Price { get; set; }
 
     }
 
