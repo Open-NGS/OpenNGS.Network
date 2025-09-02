@@ -15,7 +15,10 @@ namespace OpenNGS.Platform
         public static InitializationOptions InitOption = null;
         public static bool Init(ISDKProvider provider, OpenNGS.SDK.Log.ILogger logger)
         {
-            InitOptions(logger);
+            if(logger != null)
+            {
+                InitOptions(logger);
+            }
             SDKProvider = provider;
             for (int i = 0; i < (int)PLATFORM_MODULE.MUDULE_COUNT; i++)
             {

@@ -5,37 +5,40 @@
 #if !DISABLESTEAMWORKS
 using Steamworks;
 
-using OpenNGS.Platform;
-
-public class SteamProvider : OpenNGS.Platform.ISDKProvider
+namespace OpenNGS.Platform.Steam
 {
-    public IModuleProvider CreateProvider(PLATFORM_MODULE module)
+    public class SteamProvider : OpenNGS.Platform.ISDKProvider
     {
-        switch (module)
+        public IModuleProvider CreateProvider(PLATFORM_MODULE module)
         {
-            case PLATFORM_MODULE.LOGIN: return new SteamLogin();
-            case PLATFORM_MODULE.ACHIEVEMENT: return new SteamAchievement();
-            case PLATFORM_MODULE.REMOTE_STORAGE: return new SteamRemoteStorage();
-            default: return null;
+            switch (module)
+            {
+                case PLATFORM_MODULE.APP: return new SteamApp();
+                case PLATFORM_MODULE.USER: return new SteamUser();
+                case PLATFORM_MODULE.LOGIN: return new SteamLogin();
+                case PLATFORM_MODULE.ACHIEVEMENT: return new SteamAchievement();
+                case PLATFORM_MODULE.REMOTE_STORAGE: return new SteamRemoteStorage();
+                default: return null;
+            }
         }
-    }
 
-    public bool Initialize()
-    {
-        if (!SteamAPI.Init())
+        public bool Initialize()
         {
-            return false;
+            if (!SteamAPI.Init())
+            {
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
 
-    public void Terminate()
-    {
-       
-    }
+        public void Terminate()
+        {
 
-    public void Update()
-    {
+        }
+
+        public void Update()
+        {
+        }
     }
 }
 #endif

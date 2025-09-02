@@ -7,79 +7,80 @@ using Steamworks;
 
 using OpenNGS.Platform;
 using UnityEngine;
-
-public class SteamAchievement : IAchievementProvider
+namespace OpenNGS.Platform.Steam
 {
-    public PLATFORM_MODULE Module => PLATFORM_MODULE.ACHIEVEMENT;
-
-    public void Unlock(int id)
+    public class SteamAchievement : IAchievementProvider
     {
-        throw new System.NotSupportedException();
-        Debug.Log("Trophy Unlocking");
-    }
+        public PLATFORM_MODULE Module => PLATFORM_MODULE.ACHIEVEMENT;
 
-    public void UnlockProgress(int id, long value)
-    {
-        throw new System.NotSupportedException();
-        Debug.Log("Progress Trophy Updating");
-    }
-
-    public void Unlock(string key)
-    {
-        if (!SteamAPI.Init())
+        public void Unlock(int id)
         {
-            return;
-        }
-        if (!SteamManager.Initialized)
-        {
-            Debug.LogError("SteamManager instance is not available.");
-            return;
+            throw new System.NotSupportedException();
+            Debug.Log("Trophy Unlocking");
         }
 
-        bool isAchieved;
-        SteamUserStats.GetAchievement(key, out isAchieved);
-
-        if (!isAchieved)
+        public void UnlockProgress(int id, long value)
         {
-            SteamUserStats.SetAchievement(key);
-            SteamUserStats.StoreStats();
-        }
-    }
-
-    public void UnlockProgress(string key, long value)
-    {
-    }
-
-    public void Start()
-    {
-    }
-
-    public void Stop()
-    {
-    }
-
-    public void ResetAllAchievements()
-    {
-        if (!SteamManager.Initialized)
-        {
-            Debug.LogError("SteamManager instance is not available.");
-            return;
+            throw new System.NotSupportedException();
+            Debug.Log("Progress Trophy Updating");
         }
 
-        uint achievementCount = SteamUserStats.GetNumAchievements();
-        for (uint i = 0; i < achievementCount; i++)
+        public void Unlock(string key)
         {
-            string achievementName = SteamUserStats.GetAchievementName(i);
-            bool result = SteamUserStats.ClearAchievement(achievementName);
+            if (!SteamAPI.Init())
+            {
+                return;
+            }
+            if (!SteamManager.Initialized)
+            {
+                Debug.LogError("SteamManager instance is not available.");
+                return;
+            }
+
+            bool isAchieved;
+            SteamUserStats.GetAchievement(key, out isAchieved);
+
+            if (!isAchieved)
+            {
+                SteamUserStats.SetAchievement(key);
+                SteamUserStats.StoreStats();
+            }
         }
 
-        bool storeResult = SteamUserStats.StoreStats();
-        Debug.Log("清除所有Steam成就");
-    }
+        public void UnlockProgress(string key, long value)
+        {
+        }
 
-    public void Update()
-    {
-        throw new System.NotImplementedException();
+        public void Start()
+        {
+        }
+
+        public void Stop()
+        {
+        }
+
+        public void ResetAllAchievements()
+        {
+            if (!SteamManager.Initialized)
+            {
+                Debug.LogError("SteamManager instance is not available.");
+                return;
+            }
+
+            uint achievementCount = SteamUserStats.GetNumAchievements();
+            for (uint i = 0; i < achievementCount; i++)
+            {
+                string achievementName = SteamUserStats.GetAchievementName(i);
+                bool result = SteamUserStats.ClearAchievement(achievementName);
+            }
+
+            bool storeResult = SteamUserStats.StoreStats();
+            Debug.Log("清除所有Steam成就");
+        }
+
+        public void Update()
+        {
+        }
     }
 }
 

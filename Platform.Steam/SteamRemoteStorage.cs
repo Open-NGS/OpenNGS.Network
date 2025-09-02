@@ -7,58 +7,59 @@ using Steamworks;
 
 using OpenNGS.Platform;
 using UnityEngine;
-
-public class SteamRemoteStorage : IRemoteStorageProvider
+namespace OpenNGS.Platform.Steam
 {
-    public PLATFORM_MODULE Module => PLATFORM_MODULE.REMOTE_STORAGE;
-
-    public bool FileDelete(string fileName)
+    public class SteamRemoteStorage : IRemoteStorageProvider
     {
-        return false;
-    }
+        public PLATFORM_MODULE Module => PLATFORM_MODULE.REMOTE_STORAGE;
 
-    public int FileRead(string fileName, byte[] fileData, int fileSize)
-    {
-        return 0;
-    }
+        public bool FileDelete(string fileName)
+        {
+            return Steamworks.SteamRemoteStorage.FileDelete(fileName);
+        }
 
-    public bool FileWrite(string saveFileName, byte[] fileData, int length)
-    {
-        return false;
-    }
+        public int FileRead(string fileName, byte[] fileData, int fileSize)
+        {
+            return Steamworks.SteamRemoteStorage.FileRead(fileName, fileData, fileSize);
+        }
 
-    public int GetFileCount()
-    {
-        return 0;
-    }
+        public bool FileWrite(string saveFileName, byte[] fileData, int length)
+        {
+            return Steamworks.SteamRemoteStorage.FileWrite(saveFileName, fileData, length);
+        }
 
-    public string GetFileNameAndSize(int i, out object _obj)
-    {
-        _obj = null;
-        return string.Empty;
-    }
+        public int GetFileCount()
+        {
+            return Steamworks.SteamRemoteStorage.GetFileCount();
+        }
 
-    public int GetFileSize(string fileName)
-    {
-        return 0;
-    }
+        public string GetFileNameAndSize(int i, out object _obj)
+        {
+            _obj = null;
+            return Steamworks.SteamRemoteStorage.GetFileNameAndSize(i, out _);
+        }
 
-    public bool IsEnabledForApp()
-    {
-        return false;
-    }
+        public int GetFileSize(string fileName)
+        {
+            return Steamworks.SteamRemoteStorage.GetFileSize(fileName);
+        }
 
-    public void Start()
-    {
-        throw new System.NotImplementedException();
-    }
+        public bool IsEnabledForApp()
+        {
+            return Steamworks.SteamRemoteStorage.IsCloudEnabledForApp();
+        }
 
-    public void Stop()
-    {
-    }
+        public void Start()
+        {
+        }
 
-    public void Update()
-    {
+        public void Stop()
+        {
+        }
+
+        public void Update()
+        {
+        }
     }
 }
 
