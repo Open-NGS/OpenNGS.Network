@@ -75,7 +75,13 @@ namespace OpenNGS.SaveData.Storage
         {
             fsSave = fs;
             this.Capacity = capacity;
+#if UNITY_EDITOR
+            // 编辑器方便查找
             this.RootPath = OpenNGS.IO.FileSystem.DataPath + "/save_data/";
+#else
+            // 非编辑器放在Persistent下面
+            this.RootPath = OpenNGS.IO.FileSystem.PersistentDataPath + "/save_data/";
+#endif
         }
 
         /// <summary>
