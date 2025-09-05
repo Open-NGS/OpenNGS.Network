@@ -33,12 +33,12 @@ namespace OpenNGS.Platform
         }
         private static void InitOptions(OpenNGS.SDK.Log.ILogger logger)
         {
-            PlatformSettingsManager.Initialize();
+            OpenNgsSettingsManager.Initialize();
             InitOption = new InitializationOptions();
-            string notice = PlatformSettingsManager.GetPlatformNoticeUrl();
-            string avator = PlatformSettingsManager.GetPlatformAvatarUrl();
-            string auth = PlatformSettingsManager.GetPlatformAuthUrl();
-            string report = PlatformSettingsManager.GetPlatformReportUrl();
+            string notice = OpenNgsSettingsManager.GetPlatformNoticeUrl();
+            string avator = OpenNgsSettingsManager.GetPlatformAvatarUrl();
+            string auth = OpenNgsSettingsManager.GetPlatformAuthUrl();
+            string report = OpenNgsSettingsManager.GetPlatformReportUrl();
             InitOption.UrlNotice = notice;
             InitOption.UrlAvator = avator;
             InitOption.UrlAuth = auth;
