@@ -21,4 +21,11 @@ namespace OpenNGS.Platform
         Success = 0,
         Unknown = -1,
     }
+
+    public enum OPENNGS_SAVE_DATA_PATH_TYPE
+    {
+        Saved_Game,
+        Persistent,
+        Install
+    }
 }
