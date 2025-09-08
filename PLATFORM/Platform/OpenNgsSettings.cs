@@ -1,5 +1,7 @@
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace OpenNGS.Platform
 {
@@ -54,12 +56,68 @@ namespace OpenNGS.Platform
             }
         }
     }
-
     [Serializable]
     public class SaveDataSettings
     {
-        public bool UseAccount;
-        public string RootPath;
+        // 我们不能直接序列化字典，所以使用一个列表来存储平台和其对应的设置
+        [SerializeField]
+        private List<PlatformSaveDataEntry> platformSettings = new List<PlatformSaveDataEntry>();
+
+        // 内部类，用于在列表中存储键值对
+        [Serializable]
+        private class PlatformSaveDataEntry
+        {
+            public BuildTargetGroup platform;
+            public PerPlatformSaveData settings;
+        }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// (仅编辑器) 获取或创建一个指定平台的设置项。
+        /// </summary>
+        public PerPlatformSaveData GetOrCreateSettingsForPlatform(BuildTargetGroup platform)
+        {
+            foreach (var entry in platformSettings)
+            {
+                if (entry.platform == platform)
+                {
+                    return entry.settings;
+                }
+            }
+
+            // 如果没找到，就创建一个新的
+            var newSettings = new PerPlatformSaveData();
+            platformSettings.Add(new PlatformSaveDataEntry { platform = platform, settings = newSettings });
+            return newSettings;
+        }
+#endif
+
+        /// <summary>
+        /// (运行时) 获取指定平台的设置项。
+        /// </summary>
+        public PerPlatformSaveData GetSettingsForPlatform(BuildTargetGroup platform)
+        {
+            foreach (var entry in platformSettings)
+            {
+                if (entry.platform == platform)
+                {
+                    return entry.settings;
+                }
+            }
+
+            // 运行时如果找不到配置，可以返回 null 或一个默认配置
+            Debug.LogWarning($"Save data settings for platform {platform} not found. Returning default settings.");
+            return new PerPlatformSaveData();
+        }
+    }
+
+    [Serializable]
+    public class PerPlatformSaveData
+    {
+        public bool UseAccount = true;
+        public uint SavePathType = 0;
+        // 你也可以在这里加入之前讨论过的 SteamRootLocation 枚举
+        // public SteamPathHelper.SteamRootLocation RootLocation = SteamPathHelper.SteamRootLocation.WinMyDocuments;
     }
 
 

@@ -1,11 +1,13 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace OpenNGS.Platform
 {
     public class OpenNgsSettingsManager
     {
         private static OpenNgsSettings settings;
-
         public static void Initialize()
         {
             if (settings != null) return;
@@ -35,7 +37,6 @@ namespace OpenNGS.Platform
                 Debug.LogError($"Failed to load OpenNGS Settings from {OpenNgsSettings.k_SettingsPath}!");
             }
         }
-
         public static PlatformEnvironment GetCurrentEnvironment()
         {
             if (settings == null) Initialize();
@@ -72,14 +73,63 @@ namespace OpenNGS.Platform
 
         public static bool GetUseAccount()
         {
-            if (settings == null) Initialize();
-            return settings.SaveDataSettings.UseAccount;
+            var saveData = GetCurrentPlatformSaveData();
+            return saveData != null ? saveData.UseAccount : true; // 返回一个安全的默认值
         }
 
-        public static string GetRootPath()
+        public static uint GetSaveDataPathType()
+        {
+            var saveData = GetCurrentPlatformSaveData();
+            return saveData != null ? saveData.SavePathType : 0; // 返回一个安全的默认值
+        }
+
+
+        /// <summary>
+        /// 辅助函数：将当前的运行时平台映射到 BuildTargetGroup。
+        /// </summary>
+        private static BuildTargetGroup GetCurrentBuildTargetGroup()
+        {
+#if UNITY_EDITOR
+            // 在编辑器中，我们返回当前在 Build Settings 窗口中选中的平台
+            return EditorUserBuildSettings.selectedBuildTargetGroup;
+#else
+            // 在实际构建的版本中，根据运行时平台返回对应的组
+            switch (Application.platform)
+            {
+                case RuntimePlatform.WindowsPlayer:
+                case RuntimePlatform.WindowsServer:
+                case RuntimePlatform.LinuxPlayer:
+                case RuntimePlatform.LinuxServer:
+                case RuntimePlatform.OSXPlayer:
+                case RuntimePlatform.OSXServer:
+                    return BuildTargetGroup.Standalone;
+                case RuntimePlatform.Android:
+                    return BuildTargetGroup.Android;
+                case RuntimePlatform.IPhonePlayer:
+                    return BuildTargetGroup.iOS;
+                case RuntimePlatform.WebGLPlayer:
+                    return BuildTargetGroup.WebGL;
+                case RuntimePlatform.PS4:
+                    return BuildTargetGroup.PS4;
+                case RuntimePlatform.PS5:
+                    return BuildTargetGroup.PS5;
+                case RuntimePlatform.XboxOne:
+                    return BuildTargetGroup.XboxOne;
+                // 添加其他你需要的平台...
+                default:
+                    Debug.LogWarning("Current platform is not explicitly handled. Falling back to Standalone.");
+                    return BuildTargetGroup.Standalone;
+            }
+#endif
+        }
+
+        private static PerPlatformSaveData GetCurrentPlatformSaveData()
         {
             if (settings == null) Initialize();
-            return settings.SaveDataSettings.RootPath;
+            if (settings == null) return null; // 初始化失败
+
+            BuildTargetGroup currentGroup = GetCurrentBuildTargetGroup();
+            return settings.SaveDataSettings.GetSettingsForPlatform(currentGroup);
         }
     }
 }
