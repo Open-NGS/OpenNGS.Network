@@ -3,6 +3,7 @@ using System.IO;
 using OpenNGS.Crypto;
 using OpenNGS.IO;
 using OpenNGS.SaveData;
+using OpenNGS.SaveData.Setting;
 using ProtoBuf;
 using UnityEngine;
 
@@ -75,12 +76,13 @@ namespace OpenNGS.SaveData.Storage
         {
             fsSave = fs;
             this.Capacity = capacity;
+            //SaveSettingManager.GetActiveSaveSetting(nPlatform);
 #if UNITY_EDITOR
             // 编辑器方便查找
             this.RootPath = OpenNGS.IO.FileSystem.DataPath + "/save_data/";
 #else
             // 非编辑器放在Persistent下面
-            this.RootPath = OpenNGS.IO.FileSystem.PersistentDataPath + "/save_data/";
+            this.RootPath = OpenNGS.IO.FileSystem.SavedGamePath + "/save_data/";
 #endif
         }
 
