@@ -21,25 +21,45 @@ public class GameInstance : OpenNGS.Singleton<GameInstance>
     public GameMode Gamemode { get => _gamemode; private set => _gamemode = value; }
     public GameContext CurrentGameContext { get => _currentGameContext; private set => _currentGameContext = value; }
 
-    public void Init()
+    public void Init(IPathProvider _pathProvider = null)
     {
         Debug.Log("GameInstance:Initialize() - Start");
 
         OpenNGS.Globalization.Culture.SetUserDefaultCulture(System.Globalization.CultureInfo.InvariantCulture);
 
 #if UNITY_EDITOR
-        FileSystem.Init(null, new UnityPathProvider());
+        if (_pathProvider == null)
+        {
+            Debug.LogError(string.Format("GameInstance init got null IPathProvider"));
+            _pathProvider = new UnityPathProvider();
+        }
+        FileSystem.Init(null, _pathProvider);
 
 #elif UNITY_ANDROID
-        FileSystem.Init(null, new UnityAndroidPathProvider());
+        if (_pathProvider == null)
+        {
+            Debug.LogError(string.Format("GameInstance init got null IPathProvider"));
+            _pathProvider = new UnityAndroidPathProvider();
+        }
+        FileSystem.Init(null, _pathProvider);
 
 #elif UNITY_IOS
+        if (_pathProvider == null)
+        {
+            Debug.LogError(string.Format("GameInstance init got null IPathProvider"));
+            _pathProvider = new UnityAndroidPathProvider();
+        }
         Debug.LogError("Game:Initialize() should Create UnitIOSPathProvider");
-        FileSystem.Init(null, new UnityAndroidPathProvider());
+        FileSystem.Init(null, _pathProvider);
         
 #else
 
-        FileSystem.Init(null, new UnityPathProvider());
+        if (_pathProvider == null)
+        {
+            Debug.LogError(string.Format("GameInstance init got null IPathProvider"));
+            _pathProvider = new UnityPathProvider();
+        }
+        FileSystem.Init(null, _pathProvider);
 #endif
 
         _gameContexts.Clear();
