@@ -20,6 +20,6 @@ namespace OpenNGS.IO
         string StreamingAssetsPath { get; }
 
         string LogPath { get; }
-
+        string SavedGamePath { get; set; }
     }
 }

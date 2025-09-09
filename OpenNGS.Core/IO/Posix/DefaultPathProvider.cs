@@ -16,5 +16,7 @@ namespace OpenNGS.IO.Posix
         public string StreamingAssetsPath => "";
 
         public string LogPath => "";
+
+        public string SavedGamePath { get => ""; set => throw new NotImplementedException(); }
     }
 }

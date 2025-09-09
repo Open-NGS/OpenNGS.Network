@@ -27,7 +27,9 @@ namespace OpenNGS.IO
         public static string StreamingAssetsPath => pathProvider.StreamingAssetsPath;
 
         public static string LogPath => pathProvider.LogPath;
-       
+
+        public static string SavedGamePath => pathProvider.SavedGamePath;
+
 
         public static void Init(IFileSystem fs, IPathProvider path)
         {
