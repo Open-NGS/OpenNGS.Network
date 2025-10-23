@@ -51,6 +51,7 @@ namespace OpenNGS.Dialog.Data
         {
             AvatarLeft = "";
             AvatarRight = "";
+            PlaySound = "";
         	OnConstructor();
         }
         
@@ -78,6 +79,8 @@ namespace OpenNGS.Dialog.Data
         public bool Random { get; set; }
         [global::ProtoBuf.ProtoMember(11, IsPacked = true)]
         public uint[] ChoiceIDs { get; set; }
+        [global::ProtoBuf.ProtoMember(12)]
+        public string PlaySound { get; set; }
     }
     //选项信息
     [global::ProtoBuf.ProtoContract()]
