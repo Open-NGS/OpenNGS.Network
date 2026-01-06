@@ -8,7 +8,7 @@ using UnityEngine;
 public interface IConnector
 {
     void Init(string address);
-    void Connect();
+    Task Connect();
     void Disonnect();
     void SendCaller(string message);
     void SendToAll(string message);
