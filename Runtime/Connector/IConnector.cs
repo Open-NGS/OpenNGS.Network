@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 public interface IConnector
@@ -28,4 +28,10 @@ public interface IConnector
     event Action OnConnected;
     event Action OnDisconnected;
     event Action OnError;
+
+
+    bool IsConnected { get; }
+    float Latency { get; }
+    void ProfStart();
+    void ProfStop();
 }
