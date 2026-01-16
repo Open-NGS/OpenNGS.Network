@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 public interface IConnector
 {
     void Init(string address);
+    void SetToken(string token);
     Task Connect();
     void Disonnect();
     void SendCaller(string message);
