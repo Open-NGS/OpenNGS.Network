@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 public interface IConnector
 {
     void Init(string address);
-    void SetToken(string token);
     Task Connect();
     void Disonnect();
     void SendCaller(string message);
@@ -23,12 +22,13 @@ public interface IConnector
     Task<T> InvokeAsync<T>(string methodName, object args1, object args2);
     Task<T> InvokeAsync<T>(string methodName, object args1, object args2, object args3);
 
+    void Remove(string methodName);
     void On<T1>(string methodName, Action<T1> handler);
 
     event Action<string> OnMessageReceived;
     event Action OnConnected;
     event Action OnDisconnected;
-    event Action OnError;
+    event Action<string> OnError;
 
 
     bool IsConnected { get; }
