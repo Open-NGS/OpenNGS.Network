@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 public interface IConnector
 {
     void Init(string address);
+
+    string AccessToken { get; set; }
+
     Task Connect();
     void Disonnect();
     void SendCaller(string message);
